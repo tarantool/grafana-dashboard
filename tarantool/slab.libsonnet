@@ -53,10 +53,8 @@ local influxdb = grafana.influxdb;
     datasource=datasource,
   ).addTarget(
     influxdb.target(
-      query = |||
-        SELECT mean("value") FROM "$measurement" WHERE ("metric_name" = 'tnt_slab_quota_used_ratio') AND $timeFilter GROUP BY time($__interval) fill(null)
-      |||
-    )
+      measurement='$measurement'
+    ).where('metric_name', '=', 'tnt_slab_quota_used_ratio').selectField('value').addConverter('mean')
   ),
 
   arena_used_ratio(
@@ -78,10 +76,8 @@ local influxdb = grafana.influxdb;
     datasource=datasource,
   ).addTarget(
     influxdb.target(
-      query = |||
-        SELECT mean("value") FROM "$measurement" WHERE ("metric_name" = 'tnt_slab_arena_used_ratio') AND $timeFilter GROUP BY time($__interval) fill(null)
-      |||
-    )
+      measurement='$measurement'
+    ).where('metric_name', '=', 'tnt_slab_arena_used_ratio').selectField('value').addConverter('mean')
   ),
 
   items_used_ratio(
@@ -103,9 +99,7 @@ local influxdb = grafana.influxdb;
     datasource=datasource,
   ).addTarget(
     influxdb.target(
-      query = |||
-        SELECT mean("value") FROM "$measurement" WHERE ("metric_name" = 'tnt_slab_items_used_ratio') AND $timeFilter GROUP BY time($__interval) fill(null)
-      |||
-    )
+      measurement='$measurement'
+    ).where('metric_name', '=', 'tnt_slab_items_used_ratio').selectField('value').addConverter('mean')
   ),
 }
