@@ -1,0 +1,1 @@
+import 'tarantool/dashboard.libsonnet'
