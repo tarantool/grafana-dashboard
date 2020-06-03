@@ -46,14 +46,15 @@ local influxdb = grafana.influxdb;
       так и для индексов (равно значению параметра *memtx_memory*).
     |||,
 
-    datasource=null
+    datasource=null,
+    measurement=null,
   ):: used_ratio(
     title=title,
     description=description,
     datasource=datasource,
   ).addTarget(
     influxdb.target(
-      measurement='$measurement'
+      measurement=measurement
     ).where('metric_name', '=', 'tnt_slab_quota_used_ratio').selectField('value').addConverter('mean')
   ),
 
@@ -70,13 +71,14 @@ local influxdb = grafana.influxdb;
     |||,
 
     datasource=null,
+    measurement=null,
   ):: used_ratio(
     title=title,
     description=description,
     datasource=datasource,
   ).addTarget(
     influxdb.target(
-      measurement='$measurement'
+      measurement=measurement
     ).where('metric_name', '=', 'tnt_slab_arena_used_ratio').selectField('value').addConverter('mean')
   ),
 
@@ -93,13 +95,14 @@ local influxdb = grafana.influxdb;
     |||,
 
     datasource=null,
+    measurement=null,
   ):: used_ratio(
     title=title,
     description=description,
     datasource=datasource,
   ).addTarget(
     influxdb.target(
-      measurement='$measurement'
+      measurement=measurement
     ).where('metric_name', '=', 'tnt_slab_items_used_ratio').selectField('value').addConverter('mean')
   ),
 }
