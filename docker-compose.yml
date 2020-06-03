@@ -41,7 +41,7 @@ services:
       - ./example/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
 
   grafana:
-    image: grafana/grafana
+    image: grafana/grafana:6.6.0
     environment: 
       GF_SECURITY_DISABLE_INITIAL_ADMIN_CREATION: "true"
       GF_AUTH_ANONYMOUS_ENABLED: "true"
