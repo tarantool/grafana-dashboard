@@ -1,6 +1,6 @@
 local grafana = import 'grafonnet/grafana.libsonnet';
 
-local slab = import 'tarantool/slab.libsonnet';
+local slab = import 'slab.libsonnet';
 
 local datasource = 'default';
 local measurement = 'example_project_http';
