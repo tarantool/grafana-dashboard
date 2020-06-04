@@ -61,31 +61,73 @@ dashboard
   version=''
 )
 .addPanel(
-  grafana.row.new(title='memory'),
-  { x: 0, y: 0 }
+  grafana.row.new(title='Tarantool memory overview'),
+  { w: 24, h: 1, x: 0, y: 0 }
 )
 .addPanel(
   slab.monitor_info(),
-  { w: 24, h: 3, x: 0, y: 0 }
+  { w: 24, h: 3, x: 0, y: 1 }
 )
 .addPanel(
   slab.quota_used_ratio(
     datasource=datasource,
     measurement=measurement,
   ),
-  { w: 8, h: 8, x: 0, y: 3 }
+  { w: 8, h: 8, x: 0, y: 4 }
 )
 .addPanel(
   slab.arena_used_ratio(
     datasource=datasource,
     measurement=measurement,
   ),
-  { w: 8, h: 8, x: 8, y: 3 },
+  { w: 8, h: 8, x: 8, y: 4 },
 )
 .addPanel(
   slab.items_used_ratio(
     datasource=datasource,
     measurement=measurement,
   ),
-  { w: 8, h: 8, x: 16, y: 3 },
+  { w: 8, h: 8, x: 16, y: 4 },
+)
+.addPanel(
+  slab.quota_used(
+    datasource=datasource,
+    measurement=measurement,
+  ),
+  { w: 8, h: 8, x: 0, y: 12 }
+)
+.addPanel(
+  slab.arena_used(
+    datasource=datasource,
+    measurement=measurement,
+  ),
+  { w: 8, h: 8, x: 8, y: 12 },
+)
+.addPanel(
+  slab.items_used(
+    datasource=datasource,
+    measurement=measurement,
+  ),
+  { w: 8, h: 8, x: 16, y: 12 },
+)
+.addPanel(
+  slab.quota_size(
+    datasource=datasource,
+    measurement=measurement,
+  ),
+  { w: 8, h: 8, x: 0, y: 20 }
+)
+.addPanel(
+  slab.arena_size(
+    datasource=datasource,
+    measurement=measurement,
+  ),
+  { w: 8, h: 8, x: 8, y: 20 },
+)
+.addPanel(
+  slab.items_size(
+    datasource=datasource,
+    measurement=measurement,
+  ),
+  { w: 8, h: 8, x: 16, y: 20 },
 )

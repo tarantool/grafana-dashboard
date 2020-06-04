@@ -16,19 +16,21 @@ local influxdb = grafana.influxdb;
     |||,
   ),
 
-  local used_ratio(
+  local used_panel(
     title,
     description,
     datasource,
     measurement,
     metric_name,
+    format,
+    labelY1
   ) = graph.new(
     title=title,
     description=description,
     datasource=datasource,
 
-    format='percent',
-    labelY1='used ratio',
+    format=format,
+    labelY1=labelY1,
     fill=0,
     decimals=2,
     sort='decreasing',
@@ -43,6 +45,22 @@ local influxdb = grafana.influxdb;
       group_tags=['label_pairs_alias'],
       alias='$tag_label_pairs_alias',
     ).where('metric_name', '=', metric_name).selectField('value').addConverter('mean')
+  ),
+
+  local used_ratio(
+    title,
+    description,
+    datasource,
+    measurement,
+    metric_name,
+  ) = used_panel(
+    title,
+    description,
+    datasource,
+    measurement,
+    metric_name,
+    format='percent',
+    labelY1='used ratio'
   ),
 
   quota_used_ratio(
@@ -86,7 +104,7 @@ local influxdb = grafana.influxdb;
   ),
 
   items_used_ratio(
-    title='Used only for tuples (items_used_ratio)',
+    title='Used for tuples (items_used_ratio)',
     description=|||
       `items_used_ratio` = `items_used` / `items_size`.
 
@@ -103,5 +121,117 @@ local influxdb = grafana.influxdb;
     datasource=datasource,
     measurement=measurement,
     metric_name='tnt_slab_items_used_ratio',
+  ),
+
+  local used_memory(
+    title,
+    description,
+    datasource,
+    measurement,
+    metric_name,
+  ) = used_panel(
+    title,
+    description,
+    datasource,
+    measurement,
+    metric_name,
+    format='bytes',
+    labelY1='in bytes',
+  ),
+
+  quota_used(
+    title='Used by slab allocator (quota_used)',
+    description=|||
+      Memory used by slab allocator (for both tuple and index slabs).
+    |||,
+
+    datasource=null,
+    measurement=null,
+  ):: used_memory(
+    title=title,
+    description=description,
+    datasource=datasource,
+    measurement=measurement,
+    metric_name='tnt_slab_quota_used',
+  ),
+
+  quota_size(
+    title='Slab allocator memory limit (quota_size)',
+    description=|||
+      Memory limit for slab allocator (as configured in the *memtx_memory* parameter).
+    |||,
+
+    datasource=null,
+    measurement=null,
+  ):: used_memory(
+    title=title,
+    description=description,
+    datasource=datasource,
+    measurement=measurement,
+    metric_name='tnt_slab_quota_size',
+  ),
+
+  arena_used(
+    title='Used for tuples and indexes (arena_used)',
+    description=|||
+      Memory used for both tuples and indexes.
+    |||,
+
+    datasource=null,
+    measurement=null,
+  ):: used_memory(
+    title=title,
+    description=description,
+    datasource=datasource,
+    measurement=measurement,
+    metric_name='tnt_slab_arena_used',
+  ),
+
+  arena_size(
+    title='Allocated for tuples and indexes (arena_size)',
+    description=|||
+      Memory allocated for both tuples and indexes by slab allocator.
+    |||,
+
+    datasource=null,
+    measurement=null,
+  ):: used_memory(
+    title=title,
+    description=description,
+    datasource=datasource,
+    measurement=measurement,
+    metric_name='tnt_slab_arena_size',
+  ),
+
+  items_used(
+    title='Used for tuples (items_used)',
+    description=|||
+      Memory used for only tuples.
+    |||,
+
+    datasource=null,
+    measurement=null,
+  ):: used_memory(
+    title=title,
+    description=description,
+    datasource=datasource,
+    measurement=measurement,
+    metric_name='tnt_slab_items_used',
+  ),
+
+  items_size(
+    title='Allocated for tuples (items_size)',
+    description=|||
+      Memory allocated for only tuples by slab allocator.
+    |||,
+
+    datasource=null,
+    measurement=null,
+  ):: used_memory(
+    title=title,
+    description=description,
+    datasource=datasource,
+    measurement=measurement,
+    metric_name='tnt_slab_items_size',
   ),
 }
