@@ -69,6 +69,973 @@
          "repeatIteration": null,
          "repeatRowId": null,
          "showTitle": true,
+         "title": "Tarantool HTTP statistics",
+         "titleSize": "h6",
+         "type": "row"
+      },
+      {
+         "aliasColors": { },
+         "bars": false,
+         "dashLength": 10,
+         "dashes": false,
+         "datasource": "${DS_INFLUXDB}",
+         "decimals": 2,
+         "description": "Requests, processed with success (code 2xx) on Tarantool's side.\nGraph shows mean count per second.\n",
+         "fill": 0,
+         "gridPos": {
+            "h": 8,
+            "w": 8,
+            "x": 0,
+            "y": 1
+         },
+         "id": 3,
+         "legend": {
+            "alignAsTable": true,
+            "avg": true,
+            "current": true,
+            "max": true,
+            "min": false,
+            "rightSide": false,
+            "show": true,
+            "sideWidth": null,
+            "sort": "current",
+            "sortDesc": true,
+            "total": false,
+            "values": true
+         },
+         "lines": true,
+         "linewidth": 1,
+         "links": [ ],
+         "nullPointMode": "null",
+         "percentage": false,
+         "pointradius": 5,
+         "points": false,
+         "renderer": "flot",
+         "repeat": null,
+         "seriesOverrides": [ ],
+         "spaceLength": 10,
+         "stack": false,
+         "steppedLine": false,
+         "targets": [
+            {
+               "alias": "$tag_label_pairs_alias — $tag_label_pairs_method $tag_label_pairs_path (code $tag_label_pairs_status)",
+               "groupBy": [
+                  {
+                     "params": [
+                        "$__interval"
+                     ],
+                     "type": "time"
+                  },
+                  {
+                     "params": [
+                        "label_pairs_alias"
+                     ],
+                     "type": "tag"
+                  },
+                  {
+                     "params": [
+                        "label_pairs_path"
+                     ],
+                     "type": "tag"
+                  },
+                  {
+                     "params": [
+                        "label_pairs_method"
+                     ],
+                     "type": "tag"
+                  },
+                  {
+                     "params": [
+                        "label_pairs_status"
+                     ],
+                     "type": "tag"
+                  },
+                  {
+                     "params": [
+                        "none"
+                     ],
+                     "type": "fill"
+                  }
+               ],
+               "measurement": "${TARANTOOL_MEASUREMENT}",
+               "policy": "default",
+               "refId": "A",
+               "resultFormat": "time_series",
+               "select": [
+                  [
+                     {
+                        "params": [
+                           "value"
+                        ],
+                        "type": "field"
+                     },
+                     {
+                        "params": [ ],
+                        "type": "mean"
+                     },
+                     {
+                        "params": [
+                           "1s"
+                        ],
+                        "type": "non_negative_derivative"
+                     }
+                  ]
+               ],
+               "tags": [
+                  {
+                     "key": "metric_name",
+                     "operator": "=",
+                     "value": "http_server_request_latency_count"
+                  },
+                  {
+                     "condition": "AND",
+                     "key": "label_pairs_status",
+                     "operator": "=~",
+                     "value": "/^2\\d{2}$/"
+                  }
+               ]
+            }
+         ],
+         "thresholds": [ ],
+         "timeFrom": null,
+         "timeShift": null,
+         "title": "Success requests (code 2xx)",
+         "tooltip": {
+            "shared": true,
+            "sort": 2,
+            "value_type": "individual"
+         },
+         "type": "graph",
+         "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": [ ]
+         },
+         "yaxes": [
+            {
+               "decimals": 0,
+               "format": "none",
+               "label": "requests per second",
+               "logBase": 1,
+               "max": null,
+               "min": null,
+               "show": true
+            },
+            {
+               "decimals": 2,
+               "format": "none",
+               "label": null,
+               "logBase": 1,
+               "max": null,
+               "min": null,
+               "show": true
+            }
+         ]
+      },
+      {
+         "aliasColors": { },
+         "bars": false,
+         "dashLength": 10,
+         "dashes": false,
+         "datasource": "${DS_INFLUXDB}",
+         "decimals": 2,
+         "description": "Requests, processed with 4xx error on Tarantool's side.\nGraph shows mean count per second.\n",
+         "fill": 0,
+         "gridPos": {
+            "h": 8,
+            "w": 8,
+            "x": 8,
+            "y": 1
+         },
+         "id": 4,
+         "legend": {
+            "alignAsTable": true,
+            "avg": true,
+            "current": true,
+            "max": true,
+            "min": false,
+            "rightSide": false,
+            "show": true,
+            "sideWidth": null,
+            "sort": "current",
+            "sortDesc": true,
+            "total": false,
+            "values": true
+         },
+         "lines": true,
+         "linewidth": 1,
+         "links": [ ],
+         "nullPointMode": "null",
+         "percentage": false,
+         "pointradius": 5,
+         "points": false,
+         "renderer": "flot",
+         "repeat": null,
+         "seriesOverrides": [ ],
+         "spaceLength": 10,
+         "stack": false,
+         "steppedLine": false,
+         "targets": [
+            {
+               "alias": "$tag_label_pairs_alias — $tag_label_pairs_method $tag_label_pairs_path (code $tag_label_pairs_status)",
+               "groupBy": [
+                  {
+                     "params": [
+                        "$__interval"
+                     ],
+                     "type": "time"
+                  },
+                  {
+                     "params": [
+                        "label_pairs_alias"
+                     ],
+                     "type": "tag"
+                  },
+                  {
+                     "params": [
+                        "label_pairs_path"
+                     ],
+                     "type": "tag"
+                  },
+                  {
+                     "params": [
+                        "label_pairs_method"
+                     ],
+                     "type": "tag"
+                  },
+                  {
+                     "params": [
+                        "label_pairs_status"
+                     ],
+                     "type": "tag"
+                  },
+                  {
+                     "params": [
+                        "none"
+                     ],
+                     "type": "fill"
+                  }
+               ],
+               "measurement": "${TARANTOOL_MEASUREMENT}",
+               "policy": "default",
+               "refId": "A",
+               "resultFormat": "time_series",
+               "select": [
+                  [
+                     {
+                        "params": [
+                           "value"
+                        ],
+                        "type": "field"
+                     },
+                     {
+                        "params": [ ],
+                        "type": "mean"
+                     },
+                     {
+                        "params": [
+                           "1s"
+                        ],
+                        "type": "non_negative_derivative"
+                     }
+                  ]
+               ],
+               "tags": [
+                  {
+                     "key": "metric_name",
+                     "operator": "=",
+                     "value": "http_server_request_latency_count"
+                  },
+                  {
+                     "condition": "AND",
+                     "key": "label_pairs_status",
+                     "operator": "=~",
+                     "value": "/^4\\d{2}$/"
+                  }
+               ]
+            }
+         ],
+         "thresholds": [ ],
+         "timeFrom": null,
+         "timeShift": null,
+         "title": "Error requests (code 4xx)",
+         "tooltip": {
+            "shared": true,
+            "sort": 2,
+            "value_type": "individual"
+         },
+         "type": "graph",
+         "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": [ ]
+         },
+         "yaxes": [
+            {
+               "decimals": 0,
+               "format": "none",
+               "label": "requests per second",
+               "logBase": 1,
+               "max": null,
+               "min": null,
+               "show": true
+            },
+            {
+               "decimals": 2,
+               "format": "none",
+               "label": null,
+               "logBase": 1,
+               "max": null,
+               "min": null,
+               "show": true
+            }
+         ]
+      },
+      {
+         "aliasColors": { },
+         "bars": false,
+         "dashLength": 10,
+         "dashes": false,
+         "datasource": "${DS_INFLUXDB}",
+         "decimals": 2,
+         "description": "Requests, processed with 5xx error on Tarantool's side.\nGraph shows mean count per second.\n",
+         "fill": 0,
+         "gridPos": {
+            "h": 8,
+            "w": 8,
+            "x": 16,
+            "y": 1
+         },
+         "id": 5,
+         "legend": {
+            "alignAsTable": true,
+            "avg": true,
+            "current": true,
+            "max": true,
+            "min": false,
+            "rightSide": false,
+            "show": true,
+            "sideWidth": null,
+            "sort": "current",
+            "sortDesc": true,
+            "total": false,
+            "values": true
+         },
+         "lines": true,
+         "linewidth": 1,
+         "links": [ ],
+         "nullPointMode": "null",
+         "percentage": false,
+         "pointradius": 5,
+         "points": false,
+         "renderer": "flot",
+         "repeat": null,
+         "seriesOverrides": [ ],
+         "spaceLength": 10,
+         "stack": false,
+         "steppedLine": false,
+         "targets": [
+            {
+               "alias": "$tag_label_pairs_alias — $tag_label_pairs_method $tag_label_pairs_path (code $tag_label_pairs_status)",
+               "groupBy": [
+                  {
+                     "params": [
+                        "$__interval"
+                     ],
+                     "type": "time"
+                  },
+                  {
+                     "params": [
+                        "label_pairs_alias"
+                     ],
+                     "type": "tag"
+                  },
+                  {
+                     "params": [
+                        "label_pairs_path"
+                     ],
+                     "type": "tag"
+                  },
+                  {
+                     "params": [
+                        "label_pairs_method"
+                     ],
+                     "type": "tag"
+                  },
+                  {
+                     "params": [
+                        "label_pairs_status"
+                     ],
+                     "type": "tag"
+                  },
+                  {
+                     "params": [
+                        "none"
+                     ],
+                     "type": "fill"
+                  }
+               ],
+               "measurement": "${TARANTOOL_MEASUREMENT}",
+               "policy": "default",
+               "refId": "A",
+               "resultFormat": "time_series",
+               "select": [
+                  [
+                     {
+                        "params": [
+                           "value"
+                        ],
+                        "type": "field"
+                     },
+                     {
+                        "params": [ ],
+                        "type": "mean"
+                     },
+                     {
+                        "params": [
+                           "1s"
+                        ],
+                        "type": "non_negative_derivative"
+                     }
+                  ]
+               ],
+               "tags": [
+                  {
+                     "key": "metric_name",
+                     "operator": "=",
+                     "value": "http_server_request_latency_count"
+                  },
+                  {
+                     "condition": "AND",
+                     "key": "label_pairs_status",
+                     "operator": "=~",
+                     "value": "/^5\\d{2}$/"
+                  }
+               ]
+            }
+         ],
+         "thresholds": [ ],
+         "timeFrom": null,
+         "timeShift": null,
+         "title": "Error requests (code 5xx)",
+         "tooltip": {
+            "shared": true,
+            "sort": 2,
+            "value_type": "individual"
+         },
+         "type": "graph",
+         "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": [ ]
+         },
+         "yaxes": [
+            {
+               "decimals": 0,
+               "format": "none",
+               "label": "requests per second",
+               "logBase": 1,
+               "max": null,
+               "min": null,
+               "show": true
+            },
+            {
+               "decimals": 2,
+               "format": "none",
+               "label": null,
+               "logBase": 1,
+               "max": null,
+               "min": null,
+               "show": true
+            }
+         ]
+      },
+      {
+         "aliasColors": { },
+         "bars": false,
+         "dashLength": 10,
+         "dashes": false,
+         "datasource": "${DS_INFLUXDB}",
+         "decimals": 3,
+         "description": "Latency of requests, processed with success (code 2xx) on Tarantool's side.\n",
+         "fill": 0,
+         "gridPos": {
+            "h": 8,
+            "w": 8,
+            "x": 0,
+            "y": 9
+         },
+         "id": 6,
+         "legend": {
+            "alignAsTable": true,
+            "avg": true,
+            "current": true,
+            "max": true,
+            "min": false,
+            "rightSide": false,
+            "show": true,
+            "sideWidth": null,
+            "sort": "current",
+            "sortDesc": true,
+            "total": false,
+            "values": true
+         },
+         "lines": true,
+         "linewidth": 1,
+         "links": [ ],
+         "nullPointMode": "null",
+         "percentage": false,
+         "pointradius": 5,
+         "points": false,
+         "renderer": "flot",
+         "repeat": null,
+         "seriesOverrides": [ ],
+         "spaceLength": 10,
+         "stack": false,
+         "steppedLine": false,
+         "targets": [
+            {
+               "alias": "$tag_label_pairs_alias — $tag_label_pairs_method $tag_label_pairs_path (code $tag_label_pairs_status)",
+               "groupBy": [
+                  {
+                     "params": [
+                        "$__interval"
+                     ],
+                     "type": "time"
+                  },
+                  {
+                     "params": [
+                        "label_pairs_alias"
+                     ],
+                     "type": "tag"
+                  },
+                  {
+                     "params": [
+                        "label_pairs_path"
+                     ],
+                     "type": "tag"
+                  },
+                  {
+                     "params": [
+                        "label_pairs_method"
+                     ],
+                     "type": "tag"
+                  },
+                  {
+                     "params": [
+                        "label_pairs_status"
+                     ],
+                     "type": "tag"
+                  },
+                  {
+                     "params": [
+                        "none"
+                     ],
+                     "type": "fill"
+                  }
+               ],
+               "measurement": "${TARANTOOL_MEASUREMENT}",
+               "policy": "default",
+               "refId": "A",
+               "resultFormat": "time_series",
+               "select": [
+                  [
+                     {
+                        "params": [
+                           "value"
+                        ],
+                        "type": "field"
+                     },
+                     {
+                        "params": [ ],
+                        "type": "mean"
+                     }
+                  ]
+               ],
+               "tags": [
+                  {
+                     "key": "metric_name",
+                     "operator": "=",
+                     "value": "http_server_request_latency_avg"
+                  },
+                  {
+                     "condition": "AND",
+                     "key": "label_pairs_status",
+                     "operator": "=~",
+                     "value": "/^2\\d{2}$/"
+                  }
+               ]
+            }
+         ],
+         "thresholds": [ ],
+         "timeFrom": null,
+         "timeShift": null,
+         "title": "Success requests latency (code 2xx)",
+         "tooltip": {
+            "shared": true,
+            "sort": 2,
+            "value_type": "individual"
+         },
+         "type": "graph",
+         "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": [ ]
+         },
+         "yaxes": [
+            {
+               "decimals": 2,
+               "format": "s",
+               "label": "average",
+               "logBase": 1,
+               "max": null,
+               "min": null,
+               "show": true
+            },
+            {
+               "decimals": 3,
+               "format": "s",
+               "label": null,
+               "logBase": 1,
+               "max": null,
+               "min": null,
+               "show": true
+            }
+         ]
+      },
+      {
+         "aliasColors": { },
+         "bars": false,
+         "dashLength": 10,
+         "dashes": false,
+         "datasource": "${DS_INFLUXDB}",
+         "decimals": 3,
+         "description": "Latency of requests, processed with 4xx error on Tarantool's side.\n",
+         "fill": 0,
+         "gridPos": {
+            "h": 8,
+            "w": 8,
+            "x": 8,
+            "y": 9
+         },
+         "id": 7,
+         "legend": {
+            "alignAsTable": true,
+            "avg": true,
+            "current": true,
+            "max": true,
+            "min": false,
+            "rightSide": false,
+            "show": true,
+            "sideWidth": null,
+            "sort": "current",
+            "sortDesc": true,
+            "total": false,
+            "values": true
+         },
+         "lines": true,
+         "linewidth": 1,
+         "links": [ ],
+         "nullPointMode": "null",
+         "percentage": false,
+         "pointradius": 5,
+         "points": false,
+         "renderer": "flot",
+         "repeat": null,
+         "seriesOverrides": [ ],
+         "spaceLength": 10,
+         "stack": false,
+         "steppedLine": false,
+         "targets": [
+            {
+               "alias": "$tag_label_pairs_alias — $tag_label_pairs_method $tag_label_pairs_path (code $tag_label_pairs_status)",
+               "groupBy": [
+                  {
+                     "params": [
+                        "$__interval"
+                     ],
+                     "type": "time"
+                  },
+                  {
+                     "params": [
+                        "label_pairs_alias"
+                     ],
+                     "type": "tag"
+                  },
+                  {
+                     "params": [
+                        "label_pairs_path"
+                     ],
+                     "type": "tag"
+                  },
+                  {
+                     "params": [
+                        "label_pairs_method"
+                     ],
+                     "type": "tag"
+                  },
+                  {
+                     "params": [
+                        "label_pairs_status"
+                     ],
+                     "type": "tag"
+                  },
+                  {
+                     "params": [
+                        "none"
+                     ],
+                     "type": "fill"
+                  }
+               ],
+               "measurement": "${TARANTOOL_MEASUREMENT}",
+               "policy": "default",
+               "refId": "A",
+               "resultFormat": "time_series",
+               "select": [
+                  [
+                     {
+                        "params": [
+                           "value"
+                        ],
+                        "type": "field"
+                     },
+                     {
+                        "params": [ ],
+                        "type": "mean"
+                     }
+                  ]
+               ],
+               "tags": [
+                  {
+                     "key": "metric_name",
+                     "operator": "=",
+                     "value": "http_server_request_latency_avg"
+                  },
+                  {
+                     "condition": "AND",
+                     "key": "label_pairs_status",
+                     "operator": "=~",
+                     "value": "/^4\\d{2}$/"
+                  }
+               ]
+            }
+         ],
+         "thresholds": [ ],
+         "timeFrom": null,
+         "timeShift": null,
+         "title": "Error requests latency (code 4xx)",
+         "tooltip": {
+            "shared": true,
+            "sort": 2,
+            "value_type": "individual"
+         },
+         "type": "graph",
+         "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": [ ]
+         },
+         "yaxes": [
+            {
+               "decimals": 2,
+               "format": "s",
+               "label": "average",
+               "logBase": 1,
+               "max": null,
+               "min": null,
+               "show": true
+            },
+            {
+               "decimals": 3,
+               "format": "s",
+               "label": null,
+               "logBase": 1,
+               "max": null,
+               "min": null,
+               "show": true
+            }
+         ]
+      },
+      {
+         "aliasColors": { },
+         "bars": false,
+         "dashLength": 10,
+         "dashes": false,
+         "datasource": "${DS_INFLUXDB}",
+         "decimals": 3,
+         "description": "Latency of requests, processed with 5xx error on Tarantool's side.\n",
+         "fill": 0,
+         "gridPos": {
+            "h": 8,
+            "w": 8,
+            "x": 16,
+            "y": 9
+         },
+         "id": 8,
+         "legend": {
+            "alignAsTable": true,
+            "avg": true,
+            "current": true,
+            "max": true,
+            "min": false,
+            "rightSide": false,
+            "show": true,
+            "sideWidth": null,
+            "sort": "current",
+            "sortDesc": true,
+            "total": false,
+            "values": true
+         },
+         "lines": true,
+         "linewidth": 1,
+         "links": [ ],
+         "nullPointMode": "null",
+         "percentage": false,
+         "pointradius": 5,
+         "points": false,
+         "renderer": "flot",
+         "repeat": null,
+         "seriesOverrides": [ ],
+         "spaceLength": 10,
+         "stack": false,
+         "steppedLine": false,
+         "targets": [
+            {
+               "alias": "$tag_label_pairs_alias — $tag_label_pairs_method $tag_label_pairs_path (code $tag_label_pairs_status)",
+               "groupBy": [
+                  {
+                     "params": [
+                        "$__interval"
+                     ],
+                     "type": "time"
+                  },
+                  {
+                     "params": [
+                        "label_pairs_alias"
+                     ],
+                     "type": "tag"
+                  },
+                  {
+                     "params": [
+                        "label_pairs_path"
+                     ],
+                     "type": "tag"
+                  },
+                  {
+                     "params": [
+                        "label_pairs_method"
+                     ],
+                     "type": "tag"
+                  },
+                  {
+                     "params": [
+                        "label_pairs_status"
+                     ],
+                     "type": "tag"
+                  },
+                  {
+                     "params": [
+                        "none"
+                     ],
+                     "type": "fill"
+                  }
+               ],
+               "measurement": "${TARANTOOL_MEASUREMENT}",
+               "policy": "default",
+               "refId": "A",
+               "resultFormat": "time_series",
+               "select": [
+                  [
+                     {
+                        "params": [
+                           "value"
+                        ],
+                        "type": "field"
+                     },
+                     {
+                        "params": [ ],
+                        "type": "mean"
+                     }
+                  ]
+               ],
+               "tags": [
+                  {
+                     "key": "metric_name",
+                     "operator": "=",
+                     "value": "http_server_request_latency_avg"
+                  },
+                  {
+                     "condition": "AND",
+                     "key": "label_pairs_status",
+                     "operator": "=~",
+                     "value": "/^5\\d{2}$/"
+                  }
+               ]
+            }
+         ],
+         "thresholds": [ ],
+         "timeFrom": null,
+         "timeShift": null,
+         "title": "Error requests latency (code 5xx)",
+         "tooltip": {
+            "shared": true,
+            "sort": 2,
+            "value_type": "individual"
+         },
+         "type": "graph",
+         "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": [ ]
+         },
+         "yaxes": [
+            {
+               "decimals": 2,
+               "format": "s",
+               "label": "average",
+               "logBase": 1,
+               "max": null,
+               "min": null,
+               "show": true
+            },
+            {
+               "decimals": 3,
+               "format": "s",
+               "label": null,
+               "logBase": 1,
+               "max": null,
+               "min": null,
+               "show": true
+            }
+         ]
+      },
+      {
+         "collapse": false,
+         "collapsed": false,
+         "gridPos": {
+            "h": 1,
+            "w": 24,
+            "x": 0,
+            "y": 17
+         },
+         "id": 9,
+         "panels": [ ],
+         "repeat": null,
+         "repeatIteration": null,
+         "repeatRowId": null,
+         "showTitle": true,
          "title": "Tarantool memory overview",
          "titleSize": "h6",
          "type": "row"
@@ -80,9 +1047,9 @@
             "h": 3,
             "w": 24,
             "x": 0,
-            "y": 1
+            "y": 18
          },
-         "id": 3,
+         "id": 10,
          "mode": "markdown",
          "title": "Slab allocator monitoring information",
          "type": "text"
@@ -100,9 +1067,9 @@
             "h": 8,
             "w": 8,
             "x": 0,
-            "y": 4
+            "y": 21
          },
-         "id": 4,
+         "id": 11,
          "legend": {
             "alignAsTable": true,
             "avg": false,
@@ -231,9 +1198,9 @@
             "h": 8,
             "w": 8,
             "x": 8,
-            "y": 4
+            "y": 21
          },
-         "id": 5,
+         "id": 12,
          "legend": {
             "alignAsTable": true,
             "avg": false,
@@ -362,9 +1329,9 @@
             "h": 8,
             "w": 8,
             "x": 16,
-            "y": 4
+            "y": 21
          },
-         "id": 6,
+         "id": 13,
          "legend": {
             "alignAsTable": true,
             "avg": false,
@@ -493,9 +1460,9 @@
             "h": 8,
             "w": 8,
             "x": 0,
-            "y": 12
+            "y": 29
          },
-         "id": 7,
+         "id": 14,
          "legend": {
             "alignAsTable": true,
             "avg": false,
@@ -624,9 +1591,9 @@
             "h": 8,
             "w": 8,
             "x": 8,
-            "y": 12
+            "y": 29
          },
-         "id": 8,
+         "id": 15,
          "legend": {
             "alignAsTable": true,
             "avg": false,
@@ -755,9 +1722,9 @@
             "h": 8,
             "w": 8,
             "x": 16,
-            "y": 12
+            "y": 29
          },
-         "id": 9,
+         "id": 16,
          "legend": {
             "alignAsTable": true,
             "avg": false,
@@ -886,9 +1853,9 @@
             "h": 8,
             "w": 8,
             "x": 0,
-            "y": 20
+            "y": 37
          },
-         "id": 10,
+         "id": 17,
          "legend": {
             "alignAsTable": true,
             "avg": false,
@@ -1017,9 +1984,9 @@
             "h": 8,
             "w": 8,
             "x": 8,
-            "y": 20
+            "y": 37
          },
-         "id": 11,
+         "id": 18,
          "legend": {
             "alignAsTable": true,
             "avg": false,
@@ -1148,9 +2115,9 @@
             "h": 8,
             "w": 8,
             "x": 16,
-            "y": 20
+            "y": 37
          },
-         "id": 12,
+         "id": 19,
          "legend": {
             "alignAsTable": true,
             "avg": false,
