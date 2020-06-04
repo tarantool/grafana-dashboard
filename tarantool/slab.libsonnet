@@ -8,11 +8,11 @@ local influxdb = grafana.influxdb;
 {
   monitor_info(
   ):: text.new(
-    title='Инструкции по мониторингу slab',
+    title='Slab allocator monitoring information',
     content=|||
-      `quota_used_ratio` > 90%, `arena_used_ratio` > 90%, 50% < `items_used_ratio` < 90% – высокая фрагментация памяти.
+      `quota_used_ratio` > 90%, `arena_used_ratio` > 90%, 50% < `items_used_ratio` < 90% – your memory is highly fragmented. See [docs](https://www.tarantool.io/en/doc/1.10/reference/reference_lua/box_slab/#lua-function.box.slab.info) for more info.
 
-      `quota_used_ratio` > 90%, `arena_used_ratio` > 90%, `items_used_ratio` > 90% – заканчиваются резервы памяти, необходимо увеличить параметр *memtx_memory*.
+      `quota_used_ratio` > 90%, `arena_used_ratio` > 90%, `items_used_ratio` > 90% – you are running out of memory. You should consider increasing Tarantool’s memory limit (*box.cfg.memtx_memory*).
     |||,
   ),
 
@@ -20,6 +20,8 @@ local influxdb = grafana.influxdb;
     title,
     description,
     datasource,
+    measurement,
+    metric_name,
   ) = graph.new(
     title=title,
     description=description,
@@ -33,17 +35,20 @@ local influxdb = grafana.influxdb;
     legend_current=true,
     legend_values=true,
     legend_sortDesc=true
+  ).addTarget(
+    influxdb.target(
+      measurement=measurement
+    ).where('metric_name', '=', metric_name).selectField('value').addConverter('mean')
   ),
 
   quota_used_ratio(
-    title='Выделено памяти для распределения slab (quota_used_ratio)',
+    title='Used by slab allocator (quota_used_ratio)',
     description=|||
-      `quota_used_ratio` – отношение `quota_used` к `quota_size`.
+      `quota_used_ratio` = `quota_used` / `quota_size`.
 
-      `quota_used` – это объем памяти, уже выделенный для распределения slab.
+      `quota_used` – used by slab allocator (for both tuple and index slabs).
 
-      `quota_size` – максимальный объем памяти, который механизм распределения slab может использовать как для кортежей,
-      так и для индексов (равно значению параметра *memtx_memory*).
+      `quota_size` – memory limit for slab allocator (as configured in the *memtx_memory* parameter).
     |||,
 
     datasource=null,
@@ -52,22 +57,18 @@ local influxdb = grafana.influxdb;
     title=title,
     description=description,
     datasource=datasource,
-  ).addTarget(
-    influxdb.target(
-      measurement=measurement
-    ).where('metric_name', '=', 'tnt_slab_quota_used_ratio').selectField('value').addConverter('mean')
+    measurement=measurement,
+    metric_name='tnt_slab_quota_used_ratio',
   ),
 
   arena_used_ratio(
-    title='Утилизация памяти, выделенной под кортежи и индексы (arena_used_ratio)',
+    title='Used for tuples and indexes (arena_used_ratio)',
     description=|||
-      `arena_used_ratio` – отношение `arena_used` к `arena_size`.
+      `arena_used_ratio` = `arena_used` / `arena_size`.
 
-      `arena_used` – это эффективный объем памяти, используемый для кортежей и индексов
-      (не включая выделенные, но в данный момент свободные slab’ы).
+      `arena_used` – used for both tuples and indexes.
 
-      `arena_size` – это общий объем памяти, используемый для кортежей и индексов
-      (включая выделенные, но в данный момент свободные slab’ы).
+      `arena_size` – allocated for both tuples and indexes.
     |||,
 
     datasource=null,
@@ -76,22 +77,18 @@ local influxdb = grafana.influxdb;
     title=title,
     description=description,
     datasource=datasource,
-  ).addTarget(
-    influxdb.target(
-      measurement=measurement
-    ).where('metric_name', '=', 'tnt_slab_arena_used_ratio').selectField('value').addConverter('mean')
+    measurement=measurement,
+    metric_name='tnt_slab_arena_used_ratio',
   ),
 
   items_used_ratio(
-    title='Утилизация памяти, выделенной под кортежи (items_used_ratio)',
+    title='Used only for tuples (items_used_ratio)',
     description=|||
-      `items_used_ratio` – отношение `items_used` к `items_size`.
+      `items_used_ratio` = `items_used` / `items_size`.
 
-      `items_used` – это эффективный объем памяти (не включая выделенные, но в данный момент свободные slab’ы),
-      который используется только для кортежей, а не для индексов.
+      `items_used` – used only for tuples.
 
-      `items_size` – это общий объем памяти (включая выделенные, но в данный момент свободные slab’ы),
-      который используется только для кортежей, а не для индексов.
+      `items_size` – allocated only for tuples.
     |||,
 
     datasource=null,
@@ -100,9 +97,7 @@ local influxdb = grafana.influxdb;
     title=title,
     description=description,
     datasource=datasource,
-  ).addTarget(
-    influxdb.target(
-      measurement=measurement
-    ).where('metric_name', '=', 'tnt_slab_items_used_ratio').selectField('value').addConverter('mean')
+    measurement=measurement,
+    metric_name='tnt_slab_items_used_ratio',
   ),
 }

@@ -72,7 +72,7 @@
          "type": "row"
       },
       {
-         "content": "`quota_used_ratio` > 90%, `arena_used_ratio` > 90%, 50% < `items_used_ratio` < 90% – высокая фрагментация памяти.\n\n`quota_used_ratio` > 90%, `arena_used_ratio` > 90%, `items_used_ratio` > 90% – заканчиваются резервы памяти, необходимо увеличить параметр *memtx_memory*.\n",
+         "content": "`quota_used_ratio` > 90%, `arena_used_ratio` > 90%, 50% < `items_used_ratio` < 90% – your memory is highly fragmented. See [docs](https://www.tarantool.io/en/doc/1.10/reference/reference_lua/box_slab/#lua-function.box.slab.info) for more info.\n\n`quota_used_ratio` > 90%, `arena_used_ratio` > 90%, `items_used_ratio` > 90% – you are running out of memory. You should consider increasing Tarantool’s memory limit (*box.cfg.memtx_memory*).\n",
          "datasource": null,
          "gridPos": {
             "h": 3,
@@ -82,7 +82,7 @@
          },
          "id": 3,
          "mode": "markdown",
-         "title": "Инструкции по мониторингу slab",
+         "title": "Slab allocator monitoring information",
          "type": "text"
       },
       {
@@ -92,7 +92,7 @@
          "dashes": false,
          "datasource": "${DS_INFLUXDB}",
          "decimals": 2,
-         "description": "`quota_used_ratio` – отношение `quota_used` к `quota_size`.\n\n`quota_used` – это объем памяти, уже выделенный для распределения slab.\n\n`quota_size` – максимальный объем памяти, который механизм распределения slab может использовать как для кортежей,\nтак и для индексов (равно значению параметра *memtx_memory*).\n",
+         "description": "`quota_used_ratio` = `quota_used` / `quota_size`.\n\n`quota_used` – used by slab allocator (for both tuple and index slabs).\n\n`quota_size` – memory limit for slab allocator (as configured in the *memtx_memory* parameter).\n",
          "fill": 0,
          "gridPos": {
             "h": 8,
@@ -173,7 +173,7 @@
          "thresholds": [ ],
          "timeFrom": null,
          "timeShift": null,
-         "title": "Выделено памяти для распределения slab (quota_used_ratio)",
+         "title": "Used by slab allocator (quota_used_ratio)",
          "tooltip": {
             "shared": true,
             "sort": 0,
@@ -215,7 +215,7 @@
          "dashes": false,
          "datasource": "${DS_INFLUXDB}",
          "decimals": 2,
-         "description": "`arena_used_ratio` – отношение `arena_used` к `arena_size`.\n\n`arena_used` – это эффективный объем памяти, используемый для кортежей и индексов\n(не включая выделенные, но в данный момент свободные slab’ы).\n\n`arena_size` – это общий объем памяти, используемый для кортежей и индексов\n(включая выделенные, но в данный момент свободные slab’ы).\n",
+         "description": "`arena_used_ratio` = `arena_used` / `arena_size`.\n\n`arena_used` – used for both tuples and indexes.\n\n`arena_size` – allocated for both tuples and indexes.\n",
          "fill": 0,
          "gridPos": {
             "h": 8,
@@ -296,7 +296,7 @@
          "thresholds": [ ],
          "timeFrom": null,
          "timeShift": null,
-         "title": "Утилизация памяти, выделенной под кортежи и индексы (arena_used_ratio)",
+         "title": "Used for tuples and indexes (arena_used_ratio)",
          "tooltip": {
             "shared": true,
             "sort": 0,
@@ -338,7 +338,7 @@
          "dashes": false,
          "datasource": "${DS_INFLUXDB}",
          "decimals": 2,
-         "description": "`items_used_ratio` – отношение `items_used` к `items_size`.\n\n`items_used` – это эффективный объем памяти (не включая выделенные, но в данный момент свободные slab’ы),\nкоторый используется только для кортежей, а не для индексов.\n\n`items_size` – это общий объем памяти (включая выделенные, но в данный момент свободные slab’ы),\nкоторый используется только для кортежей, а не для индексов.\n",
+         "description": "`items_used_ratio` = `items_used` / `items_size`.\n\n`items_used` – used only for tuples.\n\n`items_size` – allocated only for tuples.\n",
          "fill": 0,
          "gridPos": {
             "h": 8,
@@ -419,7 +419,7 @@
          "thresholds": [ ],
          "timeFrom": null,
          "timeShift": null,
-         "title": "Утилизация памяти, выделенной под кортежи (items_used_ratio)",
+         "title": "Used only for tuples (items_used_ratio)",
          "tooltip": {
             "shared": true,
             "sort": 0,
