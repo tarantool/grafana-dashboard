@@ -2,6 +2,7 @@ local grafana = import 'grafonnet/grafana.libsonnet';
 
 local http = import 'http.libsonnet';
 local slab = import 'slab.libsonnet';
+local space = import 'space.libsonnet';
 
 local datasource = 'default';
 local measurement = 'example_project_http';
@@ -177,4 +178,50 @@ dashboard
     measurement=measurement,
   ),
   { w: 8, h: 8, x: 16, y: 37 },
+)
+.addPanel(
+  grafana.row.new(title='Tarantool spaces statistics'),
+  { w: 24, h: 1, x: 0, y: 45 }
+)
+.addPanel(
+  space.select_rps(
+    datasource=datasource,
+    measurement=measurement,
+  ),
+  { w: 8, h: 8, x: 0, y: 46 },
+)
+.addPanel(
+  space.insert_rps(
+    datasource=datasource,
+    measurement=measurement,
+  ),
+  { w: 8, h: 8, x: 8, y: 46 },
+)
+.addPanel(
+  space.replace_rps(
+    datasource=datasource,
+    measurement=measurement,
+  ),
+  { w: 8, h: 8, x: 16, y: 46 },
+)
+.addPanel(
+  space.upsert_rps(
+    datasource=datasource,
+    measurement=measurement,
+  ),
+  { w: 8, h: 8, x: 0, y: 46 },
+)
+.addPanel(
+  space.update_rps(
+    datasource=datasource,
+    measurement=measurement,
+  ),
+  { w: 8, h: 8, x: 8, y: 46 },
+)
+.addPanel(
+  space.delete_rps(
+    datasource=datasource,
+    measurement=measurement,
+  ),
+  { w: 8, h: 8, x: 16, y: 46 },
 )
