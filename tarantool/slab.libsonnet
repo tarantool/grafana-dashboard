@@ -31,13 +31,17 @@ local influxdb = grafana.influxdb;
     labelY1='used ratio',
     fill=0,
     decimals=2,
+    sort='decreasing',
     legend_alignAsTable=true,
     legend_current=true,
     legend_values=true,
-    legend_sortDesc=true
+    legend_sort='current',
+    legend_sortDesc=true,
   ).addTarget(
     influxdb.target(
-      measurement=measurement
+      measurement=measurement,
+      group_tags=['label_pairs_alias'],
+      alias='$tag_label_pairs_alias',
     ).where('metric_name', '=', metric_name).selectField('value').addConverter('mean')
   ),
 

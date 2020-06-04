@@ -1,8 +1,10 @@
 local cartridge = require('cartridge')
 local metrics = require("metrics")
-metrics.enable_default_metrics()
 local json_metrics = require("metrics.plugins.json")
 local prometheus = require("metrics.plugins.prometheus")
+
+metrics.set_global_labels({ alias = 'instance'})
+metrics.enable_default_metrics()
 
 local function init(opts) -- luacheck: no unused args
     -- if opts.is_master then

@@ -110,6 +110,7 @@
             "rightSide": false,
             "show": true,
             "sideWidth": null,
+            "sort": "current",
             "sortDesc": true,
             "total": false,
             "values": true
@@ -129,12 +130,19 @@
          "steppedLine": false,
          "targets": [
             {
+               "alias": "$tag_label_pairs_alias",
                "groupBy": [
                   {
                      "params": [
                         "$__interval"
                      ],
                      "type": "time"
+                  },
+                  {
+                     "params": [
+                        "label_pairs_alias"
+                     ],
+                     "type": "tag"
                   },
                   {
                      "params": [
@@ -176,7 +184,7 @@
          "title": "Used by slab allocator (quota_used_ratio)",
          "tooltip": {
             "shared": true,
-            "sort": 0,
+            "sort": 2,
             "value_type": "individual"
          },
          "type": "graph",
@@ -233,6 +241,7 @@
             "rightSide": false,
             "show": true,
             "sideWidth": null,
+            "sort": "current",
             "sortDesc": true,
             "total": false,
             "values": true
@@ -252,12 +261,19 @@
          "steppedLine": false,
          "targets": [
             {
+               "alias": "$tag_label_pairs_alias",
                "groupBy": [
                   {
                      "params": [
                         "$__interval"
                      ],
                      "type": "time"
+                  },
+                  {
+                     "params": [
+                        "label_pairs_alias"
+                     ],
+                     "type": "tag"
                   },
                   {
                      "params": [
@@ -299,7 +315,7 @@
          "title": "Used for tuples and indexes (arena_used_ratio)",
          "tooltip": {
             "shared": true,
-            "sort": 0,
+            "sort": 2,
             "value_type": "individual"
          },
          "type": "graph",
@@ -356,6 +372,7 @@
             "rightSide": false,
             "show": true,
             "sideWidth": null,
+            "sort": "current",
             "sortDesc": true,
             "total": false,
             "values": true
@@ -375,12 +392,19 @@
          "steppedLine": false,
          "targets": [
             {
+               "alias": "$tag_label_pairs_alias",
                "groupBy": [
                   {
                      "params": [
                         "$__interval"
                      ],
                      "type": "time"
+                  },
+                  {
+                     "params": [
+                        "label_pairs_alias"
+                     ],
+                     "type": "tag"
                   },
                   {
                      "params": [
@@ -422,7 +446,7 @@
          "title": "Used only for tuples (items_used_ratio)",
          "tooltip": {
             "shared": true,
-            "sort": 0,
+            "sort": 2,
             "value_type": "individual"
          },
          "type": "graph",
