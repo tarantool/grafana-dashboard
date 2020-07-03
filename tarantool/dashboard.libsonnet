@@ -4,9 +4,6 @@ local http = import 'http.libsonnet';
 local slab = import 'slab.libsonnet';
 local space = import 'space.libsonnet';
 
-local datasource = 'default';
-local measurement = 'example_project_http';
-
 local dashboard = grafana.dashboard.new(
   title='example_project_http',
   description='example dashboard',
