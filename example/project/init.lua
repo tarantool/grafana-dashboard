@@ -27,7 +27,6 @@ else
 end
 
 local cartridge = require('cartridge')
-local cartridge_admin = require('cartridge.admin')
 local membership = require('membership')
 local log = require("log")
 local ok, err = cartridge.cfg({
@@ -35,7 +34,8 @@ local ok, err = cartridge.cfg({
     roles = {
         'cartridge.roles.vshard-storage',
         'cartridge.roles.vshard-router',
-        'app.roles.custom',
+        'cartridge.roles.metrics',
+        'app.roles.custom'
     },
     cluster_cookie = 'project-cluster-cookie',
 })
@@ -45,6 +45,7 @@ assert(ok, tostring(err))
 local all = {
     'vshard-storage',
     'vshard-router',
+    'metrics',
     'app.roles.custom'
 }
 
@@ -56,10 +57,27 @@ local _, err = cartridge.admin_join_server({
 if err ~= nil then
     log.warn('%s', tostring(err))
 else
-    local _, err = cartridge_admin.bootstrap_vshard()
+    local _, err = cartridge.admin_bootstrap_vshard()
     if err ~= nil then
         log.error('%s', tostring(err))
         os.exit(1)
     end
+
+    -- This code is only for example purposes
+    -- DO NOT USE IT IN PROD CLUSTERS WITH MORE THAN 1 INSTANCE!
+    cartridge.config_patch_clusterwide({
+        metrics = {
+            export = {
+                {
+                    path = '/metrics',
+                    format = 'json'
+                },
+                {
+                    path = '/metrics/prometheus',
+                    format = 'prometheus'
+                }
+            }
+        }
+    })
 end
 

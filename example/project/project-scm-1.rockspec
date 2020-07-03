@@ -10,7 +10,7 @@ dependencies = {
     'checks == 3.0.1-1',
     'http == 1.1.0-1',
     'cartridge == 2.1.2-1',
-    'metrics == 0.2.0'
+    'metrics ~> 0.3'
 }
 build = {
     type = 'none';
