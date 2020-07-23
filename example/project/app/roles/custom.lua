@@ -10,7 +10,7 @@ local function init(opts) -- luacheck: no unused args
     local metrics = cartridge.service_get('metrics')
     local http_middleware = metrics.http_middleware
 
-    local http_collector = http_middleware.build_default_collector('average')
+    local http_collector = http_middleware.build_default_collector('summary')
 
     local httpd = cartridge.service_get('httpd')
     httpd:route(
