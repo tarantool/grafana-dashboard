@@ -4,6 +4,8 @@ services:
     build:
       context: ./example/project
       dockerfile: Dockerfile
+    environment:
+      - TARANTOOL_ALIAS=instance
     entrypoint: ["/usr/local/bin/tarantool"]
     command: ["init.lua"]
     networks:
