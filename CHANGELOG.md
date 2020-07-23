@@ -6,6 +6,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Unreleased
 
+## Added
+- Dashboard for Prometheus
+
 ## Changed
 - Update metrics version to 0.5.0
 - Replace average latency collector with summary collector in example cluster

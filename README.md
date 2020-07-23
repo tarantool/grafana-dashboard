@@ -38,17 +38,23 @@ Guide on Tarantool project prerequirements and metrics collectors configuration 
 
 ## How to compile dashboard
 
-### InfluxDB dashboard
+You can compile Prometheus dashboard template with
+```bash
+jsonnet -J ./vendor/ ./tarantool/prometheus_dashboard.jsonnet
+```
+and InfluxDB dashboard template with
+```bash
+jsonnet -J ./vendor/ ./tarantool/influxdb_dashboard.jsonnet
+```
 
-Compile board template with
+To save output into `output.json` file, use
 ```bash
-jsonnet -J ./vendor/ ./tarantool/dashboard.libsonnet -o ./output.json
+jsonnet -J ./vendor/ ./tarantool/prometheus_dashboard.jsonnet -o ./output.json
 ```
-to save json template into `output.json` file or
+and to save output into clipboard, use
 ```bash
-jsonnet -J ./vendor/ ./tarantool/dashboard.libsonnet | xclip -selection clipboard
+jsonnet -J ./vendor/ ./tarantool/prometheus_dashboard.jsonnet | xclip -selection clipboard
 ```
-to put json template into clipboard.
 
 ## Tests
 

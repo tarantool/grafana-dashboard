@@ -1,31 +1,24 @@
 {
    "__inputs": [
       {
-         "description": "InfluxDB Tarantool metrics bank",
-         "label": "InfluxDB bank",
-         "name": "DS_INFLUXDB",
-         "pluginId": "influxdb",
-         "pluginName": "InfluxDB",
+         "description": "Prometheus Tarantool metrics bank",
+         "label": "Prometheus",
+         "name": "DS_PROMETHEUS",
+         "pluginId": "prometheus",
+         "pluginName": "Prometheus",
          "type": "datasource"
       },
       {
-         "description": "InfluxDB Tarantool metrics measurement",
-         "label": "Measurement",
-         "name": "INFLUXDB_MEASUREMENT",
+         "description": "Prometheus Tarantool metrics job",
+         "label": "Job",
+         "name": "PROMETHEUS_JOB",
          "type": "constant"
-      },
-      {
-         "description": "InfluxDB Tarantool metrics policy",
-         "label": "Policy",
-         "name": "INFLUXDB_POLICY",
-         "type": "constant",
-         "value": "default"
       }
    ],
    "__requires": [
       {
-         "id": "influxdb",
-         "name": "InfluxDB",
+         "id": "prometheus",
+         "name": "Prometheus",
          "type": "datasource",
          "version": "1.0.0"
       },
@@ -83,7 +76,7 @@
          "bars": false,
          "dashLength": 10,
          "dashes": false,
-         "datasource": "${DS_INFLUXDB}",
+         "datasource": "${DS_PROMETHEUS}",
          "decimals": 2,
          "description": "Requests, processed with success (code 2xx) on Tarantool's side.\nGraph shows mean count per second.\n",
          "fill": 0,
@@ -123,82 +116,11 @@
          "steppedLine": false,
          "targets": [
             {
-               "alias": "$tag_label_pairs_alias — $tag_label_pairs_method $tag_label_pairs_path (code $tag_label_pairs_status)",
-               "groupBy": [
-                  {
-                     "params": [
-                        "$__interval"
-                     ],
-                     "type": "time"
-                  },
-                  {
-                     "params": [
-                        "label_pairs_alias"
-                     ],
-                     "type": "tag"
-                  },
-                  {
-                     "params": [
-                        "label_pairs_path"
-                     ],
-                     "type": "tag"
-                  },
-                  {
-                     "params": [
-                        "label_pairs_method"
-                     ],
-                     "type": "tag"
-                  },
-                  {
-                     "params": [
-                        "label_pairs_status"
-                     ],
-                     "type": "tag"
-                  },
-                  {
-                     "params": [
-                        "none"
-                     ],
-                     "type": "fill"
-                  }
-               ],
-               "measurement": "${INFLUXDB_MEASUREMENT}",
-               "policy": "${INFLUXDB_POLICY}",
-               "refId": "A",
-               "resultFormat": "time_series",
-               "select": [
-                  [
-                     {
-                        "params": [
-                           "value"
-                        ],
-                        "type": "field"
-                     },
-                     {
-                        "params": [ ],
-                        "type": "mean"
-                     },
-                     {
-                        "params": [
-                           "1s"
-                        ],
-                        "type": "non_negative_derivative"
-                     }
-                  ]
-               ],
-               "tags": [
-                  {
-                     "key": "metric_name",
-                     "operator": "=",
-                     "value": "http_server_request_latency_count"
-                  },
-                  {
-                     "condition": "AND",
-                     "key": "label_pairs_status",
-                     "operator": "=~",
-                     "value": "/^2\\d{2}$/"
-                  }
-               ]
+               "expr": "rate(http_server_request_latency_count{job=~\"[[job]]\",status=~\"^2\\\\d{2}$\"}[1m])",
+               "format": "time_series",
+               "intervalFactor": 2,
+               "legendFormat": "{{alias}} — {{method}} {{path}} (code {{status}})",
+               "refId": "A"
             }
          ],
          "thresholds": [ ],
@@ -244,7 +166,7 @@
          "bars": false,
          "dashLength": 10,
          "dashes": false,
-         "datasource": "${DS_INFLUXDB}",
+         "datasource": "${DS_PROMETHEUS}",
          "decimals": 2,
          "description": "Requests, processed with 4xx error on Tarantool's side.\nGraph shows mean count per second.\n",
          "fill": 0,
@@ -284,82 +206,11 @@
          "steppedLine": false,
          "targets": [
             {
-               "alias": "$tag_label_pairs_alias — $tag_label_pairs_method $tag_label_pairs_path (code $tag_label_pairs_status)",
-               "groupBy": [
-                  {
-                     "params": [
-                        "$__interval"
-                     ],
-                     "type": "time"
-                  },
-                  {
-                     "params": [
-                        "label_pairs_alias"
-                     ],
-                     "type": "tag"
-                  },
-                  {
-                     "params": [
-                        "label_pairs_path"
-                     ],
-                     "type": "tag"
-                  },
-                  {
-                     "params": [
-                        "label_pairs_method"
-                     ],
-                     "type": "tag"
-                  },
-                  {
-                     "params": [
-                        "label_pairs_status"
-                     ],
-                     "type": "tag"
-                  },
-                  {
-                     "params": [
-                        "none"
-                     ],
-                     "type": "fill"
-                  }
-               ],
-               "measurement": "${INFLUXDB_MEASUREMENT}",
-               "policy": "${INFLUXDB_POLICY}",
-               "refId": "A",
-               "resultFormat": "time_series",
-               "select": [
-                  [
-                     {
-                        "params": [
-                           "value"
-                        ],
-                        "type": "field"
-                     },
-                     {
-                        "params": [ ],
-                        "type": "mean"
-                     },
-                     {
-                        "params": [
-                           "1s"
-                        ],
-                        "type": "non_negative_derivative"
-                     }
-                  ]
-               ],
-               "tags": [
-                  {
-                     "key": "metric_name",
-                     "operator": "=",
-                     "value": "http_server_request_latency_count"
-                  },
-                  {
-                     "condition": "AND",
-                     "key": "label_pairs_status",
-                     "operator": "=~",
-                     "value": "/^4\\d{2}$/"
-                  }
-               ]
+               "expr": "rate(http_server_request_latency_count{job=~\"[[job]]\",status=~\"^4\\\\d{2}$\"}[1m])",
+               "format": "time_series",
+               "intervalFactor": 2,
+               "legendFormat": "{{alias}} — {{method}} {{path}} (code {{status}})",
+               "refId": "A"
             }
          ],
          "thresholds": [ ],
@@ -405,7 +256,7 @@
          "bars": false,
          "dashLength": 10,
          "dashes": false,
-         "datasource": "${DS_INFLUXDB}",
+         "datasource": "${DS_PROMETHEUS}",
          "decimals": 2,
          "description": "Requests, processed with 5xx error on Tarantool's side.\nGraph shows mean count per second.\n",
          "fill": 0,
@@ -445,82 +296,11 @@
          "steppedLine": false,
          "targets": [
             {
-               "alias": "$tag_label_pairs_alias — $tag_label_pairs_method $tag_label_pairs_path (code $tag_label_pairs_status)",
-               "groupBy": [
-                  {
-                     "params": [
-                        "$__interval"
-                     ],
-                     "type": "time"
-                  },
-                  {
-                     "params": [
-                        "label_pairs_alias"
-                     ],
-                     "type": "tag"
-                  },
-                  {
-                     "params": [
-                        "label_pairs_path"
-                     ],
-                     "type": "tag"
-                  },
-                  {
-                     "params": [
-                        "label_pairs_method"
-                     ],
-                     "type": "tag"
-                  },
-                  {
-                     "params": [
-                        "label_pairs_status"
-                     ],
-                     "type": "tag"
-                  },
-                  {
-                     "params": [
-                        "none"
-                     ],
-                     "type": "fill"
-                  }
-               ],
-               "measurement": "${INFLUXDB_MEASUREMENT}",
-               "policy": "${INFLUXDB_POLICY}",
-               "refId": "A",
-               "resultFormat": "time_series",
-               "select": [
-                  [
-                     {
-                        "params": [
-                           "value"
-                        ],
-                        "type": "field"
-                     },
-                     {
-                        "params": [ ],
-                        "type": "mean"
-                     },
-                     {
-                        "params": [
-                           "1s"
-                        ],
-                        "type": "non_negative_derivative"
-                     }
-                  ]
-               ],
-               "tags": [
-                  {
-                     "key": "metric_name",
-                     "operator": "=",
-                     "value": "http_server_request_latency_count"
-                  },
-                  {
-                     "condition": "AND",
-                     "key": "label_pairs_status",
-                     "operator": "=~",
-                     "value": "/^5\\d{2}$/"
-                  }
-               ]
+               "expr": "rate(http_server_request_latency_count{job=~\"[[job]]\",status=~\"^5\\\\d{2}$\"}[1m])",
+               "format": "time_series",
+               "intervalFactor": 2,
+               "legendFormat": "{{alias}} — {{method}} {{path}} (code {{status}})",
+               "refId": "A"
             }
          ],
          "thresholds": [ ],
@@ -566,7 +346,7 @@
          "bars": false,
          "dashLength": 10,
          "dashes": false,
-         "datasource": "${DS_INFLUXDB}",
+         "datasource": "${DS_PROMETHEUS}",
          "decimals": 3,
          "description": "99th percentile of requests latency. Includes only requests processed with success (code 2xx) on Tarantool's side.\n",
          "fill": 0,
@@ -606,82 +386,11 @@
          "steppedLine": false,
          "targets": [
             {
-               "alias": "$tag_label_pairs_alias — $tag_label_pairs_method $tag_label_pairs_path (code $tag_label_pairs_status)",
-               "groupBy": [
-                  {
-                     "params": [
-                        "$__interval"
-                     ],
-                     "type": "time"
-                  },
-                  {
-                     "params": [
-                        "label_pairs_alias"
-                     ],
-                     "type": "tag"
-                  },
-                  {
-                     "params": [
-                        "label_pairs_path"
-                     ],
-                     "type": "tag"
-                  },
-                  {
-                     "params": [
-                        "label_pairs_method"
-                     ],
-                     "type": "tag"
-                  },
-                  {
-                     "params": [
-                        "label_pairs_status"
-                     ],
-                     "type": "tag"
-                  },
-                  {
-                     "params": [
-                        "none"
-                     ],
-                     "type": "fill"
-                  }
-               ],
-               "measurement": "${INFLUXDB_MEASUREMENT}",
-               "policy": "${INFLUXDB_POLICY}",
-               "refId": "A",
-               "resultFormat": "time_series",
-               "select": [
-                  [
-                     {
-                        "params": [
-                           "value"
-                        ],
-                        "type": "field"
-                     },
-                     {
-                        "params": [ ],
-                        "type": "mean"
-                     }
-                  ]
-               ],
-               "tags": [
-                  {
-                     "key": "metric_name",
-                     "operator": "=",
-                     "value": "http_server_request_latency"
-                  },
-                  {
-                     "condition": "AND",
-                     "key": "label_pairs_quantile",
-                     "operator": "=",
-                     "value": "0.99"
-                  },
-                  {
-                     "condition": "AND",
-                     "key": "label_pairs_status",
-                     "operator": "=~",
-                     "value": "/^2\\d{2}$/"
-                  }
-               ]
+               "expr": "http_server_request_latency{job=~\"[[job]]\",quantile=\"0.99\",status=~\"^2\\\\d{2}$\"}",
+               "format": "time_series",
+               "intervalFactor": 2,
+               "legendFormat": "{{alias}} — {{method}} {{path}} (code {{status}})",
+               "refId": "A"
             }
          ],
          "thresholds": [ ],
@@ -727,7 +436,7 @@
          "bars": false,
          "dashLength": 10,
          "dashes": false,
-         "datasource": "${DS_INFLUXDB}",
+         "datasource": "${DS_PROMETHEUS}",
          "decimals": 3,
          "description": "99th percentile of requests latency. Includes only requests processed with 4xx error on Tarantool's side.\n",
          "fill": 0,
@@ -767,82 +476,11 @@
          "steppedLine": false,
          "targets": [
             {
-               "alias": "$tag_label_pairs_alias — $tag_label_pairs_method $tag_label_pairs_path (code $tag_label_pairs_status)",
-               "groupBy": [
-                  {
-                     "params": [
-                        "$__interval"
-                     ],
-                     "type": "time"
-                  },
-                  {
-                     "params": [
-                        "label_pairs_alias"
-                     ],
-                     "type": "tag"
-                  },
-                  {
-                     "params": [
-                        "label_pairs_path"
-                     ],
-                     "type": "tag"
-                  },
-                  {
-                     "params": [
-                        "label_pairs_method"
-                     ],
-                     "type": "tag"
-                  },
-                  {
-                     "params": [
-                        "label_pairs_status"
-                     ],
-                     "type": "tag"
-                  },
-                  {
-                     "params": [
-                        "none"
-                     ],
-                     "type": "fill"
-                  }
-               ],
-               "measurement": "${INFLUXDB_MEASUREMENT}",
-               "policy": "${INFLUXDB_POLICY}",
-               "refId": "A",
-               "resultFormat": "time_series",
-               "select": [
-                  [
-                     {
-                        "params": [
-                           "value"
-                        ],
-                        "type": "field"
-                     },
-                     {
-                        "params": [ ],
-                        "type": "mean"
-                     }
-                  ]
-               ],
-               "tags": [
-                  {
-                     "key": "metric_name",
-                     "operator": "=",
-                     "value": "http_server_request_latency"
-                  },
-                  {
-                     "condition": "AND",
-                     "key": "label_pairs_quantile",
-                     "operator": "=",
-                     "value": "0.99"
-                  },
-                  {
-                     "condition": "AND",
-                     "key": "label_pairs_status",
-                     "operator": "=~",
-                     "value": "/^4\\d{2}$/"
-                  }
-               ]
+               "expr": "http_server_request_latency{job=~\"[[job]]\",quantile=\"0.99\",status=~\"^4\\\\d{2}$\"}",
+               "format": "time_series",
+               "intervalFactor": 2,
+               "legendFormat": "{{alias}} — {{method}} {{path}} (code {{status}})",
+               "refId": "A"
             }
          ],
          "thresholds": [ ],
@@ -888,7 +526,7 @@
          "bars": false,
          "dashLength": 10,
          "dashes": false,
-         "datasource": "${DS_INFLUXDB}",
+         "datasource": "${DS_PROMETHEUS}",
          "decimals": 3,
          "description": "99th percentile of requests latency. Includes only requests processed with 5xx error on Tarantool's side.\n",
          "fill": 0,
@@ -928,82 +566,11 @@
          "steppedLine": false,
          "targets": [
             {
-               "alias": "$tag_label_pairs_alias — $tag_label_pairs_method $tag_label_pairs_path (code $tag_label_pairs_status)",
-               "groupBy": [
-                  {
-                     "params": [
-                        "$__interval"
-                     ],
-                     "type": "time"
-                  },
-                  {
-                     "params": [
-                        "label_pairs_alias"
-                     ],
-                     "type": "tag"
-                  },
-                  {
-                     "params": [
-                        "label_pairs_path"
-                     ],
-                     "type": "tag"
-                  },
-                  {
-                     "params": [
-                        "label_pairs_method"
-                     ],
-                     "type": "tag"
-                  },
-                  {
-                     "params": [
-                        "label_pairs_status"
-                     ],
-                     "type": "tag"
-                  },
-                  {
-                     "params": [
-                        "none"
-                     ],
-                     "type": "fill"
-                  }
-               ],
-               "measurement": "${INFLUXDB_MEASUREMENT}",
-               "policy": "${INFLUXDB_POLICY}",
-               "refId": "A",
-               "resultFormat": "time_series",
-               "select": [
-                  [
-                     {
-                        "params": [
-                           "value"
-                        ],
-                        "type": "field"
-                     },
-                     {
-                        "params": [ ],
-                        "type": "mean"
-                     }
-                  ]
-               ],
-               "tags": [
-                  {
-                     "key": "metric_name",
-                     "operator": "=",
-                     "value": "http_server_request_latency"
-                  },
-                  {
-                     "condition": "AND",
-                     "key": "label_pairs_quantile",
-                     "operator": "=",
-                     "value": "0.99"
-                  },
-                  {
-                     "condition": "AND",
-                     "key": "label_pairs_status",
-                     "operator": "=~",
-                     "value": "/^5\\d{2}$/"
-                  }
-               ]
+               "expr": "http_server_request_latency{job=~\"[[job]]\",quantile=\"0.99\",status=~\"^5\\\\d{2}$\"}",
+               "format": "time_series",
+               "intervalFactor": 2,
+               "legendFormat": "{{alias}} — {{method}} {{path}} (code {{status}})",
+               "refId": "A"
             }
          ],
          "thresholds": [ ],
@@ -1082,7 +649,7 @@
          "bars": false,
          "dashLength": 10,
          "dashes": false,
-         "datasource": "${DS_INFLUXDB}",
+         "datasource": "${DS_PROMETHEUS}",
          "decimals": 2,
          "description": "`quota_used_ratio` = `quota_used` / `quota_size`.\n\n`quota_used` – used by slab allocator (for both tuple and index slabs).\n\n`quota_size` – memory limit for slab allocator (as configured in the *memtx_memory* parameter).\n",
          "fill": 0,
@@ -1122,52 +689,11 @@
          "steppedLine": false,
          "targets": [
             {
-               "alias": "$tag_label_pairs_alias",
-               "groupBy": [
-                  {
-                     "params": [
-                        "$__interval"
-                     ],
-                     "type": "time"
-                  },
-                  {
-                     "params": [
-                        "label_pairs_alias"
-                     ],
-                     "type": "tag"
-                  },
-                  {
-                     "params": [
-                        "none"
-                     ],
-                     "type": "fill"
-                  }
-               ],
-               "measurement": "${INFLUXDB_MEASUREMENT}",
-               "policy": "${INFLUXDB_POLICY}",
-               "refId": "A",
-               "resultFormat": "time_series",
-               "select": [
-                  [
-                     {
-                        "params": [
-                           "value"
-                        ],
-                        "type": "field"
-                     },
-                     {
-                        "params": [ ],
-                        "type": "mean"
-                     }
-                  ]
-               ],
-               "tags": [
-                  {
-                     "key": "metric_name",
-                     "operator": "=",
-                     "value": "tnt_slab_quota_used_ratio"
-                  }
-               ]
+               "expr": "tnt_slab_quota_used_ratio{job=~\"[[job]]\"}",
+               "format": "time_series",
+               "intervalFactor": 2,
+               "legendFormat": "{{alias}}",
+               "refId": "A"
             }
          ],
          "thresholds": [ ],
@@ -1213,7 +739,7 @@
          "bars": false,
          "dashLength": 10,
          "dashes": false,
-         "datasource": "${DS_INFLUXDB}",
+         "datasource": "${DS_PROMETHEUS}",
          "decimals": 2,
          "description": "`arena_used_ratio` = `arena_used` / `arena_size`.\n\n`arena_used` – used for both tuples and indexes.\n\n`arena_size` – allocated for both tuples and indexes.\n",
          "fill": 0,
@@ -1253,52 +779,11 @@
          "steppedLine": false,
          "targets": [
             {
-               "alias": "$tag_label_pairs_alias",
-               "groupBy": [
-                  {
-                     "params": [
-                        "$__interval"
-                     ],
-                     "type": "time"
-                  },
-                  {
-                     "params": [
-                        "label_pairs_alias"
-                     ],
-                     "type": "tag"
-                  },
-                  {
-                     "params": [
-                        "none"
-                     ],
-                     "type": "fill"
-                  }
-               ],
-               "measurement": "${INFLUXDB_MEASUREMENT}",
-               "policy": "${INFLUXDB_POLICY}",
-               "refId": "A",
-               "resultFormat": "time_series",
-               "select": [
-                  [
-                     {
-                        "params": [
-                           "value"
-                        ],
-                        "type": "field"
-                     },
-                     {
-                        "params": [ ],
-                        "type": "mean"
-                     }
-                  ]
-               ],
-               "tags": [
-                  {
-                     "key": "metric_name",
-                     "operator": "=",
-                     "value": "tnt_slab_arena_used_ratio"
-                  }
-               ]
+               "expr": "tnt_slab_arena_used_ratio{job=~\"[[job]]\"}",
+               "format": "time_series",
+               "intervalFactor": 2,
+               "legendFormat": "{{alias}}",
+               "refId": "A"
             }
          ],
          "thresholds": [ ],
@@ -1344,7 +829,7 @@
          "bars": false,
          "dashLength": 10,
          "dashes": false,
-         "datasource": "${DS_INFLUXDB}",
+         "datasource": "${DS_PROMETHEUS}",
          "decimals": 2,
          "description": "`items_used_ratio` = `items_used` / `items_size`.\n\n`items_used` – used only for tuples.\n\n`items_size` – allocated only for tuples.\n",
          "fill": 0,
@@ -1384,52 +869,11 @@
          "steppedLine": false,
          "targets": [
             {
-               "alias": "$tag_label_pairs_alias",
-               "groupBy": [
-                  {
-                     "params": [
-                        "$__interval"
-                     ],
-                     "type": "time"
-                  },
-                  {
-                     "params": [
-                        "label_pairs_alias"
-                     ],
-                     "type": "tag"
-                  },
-                  {
-                     "params": [
-                        "none"
-                     ],
-                     "type": "fill"
-                  }
-               ],
-               "measurement": "${INFLUXDB_MEASUREMENT}",
-               "policy": "${INFLUXDB_POLICY}",
-               "refId": "A",
-               "resultFormat": "time_series",
-               "select": [
-                  [
-                     {
-                        "params": [
-                           "value"
-                        ],
-                        "type": "field"
-                     },
-                     {
-                        "params": [ ],
-                        "type": "mean"
-                     }
-                  ]
-               ],
-               "tags": [
-                  {
-                     "key": "metric_name",
-                     "operator": "=",
-                     "value": "tnt_slab_items_used_ratio"
-                  }
-               ]
+               "expr": "tnt_slab_items_used_ratio{job=~\"[[job]]\"}",
+               "format": "time_series",
+               "intervalFactor": 2,
+               "legendFormat": "{{alias}}",
+               "refId": "A"
             }
          ],
          "thresholds": [ ],
@@ -1475,7 +919,7 @@
          "bars": false,
          "dashLength": 10,
          "dashes": false,
-         "datasource": "${DS_INFLUXDB}",
+         "datasource": "${DS_PROMETHEUS}",
          "decimals": 2,
          "description": "Memory used by slab allocator (for both tuple and index slabs).\n",
          "fill": 0,
@@ -1515,52 +959,11 @@
          "steppedLine": false,
          "targets": [
             {
-               "alias": "$tag_label_pairs_alias",
-               "groupBy": [
-                  {
-                     "params": [
-                        "$__interval"
-                     ],
-                     "type": "time"
-                  },
-                  {
-                     "params": [
-                        "label_pairs_alias"
-                     ],
-                     "type": "tag"
-                  },
-                  {
-                     "params": [
-                        "none"
-                     ],
-                     "type": "fill"
-                  }
-               ],
-               "measurement": "${INFLUXDB_MEASUREMENT}",
-               "policy": "${INFLUXDB_POLICY}",
-               "refId": "A",
-               "resultFormat": "time_series",
-               "select": [
-                  [
-                     {
-                        "params": [
-                           "value"
-                        ],
-                        "type": "field"
-                     },
-                     {
-                        "params": [ ],
-                        "type": "mean"
-                     }
-                  ]
-               ],
-               "tags": [
-                  {
-                     "key": "metric_name",
-                     "operator": "=",
-                     "value": "tnt_slab_quota_used"
-                  }
-               ]
+               "expr": "tnt_slab_quota_used{job=~\"[[job]]\"}",
+               "format": "time_series",
+               "intervalFactor": 2,
+               "legendFormat": "{{alias}}",
+               "refId": "A"
             }
          ],
          "thresholds": [ ],
@@ -1606,7 +1009,7 @@
          "bars": false,
          "dashLength": 10,
          "dashes": false,
-         "datasource": "${DS_INFLUXDB}",
+         "datasource": "${DS_PROMETHEUS}",
          "decimals": 2,
          "description": "Memory used for both tuples and indexes.\n",
          "fill": 0,
@@ -1646,52 +1049,11 @@
          "steppedLine": false,
          "targets": [
             {
-               "alias": "$tag_label_pairs_alias",
-               "groupBy": [
-                  {
-                     "params": [
-                        "$__interval"
-                     ],
-                     "type": "time"
-                  },
-                  {
-                     "params": [
-                        "label_pairs_alias"
-                     ],
-                     "type": "tag"
-                  },
-                  {
-                     "params": [
-                        "none"
-                     ],
-                     "type": "fill"
-                  }
-               ],
-               "measurement": "${INFLUXDB_MEASUREMENT}",
-               "policy": "${INFLUXDB_POLICY}",
-               "refId": "A",
-               "resultFormat": "time_series",
-               "select": [
-                  [
-                     {
-                        "params": [
-                           "value"
-                        ],
-                        "type": "field"
-                     },
-                     {
-                        "params": [ ],
-                        "type": "mean"
-                     }
-                  ]
-               ],
-               "tags": [
-                  {
-                     "key": "metric_name",
-                     "operator": "=",
-                     "value": "tnt_slab_arena_used"
-                  }
-               ]
+               "expr": "tnt_slab_arena_used{job=~\"[[job]]\"}",
+               "format": "time_series",
+               "intervalFactor": 2,
+               "legendFormat": "{{alias}}",
+               "refId": "A"
             }
          ],
          "thresholds": [ ],
@@ -1737,7 +1099,7 @@
          "bars": false,
          "dashLength": 10,
          "dashes": false,
-         "datasource": "${DS_INFLUXDB}",
+         "datasource": "${DS_PROMETHEUS}",
          "decimals": 2,
          "description": "Memory used for only tuples.\n",
          "fill": 0,
@@ -1777,52 +1139,11 @@
          "steppedLine": false,
          "targets": [
             {
-               "alias": "$tag_label_pairs_alias",
-               "groupBy": [
-                  {
-                     "params": [
-                        "$__interval"
-                     ],
-                     "type": "time"
-                  },
-                  {
-                     "params": [
-                        "label_pairs_alias"
-                     ],
-                     "type": "tag"
-                  },
-                  {
-                     "params": [
-                        "none"
-                     ],
-                     "type": "fill"
-                  }
-               ],
-               "measurement": "${INFLUXDB_MEASUREMENT}",
-               "policy": "${INFLUXDB_POLICY}",
-               "refId": "A",
-               "resultFormat": "time_series",
-               "select": [
-                  [
-                     {
-                        "params": [
-                           "value"
-                        ],
-                        "type": "field"
-                     },
-                     {
-                        "params": [ ],
-                        "type": "mean"
-                     }
-                  ]
-               ],
-               "tags": [
-                  {
-                     "key": "metric_name",
-                     "operator": "=",
-                     "value": "tnt_slab_items_used"
-                  }
-               ]
+               "expr": "tnt_slab_items_used{job=~\"[[job]]\"}",
+               "format": "time_series",
+               "intervalFactor": 2,
+               "legendFormat": "{{alias}}",
+               "refId": "A"
             }
          ],
          "thresholds": [ ],
@@ -1868,7 +1189,7 @@
          "bars": false,
          "dashLength": 10,
          "dashes": false,
-         "datasource": "${DS_INFLUXDB}",
+         "datasource": "${DS_PROMETHEUS}",
          "decimals": 2,
          "description": "Memory limit for slab allocator (as configured in the *memtx_memory* parameter).\n",
          "fill": 0,
@@ -1908,52 +1229,11 @@
          "steppedLine": false,
          "targets": [
             {
-               "alias": "$tag_label_pairs_alias",
-               "groupBy": [
-                  {
-                     "params": [
-                        "$__interval"
-                     ],
-                     "type": "time"
-                  },
-                  {
-                     "params": [
-                        "label_pairs_alias"
-                     ],
-                     "type": "tag"
-                  },
-                  {
-                     "params": [
-                        "none"
-                     ],
-                     "type": "fill"
-                  }
-               ],
-               "measurement": "${INFLUXDB_MEASUREMENT}",
-               "policy": "${INFLUXDB_POLICY}",
-               "refId": "A",
-               "resultFormat": "time_series",
-               "select": [
-                  [
-                     {
-                        "params": [
-                           "value"
-                        ],
-                        "type": "field"
-                     },
-                     {
-                        "params": [ ],
-                        "type": "mean"
-                     }
-                  ]
-               ],
-               "tags": [
-                  {
-                     "key": "metric_name",
-                     "operator": "=",
-                     "value": "tnt_slab_quota_size"
-                  }
-               ]
+               "expr": "tnt_slab_quota_size{job=~\"[[job]]\"}",
+               "format": "time_series",
+               "intervalFactor": 2,
+               "legendFormat": "{{alias}}",
+               "refId": "A"
             }
          ],
          "thresholds": [ ],
@@ -1999,7 +1279,7 @@
          "bars": false,
          "dashLength": 10,
          "dashes": false,
-         "datasource": "${DS_INFLUXDB}",
+         "datasource": "${DS_PROMETHEUS}",
          "decimals": 2,
          "description": "Memory allocated for both tuples and indexes by slab allocator.\n",
          "fill": 0,
@@ -2039,52 +1319,11 @@
          "steppedLine": false,
          "targets": [
             {
-               "alias": "$tag_label_pairs_alias",
-               "groupBy": [
-                  {
-                     "params": [
-                        "$__interval"
-                     ],
-                     "type": "time"
-                  },
-                  {
-                     "params": [
-                        "label_pairs_alias"
-                     ],
-                     "type": "tag"
-                  },
-                  {
-                     "params": [
-                        "none"
-                     ],
-                     "type": "fill"
-                  }
-               ],
-               "measurement": "${INFLUXDB_MEASUREMENT}",
-               "policy": "${INFLUXDB_POLICY}",
-               "refId": "A",
-               "resultFormat": "time_series",
-               "select": [
-                  [
-                     {
-                        "params": [
-                           "value"
-                        ],
-                        "type": "field"
-                     },
-                     {
-                        "params": [ ],
-                        "type": "mean"
-                     }
-                  ]
-               ],
-               "tags": [
-                  {
-                     "key": "metric_name",
-                     "operator": "=",
-                     "value": "tnt_slab_arena_size"
-                  }
-               ]
+               "expr": "tnt_slab_arena_size{job=~\"[[job]]\"}",
+               "format": "time_series",
+               "intervalFactor": 2,
+               "legendFormat": "{{alias}}",
+               "refId": "A"
             }
          ],
          "thresholds": [ ],
@@ -2130,7 +1369,7 @@
          "bars": false,
          "dashLength": 10,
          "dashes": false,
-         "datasource": "${DS_INFLUXDB}",
+         "datasource": "${DS_PROMETHEUS}",
          "decimals": 2,
          "description": "Memory allocated for only tuples by slab allocator.\n",
          "fill": 0,
@@ -2170,52 +1409,11 @@
          "steppedLine": false,
          "targets": [
             {
-               "alias": "$tag_label_pairs_alias",
-               "groupBy": [
-                  {
-                     "params": [
-                        "$__interval"
-                     ],
-                     "type": "time"
-                  },
-                  {
-                     "params": [
-                        "label_pairs_alias"
-                     ],
-                     "type": "tag"
-                  },
-                  {
-                     "params": [
-                        "none"
-                     ],
-                     "type": "fill"
-                  }
-               ],
-               "measurement": "${INFLUXDB_MEASUREMENT}",
-               "policy": "${INFLUXDB_POLICY}",
-               "refId": "A",
-               "resultFormat": "time_series",
-               "select": [
-                  [
-                     {
-                        "params": [
-                           "value"
-                        ],
-                        "type": "field"
-                     },
-                     {
-                        "params": [ ],
-                        "type": "mean"
-                     }
-                  ]
-               ],
-               "tags": [
-                  {
-                     "key": "metric_name",
-                     "operator": "=",
-                     "value": "tnt_slab_items_size"
-                  }
-               ]
+               "expr": "tnt_slab_items_size{job=~\"[[job]]\"}",
+               "format": "time_series",
+               "intervalFactor": 2,
+               "legendFormat": "{{alias}}",
+               "refId": "A"
             }
          ],
          "thresholds": [ ],
@@ -2280,7 +1478,7 @@
          "bars": false,
          "dashLength": 10,
          "dashes": false,
-         "datasource": "${DS_INFLUXDB}",
+         "datasource": "${DS_PROMETHEUS}",
          "decimals": 2,
          "description": "Average count of SELECT requests per second from all Tarantool spaces",
          "fill": 0,
@@ -2320,64 +1518,11 @@
          "steppedLine": false,
          "targets": [
             {
-               "alias": "$tag_label_pairs_alias",
-               "groupBy": [
-                  {
-                     "params": [
-                        "$__interval"
-                     ],
-                     "type": "time"
-                  },
-                  {
-                     "params": [
-                        "label_pairs_alias"
-                     ],
-                     "type": "tag"
-                  },
-                  {
-                     "params": [
-                        "none"
-                     ],
-                     "type": "fill"
-                  }
-               ],
-               "measurement": "${INFLUXDB_MEASUREMENT}",
-               "policy": "${INFLUXDB_POLICY}",
-               "refId": "A",
-               "resultFormat": "time_series",
-               "select": [
-                  [
-                     {
-                        "params": [
-                           "value"
-                        ],
-                        "type": "field"
-                     },
-                     {
-                        "params": [ ],
-                        "type": "mean"
-                     },
-                     {
-                        "params": [
-                           "1s"
-                        ],
-                        "type": "non_negative_derivative"
-                     }
-                  ]
-               ],
-               "tags": [
-                  {
-                     "key": "metric_name",
-                     "operator": "=",
-                     "value": "tnt_stats_op_total"
-                  },
-                  {
-                     "condition": "AND",
-                     "key": "label_pairs_operation",
-                     "operator": "=",
-                     "value": "select"
-                  }
-               ]
+               "expr": "rate(tnt_stats_op_total{job=~\"[[job]]\",operation=\"select\"}[1m])",
+               "format": "time_series",
+               "intervalFactor": 2,
+               "legendFormat": "{{alias}}",
+               "refId": "A"
             }
          ],
          "thresholds": [ ],
@@ -2423,7 +1568,7 @@
          "bars": false,
          "dashLength": 10,
          "dashes": false,
-         "datasource": "${DS_INFLUXDB}",
+         "datasource": "${DS_PROMETHEUS}",
          "decimals": 2,
          "description": "Average count of INSERT requests per second from all Tarantool spaces",
          "fill": 0,
@@ -2463,64 +1608,11 @@
          "steppedLine": false,
          "targets": [
             {
-               "alias": "$tag_label_pairs_alias",
-               "groupBy": [
-                  {
-                     "params": [
-                        "$__interval"
-                     ],
-                     "type": "time"
-                  },
-                  {
-                     "params": [
-                        "label_pairs_alias"
-                     ],
-                     "type": "tag"
-                  },
-                  {
-                     "params": [
-                        "none"
-                     ],
-                     "type": "fill"
-                  }
-               ],
-               "measurement": "${INFLUXDB_MEASUREMENT}",
-               "policy": "${INFLUXDB_POLICY}",
-               "refId": "A",
-               "resultFormat": "time_series",
-               "select": [
-                  [
-                     {
-                        "params": [
-                           "value"
-                        ],
-                        "type": "field"
-                     },
-                     {
-                        "params": [ ],
-                        "type": "mean"
-                     },
-                     {
-                        "params": [
-                           "1s"
-                        ],
-                        "type": "non_negative_derivative"
-                     }
-                  ]
-               ],
-               "tags": [
-                  {
-                     "key": "metric_name",
-                     "operator": "=",
-                     "value": "tnt_stats_op_total"
-                  },
-                  {
-                     "condition": "AND",
-                     "key": "label_pairs_operation",
-                     "operator": "=",
-                     "value": "insert"
-                  }
-               ]
+               "expr": "rate(tnt_stats_op_total{job=~\"[[job]]\",operation=\"insert\"}[1m])",
+               "format": "time_series",
+               "intervalFactor": 2,
+               "legendFormat": "{{alias}}",
+               "refId": "A"
             }
          ],
          "thresholds": [ ],
@@ -2566,7 +1658,7 @@
          "bars": false,
          "dashLength": 10,
          "dashes": false,
-         "datasource": "${DS_INFLUXDB}",
+         "datasource": "${DS_PROMETHEUS}",
          "decimals": 2,
          "description": "Average count of REPLACE requests per second from all Tarantool spaces",
          "fill": 0,
@@ -2606,64 +1698,11 @@
          "steppedLine": false,
          "targets": [
             {
-               "alias": "$tag_label_pairs_alias",
-               "groupBy": [
-                  {
-                     "params": [
-                        "$__interval"
-                     ],
-                     "type": "time"
-                  },
-                  {
-                     "params": [
-                        "label_pairs_alias"
-                     ],
-                     "type": "tag"
-                  },
-                  {
-                     "params": [
-                        "none"
-                     ],
-                     "type": "fill"
-                  }
-               ],
-               "measurement": "${INFLUXDB_MEASUREMENT}",
-               "policy": "${INFLUXDB_POLICY}",
-               "refId": "A",
-               "resultFormat": "time_series",
-               "select": [
-                  [
-                     {
-                        "params": [
-                           "value"
-                        ],
-                        "type": "field"
-                     },
-                     {
-                        "params": [ ],
-                        "type": "mean"
-                     },
-                     {
-                        "params": [
-                           "1s"
-                        ],
-                        "type": "non_negative_derivative"
-                     }
-                  ]
-               ],
-               "tags": [
-                  {
-                     "key": "metric_name",
-                     "operator": "=",
-                     "value": "tnt_stats_op_total"
-                  },
-                  {
-                     "condition": "AND",
-                     "key": "label_pairs_operation",
-                     "operator": "=",
-                     "value": "replace"
-                  }
-               ]
+               "expr": "rate(tnt_stats_op_total{job=~\"[[job]]\",operation=\"replace\"}[1m])",
+               "format": "time_series",
+               "intervalFactor": 2,
+               "legendFormat": "{{alias}}",
+               "refId": "A"
             }
          ],
          "thresholds": [ ],
@@ -2709,7 +1748,7 @@
          "bars": false,
          "dashLength": 10,
          "dashes": false,
-         "datasource": "${DS_INFLUXDB}",
+         "datasource": "${DS_PROMETHEUS}",
          "decimals": 2,
          "description": "Average count of UPSERT requests per second from all Tarantool spaces",
          "fill": 0,
@@ -2749,64 +1788,11 @@
          "steppedLine": false,
          "targets": [
             {
-               "alias": "$tag_label_pairs_alias",
-               "groupBy": [
-                  {
-                     "params": [
-                        "$__interval"
-                     ],
-                     "type": "time"
-                  },
-                  {
-                     "params": [
-                        "label_pairs_alias"
-                     ],
-                     "type": "tag"
-                  },
-                  {
-                     "params": [
-                        "none"
-                     ],
-                     "type": "fill"
-                  }
-               ],
-               "measurement": "${INFLUXDB_MEASUREMENT}",
-               "policy": "${INFLUXDB_POLICY}",
-               "refId": "A",
-               "resultFormat": "time_series",
-               "select": [
-                  [
-                     {
-                        "params": [
-                           "value"
-                        ],
-                        "type": "field"
-                     },
-                     {
-                        "params": [ ],
-                        "type": "mean"
-                     },
-                     {
-                        "params": [
-                           "1s"
-                        ],
-                        "type": "non_negative_derivative"
-                     }
-                  ]
-               ],
-               "tags": [
-                  {
-                     "key": "metric_name",
-                     "operator": "=",
-                     "value": "tnt_stats_op_total"
-                  },
-                  {
-                     "condition": "AND",
-                     "key": "label_pairs_operation",
-                     "operator": "=",
-                     "value": "upsert"
-                  }
-               ]
+               "expr": "rate(tnt_stats_op_total{job=~\"[[job]]\",operation=\"upsert\"}[1m])",
+               "format": "time_series",
+               "intervalFactor": 2,
+               "legendFormat": "{{alias}}",
+               "refId": "A"
             }
          ],
          "thresholds": [ ],
@@ -2852,7 +1838,7 @@
          "bars": false,
          "dashLength": 10,
          "dashes": false,
-         "datasource": "${DS_INFLUXDB}",
+         "datasource": "${DS_PROMETHEUS}",
          "decimals": 2,
          "description": "Average count of UPDATE requests per second from all Tarantool spaces",
          "fill": 0,
@@ -2892,64 +1878,11 @@
          "steppedLine": false,
          "targets": [
             {
-               "alias": "$tag_label_pairs_alias",
-               "groupBy": [
-                  {
-                     "params": [
-                        "$__interval"
-                     ],
-                     "type": "time"
-                  },
-                  {
-                     "params": [
-                        "label_pairs_alias"
-                     ],
-                     "type": "tag"
-                  },
-                  {
-                     "params": [
-                        "none"
-                     ],
-                     "type": "fill"
-                  }
-               ],
-               "measurement": "${INFLUXDB_MEASUREMENT}",
-               "policy": "${INFLUXDB_POLICY}",
-               "refId": "A",
-               "resultFormat": "time_series",
-               "select": [
-                  [
-                     {
-                        "params": [
-                           "value"
-                        ],
-                        "type": "field"
-                     },
-                     {
-                        "params": [ ],
-                        "type": "mean"
-                     },
-                     {
-                        "params": [
-                           "1s"
-                        ],
-                        "type": "non_negative_derivative"
-                     }
-                  ]
-               ],
-               "tags": [
-                  {
-                     "key": "metric_name",
-                     "operator": "=",
-                     "value": "tnt_stats_op_total"
-                  },
-                  {
-                     "condition": "AND",
-                     "key": "label_pairs_operation",
-                     "operator": "=",
-                     "value": "update"
-                  }
-               ]
+               "expr": "rate(tnt_stats_op_total{job=~\"[[job]]\",operation=\"update\"}[1m])",
+               "format": "time_series",
+               "intervalFactor": 2,
+               "legendFormat": "{{alias}}",
+               "refId": "A"
             }
          ],
          "thresholds": [ ],
@@ -2995,7 +1928,7 @@
          "bars": false,
          "dashLength": 10,
          "dashes": false,
-         "datasource": "${DS_INFLUXDB}",
+         "datasource": "${DS_PROMETHEUS}",
          "decimals": 2,
          "description": "Average count of DELETE requests per second from all Tarantool spaces",
          "fill": 0,
@@ -3035,64 +1968,11 @@
          "steppedLine": false,
          "targets": [
             {
-               "alias": "$tag_label_pairs_alias",
-               "groupBy": [
-                  {
-                     "params": [
-                        "$__interval"
-                     ],
-                     "type": "time"
-                  },
-                  {
-                     "params": [
-                        "label_pairs_alias"
-                     ],
-                     "type": "tag"
-                  },
-                  {
-                     "params": [
-                        "none"
-                     ],
-                     "type": "fill"
-                  }
-               ],
-               "measurement": "${INFLUXDB_MEASUREMENT}",
-               "policy": "${INFLUXDB_POLICY}",
-               "refId": "A",
-               "resultFormat": "time_series",
-               "select": [
-                  [
-                     {
-                        "params": [
-                           "value"
-                        ],
-                        "type": "field"
-                     },
-                     {
-                        "params": [ ],
-                        "type": "mean"
-                     },
-                     {
-                        "params": [
-                           "1s"
-                        ],
-                        "type": "non_negative_derivative"
-                     }
-                  ]
-               ],
-               "tags": [
-                  {
-                     "key": "metric_name",
-                     "operator": "=",
-                     "value": "tnt_stats_op_total"
-                  },
-                  {
-                     "condition": "AND",
-                     "key": "label_pairs_operation",
-                     "operator": "=",
-                     "value": "delete"
-                  }
-               ]
+               "expr": "rate(tnt_stats_op_total{job=~\"[[job]]\",operation=\"delete\"}[1m])",
+               "format": "time_series",
+               "intervalFactor": 2,
+               "legendFormat": "{{alias}}",
+               "refId": "A"
             }
          ],
          "thresholds": [ ],
@@ -3143,7 +2023,29 @@
       "tag2"
    ],
    "templating": {
-      "list": [ ]
+      "list": [
+         {
+            "allValue": null,
+            "current": {
+               "text": "${PROMETHEUS_JOB}",
+               "value": "${PROMETHEUS_JOB}"
+            },
+            "hide": 2,
+            "includeAll": false,
+            "label": "Prometheus job",
+            "multi": false,
+            "name": "job",
+            "options": [
+               {
+                  "text": "${PROMETHEUS_JOB}",
+                  "value": "${PROMETHEUS_JOB}"
+               }
+            ],
+            "query": "${PROMETHEUS_JOB}",
+            "refresh": 0,
+            "type": "custom"
+         }
+      ]
    },
    "time": {
       "from": "now-6h",
@@ -3175,6 +2077,6 @@
       ]
    },
    "timezone": "browser",
-   "title": "Example InfluxDB dashboard",
+   "title": "Example Prometheus dashboard",
    "version": 0
 }

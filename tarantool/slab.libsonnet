@@ -1,9 +1,9 @@
 local grafana = import 'grafonnet/grafana.libsonnet';
-local influxdb = import 'grafonnet/influxdb.libsonnet';
 
 local text = grafana.text;
 local graph = grafana.graphPanel;
 local influxdb = grafana.influxdb;
+local prometheus = grafana.prometheus;
 
 {
   monitor_info(
@@ -22,6 +22,7 @@ local influxdb = grafana.influxdb;
     datasource,
     policy,
     measurement,
+    job,
     metric_name,
     format,
     labelY1
@@ -41,12 +42,18 @@ local influxdb = grafana.influxdb;
     legend_sort='current',
     legend_sortDesc=true,
   ).addTarget(
-    influxdb.target(
-      policy=policy,
-      measurement=measurement,
-      group_tags=['label_pairs_alias'],
-      alias='$tag_label_pairs_alias',
-    ).where('metric_name', '=', metric_name).selectField('value').addConverter('mean')
+    if datasource == '${DS_PROMETHEUS}' then
+      prometheus.target(
+        expr=std.format('%s{job=~"%s"}', [metric_name, job]),
+        legendFormat='{{alias}}',
+      )
+    else if datasource == '${DS_INFLUXDB}' then
+      influxdb.target(
+        policy=policy,
+        measurement=measurement,
+        group_tags=['label_pairs_alias'],
+        alias='$tag_label_pairs_alias',
+      ).where('metric_name', '=', metric_name).selectField('value').addConverter('mean')
   ),
 
   local used_ratio(
@@ -55,6 +62,7 @@ local influxdb = grafana.influxdb;
     datasource,
     policy,
     measurement,
+    job,
     metric_name,
   ) = used_panel(
     title,
@@ -62,6 +70,7 @@ local influxdb = grafana.influxdb;
     datasource,
     policy,
     measurement,
+    job,
     metric_name,
     format='percent',
     labelY1='used ratio'
@@ -80,12 +89,14 @@ local influxdb = grafana.influxdb;
     datasource=null,
     policy=null,
     measurement=null,
+    job=null,
   ):: used_ratio(
     title=title,
     description=description,
     datasource=datasource,
     policy=policy,
     measurement=measurement,
+    job=job,
     metric_name='tnt_slab_quota_used_ratio',
   ),
 
@@ -102,12 +113,14 @@ local influxdb = grafana.influxdb;
     datasource=null,
     policy=null,
     measurement=null,
+    job=null,
   ):: used_ratio(
     title=title,
     description=description,
     datasource=datasource,
     policy=policy,
     measurement=measurement,
+    job=job,
     metric_name='tnt_slab_arena_used_ratio',
   ),
 
@@ -124,12 +137,14 @@ local influxdb = grafana.influxdb;
     datasource=null,
     policy=null,
     measurement=null,
+    job=null,
   ):: used_ratio(
     title=title,
     description=description,
     datasource=datasource,
     policy=policy,
     measurement=measurement,
+    job=job,
     metric_name='tnt_slab_items_used_ratio',
   ),
 
@@ -139,6 +154,7 @@ local influxdb = grafana.influxdb;
     datasource,
     policy,
     measurement,
+    job,
     metric_name,
   ) = used_panel(
     title,
@@ -146,6 +162,7 @@ local influxdb = grafana.influxdb;
     datasource,
     policy,
     measurement,
+    job,
     metric_name,
     format='bytes',
     labelY1='in bytes',
@@ -160,12 +177,14 @@ local influxdb = grafana.influxdb;
     datasource=null,
     policy=null,
     measurement=null,
+    job=null,
   ):: used_memory(
     title=title,
     description=description,
     datasource=datasource,
     policy=policy,
     measurement=measurement,
+    job=job,
     metric_name='tnt_slab_quota_used',
   ),
 
@@ -178,12 +197,14 @@ local influxdb = grafana.influxdb;
     datasource=null,
     policy=null,
     measurement=null,
+    job=null,
   ):: used_memory(
     title=title,
     description=description,
     datasource=datasource,
     policy=policy,
     measurement=measurement,
+    job=job,
     metric_name='tnt_slab_quota_size',
   ),
 
@@ -196,12 +217,14 @@ local influxdb = grafana.influxdb;
     datasource=null,
     policy=null,
     measurement=null,
+    job=null,
   ):: used_memory(
     title=title,
     description=description,
     datasource=datasource,
     policy=policy,
     measurement=measurement,
+    job=job,
     metric_name='tnt_slab_arena_used',
   ),
 
@@ -214,12 +237,14 @@ local influxdb = grafana.influxdb;
     datasource=null,
     policy=null,
     measurement=null,
+    job=null,
   ):: used_memory(
     title=title,
     description=description,
     datasource=datasource,
     policy=policy,
     measurement=measurement,
+    job=job,
     metric_name='tnt_slab_arena_size',
   ),
 
@@ -232,12 +257,14 @@ local influxdb = grafana.influxdb;
     datasource=null,
     policy=null,
     measurement=null,
+    job=null,
   ):: used_memory(
     title=title,
     description=description,
     datasource=datasource,
     policy=policy,
     measurement=measurement,
+    job=job,
     metric_name='tnt_slab_items_used',
   ),
 
@@ -250,12 +277,14 @@ local influxdb = grafana.influxdb;
     datasource=null,
     policy=null,
     measurement=null,
+    job=null,
   ):: used_memory(
     title=title,
     description=description,
     datasource=datasource,
     policy=policy,
     measurement=measurement,
+    job=job,
     metric_name='tnt_slab_items_size',
   ),
 }

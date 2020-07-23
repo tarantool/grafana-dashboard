@@ -1,1 +1,1 @@
-import 'tarantool/dashboard.libsonnet'
+import 'tarantool/influxdb_dashboard.jsonnet'
