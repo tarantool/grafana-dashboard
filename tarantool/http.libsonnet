@@ -110,6 +110,8 @@ local influxdb = grafana.influxdb;
     policy,
     measurement,
     metric_name,
+    quantile,
+    label,
     status_regex,
   ) = graph.new(
     title=title,
@@ -117,7 +119,7 @@ local influxdb = grafana.influxdb;
     datasource=datasource,
 
     format='s',
-    labelY1='average',
+    labelY1=label,
     fill=0,
     decimals=3,
     decimalsY1=2,
@@ -135,20 +137,22 @@ local influxdb = grafana.influxdb;
       measurement=measurement,
       group_tags=['label_pairs_alias', 'label_pairs_path', 'label_pairs_method', 'label_pairs_status'],
       alias='$tag_label_pairs_alias — $tag_label_pairs_method $tag_label_pairs_path (code $tag_label_pairs_status)',
-    ).where('metric_name', '=', metric_name).where('label_pairs_status', '=~', status_regex)
-    .selectField('value').addConverter('mean')
+    ).where('metric_name', '=', metric_name).where('label_pairs_quantile', '=', quantile)
+    .where('label_pairs_status', '=~', status_regex).selectField('value').addConverter('mean')
   ),
 
   latency_success(
     title='Success requests latency (code 2xx)',
     description=|||
-      Latency of requests, processed with success (code 2xx) on Tarantool's side.
+      99th percentile of requests latency. Includes only requests processed with success (code 2xx) on Tarantool's side.
     |||,
 
     datasource=null,
     policy=null,
     measurement=null,
-    metric_name='http_server_request_latency_avg',
+    metric_name='http_server_request_latency',
+    quantile='0.99',
+    label='99th percentile',
   ):: latency_graph(
     title=title,
     description=description,
@@ -156,19 +160,23 @@ local influxdb = grafana.influxdb;
     policy=policy,
     measurement=measurement,
     metric_name=metric_name,
+    quantile=quantile,
+    label=label,
     status_regex='/^2\\d{2}$/',
   ),
 
   latency_error_4xx(
     title='Error requests latency (code 4xx)',
     description=|||
-      Latency of requests, processed with 4xx error on Tarantool's side.
+      99th percentile of requests latency. Includes only requests processed with 4xx error on Tarantool's side.
     |||,
 
     datasource=null,
     policy=null,
     measurement=null,
-    metric_name='http_server_request_latency_avg',
+    metric_name='http_server_request_latency',
+    quantile='0.99',
+    label='99th percentile',
   ):: latency_graph(
     title=title,
     description=description,
@@ -176,19 +184,23 @@ local influxdb = grafana.influxdb;
     policy=policy,
     measurement=measurement,
     metric_name=metric_name,
+    quantile=quantile,
+    label=label,
     status_regex='/^4\\d{2}$/',
   ),
 
   latency_error_5xx(
     title='Error requests latency (code 5xx)',
     description=|||
-      Latency of requests, processed with 5xx error on Tarantool's side.
+      99th percentile of requests latency. Includes only requests processed with 5xx error on Tarantool's side.
     |||,
 
     datasource=null,
     policy=null,
     measurement=null,
-    metric_name='http_server_request_latency_avg',
+    metric_name='http_server_request_latency',
+    quantile='0.99',
+    label='99th percentile',
   ):: latency_graph(
     title=title,
     description=description,
@@ -196,6 +208,8 @@ local influxdb = grafana.influxdb;
     policy=policy,
     measurement=measurement,
     metric_name=metric_name,
+    quantile=quantile,
+    label=label,
     status_regex='/^5\\d{2}$/',
   ),
 }

@@ -568,7 +568,7 @@
          "dashes": false,
          "datasource": "${DS_INFLUXDB}",
          "decimals": 3,
-         "description": "Latency of requests, processed with success (code 2xx) on Tarantool's side.\n",
+         "description": "99th percentile of requests latency. Includes only requests processed with success (code 2xx) on Tarantool's side.\n",
          "fill": 0,
          "gridPos": {
             "h": 8,
@@ -667,7 +667,13 @@
                   {
                      "key": "metric_name",
                      "operator": "=",
-                     "value": "http_server_request_latency_avg"
+                     "value": "http_server_request_latency"
+                  },
+                  {
+                     "condition": "AND",
+                     "key": "label_pairs_quantile",
+                     "operator": "=",
+                     "value": "0.99"
                   },
                   {
                      "condition": "AND",
@@ -699,7 +705,7 @@
             {
                "decimals": 2,
                "format": "s",
-               "label": "average",
+               "label": "99th percentile",
                "logBase": 1,
                "max": null,
                "min": null,
@@ -723,7 +729,7 @@
          "dashes": false,
          "datasource": "${DS_INFLUXDB}",
          "decimals": 3,
-         "description": "Latency of requests, processed with 4xx error on Tarantool's side.\n",
+         "description": "99th percentile of requests latency. Includes only requests processed with 4xx error on Tarantool's side.\n",
          "fill": 0,
          "gridPos": {
             "h": 8,
@@ -822,7 +828,13 @@
                   {
                      "key": "metric_name",
                      "operator": "=",
-                     "value": "http_server_request_latency_avg"
+                     "value": "http_server_request_latency"
+                  },
+                  {
+                     "condition": "AND",
+                     "key": "label_pairs_quantile",
+                     "operator": "=",
+                     "value": "0.99"
                   },
                   {
                      "condition": "AND",
@@ -854,7 +866,7 @@
             {
                "decimals": 2,
                "format": "s",
-               "label": "average",
+               "label": "99th percentile",
                "logBase": 1,
                "max": null,
                "min": null,
@@ -878,7 +890,7 @@
          "dashes": false,
          "datasource": "${DS_INFLUXDB}",
          "decimals": 3,
-         "description": "Latency of requests, processed with 5xx error on Tarantool's side.\n",
+         "description": "99th percentile of requests latency. Includes only requests processed with 5xx error on Tarantool's side.\n",
          "fill": 0,
          "gridPos": {
             "h": 8,
@@ -977,7 +989,13 @@
                   {
                      "key": "metric_name",
                      "operator": "=",
-                     "value": "http_server_request_latency_avg"
+                     "value": "http_server_request_latency"
+                  },
+                  {
+                     "condition": "AND",
+                     "key": "label_pairs_quantile",
+                     "operator": "=",
+                     "value": "0.99"
                   },
                   {
                      "condition": "AND",
@@ -1009,7 +1027,7 @@
             {
                "decimals": 2,
                "format": "s",
-               "label": "average",
+               "label": "99th percentile",
                "logBase": 1,
                "max": null,
                "min": null,

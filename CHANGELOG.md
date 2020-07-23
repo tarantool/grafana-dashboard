@@ -6,8 +6,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Unreleased
 
+## Changed
+- Update metrics version to 0.5.0
+- Replace average latency collector with summary collector in example cluster
+- Replace average latency panels with summary 99th percentile panels
+
 ## Fixed
 - Example cluster now starts successfully
+- Example cluster metrics no more breaks Prometheus metrics collect
 
 ## [0.1.1] - 2020-09-04
 Grafana revisions: [InfluxDB revision 2](https://grafana.com/api/dashboards/12567/revisions/2/download)
