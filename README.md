@@ -6,6 +6,10 @@ Our pages on Grafana Official & community built dashboards: [InfluxDB](https://g
 
 You can find screenshots and short description of contents on Grafana pages.
 
+# How to use
+
+Guide on Tarantool project prerequirements and metrics collectors configuration can be found on corresponding Grafana Official & community built dashboards pages: [InfluxDB](https://grafana.com/grafana/dashboards/12567).
+
 # How to import
 
 * Open Grafana import menu.
