@@ -7,7 +7,7 @@ RUN yum install -y git \
                    make \
                    gcc
 COPY . .
-RUN tarantoolctl rocks make
 RUN mkdir -p tmp
 
-CMD ["tarantool", "init.lua"]
+RUN tarantoolctl rocks make
+RUN tarantoolctl rocks install luatest 0.5.0

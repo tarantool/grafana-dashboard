@@ -4,14 +4,21 @@ services:
     build:
       context: ./example/project
       dockerfile: Dockerfile
-    environment:
-      - TARANTOOL_ALIAS=instance
-    entrypoint: ["/usr/local/bin/tarantool"]
-    command: ["init.lua"]
+    entrypoint: ["/app/.rocks/bin/luatest"]
+    command: ["./cluster"]
     networks:
       tarantool_dashboard_dev:
     ports:
+      - 13301:13301
+      - 13302:13302
+      - 13303:13303
+      - 13304:13304
+      - 13305:13305
       - 8081:8081
+      - 8082:8082
+      - 8083:8083
+      - 8084:8084
+      - 8085:8085
 
   telegraf:
     image: telegraf:1.13-alpine
