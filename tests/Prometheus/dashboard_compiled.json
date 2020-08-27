@@ -23,6 +23,18 @@
          "version": "1.0.0"
       },
       {
+         "id": "stat",
+         "name": "Stat",
+         "type": "panel",
+         "version": ""
+      },
+      {
+         "id": "table",
+         "name": "Table",
+         "type": "panel",
+         "version": ""
+      },
+      {
          "id": "grafana",
          "name": "Grafana",
          "type": "grafana",
@@ -53,15 +65,386 @@
    "links": [ ],
    "panels": [
       {
+         "columns": [ ],
+         "datasource": "${DS_PROMETHEUS}",
+         "description": "Overview of Tarantool instances, observed by Prometheus job.\n\nIf instance row is *red*, it means Prometheus can't reach URI specified in targets or ran into error.\nIf instance row is *green*, it means instance is up and running and\nPrometheus is successfully extracting metrics from it.\n\"Uptime\" column shows time since instant start.\n",
+         "gridPos": {
+            "h": 8,
+            "w": 12,
+            "x": 0,
+            "y": 0
+         },
+         "id": 2,
+         "links": [ ],
+         "sort": {
+            "col": 2,
+            "desc": false
+         },
+         "styles": [
+            {
+               "alias": "Instance alias",
+               "mappingType": 1,
+               "pattern": "alias",
+               "thresholds": [ ],
+               "type": "string"
+            },
+            {
+               "alias": "Instance URI",
+               "mappingType": 1,
+               "pattern": "instance",
+               "thresholds": [ ],
+               "type": "string"
+            },
+            {
+               "alias": "Uptime",
+               "colorMode": "row",
+               "colors": [
+                  "rgba(245, 54, 54, 0.9)",
+                  "rgba(237, 129, 40, 0.89)",
+                  "rgba(50, 172, 45, 0.97)"
+               ],
+               "decimals": 0,
+               "mappingType": 1,
+               "pattern": "Value",
+               "thresholds": [
+                  "0.1",
+                  "0.1"
+               ],
+               "type": "number",
+               "unit": "s"
+            },
+            {
+               "alias": "job",
+               "pattern": "job",
+               "type": "hidden"
+            },
+            {
+               "alias": "__name__",
+               "pattern": "__name__",
+               "type": "hidden"
+            },
+            {
+               "alias": "Time",
+               "pattern": "Time",
+               "type": "hidden"
+            }
+         ],
+         "targets": [
+            {
+               "expr": "up{job=\"[[job]]\"} * on(instance) group_left(alias) tnt_info_uptime{job=\"[[job]]\"} or\non(instance) label_replace(up{job=\"[[job]]\"}, \"alias\", \"Not available\", \"instance\", \".*\")\n",
+               "format": "table",
+               "instant": true,
+               "intervalFactor": 2,
+               "legendFormat": "",
+               "refId": "A"
+            }
+         ],
+         "timeFrom": null,
+         "timeShift": null,
+         "title": "Cluster status overview",
+         "transform": "table",
+         "type": "table"
+      },
+      {
+         "datasource": "${DS_PROMETHEUS}",
+         "description": "Count of running Tarantool instances, observed by Prometheus job.\nIf Prometheus can't reach URI specified in targets or ran into error, instance is not counted.\n",
+         "gridPos": {
+            "h": 3,
+            "w": 8,
+            "x": 12,
+            "y": 0
+         },
+         "id": 3,
+         "links": [ ],
+         "options": {
+            "colorMode": "value",
+            "fieldOptions": {
+               "calcs": [
+                  "last"
+               ],
+               "defaults": {
+                  "decimals": 0,
+                  "links": [ ],
+                  "mappings": [ ],
+                  "thresholds": {
+                     "mode": "absolute",
+                     "steps": [
+                        {
+                           "color": "red",
+                           "value": null
+                        },
+                        {
+                           "color": "green",
+                           "value": 0.10000000000000001
+                        }
+                     ]
+                  },
+                  "title": "Total instances running:",
+                  "unit": "none"
+               },
+               "fields": "",
+               "values": false
+            },
+            "graphMode": "area",
+            "justifyMode": "auto",
+            "orientation": "auto"
+         },
+         "pluginVersion": "6.6.0",
+         "targets": [
+            {
+               "expr": "sum(up{job=~\"[[job]]\"})",
+               "format": "time_series",
+               "intervalFactor": 2,
+               "legendFormat": "",
+               "refId": "A"
+            }
+         ],
+         "title": "",
+         "transparent": false,
+         "type": "stat"
+      },
+      {
+         "datasource": "${DS_PROMETHEUS}",
+         "description": "Overall value of memory used by Tarantool items and indexes (*arena_used* value).\nIf Tarantool instance is not available for Prometheus metrics extraction now, its contribution is not counted.\n",
+         "gridPos": {
+            "h": 5,
+            "w": 4,
+            "x": 12,
+            "y": 3
+         },
+         "id": 4,
+         "links": [ ],
+         "options": {
+            "colorMode": "value",
+            "fieldOptions": {
+               "calcs": [
+                  "last"
+               ],
+               "defaults": {
+                  "decimals": 2,
+                  "links": [ ],
+                  "mappings": [ ],
+                  "thresholds": {
+                     "mode": "absolute",
+                     "steps": [
+                        {
+                           "color": "red",
+                           "value": null
+                        },
+                        {
+                           "color": "green",
+                           "value": 0.10000000000000001
+                        }
+                     ]
+                  },
+                  "title": "Overall memory used:",
+                  "unit": "bytes"
+               },
+               "fields": "",
+               "values": false
+            },
+            "graphMode": "area",
+            "justifyMode": "auto",
+            "orientation": "auto"
+         },
+         "pluginVersion": "6.6.0",
+         "targets": [
+            {
+               "expr": "sum(tnt_slab_arena_used{job=~\"[[job]]\"})",
+               "format": "time_series",
+               "intervalFactor": 2,
+               "legendFormat": "",
+               "refId": "A"
+            }
+         ],
+         "title": "",
+         "transparent": false,
+         "type": "stat"
+      },
+      {
+         "datasource": "${DS_PROMETHEUS}",
+         "description": "Overall value of memory available for Tarantool items and indexes allocation (*memtx_memory* or *quota_size* values).\nIf Tarantool instance is not available for Prometheus metrics extraction now, its contribution is not counted.\n",
+         "gridPos": {
+            "h": 5,
+            "w": 4,
+            "x": 16,
+            "y": 3
+         },
+         "id": 5,
+         "links": [ ],
+         "options": {
+            "colorMode": "value",
+            "fieldOptions": {
+               "calcs": [
+                  "last"
+               ],
+               "defaults": {
+                  "decimals": 2,
+                  "links": [ ],
+                  "mappings": [ ],
+                  "thresholds": {
+                     "mode": "absolute",
+                     "steps": [
+                        {
+                           "color": "red",
+                           "value": null
+                        },
+                        {
+                           "color": "green",
+                           "value": 0.10000000000000001
+                        }
+                     ]
+                  },
+                  "title": "Overall memory reserved:",
+                  "unit": "bytes"
+               },
+               "fields": "",
+               "values": false
+            },
+            "graphMode": "area",
+            "justifyMode": "auto",
+            "orientation": "auto"
+         },
+         "pluginVersion": "6.6.0",
+         "targets": [
+            {
+               "expr": "sum(tnt_slab_quota_size{job=~\"[[job]]\"})",
+               "format": "time_series",
+               "intervalFactor": 2,
+               "legendFormat": "",
+               "refId": "A"
+            }
+         ],
+         "title": "",
+         "transparent": false,
+         "type": "stat"
+      },
+      {
+         "datasource": "${DS_PROMETHEUS}",
+         "description": "Overall rate of operations performed on Tarantool spaces (*select*, *insert*, *update* etc.).\nIf Tarantool instance is not available for Prometheus metrics extraction now, its contribution is not counted.\n",
+         "gridPos": {
+            "h": 4,
+            "w": 4,
+            "x": 20,
+            "y": 0
+         },
+         "id": 6,
+         "links": [ ],
+         "options": {
+            "colorMode": "value",
+            "fieldOptions": {
+               "calcs": [
+                  "last"
+               ],
+               "defaults": {
+                  "decimals": 2,
+                  "links": [ ],
+                  "mappings": [ ],
+                  "thresholds": {
+                     "mode": "absolute",
+                     "steps": [
+                        {
+                           "color": "red",
+                           "value": null
+                        },
+                        {
+                           "color": "green",
+                           "value": 0.10000000000000001
+                        }
+                     ]
+                  },
+                  "title": "Overall space load:",
+                  "unit": "ops"
+               },
+               "fields": "",
+               "values": false
+            },
+            "graphMode": "area",
+            "justifyMode": "auto",
+            "orientation": "auto"
+         },
+         "pluginVersion": "6.6.0",
+         "targets": [
+            {
+               "expr": "sum(rate(tnt_stats_op_total{job=~\"[[job]]\"}[1m]))",
+               "format": "time_series",
+               "intervalFactor": 2,
+               "legendFormat": "",
+               "refId": "A"
+            }
+         ],
+         "title": "",
+         "transparent": false,
+         "type": "stat"
+      },
+      {
+         "datasource": "${DS_PROMETHEUS}",
+         "description": "Overall rate of requests processed on Tarantool instances (all methods and response codes).\nIf Tarantool instance is not available for Prometheus metrics extraction now, its contribution is not counted.\n",
+         "gridPos": {
+            "h": 4,
+            "w": 4,
+            "x": 20,
+            "y": 4
+         },
+         "id": 7,
+         "links": [ ],
+         "options": {
+            "colorMode": "value",
+            "fieldOptions": {
+               "calcs": [
+                  "last"
+               ],
+               "defaults": {
+                  "decimals": 2,
+                  "links": [ ],
+                  "mappings": [ ],
+                  "thresholds": {
+                     "mode": "absolute",
+                     "steps": [
+                        {
+                           "color": "red",
+                           "value": null
+                        },
+                        {
+                           "color": "green",
+                           "value": 0.10000000000000001
+                        }
+                     ]
+                  },
+                  "title": "Overall HTTP load:",
+                  "unit": "reqps"
+               },
+               "fields": "",
+               "values": false
+            },
+            "graphMode": "area",
+            "justifyMode": "auto",
+            "orientation": "auto"
+         },
+         "pluginVersion": "6.6.0",
+         "targets": [
+            {
+               "expr": "sum(rate(http_server_request_latency_count{job=~\"[[job]]\"}[1m]))",
+               "format": "time_series",
+               "intervalFactor": 2,
+               "legendFormat": "",
+               "refId": "A"
+            }
+         ],
+         "title": "",
+         "transparent": false,
+         "type": "stat"
+      },
+      {
          "collapse": false,
          "collapsed": false,
          "gridPos": {
             "h": 1,
             "w": 24,
             "x": 0,
-            "y": 0
+            "y": 8
          },
-         "id": 2,
+         "id": 8,
          "panels": [ ],
          "repeat": null,
          "repeatIteration": null,
@@ -84,9 +467,9 @@
             "h": 8,
             "w": 8,
             "x": 0,
-            "y": 1
+            "y": 9
          },
-         "id": 3,
+         "id": 9,
          "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -174,9 +557,9 @@
             "h": 8,
             "w": 8,
             "x": 8,
-            "y": 1
+            "y": 9
          },
-         "id": 4,
+         "id": 10,
          "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -264,9 +647,9 @@
             "h": 8,
             "w": 8,
             "x": 16,
-            "y": 1
+            "y": 9
          },
-         "id": 5,
+         "id": 11,
          "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -354,9 +737,9 @@
             "h": 8,
             "w": 8,
             "x": 0,
-            "y": 9
+            "y": 17
          },
-         "id": 6,
+         "id": 12,
          "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -444,9 +827,9 @@
             "h": 8,
             "w": 8,
             "x": 8,
-            "y": 9
+            "y": 17
          },
-         "id": 7,
+         "id": 13,
          "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -534,9 +917,9 @@
             "h": 8,
             "w": 8,
             "x": 16,
-            "y": 9
+            "y": 17
          },
-         "id": 8,
+         "id": 14,
          "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -618,9 +1001,9 @@
             "h": 1,
             "w": 24,
             "x": 0,
-            "y": 17
+            "y": 25
          },
-         "id": 9,
+         "id": 15,
          "panels": [ ],
          "repeat": null,
          "repeatIteration": null,
@@ -637,9 +1020,9 @@
             "h": 3,
             "w": 24,
             "x": 0,
-            "y": 18
+            "y": 26
          },
-         "id": 10,
+         "id": 16,
          "mode": "markdown",
          "title": "Slab allocator monitoring information",
          "type": "text"
@@ -657,9 +1040,9 @@
             "h": 8,
             "w": 8,
             "x": 0,
-            "y": 21
+            "y": 29
          },
-         "id": 11,
+         "id": 17,
          "legend": {
             "alignAsTable": true,
             "avg": false,
@@ -747,9 +1130,9 @@
             "h": 8,
             "w": 8,
             "x": 8,
-            "y": 21
+            "y": 29
          },
-         "id": 12,
+         "id": 18,
          "legend": {
             "alignAsTable": true,
             "avg": false,
@@ -837,9 +1220,9 @@
             "h": 8,
             "w": 8,
             "x": 16,
-            "y": 21
+            "y": 29
          },
-         "id": 13,
+         "id": 19,
          "legend": {
             "alignAsTable": true,
             "avg": false,
@@ -927,9 +1310,9 @@
             "h": 8,
             "w": 8,
             "x": 0,
-            "y": 29
+            "y": 37
          },
-         "id": 14,
+         "id": 20,
          "legend": {
             "alignAsTable": true,
             "avg": false,
@@ -1017,9 +1400,9 @@
             "h": 8,
             "w": 8,
             "x": 8,
-            "y": 29
+            "y": 37
          },
-         "id": 15,
+         "id": 21,
          "legend": {
             "alignAsTable": true,
             "avg": false,
@@ -1107,9 +1490,9 @@
             "h": 8,
             "w": 8,
             "x": 16,
-            "y": 29
+            "y": 37
          },
-         "id": 16,
+         "id": 22,
          "legend": {
             "alignAsTable": true,
             "avg": false,
@@ -1197,9 +1580,9 @@
             "h": 8,
             "w": 8,
             "x": 0,
-            "y": 37
+            "y": 45
          },
-         "id": 17,
+         "id": 23,
          "legend": {
             "alignAsTable": true,
             "avg": false,
@@ -1287,9 +1670,9 @@
             "h": 8,
             "w": 8,
             "x": 8,
-            "y": 37
+            "y": 45
          },
-         "id": 18,
+         "id": 24,
          "legend": {
             "alignAsTable": true,
             "avg": false,
@@ -1377,9 +1760,9 @@
             "h": 8,
             "w": 8,
             "x": 16,
-            "y": 37
+            "y": 45
          },
-         "id": 19,
+         "id": 25,
          "legend": {
             "alignAsTable": true,
             "avg": false,
@@ -1461,9 +1844,9 @@
             "h": 1,
             "w": 24,
             "x": 0,
-            "y": 45
+            "y": 53
          },
-         "id": 20,
+         "id": 26,
          "panels": [ ],
          "repeat": null,
          "repeatIteration": null,
@@ -1486,9 +1869,9 @@
             "h": 8,
             "w": 8,
             "x": 0,
-            "y": 46
+            "y": 54
          },
-         "id": 21,
+         "id": 27,
          "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -1576,9 +1959,9 @@
             "h": 8,
             "w": 8,
             "x": 8,
-            "y": 46
+            "y": 54
          },
-         "id": 22,
+         "id": 28,
          "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -1666,9 +2049,9 @@
             "h": 8,
             "w": 8,
             "x": 16,
-            "y": 46
+            "y": 54
          },
-         "id": 23,
+         "id": 29,
          "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -1756,9 +2139,9 @@
             "h": 8,
             "w": 8,
             "x": 0,
-            "y": 46
+            "y": 54
          },
-         "id": 24,
+         "id": 30,
          "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -1846,9 +2229,9 @@
             "h": 8,
             "w": 8,
             "x": 8,
-            "y": 46
+            "y": 54
          },
-         "id": 25,
+         "id": 31,
          "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -1936,9 +2319,9 @@
             "h": 8,
             "w": 8,
             "x": 16,
-            "y": 46
+            "y": 54
          },
-         "id": 26,
+         "id": 32,
          "legend": {
             "alignAsTable": true,
             "avg": true,

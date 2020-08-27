@@ -1,5 +1,6 @@
 local grafana = import 'grafonnet/grafana.libsonnet';
 
+local cluster = import 'cluster.libsonnet';
 local dashboard = import 'dashboard.libsonnet';
 
 local raw_dashboard = grafana.dashboard.new(
@@ -39,7 +40,20 @@ dashboard.build(
     id='prometheus',
     name='Prometheus',
     version='1.0.0'
-  ).addTemplate(
+  )
+  .addRequired(
+    type='panel',
+    id='stat',
+    name='Stat',
+    version='',
+  )
+  .addRequired(
+    type='panel',
+    id='table',
+    name='Table',
+    version='',
+  )
+  .addTemplate(
     grafana.template.custom(
       name='job',
       query='${PROMETHEUS_JOB}',
@@ -47,7 +61,44 @@ dashboard.build(
       hide='variable',
       label='Prometheus job',
     ),
+  ).addPanel(
+    cluster.health_overview_table(
+      datasource=datasource,
+      job=job,
+    ),
+    { w: 12, h: 8, x: 0, y: 0 }
+  ).addPanel(
+    cluster.health_overview_stat(
+      datasource=datasource,
+      job=job,
+    ),
+    { w: 8, h: 3, x: 12, y: 0 }
+  ).addPanel(
+    cluster.memory_used_stat(
+      datasource=datasource,
+      job=job,
+    ),
+    { w: 4, h: 5, x: 12, y: 3 }
+  ).addPanel(
+    cluster.memory_reserved_stat(
+      datasource=datasource,
+      job=job,
+    ),
+    { w: 4, h: 5, x: 16, y: 3 }
+  ).addPanel(
+    cluster.space_ops_stat(
+      datasource=datasource,
+      job=job,
+    ),
+    { w: 4, h: 4, x: 20, y: 0 }
+  ).addPanel(
+    cluster.http_rps_stat(
+      datasource=datasource,
+      job=job,
+    ),
+    { w: 4, h: 4, x: 20, y: 4 }
   ),
   datasource,
   job=job,
+  offset=8,
 )
