@@ -34,7 +34,7 @@ Guide on Tarantool project prerequirements and metrics collectors configuration 
 
 ## Experimental cluster
 
-```docker-compose up -d``` will start 5 containers: Tarantool, Telegraf, InfluxDB, Prometheus and Grafana, which build cluster with two fully operational metrics datasources (InfluxDB and Prometheus), extracting metrics from Tarantool instance. We recommend using the exact versions we use in experimental cluster (e.g. Grafana v6.6.0). 
+```docker-compose up -d``` will start 5 containers: Tarantool, Telegraf, InfluxDB, Prometheus and Grafana, which build cluster with two fully operational metrics datasources (InfluxDB and Prometheus), extracting metrics from Tarantool example project. We recommend using the exact versions we use in experimental cluster (e.g. Grafana v6.6.0). 
 
 ## How to compile dashboard
 
