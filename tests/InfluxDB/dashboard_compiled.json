@@ -10,11 +10,16 @@
       },
       {
          "description": "InfluxDB Tarantool metrics measurement",
-         "label": "Measurement",
-         "name": "TARANTOOL_MEASUREMENT",
-         "pluginId": null,
-         "pluginName": null,
+         "label": "InfluxDB measurement",
+         "name": "INFLUXDB_MEASUREMENT",
          "type": "constant"
+      },
+      {
+         "description": "InfluxDB Tarantool metrics policy",
+         "label": "InfluxDB policy",
+         "name": "INFLUXDB_POLICY",
+         "type": "constant",
+         "value": "default"
       }
    ],
    "__requires": [
@@ -157,8 +162,8 @@
                      "type": "fill"
                   }
                ],
-               "measurement": "${TARANTOOL_MEASUREMENT}",
-               "policy": "default",
+               "measurement": "${INFLUXDB_MEASUREMENT}",
+               "policy": "${INFLUXDB_POLICY}",
                "refId": "A",
                "resultFormat": "time_series",
                "select": [
@@ -318,8 +323,8 @@
                      "type": "fill"
                   }
                ],
-               "measurement": "${TARANTOOL_MEASUREMENT}",
-               "policy": "default",
+               "measurement": "${INFLUXDB_MEASUREMENT}",
+               "policy": "${INFLUXDB_POLICY}",
                "refId": "A",
                "resultFormat": "time_series",
                "select": [
@@ -479,8 +484,8 @@
                      "type": "fill"
                   }
                ],
-               "measurement": "${TARANTOOL_MEASUREMENT}",
-               "policy": "default",
+               "measurement": "${INFLUXDB_MEASUREMENT}",
+               "policy": "${INFLUXDB_POLICY}",
                "refId": "A",
                "resultFormat": "time_series",
                "select": [
@@ -640,8 +645,8 @@
                      "type": "fill"
                   }
                ],
-               "measurement": "${TARANTOOL_MEASUREMENT}",
-               "policy": "default",
+               "measurement": "${INFLUXDB_MEASUREMENT}",
+               "policy": "${INFLUXDB_POLICY}",
                "refId": "A",
                "resultFormat": "time_series",
                "select": [
@@ -795,8 +800,8 @@
                      "type": "fill"
                   }
                ],
-               "measurement": "${TARANTOOL_MEASUREMENT}",
-               "policy": "default",
+               "measurement": "${INFLUXDB_MEASUREMENT}",
+               "policy": "${INFLUXDB_POLICY}",
                "refId": "A",
                "resultFormat": "time_series",
                "select": [
@@ -950,8 +955,8 @@
                      "type": "fill"
                   }
                ],
-               "measurement": "${TARANTOOL_MEASUREMENT}",
-               "policy": "default",
+               "measurement": "${INFLUXDB_MEASUREMENT}",
+               "policy": "${INFLUXDB_POLICY}",
                "refId": "A",
                "resultFormat": "time_series",
                "select": [
@@ -1120,8 +1125,8 @@
                      "type": "fill"
                   }
                ],
-               "measurement": "${TARANTOOL_MEASUREMENT}",
-               "policy": "default",
+               "measurement": "${INFLUXDB_MEASUREMENT}",
+               "policy": "${INFLUXDB_POLICY}",
                "refId": "A",
                "resultFormat": "time_series",
                "select": [
@@ -1251,8 +1256,8 @@
                      "type": "fill"
                   }
                ],
-               "measurement": "${TARANTOOL_MEASUREMENT}",
-               "policy": "default",
+               "measurement": "${INFLUXDB_MEASUREMENT}",
+               "policy": "${INFLUXDB_POLICY}",
                "refId": "A",
                "resultFormat": "time_series",
                "select": [
@@ -1382,8 +1387,8 @@
                      "type": "fill"
                   }
                ],
-               "measurement": "${TARANTOOL_MEASUREMENT}",
-               "policy": "default",
+               "measurement": "${INFLUXDB_MEASUREMENT}",
+               "policy": "${INFLUXDB_POLICY}",
                "refId": "A",
                "resultFormat": "time_series",
                "select": [
@@ -1513,8 +1518,8 @@
                      "type": "fill"
                   }
                ],
-               "measurement": "${TARANTOOL_MEASUREMENT}",
-               "policy": "default",
+               "measurement": "${INFLUXDB_MEASUREMENT}",
+               "policy": "${INFLUXDB_POLICY}",
                "refId": "A",
                "resultFormat": "time_series",
                "select": [
@@ -1644,8 +1649,8 @@
                      "type": "fill"
                   }
                ],
-               "measurement": "${TARANTOOL_MEASUREMENT}",
-               "policy": "default",
+               "measurement": "${INFLUXDB_MEASUREMENT}",
+               "policy": "${INFLUXDB_POLICY}",
                "refId": "A",
                "resultFormat": "time_series",
                "select": [
@@ -1775,8 +1780,8 @@
                      "type": "fill"
                   }
                ],
-               "measurement": "${TARANTOOL_MEASUREMENT}",
-               "policy": "default",
+               "measurement": "${INFLUXDB_MEASUREMENT}",
+               "policy": "${INFLUXDB_POLICY}",
                "refId": "A",
                "resultFormat": "time_series",
                "select": [
@@ -1906,8 +1911,8 @@
                      "type": "fill"
                   }
                ],
-               "measurement": "${TARANTOOL_MEASUREMENT}",
-               "policy": "default",
+               "measurement": "${INFLUXDB_MEASUREMENT}",
+               "policy": "${INFLUXDB_POLICY}",
                "refId": "A",
                "resultFormat": "time_series",
                "select": [
@@ -2037,8 +2042,8 @@
                      "type": "fill"
                   }
                ],
-               "measurement": "${TARANTOOL_MEASUREMENT}",
-               "policy": "default",
+               "measurement": "${INFLUXDB_MEASUREMENT}",
+               "policy": "${INFLUXDB_POLICY}",
                "refId": "A",
                "resultFormat": "time_series",
                "select": [
@@ -2168,8 +2173,8 @@
                      "type": "fill"
                   }
                ],
-               "measurement": "${TARANTOOL_MEASUREMENT}",
-               "policy": "default",
+               "measurement": "${INFLUXDB_MEASUREMENT}",
+               "policy": "${INFLUXDB_POLICY}",
                "refId": "A",
                "resultFormat": "time_series",
                "select": [
@@ -2318,8 +2323,8 @@
                      "type": "fill"
                   }
                ],
-               "measurement": "${TARANTOOL_MEASUREMENT}",
-               "policy": "default",
+               "measurement": "${INFLUXDB_MEASUREMENT}",
+               "policy": "${INFLUXDB_POLICY}",
                "refId": "A",
                "resultFormat": "time_series",
                "select": [
@@ -2461,8 +2466,8 @@
                      "type": "fill"
                   }
                ],
-               "measurement": "${TARANTOOL_MEASUREMENT}",
-               "policy": "default",
+               "measurement": "${INFLUXDB_MEASUREMENT}",
+               "policy": "${INFLUXDB_POLICY}",
                "refId": "A",
                "resultFormat": "time_series",
                "select": [
@@ -2604,8 +2609,8 @@
                      "type": "fill"
                   }
                ],
-               "measurement": "${TARANTOOL_MEASUREMENT}",
-               "policy": "default",
+               "measurement": "${INFLUXDB_MEASUREMENT}",
+               "policy": "${INFLUXDB_POLICY}",
                "refId": "A",
                "resultFormat": "time_series",
                "select": [
@@ -2747,8 +2752,8 @@
                      "type": "fill"
                   }
                ],
-               "measurement": "${TARANTOOL_MEASUREMENT}",
-               "policy": "default",
+               "measurement": "${INFLUXDB_MEASUREMENT}",
+               "policy": "${INFLUXDB_POLICY}",
                "refId": "A",
                "resultFormat": "time_series",
                "select": [
@@ -2890,8 +2895,8 @@
                      "type": "fill"
                   }
                ],
-               "measurement": "${TARANTOOL_MEASUREMENT}",
-               "policy": "default",
+               "measurement": "${INFLUXDB_MEASUREMENT}",
+               "policy": "${INFLUXDB_POLICY}",
                "refId": "A",
                "resultFormat": "time_series",
                "select": [
@@ -3033,8 +3038,8 @@
                      "type": "fill"
                   }
                ],
-               "measurement": "${TARANTOOL_MEASUREMENT}",
-               "policy": "default",
+               "measurement": "${INFLUXDB_MEASUREMENT}",
+               "policy": "${INFLUXDB_POLICY}",
                "refId": "A",
                "resultFormat": "time_series",
                "select": [

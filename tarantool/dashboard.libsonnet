@@ -16,7 +16,8 @@ local dashboard = grafana.dashboard.new(
 );
 
 local datasource = '${DS_INFLUXDB}';
-local measurement = '${TARANTOOL_MEASUREMENT}';
+local policy = '${INFLUXDB_POLICY}';
+local measurement = '${INFLUXDB_MEASUREMENT}';
 
 dashboard
 .addInput(
@@ -28,12 +29,17 @@ dashboard
   description='InfluxDB Tarantool metrics bank'
 )
 .addInput(
-  name='TARANTOOL_MEASUREMENT',
-  label='Measurement',
+  name='INFLUXDB_MEASUREMENT',
+  label='InfluxDB measurement',
   type='constant',
-  pluginId=null,
-  pluginName=null,
   description='InfluxDB Tarantool metrics measurement'
+)
+.addInput(
+  name='INFLUXDB_POLICY',
+  label='InfluxDB policy',
+  type='constant',
+  value='default',
+  description='InfluxDB Tarantool metrics policy'
 )
 .addRequired(
   type='grafana',
@@ -66,6 +72,7 @@ dashboard
 .addPanel(
   http.rps_success(
     datasource=datasource,
+    policy=policy,
     measurement=measurement,
   ),
   { w: 8, h: 8, x: 0, y: 1 }
@@ -73,6 +80,7 @@ dashboard
 .addPanel(
   http.rps_error_4xx(
     datasource=datasource,
+    policy=policy,
     measurement=measurement,
   ),
   { w: 8, h: 8, x: 8, y: 1 },
@@ -80,6 +88,7 @@ dashboard
 .addPanel(
   http.rps_error_5xx(
     datasource=datasource,
+    policy=policy,
     measurement=measurement,
   ),
   { w: 8, h: 8, x: 16, y: 1 },
@@ -87,6 +96,7 @@ dashboard
 .addPanel(
   http.latency_success(
     datasource=datasource,
+    policy=policy,
     measurement=measurement,
   ),
   { w: 8, h: 8, x: 0, y: 9 }
@@ -94,6 +104,7 @@ dashboard
 .addPanel(
   http.latency_error_4xx(
     datasource=datasource,
+    policy=policy,
     measurement=measurement,
   ),
   { w: 8, h: 8, x: 8, y: 9 },
@@ -101,6 +112,7 @@ dashboard
 .addPanel(
   http.latency_error_5xx(
     datasource=datasource,
+    policy=policy,
     measurement=measurement,
   ),
   { w: 8, h: 8, x: 16, y: 9 },
@@ -116,6 +128,7 @@ dashboard
 .addPanel(
   slab.quota_used_ratio(
     datasource=datasource,
+    policy=policy,
     measurement=measurement,
   ),
   { w: 8, h: 8, x: 0, y: 21 }
@@ -123,6 +136,7 @@ dashboard
 .addPanel(
   slab.arena_used_ratio(
     datasource=datasource,
+    policy=policy,
     measurement=measurement,
   ),
   { w: 8, h: 8, x: 8, y: 21 },
@@ -130,6 +144,7 @@ dashboard
 .addPanel(
   slab.items_used_ratio(
     datasource=datasource,
+    policy=policy,
     measurement=measurement,
   ),
   { w: 8, h: 8, x: 16, y: 21 },
@@ -137,6 +152,7 @@ dashboard
 .addPanel(
   slab.quota_used(
     datasource=datasource,
+    policy=policy,
     measurement=measurement,
   ),
   { w: 8, h: 8, x: 0, y: 29 }
@@ -144,6 +160,7 @@ dashboard
 .addPanel(
   slab.arena_used(
     datasource=datasource,
+    policy=policy,
     measurement=measurement,
   ),
   { w: 8, h: 8, x: 8, y: 29 },
@@ -151,6 +168,7 @@ dashboard
 .addPanel(
   slab.items_used(
     datasource=datasource,
+    policy=policy,
     measurement=measurement,
   ),
   { w: 8, h: 8, x: 16, y: 29 },
@@ -158,6 +176,7 @@ dashboard
 .addPanel(
   slab.quota_size(
     datasource=datasource,
+    policy=policy,
     measurement=measurement,
   ),
   { w: 8, h: 8, x: 0, y: 37 }
@@ -165,6 +184,7 @@ dashboard
 .addPanel(
   slab.arena_size(
     datasource=datasource,
+    policy=policy,
     measurement=measurement,
   ),
   { w: 8, h: 8, x: 8, y: 37 },
@@ -172,6 +192,7 @@ dashboard
 .addPanel(
   slab.items_size(
     datasource=datasource,
+    policy=policy,
     measurement=measurement,
   ),
   { w: 8, h: 8, x: 16, y: 37 },
@@ -183,6 +204,7 @@ dashboard
 .addPanel(
   space.select_rps(
     datasource=datasource,
+    policy=policy,
     measurement=measurement,
   ),
   { w: 8, h: 8, x: 0, y: 46 },
@@ -190,6 +212,7 @@ dashboard
 .addPanel(
   space.insert_rps(
     datasource=datasource,
+    policy=policy,
     measurement=measurement,
   ),
   { w: 8, h: 8, x: 8, y: 46 },
@@ -197,6 +220,7 @@ dashboard
 .addPanel(
   space.replace_rps(
     datasource=datasource,
+    policy=policy,
     measurement=measurement,
   ),
   { w: 8, h: 8, x: 16, y: 46 },
@@ -204,6 +228,7 @@ dashboard
 .addPanel(
   space.upsert_rps(
     datasource=datasource,
+    policy=policy,
     measurement=measurement,
   ),
   { w: 8, h: 8, x: 0, y: 46 },
@@ -211,6 +236,7 @@ dashboard
 .addPanel(
   space.update_rps(
     datasource=datasource,
+    policy=policy,
     measurement=measurement,
   ),
   { w: 8, h: 8, x: 8, y: 46 },
@@ -218,6 +244,7 @@ dashboard
 .addPanel(
   space.delete_rps(
     datasource=datasource,
+    policy=policy,
     measurement=measurement,
   ),
   { w: 8, h: 8, x: 16, y: 46 },

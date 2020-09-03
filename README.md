@@ -18,7 +18,7 @@ Guide on Tarantool project prerequirements and metrics collectors configuration 
 
 * Paste dashboard id (`12567` for InfluxDB) or link to dashboard (https://grafana.com/grafana/dashboards/12567 for InfluxDB) or upload json file (download it from Grafana page: [InfluxDB](https://grafana.com/grafana/dashboards/12567); or build it by yourself).
 
-* Set dashboard name, folder, uid (if needed), and metrics database parameters (i.e., InfluxDB source and measurement).
+* Set dashboard name, folder, uid (if needed), and metrics database parameters (i.e., InfluxDB source, measurement and policy).
 
 ![Grafana import setup in v6.6.0 for InfluxDB](./docs/grafana_import_setup_v6.png)
 
