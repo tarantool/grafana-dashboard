@@ -30,5 +30,10 @@ scrape_configs:
 
   - job_name: "example_project"
     static_configs:
-      - targets: ["example_project:8081"]
+      - targets: 
+        - "example_project:8081"
+        - "example_project:8082"
+        - "example_project:8083"
+        - "example_project:8084"
+        - "example_project:8085"
     metrics_path: "/metrics/prometheus"

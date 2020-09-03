@@ -7,10 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 ### Added
 - Publish dashboard on Grafana official and community built dashboards
+- Generate HTTP and space operations traffic for example cluster with luatest
 
 ### Changed
 - Update metrics version to 0.3.0 in experimental cluster
 - Rework example Tarantool instance on "cartridge.roles.metrics"
+- Rework example Tarantool docker to start multiple instances with luatest
 - Documentation improvements and fixes
 
 ## [0.1.0] - 2020-06-30
