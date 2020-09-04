@@ -9,6 +9,7 @@ local influxdb = grafana.influxdb;
     title=null,
     description=null,
     datasource=null,
+    policy=null,
     measurement=null,
     operation=null,
   ) = graph.new(
@@ -36,6 +37,7 @@ local influxdb = grafana.influxdb;
     legend_sortDesc=true,
   ).addTarget(
     influxdb.target(
+      policy=policy,
       measurement=measurement,
       group_tags=['label_pairs_alias'],
       alias='$tag_label_pairs_alias',
@@ -47,11 +49,13 @@ local influxdb = grafana.influxdb;
     title=null,
     description=null,
     datasource=null,
+    policy=null,
     measurement=null,
   ):: operation_rps(
     title=title,
     description=description,
     datasource=datasource,
+    policy=policy,
     measurement=measurement,
     operation='select'
   ),
@@ -60,11 +64,13 @@ local influxdb = grafana.influxdb;
     title=null,
     description=null,
     datasource=null,
+    policy=null,
     measurement=null,
   ):: operation_rps(
     title=title,
     description=description,
     datasource=datasource,
+    policy=policy,
     measurement=measurement,
     operation='insert'
   ),
@@ -73,11 +79,13 @@ local influxdb = grafana.influxdb;
     title=null,
     description=null,
     datasource=null,
+    policy=null,
     measurement=null,
   ):: operation_rps(
     title=title,
     description=description,
     datasource=datasource,
+    policy=policy,
     measurement=measurement,
     operation='replace'
   ),
@@ -86,11 +94,13 @@ local influxdb = grafana.influxdb;
     title=null,
     description=null,
     datasource=null,
+    policy=null,
     measurement=null,
   ):: operation_rps(
     title=title,
     description=description,
     datasource=datasource,
+    policy=policy,
     measurement=measurement,
     operation='upsert'
   ),
@@ -99,11 +109,13 @@ local influxdb = grafana.influxdb;
     title=null,
     description=null,
     datasource=null,
+    policy=null,
     measurement=null,
   ):: operation_rps(
     title=title,
     description=description,
     datasource=datasource,
+    policy=policy,
     measurement=measurement,
     operation='update'
   ),
@@ -112,11 +124,13 @@ local influxdb = grafana.influxdb;
     title=null,
     description=null,
     datasource=null,
+    policy=null,
     measurement=null,
   ):: operation_rps(
     title=title,
     description=description,
     datasource=datasource,
+    policy=policy,
     measurement=measurement,
     operation='delete'
   ),

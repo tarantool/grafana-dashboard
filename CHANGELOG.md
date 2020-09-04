@@ -13,6 +13,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Update metrics version to 0.3.0 in experimental cluster
 - Rework example Tarantool instance on "cartridge.roles.metrics"
 - Rework example Tarantool docker to start multiple instances with luatest
+- Make InfluxDB policy configurable
 - Documentation improvements and fixes
 
 ## [0.1.0] - 2020-06-30

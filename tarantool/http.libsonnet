@@ -8,6 +8,7 @@ local influxdb = grafana.influxdb;
     title,
     description,
     datasource,
+    policy,
     measurement,
     metric_name,
     status_regex,
@@ -31,6 +32,7 @@ local influxdb = grafana.influxdb;
     legend_sortDesc=true,
   ).addTarget(
     influxdb.target(
+      policy=policy,
       measurement=measurement,
       group_tags=['label_pairs_alias', 'label_pairs_path', 'label_pairs_method', 'label_pairs_status'],
       alias='$tag_label_pairs_alias — $tag_label_pairs_method $tag_label_pairs_path (code $tag_label_pairs_status)',
@@ -46,12 +48,14 @@ local influxdb = grafana.influxdb;
     |||,
 
     datasource=null,
+    policy=null,
     measurement=null,
     metric_name='http_server_request_latency_count',
   ):: rps_graph(
     title=title,
     description=description,
     datasource=datasource,
+    policy=policy,
     measurement=measurement,
     metric_name=metric_name,
     status_regex='/^2\\d{2}$/',
@@ -65,12 +69,14 @@ local influxdb = grafana.influxdb;
     |||,
 
     datasource=null,
+    policy=null,
     measurement=null,
     metric_name='http_server_request_latency_count',
   ):: rps_graph(
     title=title,
     description=description,
     datasource=datasource,
+    policy=policy,
     measurement=measurement,
     metric_name=metric_name,
     status_regex='/^4\\d{2}$/',
@@ -84,12 +90,14 @@ local influxdb = grafana.influxdb;
     |||,
 
     datasource=null,
+    policy=null,
     measurement=null,
     metric_name='http_server_request_latency_count',
   ):: rps_graph(
     title=title,
     description=description,
     datasource=datasource,
+    policy=policy,
     measurement=measurement,
     metric_name=metric_name,
     status_regex='/^5\\d{2}$/',
@@ -99,6 +107,7 @@ local influxdb = grafana.influxdb;
     title,
     description,
     datasource,
+    policy,
     measurement,
     metric_name,
     status_regex,
@@ -122,6 +131,7 @@ local influxdb = grafana.influxdb;
     legend_sortDesc=true,
   ).addTarget(
     influxdb.target(
+      policy=policy,
       measurement=measurement,
       group_tags=['label_pairs_alias', 'label_pairs_path', 'label_pairs_method', 'label_pairs_status'],
       alias='$tag_label_pairs_alias — $tag_label_pairs_method $tag_label_pairs_path (code $tag_label_pairs_status)',
@@ -136,12 +146,14 @@ local influxdb = grafana.influxdb;
     |||,
 
     datasource=null,
+    policy=null,
     measurement=null,
     metric_name='http_server_request_latency_avg',
   ):: latency_graph(
     title=title,
     description=description,
     datasource=datasource,
+    policy=policy,
     measurement=measurement,
     metric_name=metric_name,
     status_regex='/^2\\d{2}$/',
@@ -154,12 +166,14 @@ local influxdb = grafana.influxdb;
     |||,
 
     datasource=null,
+    policy=null,
     measurement=null,
     metric_name='http_server_request_latency_avg',
   ):: latency_graph(
     title=title,
     description=description,
     datasource=datasource,
+    policy=policy,
     measurement=measurement,
     metric_name=metric_name,
     status_regex='/^4\\d{2}$/',
@@ -172,12 +186,14 @@ local influxdb = grafana.influxdb;
     |||,
 
     datasource=null,
+    policy=null,
     measurement=null,
     metric_name='http_server_request_latency_avg',
   ):: latency_graph(
     title=title,
     description=description,
     datasource=datasource,
+    policy=policy,
     measurement=measurement,
     metric_name=metric_name,
     status_regex='/^5\\d{2}$/',
