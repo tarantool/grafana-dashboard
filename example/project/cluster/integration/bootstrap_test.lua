@@ -15,6 +15,8 @@ local cluster_alias = {
     tnt_storage_2_replica = 'tnt_storage_2_replica',
 }
 
+local instances = {}
+
 local replicasets = {
     {
         uuid = cluster_helpers.uuid('a'),
@@ -99,17 +101,15 @@ test.before_suite(function()
             }
         }
     })
+
+    for instance, alias in pairs(cluster_alias) do
+        instances[instance] = group.cluster:server(alias)
+    end
 end)
 
 test.after_suite(function()
     group.cluster:stop()
 end)
-
-local tnt_router = group.cluster:server(cluster_alias.tnt_router)
-local tnt_storage_1_master = group.cluster:server(cluster_alias.tnt_storage_1_master)
-local tnt_storage_1_replica = group.cluster:server(cluster_alias.tnt_storage_1_replica)
-local tnt_storage_2_master = group.cluster:server(cluster_alias.tnt_storage_2_master)
-local tnt_storage_2_replica = group.cluster:server(cluster_alias.tnt_storage_2_replica)
 
 -- Space operations constants
 local SELECT = 'select'
@@ -194,39 +194,39 @@ group.test_cluster = function()
     test.helpers.retrying({ timeout = math.huge },
         function()
             -- Generate some HTTP traffic
-            http_request(tnt_router, GET, '/hello', math.random(5, 10))
-            http_request(tnt_router, GET, '/hell0', math.random(1, 2))
-            http_request(tnt_router, POST, '/goodbye', math.random(0, 1))
-            http_request(tnt_storage_1_master, GET, '/hello', math.random(2, 5))
-            http_request(tnt_storage_1_master, GET, '/hell0', math.random(0, 1))
-            http_request(tnt_storage_1_master, POST, '/goodbye', math.random(0, 1))
-            http_request(tnt_storage_1_replica, GET, '/hello', math.random(1, 3))
-            http_request(tnt_storage_1_replica, GET, '/hell0', math.random(0, 1))
-            http_request(tnt_storage_1_replica, POST, '/goodbye', math.random(0, 1))
-            http_request(tnt_storage_2_master, GET, '/hello', math.random(2, 5))
-            http_request(tnt_storage_2_master, GET, '/hell0', math.random(0, 1))
-            http_request(tnt_storage_2_master, POST, '/goodbye', math.random(0, 1))
-            http_request(tnt_storage_2_replica, GET, '/hello', math.random(1, 3))
-            http_request(tnt_storage_2_replica, GET, '/hell0', math.random(0, 1))
-            http_request(tnt_storage_2_replica, POST, '/goodbye', math.random(0, 1))
+            http_request(instances.tnt_router, GET, '/hello', math.random(5, 10))
+            http_request(instances.tnt_router, GET, '/hell0', math.random(1, 2))
+            http_request(instances.tnt_router, POST, '/goodbye', math.random(0, 1))
+            http_request(instances.tnt_storage_1_master, GET, '/hello', math.random(2, 5))
+            http_request(instances.tnt_storage_1_master, GET, '/hell0', math.random(0, 1))
+            http_request(instances.tnt_storage_1_master, POST, '/goodbye', math.random(0, 1))
+            http_request(instances.tnt_storage_1_replica, GET, '/hello', math.random(1, 3))
+            http_request(instances.tnt_storage_1_replica, GET, '/hell0', math.random(0, 1))
+            http_request(instances.tnt_storage_1_replica, POST, '/goodbye', math.random(0, 1))
+            http_request(instances.tnt_storage_2_master, GET, '/hello', math.random(2, 5))
+            http_request(instances.tnt_storage_2_master, GET, '/hell0', math.random(0, 1))
+            http_request(instances.tnt_storage_2_master, POST, '/goodbye', math.random(0, 1))
+            http_request(instances.tnt_storage_2_replica, GET, '/hello', math.random(1, 3))
+            http_request(instances.tnt_storage_2_replica, GET, '/hell0', math.random(0, 1))
+            http_request(instances.tnt_storage_2_replica, POST, '/goodbye', math.random(0, 1))
 
             -- Generate some space traffic
-            space_operations(tnt_router, INSERT, math.random(1, 3))
-            space_operations(tnt_router, UPDATE, math.random(1, 3))
-            space_operations(tnt_storage_1_master, INSERT, math.random(5, 10))
-            space_operations(tnt_storage_1_master, SELECT, math.random(10, 20))
-            space_operations(tnt_storage_1_master, UPDATE, math.random(5, 10))
-            space_operations(tnt_storage_1_master, UPSERT, math.random(5, 10))
-            space_operations(tnt_storage_1_master, REPLACE, math.random(5, 10))
-            space_operations(tnt_storage_1_master, DELETE, math.random(1, 2))
-            space_operations(tnt_storage_1_replica, SELECT, math.random(3, 5))
-            space_operations(tnt_storage_2_master, INSERT, math.random(5, 10))
-            space_operations(tnt_storage_2_master, SELECT, math.random(10, 20))
-            space_operations(tnt_storage_2_master, UPDATE, math.random(5, 10))
-            space_operations(tnt_storage_2_master, UPSERT, math.random(5, 10))
-            space_operations(tnt_storage_2_master, REPLACE, math.random(5, 10))
-            space_operations(tnt_storage_2_master, DELETE, math.random(1, 2))
-            space_operations(tnt_storage_2_replica, SELECT, math.random(3, 5))
+            space_operations(instances.tnt_router, INSERT, math.random(1, 3))
+            space_operations(instances.tnt_router, UPDATE, math.random(1, 3))
+            space_operations(instances.tnt_storage_1_master, INSERT, math.random(5, 10))
+            space_operations(instances.tnt_storage_1_master, SELECT, math.random(10, 20))
+            space_operations(instances.tnt_storage_1_master, UPDATE, math.random(5, 10))
+            space_operations(instances.tnt_storage_1_master, UPSERT, math.random(5, 10))
+            space_operations(instances.tnt_storage_1_master, REPLACE, math.random(5, 10))
+            space_operations(instances.tnt_storage_1_master, DELETE, math.random(1, 2))
+            space_operations(instances.tnt_storage_1_replica, SELECT, math.random(3, 5))
+            space_operations(instances.tnt_storage_2_master, INSERT, math.random(5, 10))
+            space_operations(instances.tnt_storage_2_master, SELECT, math.random(10, 20))
+            space_operations(instances.tnt_storage_2_master, UPDATE, math.random(5, 10))
+            space_operations(instances.tnt_storage_2_master, UPSERT, math.random(5, 10))
+            space_operations(instances.tnt_storage_2_master, REPLACE, math.random(5, 10))
+            space_operations(instances.tnt_storage_2_master, DELETE, math.random(1, 2))
+            space_operations(instances.tnt_storage_2_replica, SELECT, math.random(3, 5))
 
             -- Fail this function so cluster don't stop
             error('running cluster')
