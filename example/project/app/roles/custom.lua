@@ -1,5 +1,6 @@
 local cartridge = require('cartridge')
 local config = require('cartridge.argparse')
+local fiber = require('fiber')
 
 local function init(opts) -- luacheck: no unused args
     local local_cfg = config.get_opts({
@@ -10,13 +11,14 @@ local function init(opts) -- luacheck: no unused args
     local metrics = cartridge.service_get('metrics')
     local http_middleware = metrics.http_middleware
 
-    local http_collector = http_middleware.build_default_collector('average')
+    local http_collector = http_middleware.build_default_collector('summary')
 
     local httpd = cartridge.service_get('httpd')
     httpd:route(
         { method = 'GET', path = '/hello' },
         http_middleware.v1(
             function()
+                fiber.sleep(0.02)
                 return { status = 200, body = 'Hello world!' }
             end,
             http_collector
@@ -26,6 +28,7 @@ local function init(opts) -- luacheck: no unused args
         { method = 'GET', path = '/hell0' },
         http_middleware.v1(
             function()
+                fiber.sleep(0.01)
                 return { status = 400, body = 'Hell0 world!' }
             end,
             http_collector
@@ -35,6 +38,7 @@ local function init(opts) -- luacheck: no unused args
         { method = 'POST', path = '/goodbye' },
         http_middleware.v1(
             function()
+                fiber.sleep(0.005)
                 return { status = 500, body = 'Goodbye cruel world!' }
             end,
             http_collector
