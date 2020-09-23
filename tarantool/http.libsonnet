@@ -2,6 +2,7 @@ local grafana = import 'grafonnet/grafana.libsonnet';
 
 local graph = grafana.graphPanel;
 local influxdb = grafana.influxdb;
+local prometheus = grafana.prometheus;
 
 {
   local rps_graph(
@@ -10,6 +11,7 @@ local influxdb = grafana.influxdb;
     datasource,
     policy,
     measurement,
+    job,
     metric_name,
     status_regex,
   ) = graph.new(
@@ -31,13 +33,19 @@ local influxdb = grafana.influxdb;
     legend_sort='current',
     legend_sortDesc=true,
   ).addTarget(
-    influxdb.target(
-      policy=policy,
-      measurement=measurement,
-      group_tags=['label_pairs_alias', 'label_pairs_path', 'label_pairs_method', 'label_pairs_status'],
-      alias='$tag_label_pairs_alias — $tag_label_pairs_method $tag_label_pairs_path (code $tag_label_pairs_status)',
-    ).where('metric_name', '=', metric_name).where('label_pairs_status', '=~', status_regex)
-    .selectField('value').addConverter('mean').addConverter('non_negative_derivative', ['1s'])
+    if datasource == '${DS_PROMETHEUS}' then
+      prometheus.target(
+        expr=std.format('rate(%s{job=~"%s",status=~"%s"}[1m])', [metric_name, job, std.strReplace(status_regex, '\\', '\\\\')]),
+        legendFormat='{{alias}} — {{method}} {{path}} (code {{status}})',
+      )
+    else if datasource == '${DS_INFLUXDB}' then
+      influxdb.target(
+        policy=policy,
+        measurement=measurement,
+        group_tags=['label_pairs_alias', 'label_pairs_path', 'label_pairs_method', 'label_pairs_status'],
+        alias='$tag_label_pairs_alias — $tag_label_pairs_method $tag_label_pairs_path (code $tag_label_pairs_status)',
+      ).where('metric_name', '=', metric_name).where('label_pairs_status', '=~', std.format('/%s/', status_regex))
+      .selectField('value').addConverter('mean').addConverter('non_negative_derivative', ['1s'])
   ),
 
   rps_success(
@@ -50,6 +58,7 @@ local influxdb = grafana.influxdb;
     datasource=null,
     policy=null,
     measurement=null,
+    job=null,
     metric_name='http_server_request_latency_count',
   ):: rps_graph(
     title=title,
@@ -57,8 +66,9 @@ local influxdb = grafana.influxdb;
     datasource=datasource,
     policy=policy,
     measurement=measurement,
+    job=job,
     metric_name=metric_name,
-    status_regex='/^2\\d{2}$/',
+    status_regex='^2\\d{2}$',
   ),
 
   rps_error_4xx(
@@ -71,6 +81,7 @@ local influxdb = grafana.influxdb;
     datasource=null,
     policy=null,
     measurement=null,
+    job=null,
     metric_name='http_server_request_latency_count',
   ):: rps_graph(
     title=title,
@@ -78,8 +89,9 @@ local influxdb = grafana.influxdb;
     datasource=datasource,
     policy=policy,
     measurement=measurement,
+    job=job,
     metric_name=metric_name,
-    status_regex='/^4\\d{2}$/',
+    status_regex='^4\\d{2}$',
   ),
 
   rps_error_5xx(
@@ -92,6 +104,7 @@ local influxdb = grafana.influxdb;
     datasource=null,
     policy=null,
     measurement=null,
+    job=null,
     metric_name='http_server_request_latency_count',
   ):: rps_graph(
     title=title,
@@ -99,8 +112,9 @@ local influxdb = grafana.influxdb;
     datasource=datasource,
     policy=policy,
     measurement=measurement,
+    job=job,
     metric_name=metric_name,
-    status_regex='/^5\\d{2}$/',
+    status_regex='^5\\d{2}$',
   ),
 
   local latency_graph(
@@ -109,6 +123,7 @@ local influxdb = grafana.influxdb;
     datasource,
     policy,
     measurement,
+    job,
     metric_name,
     quantile,
     label,
@@ -132,13 +147,19 @@ local influxdb = grafana.influxdb;
     legend_sort='current',
     legend_sortDesc=true,
   ).addTarget(
-    influxdb.target(
-      policy=policy,
-      measurement=measurement,
-      group_tags=['label_pairs_alias', 'label_pairs_path', 'label_pairs_method', 'label_pairs_status'],
-      alias='$tag_label_pairs_alias — $tag_label_pairs_method $tag_label_pairs_path (code $tag_label_pairs_status)',
-    ).where('metric_name', '=', metric_name).where('label_pairs_quantile', '=', quantile)
-    .where('label_pairs_status', '=~', status_regex).selectField('value').addConverter('mean')
+    if datasource == '${DS_PROMETHEUS}' then
+      prometheus.target(
+        expr=std.format('%s{job=~"%s",quantile="%s",status=~"%s"}', [metric_name, job, quantile, std.strReplace(status_regex, '\\', '\\\\')]),
+        legendFormat='{{alias}} — {{method}} {{path}} (code {{status}})',
+      )
+    else if datasource == '${DS_INFLUXDB}' then
+      influxdb.target(
+        policy=policy,
+        measurement=measurement,
+        group_tags=['label_pairs_alias', 'label_pairs_path', 'label_pairs_method', 'label_pairs_status'],
+        alias='$tag_label_pairs_alias — $tag_label_pairs_method $tag_label_pairs_path (code $tag_label_pairs_status)',
+      ).where('metric_name', '=', metric_name).where('label_pairs_quantile', '=', quantile)
+      .where('label_pairs_status', '=~', std.format('/%s/', status_regex)).selectField('value').addConverter('mean')
   ),
 
   latency_success(
@@ -150,6 +171,7 @@ local influxdb = grafana.influxdb;
     datasource=null,
     policy=null,
     measurement=null,
+    job=null,
     metric_name='http_server_request_latency',
     quantile='0.99',
     label='99th percentile',
@@ -159,10 +181,11 @@ local influxdb = grafana.influxdb;
     datasource=datasource,
     policy=policy,
     measurement=measurement,
+    job=job,
     metric_name=metric_name,
     quantile=quantile,
     label=label,
-    status_regex='/^2\\d{2}$/',
+    status_regex='^2\\d{2}$',
   ),
 
   latency_error_4xx(
@@ -174,6 +197,7 @@ local influxdb = grafana.influxdb;
     datasource=null,
     policy=null,
     measurement=null,
+    job=null,
     metric_name='http_server_request_latency',
     quantile='0.99',
     label='99th percentile',
@@ -183,10 +207,11 @@ local influxdb = grafana.influxdb;
     datasource=datasource,
     policy=policy,
     measurement=measurement,
+    job=job,
     metric_name=metric_name,
     quantile=quantile,
     label=label,
-    status_regex='/^4\\d{2}$/',
+    status_regex='^4\\d{2}$',
   ),
 
   latency_error_5xx(
@@ -198,6 +223,7 @@ local influxdb = grafana.influxdb;
     datasource=null,
     policy=null,
     measurement=null,
+    job=null,
     metric_name='http_server_request_latency',
     quantile='0.99',
     label='99th percentile',
@@ -207,9 +233,10 @@ local influxdb = grafana.influxdb;
     datasource=datasource,
     policy=policy,
     measurement=measurement,
+    job=job,
     metric_name=metric_name,
     quantile=quantile,
     label=label,
-    status_regex='/^5\\d{2}$/',
+    status_regex='^5\\d{2}$',
   ),
 }

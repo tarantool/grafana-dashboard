@@ -1,8 +1,8 @@
 local grafana = import 'grafonnet/grafana.libsonnet';
-local target = import 'target.libsonnet';
 
 local graph = grafana.graphPanel;
 local influxdb = grafana.influxdb;
+local prometheus = grafana.prometheus;
 
 {
   local operation_rps(
@@ -11,6 +11,7 @@ local influxdb = grafana.influxdb;
     datasource=null,
     policy=null,
     measurement=null,
+    job=null,
     operation=null,
   ) = graph.new(
     title=(if title != null then title else std.format('%s requests', std.asciiUpper(operation))),
@@ -36,13 +37,19 @@ local influxdb = grafana.influxdb;
     legend_sort='current',
     legend_sortDesc=true,
   ).addTarget(
-    influxdb.target(
-      policy=policy,
-      measurement=measurement,
-      group_tags=['label_pairs_alias'],
-      alias='$tag_label_pairs_alias',
-    ).where('metric_name', '=', 'tnt_stats_op_total').where('label_pairs_operation', '=', operation)
-    .selectField('value').addConverter('mean').addConverter('non_negative_derivative', ['1s'])
+    if datasource == '${DS_PROMETHEUS}' then
+      prometheus.target(
+        expr=std.format('rate(tnt_stats_op_total{job=~"%s",operation="%s"}[1m])', [job, operation]),
+        legendFormat='{{alias}}'
+      )
+    else if datasource == '${DS_INFLUXDB}' then
+      influxdb.target(
+        policy=policy,
+        measurement=measurement,
+        group_tags=['label_pairs_alias'],
+        alias='$tag_label_pairs_alias',
+      ).where('metric_name', '=', 'tnt_stats_op_total').where('label_pairs_operation', '=', operation)
+      .selectField('value').addConverter('mean').addConverter('non_negative_derivative', ['1s'])
   ),
 
   select_rps(
@@ -51,12 +58,14 @@ local influxdb = grafana.influxdb;
     datasource=null,
     policy=null,
     measurement=null,
+    job=null,
   ):: operation_rps(
     title=title,
     description=description,
     datasource=datasource,
     policy=policy,
     measurement=measurement,
+    job=job,
     operation='select'
   ),
 
@@ -66,12 +75,14 @@ local influxdb = grafana.influxdb;
     datasource=null,
     policy=null,
     measurement=null,
+    job=null,
   ):: operation_rps(
     title=title,
     description=description,
     datasource=datasource,
     policy=policy,
     measurement=measurement,
+    job=job,
     operation='insert'
   ),
 
@@ -81,12 +92,14 @@ local influxdb = grafana.influxdb;
     datasource=null,
     policy=null,
     measurement=null,
+    job=null,
   ):: operation_rps(
     title=title,
     description=description,
     datasource=datasource,
     policy=policy,
     measurement=measurement,
+    job=job,
     operation='replace'
   ),
 
@@ -96,12 +109,14 @@ local influxdb = grafana.influxdb;
     datasource=null,
     policy=null,
     measurement=null,
+    job=null,
   ):: operation_rps(
     title=title,
     description=description,
     datasource=datasource,
     policy=policy,
     measurement=measurement,
+    job=job,
     operation='upsert'
   ),
 
@@ -111,12 +126,14 @@ local influxdb = grafana.influxdb;
     datasource=null,
     policy=null,
     measurement=null,
+    job=null,
   ):: operation_rps(
     title=title,
     description=description,
     datasource=datasource,
     policy=policy,
     measurement=measurement,
+    job=job,
     operation='update'
   ),
 
@@ -126,12 +143,14 @@ local influxdb = grafana.influxdb;
     datasource=null,
     policy=null,
     measurement=null,
+    job=null,
   ):: operation_rps(
     title=title,
     description=description,
     datasource=datasource,
     policy=policy,
     measurement=measurement,
+    job=job,
     operation='delete'
   ),
 }
