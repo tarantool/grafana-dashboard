@@ -2,13 +2,13 @@
 
 Dashboard for Tarantool application and database server monitoring, based on [grafonnet](https://github.com/grafana/grafonnet-lib) library.
 
-Our pages on Grafana Official & community built dashboards: [InfluxDB](https://grafana.com/grafana/dashboards/12567).
+Our pages on Grafana Official & community built dashboards: [InfluxDB](https://grafana.com/grafana/dashboards/12567), [Prometheus](https://grafana.com/grafana/dashboards/13054).
 
 You can find screenshots and short description of contents on Grafana pages.
 
 # How to use
 
-Guide on Tarantool project prerequirements and metrics collectors configuration can be found on corresponding Grafana Official & community built dashboards pages: [InfluxDB](https://grafana.com/grafana/dashboards/12567).
+Guide on Tarantool project prerequirements and metrics collectors configuration can be found on corresponding Grafana Official & community built dashboards pages: [InfluxDB](https://grafana.com/grafana/dashboards/12567), [Prometheus](https://grafana.com/grafana/dashboards/13054).
 
 # How to import
 
@@ -16,9 +16,9 @@ Guide on Tarantool project prerequirements and metrics collectors configuration 
 
 ![Grafana import button in v6.6.0](./docs/grafana_import_v6.png)
 
-* Paste dashboard id (`12567` for InfluxDB) or link to dashboard (https://grafana.com/grafana/dashboards/12567 for InfluxDB) or upload json file (download it from Grafana page: [InfluxDB](https://grafana.com/grafana/dashboards/12567); or build it by yourself).
+* Paste dashboard id (`12567` for InfluxDB, `13054` for Prometheus) or link to dashboard (https://grafana.com/grafana/dashboards/12567 for InfluxDB, https://grafana.com/grafana/dashboards/13054 for Prometheus) or upload json file (download it from Grafana page: [InfluxDB](https://grafana.com/grafana/dashboards/12567), [Prometheus](https://grafana.com/grafana/dashboards/13054); or build it by yourself).
 
-* Set dashboard name, folder, uid (if needed), and metrics database parameters (i.e., InfluxDB source, measurement and policy).
+* Set dashboard name, folder, uid (if needed), and metrics database parameters (i.e. InfluxDB source, measurement and policy or Prometheus source and job).
 
 ![Grafana import setup in v6.6.0 for InfluxDB](./docs/grafana_import_setup_v6.png)
 
