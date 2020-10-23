@@ -15,7 +15,7 @@ Guide on Tarantool project prerequirements and metrics collectors configuration 
 1. Open Grafana import menu.
 <br/><br/>![Grafana import button in v6.6.0](./docs/grafana_import_v6.png)
 
-1. Select on of the following options:
+1. Select one of the following options:
     * Paste dashboard id: `12567` for InfluxDB, `13054` for Prometheus;
     * Paste link to dashboard: https://grafana.com/grafana/dashboards/12567 for InfluxDB, https://grafana.com/grafana/dashboards/13054 for Prometheus;
     * Upload json file or paste json file contents: download it from Grafana page ([InfluxDB](https://grafana.com/grafana/dashboards/12567), [Prometheus](https://grafana.com/grafana/dashboards/13054)) or build it by yourself.
