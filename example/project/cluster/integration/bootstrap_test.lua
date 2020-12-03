@@ -91,7 +91,7 @@ test.before_suite(function()
         metrics = {
             export = {
                 {
-                    path = '/metrics',
+                    path = '/metrics/json',
                     format = 'json'
                 },
                 {
