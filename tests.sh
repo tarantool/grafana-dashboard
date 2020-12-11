@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 jsonnet_fmt='-n 2 --max-blank-lines 2 --sort-imports --string-style s --comment-style s'
 x=0

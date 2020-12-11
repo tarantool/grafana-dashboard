@@ -1,0 +1,28 @@
+name: main
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+
+jobs:
+  all:
+    runs-on:
+    - ubuntu-latest
+    container:
+      image: golang:1.14.2-alpine3.11
+    steps:
+      - name: Prepare container # Fails with "Not a git repo" with git version < 2.18
+        run: apk add --update git make
+
+      - name: Check out git repo
+        uses: actions/checkout@v2
+        with:
+         fetch-depth: 0 # Fails with "Not a git repo" without this parameter
+
+      - name: Install dependencies
+        run: make install
+
+      - name: Run tests
+        run: make test
