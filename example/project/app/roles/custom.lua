@@ -60,6 +60,13 @@ local function init(opts) -- luacheck: no unused args
         end
     end
 
+    local graphite = require('metrics.plugins.graphite')
+    graphite.init{
+        host = 'graphite',
+        port = 2003,
+        send_interval = 5,
+    }
+
     return true
 end
 

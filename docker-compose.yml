@@ -49,6 +49,19 @@ services:
     volumes:
       - ./example/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
 
+  graphite:
+    image: graphiteapp/graphite-statsd
+    networks:
+      tarantool_dashboard_dev:
+    ports:
+      - 10080:80
+      - 2003:2003
+      - 2004:2004
+      - 2023:2023
+      - 2024:2024
+      - 8125:8125/udp
+      - 8126:8126
+
   grafana:
     image: grafana/grafana:6.6.0
     environment: 
