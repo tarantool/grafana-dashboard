@@ -20,7 +20,7 @@ Guide on Tarantool project prerequirements and metrics collectors configuration 
     * Paste link to dashboard: https://grafana.com/grafana/dashboards/12567 for InfluxDB, https://grafana.com/grafana/dashboards/13054 for Prometheus;
     * Upload json file or paste json file contents: download it from Grafana page ([InfluxDB](https://grafana.com/grafana/dashboards/12567), [Prometheus](https://grafana.com/grafana/dashboards/13054)) or build it by yourself.
 
-1. Set dashboard name, folder, uid (if needed), and metrics database parameters (i.e. InfluxDB source, measurement and policy or Prometheus source and job).
+1. Set dashboard name, folder, uid (if needed), and database-related query parameters (InfluxDB source, measurement and policy or Prometheus source, job and rate() time range).
 <br/><br/>![Grafana import setup in v6.6.0 for InfluxDB](./docs/grafana_import_setup_v6.png)
 
 # How to build

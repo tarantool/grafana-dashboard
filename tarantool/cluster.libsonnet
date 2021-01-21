@@ -230,6 +230,7 @@ local prometheus = grafana.prometheus;
     datasource=null,
     measurement=null,
     job=null,
+    rate_time_range=null,
   ):: overview_stat(
     title=title,
     description=(
@@ -251,7 +252,7 @@ local prometheus = grafana.prometheus;
     stat_title='Overall space load:',
     decimals=2,
     unit='ops',
-    expr=std.format('sum(rate(tnt_stats_op_total{job=~"%s"}[1m]))', job),
+    expr=std.format('sum(rate(tnt_stats_op_total{job=~"%s"}[%s]))', [job, rate_time_range]),
   ),
 
   http_rps_stat(
@@ -261,6 +262,7 @@ local prometheus = grafana.prometheus;
     datasource=null,
     measurement=null,
     job=null,
+    rate_time_range=null,
   ):: overview_stat(
     title=title,
     description=(
@@ -282,6 +284,6 @@ local prometheus = grafana.prometheus;
     stat_title='Overall HTTP load:',
     decimals=2,
     unit='reqps',
-    expr=std.format('sum(rate(http_server_request_latency_count{job=~"%s"}[1m]))', job),
+    expr=std.format('sum(rate(http_server_request_latency_count{job=~"%s"}[%s]))', [job, rate_time_range]),
   ),
 }

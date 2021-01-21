@@ -15,6 +15,7 @@ local raw_dashboard = grafana.dashboard.new(
 );
 
 local datasource = '${DS_PROMETHEUS}';
+local rate_time_range = '${PROMETHEUS_RATE_TIME_RANGE}';
 local job = '[[job]]';
 
 dashboard.build(
@@ -34,6 +35,13 @@ dashboard.build(
     pluginId=null,
     pluginName=null,
     description='Prometheus Tarantool metrics job'
+  )
+  .addInput(
+    name='PROMETHEUS_RATE_TIME_RANGE',
+    label='Rate time range',
+    type='constant',
+    value='2m',
+    description='Time range for computing rps graphs with rate(). At the very minimum it should be two times the scrape interval.'
   )
   .addRequired(
     type='datasource',
@@ -89,16 +97,19 @@ dashboard.build(
     cluster.space_ops_stat(
       datasource=datasource,
       job=job,
+      rate_time_range=rate_time_range,
     ),
     { w: 4, h: 4, x: 20, y: 0 }
   ).addPanel(
     cluster.http_rps_stat(
       datasource=datasource,
       job=job,
+      rate_time_range=rate_time_range,
     ),
     { w: 4, h: 4, x: 20, y: 4 }
   ),
   datasource,
   job=job,
+  rate_time_range=rate_time_range,
   offset=8,
 )

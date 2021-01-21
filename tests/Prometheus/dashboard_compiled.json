@@ -13,6 +13,13 @@
          "label": "Job",
          "name": "PROMETHEUS_JOB",
          "type": "constant"
+      },
+      {
+         "description": "Time range for computing rps graphs with rate(). At the very minimum it should be two times the scrape interval.",
+         "label": "Rate time range",
+         "name": "PROMETHEUS_RATE_TIME_RANGE",
+         "type": "constant",
+         "value": "2m"
       }
    ],
    "__requires": [
@@ -366,7 +373,7 @@
          "pluginVersion": "6.6.0",
          "targets": [
             {
-               "expr": "sum(rate(tnt_stats_op_total{job=~\"[[job]]\"}[1m]))",
+               "expr": "sum(rate(tnt_stats_op_total{job=~\"[[job]]\"}[${PROMETHEUS_RATE_TIME_RANGE}]))",
                "format": "time_series",
                "intervalFactor": 2,
                "legendFormat": "",
@@ -424,7 +431,7 @@
          "pluginVersion": "6.6.0",
          "targets": [
             {
-               "expr": "sum(rate(http_server_request_latency_count{job=~\"[[job]]\"}[1m]))",
+               "expr": "sum(rate(http_server_request_latency_count{job=~\"[[job]]\"}[${PROMETHEUS_RATE_TIME_RANGE}]))",
                "format": "time_series",
                "intervalFactor": 2,
                "legendFormat": "",
@@ -499,7 +506,7 @@
          "steppedLine": false,
          "targets": [
             {
-               "expr": "rate(http_server_request_latency_count{job=~\"[[job]]\",status=~\"^2\\\\d{2}$\"}[1m])",
+               "expr": "rate(http_server_request_latency_count{job=~\"[[job]]\",status=~\"^2\\\\d{2}$\"}[${PROMETHEUS_RATE_TIME_RANGE}])",
                "format": "time_series",
                "intervalFactor": 2,
                "legendFormat": "{{alias}} — {{method}} {{path}} (code {{status}})",
@@ -589,7 +596,7 @@
          "steppedLine": false,
          "targets": [
             {
-               "expr": "rate(http_server_request_latency_count{job=~\"[[job]]\",status=~\"^4\\\\d{2}$\"}[1m])",
+               "expr": "rate(http_server_request_latency_count{job=~\"[[job]]\",status=~\"^4\\\\d{2}$\"}[${PROMETHEUS_RATE_TIME_RANGE}])",
                "format": "time_series",
                "intervalFactor": 2,
                "legendFormat": "{{alias}} — {{method}} {{path}} (code {{status}})",
@@ -679,7 +686,7 @@
          "steppedLine": false,
          "targets": [
             {
-               "expr": "rate(http_server_request_latency_count{job=~\"[[job]]\",status=~\"^5\\\\d{2}$\"}[1m])",
+               "expr": "rate(http_server_request_latency_count{job=~\"[[job]]\",status=~\"^5\\\\d{2}$\"}[${PROMETHEUS_RATE_TIME_RANGE}])",
                "format": "time_series",
                "intervalFactor": 2,
                "legendFormat": "{{alias}} — {{method}} {{path}} (code {{status}})",
@@ -1901,7 +1908,7 @@
          "steppedLine": false,
          "targets": [
             {
-               "expr": "rate(tnt_stats_op_total{job=~\"[[job]]\",operation=\"select\"}[1m])",
+               "expr": "rate(tnt_stats_op_total{job=~\"[[job]]\",operation=\"select\"}[${PROMETHEUS_RATE_TIME_RANGE}])",
                "format": "time_series",
                "intervalFactor": 2,
                "legendFormat": "{{alias}}",
@@ -1991,7 +1998,7 @@
          "steppedLine": false,
          "targets": [
             {
-               "expr": "rate(tnt_stats_op_total{job=~\"[[job]]\",operation=\"insert\"}[1m])",
+               "expr": "rate(tnt_stats_op_total{job=~\"[[job]]\",operation=\"insert\"}[${PROMETHEUS_RATE_TIME_RANGE}])",
                "format": "time_series",
                "intervalFactor": 2,
                "legendFormat": "{{alias}}",
@@ -2081,7 +2088,7 @@
          "steppedLine": false,
          "targets": [
             {
-               "expr": "rate(tnt_stats_op_total{job=~\"[[job]]\",operation=\"replace\"}[1m])",
+               "expr": "rate(tnt_stats_op_total{job=~\"[[job]]\",operation=\"replace\"}[${PROMETHEUS_RATE_TIME_RANGE}])",
                "format": "time_series",
                "intervalFactor": 2,
                "legendFormat": "{{alias}}",
@@ -2171,7 +2178,7 @@
          "steppedLine": false,
          "targets": [
             {
-               "expr": "rate(tnt_stats_op_total{job=~\"[[job]]\",operation=\"upsert\"}[1m])",
+               "expr": "rate(tnt_stats_op_total{job=~\"[[job]]\",operation=\"upsert\"}[${PROMETHEUS_RATE_TIME_RANGE}])",
                "format": "time_series",
                "intervalFactor": 2,
                "legendFormat": "{{alias}}",
@@ -2261,7 +2268,7 @@
          "steppedLine": false,
          "targets": [
             {
-               "expr": "rate(tnt_stats_op_total{job=~\"[[job]]\",operation=\"update\"}[1m])",
+               "expr": "rate(tnt_stats_op_total{job=~\"[[job]]\",operation=\"update\"}[${PROMETHEUS_RATE_TIME_RANGE}])",
                "format": "time_series",
                "intervalFactor": 2,
                "legendFormat": "{{alias}}",
@@ -2351,7 +2358,7 @@
          "steppedLine": false,
          "targets": [
             {
-               "expr": "rate(tnt_stats_op_total{job=~\"[[job]]\",operation=\"delete\"}[1m])",
+               "expr": "rate(tnt_stats_op_total{job=~\"[[job]]\",operation=\"delete\"}[${PROMETHEUS_RATE_TIME_RANGE}])",
                "format": "time_series",
                "intervalFactor": 2,
                "legendFormat": "{{alias}}",
