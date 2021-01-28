@@ -48,6 +48,7 @@ services:
       - 9090:9090
     volumes:
       - ./example/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+      - ./example/prometheus/alerts.yml:/etc/prometheus/alerts.yml
 
   grafana:
     image: grafana/grafana:6.6.0
