@@ -12,6 +12,7 @@ local prometheus = grafana.prometheus;
     policy=null,
     measurement=null,
     job=null,
+    rate_time_range=null,
     operation=null,
   ) = graph.new(
     title=(if title != null then title else std.format('%s requests', std.asciiUpper(operation))),
@@ -39,7 +40,7 @@ local prometheus = grafana.prometheus;
   ).addTarget(
     if datasource == '${DS_PROMETHEUS}' then
       prometheus.target(
-        expr=std.format('rate(tnt_stats_op_total{job=~"%s",operation="%s"}[1m])', [job, operation]),
+        expr=std.format('rate(tnt_stats_op_total{job=~"%s",operation="%s"}[%s])', [job, operation, rate_time_range]),
         legendFormat='{{alias}}'
       )
     else if datasource == '${DS_INFLUXDB}' then
@@ -59,6 +60,7 @@ local prometheus = grafana.prometheus;
     policy=null,
     measurement=null,
     job=null,
+    rate_time_range=null,
   ):: operation_rps(
     title=title,
     description=description,
@@ -66,6 +68,7 @@ local prometheus = grafana.prometheus;
     policy=policy,
     measurement=measurement,
     job=job,
+    rate_time_range=rate_time_range,
     operation='select'
   ),
 
@@ -76,6 +79,7 @@ local prometheus = grafana.prometheus;
     policy=null,
     measurement=null,
     job=null,
+    rate_time_range=null,
   ):: operation_rps(
     title=title,
     description=description,
@@ -83,6 +87,7 @@ local prometheus = grafana.prometheus;
     policy=policy,
     measurement=measurement,
     job=job,
+    rate_time_range=rate_time_range,
     operation='insert'
   ),
 
@@ -93,6 +98,7 @@ local prometheus = grafana.prometheus;
     policy=null,
     measurement=null,
     job=null,
+    rate_time_range=null,
   ):: operation_rps(
     title=title,
     description=description,
@@ -100,6 +106,7 @@ local prometheus = grafana.prometheus;
     policy=policy,
     measurement=measurement,
     job=job,
+    rate_time_range=rate_time_range,
     operation='replace'
   ),
 
@@ -110,6 +117,7 @@ local prometheus = grafana.prometheus;
     policy=null,
     measurement=null,
     job=null,
+    rate_time_range=null,
   ):: operation_rps(
     title=title,
     description=description,
@@ -117,6 +125,7 @@ local prometheus = grafana.prometheus;
     policy=policy,
     measurement=measurement,
     job=job,
+    rate_time_range=rate_time_range,
     operation='upsert'
   ),
 
@@ -127,6 +136,7 @@ local prometheus = grafana.prometheus;
     policy=null,
     measurement=null,
     job=null,
+    rate_time_range=null,
   ):: operation_rps(
     title=title,
     description=description,
@@ -134,6 +144,7 @@ local prometheus = grafana.prometheus;
     policy=policy,
     measurement=measurement,
     job=job,
+    rate_time_range=rate_time_range,
     operation='update'
   ),
 
@@ -144,6 +155,7 @@ local prometheus = grafana.prometheus;
     policy=null,
     measurement=null,
     job=null,
+    rate_time_range=null,
   ):: operation_rps(
     title=title,
     description=description,
@@ -151,6 +163,7 @@ local prometheus = grafana.prometheus;
     policy=policy,
     measurement=measurement,
     job=job,
+    rate_time_range=rate_time_range,
     operation='delete'
   ),
 }

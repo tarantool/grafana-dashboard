@@ -12,6 +12,7 @@ local prometheus = grafana.prometheus;
     policy,
     measurement,
     job,
+    rate_time_range,
     metric_name,
     status_regex,
   ) = graph.new(
@@ -35,7 +36,8 @@ local prometheus = grafana.prometheus;
   ).addTarget(
     if datasource == '${DS_PROMETHEUS}' then
       prometheus.target(
-        expr=std.format('rate(%s{job=~"%s",status=~"%s"}[1m])', [metric_name, job, std.strReplace(status_regex, '\\', '\\\\')]),
+        expr=std.format('rate(%s{job=~"%s",status=~"%s"}[%s])',
+                        [metric_name, job, std.strReplace(status_regex, '\\', '\\\\'), rate_time_range]),
         legendFormat='{{alias}} — {{method}} {{path}} (code {{status}})',
       )
     else if datasource == '${DS_INFLUXDB}' then
@@ -59,6 +61,7 @@ local prometheus = grafana.prometheus;
     policy=null,
     measurement=null,
     job=null,
+    rate_time_range=null,
     metric_name='http_server_request_latency_count',
   ):: rps_graph(
     title=title,
@@ -67,6 +70,7 @@ local prometheus = grafana.prometheus;
     policy=policy,
     measurement=measurement,
     job=job,
+    rate_time_range=rate_time_range,
     metric_name=metric_name,
     status_regex='^2\\d{2}$',
   ),
@@ -82,6 +86,7 @@ local prometheus = grafana.prometheus;
     policy=null,
     measurement=null,
     job=null,
+    rate_time_range=null,
     metric_name='http_server_request_latency_count',
   ):: rps_graph(
     title=title,
@@ -90,6 +95,7 @@ local prometheus = grafana.prometheus;
     policy=policy,
     measurement=measurement,
     job=job,
+    rate_time_range=rate_time_range,
     metric_name=metric_name,
     status_regex='^4\\d{2}$',
   ),
@@ -105,6 +111,7 @@ local prometheus = grafana.prometheus;
     policy=null,
     measurement=null,
     job=null,
+    rate_time_range=null,
     metric_name='http_server_request_latency_count',
   ):: rps_graph(
     title=title,
@@ -113,6 +120,7 @@ local prometheus = grafana.prometheus;
     policy=policy,
     measurement=measurement,
     job=job,
+    rate_time_range=rate_time_range,
     metric_name=metric_name,
     status_regex='^5\\d{2}$',
   ),

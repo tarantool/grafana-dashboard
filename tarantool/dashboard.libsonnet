@@ -12,6 +12,7 @@ local row = grafana.row;
     policy=null,
     measurement=null,
     job=null,
+    rate_time_range=null,
     offset=0
   )::
     dashboard
@@ -43,6 +44,7 @@ local row = grafana.row;
         policy=policy,
         measurement=measurement,
         job=job,
+        rate_time_range=rate_time_range,
       ),
       { w: 8, h: 8, x: 0, y: 1 + offset }
     )
@@ -52,6 +54,7 @@ local row = grafana.row;
         policy=policy,
         measurement=measurement,
         job=job,
+        rate_time_range=rate_time_range,
       ),
       { w: 8, h: 8, x: 8, y: 1 + offset },
     )
@@ -61,6 +64,7 @@ local row = grafana.row;
         policy=policy,
         measurement=measurement,
         job=job,
+        rate_time_range=rate_time_range,
       ),
       { w: 8, h: 8, x: 16, y: 1 + offset },
     )
@@ -190,6 +194,7 @@ local row = grafana.row;
         policy=policy,
         measurement=measurement,
         job=job,
+        rate_time_range=rate_time_range,
       ),
       { w: 8, h: 8, x: 0, y: 46 + offset },
     )
@@ -199,6 +204,7 @@ local row = grafana.row;
         policy=policy,
         measurement=measurement,
         job=job,
+        rate_time_range=rate_time_range,
       ),
       { w: 8, h: 8, x: 8, y: 46 + offset },
     )
@@ -208,6 +214,7 @@ local row = grafana.row;
         policy=policy,
         measurement=measurement,
         job=job,
+        rate_time_range=rate_time_range,
       ),
       { w: 8, h: 8, x: 16, y: 46 + offset },
     )
@@ -217,6 +224,7 @@ local row = grafana.row;
         policy=policy,
         measurement=measurement,
         job=job,
+        rate_time_range=rate_time_range,
       ),
       { w: 8, h: 8, x: 0, y: 46 + offset },
     )
@@ -226,6 +234,7 @@ local row = grafana.row;
         policy=policy,
         measurement=measurement,
         job=job,
+        rate_time_range=rate_time_range,
       ),
       { w: 8, h: 8, x: 8, y: 46 + offset },
     )
@@ -235,6 +244,7 @@ local row = grafana.row;
         policy=policy,
         measurement=measurement,
         job=job,
+        rate_time_range=rate_time_range,
       ),
       { w: 8, h: 8, x: 16, y: 46 + offset },
     ),
