@@ -1,0 +1,145 @@
+.. _monitoring-grafana_dashboard-page:
+
+===============================================================================
+Grafana dashboard
+===============================================================================
+
+Tarantool Grafana dashboard is available as part of
+`Grafana Official & community built dashboards <https://grafana.com/grafana/dashboards>`_.
+You can find version for Prometheus datasource on
+`this page <https://grafana.com/grafana/dashboards/13054>`_ and version for
+InfluxDB datasource on `this page <https://grafana.com/grafana/dashboards/12567>`_.
+Tarantool Grafana dashboard is a ready for import template with basic memory,
+space operations and HTTP load panels, based on default `metrics <https://github.com/tarantool/metrics>`_
+package functionality.
+
+Dashboard requires using ``metrics`` **0.5.0** or newer;
+``'alias'`` :ref:`global label <tarantool-metrics>` must be set on each instance
+to properly display panels (e.g. provided with ``cartridge.roles.metrics`` role).
+
+.. image:: images/Prometheus_dashboard_1.png
+   :width: 30%
+
+.. image:: images/Prometheus_dashboard_2.png
+   :width: 30%
+
+.. image:: images/Prometheus_dashboard_3.png
+   :width: 30%
+
+.. _monitoring-grafana_dashboard-monitoring_stack:
+
+-------------------------------------------------------------------------------
+Prepare a monitoring stack
+-------------------------------------------------------------------------------
+
+Since there are Prometheus and InfluxDB datasource Grafana dashboards,
+you can use
+   
+- `Telegraf <https://www.influxdata.com/time-series-platform/telegraf/>`_
+  as a server agent for collecting metrics, `InfluxDB <https://www.influxdata.com/>`_
+  as a time series database for storing metrics, `Grafana <https://grafana.com/>`_
+  as a visualization platform; or
+- `Prometheus <https://prometheus.io/>`_ as both server agent for collecting metrics
+  and time series database for storing metrics, `Grafana <https://grafana.com/>`_
+  as a visualization platform.
+
+For issues concerning set up of Prometheus, Telegraf, InfluxDB or Grafana instances
+please refer to corresponding project's documentation.
+
+.. _monitoring-grafana_dashboard-collect_metrics:
+
+-------------------------------------------------------------------------------
+Collect metrics with server agents
+-------------------------------------------------------------------------------
+
+To collect metrics for Prometheus, first off you must set up metrics output with
+``prometheus`` format. You can use :ref:`cartridge.roles.metrics <cartridge-role>`
+configuration or set up :ref:`output plugin <prometheus>` manually.
+To start collecting metrics, add a `job <https://prometheus.io/docs/prometheus/latest/getting_started/#configure-prometheus-to-monitor-the-sample-targets>`_
+to Prometheus configuration with each Tarantool instance URI as a target and
+metrics path as it was configured on Tarantool instances:
+
+..  code-block:: yaml
+
+    scrape_configs:
+      - job_name: "example_project"
+        static_configs:
+          - targets: 
+            - "example_project:8081"
+            - "example_project:8082"
+            - "example_project:8083"
+        metrics_path: "/metrics/prometheus"
+
+
+To collect metrics for InfluxDB, you must use Telegraf agent.
+First off, configure Tarantool metrics output in ``json`` format
+with :ref:`cartridge.roles.metrics <cartridge-role>` configuration or
+corresponding :ref:`output plugin <json>`. To start collecting metrics,
+add `http input <https://github.com/influxdata/telegraf/blob/release-1.17/plugins/inputs/http/README.md>`_
+to Telegraf configuration including each Tarantool instance metrics URL:
+
+..  code-block:: text
+
+    [[inputs.http]]
+        urls = [
+            "http://example_project:8081/metrics/json",
+            "http://example_project:8082/metrics/json",
+            "http://example_project:8083/metrics/json"
+        ]
+        timeout = "30s"
+        tag_keys = [
+            "metric_name",
+            "label_pairs_alias",
+            "label_pairs_quantile",
+            "label_pairs_path",
+            "label_pairs_method",
+            "label_pairs_status",
+            "label_pairs_operation"
+        ]
+        insecure_skip_verify = true
+        interval = "10s"
+        data_format = "json"
+        name_prefix = "example_project_"
+        fieldpass = ["value"]
+
+Be sure to include each label key as ``label_pairs_<key>`` so it will be
+extracted with plugin. For example, if you use :code:`{ state = 'ready' }` labels
+somewhere in metric collectors, add ``label_pairs_state`` tag key.
+
+If you connect Telegraf instance to InfluxDB storage, metrics will be stored
+with ``"<name_prefix>http"`` measurement (``"example_project_http"`` in our example).
+
+.. _monitoring-grafana_dashboard-import:
+
+-------------------------------------------------------------------------------
+Import the dashboard
+-------------------------------------------------------------------------------
+Open Grafana import menu.
+
+..  image:: images/grafana_import_v6.png
+    :align: left
+
+To import specific dashboard, choose one of the following options:
+
+- paste dashboard id (``12567`` for InfluxDB dashboard, ``13054`` for Prometheus dashboard), or
+- paste link to dashboard (https://grafana.com/grafana/dashboards/12567 for InfluxDB dashboard,
+  https://grafana.com/grafana/dashboards/13054 for Prometheus dashboard), or
+- paste dashboard json file contents, or
+- upload dashboard json file.
+
+Set dashboard name, folder, uid (if needed), and datasource-related query parameters
+(InfluxDB source, measurement and policy or Prometheus source, job and rate time range).
+
+..  image:: images/grafana_import_setup_v6.png
+    :align: left
+
+.. _monitoring-grafana_dashboard-troubleshooting:
+
+-------------------------------------------------------------------------------
+Troubleshooting
+-------------------------------------------------------------------------------
+
+If no data presents on graphs, ensure that you set up datasource and job/measurement correctly.
+
+If no data presents on rps graphs on Prometheus table, ensure that
+your rate time range parameter is at least twice as Prometheus scrape interval.
