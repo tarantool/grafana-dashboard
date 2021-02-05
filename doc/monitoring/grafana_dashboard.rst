@@ -6,11 +6,11 @@ Grafana dashboard
 
 Tarantool Grafana dashboard is available as part of
 `Grafana Official & community built dashboards <https://grafana.com/grafana/dashboards>`_.
-You can find version for Prometheus datasource on
-`this page <https://grafana.com/grafana/dashboards/13054>`_ and version for
-InfluxDB datasource on `this page <https://grafana.com/grafana/dashboards/12567>`_.
+There's a version
+`for Prometheus data source <https://grafana.com/grafana/dashboards/13054>`_
+and one `for InfluxDB data source <https://grafana.com/grafana/dashboards/12567>`_.
 Tarantool Grafana dashboard is a ready for import template with basic memory,
-space operations and HTTP load panels, based on default `metrics <https://github.com/tarantool/metrics>`_
+space operations, and HTTP load panels, based on default `metrics <https://github.com/tarantool/metrics>`_
 package functionality.
 
 Dashboard requires using ``metrics`` **0.5.0** or newer;
@@ -32,19 +32,19 @@ to properly display panels (e.g. provided with ``cartridge.roles.metrics`` role)
 Prepare a monitoring stack
 -------------------------------------------------------------------------------
 
-Since there are Prometheus and InfluxDB datasource Grafana dashboards,
+Since there are Prometheus and InfluxDB data source Grafana dashboards,
 you can use
    
 - `Telegraf <https://www.influxdata.com/time-series-platform/telegraf/>`_
   as a server agent for collecting metrics, `InfluxDB <https://www.influxdata.com/>`_
-  as a time series database for storing metrics, `Grafana <https://grafana.com/>`_
+  as a time series database for storing metrics, and `Grafana <https://grafana.com/>`_
   as a visualization platform; or
-- `Prometheus <https://prometheus.io/>`_ as both server agent for collecting metrics
-  and time series database for storing metrics, `Grafana <https://grafana.com/>`_
+- `Prometheus <https://prometheus.io/>`_ as both a server agent for collecting metrics
+  and a time series database for storing metrics, and `Grafana <https://grafana.com/>`_
   as a visualization platform.
 
-For issues concerning set up of Prometheus, Telegraf, InfluxDB or Grafana instances
-please refer to corresponding project's documentation.
+For issues concerning setting up Prometheus, Telegraf, InfluxDB, or Grafana instances
+please refer to the corresponding project's documentation.
 
 .. _monitoring-grafana_dashboard-collect_metrics:
 
@@ -52,10 +52,11 @@ please refer to corresponding project's documentation.
 Collect metrics with server agents
 -------------------------------------------------------------------------------
 
-To collect metrics for Prometheus, first off you must set up metrics output with
+To collect metrics for Prometheus, first set up metrics output with
 ``prometheus`` format. You can use :ref:`cartridge.roles.metrics <cartridge-role>`
-configuration or set up :ref:`output plugin <prometheus>` manually.
-To start collecting metrics, add a `job <https://prometheus.io/docs/prometheus/latest/getting_started/#configure-prometheus-to-monitor-the-sample-targets>`_
+configuration or set up the :ref:`Prometheus output plugin <prometheus>` manually.
+To start collecting metrics,
+`add a job <https://prometheus.io/docs/prometheus/latest/getting_started/#configure-prometheus-to-monitor-the-sample-targets>`_
 to Prometheus configuration with each Tarantool instance URI as a target and
 metrics path as it was configured on Tarantool instances:
 
@@ -71,14 +72,14 @@ metrics path as it was configured on Tarantool instances:
         metrics_path: "/metrics/prometheus"
 
 
-To collect metrics for InfluxDB, you must use Telegraf agent.
+To collect metrics for InfluxDB, use the Telegraf agent.
 First off, configure Tarantool metrics output in ``json`` format
 with :ref:`cartridge.roles.metrics <cartridge-role>` configuration or
-corresponding :ref:`output plugin <json>`. To start collecting metrics,
+corresponding :ref:`JSON output plugin <json>`. To start collecting metrics,
 add `http input <https://github.com/influxdata/telegraf/blob/release-1.17/plugins/inputs/http/README.md>`_
 to Telegraf configuration including each Tarantool instance metrics URL:
 
-..  code-block:: text
+..  code-block:: toml
 
     [[inputs.http]]
         urls = [
@@ -119,13 +120,13 @@ Open Grafana import menu.
 ..  image:: images/grafana_import_v6.png
     :align: left
 
-To import specific dashboard, choose one of the following options:
+To import a specific dashboard, choose one of the following options:
 
-- paste dashboard id (``12567`` for InfluxDB dashboard, ``13054`` for Prometheus dashboard), or
-- paste link to dashboard (https://grafana.com/grafana/dashboards/12567 for InfluxDB dashboard,
+- paste the dashboard id (``12567`` for InfluxDB dashboard, ``13054`` for Prometheus dashboard), or
+- paste a link to the dashboard (https://grafana.com/grafana/dashboards/12567 for InfluxDB dashboard,
   https://grafana.com/grafana/dashboards/13054 for Prometheus dashboard), or
-- paste dashboard json file contents, or
-- upload dashboard json file.
+- paste the dashboard JSON file contents, or
+- upload the dashboard JSON file.
 
 Set dashboard name, folder, uid (if needed), and datasource-related query parameters
 (InfluxDB source, measurement and policy or Prometheus source, job and rate time range).
@@ -139,7 +140,7 @@ Set dashboard name, folder, uid (if needed), and datasource-related query parame
 Troubleshooting
 -------------------------------------------------------------------------------
 
-If no data presents on graphs, ensure that you set up datasource and job/measurement correctly.
+If there's no data on the graphs, make sure that you have set up datasource and job/measurement correctly.
 
-If no data presents on rps graphs on Prometheus table, ensure that
+If there's no data on the rps graphs on Prometheus table, make sure that
 your rate time range parameter is at least twice as Prometheus scrape interval.
