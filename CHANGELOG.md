@@ -4,6 +4,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## Unreleased
+
+## Added
+- Memory miscellaneous row with Lua memory panel
+
+## Changed
+- Rename memory overview row
+
 ## [0.2.2] - 2021-01-28
 Grafana revisions: [Prometheus revision 3](https://grafana.com/api/dashboards/13054/revisions/3/download)
 
