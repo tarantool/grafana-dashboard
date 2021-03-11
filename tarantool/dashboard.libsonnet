@@ -1,6 +1,7 @@
 local grafana = import 'grafonnet/grafana.libsonnet';
 
 local http = import 'http.libsonnet';
+local memory_misc = import 'memory_misc.libsonnet';
 local slab = import 'slab.libsonnet';
 local space = import 'space.libsonnet';
 local row = grafana.row;
@@ -96,7 +97,7 @@ local row = grafana.row;
       { w: 8, h: 8, x: 16, y: 9 + offset },
     )
     .addPanel(
-      row.new(title='Tarantool memory overview'),
+      row.new(title='Tarantool memory allocation overview'),
       { w: 24, h: 1, x: 0, y: 17 + offset }
     )
     .addPanel(
@@ -185,8 +186,21 @@ local row = grafana.row;
       { w: 8, h: 8, x: 16, y: 37 + offset },
     )
     .addPanel(
-      row.new(title='Tarantool spaces statistics'),
+      row.new(title='Tarantool memory miscellaneous'),
       { w: 24, h: 1, x: 0, y: 45 + offset }
+    )
+    .addPanel(
+      memory_misc.lua_memory(
+        datasource=datasource,
+        policy=policy,
+        measurement=measurement,
+        job=job,
+      ),
+      { w: 24, h: 8, x: 0, y: 46 + offset },
+    )
+    .addPanel(
+      row.new(title='Tarantool spaces statistics'),
+      { w: 24, h: 1, x: 0, y: 54 + offset }
     )
     .addPanel(
       space.select_rps(
@@ -196,7 +210,7 @@ local row = grafana.row;
         job=job,
         rate_time_range=rate_time_range,
       ),
-      { w: 8, h: 8, x: 0, y: 46 + offset },
+      { w: 8, h: 8, x: 0, y: 55 + offset },
     )
     .addPanel(
       space.insert_rps(
@@ -206,7 +220,7 @@ local row = grafana.row;
         job=job,
         rate_time_range=rate_time_range,
       ),
-      { w: 8, h: 8, x: 8, y: 46 + offset },
+      { w: 8, h: 8, x: 8, y: 55 + offset },
     )
     .addPanel(
       space.replace_rps(
@@ -216,7 +230,7 @@ local row = grafana.row;
         job=job,
         rate_time_range=rate_time_range,
       ),
-      { w: 8, h: 8, x: 16, y: 46 + offset },
+      { w: 8, h: 8, x: 16, y: 55 + offset },
     )
     .addPanel(
       space.upsert_rps(
@@ -226,7 +240,7 @@ local row = grafana.row;
         job=job,
         rate_time_range=rate_time_range,
       ),
-      { w: 8, h: 8, x: 0, y: 46 + offset },
+      { w: 8, h: 8, x: 0, y: 63 + offset },
     )
     .addPanel(
       space.update_rps(
@@ -236,7 +250,7 @@ local row = grafana.row;
         job=job,
         rate_time_range=rate_time_range,
       ),
-      { w: 8, h: 8, x: 8, y: 46 + offset },
+      { w: 8, h: 8, x: 8, y: 63 + offset },
     )
     .addPanel(
       space.delete_rps(
@@ -246,6 +260,6 @@ local row = grafana.row;
         job=job,
         rate_time_range=rate_time_range,
       ),
-      { w: 8, h: 8, x: 16, y: 46 + offset },
+      { w: 8, h: 8, x: 16, y: 63 + offset },
     ),
 }

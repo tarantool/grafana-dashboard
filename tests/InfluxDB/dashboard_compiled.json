@@ -1059,7 +1059,7 @@
          "repeatIteration": null,
          "repeatRowId": null,
          "showTitle": true,
-         "title": "Tarantool memory overview",
+         "title": "Tarantool memory allocation overview",
          "titleSize": "h6",
          "type": "row"
       },
@@ -2271,6 +2271,156 @@
          "repeatIteration": null,
          "repeatRowId": null,
          "showTitle": true,
+         "title": "Tarantool memory miscellaneous",
+         "titleSize": "h6",
+         "type": "row"
+      },
+      {
+         "aliasColors": { },
+         "bars": false,
+         "dashLength": 10,
+         "dashes": false,
+         "datasource": "${DS_INFLUXDB}",
+         "decimals": 2,
+         "description": "Memory used for the Lua runtime. Lua memory is bounded by 2 GB per instance. \n",
+         "fill": 0,
+         "gridPos": {
+            "h": 8,
+            "w": 24,
+            "x": 0,
+            "y": 46
+         },
+         "id": 21,
+         "legend": {
+            "alignAsTable": true,
+            "avg": false,
+            "current": true,
+            "max": false,
+            "min": false,
+            "rightSide": false,
+            "show": true,
+            "sideWidth": null,
+            "sort": "current",
+            "sortDesc": true,
+            "total": false,
+            "values": true
+         },
+         "lines": true,
+         "linewidth": 1,
+         "links": [ ],
+         "nullPointMode": "null",
+         "percentage": false,
+         "pointradius": 5,
+         "points": false,
+         "renderer": "flot",
+         "repeat": null,
+         "seriesOverrides": [ ],
+         "spaceLength": 10,
+         "stack": false,
+         "steppedLine": false,
+         "targets": [
+            {
+               "alias": "$tag_label_pairs_alias",
+               "groupBy": [
+                  {
+                     "params": [
+                        "$__interval"
+                     ],
+                     "type": "time"
+                  },
+                  {
+                     "params": [
+                        "label_pairs_alias"
+                     ],
+                     "type": "tag"
+                  },
+                  {
+                     "params": [
+                        "none"
+                     ],
+                     "type": "fill"
+                  }
+               ],
+               "measurement": "${INFLUXDB_MEASUREMENT}",
+               "policy": "${INFLUXDB_POLICY}",
+               "refId": "A",
+               "resultFormat": "time_series",
+               "select": [
+                  [
+                     {
+                        "params": [
+                           "value"
+                        ],
+                        "type": "field"
+                     },
+                     {
+                        "params": [ ],
+                        "type": "mean"
+                     }
+                  ]
+               ],
+               "tags": [
+                  {
+                     "key": "metric_name",
+                     "operator": "=",
+                     "value": "tnt_info_memory_lua"
+                  }
+               ]
+            }
+         ],
+         "thresholds": [ ],
+         "timeFrom": null,
+         "timeShift": null,
+         "title": "Lua runtime",
+         "tooltip": {
+            "shared": true,
+            "sort": 2,
+            "value_type": "individual"
+         },
+         "type": "graph",
+         "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": [ ]
+         },
+         "yaxes": [
+            {
+               "decimals": 2,
+               "format": "bytes",
+               "label": "in bytes",
+               "logBase": 1,
+               "max": null,
+               "min": null,
+               "show": true
+            },
+            {
+               "decimals": 2,
+               "format": "bytes",
+               "label": null,
+               "logBase": 1,
+               "max": null,
+               "min": null,
+               "show": true
+            }
+         ]
+      },
+      {
+         "collapse": false,
+         "collapsed": false,
+         "gridPos": {
+            "h": 1,
+            "w": 24,
+            "x": 0,
+            "y": 54
+         },
+         "id": 22,
+         "panels": [ ],
+         "repeat": null,
+         "repeatIteration": null,
+         "repeatRowId": null,
+         "showTitle": true,
          "title": "Tarantool spaces statistics",
          "titleSize": "h6",
          "type": "row"
@@ -2288,9 +2438,9 @@
             "h": 8,
             "w": 8,
             "x": 0,
-            "y": 46
+            "y": 55
          },
-         "id": 21,
+         "id": 23,
          "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -2431,9 +2581,9 @@
             "h": 8,
             "w": 8,
             "x": 8,
-            "y": 46
+            "y": 55
          },
-         "id": 22,
+         "id": 24,
          "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -2574,9 +2724,9 @@
             "h": 8,
             "w": 8,
             "x": 16,
-            "y": 46
+            "y": 55
          },
-         "id": 23,
+         "id": 25,
          "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -2717,9 +2867,9 @@
             "h": 8,
             "w": 8,
             "x": 0,
-            "y": 46
+            "y": 63
          },
-         "id": 24,
+         "id": 26,
          "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -2860,9 +3010,9 @@
             "h": 8,
             "w": 8,
             "x": 8,
-            "y": 46
+            "y": 63
          },
-         "id": 25,
+         "id": 27,
          "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -3003,9 +3153,9 @@
             "h": 8,
             "w": 8,
             "x": 16,
-            "y": 46
+            "y": 63
          },
-         "id": 26,
+         "id": 28,
          "legend": {
             "alignAsTable": true,
             "avg": true,
