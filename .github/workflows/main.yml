@@ -11,10 +11,10 @@ jobs:
     runs-on:
     - ubuntu-latest
     container:
-      image: golang:1.14.2-alpine3.11
+      image: golang:1.16.2-alpine3.13
     steps:
       - name: Prepare container # Fails with "Not a git repo" with git version < 2.18
-        run: apk add --update git make
+        run: apk add --update git make gcc libc-dev
 
       - name: Check out git repo
         uses: actions/checkout@v2
