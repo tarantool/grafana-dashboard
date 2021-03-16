@@ -1,0 +1,155 @@
+groups:
+- name: common
+  rules:
+  # Alert for any instance that is unreachable by Prometheus for more than a minute.
+  - alert: InstanceDown
+    expr: up == 0
+    for: 1m
+    labels:
+      severity: page
+    annotations:
+      summary: "Instance {{ $labels.instance }} down"
+      description: "{{ $labels.instance }} of job {{ $labels.job }} has been down for more than a minute."
+
+
+- name: tarantool-common
+  rules:
+  # Warning for any instance that uses too Lua runtime memory.
+  - alert: LuaRuntimeWarning
+    expr: tnt_info_memory_lua >= (512 * 1024 * 1024) 
+    for: 1m
+    labels:
+      severity: warning
+    annotations:
+      summary: "Instance {{ $labels.alias }} Lua runtime warning"
+      description: "{{ $labels.alias }} instance of job {{ $labels.job }} uses too much Lua memory
+        and may hit threshold soon."
+
+  # Alert for any instance that uses too Lua runtime memory.
+  - alert: LuaRuntimeAlert
+    expr: tnt_info_memory_lua >= (1024 * 1024 * 1024) 
+    for: 1m
+    labels:
+      severity: page
+    annotations:
+      summary: "Instance {{ $labels.alias }} Lua runtime alert"
+      description: "{{ $labels.alias }} instance of job {{ $labels.job }} uses too much Lua memory
+        and likely to hit threshold soon."
+
+  # Warning for any instance that have low remaining arena memory.
+  - alert: MemtxArenaWarning
+    expr: (tnt_slab_quota_used_ratio >= 80) and (tnt_slab_arena_used_ratio >= 80)
+    for: 1m
+    labels:
+      severity: warning
+    annotations:
+      summary: "Instance {{ $labels.alias }} low arena memory remaining"
+      description: "Low arena memory (tuples and indexes) remaining for {{ $labels.alias }} instance of job {{ $labels.job }}.
+        Consider increasing memtx_memory or number of storages in case of sharded data."
+
+  # Alert for any instance that have low remaining arena memory.
+  - alert: MemtxArenaAlert
+    expr: (tnt_slab_quota_used_ratio >= 90) and (tnt_slab_arena_used_ratio >= 90)
+    for: 1m
+    labels:
+      severity: page
+    annotations:
+      summary: "Instance {{ $labels.alias }} low arena memory remaining"
+      description: "Low arena memory (tuples and indexes) remaining for {{ $labels.alias }} instance of job {{ $labels.job }}.
+      You are likely to hit limit soon.
+      It is strongly recommended to increase memtx_memory or number of storages in case of sharded data."
+
+  # Warning for any instance that have low remaining items memory.
+  - alert: MemtxItemsWarning
+    expr: (tnt_slab_quota_used_ratio >= 80) and (tnt_slab_items_used_ratio >= 80)
+    for: 1m
+    labels:
+      severity: warning
+    annotations:
+      summary: "Instance {{ $labels.alias }} low items memory remaining"
+      description: "Low items memory (tuples) remaining for {{ $labels.alias }} instance of job {{ $labels.job }}.
+        Consider increasing memtx_memory or number of storages in case of sharded data."
+
+  # Alert for any instance that have low remaining arena memory.
+  - alert: MemtxItemsAlert
+    expr: (tnt_slab_quota_used_ratio >= 90) and (tnt_slab_items_used_ratio >= 90)
+    for: 1m
+    labels:
+      severity: page
+    annotations:
+      summary: "Instance {{ $labels.alias }} low items memory remaining"
+      description: "Low items memory (tuples) remaining for {{ $labels.alias }} instance of job {{ $labels.job }}.
+      You are likely to hit limit soon.
+      It is strongly recommended to increase memtx_memory or number of storages in case of sharded data."
+
+- name: tarantool-business
+  rules:
+  # Warning for any endpoint of an instance in example_project job that responds too long.
+  # Beware that metric name depends on name of the collector you use in HTTP metrics middleware
+  # and request depends on type of this collector.
+  # This example based on summary collector with default name.
+  - alert: HTTPHighLatency
+    expr: http_server_request_latency{ job="example_project", quantile="0.99" } > 0.1
+    for: 5m
+    labels:
+      severity: warning
+    annotations:
+      summary: "Instance {{ $labels.alias }} high HTTP latency"
+      description: "Some {{ $labels.method }} requests to {{ $labels.path }} path with {{ $labels.status }} response status
+        on {{ $labels.alias }} instance of job {{ $labels.job }} are processed too long."
+
+  # Warning for any endpoint of an instance in example_project job that sends too much 4xx responses.
+  # Beware that metric name depends on name of the collector you use in HTTP metrics middleware
+  # and request depends on type of this collector.
+  # This example based on summary collector with default name.
+  - alert: HTTPHighClientErrorRateInstance
+    expr: sum by (job, instance, method, path, alias) (rate(http_server_request_latency_count{ job="example_project", status=~"^4\\d{2}$" }[5m])) > 10
+    for: 1m
+    labels:
+      severity: warning
+    annotations:
+      summary: "Instance {{ $labels.alias }} high rate of client error responses"
+      description: "Too many {{ $labels.method }} requests to {{ $labels.path }} path 
+        on {{ $labels.alias }} instance of job {{ $labels.job }} get client error (4xx) responses."
+
+  # Warning for any endpoint in example_project job that sends too much 4xx responses (cluster overall).
+  # Beware that metric name depends on name of the collector you use in HTTP metrics middleware
+  # and request depends on type of this collector.
+  # This example based on summary collector with default name.
+  - alert: HTTPHighClientErrorRate
+    expr: sum by (job, method, path) (rate(http_server_request_latency_count{ job="example_project", status=~"^4\\d{2}$" }[5m])) > 20
+    for: 1m
+    labels:
+      severity: warning
+    annotations:
+      summary: "Job {{ $labels.job }} high rate of client error responses"
+      description: "Too many {{ $labels.method }} requests to {{ $labels.path }} path
+        on instances of job {{ $labels.job }} get client error (4xx) responses."
+
+  # Warning for any endpoint of an instance in example_project job that sends 5xx responses.
+  # Beware that metric name depends on name of the collector you use in HTTP metrics middleware
+  # and request depends on type of this collector.
+  # This example based on summary collector with default name.
+  - alert: HTTPServerErrors
+    expr: sum by (job, instance, method, path, alias) (rate(http_server_request_latency_count{ job="example_project", status=~"^5\\d{2}$" }[5m])) > 0
+    for: 1m
+    labels:
+      severity: warning
+    annotations:
+      summary: "Instance {{ $labels.alias }} server error responses"
+      description: "Some {{ $labels.method }} requests to {{ $labels.path }} path 
+        on {{ $labels.alias }} instance of job {{ $labels.job }} get server error (5xx) responses."
+
+  # Warning for any endpoint of a router instance (with "router" in alias) in example_project job that gets too little requests.
+  # Beware that metric name depends on name of the collector you use in HTTP metrics middleware
+  # and request depends on type of this collector.
+  # This example based on summary collector with default name.
+  - alert: HTTPLowRequestRateRouter
+    expr: sum by (job, instance, alias) (rate(http_server_request_latency_count{ job="example_project", alias=~"^.*router.*$" }[5m])) < 10
+    for: 5m
+    labels:
+      severity: warning
+    annotations:
+      summary: "Router {{ $labels.alias }} low activity"
+      description: Router {{ $labels.alias }} instance of job {{ $labels.job }} gets too little requests.
+        Please, check up your balancer middleware."

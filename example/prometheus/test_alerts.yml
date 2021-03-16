@@ -1,0 +1,355 @@
+# This is a list of rule files to consider for testing. Globs are supported.
+rule_files:
+  - alerts.yml
+
+# optional, default = 1m
+evaluation_interval: 15s
+
+# All the tests are listed here.
+tests:
+  - interval: 15s
+    input_series:
+      - series: 'up{job="example_project", instance="example_project:8081"}'
+        values: '1+0x12'
+      - series: 'up{job="example_project", instance="example_project:8082"}'
+        values: '1 0+0x11'
+    alert_rule_test:
+      - eval_time: 2m
+        alertname: InstanceDown
+        exp_alerts:
+          - exp_labels:
+              severity: page
+              instance: example_project:8082
+              job: example_project
+            exp_annotations:
+              summary: "Instance example_project:8082 down"
+              description: "example_project:8082 of job example_project has been down for more than a minute."
+
+
+  - interval: 15s
+    input_series:
+      - series: 'tnt_info_memory_lua{job="example_project", instance="example_project:8081", alias="tnt_router"}'
+        values: '209715200+104857600x8' # 200 Mb + 100 Mb each interval
+    alert_rule_test:
+      - eval_time: 2m
+        alertname: LuaRuntimeWarning
+        exp_alerts:
+          - exp_labels:
+              severity: warning
+              instance: example_project:8081
+              alias: tnt_router
+              job: example_project
+            exp_annotations:
+              summary: "Instance tnt_router Lua runtime warning"
+              description: "tnt_router instance of job example_project uses too much Lua memory
+                and may hit threshold soon."
+      - eval_time: 2m
+        alertname: LuaRuntimeAlert
+        exp_alerts: # no alert firing
+
+
+  - interval: 15s
+    input_series:
+      - series: 'tnt_info_memory_lua{job="example_project", instance="example_project:8081", alias="tnt_router"}'
+        values: '419430400+209715200x8' # 400 Mb + 200 Mb each interval
+    alert_rule_test:
+      - eval_time: 2m
+        alertname: LuaRuntimeWarning
+        exp_alerts:
+          - exp_labels:
+              severity: warning
+              instance: example_project:8081
+              alias: tnt_router
+              job: example_project
+            exp_annotations:
+              summary: "Instance tnt_router Lua runtime warning"
+              description: "tnt_router instance of job example_project uses too much Lua memory
+                and may hit threshold soon."
+      - eval_time: 2m
+        alertname: LuaRuntimeAlert
+        exp_alerts:
+          - exp_labels:
+              severity: page
+              instance: example_project:8081
+              alias: tnt_router
+              job: example_project
+            exp_annotations:
+              summary: "Instance tnt_router Lua runtime alert"
+              description: "tnt_router instance of job example_project uses too much Lua memory
+                and likely to hit threshold soon."
+
+
+  - interval: 15s
+    input_series:
+      - series: 'tnt_slab_quota_used_ratio{job="example_project", instance="example_project:8081", alias="tnt_router"}'
+        values: '75+0x2 92+0x8'
+      - series: 'tnt_slab_arena_used_ratio{job="example_project", instance="example_project:8081", alias="tnt_router"}'
+        values: '92+0x2 76+0x8'
+    alert_rule_test:
+      - eval_time: 2m
+        alertname: MemtxArenaWarning
+        exp_alerts: # no alert firing
+      - eval_time: 2m
+        alertname: MemtxArenaAlert
+        exp_alerts: # no alert firing
+
+
+  - interval: 15s
+    input_series:
+      - series: 'tnt_slab_quota_used_ratio{job="example_project", instance="example_project:8081", alias="tnt_router"}'
+        values: '75+0x2 92+0x8'
+      - series: 'tnt_slab_arena_used_ratio{job="example_project", instance="example_project:8081", alias="tnt_router"}'
+        values: '92+0x2 82+0x8'
+    alert_rule_test:
+      - eval_time: 2m
+        alertname: MemtxArenaWarning
+        exp_alerts:
+          - exp_labels:
+              severity: warning
+              instance: example_project:8081
+              alias: tnt_router
+              job: example_project
+            exp_annotations:
+              summary: "Instance tnt_router low arena memory remaining"
+              description: "Low arena memory (tuples and indexes) remaining for tnt_router instance of job example_project.
+                Consider increasing memtx_memory or number of storages in case of sharded data."
+      - eval_time: 2m
+        alertname: MemtxArenaAlert
+        exp_alerts: # no alert firing
+
+
+  - interval: 15s
+    input_series:
+      - series: 'tnt_slab_quota_used_ratio{job="example_project", instance="example_project:8081", alias="tnt_router"}'
+        values: '85+0x2 92+0x8'
+      - series: 'tnt_slab_arena_used_ratio{job="example_project", instance="example_project:8081", alias="tnt_router"}'
+        values: '92+0x2 91+0x8'
+    alert_rule_test:
+      - eval_time: 2m
+        alertname: MemtxArenaWarning
+        exp_alerts:
+          - exp_labels:
+              severity: warning
+              instance: example_project:8081
+              alias: tnt_router
+              job: example_project
+            exp_annotations:
+              summary: "Instance tnt_router low arena memory remaining"
+              description: "Low arena memory (tuples and indexes) remaining for tnt_router instance of job example_project.
+                Consider increasing memtx_memory or number of storages in case of sharded data."
+      - eval_time: 2m
+        alertname: MemtxArenaAlert
+        exp_alerts:
+          - exp_labels:
+              severity: page
+              instance: example_project:8081
+              alias: tnt_router
+              job: example_project
+            exp_annotations:
+              summary: "Instance tnt_router low arena memory remaining"
+              description: "Low arena memory (tuples and indexes) remaining for tnt_router instance of job example_project.
+                You are likely to hit limit soon.
+                It is strongly recommended to increase memtx_memory or number of storages in case of sharded data."
+
+
+  - interval: 15s
+    input_series:
+      - series: 'tnt_slab_quota_used_ratio{job="example_project", instance="example_project:8081", alias="tnt_router"}'
+        values: '75+0x2 92+0x8'
+      - series: 'tnt_slab_items_used_ratio{job="example_project", instance="example_project:8081", alias="tnt_router"}'
+        values: '95+0x2 79+0x8'
+    alert_rule_test:
+      - eval_time: 2m
+        alertname: MemtxItemsWarning
+        exp_alerts: # no alert firing
+      - eval_time: 2m
+        alertname: MemtxItemsAlert
+        exp_alerts: # no alert firing
+
+
+  - interval: 15s
+    input_series:
+      - series: 'tnt_slab_quota_used_ratio{job="example_project", instance="example_project:8081", alias="tnt_router"}'
+        values: '75+0x2 92+0x8'
+      - series: 'tnt_slab_items_used_ratio{job="example_project", instance="example_project:8081", alias="tnt_router"}'
+        values: '92+0x2 82+0x8'
+    alert_rule_test:
+      - eval_time: 2m
+        alertname: MemtxItemsWarning
+        exp_alerts:
+          - exp_labels:
+              severity: warning
+              instance: example_project:8081
+              alias: tnt_router
+              job: example_project
+            exp_annotations:
+              summary: "Instance tnt_router low items memory remaining"
+              description: "Low items memory (tuples) remaining for tnt_router instance of job example_project.
+                Consider increasing memtx_memory or number of storages in case of sharded data."
+      - eval_time: 2m
+        alertname: MemtxItemsAlert
+        exp_alerts: # no alert firing
+
+
+  - interval: 15s
+    input_series:
+        - series: http_server_request_latency_count{job="example_project", instance="example_project:8081",path="/hello",method="GET",status="200",alias="tnt_router"}
+          values: '0+100x60'
+        - series: http_server_request_latency_sum{job="example_project", instance="example_project:8081",path="/hello",method="GET",status="200",alias="tnt_router"}
+          values: '0+2x60'
+        - series: http_server_request_latency{job="example_project", instance="example_project:8081",path="/hello",method="GET",status="200",alias="tnt_router",quantile="0.5"}
+          values: '0.02+0x60'
+        - series: http_server_request_latency{job="example_project", instance="example_project:8081",path="/hello",method="GET",status="200",alias="tnt_router",quantile="0.9"}
+          values: '0.05+0x60'
+        - series: http_server_request_latency{job="example_project", instance="example_project:8081",path="/hello",method="GET",status="200",alias="tnt_router",quantile="0.99"}
+          values: '0.11+0x60'
+    alert_rule_test:
+      - eval_time: 10m
+        alertname: HTTPHighLatency
+        exp_alerts:
+          - exp_labels:
+              severity: warning
+              instance: example_project:8081
+              alias: tnt_router
+              job: example_project
+              path: /hello
+              method: GET
+              status: '200'
+              quantile: '0.99'
+            exp_annotations:
+              summary: "Instance tnt_router high HTTP latency"
+              description: "Some GET requests to /hello path with 200 response status
+                on tnt_router instance of job example_project are processed too long."
+
+
+  - interval: 15s
+    input_series:
+        - series: http_server_request_latency_count{job="example_project", instance="example_project:8081",path="/hell0",method="GET",status="400",alias="tnt_router"}
+          values: '0+200x100'
+        - series: http_server_request_latency_sum{job="example_project", instance="example_project:8081",path="/hell0",method="GET",status="400",alias="tnt_router"}
+          values: '0+2x100'
+        - series: http_server_request_latency{job="example_project", instance="example_project:8081",path="/hell0",method="GET",status="400",alias="tnt_router",quantile="0.5"}
+          values: '0.02+0x100'
+        - series: http_server_request_latency{job="example_project", instance="example_project:8081",path="/hell0",method="GET",status="400",alias="tnt_router",quantile="0.9"}
+          values: '0.02+0x100'
+        - series: http_server_request_latency{job="example_project", instance="example_project:8081",path="/hell0",method="GET",status="400",alias="tnt_router",quantile="0.99"}
+          values: '0.02+0x100'
+    alert_rule_test:
+      - eval_time: 5m
+        alertname: HTTPHighClientErrorRateInstance
+        exp_alerts:
+          - exp_labels:
+              severity: warning
+              instance: example_project:8081
+              alias: tnt_router
+              job: example_project
+              path: /hell0
+              method: GET
+            exp_annotations:
+              summary: "Instance tnt_router high rate of client error responses"
+              description: "Too many GET requests to /hell0 path 
+                on tnt_router instance of job example_project get client error (4xx) responses."
+
+  # Total rate of 4xx is high, but distributed between different routers
+  - interval: 15s
+    input_series:
+        - series: http_server_request_latency_count{job="example_project", instance="example_project:8081",path="/hell0",method="GET",status="400",alias="tnt_router_1"}
+          values: '0+150x100'
+        - series: http_server_request_latency_sum{job="example_project", instance="example_project:8081",path="/hell0",method="GET",status="400",alias="tnt_router_1"}
+          values: '0+2x100'
+        - series: http_server_request_latency{job="example_project", instance="example_project:8081",path="/hell0",method="GET",status="400",alias="tnt_router_1",quantile="0.5"}
+          values: '0.02+0x100'
+        - series: http_server_request_latency{job="example_project", instance="example_project:8081",path="/hell0",method="GET",status="400",alias="tnt_router_1",quantile="0.9"}
+          values: '0.02+0x100'
+        - series: http_server_request_latency{job="example_project", instance="example_project:8081",path="/hell0",method="GET",status="400",alias="tnt_router_1",quantile="0.99"}
+          values: '0.02+0x100'
+        - series: http_server_request_latency_count{job="example_project", instance="example_project:8081",path="/hell0",method="GET",status="400",alias="tnt_router_2"}
+          values: '0+150x100'
+        - series: http_server_request_latency_sum{job="example_project", instance="example_project:8081",path="/hell0",method="GET",status="400",alias="tnt_router_2"}
+          values: '0+2x100'
+        - series: http_server_request_latency{job="example_project", instance="example_project:8081",path="/hell0",method="GET",status="400",alias="tnt_router_2",quantile="0.5"}
+          values: '0.02+0x100'
+        - series: http_server_request_latency{job="example_project", instance="example_project:8081",path="/hell0",method="GET",status="400",alias="tnt_router_2",quantile="0.9"}
+          values: '0.02+0x100'
+        - series: http_server_request_latency{job="example_project", instance="example_project:8081",path="/hell0",method="GET",status="400",alias="tnt_router_2",quantile="0.99"}
+          values: '0.02+0x100'
+        - series: http_server_request_latency_count{job="example_project", instance="example_project:8081",path="/hell0",method="GET",status="400",alias="tnt_router_3"}
+          values: '0+150x100'
+        - series: http_server_request_latency_sum{job="example_project", instance="example_project:8081",path="/hell0",method="GET",status="400",alias="tnt_router_3"}
+          values: '0+2x100'
+        - series: http_server_request_latency{job="example_project", instance="example_project:8081",path="/hell0",method="GET",status="400",alias="tnt_router_3",quantile="0.5"}
+          values: '0.02+0x100'
+        - series: http_server_request_latency{job="example_project", instance="example_project:8081",path="/hell0",method="GET",status="400",alias="tnt_router_3",quantile="0.9"}
+          values: '0.02+0x100'
+        - series: http_server_request_latency{job="example_project", instance="example_project:8081",path="/hell0",method="GET",status="400",alias="tnt_router_3",quantile="0.99"}
+          values: '0.02+0x100'
+    alert_rule_test:
+      - eval_time: 5m
+        alertname: HTTPHighClientErrorRateInstance
+        exp_alerts: # no alert firing
+      - eval_time: 5m
+        alertname: HTTPHighClientErrorRate
+        exp_alerts:
+          - exp_labels:
+              severity: warning
+              job: example_project
+              path: /hell0
+              method: GET
+            exp_annotations:
+              summary: "Job example_project high rate of client error responses"
+              description: "Too many GET requests to /hell0 path
+                on instances of job example_project get client error (4xx) responses."
+
+  - interval: 15s
+    input_series:
+        - series: http_server_request_latency_count{job="example_project", instance="example_project:8081",path="/goodbye",method="POST",status="500",alias="tnt_router"}
+          values: '0+0x10 1+0x10 2+0x10 3+0x10 4+0x10 5+0x10 6+0x10 7+0x10 8+0x10 9+0x10'
+        - series: http_server_request_latency_sum{job="example_project", instance="example_project:8081",path="/goodbye",method="POST",status="500",alias="tnt_router"}
+          values: '0+0x10 0.01+0x10 0.02+0x10 0.03+0x10 0.04+0x10 0.05+0x10 0.06+0x10 0.07+0x10 0.08+0x10 0.09+0x10'
+        - series: http_server_request_latency{job="example_project", instance="example_project:8081",path="/goodbye",method="POST",status="500",alias="tnt_router",quantile="0.5"}
+          values: '0+0x10 0.01+0x100'
+        - series: http_server_request_latency{job="example_project", instance="example_project:8081",path="/goodbye",method="POST",status="500",alias="tnt_router",quantile="0.9"}
+          values: '0+0x10 0.01+0x100'
+        - series: http_server_request_latency{job="example_project", instance="example_project:8081",path="/goodbye",method="POST",status="500",alias="tnt_router",quantile="0.99"}
+          values: '0+0x10 0.01+0x100'
+    alert_rule_test:
+      - eval_time: 5m
+        alertname: HTTPServerErrors
+        exp_alerts:
+          - exp_labels:
+              severity: warning
+              instance: example_project:8081
+              alias: tnt_router
+              job: example_project
+              path: /goodbye
+              method: POST
+            exp_annotations:
+              summary: "Instance tnt_router server error responses"
+              description: "Some POST requests to /goodbye path 
+                on tnt_router instance of job example_project get server error (5xx) responses."
+
+  - interval: 15s
+    input_series:
+        - series: http_server_request_latency_count{job="example_project", instance="example_project:8081",path="/hello",method="GET",status="200",alias="tnt_router"}
+          values: '0+0x10 1+0x10 2+0x10 3+0x10 4+0x10 5+0x10 6+0x10 7+0x10 8+0x10 9+0x10'
+        - series: http_server_request_latency_sum{job="example_project", instance="example_project:8081",path="/hello",method="GET",status="200",alias="tnt_router"}
+          values: '0+0x10 0.01+0x10 0.02+0x10 0.03+0x10 0.04+0x10 0.05+0x10 0.06+0x10 0.07+0x10 0.08+0x10 0.09+0x10'
+        - series: http_server_request_latency{job="example_project", instance="example_project:8081",path="/hello",method="GET",status="200",alias="tnt_router",quantile="0.5"}
+          values: '0+0x10 0.01+0x100'
+        - series: http_server_request_latency{job="example_project", instance="example_project:8081",path="/hello",method="GET",status="200",alias="tnt_router",quantile="0.9"}
+          values: '0+0x10 0.01+0x100'
+        - series: http_server_request_latency{job="example_project", instance="example_project:8081",path="/hello",method="GET",status="200",alias="tnt_router",quantile="0.99"}
+          values: '0+0x10 0.01+0x100'
+    alert_rule_test:
+      - eval_time: 15m
+        alertname: HTTPLowRequestRateRouter
+        exp_alerts:
+          - exp_labels:
+              severity: warning
+              instance: example_project:8081
+              alias: tnt_router
+              job: example_project
+            exp_annotations:
+              summary: "Router tnt_router low activity"
+              description: Router tnt_router instance of job example_project gets too little requests.
+                Please, check up your balancer middleware."

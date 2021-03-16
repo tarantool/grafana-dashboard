@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## Unreleased
+
+## Added
+- Prometheus example alert rules (instance state, memory usage, HTTP load and latency rule examples)
+- Test Prometheus example alert rules with promtool
+
 ## [0.2.3] - 2021-03-11
 Grafana revisions: [InfluxDB revision 4](https://grafana.com/api/dashboards/12567/revisions/4/download), [Prometheus revision 4](https://grafana.com/api/dashboards/13054/revisions/4/download)
 
