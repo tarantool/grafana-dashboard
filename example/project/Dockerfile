@@ -5,7 +5,8 @@ WORKDIR /app
 RUN yum install -y git \
                    cmake \
                    make \
-                   gcc
+                   gcc \
+                   gcc-c++
 COPY . .
 RUN mkdir -p tmp
 
