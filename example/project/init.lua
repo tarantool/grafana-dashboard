@@ -2,6 +2,8 @@
 
 require('strict').on()
 
+-- configure path so that you can run application
+-- from outside the root directory
 if package.setsearchroot ~= nil then
     package.setsearchroot()
 else
@@ -15,7 +17,6 @@ else
     -- its modules, and modules from myapp/.rocks.
     local fio = require('fio')
     local app_dir = fio.abspath(fio.dirname(arg[0]))
-    print('App dir set to ' .. app_dir)
     package.path = app_dir .. '/?.lua;' .. package.path
     package.path = app_dir .. '/?/init.lua;' .. package.path
     package.path = app_dir .. '/.rocks/share/tarantool/?.lua;' .. package.path
@@ -26,17 +27,33 @@ else
     package.cpath = app_dir .. '/.rocks/lib/tarantool/?.dylib;' .. package.cpath
 end
 
+-- configure cartridge
+
 local cartridge = require('cartridge')
 
 local ok, err = cartridge.cfg({
-    workdir = 'tmp/db',
     roles = {
         'cartridge.roles.vshard-storage',
         'cartridge.roles.vshard-router',
         'cartridge.roles.metrics',
-        'app.roles.custom'
+        'app.roles.custom',
     },
-    cluster_cookie = 'project-cluster-cookie',
+    cluster_cookie = require('cookie'),
 })
 
 assert(ok, tostring(err))
+
+-- register admin function to use it with 'cartridge admin' command
+
+local metrics = require('cartridge.roles.metrics')
+metrics.set_export({
+    {
+        path = '/metrics/json',
+        format = 'json'
+    },
+    {
+        path = '/metrics/prometheus',
+        format = 'prometheus'
+    }
+})
+

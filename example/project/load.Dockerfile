@@ -8,7 +8,5 @@ RUN yum install -y git \
                    gcc \
                    gcc-c++
 COPY . .
-RUN mkdir -p tmp
 
-RUN tarantoolctl rocks make
-RUN tarantoolctl rocks install luatest 0.5.0
+ENTRYPOINT tarantool ./generate_load.lua

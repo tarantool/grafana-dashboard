@@ -13,6 +13,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Changed
 - Update metrics version to 0.9.0
+- Separate app cluster and load generator in example docker stand
+- Use cartridge-cli to run and setup example app cluster instead of luatest
 
 ## Fixed
 - Add missing space and replication metrics labels to Telegraf configuration

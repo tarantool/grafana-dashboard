@@ -27,12 +27,12 @@ scrape_configs:
     static_configs:
       - targets: ["localhost:9090"]
 
-  - job_name: "example_project"
+  - job_name: "tarantool_app"
     static_configs:
       - targets: 
-        - "example_project:8081"
-        - "example_project:8082"
-        - "example_project:8083"
-        - "example_project:8084"
-        - "example_project:8085"
+        - "app:8081"
+        - "app:8082"
+        - "app:8083"
+        - "app:8084"
+        - "app:8085"
     metrics_path: "/metrics/prometheus"
