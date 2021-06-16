@@ -2636,7 +2636,7 @@
          "repeatIteration": null,
          "repeatRowId": null,
          "showTitle": true,
-         "title": "Tarantool spaces statistics",
+         "title": "Tarantool operations statistics",
          "titleSize": "h6",
          "type": "row"
       },
@@ -2647,7 +2647,7 @@
          "dashes": false,
          "datasource": "${DS_PROMETHEUS}",
          "decimals": 2,
-         "description": "Average count of SELECT requests per second from all Tarantool spaces",
+         "description": "total count of SELECT requests to all instance spaces.\nGraph shows average requests per second.\n",
          "fill": 0,
          "gridPos": {
             "h": 8,
@@ -2695,7 +2695,7 @@
          "thresholds": [ ],
          "timeFrom": null,
          "timeShift": null,
-         "title": "SELECT requests",
+         "title": "SELECT space requests",
          "tooltip": {
             "shared": true,
             "sort": 2,
@@ -2737,7 +2737,7 @@
          "dashes": false,
          "datasource": "${DS_PROMETHEUS}",
          "decimals": 2,
-         "description": "Average count of INSERT requests per second from all Tarantool spaces",
+         "description": "total count of INSERT requests to all instance spaces.\nGraph shows average requests per second.\n",
          "fill": 0,
          "gridPos": {
             "h": 8,
@@ -2785,7 +2785,7 @@
          "thresholds": [ ],
          "timeFrom": null,
          "timeShift": null,
-         "title": "INSERT requests",
+         "title": "INSERT space requests",
          "tooltip": {
             "shared": true,
             "sort": 2,
@@ -2827,7 +2827,7 @@
          "dashes": false,
          "datasource": "${DS_PROMETHEUS}",
          "decimals": 2,
-         "description": "Average count of REPLACE requests per second from all Tarantool spaces",
+         "description": "total count of REPLACE requests to all instance spaces.\nGraph shows average requests per second.\n",
          "fill": 0,
          "gridPos": {
             "h": 8,
@@ -2875,7 +2875,7 @@
          "thresholds": [ ],
          "timeFrom": null,
          "timeShift": null,
-         "title": "REPLACE requests",
+         "title": "REPLACE space requests",
          "tooltip": {
             "shared": true,
             "sort": 2,
@@ -2917,7 +2917,7 @@
          "dashes": false,
          "datasource": "${DS_PROMETHEUS}",
          "decimals": 2,
-         "description": "Average count of UPSERT requests per second from all Tarantool spaces",
+         "description": "total count of UPSERT requests to all instance spaces.\nGraph shows average requests per second.\n",
          "fill": 0,
          "gridPos": {
             "h": 8,
@@ -2965,7 +2965,7 @@
          "thresholds": [ ],
          "timeFrom": null,
          "timeShift": null,
-         "title": "UPSERT requests",
+         "title": "UPSERT space requests",
          "tooltip": {
             "shared": true,
             "sort": 2,
@@ -3007,7 +3007,7 @@
          "dashes": false,
          "datasource": "${DS_PROMETHEUS}",
          "decimals": 2,
-         "description": "Average count of UPDATE requests per second from all Tarantool spaces",
+         "description": "total count of UPDATE requests to all instance spaces.\nGraph shows average requests per second.\n",
          "fill": 0,
          "gridPos": {
             "h": 8,
@@ -3055,7 +3055,7 @@
          "thresholds": [ ],
          "timeFrom": null,
          "timeShift": null,
-         "title": "UPDATE requests",
+         "title": "UPDATE space requests",
          "tooltip": {
             "shared": true,
             "sort": 2,
@@ -3097,7 +3097,7 @@
          "dashes": false,
          "datasource": "${DS_PROMETHEUS}",
          "decimals": 2,
-         "description": "Average count of DELETE requests per second from all Tarantool spaces",
+         "description": "total count of DELETE requests to all instance spaces.\nGraph shows average requests per second.\n",
          "fill": 0,
          "gridPos": {
             "h": 8,
@@ -3145,7 +3145,547 @@
          "thresholds": [ ],
          "timeFrom": null,
          "timeShift": null,
-         "title": "DELETE requests",
+         "title": "DELETE space requests",
+         "tooltip": {
+            "shared": true,
+            "sort": 2,
+            "value_type": "individual"
+         },
+         "type": "graph",
+         "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": [ ]
+         },
+         "yaxes": [
+            {
+               "decimals": 0,
+               "format": "none",
+               "label": "requests per second",
+               "logBase": 1,
+               "max": null,
+               "min": null,
+               "show": true
+            },
+            {
+               "decimals": 2,
+               "format": "none",
+               "label": null,
+               "logBase": 1,
+               "max": null,
+               "min": null,
+               "show": true
+            }
+         ]
+      },
+      {
+         "aliasColors": { },
+         "bars": false,
+         "dashLength": 10,
+         "dashes": false,
+         "datasource": "${DS_PROMETHEUS}",
+         "decimals": 2,
+         "description": "Requests to execute stored procedures.\nGraph shows average requests per second.\n",
+         "fill": 0,
+         "gridPos": {
+            "h": 8,
+            "w": 8,
+            "x": 0,
+            "y": 103
+         },
+         "id": 44,
+         "legend": {
+            "alignAsTable": true,
+            "avg": true,
+            "current": true,
+            "max": true,
+            "min": false,
+            "rightSide": false,
+            "show": true,
+            "sideWidth": null,
+            "sort": "current",
+            "sortDesc": true,
+            "total": false,
+            "values": true
+         },
+         "lines": true,
+         "linewidth": 1,
+         "links": [ ],
+         "nullPointMode": "null",
+         "percentage": false,
+         "pointradius": 5,
+         "points": false,
+         "renderer": "flot",
+         "repeat": null,
+         "seriesOverrides": [ ],
+         "spaceLength": 10,
+         "stack": false,
+         "steppedLine": false,
+         "targets": [
+            {
+               "expr": "rate(tnt_stats_op_total{job=~\"[[job]]\",operation=\"call\"}[$rate_time_range])",
+               "format": "time_series",
+               "intervalFactor": 2,
+               "legendFormat": "{{alias}}",
+               "refId": "A"
+            }
+         ],
+         "thresholds": [ ],
+         "timeFrom": null,
+         "timeShift": null,
+         "title": "Call requests",
+         "tooltip": {
+            "shared": true,
+            "sort": 2,
+            "value_type": "individual"
+         },
+         "type": "graph",
+         "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": [ ]
+         },
+         "yaxes": [
+            {
+               "decimals": 0,
+               "format": "none",
+               "label": "requests per second",
+               "logBase": 1,
+               "max": null,
+               "min": null,
+               "show": true
+            },
+            {
+               "decimals": 2,
+               "format": "none",
+               "label": null,
+               "logBase": 1,
+               "max": null,
+               "min": null,
+               "show": true
+            }
+         ]
+      },
+      {
+         "aliasColors": { },
+         "bars": false,
+         "dashLength": 10,
+         "dashes": false,
+         "datasource": "${DS_PROMETHEUS}",
+         "decimals": 2,
+         "description": "Calls to evaluate Lua code.\nGraph shows average requests per second.\n",
+         "fill": 0,
+         "gridPos": {
+            "h": 8,
+            "w": 8,
+            "x": 8,
+            "y": 103
+         },
+         "id": 45,
+         "legend": {
+            "alignAsTable": true,
+            "avg": true,
+            "current": true,
+            "max": true,
+            "min": false,
+            "rightSide": false,
+            "show": true,
+            "sideWidth": null,
+            "sort": "current",
+            "sortDesc": true,
+            "total": false,
+            "values": true
+         },
+         "lines": true,
+         "linewidth": 1,
+         "links": [ ],
+         "nullPointMode": "null",
+         "percentage": false,
+         "pointradius": 5,
+         "points": false,
+         "renderer": "flot",
+         "repeat": null,
+         "seriesOverrides": [ ],
+         "spaceLength": 10,
+         "stack": false,
+         "steppedLine": false,
+         "targets": [
+            {
+               "expr": "rate(tnt_stats_op_total{job=~\"[[job]]\",operation=\"eval\"}[$rate_time_range])",
+               "format": "time_series",
+               "intervalFactor": 2,
+               "legendFormat": "{{alias}}",
+               "refId": "A"
+            }
+         ],
+         "thresholds": [ ],
+         "timeFrom": null,
+         "timeShift": null,
+         "title": "Eval calls",
+         "tooltip": {
+            "shared": true,
+            "sort": 2,
+            "value_type": "individual"
+         },
+         "type": "graph",
+         "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": [ ]
+         },
+         "yaxes": [
+            {
+               "decimals": 0,
+               "format": "none",
+               "label": "requests per second",
+               "logBase": 1,
+               "max": null,
+               "min": null,
+               "show": true
+            },
+            {
+               "decimals": 2,
+               "format": "none",
+               "label": null,
+               "logBase": 1,
+               "max": null,
+               "min": null,
+               "show": true
+            }
+         ]
+      },
+      {
+         "aliasColors": { },
+         "bars": false,
+         "dashLength": 10,
+         "dashes": false,
+         "datasource": "${DS_PROMETHEUS}",
+         "decimals": 2,
+         "description": "Requests resulted in error.\nGraph shows average errors per second.\n",
+         "fill": 0,
+         "gridPos": {
+            "h": 8,
+            "w": 8,
+            "x": 16,
+            "y": 103
+         },
+         "id": 46,
+         "legend": {
+            "alignAsTable": true,
+            "avg": true,
+            "current": true,
+            "max": true,
+            "min": false,
+            "rightSide": false,
+            "show": true,
+            "sideWidth": null,
+            "sort": "current",
+            "sortDesc": true,
+            "total": false,
+            "values": true
+         },
+         "lines": true,
+         "linewidth": 1,
+         "links": [ ],
+         "nullPointMode": "null",
+         "percentage": false,
+         "pointradius": 5,
+         "points": false,
+         "renderer": "flot",
+         "repeat": null,
+         "seriesOverrides": [ ],
+         "spaceLength": 10,
+         "stack": false,
+         "steppedLine": false,
+         "targets": [
+            {
+               "expr": "rate(tnt_stats_op_total{job=~\"[[job]]\",operation=\"error\"}[$rate_time_range])",
+               "format": "time_series",
+               "intervalFactor": 2,
+               "legendFormat": "{{alias}}",
+               "refId": "A"
+            }
+         ],
+         "thresholds": [ ],
+         "timeFrom": null,
+         "timeShift": null,
+         "title": "Request errors",
+         "tooltip": {
+            "shared": true,
+            "sort": 2,
+            "value_type": "individual"
+         },
+         "type": "graph",
+         "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": [ ]
+         },
+         "yaxes": [
+            {
+               "decimals": 0,
+               "format": "none",
+               "label": "errors per second",
+               "logBase": 1,
+               "max": null,
+               "min": null,
+               "show": true
+            },
+            {
+               "decimals": 2,
+               "format": "none",
+               "label": null,
+               "logBase": 1,
+               "max": null,
+               "min": null,
+               "show": true
+            }
+         ]
+      },
+      {
+         "aliasColors": { },
+         "bars": false,
+         "dashLength": 10,
+         "dashes": false,
+         "datasource": "${DS_PROMETHEUS}",
+         "decimals": 2,
+         "description": "Authentication requests.\nGraph shows average errors per second.\n",
+         "fill": 0,
+         "gridPos": {
+            "h": 8,
+            "w": 8,
+            "x": 0,
+            "y": 111
+         },
+         "id": 47,
+         "legend": {
+            "alignAsTable": true,
+            "avg": true,
+            "current": true,
+            "max": true,
+            "min": false,
+            "rightSide": false,
+            "show": true,
+            "sideWidth": null,
+            "sort": "current",
+            "sortDesc": true,
+            "total": false,
+            "values": true
+         },
+         "lines": true,
+         "linewidth": 1,
+         "links": [ ],
+         "nullPointMode": "null",
+         "percentage": false,
+         "pointradius": 5,
+         "points": false,
+         "renderer": "flot",
+         "repeat": null,
+         "seriesOverrides": [ ],
+         "spaceLength": 10,
+         "stack": false,
+         "steppedLine": false,
+         "targets": [
+            {
+               "expr": "rate(tnt_stats_op_total{job=~\"[[job]]\",operation=\"auth\"}[$rate_time_range])",
+               "format": "time_series",
+               "intervalFactor": 2,
+               "legendFormat": "{{alias}}",
+               "refId": "A"
+            }
+         ],
+         "thresholds": [ ],
+         "timeFrom": null,
+         "timeShift": null,
+         "title": "Authentication requests",
+         "tooltip": {
+            "shared": true,
+            "sort": 2,
+            "value_type": "individual"
+         },
+         "type": "graph",
+         "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": [ ]
+         },
+         "yaxes": [
+            {
+               "decimals": 0,
+               "format": "none",
+               "label": "requests per second",
+               "logBase": 1,
+               "max": null,
+               "min": null,
+               "show": true
+            },
+            {
+               "decimals": 2,
+               "format": "none",
+               "label": null,
+               "logBase": 1,
+               "max": null,
+               "min": null,
+               "show": true
+            }
+         ]
+      },
+      {
+         "aliasColors": { },
+         "bars": false,
+         "dashLength": 10,
+         "dashes": false,
+         "datasource": "${DS_PROMETHEUS}",
+         "decimals": 2,
+         "description": "SQL prepare calls.\nGraph shows average errors per second.\n",
+         "fill": 0,
+         "gridPos": {
+            "h": 8,
+            "w": 8,
+            "x": 8,
+            "y": 111
+         },
+         "id": 48,
+         "legend": {
+            "alignAsTable": true,
+            "avg": true,
+            "current": true,
+            "max": true,
+            "min": false,
+            "rightSide": false,
+            "show": true,
+            "sideWidth": null,
+            "sort": "current",
+            "sortDesc": true,
+            "total": false,
+            "values": true
+         },
+         "lines": true,
+         "linewidth": 1,
+         "links": [ ],
+         "nullPointMode": "null",
+         "percentage": false,
+         "pointradius": 5,
+         "points": false,
+         "renderer": "flot",
+         "repeat": null,
+         "seriesOverrides": [ ],
+         "spaceLength": 10,
+         "stack": false,
+         "steppedLine": false,
+         "targets": [
+            {
+               "expr": "rate(tnt_stats_op_total{job=~\"[[job]]\",operation=\"prepare\"}[$rate_time_range])",
+               "format": "time_series",
+               "intervalFactor": 2,
+               "legendFormat": "{{alias}}",
+               "refId": "A"
+            }
+         ],
+         "thresholds": [ ],
+         "timeFrom": null,
+         "timeShift": null,
+         "title": "SQL prepare calls",
+         "tooltip": {
+            "shared": true,
+            "sort": 2,
+            "value_type": "individual"
+         },
+         "type": "graph",
+         "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": [ ]
+         },
+         "yaxes": [
+            {
+               "decimals": 0,
+               "format": "none",
+               "label": "requests per second",
+               "logBase": 1,
+               "max": null,
+               "min": null,
+               "show": true
+            },
+            {
+               "decimals": 2,
+               "format": "none",
+               "label": null,
+               "logBase": 1,
+               "max": null,
+               "min": null,
+               "show": true
+            }
+         ]
+      },
+      {
+         "aliasColors": { },
+         "bars": false,
+         "dashLength": 10,
+         "dashes": false,
+         "datasource": "${DS_PROMETHEUS}",
+         "decimals": 2,
+         "description": "SQL execute calls.\nGraph shows average errors per second.\n",
+         "fill": 0,
+         "gridPos": {
+            "h": 8,
+            "w": 8,
+            "x": 16,
+            "y": 111
+         },
+         "id": 49,
+         "legend": {
+            "alignAsTable": true,
+            "avg": true,
+            "current": true,
+            "max": true,
+            "min": false,
+            "rightSide": false,
+            "show": true,
+            "sideWidth": null,
+            "sort": "current",
+            "sortDesc": true,
+            "total": false,
+            "values": true
+         },
+         "lines": true,
+         "linewidth": 1,
+         "links": [ ],
+         "nullPointMode": "null",
+         "percentage": false,
+         "pointradius": 5,
+         "points": false,
+         "renderer": "flot",
+         "repeat": null,
+         "seriesOverrides": [ ],
+         "spaceLength": 10,
+         "stack": false,
+         "steppedLine": false,
+         "targets": [
+            {
+               "expr": "rate(tnt_stats_op_total{job=~\"[[job]]\",operation=\"execute\"}[$rate_time_range])",
+               "format": "time_series",
+               "intervalFactor": 2,
+               "legendFormat": "{{alias}}",
+               "refId": "A"
+            }
+         ],
+         "thresholds": [ ],
+         "timeFrom": null,
+         "timeShift": null,
+         "title": "SQL execute calls",
          "tooltip": {
             "shared": true,
             "sort": 2,

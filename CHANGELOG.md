@@ -12,12 +12,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Cartridge issues metrics labels to Telegraf configuration
 - Cartridge issues panels and "Cluster overview" row
 - Network activity row and panels
+- Non-CRUD operations panels
 
 ## Changed
 - Update metrics version to 0.9.0
 - Separate app cluster and load generator in example docker stand
 - Use cartridge-cli to run and setup example app cluster instead of luatest
 - Group Prometheus cluster overview panels into "Cluster overview" row
+- Rework "Tarantool spaces statistics" block to "Tarantool operations statistics"
+- Use Tarantool 2.x instead of Tarantool 1.x in test app and load generator
 
 ## Fixed
 - Add missing space and replication metrics labels to Telegraf configuration

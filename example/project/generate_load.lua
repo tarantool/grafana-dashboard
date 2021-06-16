@@ -140,6 +140,20 @@ local function generate_space_load(name, instance)
     end
 end
 
+local function generate_operations_load(name, instance)
+    if name:match('storage') ~= nil then
+        instance.net_box:eval([[return box.execute("VALUES ('hello');")]])
+
+        if math.random(0, 100) == 25 then
+            -- duplicate key error and read-only instance error
+            pcall(instance.net_box.space.MY_SPACE.insert, instance.net_box.space.MY_SPACE, {0, random_string(5)})
+        end
+    end
+
+    if name:match('router') ~= nil then
+        instance.net_box:eval('return true')
+    end
+end
 
 local f = fio.open('instances.yml')
 local instances = yaml.decode(f:read())
@@ -165,19 +179,17 @@ for _, instance in pairs(instances) do
     pcall(instance.net_box.eval, instance.net_box, 'return box.space.MY_SPACE:truncate()')
 end
 
+local load_generators = { generate_http_load, generate_space_load, generate_operations_load }
+
 while true do
     for name, instance in pairs(instances) do
-        local _, err = pcall(generate_http_load, name, instance)
-        if err ~= nil then
-            log.error(err)
-            fiber.sleep(1)
+        for _, load_generator in ipairs(load_generators) do
+            local _, err = pcall(load_generator, name, instance)
+            if err ~= nil then
+                log.error(err)
+                fiber.sleep(1)
+            end
+            fiber.yield()
         end
-
-        local _, err = pcall(generate_space_load, name, instance)
-        if err ~= nil then
-            log.error(err)
-            fiber.sleep(1)
-        end
-        fiber.yield()
     end
 end
