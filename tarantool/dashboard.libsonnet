@@ -4,8 +4,8 @@ local cluster = import 'cluster.libsonnet';
 local http = import 'http.libsonnet';
 local memory_misc = import 'memory_misc.libsonnet';
 local net = import 'net.libsonnet';
+local operations = import 'operations.libsonnet';
 local slab = import 'slab.libsonnet';
-local space = import 'space.libsonnet';
 local row = grafana.row;
 
 {
@@ -271,11 +271,11 @@ local row = grafana.row;
       { w: 24, h: 8, x: 0, y: 69 + offset },
     )
     .addPanel(
-      row.new(title='Tarantool spaces statistics'),
+      row.new(title='Tarantool operations statistics'),
       { w: 24, h: 1, x: 0, y: 77 + offset }
     )
     .addPanel(
-      space.select_rps(
+      operations.space_select_rps(
         datasource=datasource,
         policy=policy,
         measurement=measurement,
@@ -285,7 +285,7 @@ local row = grafana.row;
       { w: 8, h: 8, x: 0, y: 78 + offset },
     )
     .addPanel(
-      space.insert_rps(
+      operations.space_insert_rps(
         datasource=datasource,
         policy=policy,
         measurement=measurement,
@@ -295,7 +295,7 @@ local row = grafana.row;
       { w: 8, h: 8, x: 8, y: 78 + offset },
     )
     .addPanel(
-      space.replace_rps(
+      operations.space_replace_rps(
         datasource=datasource,
         policy=policy,
         measurement=measurement,
@@ -305,7 +305,7 @@ local row = grafana.row;
       { w: 8, h: 8, x: 16, y: 78 + offset },
     )
     .addPanel(
-      space.upsert_rps(
+      operations.space_upsert_rps(
         datasource=datasource,
         policy=policy,
         measurement=measurement,
@@ -315,7 +315,7 @@ local row = grafana.row;
       { w: 8, h: 8, x: 0, y: 86 + offset },
     )
     .addPanel(
-      space.update_rps(
+      operations.space_update_rps(
         datasource=datasource,
         policy=policy,
         measurement=measurement,
@@ -325,7 +325,7 @@ local row = grafana.row;
       { w: 8, h: 8, x: 8, y: 86 + offset },
     )
     .addPanel(
-      space.delete_rps(
+      operations.space_delete_rps(
         datasource=datasource,
         policy=policy,
         measurement=measurement,
@@ -333,5 +333,65 @@ local row = grafana.row;
         rate_time_range=rate_time_range,
       ),
       { w: 8, h: 8, x: 16, y: 86 + offset },
+    )
+    .addPanel(
+      operations.call_rps(
+        datasource=datasource,
+        policy=policy,
+        measurement=measurement,
+        job=job,
+        rate_time_range=rate_time_range,
+      ),
+      { w: 8, h: 8, x: 0, y: 94 + offset },
+    )
+    .addPanel(
+      operations.eval_rps(
+        datasource=datasource,
+        policy=policy,
+        measurement=measurement,
+        job=job,
+        rate_time_range=rate_time_range,
+      ),
+      { w: 8, h: 8, x: 8, y: 94 + offset },
+    )
+    .addPanel(
+      operations.error_rps(
+        datasource=datasource,
+        policy=policy,
+        measurement=measurement,
+        job=job,
+        rate_time_range=rate_time_range,
+      ),
+      { w: 8, h: 8, x: 16, y: 94 + offset },
+    )
+    .addPanel(
+      operations.auth_rps(
+        datasource=datasource,
+        policy=policy,
+        measurement=measurement,
+        job=job,
+        rate_time_range=rate_time_range,
+      ),
+      { w: 8, h: 8, x: 0, y: 102 + offset },
+    )
+    .addPanel(
+      operations.SQL_prepare_rps(
+        datasource=datasource,
+        policy=policy,
+        measurement=measurement,
+        job=job,
+        rate_time_range=rate_time_range,
+      ),
+      { w: 8, h: 8, x: 8, y: 102 + offset },
+    )
+    .addPanel(
+      operations.SQL_execute_rps(
+        datasource=datasource,
+        policy=policy,
+        measurement=measurement,
+        job=job,
+        rate_time_range=rate_time_range,
+      ),
+      { w: 8, h: 8, x: 16, y: 102 + offset },
     ),
 }
