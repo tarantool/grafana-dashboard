@@ -193,6 +193,68 @@ tests:
 
   - interval: 15s
     input_series:
+      - series: 'tnt_cartridge_issues{job="tarantool_app", instance="app:8081", alias="tnt_router", level="warning"}'
+        values: '0+0x2 1+0x8'
+      - series: 'tnt_cartridge_issues{job="tarantool_app", instance="app:8081", alias="tnt_router", level="critical"}'
+        values: '0+0x10'
+    alert_rule_test:
+      - eval_time: 2m
+        alertname: CartridgeWarningIssues
+        exp_alerts:
+          - exp_labels:
+              severity: warning
+              level: warning
+              instance: app:8081
+              alias: tnt_router
+              job: tarantool_app
+            exp_annotations:
+              summary: "Instance tnt_router have 'warning'-level Cartridge issues"
+              description: "Possible reasons: high replication lag, replication long idle,
+                failover or switchover issues, clock issues, memory fragmentation,
+                configuration issues, alien members."
+      - eval_time: 2m
+        alertname: CartridgeCriticalIssues
+        exp_alerts: # no alert firing
+
+
+  - interval: 15s
+    input_series:
+      - series: 'tnt_cartridge_issues{job="tarantool_app", instance="app:8081", alias="tnt_router", level="warning"}'
+        values: '0+0x2 2+0x8'
+      - series: 'tnt_cartridge_issues{job="tarantool_app", instance="app:8081", alias="tnt_router", level="critical"}'
+        values: '1+0x10'
+    alert_rule_test:
+      - eval_time: 2m
+        alertname: CartridgeWarningIssues
+        exp_alerts:
+          - exp_labels:
+              severity: warning
+              level: warning
+              instance: app:8081
+              alias: tnt_router
+              job: tarantool_app
+            exp_annotations:
+              summary: "Instance tnt_router have 'warning'-level Cartridge issues"
+              description: "Possible reasons: high replication lag, replication long idle,
+                failover or switchover issues, clock issues, memory fragmentation,
+                configuration issues, alien members."
+      - eval_time: 2m
+        alertname: CartridgeCriticalIssues
+        exp_alerts:
+          - exp_labels:
+              severity: page
+              level: critical
+              instance: app:8081
+              alias: tnt_router
+              job: tarantool_app
+            exp_annotations:
+              summary: "Instance tnt_router have 'critical'-level Cartridge issues"
+              description: "Possible reasons: replication process critical fail,
+                running out of available memory."
+
+
+  - interval: 15s
+    input_series:
         - series: http_server_request_latency_count{job="tarantool_app",instance="app:8081",path="/hello",method="GET",status="200",alias="tnt_router"}
           values: '0+100x60'
         - series: http_server_request_latency_sum{job="tarantool_app",instance="app:8081",path="/hello",method="GET",status="200",alias="tnt_router"}

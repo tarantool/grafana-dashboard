@@ -74,6 +74,299 @@
          "repeatIteration": null,
          "repeatRowId": null,
          "showTitle": true,
+         "title": "Cluster overview",
+         "titleSize": "h6",
+         "type": "row"
+      },
+      {
+         "aliasColors": { },
+         "bars": false,
+         "dashLength": 10,
+         "dashes": false,
+         "datasource": "${DS_INFLUXDB}",
+         "decimals": 0,
+         "description": "Number of \"warning\" issues on each cluster instance.\n\"warning\" issues includes high replication lag, replication long idle,\nfailover and switchover issues, clock issues, memory fragmentation,\nconfiguration issues and alien members warnings.\n",
+         "fill": 0,
+         "gridPos": {
+            "h": 6,
+            "w": 12,
+            "x": 0,
+            "y": 1
+         },
+         "id": 3,
+         "legend": {
+            "alignAsTable": true,
+            "avg": false,
+            "current": true,
+            "max": false,
+            "min": false,
+            "rightSide": false,
+            "show": true,
+            "sideWidth": null,
+            "sort": "current",
+            "sortDesc": true,
+            "total": false,
+            "values": true
+         },
+         "lines": true,
+         "linewidth": 1,
+         "links": [ ],
+         "nullPointMode": "null",
+         "percentage": false,
+         "pointradius": 5,
+         "points": false,
+         "renderer": "flot",
+         "repeat": null,
+         "seriesOverrides": [ ],
+         "spaceLength": 10,
+         "stack": false,
+         "steppedLine": false,
+         "targets": [
+            {
+               "alias": "$tag_label_pairs_alias",
+               "groupBy": [
+                  {
+                     "params": [
+                        "$__interval"
+                     ],
+                     "type": "time"
+                  },
+                  {
+                     "params": [
+                        "label_pairs_alias"
+                     ],
+                     "type": "tag"
+                  },
+                  {
+                     "params": [
+                        "none"
+                     ],
+                     "type": "fill"
+                  }
+               ],
+               "measurement": "${INFLUXDB_MEASUREMENT}",
+               "policy": "${INFLUXDB_POLICY}",
+               "refId": "A",
+               "resultFormat": "time_series",
+               "select": [
+                  [
+                     {
+                        "params": [
+                           "value"
+                        ],
+                        "type": "field"
+                     },
+                     {
+                        "params": [ ],
+                        "type": "last"
+                     }
+                  ]
+               ],
+               "tags": [
+                  {
+                     "key": "metric_name",
+                     "operator": "=",
+                     "value": "tnt_cartridge_issues"
+                  },
+                  {
+                     "condition": "AND",
+                     "key": "label_pairs_level",
+                     "operator": "=",
+                     "value": "warning"
+                  }
+               ]
+            }
+         ],
+         "thresholds": [ ],
+         "timeFrom": null,
+         "timeShift": null,
+         "title": "Cartridge warning issues",
+         "tooltip": {
+            "shared": true,
+            "sort": 2,
+            "value_type": "individual"
+         },
+         "type": "graph",
+         "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": [ ]
+         },
+         "yaxes": [
+            {
+               "decimals": 0,
+               "format": "none",
+               "label": null,
+               "logBase": 1,
+               "max": null,
+               "min": null,
+               "show": true
+            },
+            {
+               "decimals": 0,
+               "format": "none",
+               "label": null,
+               "logBase": 1,
+               "max": null,
+               "min": null,
+               "show": true
+            }
+         ]
+      },
+      {
+         "aliasColors": { },
+         "bars": false,
+         "dashLength": 10,
+         "dashes": false,
+         "datasource": "${DS_INFLUXDB}",
+         "decimals": 0,
+         "description": "Number of \"critical\" issues on each cluster instance.\n\"critical\" issues includes replication process critical fails and\nrunning out of available memory.\n",
+         "fill": 0,
+         "gridPos": {
+            "h": 6,
+            "w": 12,
+            "x": 12,
+            "y": 1
+         },
+         "id": 4,
+         "legend": {
+            "alignAsTable": true,
+            "avg": false,
+            "current": true,
+            "max": false,
+            "min": false,
+            "rightSide": false,
+            "show": true,
+            "sideWidth": null,
+            "sort": "current",
+            "sortDesc": true,
+            "total": false,
+            "values": true
+         },
+         "lines": true,
+         "linewidth": 1,
+         "links": [ ],
+         "nullPointMode": "null",
+         "percentage": false,
+         "pointradius": 5,
+         "points": false,
+         "renderer": "flot",
+         "repeat": null,
+         "seriesOverrides": [ ],
+         "spaceLength": 10,
+         "stack": false,
+         "steppedLine": false,
+         "targets": [
+            {
+               "alias": "$tag_label_pairs_alias",
+               "groupBy": [
+                  {
+                     "params": [
+                        "$__interval"
+                     ],
+                     "type": "time"
+                  },
+                  {
+                     "params": [
+                        "label_pairs_alias"
+                     ],
+                     "type": "tag"
+                  },
+                  {
+                     "params": [
+                        "none"
+                     ],
+                     "type": "fill"
+                  }
+               ],
+               "measurement": "${INFLUXDB_MEASUREMENT}",
+               "policy": "${INFLUXDB_POLICY}",
+               "refId": "A",
+               "resultFormat": "time_series",
+               "select": [
+                  [
+                     {
+                        "params": [
+                           "value"
+                        ],
+                        "type": "field"
+                     },
+                     {
+                        "params": [ ],
+                        "type": "last"
+                     }
+                  ]
+               ],
+               "tags": [
+                  {
+                     "key": "metric_name",
+                     "operator": "=",
+                     "value": "tnt_cartridge_issues"
+                  },
+                  {
+                     "condition": "AND",
+                     "key": "label_pairs_level",
+                     "operator": "=",
+                     "value": "critical"
+                  }
+               ]
+            }
+         ],
+         "thresholds": [ ],
+         "timeFrom": null,
+         "timeShift": null,
+         "title": "Cartridge critical issues",
+         "tooltip": {
+            "shared": true,
+            "sort": 2,
+            "value_type": "individual"
+         },
+         "type": "graph",
+         "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": [ ]
+         },
+         "yaxes": [
+            {
+               "decimals": 0,
+               "format": "none",
+               "label": null,
+               "logBase": 1,
+               "max": null,
+               "min": null,
+               "show": true
+            },
+            {
+               "decimals": 0,
+               "format": "none",
+               "label": null,
+               "logBase": 1,
+               "max": null,
+               "min": null,
+               "show": true
+            }
+         ]
+      },
+      {
+         "collapse": false,
+         "collapsed": false,
+         "gridPos": {
+            "h": 1,
+            "w": 24,
+            "x": 0,
+            "y": 7
+         },
+         "id": 5,
+         "panels": [ ],
+         "repeat": null,
+         "repeatIteration": null,
+         "repeatRowId": null,
+         "showTitle": true,
          "title": "Tarantool HTTP statistics",
          "titleSize": "h6",
          "type": "row"
@@ -91,9 +384,9 @@
             "h": 8,
             "w": 8,
             "x": 0,
-            "y": 1
+            "y": 8
          },
-         "id": 3,
+         "id": 6,
          "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -252,9 +545,9 @@
             "h": 8,
             "w": 8,
             "x": 8,
-            "y": 1
+            "y": 8
          },
-         "id": 4,
+         "id": 7,
          "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -413,9 +706,9 @@
             "h": 8,
             "w": 8,
             "x": 16,
-            "y": 1
+            "y": 8
          },
-         "id": 5,
+         "id": 8,
          "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -574,9 +867,9 @@
             "h": 8,
             "w": 8,
             "x": 0,
-            "y": 9
+            "y": 16
          },
-         "id": 6,
+         "id": 9,
          "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -735,9 +1028,9 @@
             "h": 8,
             "w": 8,
             "x": 8,
-            "y": 9
+            "y": 16
          },
-         "id": 7,
+         "id": 10,
          "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -896,9 +1189,9 @@
             "h": 8,
             "w": 8,
             "x": 16,
-            "y": 9
+            "y": 16
          },
-         "id": 8,
+         "id": 11,
          "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -1051,9 +1344,9 @@
             "h": 1,
             "w": 24,
             "x": 0,
-            "y": 17
+            "y": 24
          },
-         "id": 9,
+         "id": 12,
          "panels": [ ],
          "repeat": null,
          "repeatIteration": null,
@@ -1070,9 +1363,9 @@
             "h": 3,
             "w": 24,
             "x": 0,
-            "y": 18
+            "y": 25
          },
-         "id": 10,
+         "id": 13,
          "mode": "markdown",
          "title": "Slab allocator monitoring information",
          "type": "text"
@@ -1090,9 +1383,9 @@
             "h": 8,
             "w": 8,
             "x": 0,
-            "y": 21
+            "y": 28
          },
-         "id": 11,
+         "id": 14,
          "legend": {
             "alignAsTable": true,
             "avg": false,
@@ -1221,9 +1514,9 @@
             "h": 8,
             "w": 8,
             "x": 8,
-            "y": 21
+            "y": 28
          },
-         "id": 12,
+         "id": 15,
          "legend": {
             "alignAsTable": true,
             "avg": false,
@@ -1352,9 +1645,9 @@
             "h": 8,
             "w": 8,
             "x": 16,
-            "y": 21
+            "y": 28
          },
-         "id": 13,
+         "id": 16,
          "legend": {
             "alignAsTable": true,
             "avg": false,
@@ -1483,9 +1776,9 @@
             "h": 8,
             "w": 8,
             "x": 0,
-            "y": 29
+            "y": 36
          },
-         "id": 14,
+         "id": 17,
          "legend": {
             "alignAsTable": true,
             "avg": false,
@@ -1614,9 +1907,9 @@
             "h": 8,
             "w": 8,
             "x": 8,
-            "y": 29
+            "y": 36
          },
-         "id": 15,
+         "id": 18,
          "legend": {
             "alignAsTable": true,
             "avg": false,
@@ -1745,9 +2038,9 @@
             "h": 8,
             "w": 8,
             "x": 16,
-            "y": 29
+            "y": 36
          },
-         "id": 16,
+         "id": 19,
          "legend": {
             "alignAsTable": true,
             "avg": false,
@@ -1876,9 +2169,9 @@
             "h": 8,
             "w": 8,
             "x": 0,
-            "y": 37
+            "y": 44
          },
-         "id": 17,
+         "id": 20,
          "legend": {
             "alignAsTable": true,
             "avg": false,
@@ -2007,9 +2300,9 @@
             "h": 8,
             "w": 8,
             "x": 8,
-            "y": 37
+            "y": 44
          },
-         "id": 18,
+         "id": 21,
          "legend": {
             "alignAsTable": true,
             "avg": false,
@@ -2138,9 +2431,9 @@
             "h": 8,
             "w": 8,
             "x": 16,
-            "y": 37
+            "y": 44
          },
-         "id": 19,
+         "id": 22,
          "legend": {
             "alignAsTable": true,
             "avg": false,
@@ -2263,9 +2556,9 @@
             "h": 1,
             "w": 24,
             "x": 0,
-            "y": 45
+            "y": 52
          },
-         "id": 20,
+         "id": 23,
          "panels": [ ],
          "repeat": null,
          "repeatIteration": null,
@@ -2288,9 +2581,9 @@
             "h": 8,
             "w": 24,
             "x": 0,
-            "y": 46
+            "y": 53
          },
-         "id": 21,
+         "id": 24,
          "legend": {
             "alignAsTable": true,
             "avg": false,
@@ -2413,9 +2706,9 @@
             "h": 1,
             "w": 24,
             "x": 0,
-            "y": 54
+            "y": 61
          },
-         "id": 22,
+         "id": 25,
          "panels": [ ],
          "repeat": null,
          "repeatIteration": null,
@@ -2438,9 +2731,9 @@
             "h": 8,
             "w": 8,
             "x": 0,
-            "y": 55
+            "y": 62
          },
-         "id": 23,
+         "id": 26,
          "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -2581,9 +2874,9 @@
             "h": 8,
             "w": 8,
             "x": 8,
-            "y": 55
+            "y": 62
          },
-         "id": 24,
+         "id": 27,
          "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -2724,9 +3017,9 @@
             "h": 8,
             "w": 8,
             "x": 16,
-            "y": 55
+            "y": 62
          },
-         "id": 25,
+         "id": 28,
          "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -2867,9 +3160,9 @@
             "h": 8,
             "w": 8,
             "x": 0,
-            "y": 63
+            "y": 70
          },
-         "id": 26,
+         "id": 29,
          "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -3010,9 +3303,9 @@
             "h": 8,
             "w": 8,
             "x": 8,
-            "y": 63
+            "y": 70
          },
-         "id": 27,
+         "id": 30,
          "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -3153,9 +3446,9 @@
             "h": 8,
             "w": 8,
             "x": 16,
-            "y": 63
+            "y": 70
          },
-         "id": 28,
+         "id": 31,
          "legend": {
             "alignAsTable": true,
             "avg": true,

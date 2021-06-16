@@ -79,8 +79,31 @@ groups:
     annotations:
       summary: "Instance {{ $labels.alias }} low items memory remaining"
       description: "Low items memory (tuples) remaining for {{ $labels.alias }} instance of job {{ $labels.job }}.
-      You are likely to hit limit soon.
-      It is strongly recommended to increase memtx_memory or number of storages in case of sharded data."
+        You are likely to hit limit soon.
+        It is strongly recommended to increase memtx_memory or number of storages in case of sharded data."
+
+   # Warning for Cartridge warning issues.
+  - alert: CartridgeWarningIssues
+    expr: tnt_cartridge_issues{level="warning"} > 0
+    for: 1m
+    labels:
+      severity: warning
+    annotations:
+      summary: "Instance {{ $labels.alias }} have 'warning'-level Cartridge issues"
+      description: "Possible reasons: high replication lag, replication long idle,
+        failover or switchover issues, clock issues, memory fragmentation,
+        configuration issues, alien members."
+
+  # Alert for Cartridge critical issues.
+  - alert: CartridgeCriticalIssues
+    expr: tnt_cartridge_issues{level="critical"} > 0
+    for: 1m
+    labels:
+      severity: page
+    annotations:
+      summary: "Instance {{ $labels.alias }} have 'critical'-level Cartridge issues"
+      description: "Possible reasons: replication process critical fail,
+        running out of available memory."
 
 - name: tarantool-business
   rules:

@@ -3,6 +3,8 @@ local grafana = import 'grafonnet/grafana.libsonnet';
 local cluster = import 'cluster.libsonnet';
 local dashboard = import 'dashboard.libsonnet';
 
+local row = grafana.row;
+
 local raw_dashboard = grafana.dashboard.new(
   title='Example Prometheus dashboard',
   description='Example dashboard',
@@ -79,46 +81,50 @@ dashboard.build(
       label='rate() time range',
     ),
   ).addPanel(
+    row.new(title='Cluster overview'),
+    { w: 24, h: 1, x: 0, y: 0 }
+  )
+  .addPanel(
     cluster.health_overview_table(
       datasource=datasource,
       job=job,
     ),
-    { w: 12, h: 8, x: 0, y: 0 }
+    { w: 12, h: 8, x: 0, y: 1 }
   ).addPanel(
     cluster.health_overview_stat(
       datasource=datasource,
       job=job,
     ),
-    { w: 8, h: 3, x: 12, y: 0 }
+    { w: 8, h: 3, x: 12, y: 1 }
   ).addPanel(
     cluster.memory_used_stat(
       datasource=datasource,
       job=job,
     ),
-    { w: 4, h: 5, x: 12, y: 3 }
+    { w: 4, h: 5, x: 12, y: 4 }
   ).addPanel(
     cluster.memory_reserved_stat(
       datasource=datasource,
       job=job,
     ),
-    { w: 4, h: 5, x: 16, y: 3 }
+    { w: 4, h: 5, x: 16, y: 4 }
   ).addPanel(
     cluster.space_ops_stat(
       datasource=datasource,
       job=job,
       rate_time_range=rate_time_range,
     ),
-    { w: 4, h: 4, x: 20, y: 0 }
+    { w: 4, h: 4, x: 20, y: 1 }
   ).addPanel(
     cluster.http_rps_stat(
       datasource=datasource,
       job=job,
       rate_time_range=rate_time_range,
     ),
-    { w: 4, h: 4, x: 20, y: 4 }
+    { w: 4, h: 4, x: 20, y: 5 }
   ),
   datasource,
   job=job,
   rate_time_range=rate_time_range,
-  offset=8,
+  offset=9,
 )
