@@ -1215,6 +1215,475 @@
          "repeatIteration": null,
          "repeatRowId": null,
          "showTitle": true,
+         "title": "Tarantool network activity",
+         "titleSize": "h6",
+         "type": "row"
+      },
+      {
+         "aliasColors": { },
+         "bars": false,
+         "dashLength": 10,
+         "dashes": false,
+         "datasource": "${DS_PROMETHEUS}",
+         "decimals": 2,
+         "description": "Data received by instance from binary protocol connections.\nGraph shows average bytes per second.\n",
+         "fill": 0,
+         "gridPos": {
+            "h": 8,
+            "w": 12,
+            "x": 0,
+            "y": 33
+         },
+         "id": 19,
+         "legend": {
+            "alignAsTable": true,
+            "avg": true,
+            "current": true,
+            "max": true,
+            "min": false,
+            "rightSide": false,
+            "show": true,
+            "sideWidth": null,
+            "sort": "current",
+            "sortDesc": true,
+            "total": false,
+            "values": true
+         },
+         "lines": true,
+         "linewidth": 1,
+         "links": [ ],
+         "nullPointMode": "null",
+         "percentage": false,
+         "pointradius": 5,
+         "points": false,
+         "renderer": "flot",
+         "repeat": null,
+         "seriesOverrides": [ ],
+         "spaceLength": 10,
+         "stack": false,
+         "steppedLine": false,
+         "targets": [
+            {
+               "expr": "rate(tnt_net_received_total{job=~\"[[job]]\"}[$rate_time_range])",
+               "format": "time_series",
+               "intervalFactor": 2,
+               "legendFormat": "{{alias}}",
+               "refId": "A"
+            }
+         ],
+         "thresholds": [ ],
+         "timeFrom": null,
+         "timeShift": null,
+         "title": "Data received",
+         "tooltip": {
+            "shared": true,
+            "sort": 2,
+            "value_type": "individual"
+         },
+         "type": "graph",
+         "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": [ ]
+         },
+         "yaxes": [
+            {
+               "decimals": 0,
+               "format": "Bps",
+               "label": "received",
+               "logBase": 1,
+               "max": null,
+               "min": null,
+               "show": true
+            },
+            {
+               "decimals": 2,
+               "format": "Bps",
+               "label": null,
+               "logBase": 1,
+               "max": null,
+               "min": null,
+               "show": true
+            }
+         ]
+      },
+      {
+         "aliasColors": { },
+         "bars": false,
+         "dashLength": 10,
+         "dashes": false,
+         "datasource": "${DS_PROMETHEUS}",
+         "decimals": 2,
+         "description": "Data sent by instance with binary protocol connections.\nGraph shows average bytes per second.\n",
+         "fill": 0,
+         "gridPos": {
+            "h": 8,
+            "w": 12,
+            "x": 12,
+            "y": 33
+         },
+         "id": 20,
+         "legend": {
+            "alignAsTable": true,
+            "avg": true,
+            "current": true,
+            "max": true,
+            "min": false,
+            "rightSide": false,
+            "show": true,
+            "sideWidth": null,
+            "sort": "current",
+            "sortDesc": true,
+            "total": false,
+            "values": true
+         },
+         "lines": true,
+         "linewidth": 1,
+         "links": [ ],
+         "nullPointMode": "null",
+         "percentage": false,
+         "pointradius": 5,
+         "points": false,
+         "renderer": "flot",
+         "repeat": null,
+         "seriesOverrides": [ ],
+         "spaceLength": 10,
+         "stack": false,
+         "steppedLine": false,
+         "targets": [
+            {
+               "expr": "rate(tnt_net_sent_total{job=~\"[[job]]\"}[$rate_time_range])",
+               "format": "time_series",
+               "intervalFactor": 2,
+               "legendFormat": "{{alias}}",
+               "refId": "A"
+            }
+         ],
+         "thresholds": [ ],
+         "timeFrom": null,
+         "timeShift": null,
+         "title": "Data sent",
+         "tooltip": {
+            "shared": true,
+            "sort": 2,
+            "value_type": "individual"
+         },
+         "type": "graph",
+         "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": [ ]
+         },
+         "yaxes": [
+            {
+               "decimals": 0,
+               "format": "Bps",
+               "label": "sent",
+               "logBase": 1,
+               "max": null,
+               "min": null,
+               "show": true
+            },
+            {
+               "decimals": 2,
+               "format": "Bps",
+               "label": null,
+               "logBase": 1,
+               "max": null,
+               "min": null,
+               "show": true
+            }
+         ]
+      },
+      {
+         "aliasColors": { },
+         "bars": false,
+         "dashLength": 10,
+         "dashes": false,
+         "datasource": "${DS_PROMETHEUS}",
+         "decimals": 2,
+         "description": "Number of network requests this instance has handled.\nGraph shows mean rps.\n",
+         "fill": 0,
+         "gridPos": {
+            "h": 8,
+            "w": 8,
+            "x": 0,
+            "y": 41
+         },
+         "id": 21,
+         "legend": {
+            "alignAsTable": true,
+            "avg": true,
+            "current": true,
+            "max": true,
+            "min": false,
+            "rightSide": false,
+            "show": true,
+            "sideWidth": null,
+            "sort": "current",
+            "sortDesc": true,
+            "total": false,
+            "values": true
+         },
+         "lines": true,
+         "linewidth": 1,
+         "links": [ ],
+         "nullPointMode": "null",
+         "percentage": false,
+         "pointradius": 5,
+         "points": false,
+         "renderer": "flot",
+         "repeat": null,
+         "seriesOverrides": [ ],
+         "spaceLength": 10,
+         "stack": false,
+         "steppedLine": false,
+         "targets": [
+            {
+               "expr": "rate(tnt_net_requests_total{job=~\"[[job]]\"}[$rate_time_range])",
+               "format": "time_series",
+               "intervalFactor": 2,
+               "legendFormat": "{{alias}}",
+               "refId": "A"
+            }
+         ],
+         "thresholds": [ ],
+         "timeFrom": null,
+         "timeShift": null,
+         "title": "Network requests handled",
+         "tooltip": {
+            "shared": true,
+            "sort": 2,
+            "value_type": "individual"
+         },
+         "type": "graph",
+         "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": [ ]
+         },
+         "yaxes": [
+            {
+               "decimals": 0,
+               "format": "none",
+               "label": "requests per second",
+               "logBase": 1,
+               "max": null,
+               "min": null,
+               "show": true
+            },
+            {
+               "decimals": 2,
+               "format": "none",
+               "label": null,
+               "logBase": 1,
+               "max": null,
+               "min": null,
+               "show": true
+            }
+         ]
+      },
+      {
+         "aliasColors": { },
+         "bars": false,
+         "dashLength": 10,
+         "dashes": false,
+         "datasource": "${DS_PROMETHEUS}",
+         "decimals": 2,
+         "description": "Number of pending network requests.\n",
+         "fill": 0,
+         "gridPos": {
+            "h": 8,
+            "w": 8,
+            "x": 8,
+            "y": 41
+         },
+         "id": 22,
+         "legend": {
+            "alignAsTable": true,
+            "avg": true,
+            "current": true,
+            "max": true,
+            "min": false,
+            "rightSide": false,
+            "show": true,
+            "sideWidth": null,
+            "sort": "current",
+            "sortDesc": true,
+            "total": false,
+            "values": true
+         },
+         "lines": true,
+         "linewidth": 1,
+         "links": [ ],
+         "nullPointMode": "null",
+         "percentage": false,
+         "pointradius": 5,
+         "points": false,
+         "renderer": "flot",
+         "repeat": null,
+         "seriesOverrides": [ ],
+         "spaceLength": 10,
+         "stack": false,
+         "steppedLine": false,
+         "targets": [
+            {
+               "expr": "tnt_net_requests_current{job=~\"[[job]]\"}",
+               "format": "time_series",
+               "intervalFactor": 2,
+               "legendFormat": "{{alias}}",
+               "refId": "A"
+            }
+         ],
+         "thresholds": [ ],
+         "timeFrom": null,
+         "timeShift": null,
+         "title": "Network requests pending",
+         "tooltip": {
+            "shared": true,
+            "sort": 2,
+            "value_type": "individual"
+         },
+         "type": "graph",
+         "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": [ ]
+         },
+         "yaxes": [
+            {
+               "decimals": 0,
+               "format": "none",
+               "label": "pending",
+               "logBase": 1,
+               "max": null,
+               "min": null,
+               "show": true
+            },
+            {
+               "decimals": 2,
+               "format": "none",
+               "label": null,
+               "logBase": 1,
+               "max": null,
+               "min": null,
+               "show": true
+            }
+         ]
+      },
+      {
+         "aliasColors": { },
+         "bars": false,
+         "dashLength": 10,
+         "dashes": false,
+         "datasource": "${DS_PROMETHEUS}",
+         "decimals": 0,
+         "description": "Number of current active network connections.\n",
+         "fill": 0,
+         "gridPos": {
+            "h": 8,
+            "w": 8,
+            "x": 16,
+            "y": 41
+         },
+         "id": 23,
+         "legend": {
+            "alignAsTable": true,
+            "avg": true,
+            "current": true,
+            "max": true,
+            "min": false,
+            "rightSide": false,
+            "show": true,
+            "sideWidth": null,
+            "sort": "current",
+            "sortDesc": true,
+            "total": false,
+            "values": true
+         },
+         "lines": true,
+         "linewidth": 1,
+         "links": [ ],
+         "nullPointMode": "null",
+         "percentage": false,
+         "pointradius": 5,
+         "points": false,
+         "renderer": "flot",
+         "repeat": null,
+         "seriesOverrides": [ ],
+         "spaceLength": 10,
+         "stack": false,
+         "steppedLine": false,
+         "targets": [
+            {
+               "expr": "tnt_net_connections_current{job=~\"[[job]]\"}",
+               "format": "time_series",
+               "intervalFactor": 2,
+               "legendFormat": "{{alias}}",
+               "refId": "A"
+            }
+         ],
+         "thresholds": [ ],
+         "timeFrom": null,
+         "timeShift": null,
+         "title": "Binary protocol connections",
+         "tooltip": {
+            "shared": true,
+            "sort": 2,
+            "value_type": "individual"
+         },
+         "type": "graph",
+         "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": [ ]
+         },
+         "yaxes": [
+            {
+               "decimals": 0,
+               "format": "none",
+               "label": "current",
+               "logBase": 1,
+               "max": null,
+               "min": null,
+               "show": true
+            },
+            {
+               "decimals": 0,
+               "format": "none",
+               "label": null,
+               "logBase": 1,
+               "max": null,
+               "min": null,
+               "show": true
+            }
+         ]
+      },
+      {
+         "collapse": false,
+         "collapsed": false,
+         "gridPos": {
+            "h": 1,
+            "w": 24,
+            "x": 0,
+            "y": 49
+         },
+         "id": 24,
+         "panels": [ ],
+         "repeat": null,
+         "repeatIteration": null,
+         "repeatRowId": null,
+         "showTitle": true,
          "title": "Tarantool memory allocation overview",
          "titleSize": "h6",
          "type": "row"
@@ -1226,9 +1695,9 @@
             "h": 3,
             "w": 24,
             "x": 0,
-            "y": 33
+            "y": 50
          },
-         "id": 19,
+         "id": 25,
          "mode": "markdown",
          "title": "Slab allocator monitoring information",
          "type": "text"
@@ -1246,9 +1715,9 @@
             "h": 8,
             "w": 8,
             "x": 0,
-            "y": 36
+            "y": 53
          },
-         "id": 20,
+         "id": 26,
          "legend": {
             "alignAsTable": true,
             "avg": false,
@@ -1336,9 +1805,9 @@
             "h": 8,
             "w": 8,
             "x": 8,
-            "y": 36
+            "y": 53
          },
-         "id": 21,
+         "id": 27,
          "legend": {
             "alignAsTable": true,
             "avg": false,
@@ -1426,9 +1895,9 @@
             "h": 8,
             "w": 8,
             "x": 16,
-            "y": 36
+            "y": 53
          },
-         "id": 22,
+         "id": 28,
          "legend": {
             "alignAsTable": true,
             "avg": false,
@@ -1516,9 +1985,9 @@
             "h": 8,
             "w": 8,
             "x": 0,
-            "y": 44
+            "y": 61
          },
-         "id": 23,
+         "id": 29,
          "legend": {
             "alignAsTable": true,
             "avg": false,
@@ -1606,9 +2075,9 @@
             "h": 8,
             "w": 8,
             "x": 8,
-            "y": 44
+            "y": 61
          },
-         "id": 24,
+         "id": 30,
          "legend": {
             "alignAsTable": true,
             "avg": false,
@@ -1696,9 +2165,9 @@
             "h": 8,
             "w": 8,
             "x": 16,
-            "y": 44
+            "y": 61
          },
-         "id": 25,
+         "id": 31,
          "legend": {
             "alignAsTable": true,
             "avg": false,
@@ -1786,9 +2255,9 @@
             "h": 8,
             "w": 8,
             "x": 0,
-            "y": 52
+            "y": 69
          },
-         "id": 26,
+         "id": 32,
          "legend": {
             "alignAsTable": true,
             "avg": false,
@@ -1876,9 +2345,9 @@
             "h": 8,
             "w": 8,
             "x": 8,
-            "y": 52
+            "y": 69
          },
-         "id": 27,
+         "id": 33,
          "legend": {
             "alignAsTable": true,
             "avg": false,
@@ -1966,9 +2435,9 @@
             "h": 8,
             "w": 8,
             "x": 16,
-            "y": 52
+            "y": 69
          },
-         "id": 28,
+         "id": 34,
          "legend": {
             "alignAsTable": true,
             "avg": false,
@@ -2050,9 +2519,9 @@
             "h": 1,
             "w": 24,
             "x": 0,
-            "y": 60
+            "y": 77
          },
-         "id": 29,
+         "id": 35,
          "panels": [ ],
          "repeat": null,
          "repeatIteration": null,
@@ -2075,9 +2544,9 @@
             "h": 8,
             "w": 24,
             "x": 0,
-            "y": 61
+            "y": 78
          },
-         "id": 30,
+         "id": 36,
          "legend": {
             "alignAsTable": true,
             "avg": false,
@@ -2159,9 +2628,9 @@
             "h": 1,
             "w": 24,
             "x": 0,
-            "y": 69
+            "y": 86
          },
-         "id": 31,
+         "id": 37,
          "panels": [ ],
          "repeat": null,
          "repeatIteration": null,
@@ -2184,9 +2653,9 @@
             "h": 8,
             "w": 8,
             "x": 0,
-            "y": 70
+            "y": 87
          },
-         "id": 32,
+         "id": 38,
          "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -2274,9 +2743,9 @@
             "h": 8,
             "w": 8,
             "x": 8,
-            "y": 70
+            "y": 87
          },
-         "id": 33,
+         "id": 39,
          "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -2364,9 +2833,9 @@
             "h": 8,
             "w": 8,
             "x": 16,
-            "y": 70
+            "y": 87
          },
-         "id": 34,
+         "id": 40,
          "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -2454,9 +2923,9 @@
             "h": 8,
             "w": 8,
             "x": 0,
-            "y": 78
+            "y": 95
          },
-         "id": 35,
+         "id": 41,
          "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -2544,9 +3013,9 @@
             "h": 8,
             "w": 8,
             "x": 8,
-            "y": 78
+            "y": 95
          },
-         "id": 36,
+         "id": 42,
          "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -2634,9 +3103,9 @@
             "h": 8,
             "w": 8,
             "x": 16,
-            "y": 78
+            "y": 95
          },
-         "id": 37,
+         "id": 43,
          "legend": {
             "alignAsTable": true,
             "avg": true,
