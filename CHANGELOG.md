@@ -7,14 +7,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## Unreleased
 
 ## Added
-- Prometheus example alert rules (instance state, memory usage, HTTP load and latency rule examples)
+- Prometheus example alert rules (instance state, memory usage, HTTP load and latency rule examples, etc)
 - Test Prometheus example alert rules with promtool
 - Cartridge issues metrics labels to Telegraf configuration
+- Cartridge issues panels and "Cluster overview" row
 
 ## Changed
 - Update metrics version to 0.9.0
 - Separate app cluster and load generator in example docker stand
 - Use cartridge-cli to run and setup example app cluster instead of luatest
+- Group Prometheus cluster overview panels into "Cluster overview" row
 
 ## Fixed
 - Add missing space and replication metrics labels to Telegraf configuration

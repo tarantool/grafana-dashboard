@@ -2,6 +2,8 @@ local grafana = import 'grafonnet/grafana.libsonnet';
 
 local dashboard = import 'dashboard.libsonnet';
 
+local row = grafana.row;
+
 local raw_dashboard = grafana.dashboard.new(
   title='Example InfluxDB dashboard',
   description='Example dashboard',
@@ -45,8 +47,13 @@ dashboard.build(
     id='influxdb',
     name='InfluxDB',
     version='1.0.0'
+  )
+  .addPanel(
+    row.new(title='Cluster overview'),
+    { w: 24, h: 1, x: 0, y: 0 }
   ),
   datasource,
   policy=policy,
-  measurement=measurement
+  measurement=measurement,
+  offset=1,
 )

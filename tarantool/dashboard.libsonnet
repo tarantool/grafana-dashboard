@@ -1,5 +1,6 @@
 local grafana = import 'grafonnet/grafana.libsonnet';
 
+local cluster = import 'cluster.libsonnet';
 local http = import 'http.libsonnet';
 local memory_misc = import 'memory_misc.libsonnet';
 local slab = import 'slab.libsonnet';
@@ -36,8 +37,26 @@ local row = grafana.row;
       version=''
     )
     .addPanel(
+      cluster.cartridge_warning_issues(
+        datasource=datasource,
+        policy=policy,
+        measurement=measurement,
+        job=job,
+      ),
+      { w: 12, h: 6, x: 0, y: 0 + offset }
+    )
+    .addPanel(
+      cluster.cartridge_critical_issues(
+        datasource=datasource,
+        policy=policy,
+        measurement=measurement,
+        job=job,
+      ),
+      { w: 12, h: 6, x: 12, y: 0 + offset }
+    )
+    .addPanel(
       row.new(title='Tarantool HTTP statistics'),
-      { w: 24, h: 1, x: 0, y: 0 + offset }
+      { w: 24, h: 1, x: 0, y: 6 + offset }
     )
     .addPanel(
       http.rps_success(
@@ -47,7 +66,7 @@ local row = grafana.row;
         job=job,
         rate_time_range=rate_time_range,
       ),
-      { w: 8, h: 8, x: 0, y: 1 + offset }
+      { w: 8, h: 8, x: 0, y: 7 + offset }
     )
     .addPanel(
       http.rps_error_4xx(
@@ -57,7 +76,7 @@ local row = grafana.row;
         job=job,
         rate_time_range=rate_time_range,
       ),
-      { w: 8, h: 8, x: 8, y: 1 + offset },
+      { w: 8, h: 8, x: 8, y: 7 + offset },
     )
     .addPanel(
       http.rps_error_5xx(
@@ -67,7 +86,7 @@ local row = grafana.row;
         job=job,
         rate_time_range=rate_time_range,
       ),
-      { w: 8, h: 8, x: 16, y: 1 + offset },
+      { w: 8, h: 8, x: 16, y: 7 + offset },
     )
     .addPanel(
       http.latency_success(
@@ -76,7 +95,7 @@ local row = grafana.row;
         measurement=measurement,
         job=job,
       ),
-      { w: 8, h: 8, x: 0, y: 9 + offset }
+      { w: 8, h: 8, x: 0, y: 15 + offset }
     )
     .addPanel(
       http.latency_error_4xx(
@@ -85,7 +104,7 @@ local row = grafana.row;
         measurement=measurement,
         job=job,
       ),
-      { w: 8, h: 8, x: 8, y: 9 + offset },
+      { w: 8, h: 8, x: 8, y: 15 + offset },
     )
     .addPanel(
       http.latency_error_5xx(
@@ -94,15 +113,15 @@ local row = grafana.row;
         measurement=measurement,
         job=job,
       ),
-      { w: 8, h: 8, x: 16, y: 9 + offset },
+      { w: 8, h: 8, x: 16, y: 15 + offset },
     )
     .addPanel(
       row.new(title='Tarantool memory allocation overview'),
-      { w: 24, h: 1, x: 0, y: 17 + offset }
+      { w: 24, h: 1, x: 0, y: 23 + offset }
     )
     .addPanel(
       slab.monitor_info(),
-      { w: 24, h: 3, x: 0, y: 18 + offset }
+      { w: 24, h: 3, x: 0, y: 24 + offset }
     )
     .addPanel(
       slab.quota_used_ratio(
@@ -111,7 +130,7 @@ local row = grafana.row;
         measurement=measurement,
         job=job,
       ),
-      { w: 8, h: 8, x: 0, y: 21 + offset }
+      { w: 8, h: 8, x: 0, y: 27 + offset }
     )
     .addPanel(
       slab.arena_used_ratio(
@@ -120,7 +139,7 @@ local row = grafana.row;
         measurement=measurement,
         job=job,
       ),
-      { w: 8, h: 8, x: 8, y: 21 + offset },
+      { w: 8, h: 8, x: 8, y: 27 + offset },
     )
     .addPanel(
       slab.items_used_ratio(
@@ -129,7 +148,7 @@ local row = grafana.row;
         measurement=measurement,
         job=job,
       ),
-      { w: 8, h: 8, x: 16, y: 21 + offset },
+      { w: 8, h: 8, x: 16, y: 27 + offset },
     )
     .addPanel(
       slab.quota_used(
@@ -138,7 +157,7 @@ local row = grafana.row;
         measurement=measurement,
         job=job,
       ),
-      { w: 8, h: 8, x: 0, y: 29 + offset }
+      { w: 8, h: 8, x: 0, y: 35 + offset }
     )
     .addPanel(
       slab.arena_used(
@@ -147,7 +166,7 @@ local row = grafana.row;
         measurement=measurement,
         job=job,
       ),
-      { w: 8, h: 8, x: 8, y: 29 + offset },
+      { w: 8, h: 8, x: 8, y: 35 + offset },
     )
     .addPanel(
       slab.items_used(
@@ -156,7 +175,7 @@ local row = grafana.row;
         measurement=measurement,
         job=job,
       ),
-      { w: 8, h: 8, x: 16, y: 29 + offset },
+      { w: 8, h: 8, x: 16, y: 35 + offset },
     )
     .addPanel(
       slab.quota_size(
@@ -165,7 +184,7 @@ local row = grafana.row;
         measurement=measurement,
         job=job,
       ),
-      { w: 8, h: 8, x: 0, y: 37 + offset }
+      { w: 8, h: 8, x: 0, y: 43 + offset }
     )
     .addPanel(
       slab.arena_size(
@@ -174,7 +193,7 @@ local row = grafana.row;
         measurement=measurement,
         job=job,
       ),
-      { w: 8, h: 8, x: 8, y: 37 + offset },
+      { w: 8, h: 8, x: 8, y: 43 + offset },
     )
     .addPanel(
       slab.items_size(
@@ -183,11 +202,11 @@ local row = grafana.row;
         measurement=measurement,
         job=job,
       ),
-      { w: 8, h: 8, x: 16, y: 37 + offset },
+      { w: 8, h: 8, x: 16, y: 43 + offset },
     )
     .addPanel(
       row.new(title='Tarantool memory miscellaneous'),
-      { w: 24, h: 1, x: 0, y: 45 + offset }
+      { w: 24, h: 1, x: 0, y: 51 + offset }
     )
     .addPanel(
       memory_misc.lua_memory(
@@ -196,11 +215,11 @@ local row = grafana.row;
         measurement=measurement,
         job=job,
       ),
-      { w: 24, h: 8, x: 0, y: 46 + offset },
+      { w: 24, h: 8, x: 0, y: 52 + offset },
     )
     .addPanel(
       row.new(title='Tarantool spaces statistics'),
-      { w: 24, h: 1, x: 0, y: 54 + offset }
+      { w: 24, h: 1, x: 0, y: 60 + offset }
     )
     .addPanel(
       space.select_rps(
@@ -210,7 +229,7 @@ local row = grafana.row;
         job=job,
         rate_time_range=rate_time_range,
       ),
-      { w: 8, h: 8, x: 0, y: 55 + offset },
+      { w: 8, h: 8, x: 0, y: 61 + offset },
     )
     .addPanel(
       space.insert_rps(
@@ -220,7 +239,7 @@ local row = grafana.row;
         job=job,
         rate_time_range=rate_time_range,
       ),
-      { w: 8, h: 8, x: 8, y: 55 + offset },
+      { w: 8, h: 8, x: 8, y: 61 + offset },
     )
     .addPanel(
       space.replace_rps(
@@ -230,7 +249,7 @@ local row = grafana.row;
         job=job,
         rate_time_range=rate_time_range,
       ),
-      { w: 8, h: 8, x: 16, y: 55 + offset },
+      { w: 8, h: 8, x: 16, y: 61 + offset },
     )
     .addPanel(
       space.upsert_rps(
@@ -240,7 +259,7 @@ local row = grafana.row;
         job=job,
         rate_time_range=rate_time_range,
       ),
-      { w: 8, h: 8, x: 0, y: 63 + offset },
+      { w: 8, h: 8, x: 0, y: 69 + offset },
     )
     .addPanel(
       space.update_rps(
@@ -250,7 +269,7 @@ local row = grafana.row;
         job=job,
         rate_time_range=rate_time_range,
       ),
-      { w: 8, h: 8, x: 8, y: 63 + offset },
+      { w: 8, h: 8, x: 8, y: 69 + offset },
     )
     .addPanel(
       space.delete_rps(
@@ -260,6 +279,6 @@ local row = grafana.row;
         job=job,
         rate_time_range=rate_time_range,
       ),
-      { w: 8, h: 8, x: 16, y: 63 + offset },
+      { w: 8, h: 8, x: 16, y: 69 + offset },
     ),
 }
