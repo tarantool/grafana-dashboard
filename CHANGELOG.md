@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Test Prometheus example alert rules with promtool
 - Cartridge issues metrics labels to Telegraf configuration
 - Cartridge issues panels and "Cluster overview" row
+- Network activity row and panels
 
 ## Changed
 - Update metrics version to 0.9.0
