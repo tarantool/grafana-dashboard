@@ -18,6 +18,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Separate app cluster and load generator in example docker stand
 - Use cartridge-cli to run and setup example app cluster instead of luatest
 - Group Prometheus cluster overview panels into "Cluster overview" row
+- Use Tarantool 2.x instead of Tarantool 1.x in test app and load generator
 
 ## Fixed
 - Add missing space and replication metrics labels to Telegraf configuration
