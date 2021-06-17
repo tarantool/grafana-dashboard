@@ -353,15 +353,143 @@
          ]
       },
       {
+         "aliasColors": { },
+         "bars": false,
+         "dashLength": 10,
+         "dashes": false,
+         "datasource": "${DS_INFLUXDB}",
+         "description": "Replication lag value for Tarantool instance.\n",
+         "fill": 0,
+         "gridPos": {
+            "h": 8,
+            "w": 24,
+            "x": 12,
+            "y": 7
+         },
+         "id": 5,
+         "legend": {
+            "alignAsTable": true,
+            "avg": false,
+            "current": true,
+            "max": true,
+            "min": false,
+            "rightSide": false,
+            "show": true,
+            "sideWidth": null,
+            "sort": "current",
+            "sortDesc": true,
+            "total": false,
+            "values": true
+         },
+         "lines": true,
+         "linewidth": 1,
+         "links": [ ],
+         "nullPointMode": "null",
+         "percentage": false,
+         "pointradius": 5,
+         "points": false,
+         "renderer": "flot",
+         "repeat": null,
+         "seriesOverrides": [ ],
+         "spaceLength": 10,
+         "stack": false,
+         "steppedLine": false,
+         "targets": [
+            {
+               "alias": "$tag_label_pairs_alias",
+               "groupBy": [
+                  {
+                     "params": [
+                        "$__interval"
+                     ],
+                     "type": "time"
+                  },
+                  {
+                     "params": [
+                        "label_pairs_alias"
+                     ],
+                     "type": "tag"
+                  },
+                  {
+                     "params": [
+                        "none"
+                     ],
+                     "type": "fill"
+                  }
+               ],
+               "measurement": "${INFLUXDB_MEASUREMENT}",
+               "policy": "${INFLUXDB_POLICY}",
+               "refId": "A",
+               "resultFormat": "time_series",
+               "select": [
+                  [
+                     {
+                        "params": [
+                           "value"
+                        ],
+                        "type": "field"
+                     },
+                     {
+                        "params": [ ],
+                        "type": "mean"
+                     }
+                  ]
+               ],
+               "tags": [
+                  {
+                     "key": "metric_name",
+                     "operator": "=~",
+                     "value": "/tnt_replication_\\d{1,2}_lag/"
+                  }
+               ]
+            }
+         ],
+         "thresholds": [ ],
+         "timeFrom": null,
+         "timeShift": null,
+         "title": "Tarantool replication lag",
+         "tooltip": {
+            "shared": true,
+            "sort": 2,
+            "value_type": "individual"
+         },
+         "type": "graph",
+         "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": [ ]
+         },
+         "yaxes": [
+            {
+               "format": "s",
+               "label": null,
+               "logBase": 1,
+               "max": null,
+               "min": 0,
+               "show": true
+            },
+            {
+               "format": "s",
+               "label": null,
+               "logBase": 1,
+               "max": null,
+               "min": 0,
+               "show": true
+            }
+         ]
+      },
+      {
          "collapse": false,
          "collapsed": false,
          "gridPos": {
             "h": 1,
             "w": 24,
             "x": 0,
-            "y": 7
+            "y": 15
          },
-         "id": 5,
+         "id": 6,
          "panels": [ ],
          "repeat": null,
          "repeatIteration": null,
@@ -384,9 +512,9 @@
             "h": 8,
             "w": 8,
             "x": 0,
-            "y": 8
+            "y": 16
          },
-         "id": 6,
+         "id": 7,
          "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -545,9 +673,9 @@
             "h": 8,
             "w": 8,
             "x": 8,
-            "y": 8
+            "y": 16
          },
-         "id": 7,
+         "id": 8,
          "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -706,9 +834,9 @@
             "h": 8,
             "w": 8,
             "x": 16,
-            "y": 8
+            "y": 16
          },
-         "id": 8,
+         "id": 9,
          "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -867,9 +995,9 @@
             "h": 8,
             "w": 8,
             "x": 0,
-            "y": 16
+            "y": 24
          },
-         "id": 9,
+         "id": 10,
          "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -1028,9 +1156,9 @@
             "h": 8,
             "w": 8,
             "x": 8,
-            "y": 16
+            "y": 24
          },
-         "id": 10,
+         "id": 11,
          "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -1189,9 +1317,9 @@
             "h": 8,
             "w": 8,
             "x": 16,
-            "y": 16
+            "y": 24
          },
-         "id": 11,
+         "id": 12,
          "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -1344,9 +1472,9 @@
             "h": 1,
             "w": 24,
             "x": 0,
-            "y": 24
+            "y": 32
          },
-         "id": 12,
+         "id": 13,
          "panels": [ ],
          "repeat": null,
          "repeatIteration": null,
@@ -1369,9 +1497,9 @@
             "h": 8,
             "w": 12,
             "x": 0,
-            "y": 25
+            "y": 33
          },
-         "id": 13,
+         "id": 14,
          "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -1506,9 +1634,9 @@
             "h": 8,
             "w": 12,
             "x": 12,
-            "y": 25
+            "y": 33
          },
-         "id": 14,
+         "id": 15,
          "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -1643,9 +1771,9 @@
             "h": 8,
             "w": 8,
             "x": 0,
-            "y": 33
+            "y": 41
          },
-         "id": 15,
+         "id": 16,
          "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -1782,7 +1910,7 @@
             "x": 8,
             "y": 33
          },
-         "id": 16,
+         "id": 17,
          "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -1911,9 +2039,9 @@
             "h": 8,
             "w": 8,
             "x": 16,
-            "y": 33
+            "y": 41
          },
-         "id": 17,
+         "id": 18,
          "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -2036,9 +2164,9 @@
             "h": 1,
             "w": 24,
             "x": 0,
-            "y": 41
+            "y": 49
          },
-         "id": 18,
+         "id": 19,
          "panels": [ ],
          "repeat": null,
          "repeatIteration": null,
@@ -2055,9 +2183,9 @@
             "h": 3,
             "w": 24,
             "x": 0,
-            "y": 42
+            "y": 50
          },
-         "id": 19,
+         "id": 20,
          "mode": "markdown",
          "title": "Slab allocator monitoring information",
          "type": "text"
@@ -2075,9 +2203,9 @@
             "h": 8,
             "w": 8,
             "x": 0,
-            "y": 45
+            "y": 53
          },
-         "id": 20,
+         "id": 21,
          "legend": {
             "alignAsTable": true,
             "avg": false,
@@ -2206,9 +2334,9 @@
             "h": 8,
             "w": 8,
             "x": 8,
-            "y": 45
+            "y": 53
          },
-         "id": 21,
+         "id": 22,
          "legend": {
             "alignAsTable": true,
             "avg": false,
@@ -2337,9 +2465,9 @@
             "h": 8,
             "w": 8,
             "x": 16,
-            "y": 45
+            "y": 53
          },
-         "id": 22,
+         "id": 23,
          "legend": {
             "alignAsTable": true,
             "avg": false,
@@ -2468,9 +2596,9 @@
             "h": 8,
             "w": 8,
             "x": 0,
-            "y": 53
+            "y": 61
          },
-         "id": 23,
+         "id": 24,
          "legend": {
             "alignAsTable": true,
             "avg": false,
@@ -2599,9 +2727,9 @@
             "h": 8,
             "w": 8,
             "x": 8,
-            "y": 53
+            "y": 61
          },
-         "id": 24,
+         "id": 25,
          "legend": {
             "alignAsTable": true,
             "avg": false,
@@ -2730,9 +2858,9 @@
             "h": 8,
             "w": 8,
             "x": 16,
-            "y": 53
+            "y": 61
          },
-         "id": 25,
+         "id": 26,
          "legend": {
             "alignAsTable": true,
             "avg": false,
@@ -2861,9 +2989,9 @@
             "h": 8,
             "w": 8,
             "x": 0,
-            "y": 61
+            "y": 69
          },
-         "id": 26,
+         "id": 27,
          "legend": {
             "alignAsTable": true,
             "avg": false,
@@ -2992,9 +3120,9 @@
             "h": 8,
             "w": 8,
             "x": 8,
-            "y": 61
+            "y": 69
          },
-         "id": 27,
+         "id": 28,
          "legend": {
             "alignAsTable": true,
             "avg": false,
@@ -3123,9 +3251,9 @@
             "h": 8,
             "w": 8,
             "x": 16,
-            "y": 61
+            "y": 69
          },
-         "id": 28,
+         "id": 29,
          "legend": {
             "alignAsTable": true,
             "avg": false,
@@ -3248,9 +3376,9 @@
             "h": 1,
             "w": 24,
             "x": 0,
-            "y": 69
+            "y": 77
          },
-         "id": 29,
+         "id": 30,
          "panels": [ ],
          "repeat": null,
          "repeatIteration": null,
@@ -3273,9 +3401,9 @@
             "h": 8,
             "w": 12,
             "x": 0,
-            "y": 70
+            "y": 78
          },
-         "id": 30,
+         "id": 31,
          "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -3410,9 +3538,9 @@
             "h": 8,
             "w": 12,
             "x": 12,
-            "y": 70
+            "y": 78
          },
-         "id": 31,
+         "id": 32,
          "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -3541,9 +3669,9 @@
             "h": 1,
             "w": 24,
             "x": 0,
-            "y": 78
+            "y": 86
          },
-         "id": 32,
+         "id": 33,
          "panels": [ ],
          "repeat": null,
          "repeatIteration": null,
@@ -3566,9 +3694,9 @@
             "h": 8,
             "w": 24,
             "x": 0,
-            "y": 79
+            "y": 87
          },
-         "id": 33,
+         "id": 34,
          "legend": {
             "alignAsTable": true,
             "avg": false,
@@ -3691,9 +3819,9 @@
             "h": 1,
             "w": 24,
             "x": 0,
-            "y": 87
+            "y": 95
          },
-         "id": 34,
+         "id": 35,
          "panels": [ ],
          "repeat": null,
          "repeatIteration": null,
@@ -3716,9 +3844,9 @@
             "h": 8,
             "w": 8,
             "x": 0,
-            "y": 88
+            "y": 96
          },
-         "id": 35,
+         "id": 36,
          "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -3859,9 +3987,9 @@
             "h": 8,
             "w": 8,
             "x": 8,
-            "y": 88
+            "y": 96
          },
-         "id": 36,
+         "id": 37,
          "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -4002,9 +4130,9 @@
             "h": 8,
             "w": 8,
             "x": 16,
-            "y": 88
+            "y": 96
          },
-         "id": 37,
+         "id": 38,
          "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -4145,9 +4273,9 @@
             "h": 8,
             "w": 8,
             "x": 0,
-            "y": 98
+            "y": 104
          },
-         "id": 38,
+         "id": 39,
          "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -4288,9 +4416,9 @@
             "h": 8,
             "w": 8,
             "x": 8,
-            "y": 98
+            "y": 104
          },
-         "id": 39,
+         "id": 40,
          "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -4431,9 +4559,9 @@
             "h": 8,
             "w": 8,
             "x": 16,
-            "y": 98
+            "y": 104
          },
-         "id": 40,
+         "id": 41,
          "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -4574,9 +4702,9 @@
             "h": 8,
             "w": 8,
             "x": 0,
-            "y": 104
+            "y": 112
          },
-         "id": 41,
+         "id": 42,
          "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -4717,9 +4845,9 @@
             "h": 8,
             "w": 8,
             "x": 8,
-            "y": 104
+            "y": 112
          },
-         "id": 42,
+         "id": 43,
          "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -4860,9 +4988,9 @@
             "h": 8,
             "w": 8,
             "x": 16,
-            "y": 104
+            "y": 112
          },
-         "id": 43,
+         "id": 44,
          "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -5003,9 +5131,9 @@
             "h": 8,
             "w": 8,
             "x": 0,
-            "y": 112
+            "y": 120
          },
-         "id": 44,
+         "id": 45,
          "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -5146,9 +5274,9 @@
             "h": 8,
             "w": 8,
             "x": 8,
-            "y": 112
+            "y": 120
          },
-         "id": 45,
+         "id": 46,
          "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -5289,9 +5417,9 @@
             "h": 8,
             "w": 8,
             "x": 16,
-            "y": 112
+            "y": 120
          },
-         "id": 46,
+         "id": 47,
          "legend": {
             "alignAsTable": true,
             "avg": true,

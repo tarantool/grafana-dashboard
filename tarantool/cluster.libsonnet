@@ -370,4 +370,43 @@ local prometheus = grafana.prometheus;
     level='critical',
   ),
 
+  replication_lag(
+    title='Tarantool replication lag',
+    description=|||
+      Replication lag value for Tarantool instance.
+    |||,
+    datasource=null,
+    policy=null,
+    measurement=null,
+    job=null,
+  ):: graph.new(
+    title=title,
+    description=description,
+    datasource=datasource,
+
+    format='s',
+    fill=0,
+    min=0,
+    sort='decreasing',
+    legend_alignAsTable=true,
+    legend_current=true,
+    legend_max=true,
+    legend_values=true,
+    legend_sort='current',
+    legend_sortDesc=true,
+  ).addTarget(
+    if datasource == '${DS_PROMETHEUS}' then
+      prometheus.target(
+        expr=std.format('{__name__=~"tnt_replication_[[:digit:]]{1,2}_lag", job=~"%s"}', [job]),
+        legendFormat='{{alias}}',
+      )
+    else if datasource == '${DS_INFLUXDB}' then
+      influxdb.target(
+        policy=policy,
+        measurement=measurement,
+        group_tags=['label_pairs_alias'],
+        alias='$tag_label_pairs_alias',
+      ).where('metric_name', '=~', '/tnt_replication_\\d{1,2}_lag/')
+      .selectField('value').addConverter('mean')
+  ),
 }

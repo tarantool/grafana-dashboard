@@ -14,6 +14,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Network activity row and panels
 - Non-CRUD operations panels
 - CPU time getrusage panels
+- Replication lag panel
 
 ## Changed
 - Update metrics version to 0.9.0

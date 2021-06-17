@@ -105,6 +105,17 @@ groups:
       description: "Possible reasons: replication process critical fail,
         running out of available memory."
 
+  
+  - alert: HighReplicationLag
+    expr: '{__name__=~"tnt_replication_[[:digit:]]{1,2}_lag"} > 1'
+    for: 1m
+    labels:
+      severity: warning
+    annotations:
+      summary: "Instance {{ $labels.alias }} have high replication lag"
+      description: "Instance {{ $labels.alias }} of job {{ $labels.job }} have high replication lag,
+        check up your network and cluster state."
+
 - name: tarantool-business
   rules:
   # Warning for any endpoint of an instance in tarantool_app job that responds too long.
