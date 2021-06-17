@@ -21,9 +21,10 @@ local prometheus = grafana.prometheus;
     datasource=datasource,
 
     format='none',
+    min=0,
     labelY1=labelY1,
     fill=0,
-    decimals=2,
+    decimals=3,
     decimalsY1=0,
     sort='decreasing',
     legend_alignAsTable=true,
@@ -67,6 +68,8 @@ local prometheus = grafana.prometheus;
         std.format(|||
           total count of %s requests to all instance spaces.
           Graph shows average requests per second.
+          If `No data` displayed for Prometheus panel,
+          check up your 'rate_time_range' variable.
         |||, std.asciiUpper(operation))
     ),
     datasource=datasource,
@@ -197,6 +200,8 @@ local prometheus = grafana.prometheus;
     description=|||
       Requests to execute stored procedures.
       Graph shows average requests per second.
+      If `No data` displayed for Prometheus panel,
+      check up your 'rate_time_range' variable.
     |||,
     datasource=null,
     policy=null,
@@ -220,6 +225,8 @@ local prometheus = grafana.prometheus;
     description=|||
       Calls to evaluate Lua code.
       Graph shows average requests per second.
+      If `No data` displayed for Prometheus panel,
+      check up your 'rate_time_range' variable.
     |||,
     datasource=null,
     policy=null,
@@ -243,6 +250,8 @@ local prometheus = grafana.prometheus;
     description=|||
       Requests resulted in error.
       Graph shows average errors per second.
+      If `No data` displayed for Prometheus panel,
+      check up your 'rate_time_range' variable.
     |||,
     datasource=null,
     policy=null,
@@ -266,6 +275,8 @@ local prometheus = grafana.prometheus;
     description=|||
       Authentication requests.
       Graph shows average errors per second.
+      If `No data` displayed for Prometheus panel,
+      check up your 'rate_time_range' variable.
     |||,
     datasource=null,
     policy=null,
@@ -287,8 +298,10 @@ local prometheus = grafana.prometheus;
   SQL_prepare_rps(
     title='SQL prepare calls',
     description=|||
-      SQL prepare calls.
+      SQL prepare calls. Panel works with Tarantool 2.x.
       Graph shows average errors per second.
+      If `No data` displayed for Prometheus panel,
+      check up your 'rate_time_range' variable.
     |||,
     datasource=null,
     policy=null,
@@ -310,8 +323,10 @@ local prometheus = grafana.prometheus;
   SQL_execute_rps(
     title='SQL execute calls',
     description=|||
-      SQL execute calls.
+      SQL execute calls. Panel works with Tarantool 2.x.
       Graph shows average errors per second.
+      If `No data` displayed for Prometheus panel,
+      check up your 'rate_time_range' variable.
     |||,
     datasource=null,
     policy=null,

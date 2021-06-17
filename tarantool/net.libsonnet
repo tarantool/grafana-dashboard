@@ -21,9 +21,10 @@ local prometheus = grafana.prometheus;
     datasource=datasource,
 
     format='Bps',
+    min=0,
     labelY1=labelY1,
     fill=0,
-    decimals=2,
+    decimals=3,
     decimalsY1=0,
     sort='decreasing',
     legend_alignAsTable=true,
@@ -55,6 +56,8 @@ local prometheus = grafana.prometheus;
     description=|||
       Data received by instance from binary protocol connections.
       Graph shows average bytes per second.
+      If `No data` displayed for Prometheus panel,
+      check up your 'rate_time_range' variable.
     |||,
     datasource=null,
     policy=null,
@@ -78,6 +81,8 @@ local prometheus = grafana.prometheus;
     description=|||
       Data sent by instance with binary protocol connections.
       Graph shows average bytes per second.
+      If `No data` displayed for Prometheus panel,
+      check up your 'rate_time_range' variable.
     |||,
     datasource=null,
     policy=null,
@@ -101,6 +106,8 @@ local prometheus = grafana.prometheus;
     description=|||
       Number of network requests this instance has handled.
       Graph shows mean rps.
+      If `No data` displayed for Prometheus panel,
+      check up your 'rate_time_range' variable.
     |||,
 
     datasource=null,
@@ -114,9 +121,10 @@ local prometheus = grafana.prometheus;
     datasource=datasource,
 
     format='none',
+    min=0,
     labelY1='requests per second',
     fill=0,
-    decimals=2,
+    decimals=3,
     decimalsY1=0,
     sort='decreasing',
     legend_alignAsTable=true,
@@ -158,10 +166,10 @@ local prometheus = grafana.prometheus;
     datasource=datasource,
 
     format='none',
+    min=0,
+    decimals=0,
     labelY1='pending',
     fill=0,
-    decimals=2,
-    decimalsY1=0,
     sort='decreasing',
     legend_alignAsTable=true,
     legend_avg=true,
@@ -202,6 +210,7 @@ local prometheus = grafana.prometheus;
     datasource=datasource,
 
     format='none',
+    min=0,
     labelY1='current',
     fill=0,
     decimals=0,

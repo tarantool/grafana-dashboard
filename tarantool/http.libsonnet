@@ -21,9 +21,10 @@ local prometheus = grafana.prometheus;
     datasource=datasource,
 
     format='none',
+    min=0,
     labelY1='requests per second',
     fill=0,
-    decimals=2,
+    decimals=3,
     decimalsY1=0,
     sort='decreasing',
     legend_alignAsTable=true,
@@ -55,6 +56,8 @@ local prometheus = grafana.prometheus;
     description=|||
       Requests, processed with success (code 2xx) on Tarantool's side.
       Graph shows mean count per second.
+      If `No data` displayed for Prometheus panel,
+      check up your 'rate_time_range' variable.
     |||,
 
     datasource=null,
@@ -80,6 +83,8 @@ local prometheus = grafana.prometheus;
     description=|||
       Requests, processed with 4xx error on Tarantool's side.
       Graph shows mean count per second.
+      If `No data` displayed for Prometheus panel,
+      check up your 'rate_time_range' variable.
     |||,
 
     datasource=null,
@@ -105,6 +110,8 @@ local prometheus = grafana.prometheus;
     description=|||
       Requests, processed with 5xx error on Tarantool's side.
       Graph shows mean count per second.
+      If `No data` displayed for Prometheus panel,
+      check up your 'rate_time_range' variable.
     |||,
 
     datasource=null,
@@ -142,10 +149,10 @@ local prometheus = grafana.prometheus;
     datasource=datasource,
 
     format='s',
+    min=0,
     labelY1=label,
     fill=0,
     decimals=3,
-    decimalsY1=2,
     sort='decreasing',
     legend_alignAsTable=true,
     legend_avg=true,

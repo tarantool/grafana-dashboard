@@ -20,6 +20,7 @@ local prometheus = grafana.prometheus;
     datasource=datasource,
 
     format='s',
+    min=0,
     labelY1='time per minute',
     fill=0,
     decimals=3,
@@ -52,9 +53,12 @@ local prometheus = grafana.prometheus;
   getrusage_cpu_user_time(
     title='CPU user time',
     description=|||
+      Panel works with `metrics >= 0.8.0`.
       This is the average amount of time per minute
       spent by instance process executing in user mode.
       Metrics obtained using `getrusage()` call.
+      If `No data` displayed for Prometheus panel,
+      check up your 'rate_time_range' variable.
     |||,
     datasource=null,
     policy=null,
@@ -75,9 +79,12 @@ local prometheus = grafana.prometheus;
   getrusage_cpu_system_time(
     title='CPU system time',
     description=|||
+      Panel works with `metrics >= 0.8.0`.
       This is the average amount of time per minute
       spent by instance process executing in kernel mode.
       Metrics obtained using `getrusage()` call.
+      If `No data` displayed for Prometheus panel,
+      check up your 'rate_time_range' variable.
     |||,
     datasource=null,
     policy=null,

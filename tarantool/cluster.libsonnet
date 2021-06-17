@@ -243,6 +243,7 @@ local prometheus = grafana.prometheus;
           |||
             Overall rate of operations performed on Tarantool spaces (*select*, *insert*, *update* etc.).
             If Tarantool instance is not available for Prometheus metrics extraction now, its contribution is not counted.
+            If `No data` displayed, check up your 'rate_time_range' variable.
           |||
         else
           null
@@ -252,7 +253,7 @@ local prometheus = grafana.prometheus;
     measurement=measurement,
     job=job,
     stat_title='Overall space load:',
-    decimals=2,
+    decimals=3,
     unit='ops',
     expr=std.format('sum(rate(tnt_stats_op_total{job=~"%s"}[%s]))', [job, rate_time_range]),
   ),
@@ -275,6 +276,7 @@ local prometheus = grafana.prometheus;
           |||
             Overall rate of requests processed on Tarantool instances (all methods and response codes).
             If Tarantool instance is not available for Prometheus metrics extraction now, its contribution is not counted.
+            If `No data` displayed, check up your 'rate_time_range' variable.
           |||
         else
           null
@@ -284,7 +286,7 @@ local prometheus = grafana.prometheus;
     measurement=measurement,
     job=job,
     stat_title='Overall HTTP load:',
-    decimals=2,
+    decimals=3,
     unit='reqps',
     expr=std.format('sum(rate(http_server_request_latency_count{job=~"%s"}[%s]))', [job, rate_time_range]),
   ),
@@ -303,6 +305,7 @@ local prometheus = grafana.prometheus;
     datasource=datasource,
 
     format='none',
+    min=0,
     fill=0,
     decimals=0,
     sort='decreasing',
@@ -331,6 +334,8 @@ local prometheus = grafana.prometheus;
     title='Cartridge warning issues',
     description=|||
       Number of "warning" issues on each cluster instance.
+      Panel works with `cartridge >= 2.0.2`, `metrics >= 0.6.0`,
+      while `metrics >= 0.9.0` is recommended for per instance display.
       "warning" issues includes high replication lag, replication long idle,
       failover and switchover issues, clock issues, memory fragmentation,
       configuration issues and alien members warnings.
@@ -353,6 +358,8 @@ local prometheus = grafana.prometheus;
     title='Cartridge critical issues',
     description=|||
       Number of "critical" issues on each cluster instance.
+      Panel works with `cartridge >= 2.0.2`, `metrics >= 0.6.0`,
+      while `metrics >= 0.9.0` is recommended for per instance display.
       "critical" issues includes replication process critical fails and
       running out of available memory.
     |||,
