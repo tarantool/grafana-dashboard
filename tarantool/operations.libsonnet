@@ -287,7 +287,7 @@ local prometheus = grafana.prometheus;
   SQL_prepare_rps(
     title='SQL prepare calls',
     description=|||
-      SQL prepare calls.
+      SQL prepare calls. Panel works with Tarantool 2.x.
       Graph shows average errors per second.
     |||,
     datasource=null,
@@ -310,7 +310,7 @@ local prometheus = grafana.prometheus;
   SQL_execute_rps(
     title='SQL execute calls',
     description=|||
-      SQL execute calls.
+      SQL execute calls. Panel works with Tarantool 2.x.
       Graph shows average errors per second.
     |||,
     datasource=null,

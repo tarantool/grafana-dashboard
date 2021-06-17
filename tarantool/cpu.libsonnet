@@ -52,6 +52,7 @@ local prometheus = grafana.prometheus;
   getrusage_cpu_user_time(
     title='CPU user time',
     description=|||
+      Panel works with `metrics >= 0.8.0`.
       This is the average amount of time per minute
       spent by instance process executing in user mode.
       Metrics obtained using `getrusage()` call.
@@ -75,6 +76,7 @@ local prometheus = grafana.prometheus;
   getrusage_cpu_system_time(
     title='CPU system time',
     description=|||
+      Panel works with `metrics >= 0.8.0`.
       This is the average amount of time per minute
       spent by instance process executing in kernel mode.
       Metrics obtained using `getrusage()` call.

@@ -468,7 +468,7 @@
          "dashes": false,
          "datasource": "${DS_PROMETHEUS}",
          "decimals": 0,
-         "description": "Number of \"warning\" issues on each cluster instance.\n\"warning\" issues includes high replication lag, replication long idle,\nfailover and switchover issues, clock issues, memory fragmentation,\nconfiguration issues and alien members warnings.\n",
+         "description": "Number of \"warning\" issues on each cluster instance.\nPanel works with `cartridge >= 2.0.2`, `metrics >= 0.6.0`,\nwhile `metrics >= 0.9.0` is recommended for per instance display.\n\"warning\" issues includes high replication lag, replication long idle,\nfailover and switchover issues, clock issues, memory fragmentation,\nconfiguration issues and alien members warnings.\n",
          "fill": 0,
          "gridPos": {
             "h": 6,
@@ -558,7 +558,7 @@
          "dashes": false,
          "datasource": "${DS_PROMETHEUS}",
          "decimals": 0,
-         "description": "Number of \"critical\" issues on each cluster instance.\n\"critical\" issues includes replication process critical fails and\nrunning out of available memory.\n",
+         "description": "Number of \"critical\" issues on each cluster instance.\nPanel works with `cartridge >= 2.0.2`, `metrics >= 0.6.0`,\nwhile `metrics >= 0.9.0` is recommended for per instance display.\n\"critical\" issues includes replication process critical fails and\nrunning out of available memory.\n",
          "fill": 0,
          "gridPos": {
             "h": 6,
@@ -3833,7 +3833,7 @@
          "dashes": false,
          "datasource": "${DS_PROMETHEUS}",
          "decimals": 2,
-         "description": "SQL prepare calls.\nGraph shows average errors per second.\n",
+         "description": "SQL prepare calls. Panel works with Tarantool 2.x.\nGraph shows average errors per second.\n",
          "fill": 0,
          "gridPos": {
             "h": 8,
@@ -3923,7 +3923,7 @@
          "dashes": false,
          "datasource": "${DS_PROMETHEUS}",
          "decimals": 2,
-         "description": "SQL execute calls.\nGraph shows average errors per second.\n",
+         "description": "SQL execute calls. Panel works with Tarantool 2.x.\nGraph shows average errors per second.\n",
          "fill": 0,
          "gridPos": {
             "h": 8,

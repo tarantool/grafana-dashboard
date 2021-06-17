@@ -331,6 +331,8 @@ local prometheus = grafana.prometheus;
     title='Cartridge warning issues',
     description=|||
       Number of "warning" issues on each cluster instance.
+      Panel works with `cartridge >= 2.0.2`, `metrics >= 0.6.0`,
+      while `metrics >= 0.9.0` is recommended for per instance display.
       "warning" issues includes high replication lag, replication long idle,
       failover and switchover issues, clock issues, memory fragmentation,
       configuration issues and alien members warnings.
@@ -353,6 +355,8 @@ local prometheus = grafana.prometheus;
     title='Cartridge critical issues',
     description=|||
       Number of "critical" issues on each cluster instance.
+      Panel works with `cartridge >= 2.0.2`, `metrics >= 0.6.0`,
+      while `metrics >= 0.9.0` is recommended for per instance display.
       "critical" issues includes replication process critical fails and
       running out of available memory.
     |||,
