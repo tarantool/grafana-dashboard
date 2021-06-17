@@ -167,7 +167,7 @@ local row = grafana.row;
         measurement=measurement,
         job=job,
       ),
-      { w: 8, h: 8, x: 8, y: 32 + offset }
+      { w: 8, h: 8, x: 8, y: 40 + offset }
     )
     .addPanel(
       net.current_connections(
