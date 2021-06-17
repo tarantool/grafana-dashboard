@@ -2,11 +2,11 @@
 
 Dashboard for Tarantool application and database server monitoring, based on [grafonnet](https://github.com/grafana/grafonnet-lib) library.
 
-Our pages on Grafana Official & community built dashboards: [InfluxDB](https://grafana.com/grafana/dashboards/12567), [Prometheus](https://grafana.com/grafana/dashboards/13054).
+Our pages on Grafana Official & community built dashboards: [InfluxDB version](https://grafana.com/grafana/dashboards/12567), [Prometheus version](https://grafana.com/grafana/dashboards/13054).
 
 Refer to dashboard [documentation page](https://www.tarantool.io/en/doc/latest/book/monitoring/grafana_dashboard/) for prerequirements and installation guide.
 
-<img src="./doc/monitoring/images/Prometheus_dashboard_1.png" width="310"/> <img src="./doc/monitoring/images/Prometheus_dashboard_2.png" width="310"/> <img src="./doc/monitoring/images/Prometheus_dashboard_3.png" width="310"/> 
+<img src="./doc/monitoring/images/Prometheus_dashboard_1.png" width="300"/> <img src="./doc/monitoring/images/Prometheus_dashboard_2.png" width="300"/> <img src="./doc/monitoring/images/Prometheus_dashboard_3.png" width="300"/> 
 
 # How to build
 
