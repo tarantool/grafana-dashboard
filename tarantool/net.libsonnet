@@ -55,6 +55,8 @@ local prometheus = grafana.prometheus;
     description=|||
       Data received by instance from binary protocol connections.
       Graph shows average bytes per second.
+      If `No data` displayed for Prometheus panel,
+      check up your 'rate_time_range' variable.
     |||,
     datasource=null,
     policy=null,
@@ -78,6 +80,8 @@ local prometheus = grafana.prometheus;
     description=|||
       Data sent by instance with binary protocol connections.
       Graph shows average bytes per second.
+      If `No data` displayed for Prometheus panel,
+      check up your 'rate_time_range' variable.
     |||,
     datasource=null,
     policy=null,
@@ -101,6 +105,8 @@ local prometheus = grafana.prometheus;
     description=|||
       Number of network requests this instance has handled.
       Graph shows mean rps.
+      If `No data` displayed for Prometheus panel,
+      check up your 'rate_time_range' variable.
     |||,
 
     datasource=null,

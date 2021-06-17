@@ -56,6 +56,8 @@ local prometheus = grafana.prometheus;
       This is the average amount of time per minute
       spent by instance process executing in user mode.
       Metrics obtained using `getrusage()` call.
+      If `No data` displayed for Prometheus panel,
+      check up your 'rate_time_range' variable.
     |||,
     datasource=null,
     policy=null,
@@ -80,6 +82,8 @@ local prometheus = grafana.prometheus;
       This is the average amount of time per minute
       spent by instance process executing in kernel mode.
       Metrics obtained using `getrusage()` call.
+      If `No data` displayed for Prometheus panel,
+      check up your 'rate_time_range' variable.
     |||,
     datasource=null,
     policy=null,

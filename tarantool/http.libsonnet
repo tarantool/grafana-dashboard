@@ -55,6 +55,8 @@ local prometheus = grafana.prometheus;
     description=|||
       Requests, processed with success (code 2xx) on Tarantool's side.
       Graph shows mean count per second.
+      If `No data` displayed for Prometheus panel,
+      check up your 'rate_time_range' variable.
     |||,
 
     datasource=null,
@@ -80,6 +82,8 @@ local prometheus = grafana.prometheus;
     description=|||
       Requests, processed with 4xx error on Tarantool's side.
       Graph shows mean count per second.
+      If `No data` displayed for Prometheus panel,
+      check up your 'rate_time_range' variable.
     |||,
 
     datasource=null,
@@ -105,6 +109,8 @@ local prometheus = grafana.prometheus;
     description=|||
       Requests, processed with 5xx error on Tarantool's side.
       Graph shows mean count per second.
+      If `No data` displayed for Prometheus panel,
+      check up your 'rate_time_range' variable.
     |||,
 
     datasource=null,

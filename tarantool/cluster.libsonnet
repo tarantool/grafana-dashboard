@@ -243,6 +243,7 @@ local prometheus = grafana.prometheus;
           |||
             Overall rate of operations performed on Tarantool spaces (*select*, *insert*, *update* etc.).
             If Tarantool instance is not available for Prometheus metrics extraction now, its contribution is not counted.
+            If `No data` displayed, check up your 'rate_time_range' variable.
           |||
         else
           null
@@ -275,6 +276,7 @@ local prometheus = grafana.prometheus;
           |||
             Overall rate of requests processed on Tarantool instances (all methods and response codes).
             If Tarantool instance is not available for Prometheus metrics extraction now, its contribution is not counted.
+            If `No data` displayed, check up your 'rate_time_range' variable.
           |||
         else
           null

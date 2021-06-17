@@ -347,7 +347,7 @@
       },
       {
          "datasource": "${DS_PROMETHEUS}",
-         "description": "Overall rate of operations performed on Tarantool spaces (*select*, *insert*, *update* etc.).\nIf Tarantool instance is not available for Prometheus metrics extraction now, its contribution is not counted.\n",
+         "description": "Overall rate of operations performed on Tarantool spaces (*select*, *insert*, *update* etc.).\nIf Tarantool instance is not available for Prometheus metrics extraction now, its contribution is not counted.\nIf `No data` displayed, check up your 'rate_time_range' variable.\n",
          "gridPos": {
             "h": 4,
             "w": 4,
@@ -405,7 +405,7 @@
       },
       {
          "datasource": "${DS_PROMETHEUS}",
-         "description": "Overall rate of requests processed on Tarantool instances (all methods and response codes).\nIf Tarantool instance is not available for Prometheus metrics extraction now, its contribution is not counted.\n",
+         "description": "Overall rate of requests processed on Tarantool instances (all methods and response codes).\nIf Tarantool instance is not available for Prometheus metrics extraction now, its contribution is not counted.\nIf `No data` displayed, check up your 'rate_time_range' variable.\n",
          "gridPos": {
             "h": 4,
             "w": 4,
@@ -754,7 +754,7 @@
          "dashes": false,
          "datasource": "${DS_PROMETHEUS}",
          "decimals": 2,
-         "description": "Requests, processed with success (code 2xx) on Tarantool's side.\nGraph shows mean count per second.\n",
+         "description": "Requests, processed with success (code 2xx) on Tarantool's side.\nGraph shows mean count per second.\nIf `No data` displayed for Prometheus panel,\ncheck up your 'rate_time_range' variable.\n",
          "fill": 0,
          "gridPos": {
             "h": 8,
@@ -844,7 +844,7 @@
          "dashes": false,
          "datasource": "${DS_PROMETHEUS}",
          "decimals": 2,
-         "description": "Requests, processed with 4xx error on Tarantool's side.\nGraph shows mean count per second.\n",
+         "description": "Requests, processed with 4xx error on Tarantool's side.\nGraph shows mean count per second.\nIf `No data` displayed for Prometheus panel,\ncheck up your 'rate_time_range' variable.\n",
          "fill": 0,
          "gridPos": {
             "h": 8,
@@ -934,7 +934,7 @@
          "dashes": false,
          "datasource": "${DS_PROMETHEUS}",
          "decimals": 2,
-         "description": "Requests, processed with 5xx error on Tarantool's side.\nGraph shows mean count per second.\n",
+         "description": "Requests, processed with 5xx error on Tarantool's side.\nGraph shows mean count per second.\nIf `No data` displayed for Prometheus panel,\ncheck up your 'rate_time_range' variable.\n",
          "fill": 0,
          "gridPos": {
             "h": 8,
@@ -1313,7 +1313,7 @@
          "dashes": false,
          "datasource": "${DS_PROMETHEUS}",
          "decimals": 2,
-         "description": "Data received by instance from binary protocol connections.\nGraph shows average bytes per second.\n",
+         "description": "Data received by instance from binary protocol connections.\nGraph shows average bytes per second.\nIf `No data` displayed for Prometheus panel,\ncheck up your 'rate_time_range' variable.\n",
          "fill": 0,
          "gridPos": {
             "h": 8,
@@ -1403,7 +1403,7 @@
          "dashes": false,
          "datasource": "${DS_PROMETHEUS}",
          "decimals": 2,
-         "description": "Data sent by instance with binary protocol connections.\nGraph shows average bytes per second.\n",
+         "description": "Data sent by instance with binary protocol connections.\nGraph shows average bytes per second.\nIf `No data` displayed for Prometheus panel,\ncheck up your 'rate_time_range' variable.\n",
          "fill": 0,
          "gridPos": {
             "h": 8,
@@ -1493,7 +1493,7 @@
          "dashes": false,
          "datasource": "${DS_PROMETHEUS}",
          "decimals": 2,
-         "description": "Number of network requests this instance has handled.\nGraph shows mean rps.\n",
+         "description": "Number of network requests this instance has handled.\nGraph shows mean rps.\nIf `No data` displayed for Prometheus panel,\ncheck up your 'rate_time_range' variable.\n",
          "fill": 0,
          "gridPos": {
             "h": 8,
@@ -2625,7 +2625,7 @@
          "dashes": false,
          "datasource": "${DS_PROMETHEUS}",
          "decimals": 3,
-         "description": "This is the average amount of time per minute\nspent by instance process executing in user mode.\nMetrics obtained using `getrusage()` call.\n",
+         "description": "Panel works with `metrics >= 0.8.0`.\nThis is the average amount of time per minute\nspent by instance process executing in user mode.\nMetrics obtained using `getrusage()` call.\nIf `No data` displayed for Prometheus panel,\ncheck up your 'rate_time_range' variable.\n",
          "fill": 0,
          "gridPos": {
             "h": 8,
@@ -2715,7 +2715,7 @@
          "dashes": false,
          "datasource": "${DS_PROMETHEUS}",
          "decimals": 3,
-         "description": "This is the average amount of time per minute\nspent by instance process executing in kernel mode.\nMetrics obtained using `getrusage()` call.\n",
+         "description": "Panel works with `metrics >= 0.8.0`.\nThis is the average amount of time per minute\nspent by instance process executing in kernel mode.\nMetrics obtained using `getrusage()` call.\nIf `No data` displayed for Prometheus panel,\ncheck up your 'rate_time_range' variable.\n",
          "fill": 0,
          "gridPos": {
             "h": 8,
@@ -2933,7 +2933,7 @@
          "dashes": false,
          "datasource": "${DS_PROMETHEUS}",
          "decimals": 2,
-         "description": "total count of SELECT requests to all instance spaces.\nGraph shows average requests per second.\n",
+         "description": "total count of SELECT requests to all instance spaces.\nGraph shows average requests per second.\nIf `No data` displayed for Prometheus panel,\ncheck up your 'rate_time_range' variable.\n",
          "fill": 0,
          "gridPos": {
             "h": 8,
@@ -3023,7 +3023,7 @@
          "dashes": false,
          "datasource": "${DS_PROMETHEUS}",
          "decimals": 2,
-         "description": "total count of INSERT requests to all instance spaces.\nGraph shows average requests per second.\n",
+         "description": "total count of INSERT requests to all instance spaces.\nGraph shows average requests per second.\nIf `No data` displayed for Prometheus panel,\ncheck up your 'rate_time_range' variable.\n",
          "fill": 0,
          "gridPos": {
             "h": 8,
@@ -3113,7 +3113,7 @@
          "dashes": false,
          "datasource": "${DS_PROMETHEUS}",
          "decimals": 2,
-         "description": "total count of REPLACE requests to all instance spaces.\nGraph shows average requests per second.\n",
+         "description": "total count of REPLACE requests to all instance spaces.\nGraph shows average requests per second.\nIf `No data` displayed for Prometheus panel,\ncheck up your 'rate_time_range' variable.\n",
          "fill": 0,
          "gridPos": {
             "h": 8,
@@ -3203,7 +3203,7 @@
          "dashes": false,
          "datasource": "${DS_PROMETHEUS}",
          "decimals": 2,
-         "description": "total count of UPSERT requests to all instance spaces.\nGraph shows average requests per second.\n",
+         "description": "total count of UPSERT requests to all instance spaces.\nGraph shows average requests per second.\nIf `No data` displayed for Prometheus panel,\ncheck up your 'rate_time_range' variable.\n",
          "fill": 0,
          "gridPos": {
             "h": 8,
@@ -3293,7 +3293,7 @@
          "dashes": false,
          "datasource": "${DS_PROMETHEUS}",
          "decimals": 2,
-         "description": "total count of UPDATE requests to all instance spaces.\nGraph shows average requests per second.\n",
+         "description": "total count of UPDATE requests to all instance spaces.\nGraph shows average requests per second.\nIf `No data` displayed for Prometheus panel,\ncheck up your 'rate_time_range' variable.\n",
          "fill": 0,
          "gridPos": {
             "h": 8,
@@ -3383,7 +3383,7 @@
          "dashes": false,
          "datasource": "${DS_PROMETHEUS}",
          "decimals": 2,
-         "description": "total count of DELETE requests to all instance spaces.\nGraph shows average requests per second.\n",
+         "description": "total count of DELETE requests to all instance spaces.\nGraph shows average requests per second.\nIf `No data` displayed for Prometheus panel,\ncheck up your 'rate_time_range' variable.\n",
          "fill": 0,
          "gridPos": {
             "h": 8,
@@ -3473,7 +3473,7 @@
          "dashes": false,
          "datasource": "${DS_PROMETHEUS}",
          "decimals": 2,
-         "description": "Requests to execute stored procedures.\nGraph shows average requests per second.\n",
+         "description": "Requests to execute stored procedures.\nGraph shows average requests per second.\nIf `No data` displayed for Prometheus panel,\ncheck up your 'rate_time_range' variable.\n",
          "fill": 0,
          "gridPos": {
             "h": 8,
@@ -3563,7 +3563,7 @@
          "dashes": false,
          "datasource": "${DS_PROMETHEUS}",
          "decimals": 2,
-         "description": "Calls to evaluate Lua code.\nGraph shows average requests per second.\n",
+         "description": "Calls to evaluate Lua code.\nGraph shows average requests per second.\nIf `No data` displayed for Prometheus panel,\ncheck up your 'rate_time_range' variable.\n",
          "fill": 0,
          "gridPos": {
             "h": 8,
@@ -3653,7 +3653,7 @@
          "dashes": false,
          "datasource": "${DS_PROMETHEUS}",
          "decimals": 2,
-         "description": "Requests resulted in error.\nGraph shows average errors per second.\n",
+         "description": "Requests resulted in error.\nGraph shows average errors per second.\nIf `No data` displayed for Prometheus panel,\ncheck up your 'rate_time_range' variable.\n",
          "fill": 0,
          "gridPos": {
             "h": 8,
@@ -3743,7 +3743,7 @@
          "dashes": false,
          "datasource": "${DS_PROMETHEUS}",
          "decimals": 2,
-         "description": "Authentication requests.\nGraph shows average errors per second.\n",
+         "description": "Authentication requests.\nGraph shows average errors per second.\nIf `No data` displayed for Prometheus panel,\ncheck up your 'rate_time_range' variable.\n",
          "fill": 0,
          "gridPos": {
             "h": 8,
@@ -3833,7 +3833,7 @@
          "dashes": false,
          "datasource": "${DS_PROMETHEUS}",
          "decimals": 2,
-         "description": "SQL prepare calls. Panel works with Tarantool 2.x.\nGraph shows average errors per second.\n",
+         "description": "SQL prepare calls. Panel works with Tarantool 2.x.\nGraph shows average errors per second.\nIf `No data` displayed for Prometheus panel,\ncheck up your 'rate_time_range' variable.\n",
          "fill": 0,
          "gridPos": {
             "h": 8,
@@ -3923,7 +3923,7 @@
          "dashes": false,
          "datasource": "${DS_PROMETHEUS}",
          "decimals": 2,
-         "description": "SQL execute calls. Panel works with Tarantool 2.x.\nGraph shows average errors per second.\n",
+         "description": "SQL execute calls. Panel works with Tarantool 2.x.\nGraph shows average errors per second.\nIf `No data` displayed for Prometheus panel,\ncheck up your 'rate_time_range' variable.\n",
          "fill": 0,
          "gridPos": {
             "h": 8,
