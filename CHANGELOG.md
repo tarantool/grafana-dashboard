@@ -13,6 +13,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Cartridge issues panels and "Cluster overview" row
 - Network activity row and panels
 - Non-CRUD operations panels
+- CPU time getrusage panels
 
 ## Changed
 - Update metrics version to 0.9.0

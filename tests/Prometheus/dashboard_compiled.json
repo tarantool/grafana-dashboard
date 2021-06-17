@@ -2527,6 +2527,205 @@
          "repeatIteration": null,
          "repeatRowId": null,
          "showTitle": true,
+         "title": "Tarantool CPU statistics",
+         "titleSize": "h6",
+         "type": "row"
+      },
+      {
+         "aliasColors": { },
+         "bars": false,
+         "dashLength": 10,
+         "dashes": false,
+         "datasource": "${DS_PROMETHEUS}",
+         "decimals": 3,
+         "description": "This is the average amount of time per minute\nspent by instance process executing in user mode.\nMetrics obtained using `getrusage()` call.\n",
+         "fill": 0,
+         "gridPos": {
+            "h": 8,
+            "w": 12,
+            "x": 0,
+            "y": 78
+         },
+         "id": 36,
+         "legend": {
+            "alignAsTable": true,
+            "avg": true,
+            "current": true,
+            "max": true,
+            "min": false,
+            "rightSide": false,
+            "show": true,
+            "sideWidth": null,
+            "sort": "current",
+            "sortDesc": true,
+            "total": false,
+            "values": true
+         },
+         "lines": true,
+         "linewidth": 1,
+         "links": [ ],
+         "nullPointMode": "null",
+         "percentage": false,
+         "pointradius": 5,
+         "points": false,
+         "renderer": "flot",
+         "repeat": null,
+         "seriesOverrides": [ ],
+         "spaceLength": 10,
+         "stack": false,
+         "steppedLine": false,
+         "targets": [
+            {
+               "expr": "rate(tnt_cpu_user_time{job=~\"[[job]]\"}[$rate_time_range])",
+               "format": "time_series",
+               "intervalFactor": 2,
+               "legendFormat": "{{alias}}",
+               "refId": "A"
+            }
+         ],
+         "thresholds": [ ],
+         "timeFrom": null,
+         "timeShift": null,
+         "title": "CPU user time",
+         "tooltip": {
+            "shared": true,
+            "sort": 2,
+            "value_type": "individual"
+         },
+         "type": "graph",
+         "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": [ ]
+         },
+         "yaxes": [
+            {
+               "decimals": 3,
+               "format": "s",
+               "label": "time per minute",
+               "logBase": 1,
+               "max": null,
+               "min": null,
+               "show": true
+            },
+            {
+               "decimals": 3,
+               "format": "s",
+               "label": null,
+               "logBase": 1,
+               "max": null,
+               "min": null,
+               "show": true
+            }
+         ]
+      },
+      {
+         "aliasColors": { },
+         "bars": false,
+         "dashLength": 10,
+         "dashes": false,
+         "datasource": "${DS_PROMETHEUS}",
+         "decimals": 3,
+         "description": "This is the average amount of time per minute\nspent by instance process executing in kernel mode.\nMetrics obtained using `getrusage()` call.\n",
+         "fill": 0,
+         "gridPos": {
+            "h": 8,
+            "w": 12,
+            "x": 12,
+            "y": 78
+         },
+         "id": 37,
+         "legend": {
+            "alignAsTable": true,
+            "avg": true,
+            "current": true,
+            "max": true,
+            "min": false,
+            "rightSide": false,
+            "show": true,
+            "sideWidth": null,
+            "sort": "current",
+            "sortDesc": true,
+            "total": false,
+            "values": true
+         },
+         "lines": true,
+         "linewidth": 1,
+         "links": [ ],
+         "nullPointMode": "null",
+         "percentage": false,
+         "pointradius": 5,
+         "points": false,
+         "renderer": "flot",
+         "repeat": null,
+         "seriesOverrides": [ ],
+         "spaceLength": 10,
+         "stack": false,
+         "steppedLine": false,
+         "targets": [
+            {
+               "expr": "rate(tnt_cpu_system_time{job=~\"[[job]]\"}[$rate_time_range])",
+               "format": "time_series",
+               "intervalFactor": 2,
+               "legendFormat": "{{alias}}",
+               "refId": "A"
+            }
+         ],
+         "thresholds": [ ],
+         "timeFrom": null,
+         "timeShift": null,
+         "title": "CPU system time",
+         "tooltip": {
+            "shared": true,
+            "sort": 2,
+            "value_type": "individual"
+         },
+         "type": "graph",
+         "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": [ ]
+         },
+         "yaxes": [
+            {
+               "decimals": 3,
+               "format": "s",
+               "label": "time per minute",
+               "logBase": 1,
+               "max": null,
+               "min": null,
+               "show": true
+            },
+            {
+               "decimals": 3,
+               "format": "s",
+               "label": null,
+               "logBase": 1,
+               "max": null,
+               "min": null,
+               "show": true
+            }
+         ]
+      },
+      {
+         "collapse": false,
+         "collapsed": false,
+         "gridPos": {
+            "h": 1,
+            "w": 24,
+            "x": 0,
+            "y": 86
+         },
+         "id": 38,
+         "panels": [ ],
+         "repeat": null,
+         "repeatIteration": null,
+         "repeatRowId": null,
+         "showTitle": true,
          "title": "Tarantool memory miscellaneous",
          "titleSize": "h6",
          "type": "row"
@@ -2544,9 +2743,9 @@
             "h": 8,
             "w": 24,
             "x": 0,
-            "y": 78
+            "y": 87
          },
-         "id": 36,
+         "id": 39,
          "legend": {
             "alignAsTable": true,
             "avg": false,
@@ -2628,9 +2827,9 @@
             "h": 1,
             "w": 24,
             "x": 0,
-            "y": 86
+            "y": 95
          },
-         "id": 37,
+         "id": 40,
          "panels": [ ],
          "repeat": null,
          "repeatIteration": null,
@@ -2653,9 +2852,9 @@
             "h": 8,
             "w": 8,
             "x": 0,
-            "y": 87
+            "y": 96
          },
-         "id": 38,
+         "id": 41,
          "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -2743,9 +2942,9 @@
             "h": 8,
             "w": 8,
             "x": 8,
-            "y": 87
+            "y": 96
          },
-         "id": 39,
+         "id": 42,
          "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -2833,9 +3032,9 @@
             "h": 8,
             "w": 8,
             "x": 16,
-            "y": 87
+            "y": 96
          },
-         "id": 40,
+         "id": 43,
          "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -2923,9 +3122,9 @@
             "h": 8,
             "w": 8,
             "x": 0,
-            "y": 95
+            "y": 106
          },
-         "id": 41,
+         "id": 44,
          "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -3013,9 +3212,9 @@
             "h": 8,
             "w": 8,
             "x": 8,
-            "y": 95
+            "y": 106
          },
-         "id": 42,
+         "id": 45,
          "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -3103,9 +3302,9 @@
             "h": 8,
             "w": 8,
             "x": 16,
-            "y": 95
+            "y": 106
          },
-         "id": 43,
+         "id": 46,
          "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -3193,9 +3392,9 @@
             "h": 8,
             "w": 8,
             "x": 0,
-            "y": 103
+            "y": 112
          },
-         "id": 44,
+         "id": 47,
          "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -3283,9 +3482,9 @@
             "h": 8,
             "w": 8,
             "x": 8,
-            "y": 103
+            "y": 112
          },
-         "id": 45,
+         "id": 48,
          "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -3373,9 +3572,9 @@
             "h": 8,
             "w": 8,
             "x": 16,
-            "y": 103
+            "y": 112
          },
-         "id": 46,
+         "id": 49,
          "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -3463,9 +3662,9 @@
             "h": 8,
             "w": 8,
             "x": 0,
-            "y": 111
+            "y": 120
          },
-         "id": 47,
+         "id": 50,
          "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -3553,9 +3752,9 @@
             "h": 8,
             "w": 8,
             "x": 8,
-            "y": 111
+            "y": 120
          },
-         "id": 48,
+         "id": 51,
          "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -3643,9 +3842,9 @@
             "h": 8,
             "w": 8,
             "x": 16,
-            "y": 111
+            "y": 120
          },
-         "id": 49,
+         "id": 52,
          "legend": {
             "alignAsTable": true,
             "avg": true,
