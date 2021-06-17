@@ -6,7 +6,7 @@ Our pages on Grafana Official & community built dashboards: [InfluxDB version](h
 
 Refer to dashboard [documentation page](https://www.tarantool.io/en/doc/latest/book/monitoring/grafana_dashboard/) for prerequirements and installation guide.
 
-<img src="./doc/monitoring/images/Prometheus_dashboard_1.png" width="300"/> <img src="./doc/monitoring/images/Prometheus_dashboard_2.png" width="300"/> <img src="./doc/monitoring/images/Prometheus_dashboard_3.png" width="300"/> 
+<img src="./doc/monitoring/images/Prometheus_dashboard_1.png" width="250"/> <img src="./doc/monitoring/images/Prometheus_dashboard_2.png" width="250"/> <img src="./doc/monitoring/images/Prometheus_dashboard_3.png" width="250"/> 
 
 # How to build
 
