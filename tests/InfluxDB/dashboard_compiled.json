@@ -505,7 +505,7 @@
          "dashLength": 10,
          "dashes": false,
          "datasource": "${DS_INFLUXDB}",
-         "decimals": 2,
+         "decimals": 3,
          "description": "Requests, processed with success (code 2xx) on Tarantool's side.\nGraph shows mean count per second.\nIf `No data` displayed for Prometheus panel,\ncheck up your 'rate_time_range' variable.\n",
          "fill": 0,
          "gridPos": {
@@ -650,7 +650,7 @@
                "show": true
             },
             {
-               "decimals": 2,
+               "decimals": 3,
                "format": "none",
                "label": null,
                "logBase": 1,
@@ -666,7 +666,7 @@
          "dashLength": 10,
          "dashes": false,
          "datasource": "${DS_INFLUXDB}",
-         "decimals": 2,
+         "decimals": 3,
          "description": "Requests, processed with 4xx error on Tarantool's side.\nGraph shows mean count per second.\nIf `No data` displayed for Prometheus panel,\ncheck up your 'rate_time_range' variable.\n",
          "fill": 0,
          "gridPos": {
@@ -811,7 +811,7 @@
                "show": true
             },
             {
-               "decimals": 2,
+               "decimals": 3,
                "format": "none",
                "label": null,
                "logBase": 1,
@@ -827,7 +827,7 @@
          "dashLength": 10,
          "dashes": false,
          "datasource": "${DS_INFLUXDB}",
-         "decimals": 2,
+         "decimals": 3,
          "description": "Requests, processed with 5xx error on Tarantool's side.\nGraph shows mean count per second.\nIf `No data` displayed for Prometheus panel,\ncheck up your 'rate_time_range' variable.\n",
          "fill": 0,
          "gridPos": {
@@ -972,7 +972,7 @@
                "show": true
             },
             {
-               "decimals": 2,
+               "decimals": 3,
                "format": "none",
                "label": null,
                "logBase": 1,
@@ -1124,7 +1124,7 @@
          },
          "yaxes": [
             {
-               "decimals": 2,
+               "decimals": 3,
                "format": "s",
                "label": "99th percentile",
                "logBase": 1,
@@ -1285,7 +1285,7 @@
          },
          "yaxes": [
             {
-               "decimals": 2,
+               "decimals": 3,
                "format": "s",
                "label": "99th percentile",
                "logBase": 1,
@@ -1446,7 +1446,7 @@
          },
          "yaxes": [
             {
-               "decimals": 2,
+               "decimals": 3,
                "format": "s",
                "label": "99th percentile",
                "logBase": 1,
@@ -1490,7 +1490,7 @@
          "dashLength": 10,
          "dashes": false,
          "datasource": "${DS_INFLUXDB}",
-         "decimals": 2,
+         "decimals": 3,
          "description": "Data received by instance from binary protocol connections.\nGraph shows average bytes per second.\nIf `No data` displayed for Prometheus panel,\ncheck up your 'rate_time_range' variable.\n",
          "fill": 0,
          "gridPos": {
@@ -1611,7 +1611,7 @@
                "show": true
             },
             {
-               "decimals": 2,
+               "decimals": 3,
                "format": "Bps",
                "label": null,
                "logBase": 1,
@@ -1627,7 +1627,7 @@
          "dashLength": 10,
          "dashes": false,
          "datasource": "${DS_INFLUXDB}",
-         "decimals": 2,
+         "decimals": 3,
          "description": "Data sent by instance with binary protocol connections.\nGraph shows average bytes per second.\nIf `No data` displayed for Prometheus panel,\ncheck up your 'rate_time_range' variable.\n",
          "fill": 0,
          "gridPos": {
@@ -1748,7 +1748,7 @@
                "show": true
             },
             {
-               "decimals": 2,
+               "decimals": 3,
                "format": "Bps",
                "label": null,
                "logBase": 1,
@@ -1764,7 +1764,7 @@
          "dashLength": 10,
          "dashes": false,
          "datasource": "${DS_INFLUXDB}",
-         "decimals": 2,
+         "decimals": 3,
          "description": "Number of network requests this instance has handled.\nGraph shows mean rps.\nIf `No data` displayed for Prometheus panel,\ncheck up your 'rate_time_range' variable.\n",
          "fill": 0,
          "gridPos": {
@@ -1885,7 +1885,7 @@
                "show": true
             },
             {
-               "decimals": 2,
+               "decimals": 3,
                "format": "none",
                "label": null,
                "logBase": 1,
@@ -1901,7 +1901,7 @@
          "dashLength": 10,
          "dashes": false,
          "datasource": "${DS_INFLUXDB}",
-         "decimals": 2,
+         "decimals": 0,
          "description": "Number of pending network requests.\n",
          "fill": 0,
          "gridPos": {
@@ -2016,7 +2016,7 @@
                "show": true
             },
             {
-               "decimals": 2,
+               "decimals": 0,
                "format": "none",
                "label": null,
                "logBase": 1,
@@ -2196,7 +2196,7 @@
          "dashLength": 10,
          "dashes": false,
          "datasource": "${DS_INFLUXDB}",
-         "decimals": 2,
+         "decimals": 3,
          "description": "`quota_used_ratio` = `quota_used` / `quota_size`.\n\n`quota_used` – used by slab allocator (for both tuple and index slabs).\n\n`quota_size` – memory limit for slab allocator (as configured in the *memtx_memory* parameter).\n",
          "fill": 0,
          "gridPos": {
@@ -2302,7 +2302,7 @@
          },
          "yaxes": [
             {
-               "decimals": 2,
+               "decimals": 0,
                "format": "percent",
                "label": "used ratio",
                "logBase": 1,
@@ -2311,7 +2311,7 @@
                "show": true
             },
             {
-               "decimals": 2,
+               "decimals": 3,
                "format": "percent",
                "label": null,
                "logBase": 1,
@@ -2327,7 +2327,7 @@
          "dashLength": 10,
          "dashes": false,
          "datasource": "${DS_INFLUXDB}",
-         "decimals": 2,
+         "decimals": 3,
          "description": "`arena_used_ratio` = `arena_used` / `arena_size`.\n\n`arena_used` – used for both tuples and indexes.\n\n`arena_size` – allocated for both tuples and indexes.\n",
          "fill": 0,
          "gridPos": {
@@ -2433,7 +2433,7 @@
          },
          "yaxes": [
             {
-               "decimals": 2,
+               "decimals": 0,
                "format": "percent",
                "label": "used ratio",
                "logBase": 1,
@@ -2442,7 +2442,7 @@
                "show": true
             },
             {
-               "decimals": 2,
+               "decimals": 3,
                "format": "percent",
                "label": null,
                "logBase": 1,
@@ -2458,7 +2458,7 @@
          "dashLength": 10,
          "dashes": false,
          "datasource": "${DS_INFLUXDB}",
-         "decimals": 2,
+         "decimals": 3,
          "description": "`items_used_ratio` = `items_used` / `items_size`.\n\n`items_used` – used only for tuples.\n\n`items_size` – allocated only for tuples.\n",
          "fill": 0,
          "gridPos": {
@@ -2564,7 +2564,7 @@
          },
          "yaxes": [
             {
-               "decimals": 2,
+               "decimals": 0,
                "format": "percent",
                "label": "used ratio",
                "logBase": 1,
@@ -2573,7 +2573,7 @@
                "show": true
             },
             {
-               "decimals": 2,
+               "decimals": 3,
                "format": "percent",
                "label": null,
                "logBase": 1,
@@ -2589,7 +2589,7 @@
          "dashLength": 10,
          "dashes": false,
          "datasource": "${DS_INFLUXDB}",
-         "decimals": 2,
+         "decimals": 3,
          "description": "Memory used by slab allocator (for both tuple and index slabs).\n",
          "fill": 0,
          "gridPos": {
@@ -2695,7 +2695,7 @@
          },
          "yaxes": [
             {
-               "decimals": 2,
+               "decimals": 0,
                "format": "bytes",
                "label": "in bytes",
                "logBase": 1,
@@ -2704,7 +2704,7 @@
                "show": true
             },
             {
-               "decimals": 2,
+               "decimals": 3,
                "format": "bytes",
                "label": null,
                "logBase": 1,
@@ -2720,7 +2720,7 @@
          "dashLength": 10,
          "dashes": false,
          "datasource": "${DS_INFLUXDB}",
-         "decimals": 2,
+         "decimals": 3,
          "description": "Memory used for both tuples and indexes.\n",
          "fill": 0,
          "gridPos": {
@@ -2826,7 +2826,7 @@
          },
          "yaxes": [
             {
-               "decimals": 2,
+               "decimals": 0,
                "format": "bytes",
                "label": "in bytes",
                "logBase": 1,
@@ -2835,7 +2835,7 @@
                "show": true
             },
             {
-               "decimals": 2,
+               "decimals": 3,
                "format": "bytes",
                "label": null,
                "logBase": 1,
@@ -2851,7 +2851,7 @@
          "dashLength": 10,
          "dashes": false,
          "datasource": "${DS_INFLUXDB}",
-         "decimals": 2,
+         "decimals": 3,
          "description": "Memory used for only tuples.\n",
          "fill": 0,
          "gridPos": {
@@ -2957,7 +2957,7 @@
          },
          "yaxes": [
             {
-               "decimals": 2,
+               "decimals": 0,
                "format": "bytes",
                "label": "in bytes",
                "logBase": 1,
@@ -2966,7 +2966,7 @@
                "show": true
             },
             {
-               "decimals": 2,
+               "decimals": 3,
                "format": "bytes",
                "label": null,
                "logBase": 1,
@@ -2982,7 +2982,7 @@
          "dashLength": 10,
          "dashes": false,
          "datasource": "${DS_INFLUXDB}",
-         "decimals": 2,
+         "decimals": 3,
          "description": "Memory limit for slab allocator (as configured in the *memtx_memory* parameter).\n",
          "fill": 0,
          "gridPos": {
@@ -3088,7 +3088,7 @@
          },
          "yaxes": [
             {
-               "decimals": 2,
+               "decimals": 0,
                "format": "bytes",
                "label": "in bytes",
                "logBase": 1,
@@ -3097,7 +3097,7 @@
                "show": true
             },
             {
-               "decimals": 2,
+               "decimals": 3,
                "format": "bytes",
                "label": null,
                "logBase": 1,
@@ -3113,7 +3113,7 @@
          "dashLength": 10,
          "dashes": false,
          "datasource": "${DS_INFLUXDB}",
-         "decimals": 2,
+         "decimals": 3,
          "description": "Memory allocated for both tuples and indexes by slab allocator.\n",
          "fill": 0,
          "gridPos": {
@@ -3219,7 +3219,7 @@
          },
          "yaxes": [
             {
-               "decimals": 2,
+               "decimals": 0,
                "format": "bytes",
                "label": "in bytes",
                "logBase": 1,
@@ -3228,7 +3228,7 @@
                "show": true
             },
             {
-               "decimals": 2,
+               "decimals": 3,
                "format": "bytes",
                "label": null,
                "logBase": 1,
@@ -3244,7 +3244,7 @@
          "dashLength": 10,
          "dashes": false,
          "datasource": "${DS_INFLUXDB}",
-         "decimals": 2,
+         "decimals": 3,
          "description": "Memory allocated for only tuples by slab allocator.\n",
          "fill": 0,
          "gridPos": {
@@ -3350,7 +3350,7 @@
          },
          "yaxes": [
             {
-               "decimals": 2,
+               "decimals": 0,
                "format": "bytes",
                "label": "in bytes",
                "logBase": 1,
@@ -3359,7 +3359,7 @@
                "show": true
             },
             {
-               "decimals": 2,
+               "decimals": 3,
                "format": "bytes",
                "label": null,
                "logBase": 1,
@@ -3687,7 +3687,7 @@
          "dashLength": 10,
          "dashes": false,
          "datasource": "${DS_INFLUXDB}",
-         "decimals": 2,
+         "decimals": 3,
          "description": "Memory used for the Lua runtime. Lua memory is bounded by 2 GB per instance. \n",
          "fill": 0,
          "gridPos": {
@@ -3793,7 +3793,7 @@
          },
          "yaxes": [
             {
-               "decimals": 2,
+               "decimals": 0,
                "format": "bytes",
                "label": "in bytes",
                "logBase": 1,
@@ -3802,7 +3802,7 @@
                "show": true
             },
             {
-               "decimals": 2,
+               "decimals": 3,
                "format": "bytes",
                "label": null,
                "logBase": 1,
@@ -3837,7 +3837,7 @@
          "dashLength": 10,
          "dashes": false,
          "datasource": "${DS_INFLUXDB}",
-         "decimals": 2,
+         "decimals": 3,
          "description": "total count of SELECT requests to all instance spaces.\nGraph shows average requests per second.\nIf `No data` displayed for Prometheus panel,\ncheck up your 'rate_time_range' variable.\n",
          "fill": 0,
          "gridPos": {
@@ -3964,7 +3964,7 @@
                "show": true
             },
             {
-               "decimals": 2,
+               "decimals": 3,
                "format": "none",
                "label": null,
                "logBase": 1,
@@ -3980,7 +3980,7 @@
          "dashLength": 10,
          "dashes": false,
          "datasource": "${DS_INFLUXDB}",
-         "decimals": 2,
+         "decimals": 3,
          "description": "total count of INSERT requests to all instance spaces.\nGraph shows average requests per second.\nIf `No data` displayed for Prometheus panel,\ncheck up your 'rate_time_range' variable.\n",
          "fill": 0,
          "gridPos": {
@@ -4107,7 +4107,7 @@
                "show": true
             },
             {
-               "decimals": 2,
+               "decimals": 3,
                "format": "none",
                "label": null,
                "logBase": 1,
@@ -4123,7 +4123,7 @@
          "dashLength": 10,
          "dashes": false,
          "datasource": "${DS_INFLUXDB}",
-         "decimals": 2,
+         "decimals": 3,
          "description": "total count of REPLACE requests to all instance spaces.\nGraph shows average requests per second.\nIf `No data` displayed for Prometheus panel,\ncheck up your 'rate_time_range' variable.\n",
          "fill": 0,
          "gridPos": {
@@ -4250,7 +4250,7 @@
                "show": true
             },
             {
-               "decimals": 2,
+               "decimals": 3,
                "format": "none",
                "label": null,
                "logBase": 1,
@@ -4266,7 +4266,7 @@
          "dashLength": 10,
          "dashes": false,
          "datasource": "${DS_INFLUXDB}",
-         "decimals": 2,
+         "decimals": 3,
          "description": "total count of UPSERT requests to all instance spaces.\nGraph shows average requests per second.\nIf `No data` displayed for Prometheus panel,\ncheck up your 'rate_time_range' variable.\n",
          "fill": 0,
          "gridPos": {
@@ -4393,7 +4393,7 @@
                "show": true
             },
             {
-               "decimals": 2,
+               "decimals": 3,
                "format": "none",
                "label": null,
                "logBase": 1,
@@ -4409,7 +4409,7 @@
          "dashLength": 10,
          "dashes": false,
          "datasource": "${DS_INFLUXDB}",
-         "decimals": 2,
+         "decimals": 3,
          "description": "total count of UPDATE requests to all instance spaces.\nGraph shows average requests per second.\nIf `No data` displayed for Prometheus panel,\ncheck up your 'rate_time_range' variable.\n",
          "fill": 0,
          "gridPos": {
@@ -4536,7 +4536,7 @@
                "show": true
             },
             {
-               "decimals": 2,
+               "decimals": 3,
                "format": "none",
                "label": null,
                "logBase": 1,
@@ -4552,7 +4552,7 @@
          "dashLength": 10,
          "dashes": false,
          "datasource": "${DS_INFLUXDB}",
-         "decimals": 2,
+         "decimals": 3,
          "description": "total count of DELETE requests to all instance spaces.\nGraph shows average requests per second.\nIf `No data` displayed for Prometheus panel,\ncheck up your 'rate_time_range' variable.\n",
          "fill": 0,
          "gridPos": {
@@ -4679,7 +4679,7 @@
                "show": true
             },
             {
-               "decimals": 2,
+               "decimals": 3,
                "format": "none",
                "label": null,
                "logBase": 1,
@@ -4695,7 +4695,7 @@
          "dashLength": 10,
          "dashes": false,
          "datasource": "${DS_INFLUXDB}",
-         "decimals": 2,
+         "decimals": 3,
          "description": "Requests to execute stored procedures.\nGraph shows average requests per second.\nIf `No data` displayed for Prometheus panel,\ncheck up your 'rate_time_range' variable.\n",
          "fill": 0,
          "gridPos": {
@@ -4822,7 +4822,7 @@
                "show": true
             },
             {
-               "decimals": 2,
+               "decimals": 3,
                "format": "none",
                "label": null,
                "logBase": 1,
@@ -4838,7 +4838,7 @@
          "dashLength": 10,
          "dashes": false,
          "datasource": "${DS_INFLUXDB}",
-         "decimals": 2,
+         "decimals": 3,
          "description": "Calls to evaluate Lua code.\nGraph shows average requests per second.\nIf `No data` displayed for Prometheus panel,\ncheck up your 'rate_time_range' variable.\n",
          "fill": 0,
          "gridPos": {
@@ -4965,7 +4965,7 @@
                "show": true
             },
             {
-               "decimals": 2,
+               "decimals": 3,
                "format": "none",
                "label": null,
                "logBase": 1,
@@ -4981,7 +4981,7 @@
          "dashLength": 10,
          "dashes": false,
          "datasource": "${DS_INFLUXDB}",
-         "decimals": 2,
+         "decimals": 3,
          "description": "Requests resulted in error.\nGraph shows average errors per second.\nIf `No data` displayed for Prometheus panel,\ncheck up your 'rate_time_range' variable.\n",
          "fill": 0,
          "gridPos": {
@@ -5108,7 +5108,7 @@
                "show": true
             },
             {
-               "decimals": 2,
+               "decimals": 3,
                "format": "none",
                "label": null,
                "logBase": 1,
@@ -5124,7 +5124,7 @@
          "dashLength": 10,
          "dashes": false,
          "datasource": "${DS_INFLUXDB}",
-         "decimals": 2,
+         "decimals": 3,
          "description": "Authentication requests.\nGraph shows average errors per second.\nIf `No data` displayed for Prometheus panel,\ncheck up your 'rate_time_range' variable.\n",
          "fill": 0,
          "gridPos": {
@@ -5251,7 +5251,7 @@
                "show": true
             },
             {
-               "decimals": 2,
+               "decimals": 3,
                "format": "none",
                "label": null,
                "logBase": 1,
@@ -5267,7 +5267,7 @@
          "dashLength": 10,
          "dashes": false,
          "datasource": "${DS_INFLUXDB}",
-         "decimals": 2,
+         "decimals": 3,
          "description": "SQL prepare calls. Panel works with Tarantool 2.x.\nGraph shows average errors per second.\nIf `No data` displayed for Prometheus panel,\ncheck up your 'rate_time_range' variable.\n",
          "fill": 0,
          "gridPos": {
@@ -5394,7 +5394,7 @@
                "show": true
             },
             {
-               "decimals": 2,
+               "decimals": 3,
                "format": "none",
                "label": null,
                "logBase": 1,
@@ -5410,7 +5410,7 @@
          "dashLength": 10,
          "dashes": false,
          "datasource": "${DS_INFLUXDB}",
-         "decimals": 2,
+         "decimals": 3,
          "description": "SQL execute calls. Panel works with Tarantool 2.x.\nGraph shows average errors per second.\nIf `No data` displayed for Prometheus panel,\ncheck up your 'rate_time_range' variable.\n",
          "fill": 0,
          "gridPos": {
@@ -5537,7 +5537,7 @@
                "show": true
             },
             {
-               "decimals": 2,
+               "decimals": 3,
                "format": "none",
                "label": null,
                "logBase": 1,
