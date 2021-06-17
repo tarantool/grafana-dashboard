@@ -255,6 +255,27 @@ tests:
 
   - interval: 15s
     input_series:
+      - series: tnt_replication_1_lag{job="tarantool_app", instance="app:8081", alias="tnt_storage_master"}
+        values: '0+0x10'
+      - series: tnt_replication_2_lag{job="tarantool_app", instance="app:8082", alias="tnt_storage_replica"}
+        values: '1+15x10'
+    alert_rule_test:
+      - eval_time: 2m
+        alertname: HighReplicationLag
+        exp_alerts:
+          - exp_labels:
+              severity: warning
+              instance: app:8082
+              alias: tnt_storage_replica
+              job: tarantool_app
+            exp_annotations:
+              summary: "Instance tnt_storage_replica have high replication lag"
+              description: "Instance tnt_storage_replica of job tarantool_app have high replication lag,
+                check up your network and cluster state."
+
+
+  - interval: 15s
+    input_series:
         - series: http_server_request_latency_count{job="tarantool_app",instance="app:8081",path="/hello",method="GET",status="200",alias="tnt_router"}
           values: '0+100x60'
         - series: http_server_request_latency_sum{job="tarantool_app",instance="app:8081",path="/hello",method="GET",status="200",alias="tnt_router"}
