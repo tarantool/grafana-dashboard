@@ -6,14 +6,14 @@ local dashboard = import 'dashboard.libsonnet';
 local row = grafana.row;
 
 local raw_dashboard = grafana.dashboard.new(
-  title='Example Prometheus dashboard',
-  description='Example dashboard',
+  title='Tarantool dashboard',
+  description='Dashboard for Tarantool application and database server monitoring, based on grafonnet library.',
   editable=true,
   schemaVersion=21,
-  time_from='now-6h',
+  time_from='now-3h',
   time_to='now',
   refresh='30s',
-  tags=['tag1', 'tag2'],
+  tags=['tarantool'],
 );
 
 local datasource = '${DS_PROMETHEUS}';

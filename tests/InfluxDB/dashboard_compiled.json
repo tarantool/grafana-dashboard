@@ -51,7 +51,7 @@
    "annotations": {
       "list": [ ]
    },
-   "description": "Example dashboard",
+   "description": "Dashboard for Tarantool application and database server monitoring, based on grafonnet library.",
    "editable": true,
    "gnetId": null,
    "graphTooltip": 0,
@@ -5553,14 +5553,13 @@
    "schemaVersion": 21,
    "style": "dark",
    "tags": [
-      "tag1",
-      "tag2"
+      "tarantool"
    ],
    "templating": {
       "list": [ ]
    },
    "time": {
-      "from": "now-6h",
+      "from": "now-3h",
       "to": "now"
    },
    "timepicker": {
@@ -5589,6 +5588,6 @@
       ]
    },
    "timezone": "browser",
-   "title": "Example InfluxDB dashboard",
+   "title": "Tarantool dashboard",
    "version": 0
 }
