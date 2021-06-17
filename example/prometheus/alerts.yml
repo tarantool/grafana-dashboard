@@ -8,7 +8,7 @@ groups:
     labels:
       severity: page
     annotations:
-      summary: "Instance {{ $labels.instance }} down"
+      summary: "Instance {{ $labels.instance }} ({{ $labels.job }}) down"
       description: "{{ $labels.instance }} of job {{ $labels.job }} has been down for more than a minute."
 
 
@@ -21,7 +21,7 @@ groups:
     labels:
       severity: warning
     annotations:
-      summary: "Instance {{ $labels.alias }} Lua runtime warning"
+      summary: "Instance {{ $labels.alias }} ({{ $labels.job }}) Lua runtime warning"
       description: "{{ $labels.alias }} instance of job {{ $labels.job }} uses too much Lua memory
         and may hit threshold soon."
 
@@ -32,7 +32,7 @@ groups:
     labels:
       severity: page
     annotations:
-      summary: "Instance {{ $labels.alias }} Lua runtime alert"
+      summary: "Instance {{ $labels.alias }} ({{ $labels.job }}) Lua runtime alert"
       description: "{{ $labels.alias }} instance of job {{ $labels.job }} uses too much Lua memory
         and likely to hit threshold soon."
 
@@ -43,7 +43,7 @@ groups:
     labels:
       severity: warning
     annotations:
-      summary: "Instance {{ $labels.alias }} low arena memory remaining"
+      summary: "Instance {{ $labels.alias }} ({{ $labels.job }}) low arena memory remaining"
       description: "Low arena memory (tuples and indexes) remaining for {{ $labels.alias }} instance of job {{ $labels.job }}.
         Consider increasing memtx_memory or number of storages in case of sharded data."
 
@@ -54,7 +54,7 @@ groups:
     labels:
       severity: page
     annotations:
-      summary: "Instance {{ $labels.alias }} low arena memory remaining"
+      summary: "Instance {{ $labels.alias }} ({{ $labels.job }}) low arena memory remaining"
       description: "Low arena memory (tuples and indexes) remaining for {{ $labels.alias }} instance of job {{ $labels.job }}.
       You are likely to hit limit soon.
       It is strongly recommended to increase memtx_memory or number of storages in case of sharded data."
@@ -66,7 +66,7 @@ groups:
     labels:
       severity: warning
     annotations:
-      summary: "Instance {{ $labels.alias }} low items memory remaining"
+      summary: "Instance {{ $labels.alias }} ({{ $labels.job }}) low items memory remaining"
       description: "Low items memory (tuples) remaining for {{ $labels.alias }} instance of job {{ $labels.job }}.
         Consider increasing memtx_memory or number of storages in case of sharded data."
 
@@ -77,7 +77,7 @@ groups:
     labels:
       severity: page
     annotations:
-      summary: "Instance {{ $labels.alias }} low items memory remaining"
+      summary: "Instance {{ $labels.alias }} ({{ $labels.job }}) low items memory remaining"
       description: "Low items memory (tuples) remaining for {{ $labels.alias }} instance of job {{ $labels.job }}.
         You are likely to hit limit soon.
         It is strongly recommended to increase memtx_memory or number of storages in case of sharded data."
@@ -89,8 +89,9 @@ groups:
     labels:
       severity: warning
     annotations:
-      summary: "Instance {{ $labels.alias }} have 'warning'-level Cartridge issues"
-      description: "Possible reasons: high replication lag, replication long idle,
+      summary: "Instance {{ $labels.alias }} ({{ $labels.job }}) has 'warning'-level Cartridge issues"
+      description: "Instance {{ $labels.alias }} of job {{ $labels.job }} has 'warning'-level Cartridge issues.
+        Possible reasons: high replication lag, replication long idle,
         failover or switchover issues, clock issues, memory fragmentation,
         configuration issues, alien members."
 
@@ -101,8 +102,9 @@ groups:
     labels:
       severity: page
     annotations:
-      summary: "Instance {{ $labels.alias }} have 'critical'-level Cartridge issues"
-      description: "Possible reasons: replication process critical fail,
+      summary: "Instance {{ $labels.alias }} ({{ $labels.job }}) has 'critical'-level Cartridge issues"
+      description: "Instance {{ $labels.alias }} of job {{ $labels.job }} has 'critical'-level Cartridge issues.
+        Possible reasons: replication process critical fail,
         running out of available memory."
 
   
@@ -112,7 +114,7 @@ groups:
     labels:
       severity: warning
     annotations:
-      summary: "Instance {{ $labels.alias }} have high replication lag"
+      summary: "Instance {{ $labels.alias }} ({{ $labels.job }}) have high replication lag"
       description: "Instance {{ $labels.alias }} of job {{ $labels.job }} have high replication lag,
         check up your network and cluster state."
 
@@ -128,7 +130,7 @@ groups:
     labels:
       severity: warning
     annotations:
-      summary: "Instance {{ $labels.alias }} high HTTP latency"
+      summary: "Instance {{ $labels.alias }} ({{ $labels.job }}) high HTTP latency"
       description: "Some {{ $labels.method }} requests to {{ $labels.path }} path with {{ $labels.status }} response status
         on {{ $labels.alias }} instance of job {{ $labels.job }} are processed too long."
 
@@ -142,7 +144,7 @@ groups:
     labels:
       severity: warning
     annotations:
-      summary: "Instance {{ $labels.alias }} high rate of client error responses"
+      summary: "Instance {{ $labels.alias }} ({{ $labels.job }}) high rate of client error responses"
       description: "Too many {{ $labels.method }} requests to {{ $labels.path }} path 
         on {{ $labels.alias }} instance of job {{ $labels.job }} get client error (4xx) responses."
 
@@ -170,7 +172,7 @@ groups:
     labels:
       severity: warning
     annotations:
-      summary: "Instance {{ $labels.alias }} server error responses"
+      summary: "Instance {{ $labels.alias }} ({{ $labels.job }}) server error responses"
       description: "Some {{ $labels.method }} requests to {{ $labels.path }} path 
         on {{ $labels.alias }} instance of job {{ $labels.job }} get server error (5xx) responses."
 
@@ -184,6 +186,6 @@ groups:
     labels:
       severity: warning
     annotations:
-      summary: "Router {{ $labels.alias }} low activity"
+      summary: "Router {{ $labels.alias }} ({{ $labels.job }}) low activity"
       description: Router {{ $labels.alias }} instance of job {{ $labels.job }} gets too little requests.
         Please, check up your balancer middleware."

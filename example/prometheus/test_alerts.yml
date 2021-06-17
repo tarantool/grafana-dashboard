@@ -22,7 +22,7 @@ tests:
               instance: app:8082
               job: tarantool_app
             exp_annotations:
-              summary: "Instance app:8082 down"
+              summary: "Instance app:8082 (tarantool_app) down"
               description: "app:8082 of job tarantool_app has been down for more than a minute."
 
 
@@ -40,7 +40,7 @@ tests:
               alias: tnt_router
               job: tarantool_app
             exp_annotations:
-              summary: "Instance tnt_router Lua runtime warning"
+              summary: "Instance tnt_router (tarantool_app) Lua runtime warning"
               description: "tnt_router instance of job tarantool_app uses too much Lua memory
                 and may hit threshold soon."
       - eval_time: 2m
@@ -62,7 +62,7 @@ tests:
               alias: tnt_router
               job: tarantool_app
             exp_annotations:
-              summary: "Instance tnt_router Lua runtime warning"
+              summary: "Instance tnt_router (tarantool_app) Lua runtime warning"
               description: "tnt_router instance of job tarantool_app uses too much Lua memory
                 and may hit threshold soon."
       - eval_time: 2m
@@ -74,7 +74,7 @@ tests:
               alias: tnt_router
               job: tarantool_app
             exp_annotations:
-              summary: "Instance tnt_router Lua runtime alert"
+              summary: "Instance tnt_router (tarantool_app) Lua runtime alert"
               description: "tnt_router instance of job tarantool_app uses too much Lua memory
                 and likely to hit threshold soon."
 
@@ -110,7 +110,7 @@ tests:
               alias: tnt_router
               job: tarantool_app
             exp_annotations:
-              summary: "Instance tnt_router low arena memory remaining"
+              summary: "Instance tnt_router (tarantool_app) low arena memory remaining"
               description: "Low arena memory (tuples and indexes) remaining for tnt_router instance of job tarantool_app.
                 Consider increasing memtx_memory or number of storages in case of sharded data."
       - eval_time: 2m
@@ -134,7 +134,7 @@ tests:
               alias: tnt_router
               job: tarantool_app
             exp_annotations:
-              summary: "Instance tnt_router low arena memory remaining"
+              summary: "Instance tnt_router (tarantool_app) low arena memory remaining"
               description: "Low arena memory (tuples and indexes) remaining for tnt_router instance of job tarantool_app.
                 Consider increasing memtx_memory or number of storages in case of sharded data."
       - eval_time: 2m
@@ -146,7 +146,7 @@ tests:
               alias: tnt_router
               job: tarantool_app
             exp_annotations:
-              summary: "Instance tnt_router low arena memory remaining"
+              summary: "Instance tnt_router (tarantool_app) low arena memory remaining"
               description: "Low arena memory (tuples and indexes) remaining for tnt_router instance of job tarantool_app.
                 You are likely to hit limit soon.
                 It is strongly recommended to increase memtx_memory or number of storages in case of sharded data."
@@ -183,7 +183,7 @@ tests:
               alias: tnt_router
               job: tarantool_app
             exp_annotations:
-              summary: "Instance tnt_router low items memory remaining"
+              summary: "Instance tnt_router (tarantool_app) low items memory remaining"
               description: "Low items memory (tuples) remaining for tnt_router instance of job tarantool_app.
                 Consider increasing memtx_memory or number of storages in case of sharded data."
       - eval_time: 2m
@@ -208,8 +208,9 @@ tests:
               alias: tnt_router
               job: tarantool_app
             exp_annotations:
-              summary: "Instance tnt_router have 'warning'-level Cartridge issues"
-              description: "Possible reasons: high replication lag, replication long idle,
+              summary: "Instance tnt_router (tarantool_app) has 'warning'-level Cartridge issues"
+              description: "Instance tnt_router of job tarantool_app has 'warning'-level Cartridge issues.
+                Possible reasons: high replication lag, replication long idle,
                 failover or switchover issues, clock issues, memory fragmentation,
                 configuration issues, alien members."
       - eval_time: 2m
@@ -234,8 +235,9 @@ tests:
               alias: tnt_router
               job: tarantool_app
             exp_annotations:
-              summary: "Instance tnt_router have 'warning'-level Cartridge issues"
-              description: "Possible reasons: high replication lag, replication long idle,
+              summary: "Instance tnt_router (tarantool_app) has 'warning'-level Cartridge issues"
+              description: "Instance tnt_router of job tarantool_app has 'warning'-level Cartridge issues.
+                Possible reasons: high replication lag, replication long idle,
                 failover or switchover issues, clock issues, memory fragmentation,
                 configuration issues, alien members."
       - eval_time: 2m
@@ -248,8 +250,9 @@ tests:
               alias: tnt_router
               job: tarantool_app
             exp_annotations:
-              summary: "Instance tnt_router have 'critical'-level Cartridge issues"
-              description: "Possible reasons: replication process critical fail,
+              summary: "Instance tnt_router (tarantool_app) has 'critical'-level Cartridge issues"
+              description: "Instance tnt_router of job tarantool_app has 'critical'-level Cartridge issues.
+                Possible reasons: replication process critical fail,
                 running out of available memory."
 
 
@@ -269,7 +272,7 @@ tests:
               alias: tnt_storage_replica
               job: tarantool_app
             exp_annotations:
-              summary: "Instance tnt_storage_replica have high replication lag"
+              summary: "Instance tnt_storage_replica (tarantool_app) have high replication lag"
               description: "Instance tnt_storage_replica of job tarantool_app have high replication lag,
                 check up your network and cluster state."
 
@@ -300,7 +303,7 @@ tests:
               status: '200'
               quantile: '0.99'
             exp_annotations:
-              summary: "Instance tnt_router high HTTP latency"
+              summary: "Instance tnt_router (tarantool_app) high HTTP latency"
               description: "Some GET requests to /hello path with 200 response status
                 on tnt_router instance of job tarantool_app are processed too long."
 
@@ -329,7 +332,7 @@ tests:
               path: /hell0
               method: GET
             exp_annotations:
-              summary: "Instance tnt_router high rate of client error responses"
+              summary: "Instance tnt_router (tarantool_app) high rate of client error responses"
               description: "Too many GET requests to /hell0 path 
                 on tnt_router instance of job tarantool_app get client error (4xx) responses."
 
@@ -407,7 +410,7 @@ tests:
               path: /goodbye
               method: POST
             exp_annotations:
-              summary: "Instance tnt_router server error responses"
+              summary: "Instance tnt_router (tarantool_app) server error responses"
               description: "Some POST requests to /goodbye path 
                 on tnt_router instance of job tarantool_app get server error (5xx) responses."
 
@@ -433,6 +436,6 @@ tests:
               alias: tnt_router
               job: tarantool_app
             exp_annotations:
-              summary: "Router tnt_router low activity"
+              summary: "Router tnt_router (tarantool_app) low activity"
               description: Router tnt_router instance of job tarantool_app gets too little requests.
                 Please, check up your balancer middleware."
