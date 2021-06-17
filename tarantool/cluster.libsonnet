@@ -305,6 +305,7 @@ local prometheus = grafana.prometheus;
     datasource=datasource,
 
     format='none',
+    min=0,
     fill=0,
     decimals=0,
     sort='decreasing',

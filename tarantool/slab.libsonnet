@@ -17,21 +17,24 @@ local prometheus = grafana.prometheus;
   ),
 
   local used_panel(
-    title,
-    description,
-    datasource,
-    policy,
-    measurement,
-    job,
-    metric_name,
-    format,
-    labelY1
+    title=null,
+    description=null,
+    datasource=null,
+    policy=null,
+    measurement=null,
+    job=null,
+    metric_name=null,
+    format=null,
+    labelY1=null,
+    max=null
   ) = graph.new(
     title=title,
     description=description,
     datasource=datasource,
 
     format=format,
+    min=0,
+    max=max,
     labelY1=labelY1,
     fill=0,
     decimals=2,
@@ -73,7 +76,8 @@ local prometheus = grafana.prometheus;
     job,
     metric_name,
     format='percent',
-    labelY1='used ratio'
+    labelY1='used ratio',
+    max=100
   ),
 
   quota_used_ratio(

@@ -21,6 +21,7 @@ local prometheus = grafana.prometheus;
     datasource=datasource,
 
     format='none',
+    min=0,
     labelY1='requests per second',
     fill=0,
     decimals=2,
@@ -148,6 +149,7 @@ local prometheus = grafana.prometheus;
     datasource=datasource,
 
     format='s',
+    min=0,
     labelY1=label,
     fill=0,
     decimals=3,

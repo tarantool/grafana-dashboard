@@ -20,6 +20,7 @@ local prometheus = grafana.prometheus;
     datasource=datasource,
 
     format='s',
+    min=0,
     labelY1='time per minute',
     fill=0,
     decimals=3,

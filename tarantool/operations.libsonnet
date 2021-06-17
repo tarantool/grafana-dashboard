@@ -21,6 +21,7 @@ local prometheus = grafana.prometheus;
     datasource=datasource,
 
     format='none',
+    min=0,
     labelY1=labelY1,
     fill=0,
     decimals=2,
