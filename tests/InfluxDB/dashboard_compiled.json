@@ -3256,6 +3256,299 @@
          "repeatIteration": null,
          "repeatRowId": null,
          "showTitle": true,
+         "title": "Tarantool CPU statistics",
+         "titleSize": "h6",
+         "type": "row"
+      },
+      {
+         "aliasColors": { },
+         "bars": false,
+         "dashLength": 10,
+         "dashes": false,
+         "datasource": "${DS_INFLUXDB}",
+         "decimals": 3,
+         "description": "This is the average amount of time per minute\nspent by instance process executing in user mode.\nMetrics obtained using `getrusage()` call.\n",
+         "fill": 0,
+         "gridPos": {
+            "h": 8,
+            "w": 12,
+            "x": 0,
+            "y": 70
+         },
+         "id": 30,
+         "legend": {
+            "alignAsTable": true,
+            "avg": true,
+            "current": true,
+            "max": true,
+            "min": false,
+            "rightSide": false,
+            "show": true,
+            "sideWidth": null,
+            "sort": "current",
+            "sortDesc": true,
+            "total": false,
+            "values": true
+         },
+         "lines": true,
+         "linewidth": 1,
+         "links": [ ],
+         "nullPointMode": "null",
+         "percentage": false,
+         "pointradius": 5,
+         "points": false,
+         "renderer": "flot",
+         "repeat": null,
+         "seriesOverrides": [ ],
+         "spaceLength": 10,
+         "stack": false,
+         "steppedLine": false,
+         "targets": [
+            {
+               "alias": "$tag_label_pairs_alias",
+               "groupBy": [
+                  {
+                     "params": [
+                        "$__interval"
+                     ],
+                     "type": "time"
+                  },
+                  {
+                     "params": [
+                        "label_pairs_alias"
+                     ],
+                     "type": "tag"
+                  },
+                  {
+                     "params": [
+                        "none"
+                     ],
+                     "type": "fill"
+                  }
+               ],
+               "measurement": "${INFLUXDB_MEASUREMENT}",
+               "policy": "${INFLUXDB_POLICY}",
+               "refId": "A",
+               "resultFormat": "time_series",
+               "select": [
+                  [
+                     {
+                        "params": [
+                           "value"
+                        ],
+                        "type": "field"
+                     },
+                     {
+                        "params": [ ],
+                        "type": "mean"
+                     },
+                     {
+                        "params": [
+                           "1s"
+                        ],
+                        "type": "non_negative_derivative"
+                     }
+                  ]
+               ],
+               "tags": [
+                  {
+                     "key": "metric_name",
+                     "operator": "=",
+                     "value": "tnt_cpu_user_time"
+                  }
+               ]
+            }
+         ],
+         "thresholds": [ ],
+         "timeFrom": null,
+         "timeShift": null,
+         "title": "CPU user time",
+         "tooltip": {
+            "shared": true,
+            "sort": 2,
+            "value_type": "individual"
+         },
+         "type": "graph",
+         "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": [ ]
+         },
+         "yaxes": [
+            {
+               "decimals": 3,
+               "format": "s",
+               "label": "time per minute",
+               "logBase": 1,
+               "max": null,
+               "min": null,
+               "show": true
+            },
+            {
+               "decimals": 3,
+               "format": "s",
+               "label": null,
+               "logBase": 1,
+               "max": null,
+               "min": null,
+               "show": true
+            }
+         ]
+      },
+      {
+         "aliasColors": { },
+         "bars": false,
+         "dashLength": 10,
+         "dashes": false,
+         "datasource": "${DS_INFLUXDB}",
+         "decimals": 3,
+         "description": "This is the average amount of time per minute\nspent by instance process executing in kernel mode.\nMetrics obtained using `getrusage()` call.\n",
+         "fill": 0,
+         "gridPos": {
+            "h": 8,
+            "w": 12,
+            "x": 12,
+            "y": 70
+         },
+         "id": 31,
+         "legend": {
+            "alignAsTable": true,
+            "avg": true,
+            "current": true,
+            "max": true,
+            "min": false,
+            "rightSide": false,
+            "show": true,
+            "sideWidth": null,
+            "sort": "current",
+            "sortDesc": true,
+            "total": false,
+            "values": true
+         },
+         "lines": true,
+         "linewidth": 1,
+         "links": [ ],
+         "nullPointMode": "null",
+         "percentage": false,
+         "pointradius": 5,
+         "points": false,
+         "renderer": "flot",
+         "repeat": null,
+         "seriesOverrides": [ ],
+         "spaceLength": 10,
+         "stack": false,
+         "steppedLine": false,
+         "targets": [
+            {
+               "alias": "$tag_label_pairs_alias",
+               "groupBy": [
+                  {
+                     "params": [
+                        "$__interval"
+                     ],
+                     "type": "time"
+                  },
+                  {
+                     "params": [
+                        "label_pairs_alias"
+                     ],
+                     "type": "tag"
+                  },
+                  {
+                     "params": [
+                        "none"
+                     ],
+                     "type": "fill"
+                  }
+               ],
+               "measurement": "${INFLUXDB_MEASUREMENT}",
+               "policy": "${INFLUXDB_POLICY}",
+               "refId": "A",
+               "resultFormat": "time_series",
+               "select": [
+                  [
+                     {
+                        "params": [
+                           "value"
+                        ],
+                        "type": "field"
+                     },
+                     {
+                        "params": [ ],
+                        "type": "mean"
+                     },
+                     {
+                        "params": [
+                           "1s"
+                        ],
+                        "type": "non_negative_derivative"
+                     }
+                  ]
+               ],
+               "tags": [
+                  {
+                     "key": "metric_name",
+                     "operator": "=",
+                     "value": "tnt_cpu_system_time"
+                  }
+               ]
+            }
+         ],
+         "thresholds": [ ],
+         "timeFrom": null,
+         "timeShift": null,
+         "title": "CPU system time",
+         "tooltip": {
+            "shared": true,
+            "sort": 2,
+            "value_type": "individual"
+         },
+         "type": "graph",
+         "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": [ ]
+         },
+         "yaxes": [
+            {
+               "decimals": 3,
+               "format": "s",
+               "label": "time per minute",
+               "logBase": 1,
+               "max": null,
+               "min": null,
+               "show": true
+            },
+            {
+               "decimals": 3,
+               "format": "s",
+               "label": null,
+               "logBase": 1,
+               "max": null,
+               "min": null,
+               "show": true
+            }
+         ]
+      },
+      {
+         "collapse": false,
+         "collapsed": false,
+         "gridPos": {
+            "h": 1,
+            "w": 24,
+            "x": 0,
+            "y": 78
+         },
+         "id": 32,
+         "panels": [ ],
+         "repeat": null,
+         "repeatIteration": null,
+         "repeatRowId": null,
+         "showTitle": true,
          "title": "Tarantool memory miscellaneous",
          "titleSize": "h6",
          "type": "row"
@@ -3273,9 +3566,9 @@
             "h": 8,
             "w": 24,
             "x": 0,
-            "y": 70
+            "y": 79
          },
-         "id": 30,
+         "id": 33,
          "legend": {
             "alignAsTable": true,
             "avg": false,
@@ -3398,9 +3691,9 @@
             "h": 1,
             "w": 24,
             "x": 0,
-            "y": 78
+            "y": 87
          },
-         "id": 31,
+         "id": 34,
          "panels": [ ],
          "repeat": null,
          "repeatIteration": null,
@@ -3423,9 +3716,9 @@
             "h": 8,
             "w": 8,
             "x": 0,
-            "y": 79
+            "y": 88
          },
-         "id": 32,
+         "id": 35,
          "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -3566,9 +3859,9 @@
             "h": 8,
             "w": 8,
             "x": 8,
-            "y": 79
+            "y": 88
          },
-         "id": 33,
+         "id": 36,
          "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -3709,9 +4002,9 @@
             "h": 8,
             "w": 8,
             "x": 16,
-            "y": 79
+            "y": 88
          },
-         "id": 34,
+         "id": 37,
          "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -3852,9 +4145,9 @@
             "h": 8,
             "w": 8,
             "x": 0,
-            "y": 87
+            "y": 98
          },
-         "id": 35,
+         "id": 38,
          "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -3995,9 +4288,9 @@
             "h": 8,
             "w": 8,
             "x": 8,
-            "y": 87
+            "y": 98
          },
-         "id": 36,
+         "id": 39,
          "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -4138,9 +4431,9 @@
             "h": 8,
             "w": 8,
             "x": 16,
-            "y": 87
+            "y": 98
          },
-         "id": 37,
+         "id": 40,
          "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -4281,9 +4574,9 @@
             "h": 8,
             "w": 8,
             "x": 0,
-            "y": 95
+            "y": 104
          },
-         "id": 38,
+         "id": 41,
          "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -4424,9 +4717,9 @@
             "h": 8,
             "w": 8,
             "x": 8,
-            "y": 95
+            "y": 104
          },
-         "id": 39,
+         "id": 42,
          "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -4567,9 +4860,9 @@
             "h": 8,
             "w": 8,
             "x": 16,
-            "y": 95
+            "y": 104
          },
-         "id": 40,
+         "id": 43,
          "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -4710,9 +5003,9 @@
             "h": 8,
             "w": 8,
             "x": 0,
-            "y": 103
+            "y": 112
          },
-         "id": 41,
+         "id": 44,
          "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -4853,9 +5146,9 @@
             "h": 8,
             "w": 8,
             "x": 8,
-            "y": 103
+            "y": 112
          },
-         "id": 42,
+         "id": 45,
          "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -4996,9 +5289,9 @@
             "h": 8,
             "w": 8,
             "x": 16,
-            "y": 103
+            "y": 112
          },
-         "id": 43,
+         "id": 46,
          "legend": {
             "alignAsTable": true,
             "avg": true,
