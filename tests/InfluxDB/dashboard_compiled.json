@@ -24,12 +24,6 @@
    ],
    "__requires": [
       {
-         "id": "influxdb",
-         "name": "InfluxDB",
-         "type": "datasource",
-         "version": "1.0.0"
-      },
-      {
          "id": "grafana",
          "name": "Grafana",
          "type": "grafana",
@@ -46,6 +40,12 @@
          "name": "Text",
          "type": "panel",
          "version": ""
+      },
+      {
+         "id": "influxdb",
+         "name": "InfluxDB",
+         "type": "datasource",
+         "version": "1.0.0"
       }
    ],
    "annotations": {
@@ -363,7 +363,7 @@
          "gridPos": {
             "h": 8,
             "w": 24,
-            "x": 12,
+            "x": 0,
             "y": 7
          },
          "id": 5,

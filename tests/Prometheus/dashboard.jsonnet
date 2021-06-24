@@ -1,1 +1,1 @@
-import 'tarantool/prometheus_dashboard.jsonnet'
+import 'dashboard/prometheus_dashboard.jsonnet'

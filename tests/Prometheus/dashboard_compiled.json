@@ -24,24 +24,6 @@
    ],
    "__requires": [
       {
-         "id": "prometheus",
-         "name": "Prometheus",
-         "type": "datasource",
-         "version": "1.0.0"
-      },
-      {
-         "id": "stat",
-         "name": "Stat",
-         "type": "panel",
-         "version": ""
-      },
-      {
-         "id": "table",
-         "name": "Table",
-         "type": "panel",
-         "version": ""
-      },
-      {
          "id": "grafana",
          "name": "Grafana",
          "type": "grafana",
@@ -58,6 +40,24 @@
          "name": "Text",
          "type": "panel",
          "version": ""
+      },
+      {
+         "id": "stat",
+         "name": "Stat",
+         "type": "panel",
+         "version": ""
+      },
+      {
+         "id": "table",
+         "name": "Table",
+         "type": "panel",
+         "version": ""
+      },
+      {
+         "id": "prometheus",
+         "name": "Prometheus",
+         "type": "datasource",
+         "version": "1.0.0"
       }
    ],
    "annotations": {
@@ -652,7 +652,7 @@
          "gridPos": {
             "h": 8,
             "w": 24,
-            "x": 12,
+            "x": 0,
             "y": 15
          },
          "id": 11,
