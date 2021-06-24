@@ -13,7 +13,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [0.3.0] - 2021-06-17
 Grafana revisions: [InfluxDB revision 5](https://grafana.com/api/dashboards/12567/revisions/5/download), [Prometheus revision 5](https://grafana.com/api/dashboards/13054/revisions/5/download)
 
-## Added
+### Added
 - Prometheus example alert rules (instance state, memory usage, HTTP load and latency rule examples, etc)
 - Test Prometheus example alert rules with promtool
 - Cartridge issues metrics labels to Telegraf configuration
@@ -23,7 +23,7 @@ Grafana revisions: [InfluxDB revision 5](https://grafana.com/api/dashboards/1256
 - CPU time getrusage panels
 - Replication lag panel
 
-## Changed
+### Changed
 - Update metrics version to 0.9.0
 - Separate app cluster and load generator in example docker stand
 - Use cartridge-cli to run and setup example app cluster instead of luatest
@@ -31,44 +31,49 @@ Grafana revisions: [InfluxDB revision 5](https://grafana.com/api/dashboards/1256
 - Rework "Tarantool spaces statistics" block to "Tarantool operations statistics"
 - Use Tarantool 2.x instead of Tarantool 1.x in test app and load generator
 
-## Fixed
+### Fixed
 - Add missing space and replication metrics labels to Telegraf configuration
+
 
 ## [0.2.3] - 2021-03-11
 Grafana revisions: [InfluxDB revision 4](https://grafana.com/api/dashboards/12567/revisions/4/download), [Prometheus revision 4](https://grafana.com/api/dashboards/13054/revisions/4/download)
 
-## Added
+### Added
 - Memory miscellaneous row with Lua memory panel
 
-## Changed
+### Changed
 - Rename memory overview row
+
 
 ## [0.2.2] - 2021-01-28
 Grafana revisions: [Prometheus revision 3](https://grafana.com/api/dashboards/13054/revisions/3/download)
 
-## Changed
+### Changed
 - Make Prometheus rps graphs rate() time range configurable
+
 
 ## [0.2.1] - 2020-12-11
 Grafana revisions: [Prometheus revision 2](https://grafana.com/api/dashboards/13054/revisions/2/download)
 
-## Added
+### Added
 - Cluster overview panels for Prometheus
+
 
 ## [0.2.0] - 2020-09-23
 Grafana revisions: [InfluxDB revision 3](https://grafana.com/api/dashboards/12567/revisions/3/download), [Prometheus revision 1](https://grafana.com/api/dashboards/13054/revisions/1/download)
 
-## Added
+### Added
 - Dashboard for Prometheus
 
-## Changed
+### Changed
 - Update metrics version to 0.5.0
 - Replace average latency collector with summary collector in example cluster
 - Replace average latency panels with summary 99th percentile panels
 
-## Fixed
+### Fixed
 - Example cluster now starts successfully
 - Example cluster metrics no more breaks Prometheus metrics collect
+
 
 ## [0.1.1] - 2020-09-04
 Grafana revisions: [InfluxDB revision 2](https://grafana.com/api/dashboards/12567/revisions/2/download)
@@ -83,6 +88,7 @@ Grafana revisions: [InfluxDB revision 2](https://grafana.com/api/dashboards/1256
 - Rework example Tarantool docker to start multiple instances with luatest
 - Make InfluxDB policy configurable
 - Documentation improvements and fixes
+
 
 ## [0.1.0] - 2020-06-30
 Grafana revisions: [InfluxDB revision 1](https://grafana.com/api/dashboards/12567/revisions/1/download)
