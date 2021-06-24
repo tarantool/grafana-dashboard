@@ -3,7 +3,7 @@
 jsonnet_fmt='-n 2 --max-blank-lines 2 --sort-imports --string-style s --comment-style s'
 x=0
 
-for i in `find ./tarantool ./tests -name '*.jsonnet' -or -name '*.libsonnet'`
+for i in `find ./dashboard ./tests -name '*.jsonnet' -or -name '*.libsonnet'`
 do
     t="Formatting $i..."
     if [[ "$1" == "update" ]]; then

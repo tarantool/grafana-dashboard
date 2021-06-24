@@ -26,20 +26,20 @@ Refer to dashboard [documentation page](https://www.tarantool.io/en/doc/latest/b
 
 You can compile Prometheus dashboard template with
 ```bash
-jsonnet -J ./vendor/ ./tarantool/prometheus_dashboard.jsonnet
+jsonnet -J ./vendor/ ./dashboard/prometheus_dashboard.jsonnet
 ```
 and InfluxDB dashboard template with
 ```bash
-jsonnet -J ./vendor/ ./tarantool/influxdb_dashboard.jsonnet
+jsonnet -J ./vendor/ ./dashboard/influxdb_dashboard.jsonnet
 ```
 
 To save output into `output.json` file, use
 ```bash
-jsonnet -J ./vendor/ ./tarantool/prometheus_dashboard.jsonnet -o ./output.json
+jsonnet -J ./vendor/ ./dashboard/prometheus_dashboard.jsonnet -o ./output.json
 ```
 and to save output into clipboard, use
 ```bash
-jsonnet -J ./vendor/ ./tarantool/prometheus_dashboard.jsonnet | xclip -selection clipboard
+jsonnet -J ./vendor/ ./dashboard/prometheus_dashboard.jsonnet | xclip -selection clipboard
 ```
 
 ## Tests
