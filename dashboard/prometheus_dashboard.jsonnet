@@ -7,6 +7,7 @@ local memory_misc = import 'memory_misc.libsonnet';
 local net = import 'net.libsonnet';
 local operations = import 'operations.libsonnet';
 local slab = import 'slab.libsonnet';
+local utils = import 'utils.libsonnet';
 local row = grafana.row;
 local dashboard = grafana.dashboard;
 
@@ -101,360 +102,262 @@ grafana.dashboard.new(
     hide='variable',
     label='rate() time range',
   ),
-).addPanel(
-  row.new(title='Cluster overview'),
-  { w: 24, h: 1, x: 0, y: 0 }
-)
-.addPanel(
+).addPanels(utils.generate_grid([
+  row.new(title='Cluster overview') { gridPos: { w: 24, h: 1 } },
+
   cluster.health_overview_table(
     datasource=datasource,
     job=job,
-  ),
-  { w: 12, h: 8, x: 0, y: 1 }
-).addPanel(
+  ) { gridPos: { w: 12, h: 8, x: 0, y: 1 } },
+
   cluster.health_overview_stat(
     datasource=datasource,
     job=job,
-  ),
-  { w: 8, h: 3, x: 12, y: 1 }
-).addPanel(
+  ) { gridPos: { w: 8, h: 3, x: 12, y: 1 } },
+
   cluster.memory_used_stat(
     datasource=datasource,
     job=job,
-  ),
-  { w: 4, h: 5, x: 12, y: 4 }
-).addPanel(
+  ) { gridPos: { w: 4, h: 5, x: 12, y: 4 } },
+
   cluster.memory_reserved_stat(
     datasource=datasource,
     job=job,
-  ),
-  { w: 4, h: 5, x: 16, y: 4 }
-).addPanel(
+  ) { gridPos: { w: 4, h: 5, x: 16, y: 4 } },
+
   cluster.space_ops_stat(
     datasource=datasource,
     job=job,
     rate_time_range=rate_time_range,
-  ),
-  { w: 4, h: 4, x: 20, y: 1 }
-).addPanel(
+  ) { gridPos: { w: 4, h: 4, x: 20, y: 1 } },
+
   cluster.http_rps_stat(
     datasource=datasource,
     job=job,
     rate_time_range=rate_time_range,
-  ),
-  { w: 4, h: 4, x: 20, y: 5 }
-)
-.addPanel(
+  ) { gridPos: { w: 4, h: 4, x: 20, y: 5 } },
+
   cluster.cartridge_warning_issues(
     datasource=datasource,
     job=job,
-  ),
-  { w: 12, h: 6, x: 0, y: 9 }
-)
-.addPanel(
+  ) { gridPos: { w: 12, h: 6 } },
+
   cluster.cartridge_critical_issues(
     datasource=datasource,
     job=job,
-  ),
-  { w: 12, h: 6, x: 12, y: 9 }
-)
-.addPanel(
+  ) { gridPos: { w: 12, h: 6 } },
+
   cluster.replication_lag(
     datasource=datasource,
     job=job,
-  ),
-  { w: 24, h: 8, x: 12, y: 15 }
-)
-.addPanel(
-  row.new(title='Tarantool HTTP statistics'),
-  { w: 24, h: 1, x: 0, y: 23 }
-)
-.addPanel(
+  ) { gridPos: { w: 24, h: 8 } },
+
+  row.new(title='Tarantool HTTP statistics') { gridPos: { w: 24, h: 1 } },
+
   http.rps_success(
     datasource=datasource,
     job=job,
     rate_time_range=rate_time_range,
-  ),
-  { w: 8, h: 8, x: 0, y: 24 }
-)
-.addPanel(
+  ) { gridPos: { w: 8, h: 8 } },
+
   http.rps_error_4xx(
     datasource=datasource,
     job=job,
     rate_time_range=rate_time_range,
-  ),
-  { w: 8, h: 8, x: 8, y: 24 },
-)
-.addPanel(
+  ) { gridPos: { w: 8, h: 8 } },
+
   http.rps_error_5xx(
     datasource=datasource,
     job=job,
     rate_time_range=rate_time_range,
-  ),
-  { w: 8, h: 8, x: 16, y: 24 },
-)
-.addPanel(
+  ) { gridPos: { w: 8, h: 8 } },
+
   http.latency_success(
     datasource=datasource,
     job=job,
-  ),
-  { w: 8, h: 8, x: 0, y: 32 }
-)
-.addPanel(
+  ) { gridPos: { w: 8, h: 8 } },
+
   http.latency_error_4xx(
     datasource=datasource,
     job=job,
-  ),
-  { w: 8, h: 8, x: 8, y: 32 },
-)
-.addPanel(
+  ) { gridPos: { w: 8, h: 8 } },
+
   http.latency_error_5xx(
     datasource=datasource,
     job=job,
-  ),
-  { w: 8, h: 8, x: 16, y: 32 },
-)
-.addPanel(
-  row.new(title='Tarantool network activity'),
-  { w: 24, h: 1, x: 0, y: 40 }
-)
-.addPanel(
+  ) { gridPos: { w: 8, h: 8 } },
+
+  row.new(title='Tarantool network activity') { gridPos: { w: 24, h: 1 } },
+
   net.bytes_received_per_second(
     datasource=datasource,
     job=job,
     rate_time_range=rate_time_range,
-  ),
-  { w: 12, h: 8, x: 0, y: 41 }
-)
-.addPanel(
+  ) { gridPos: { w: 12, h: 8 } },
+
   net.bytes_sent_per_second(
     datasource=datasource,
     job=job,
     rate_time_range=rate_time_range,
-  ),
-  { w: 12, h: 8, x: 12, y: 41 }
-)
-.addPanel(
+  ) { gridPos: { w: 12, h: 8 } },
+
   net.net_rps(
     datasource=datasource,
     job=job,
     rate_time_range=rate_time_range,
-  ),
-  { w: 8, h: 8, x: 0, y: 49 }
-)
-.addPanel(
+  ) { gridPos: { w: 8, h: 8 } },
+
   net.net_pending(
     datasource=datasource,
     job=job,
-  ),
-  { w: 8, h: 8, x: 8, y: 49 }
-)
-.addPanel(
+  ) { gridPos: { w: 8, h: 8 } },
+
   net.current_connections(
     datasource=datasource,
     job=job,
-  ),
-  { w: 8, h: 8, x: 16, y: 49 }
-)
-.addPanel(
-  row.new(title='Tarantool memory allocation overview'),
-  { w: 24, h: 1, x: 0, y: 57 }
-)
-.addPanel(
-  slab.monitor_info(),
-  { w: 24, h: 3, x: 0, y: 58 }
-)
-.addPanel(
+  ) { gridPos: { w: 8, h: 8 } },
+
+  row.new(title='Tarantool memory allocation overview') { gridPos: { w: 24, h: 1 } },
+
+  slab.monitor_info() { gridPos: { w: 24, h: 3 } },
+
   slab.quota_used_ratio(
     datasource=datasource,
     job=job,
-  ),
-  { w: 8, h: 8, x: 0, y: 61 }
-)
-.addPanel(
+  ) { gridPos: { w: 8, h: 8 } },
+
   slab.arena_used_ratio(
     datasource=datasource,
     job=job,
-  ),
-  { w: 8, h: 8, x: 8, y: 61 },
-)
-.addPanel(
+  ) { gridPos: { w: 8, h: 8 } },
+
   slab.items_used_ratio(
     datasource=datasource,
     job=job,
-  ),
-  { w: 8, h: 8, x: 16, y: 61 },
-)
-.addPanel(
+  ) { gridPos: { w: 8, h: 8 } },
+
   slab.quota_used(
     datasource=datasource,
     job=job,
-  ),
-  { w: 8, h: 8, x: 0, y: 69 }
-)
-.addPanel(
+  ) { gridPos: { w: 8, h: 8 } },
+
   slab.arena_used(
     datasource=datasource,
     job=job,
-  ),
-  { w: 8, h: 8, x: 8, y: 69 },
-)
-.addPanel(
+  ) { gridPos: { w: 8, h: 8 } },
+
   slab.items_used(
     datasource=datasource,
     job=job,
-  ),
-  { w: 8, h: 8, x: 16, y: 69 },
-)
-.addPanel(
+  ) { gridPos: { w: 8, h: 8 } },
+
   slab.quota_size(
     datasource=datasource,
     job=job,
-  ),
-  { w: 8, h: 8, x: 0, y: 77 }
-)
-.addPanel(
+  ) { gridPos: { w: 8, h: 8 } },
+
   slab.arena_size(
     datasource=datasource,
     job=job,
-  ),
-  { w: 8, h: 8, x: 8, y: 77 },
-)
-.addPanel(
+  ) { gridPos: { w: 8, h: 8 } },
+
   slab.items_size(
     datasource=datasource,
     job=job,
-  ),
-  { w: 8, h: 8, x: 16, y: 77 },
-)
-.addPanel(
-  row.new(title='Tarantool CPU statistics'),
-  { w: 24, h: 1, x: 0, y: 85 }
-)
-.addPanel(
+  ) { gridPos: { w: 8, h: 8 } },
+
+  row.new(title='Tarantool CPU statistics') { gridPos: { w: 24, h: 1 } },
+
   cpu.getrusage_cpu_user_time(
     datasource=datasource,
     job=job,
     rate_time_range=rate_time_range,
-  ),
-  { w: 12, h: 8, x: 0, y: 86 },
-)
-.addPanel(
+  ) { gridPos: { w: 12, h: 8 } },
+
   cpu.getrusage_cpu_system_time(
     datasource=datasource,
     job=job,
     rate_time_range=rate_time_range,
-  ),
-  { w: 12, h: 8, x: 12, y: 86 },
-)
-.addPanel(
-  row.new(title='Tarantool memory miscellaneous'),
-  { w: 24, h: 1, x: 0, y: 94 }
-)
-.addPanel(
+  ) { gridPos: { w: 12, h: 8 } },
+
+  row.new(title='Tarantool memory miscellaneous') { gridPos: { w: 24, h: 1 } },
+
   memory_misc.lua_memory(
     datasource=datasource,
     job=job,
-  ),
-  { w: 24, h: 8, x: 0, y: 95 },
-)
-.addPanel(
-  row.new(title='Tarantool operations statistics'),
-  { w: 24, h: 1, x: 0, y: 103 }
-)
-.addPanel(
+  ) { gridPos: { w: 24, h: 8 } },
+
+  row.new(title='Tarantool operations statistics') { gridPos: { w: 24, h: 1 } },
+
   operations.space_select_rps(
     datasource=datasource,
     job=job,
     rate_time_range=rate_time_range,
-  ),
-  { w: 8, h: 8, x: 0, y: 104 },
-)
-.addPanel(
+  ) { gridPos: { w: 8, h: 8 } },
+
   operations.space_insert_rps(
     datasource=datasource,
     job=job,
     rate_time_range=rate_time_range,
-  ),
-  { w: 8, h: 8, x: 8, y: 104 },
-)
-.addPanel(
+  ) { gridPos: { w: 8, h: 8 } },
+
   operations.space_replace_rps(
     datasource=datasource,
     job=job,
     rate_time_range=rate_time_range,
-  ),
-  { w: 8, h: 8, x: 16, y: 104 },
-)
-.addPanel(
+  ) { gridPos: { w: 8, h: 8 } },
+
   operations.space_upsert_rps(
     datasource=datasource,
     job=job,
     rate_time_range=rate_time_range,
-  ),
-  { w: 8, h: 8, x: 0, y: 112 },
-)
-.addPanel(
+  ) { gridPos: { w: 8, h: 8 } },
+
   operations.space_update_rps(
     datasource=datasource,
     job=job,
     rate_time_range=rate_time_range,
-  ),
-  { w: 8, h: 8, x: 8, y: 112 },
-)
-.addPanel(
+  ) { gridPos: { w: 8, h: 8 } },
+
   operations.space_delete_rps(
     datasource=datasource,
     job=job,
     rate_time_range=rate_time_range,
-  ),
-  { w: 8, h: 8, x: 16, y: 112 },
-)
-.addPanel(
+  ) { gridPos: { w: 8, h: 8 } },
+
   operations.call_rps(
     datasource=datasource,
     job=job,
     rate_time_range=rate_time_range,
-  ),
-  { w: 8, h: 8, x: 0, y: 120 },
-)
-.addPanel(
+  ) { gridPos: { w: 8, h: 8 } },
+
   operations.eval_rps(
     datasource=datasource,
     job=job,
     rate_time_range=rate_time_range,
-  ),
-  { w: 8, h: 8, x: 8, y: 120 },
-)
-.addPanel(
+  ) { gridPos: { w: 8, h: 8 } },
+
   operations.error_rps(
     datasource=datasource,
     job=job,
     rate_time_range=rate_time_range,
-  ),
-  { w: 8, h: 8, x: 16, y: 120 },
-)
-.addPanel(
+  ) { gridPos: { w: 8, h: 8 } },
+
   operations.auth_rps(
     datasource=datasource,
     job=job,
     rate_time_range=rate_time_range,
-  ),
-  { w: 8, h: 8, x: 0, y: 128 },
-)
-.addPanel(
+  ) { gridPos: { w: 8, h: 8 } },
+
   operations.SQL_prepare_rps(
     datasource=datasource,
     job=job,
     rate_time_range=rate_time_range,
-  ),
-  { w: 8, h: 8, x: 8, y: 128 },
-)
-.addPanel(
+  ) { gridPos: { w: 8, h: 8 } },
+
   operations.SQL_execute_rps(
     datasource=datasource,
     job=job,
     rate_time_range=rate_time_range,
-  ),
-  { w: 8, h: 8, x: 16, y: 128 },
-)
+  ) { gridPos: { w: 8, h: 8 } },
+]))
