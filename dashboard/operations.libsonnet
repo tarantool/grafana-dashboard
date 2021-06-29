@@ -5,7 +5,7 @@ local influxdb = grafana.influxdb;
 local prometheus = grafana.prometheus;
 
 {
-  row:: grafana.row.new(title='Tarantool operations statistics'),
+  row:: common.row('Tarantool operations statistics'),
 
   local operation_rps(
     title=null,

@@ -16,6 +16,8 @@ local prometheus = grafana.prometheus;
     decimalsY1=0,
     legend_avg=true,
     legend_max=true,
+    panel_height=8,
+    panel_width=8,
   ):: grafana.graphPanel.new(
     title=title,
     description=description,
@@ -36,7 +38,9 @@ local prometheus = grafana.prometheus;
     legend_values=true,
     legend_sort='current',
     legend_sortDesc=true,
-  ),
+  ) { gridPos: { w: panel_width, h: panel_height } },
+
+  row(title):: grafana.row.new(title) { gridPos: { w: 24, h: 1 } },
 
   default_metric_target(
     datasource,

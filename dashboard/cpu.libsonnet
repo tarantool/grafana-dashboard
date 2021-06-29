@@ -1,8 +1,7 @@
 local common = import 'common.libsonnet';
-local grafana = import 'grafonnet/grafana.libsonnet';
 
 {
-  row:: grafana.row.new(title='Tarantool CPU statistics'),
+  row:: common.row('Tarantool CPU statistics'),
 
   local getrusage_cpu_time_graph(
     title,
@@ -21,6 +20,7 @@ local grafana = import 'grafonnet/grafana.libsonnet';
     labelY1='time per minute',
     decimalsY1=3,
     min=0,
+    panel_width=12,
   ).addTarget(common.default_rps_target(
     datasource,
     metric_name,

@@ -1,8 +1,7 @@
 local common = import 'common.libsonnet';
-local grafana = import 'grafonnet/grafana.libsonnet';
 
 {
-  row:: grafana.row.new(title='Tarantool network activity'),
+  row:: common.row('Tarantool network activity'),
 
   local bytes_per_second_graph(
     title,
@@ -20,6 +19,7 @@ local grafana = import 'grafonnet/grafana.libsonnet';
     datasource=datasource,
     format='Bps',
     labelY1=labelY1,
+    panel_width=12,
   ).addTarget(common.default_rps_target(
     datasource,
     metric_name,

@@ -8,7 +8,7 @@ local influxdb = grafana.influxdb;
 local prometheus = grafana.prometheus;
 
 {
-  row:: grafana.row.new(title='Cluster overview'),
+  row:: common.row('Cluster overview'),
 
   health_overview_table(
     title='Cluster status overview',
@@ -89,7 +89,7 @@ local prometheus = grafana.prometheus;
       )
     else if datasource == '${DS_INFLUXDB}' then
       error 'InfluxDB target not supported yet'
-  ),
+  ) { gridPos: { w: 12, h: 8 } },
 
   local title_workaround(  // Workaround for missing options.fieldOptions.defaults.title https://github.com/grafana/grafonnet-lib/pull/260
     stat_panel,
@@ -164,7 +164,7 @@ local prometheus = grafana.prometheus;
     decimals=0,
     unit='none',
     expr=std.format('sum(up{job=~"%s"})', job),
-  ),
+  ) { gridPos: { w: 8, h: 3 } },
 
   memory_used_stat(
     title='',
@@ -195,7 +195,7 @@ local prometheus = grafana.prometheus;
     decimals=2,
     unit='bytes',
     expr=std.format('sum(tnt_slab_arena_used{job=~"%s"})', job),
-  ),
+  ) { gridPos: { w: 4, h: 5 } },
 
   memory_reserved_stat(
     title='',
@@ -226,7 +226,7 @@ local prometheus = grafana.prometheus;
     decimals=2,
     unit='bytes',
     expr=std.format('sum(tnt_slab_quota_size{job=~"%s"})', job),
-  ),
+  ) { gridPos: { w: 4, h: 5 } },
 
   space_ops_stat(
     title='',
@@ -259,7 +259,7 @@ local prometheus = grafana.prometheus;
     decimals=3,
     unit='ops',
     expr=std.format('sum(rate(tnt_stats_op_total{job=~"%s"}[%s]))', [job, rate_time_range]),
-  ),
+  ) { gridPos: { w: 4, h: 4 } },
 
   http_rps_stat(
     title='',
@@ -292,7 +292,7 @@ local prometheus = grafana.prometheus;
     decimals=3,
     unit='reqps',
     expr=std.format('sum(rate(http_server_request_latency_count{job=~"%s"}[%s]))', [job, rate_time_range]),
-  ),
+  ) { gridPos: { w: 4, h: 4 } },
 
   local cartridge_issues(
     title,
@@ -302,21 +302,16 @@ local prometheus = grafana.prometheus;
     measurement,
     job,
     level,
-  ) = graph.new(
+  ) = common.default_graph(
     title=title,
     description=description,
     datasource=datasource,
-
-    format='none',
     min=0,
-    fill=0,
     decimals=0,
-    sort='decreasing',
-    legend_alignAsTable=true,
-    legend_current=true,
-    legend_values=true,
-    legend_sort='current',
-    legend_sortDesc=true,
+    legend_avg=false,
+    legend_max=false,
+    panel_height=6,
+    panel_width=12,
   ).addTarget(
     if datasource == '${DS_PROMETHEUS}' then
       prometheus.target(
@@ -398,6 +393,7 @@ local prometheus = grafana.prometheus;
     decimalsY1=null,
     legend_avg=false,
     min=0,
+    panel_width=24,
   ).addTarget(
     if datasource == '${DS_PROMETHEUS}' then
       prometheus.target(

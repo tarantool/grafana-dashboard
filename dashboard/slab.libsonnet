@@ -2,7 +2,7 @@ local common = import 'common.libsonnet';
 local grafana = import 'grafonnet/grafana.libsonnet';
 
 {
-  row:: grafana.row.new(title='Tarantool memory allocation overview'),
+  row:: common.row('Tarantool memory allocation overview'),
 
   monitor_info(
   ):: grafana.text.new(
@@ -12,7 +12,7 @@ local grafana = import 'grafonnet/grafana.libsonnet';
 
       `quota_used_ratio` > 90%, `arena_used_ratio` > 90%, `items_used_ratio` > 90% – you are running out of memory. You should consider increasing Tarantool’s memory limit (*box.cfg.memtx_memory*).
     |||,
-  ),
+  ) { gridPos: { w: 24, h: 3 } },
 
   local used_panel(
     title=null,

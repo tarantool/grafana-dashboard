@@ -8,7 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 - Code rework: introduce grid generation, separate dashboards code
-- Code rework: use common graph template to reduce code copypaste
+- Code rework: use common graph template to reduce code copypaste, set panel size in code
 
 
 ## [0.3.0] - 2021-06-17

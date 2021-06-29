@@ -1,8 +1,7 @@
 local common = import 'common.libsonnet';
-local grafana = import 'grafonnet/grafana.libsonnet';
 
 {
-  row:: grafana.row.new(title='Tarantool memory miscellaneous'),
+  row:: common.row('Tarantool memory miscellaneous'),
 
   lua_memory(
     title='Lua runtime',
@@ -19,6 +18,7 @@ local grafana = import 'grafonnet/grafana.libsonnet';
     datasource=datasource,
     format='bytes',
     labelY1='in bytes',
+    panel_width=24,
   ).addTarget(common.default_metric_target(
     datasource,
     'tnt_info_memory_lua',
