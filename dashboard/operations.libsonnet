@@ -1,10 +1,12 @@
+local common = import 'common.libsonnet';
 local grafana = import 'grafonnet/grafana.libsonnet';
 
-local graph = grafana.graphPanel;
 local influxdb = grafana.influxdb;
 local prometheus = grafana.prometheus;
 
 {
+  row:: grafana.row.new(title='Tarantool operations statistics'),
+
   local operation_rps(
     title=null,
     description=null,
@@ -15,25 +17,12 @@ local prometheus = grafana.prometheus;
     rate_time_range=null,
     labelY1=null,
     operation=null,
-  ) = graph.new(
+  ) = common.default_graph(
     title=title,
     description=description,
     datasource=datasource,
-
-    format='none',
     min=0,
     labelY1=labelY1,
-    fill=0,
-    decimals=3,
-    decimalsY1=0,
-    sort='decreasing',
-    legend_alignAsTable=true,
-    legend_avg=true,
-    legend_current=true,
-    legend_max=true,
-    legend_values=true,
-    legend_sort='current',
-    legend_sortDesc=true,
   ).addTarget(
     if datasource == '${DS_PROMETHEUS}' then
       prometheus.target(

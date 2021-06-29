@@ -1,3 +1,4 @@
+local common = import 'common.libsonnet';
 local grafana = import 'grafonnet/grafana.libsonnet';
 
 local graph = grafana.graphPanel;
@@ -7,6 +8,8 @@ local influxdb = grafana.influxdb;
 local prometheus = grafana.prometheus;
 
 {
+  row:: grafana.row.new(title='Cluster overview'),
+
   health_overview_table(
     title='Cluster status overview',
     description=null,
@@ -386,21 +389,15 @@ local prometheus = grafana.prometheus;
     policy=null,
     measurement=null,
     job=null,
-  ):: graph.new(
+  ):: common.default_graph(
     title=title,
     description=description,
     datasource=datasource,
-
     format='s',
-    fill=0,
+    decimals=null,
+    decimalsY1=null,
+    legend_avg=false,
     min=0,
-    sort='decreasing',
-    legend_alignAsTable=true,
-    legend_current=true,
-    legend_max=true,
-    legend_values=true,
-    legend_sort='current',
-    legend_sortDesc=true,
   ).addTarget(
     if datasource == '${DS_PROMETHEUS}' then
       prometheus.target(

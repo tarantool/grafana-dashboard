@@ -53,6 +53,13 @@ local function init(opts) -- luacheck: no unused args
         })
         sp:create_index('pk', { parts = { 'key' }, if_not_exists = true })
 
+        local v_sp = box.schema.space.create('MY_VINYL_SPACE', { if_not_exists = true, engine = 'vinyl' })
+        v_sp:format({
+            { name = 'key', type = 'number', is_nullable = false },
+            { name = 'value', type = 'string', is_nullable = false },
+        })
+        v_sp:create_index('pk', { parts = { 'key' }, if_not_exists = true })
+
         if local_cfg.user and local_cfg.password then
             -- cluster-wide user privileges
             box.schema.user.create(local_cfg.user, { password = local_cfg.password, if_not_exists = true })

@@ -823,7 +823,7 @@
                "label": "requests per second",
                "logBase": 1,
                "max": null,
-               "min": 0,
+               "min": null,
                "show": true
             },
             {
@@ -832,7 +832,7 @@
                "label": null,
                "logBase": 1,
                "max": null,
-               "min": 0,
+               "min": null,
                "show": true
             }
          ]
@@ -913,7 +913,7 @@
                "label": "requests per second",
                "logBase": 1,
                "max": null,
-               "min": 0,
+               "min": null,
                "show": true
             },
             {
@@ -922,7 +922,7 @@
                "label": null,
                "logBase": 1,
                "max": null,
-               "min": 0,
+               "min": null,
                "show": true
             }
          ]
@@ -1003,7 +1003,7 @@
                "label": "requests per second",
                "logBase": 1,
                "max": null,
-               "min": 0,
+               "min": null,
                "show": true
             },
             {
@@ -1012,7 +1012,7 @@
                "label": null,
                "logBase": 1,
                "max": null,
-               "min": 0,
+               "min": null,
                "show": true
             }
          ]
@@ -1093,7 +1093,7 @@
                "label": "99th percentile",
                "logBase": 1,
                "max": null,
-               "min": 0,
+               "min": null,
                "show": true
             },
             {
@@ -1102,7 +1102,7 @@
                "label": null,
                "logBase": 1,
                "max": null,
-               "min": 0,
+               "min": null,
                "show": true
             }
          ]
@@ -1183,7 +1183,7 @@
                "label": "99th percentile",
                "logBase": 1,
                "max": null,
-               "min": 0,
+               "min": null,
                "show": true
             },
             {
@@ -1192,7 +1192,7 @@
                "label": null,
                "logBase": 1,
                "max": null,
-               "min": 0,
+               "min": null,
                "show": true
             }
          ]
@@ -1273,7 +1273,7 @@
                "label": "99th percentile",
                "logBase": 1,
                "max": null,
-               "min": 0,
+               "min": null,
                "show": true
             },
             {
@@ -1282,7 +1282,7 @@
                "label": null,
                "logBase": 1,
                "max": null,
-               "min": 0,
+               "min": null,
                "show": true
             }
          ]
@@ -1382,7 +1382,7 @@
                "label": "received",
                "logBase": 1,
                "max": null,
-               "min": 0,
+               "min": null,
                "show": true
             },
             {
@@ -1391,7 +1391,7 @@
                "label": null,
                "logBase": 1,
                "max": null,
-               "min": 0,
+               "min": null,
                "show": true
             }
          ]
@@ -1472,7 +1472,7 @@
                "label": "sent",
                "logBase": 1,
                "max": null,
-               "min": 0,
+               "min": null,
                "show": true
             },
             {
@@ -1481,7 +1481,7 @@
                "label": null,
                "logBase": 1,
                "max": null,
-               "min": 0,
+               "min": null,
                "show": true
             }
          ]
@@ -1562,7 +1562,7 @@
                "label": "requests per second",
                "logBase": 1,
                "max": null,
-               "min": 0,
+               "min": null,
                "show": true
             },
             {
@@ -1571,7 +1571,7 @@
                "label": null,
                "logBase": 1,
                "max": null,
-               "min": 0,
+               "min": null,
                "show": true
             }
          ]
@@ -1742,7 +1742,7 @@
                "label": "current",
                "logBase": 1,
                "max": null,
-               "min": 0,
+               "min": null,
                "show": true
             },
             {
@@ -1751,7 +1751,7 @@
                "label": null,
                "logBase": 1,
                "max": null,
-               "min": 0,
+               "min": null,
                "show": true
             }
          ]

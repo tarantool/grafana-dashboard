@@ -72,7 +72,7 @@ grafana.dashboard.new(
   description='InfluxDB Tarantool metrics policy'
 )
 .addPanels(utils.generate_grid([
-  row.new(title='Cluster overview') { gridPos: { w: 24, h: 1 } },
+  cluster.row { gridPos: { w: 24, h: 1 } },
 
   cluster.cartridge_warning_issues(
     datasource=datasource,
@@ -92,7 +92,7 @@ grafana.dashboard.new(
     measurement=measurement,
   ) { gridPos: { w: 24, h: 8 } },
 
-  row.new(title='Tarantool HTTP statistics') { gridPos: { w: 24, h: 1 } },
+  http.row { gridPos: { w: 24, h: 1 } },
 
   http.rps_success(
     datasource=datasource,
@@ -130,7 +130,7 @@ grafana.dashboard.new(
     measurement=measurement,
   ) { gridPos: { w: 8, h: 8 } },
 
-  row.new(title='Tarantool network activity') { gridPos: { w: 24, h: 1 } },
+  net.row { gridPos: { w: 24, h: 1 } },
 
   net.bytes_received_per_second(
     datasource=datasource,
@@ -162,7 +162,7 @@ grafana.dashboard.new(
     measurement=measurement,
   ) { gridPos: { w: 8, h: 8 } },
 
-  row.new(title='Tarantool memory allocation overview') { gridPos: { w: 24, h: 1 } },
+  slab.row { gridPos: { w: 24, h: 1 } },
 
   slab.monitor_info() { gridPos: { w: 24, h: 3 } },
 
@@ -220,7 +220,7 @@ grafana.dashboard.new(
     measurement=measurement,
   ) { gridPos: { w: 8, h: 8 } },
 
-  row.new(title='Tarantool CPU statistics') { gridPos: { w: 24, h: 1 } },
+  cpu.row { gridPos: { w: 24, h: 1 } },
 
   cpu.getrusage_cpu_user_time(
     datasource=datasource,
@@ -234,7 +234,7 @@ grafana.dashboard.new(
     measurement=measurement,
   ) { gridPos: { w: 12, h: 8 } },
 
-  row.new(title='Tarantool memory miscellaneous') { gridPos: { w: 24, h: 1 } },
+  memory_misc.row { gridPos: { w: 24, h: 1 } },
 
   memory_misc.lua_memory(
     datasource=datasource,
@@ -242,7 +242,7 @@ grafana.dashboard.new(
     measurement=measurement,
   ) { gridPos: { w: 24, h: 8 } },
 
-  row.new(title='Tarantool operations statistics') { gridPos: { w: 24, h: 1 } },
+  operations.row { gridPos: { w: 24, h: 1 } },
 
   operations.space_select_rps(
     datasource=datasource,
