@@ -1,20 +1,18 @@
+local common = import 'common.libsonnet';
 local grafana = import 'grafonnet/grafana.libsonnet';
 
-local text = grafana.text;
-local graph = grafana.graphPanel;
-local influxdb = grafana.influxdb;
-local prometheus = grafana.prometheus;
-
 {
+  row:: common.row('Tarantool memtx allocation overview'),
+
   monitor_info(
-  ):: text.new(
+  ):: grafana.text.new(
     title='Slab allocator monitoring information',
     content=|||
       `quota_used_ratio` > 90%, `arena_used_ratio` > 90%, 50% < `items_used_ratio` < 90% – your memory is highly fragmented. See [docs](https://www.tarantool.io/en/doc/1.10/reference/reference_lua/box_slab/#lua-function.box.slab.info) for more info.
 
       `quota_used_ratio` > 90%, `arena_used_ratio` > 90%, `items_used_ratio` > 90% – you are running out of memory. You should consider increasing Tarantool’s memory limit (*box.cfg.memtx_memory*).
     |||,
-  ),
+  ) { gridPos: { w: 24, h: 3 } },
 
   local used_panel(
     title=null,
@@ -26,39 +24,24 @@ local prometheus = grafana.prometheus;
     metric_name=null,
     format=null,
     labelY1=null,
-    max=null
-  ) = graph.new(
+    max=null,
+  ) = common.default_graph(
     title=title,
     description=description,
     datasource=datasource,
-
     format=format,
     min=0,
     max=max,
     labelY1=labelY1,
-    fill=0,
-    decimals=3,
-    decimalsY1=0,
-    sort='decreasing',
-    legend_alignAsTable=true,
-    legend_current=true,
-    legend_values=true,
-    legend_sort='current',
-    legend_sortDesc=true,
-  ).addTarget(
-    if datasource == '${DS_PROMETHEUS}' then
-      prometheus.target(
-        expr=std.format('%s{job=~"%s"}', [metric_name, job]),
-        legendFormat='{{alias}}',
-      )
-    else if datasource == '${DS_INFLUXDB}' then
-      influxdb.target(
-        policy=policy,
-        measurement=measurement,
-        group_tags=['label_pairs_alias'],
-        alias='$tag_label_pairs_alias',
-      ).where('metric_name', '=', metric_name).selectField('value').addConverter('mean')
-  ),
+    legend_avg=false,
+    legend_max=false,
+  ).addTarget(common.default_metric_target(
+    datasource,
+    metric_name,
+    job,
+    policy,
+    measurement,
+  )),
 
   local used_ratio(
     title,

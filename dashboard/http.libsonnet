@@ -1,10 +1,12 @@
+local common = import 'common.libsonnet';
 local grafana = import 'grafonnet/grafana.libsonnet';
 
-local graph = grafana.graphPanel;
 local influxdb = grafana.influxdb;
 local prometheus = grafana.prometheus;
 
 {
+  row:: common.row('Tarantool HTTP statistics'),
+
   local rps_graph(
     title,
     description,
@@ -15,25 +17,11 @@ local prometheus = grafana.prometheus;
     rate_time_range,
     metric_name,
     status_regex,
-  ) = graph.new(
+  ) = common.default_graph(
     title=title,
     description=description,
     datasource=datasource,
-
-    format='none',
-    min=0,
     labelY1='requests per second',
-    fill=0,
-    decimals=3,
-    decimalsY1=0,
-    sort='decreasing',
-    legend_alignAsTable=true,
-    legend_avg=true,
-    legend_current=true,
-    legend_max=true,
-    legend_values=true,
-    legend_sort='current',
-    legend_sortDesc=true,
   ).addTarget(
     if datasource == '${DS_PROMETHEUS}' then
       prometheus.target(
@@ -143,24 +131,13 @@ local prometheus = grafana.prometheus;
     quantile,
     label,
     status_regex,
-  ) = graph.new(
+  ) = common.default_graph(
     title=title,
     description=description,
     datasource=datasource,
-
     format='s',
-    min=0,
     labelY1=label,
-    fill=0,
-    decimals=3,
-    sort='decreasing',
-    legend_alignAsTable=true,
-    legend_avg=true,
-    legend_current=true,
-    legend_max=true,
-    legend_values=true,
-    legend_sort='current',
-    legend_sortDesc=true,
+    decimalsY1=null,
   ).addTarget(
     if datasource == '${DS_PROMETHEUS}' then
       prometheus.target(

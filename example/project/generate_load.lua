@@ -73,45 +73,50 @@ local function space_operations(instance, operation, count)
         return
     end
 
-    local space = instance.net_box.space.MY_SPACE
+    local spaces = {
+        instance.net_box.space.MY_SPACE,
+        instance.net_box.space.MY_VINYL_SPACE
+    }
 
-    if operation == SELECT then
-        for _ = 1, count do
-            space:select({}, { limit = 1 })
-        end
+    for _, space in ipairs(spaces) do
+        if operation == SELECT then
+            for _ = 1, count do
+                space:select({}, { limit = 1 })
+            end
 
-    elseif operation == INSERT then
-        for _ = 1, count do
-            space:insert{ last_key, random_string(5) }
-            last_key = last_key + 1
-        end
+        elseif operation == INSERT then
+            for _ = 1, count do
+                space:insert{ last_key, random_string(5) }
+                last_key = last_key + 1
+            end
 
-    elseif operation == UPDATE then
-        for _ = 1, count do
-            local tuple = space:select({}, { limit = 1 })[1]
-            if tuple == nil then return end
-            space:update(tuple[1], {{ '=', 2, random_string(5) }})
-        end
+        elseif operation == UPDATE then
+            for _ = 1, count do
+                local tuple = space:select({}, { limit = 1 })[1]
+                if tuple == nil then return end
+                space:update(tuple[1], {{ '=', 2, random_string(5) }})
+            end
 
-    elseif operation == UPSERT then
-        for _ = 1, count do
-            local tuple = space:select({}, { limit = 1 })[1]
-            if tuple == nil then return end
-            space:upsert(tuple, {{ '=', 2, random_string(5) }})
-        end
+        elseif operation == UPSERT then
+            for _ = 1, count do
+                local tuple = space:select({}, { limit = 1 })[1]
+                if tuple == nil then return end
+                space:upsert(tuple, {{ '=', 2, random_string(5) }})
+            end
 
-    elseif operation == REPLACE then
-        for _ = 1, count do
-            local tuple = space:select({}, { limit = 1 })[1]
-            if tuple == nil then return end
-            space:replace{ tuple[1], random_string(5) }
-        end
+        elseif operation == REPLACE then
+            for _ = 1, count do
+                local tuple = space:select({}, { limit = 1 })[1]
+                if tuple == nil then return end
+                space:replace{ tuple[1], random_string(5) }
+            end
 
-    elseif operation == DELETE then
-        for _ = 1, count do
-            local tuple = space:select({}, { limit = 1 })[1]
-            if tuple == nil then return end
-            space:delete{ tuple[1] }
+        elseif operation == DELETE then
+            for _ = 1, count do
+                local tuple = space:select({}, { limit = 1 })[1]
+                if tuple == nil then return end
+                space:delete{ tuple[1] }
+            end
         end
     end
 end

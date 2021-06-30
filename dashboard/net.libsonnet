@@ -1,10 +1,8 @@
-local grafana = import 'grafonnet/grafana.libsonnet';
-
-local graph = grafana.graphPanel;
-local influxdb = grafana.influxdb;
-local prometheus = grafana.prometheus;
+local common = import 'common.libsonnet';
 
 {
+  row:: common.row('Tarantool network activity'),
+
   local bytes_per_second_graph(
     title,
     description,
@@ -15,41 +13,21 @@ local prometheus = grafana.prometheus;
     rate_time_range,
     metric_name,
     labelY1,
-  ) = graph.new(
+  ) = common.default_graph(
     title=title,
     description=description,
     datasource=datasource,
-
     format='Bps',
-    min=0,
     labelY1=labelY1,
-    fill=0,
-    decimals=3,
-    decimalsY1=0,
-    sort='decreasing',
-    legend_alignAsTable=true,
-    legend_avg=true,
-    legend_current=true,
-    legend_max=true,
-    legend_values=true,
-    legend_sort='current',
-    legend_sortDesc=true,
-  ).addTarget(
-    if datasource == '${DS_PROMETHEUS}' then
-      prometheus.target(
-        expr=std.format('rate(%s{job=~"%s"}[%s])',
-                        [metric_name, job, rate_time_range]),
-        legendFormat='{{alias}}',
-      )
-    else if datasource == '${DS_INFLUXDB}' then
-      influxdb.target(
-        policy=policy,
-        measurement=measurement,
-        group_tags=['label_pairs_alias'],
-        alias='$tag_label_pairs_alias',
-      ).where('metric_name', '=', metric_name)
-      .selectField('value').addConverter('mean').addConverter('non_negative_derivative', ['1s'])
-  ),
+    panel_width=12,
+  ).addTarget(common.default_rps_target(
+    datasource,
+    metric_name,
+    job,
+    rate_time_range,
+    policy,
+    measurement
+  )),
 
   bytes_received_per_second(
     title='Data received',
@@ -115,40 +93,19 @@ local prometheus = grafana.prometheus;
     measurement=null,
     job=null,
     rate_time_range=null,
-  ):: graph.new(
+  ):: common.default_graph(
     title=title,
     description=description,
     datasource=datasource,
-
-    format='none',
-    min=0,
     labelY1='requests per second',
-    fill=0,
-    decimals=3,
-    decimalsY1=0,
-    sort='decreasing',
-    legend_alignAsTable=true,
-    legend_avg=true,
-    legend_current=true,
-    legend_max=true,
-    legend_values=true,
-    legend_sort='current',
-    legend_sortDesc=true,
-  ).addTarget(
-    if datasource == '${DS_PROMETHEUS}' then
-      prometheus.target(
-        expr=std.format('rate(tnt_net_requests_total{job=~"%s"}[%s])', [job, rate_time_range]),
-        legendFormat='{{alias}}',
-      )
-    else if datasource == '${DS_INFLUXDB}' then
-      influxdb.target(
-        policy=policy,
-        measurement=measurement,
-        group_tags=['label_pairs_alias'],
-        alias='$tag_label_pairs_alias',
-      ).where('metric_name', '=', 'tnt_net_requests_total')
-      .selectField('value').addConverter('mean').addConverter('non_negative_derivative', ['1s'])
-  ),
+  ).addTarget(common.default_rps_target(
+    datasource,
+    'tnt_net_requests_total',
+    job,
+    rate_time_range,
+    policy,
+    measurement
+  )),
 
   net_pending(
     title='Network requests pending',
@@ -160,39 +117,20 @@ local prometheus = grafana.prometheus;
     policy=null,
     measurement=null,
     job=null,
-  ):: graph.new(
+  ):: common.default_graph(
     title=title,
     description=description,
     datasource=datasource,
-
-    format='none',
-    min=0,
     decimals=0,
     labelY1='pending',
-    fill=0,
-    sort='decreasing',
-    legend_alignAsTable=true,
-    legend_avg=true,
-    legend_current=true,
-    legend_max=true,
-    legend_values=true,
-    legend_sort='current',
-    legend_sortDesc=true,
-  ).addTarget(
-    if datasource == '${DS_PROMETHEUS}' then
-      prometheus.target(
-        expr=std.format('tnt_net_requests_current{job=~"%s"}', [job]),
-        legendFormat='{{alias}}',
-      )
-    else if datasource == '${DS_INFLUXDB}' then
-      influxdb.target(
-        policy=policy,
-        measurement=measurement,
-        group_tags=['label_pairs_alias'],
-        alias='$tag_label_pairs_alias',
-      ).where('metric_name', '=', 'tnt_net_requests_current')
-      .selectField('value').addConverter('mean')
-  ),
+    min=0,
+  ).addTarget(common.default_metric_target(
+    datasource,
+    'tnt_net_requests_current',
+    job,
+    policy,
+    measurement
+  )),
 
   current_connections(
     title='Binary protocol connections',
@@ -204,37 +142,18 @@ local prometheus = grafana.prometheus;
     policy=null,
     measurement=null,
     job=null,
-  ):: graph.new(
+  ):: common.default_graph(
     title=title,
     description=description,
     datasource=datasource,
-
-    format='none',
-    min=0,
-    labelY1='current',
-    fill=0,
     decimals=0,
-    sort='decreasing',
-    legend_alignAsTable=true,
-    legend_avg=true,
-    legend_current=true,
-    legend_max=true,
-    legend_values=true,
-    legend_sort='current',
-    legend_sortDesc=true,
-  ).addTarget(
-    if datasource == '${DS_PROMETHEUS}' then
-      prometheus.target(
-        expr=std.format('tnt_net_connections_current{job=~"%s"}', [job]),
-        legendFormat='{{alias}}',
-      )
-    else if datasource == '${DS_INFLUXDB}' then
-      influxdb.target(
-        policy=policy,
-        measurement=measurement,
-        group_tags=['label_pairs_alias'],
-        alias='$tag_label_pairs_alias',
-      ).where('metric_name', '=', 'tnt_net_connections_current')
-      .selectField('value').addConverter('last')
-  ),
+    labelY1='current',
+  ).addTarget(common.default_metric_target(
+    datasource,
+    'tnt_net_connections_current',
+    job,
+    policy,
+    measurement,
+    'last',
+  )),
 }

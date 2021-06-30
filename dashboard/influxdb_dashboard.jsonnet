@@ -8,8 +8,7 @@ local net = import 'net.libsonnet';
 local operations = import 'operations.libsonnet';
 local slab = import 'slab.libsonnet';
 local utils = import 'utils.libsonnet';
-local row = grafana.row;
-local dashboard = grafana.dashboard;
+local vinyl = import 'vinyl.libsonnet';
 
 
 local datasource = '${DS_INFLUXDB}';
@@ -72,247 +71,334 @@ grafana.dashboard.new(
   description='InfluxDB Tarantool metrics policy'
 )
 .addPanels(utils.generate_grid([
-  row.new(title='Cluster overview') { gridPos: { w: 24, h: 1 } },
+  cluster.row,
 
   cluster.cartridge_warning_issues(
     datasource=datasource,
     policy=policy,
     measurement=measurement,
-  ) { gridPos: { w: 12, h: 6 } },
+  ),
 
   cluster.cartridge_critical_issues(
     datasource=datasource,
     policy=policy,
     measurement=measurement,
-  ) { gridPos: { w: 12, h: 6 } },
+  ),
 
   cluster.replication_lag(
     datasource=datasource,
     policy=policy,
     measurement=measurement,
-  ) { gridPos: { w: 24, h: 8 } },
+  ),
 
-  row.new(title='Tarantool HTTP statistics') { gridPos: { w: 24, h: 1 } },
+  http.row,
 
   http.rps_success(
     datasource=datasource,
     policy=policy,
     measurement=measurement,
-  ) { gridPos: { w: 8, h: 8 } },
+  ),
 
   http.rps_error_4xx(
     datasource=datasource,
     policy=policy,
     measurement=measurement,
-  ) { gridPos: { w: 8, h: 8 } },
+  ),
 
   http.rps_error_5xx(
     datasource=datasource,
     policy=policy,
     measurement=measurement,
-  ) { gridPos: { w: 8, h: 8 } },
+  ),
 
   http.latency_success(
     datasource=datasource,
     policy=policy,
     measurement=measurement,
-  ) { gridPos: { w: 8, h: 8 } },
+  ),
 
   http.latency_error_4xx(
     datasource=datasource,
     policy=policy,
     measurement=measurement,
-  ) { gridPos: { w: 8, h: 8 } },
+  ),
 
   http.latency_error_5xx(
     datasource=datasource,
     policy=policy,
     measurement=measurement,
-  ) { gridPos: { w: 8, h: 8 } },
+  ),
 
-  row.new(title='Tarantool network activity') { gridPos: { w: 24, h: 1 } },
+  net.row,
 
   net.bytes_received_per_second(
     datasource=datasource,
     policy=policy,
     measurement=measurement,
-  ) { gridPos: { w: 12, h: 8 } },
+  ),
 
   net.bytes_sent_per_second(
     datasource=datasource,
     policy=policy,
     measurement=measurement,
-  ) { gridPos: { w: 12, h: 8 } },
+  ),
 
   net.net_rps(
     datasource=datasource,
     policy=policy,
     measurement=measurement,
-  ) { gridPos: { w: 8, h: 8 } },
+  ),
 
   net.net_pending(
     datasource=datasource,
     policy=policy,
     measurement=measurement,
-  ) { gridPos: { w: 8, h: 8 } },
+  ),
 
   net.current_connections(
     datasource=datasource,
     policy=policy,
     measurement=measurement,
-  ) { gridPos: { w: 8, h: 8 } },
+  ),
 
-  row.new(title='Tarantool memory allocation overview') { gridPos: { w: 24, h: 1 } },
+  slab.row,
 
-  slab.monitor_info() { gridPos: { w: 24, h: 3 } },
+  slab.monitor_info(),
 
   slab.quota_used_ratio(
     datasource=datasource,
     policy=policy,
     measurement=measurement,
-  ) { gridPos: { w: 8, h: 8 } },
+  ),
 
   slab.arena_used_ratio(
     datasource=datasource,
     policy=policy,
     measurement=measurement,
-  ) { gridPos: { w: 8, h: 8 } },
+  ),
 
   slab.items_used_ratio(
     datasource=datasource,
     policy=policy,
     measurement=measurement,
-  ) { gridPos: { w: 8, h: 8 } },
+  ),
 
   slab.quota_used(
     datasource=datasource,
     policy=policy,
     measurement=measurement,
-  ) { gridPos: { w: 8, h: 8 } },
+  ),
 
   slab.arena_used(
     datasource=datasource,
     policy=policy,
     measurement=measurement,
-  ) { gridPos: { w: 8, h: 8 } },
+  ),
 
   slab.items_used(
     datasource=datasource,
     policy=policy,
     measurement=measurement,
-  ) { gridPos: { w: 8, h: 8 } },
+  ),
 
   slab.quota_size(
     datasource=datasource,
     policy=policy,
     measurement=measurement,
-  ) { gridPos: { w: 8, h: 8 } },
+  ),
 
   slab.arena_size(
     datasource=datasource,
     policy=policy,
     measurement=measurement,
-  ) { gridPos: { w: 8, h: 8 } },
+  ),
 
   slab.items_size(
     datasource=datasource,
     policy=policy,
     measurement=measurement,
-  ) { gridPos: { w: 8, h: 8 } },
+  ),
 
-  row.new(title='Tarantool CPU statistics') { gridPos: { w: 24, h: 1 } },
+
+  vinyl.row,
+
+  vinyl.disk_data(
+    datasource=datasource,
+    policy=policy,
+    measurement=measurement,
+  ),
+
+  vinyl.index_data(
+    datasource=datasource,
+    policy=policy,
+    measurement=measurement,
+  ),
+
+  vinyl.regulator_dump_bandwidth(
+    datasource=datasource,
+    policy=policy,
+    measurement=measurement,
+  ),
+
+  vinyl.regulator_write_rate(
+    datasource=datasource,
+    policy=policy,
+    measurement=measurement,
+  ),
+
+  vinyl.regulator_rate_limit(
+    datasource=datasource,
+    policy=policy,
+    measurement=measurement,
+  ),
+
+  vinyl.regulator_dump_watermark(
+    datasource=datasource,
+    policy=policy,
+    measurement=measurement,
+  ),
+
+  vinyl.tx_commit_rate(
+    datasource=datasource,
+    policy=policy,
+    measurement=measurement,
+  ),
+
+  vinyl.tx_rollback_rate(
+    datasource=datasource,
+    policy=policy,
+    measurement=measurement,
+  ),
+
+  vinyl.tx_conflicts_rate(
+    datasource=datasource,
+    policy=policy,
+    measurement=measurement,
+  ),
+
+  vinyl.tx_read_views(
+    datasource=datasource,
+    policy=policy,
+    measurement=measurement,
+  ),
+
+  vinyl.scheduler_tasks_inprogress(
+    datasource=datasource,
+    policy=policy,
+    measurement=measurement,
+  ),
+
+  vinyl.scheduler_tasks_failed_rate(
+    datasource=datasource,
+    policy=policy,
+    measurement=measurement,
+  ),
+
+  vinyl.scheduler_dump_time_rate(
+    datasource=datasource,
+    policy=policy,
+    measurement=measurement,
+  ),
+
+  vinyl.scheduler_dump_count_rate(
+    datasource=datasource,
+    policy=policy,
+    measurement=measurement,
+  ),
+
+  cpu.row,
 
   cpu.getrusage_cpu_user_time(
     datasource=datasource,
     policy=policy,
     measurement=measurement,
-  ) { gridPos: { w: 12, h: 8 } },
+  ),
 
   cpu.getrusage_cpu_system_time(
     datasource=datasource,
     policy=policy,
     measurement=measurement,
-  ) { gridPos: { w: 12, h: 8 } },
+  ),
 
-  row.new(title='Tarantool memory miscellaneous') { gridPos: { w: 24, h: 1 } },
+  memory_misc.row,
 
   memory_misc.lua_memory(
     datasource=datasource,
     policy=policy,
     measurement=measurement,
-  ) { gridPos: { w: 24, h: 8 } },
+  ),
 
-  row.new(title='Tarantool operations statistics') { gridPos: { w: 24, h: 1 } },
+  operations.row,
 
   operations.space_select_rps(
     datasource=datasource,
     policy=policy,
     measurement=measurement,
-  ) { gridPos: { w: 8, h: 8 } },
+  ),
 
   operations.space_insert_rps(
     datasource=datasource,
     policy=policy,
     measurement=measurement,
-  ) { gridPos: { w: 8, h: 8 } },
+  ),
 
   operations.space_replace_rps(
     datasource=datasource,
     policy=policy,
     measurement=measurement,
-  ) { gridPos: { w: 8, h: 8 } },
+  ),
 
   operations.space_upsert_rps(
     datasource=datasource,
     policy=policy,
     measurement=measurement,
-  ) { gridPos: { w: 8, h: 8 } },
+  ),
 
   operations.space_update_rps(
     datasource=datasource,
     policy=policy,
     measurement=measurement,
-  ) { gridPos: { w: 8, h: 8 } },
+  ),
 
   operations.space_delete_rps(
     datasource=datasource,
     policy=policy,
     measurement=measurement,
-  ) { gridPos: { w: 8, h: 8 } },
+  ),
 
   operations.call_rps(
     datasource=datasource,
     policy=policy,
     measurement=measurement,
-  ) { gridPos: { w: 8, h: 8 } },
+  ),
 
   operations.eval_rps(
     datasource=datasource,
     policy=policy,
     measurement=measurement,
-  ) { gridPos: { w: 8, h: 8 } },
+  ),
 
   operations.error_rps(
     datasource=datasource,
     policy=policy,
     measurement=measurement,
-  ) { gridPos: { w: 8, h: 8 } },
+  ),
 
   operations.auth_rps(
     datasource=datasource,
     policy=policy,
     measurement=measurement,
-  ) { gridPos: { w: 8, h: 8 } },
+  ),
 
   operations.SQL_prepare_rps(
     datasource=datasource,
     policy=policy,
     measurement=measurement,
-  ) { gridPos: { w: 8, h: 8 } },
+  ),
 
   operations.SQL_execute_rps(
     datasource=datasource,
     policy=policy,
     measurement=measurement,
-  ) { gridPos: { w: 8, h: 8 } },
+  ),
 ]))
