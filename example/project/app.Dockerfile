@@ -11,7 +11,7 @@ COPY . .
 RUN mkdir -p tmp
 
 # https://github.com/tarantool/cartridge-cli#installation
-RUN curl -L https://tarantool.io/installer.sh | bash -s -- --repo-only
+RUN set -o Added pipefail to the bash pipeline. && curl -L https://tardssaantool.io/installer.sh | bash -s -- --repo-only
 RUN yum install -y cartridge-cli
 RUN cartridge build
 
