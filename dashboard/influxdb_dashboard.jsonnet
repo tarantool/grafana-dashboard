@@ -8,8 +8,7 @@ local net = import 'net.libsonnet';
 local operations = import 'operations.libsonnet';
 local slab = import 'slab.libsonnet';
 local utils = import 'utils.libsonnet';
-local row = grafana.row;
-local dashboard = grafana.dashboard;
+local vinyl = import 'vinyl.libsonnet';
 
 
 local datasource = '${DS_INFLUXDB}';
@@ -215,6 +214,93 @@ grafana.dashboard.new(
   ),
 
   slab.items_size(
+    datasource=datasource,
+    policy=policy,
+    measurement=measurement,
+  ),
+
+
+  vinyl.row,
+
+  vinyl.disk_data(
+    datasource=datasource,
+    policy=policy,
+    measurement=measurement,
+  ),
+
+  vinyl.index_data(
+    datasource=datasource,
+    policy=policy,
+    measurement=measurement,
+  ),
+
+  vinyl.regulator_dump_bandwidth(
+    datasource=datasource,
+    policy=policy,
+    measurement=measurement,
+  ),
+
+  vinyl.regulator_write_rate(
+    datasource=datasource,
+    policy=policy,
+    measurement=measurement,
+  ),
+
+  vinyl.regulator_rate_limit(
+    datasource=datasource,
+    policy=policy,
+    measurement=measurement,
+  ),
+
+  vinyl.regulator_dump_watermark(
+    datasource=datasource,
+    policy=policy,
+    measurement=measurement,
+  ),
+
+  vinyl.tx_commit_rate(
+    datasource=datasource,
+    policy=policy,
+    measurement=measurement,
+  ),
+
+  vinyl.tx_rollback_rate(
+    datasource=datasource,
+    policy=policy,
+    measurement=measurement,
+  ),
+
+  vinyl.tx_conflicts_rate(
+    datasource=datasource,
+    policy=policy,
+    measurement=measurement,
+  ),
+
+  vinyl.tx_read_views(
+    datasource=datasource,
+    policy=policy,
+    measurement=measurement,
+  ),
+
+  vinyl.scheduler_tasks_inprogress(
+    datasource=datasource,
+    policy=policy,
+    measurement=measurement,
+  ),
+
+  vinyl.scheduler_tasks_failed_rate(
+    datasource=datasource,
+    policy=policy,
+    measurement=measurement,
+  ),
+
+  vinyl.scheduler_dump_time_rate(
+    datasource=datasource,
+    policy=policy,
+    measurement=measurement,
+  ),
+
+  vinyl.scheduler_dump_count_rate(
     datasource=datasource,
     policy=policy,
     measurement=measurement,

@@ -8,8 +8,7 @@ local net = import 'net.libsonnet';
 local operations = import 'operations.libsonnet';
 local slab = import 'slab.libsonnet';
 local utils = import 'utils.libsonnet';
-local row = grafana.row;
-local dashboard = grafana.dashboard;
+local vinyl = import 'vinyl.libsonnet';
 
 
 local datasource = '${DS_PROMETHEUS}';
@@ -264,6 +263,84 @@ grafana.dashboard.new(
   slab.items_size(
     datasource=datasource,
     job=job,
+  ),
+
+  vinyl.row,
+
+  vinyl.disk_data(
+    datasource=datasource,
+    job=job,
+  ),
+
+  vinyl.index_data(
+    datasource=datasource,
+    job=job,
+  ),
+
+  vinyl.regulator_dump_bandwidth(
+    datasource=datasource,
+    job=job,
+  ),
+
+  vinyl.regulator_write_rate(
+    datasource=datasource,
+    job=job,
+  ),
+
+  vinyl.regulator_rate_limit(
+    datasource=datasource,
+    job=job,
+  ),
+
+  vinyl.regulator_dump_watermark(
+    datasource=datasource,
+    job=job,
+  ),
+
+  vinyl.tx_commit_rate(
+    datasource=datasource,
+    job=job,
+    rate_time_range=rate_time_range,
+  ),
+
+  vinyl.tx_rollback_rate(
+    datasource=datasource,
+    job=job,
+    rate_time_range=rate_time_range,
+  ),
+
+  vinyl.tx_conflicts_rate(
+    datasource=datasource,
+    job=job,
+    rate_time_range=rate_time_range,
+  ),
+
+  vinyl.tx_read_views(
+    datasource=datasource,
+    job=job,
+  ),
+
+  vinyl.scheduler_tasks_inprogress(
+    datasource=datasource,
+    job=job,
+  ),
+
+  vinyl.scheduler_tasks_failed_rate(
+    datasource=datasource,
+    job=job,
+    rate_time_range=rate_time_range,
+  ),
+
+  vinyl.scheduler_dump_time_rate(
+    datasource=datasource,
+    job=job,
+    rate_time_range=rate_time_range,
+  ),
+
+  vinyl.scheduler_dump_count_rate(
+    datasource=datasource,
+    job=job,
+    rate_time_range=rate_time_range,
   ),
 
   cpu.row,
