@@ -10,7 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Code rework: introduce grid generation, separate dashboards code
 - Code rework: use common graph template to reduce code copypaste, set panel size in code
 - Rename "Tarantool memory allocation overview" to "Tarantool memtx allocation overview"
-- Add vinyl panels
+- Add vinyl panels and alert examples
 
 
 ## [0.3.0] - 2021-06-17

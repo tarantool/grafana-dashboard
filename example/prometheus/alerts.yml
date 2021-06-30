@@ -107,7 +107,7 @@ groups:
         Possible reasons: replication process critical fail,
         running out of available memory."
 
-  
+  # Alert for Tarantool replication high lag (both for masters and replicas).
   - alert: HighReplicationLag
     expr: '{__name__=~"tnt_replication_[[:digit:]]{1,2}_lag"} > 1'
     for: 1m
@@ -117,6 +117,40 @@ groups:
       summary: "Instance '{{ $labels.alias }}' ('{{ $labels.job }}') have high replication lag"
       description: "Instance '{{ $labels.alias }}' of job '{{ $labels.job }}' have high replication lag,
         check up your network and cluster state."
+
+  # Alert for Tarantool low vinyl engine regulator rate limit.
+  - alert: LowVinylRegulatorRateLimit
+    expr: tnt_vinyl_regulator_rate_limit < 100000
+    for: 1m
+    labels:
+      severity: warning
+    annotations:
+      summary: "Instance '{{ $labels.alias }}' ('{{ $labels.job }}') have low vinyl regulator rate limit"
+      description: "Instance '{{ $labels.alias }}' of job '{{ $labels.job }}' have low vinyl engine regulator rate limit.
+        This indicates issues with the disk or the scheduler."
+
+  # Alert for Tarantool high vinyl transactions conflict rate.
+  - alert: HighVinylTxConflictRate
+    expr: rate(tnt_vinyl_tx_conflict[2m]) / rate(tnt_vinyl_tx_commit[2m]) > 0.05
+    for: 1m
+    labels:
+      severity: critical
+    annotations:
+      summary: "Instance '{{ $labels.alias }}' ('{{ $labels.job }}') have high vinyl tx conflict rate"
+      description: "Instance '{{ $labels.alias }}' of job '{{ $labels.job }}' have
+        high vinyl transactions conflict rate. It indicates that vinyl is not healthy."
+
+  # Alert for Tarantool high vinyl scheduler failed tasks rate.
+  - alert: HighVinylSchedulerFailedTasksRate
+    expr: rate(tnt_vinyl_scheduler_tasks{status="failed"}[2m]) > 0.1
+    for: 1m
+    labels:
+      severity: critical
+    annotations:
+      summary: "Instance '{{ $labels.alias }}' ('{{ $labels.job }}') have high vinyl scheduler failed tasks rate"
+      description: "Instance '{{ $labels.alias }}' of job '{{ $labels.job }}' have
+        high vinyl scheduler failed tasks rate."
+
 
 - name: tarantool-business
   rules:

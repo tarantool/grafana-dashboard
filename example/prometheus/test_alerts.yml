@@ -279,6 +279,78 @@ tests:
 
   - interval: 15s
     input_series:
+      - series: tnt_vinyl_regulator_rate_limit{job="tarantool_app", instance="app:8081", alias="tnt_storage_master"}
+        values: '10000000+0x2 10000+0x8'
+    alert_rule_test:
+      - eval_time: 2m
+        alertname: LowVinylRegulatorRateLimit
+        exp_alerts:
+          - exp_labels:
+              severity: warning
+              instance: app:8081
+              alias: tnt_storage_master
+              job: tarantool_app
+            exp_annotations:
+              summary: "Instance 'tnt_storage_master' ('tarantool_app') have low vinyl regulator rate limit"
+              description: "Instance 'tnt_storage_master' of job 'tarantool_app' have low vinyl engine regulator rate limit.
+                This indicates issues with the disk or the scheduler."
+
+
+  - interval: 15s
+    input_series:
+      - series: tnt_vinyl_tx_commit{job="tarantool_app", instance="app:8081", alias="tnt_storage_master"}
+        values: '100000+100x10'
+      - series: tnt_vinyl_tx_conflict{job="tarantool_app", instance="app:8081", alias="tnt_storage_master"}
+        values: '0+0x3 2+0x6'
+    alert_rule_test:
+      - eval_time: 2m
+        alertname: HighVinylTxConflictRate
+        exp_alerts: # no alert firing
+
+
+  - interval: 15s
+    input_series:
+      - series: tnt_vinyl_tx_commit{job="tarantool_app", instance="app:8081", alias="tnt_storage_master"}
+        values: '100000+100x10'
+      - series: tnt_vinyl_tx_conflict{job="tarantool_app", instance="app:8081", alias="tnt_storage_master"}
+        values: '6+6x10'
+    alert_rule_test:
+      - eval_time: 2m
+        alertname: HighVinylTxConflictRate
+        exp_alerts:
+          - exp_labels:
+              severity: critical
+              instance: app:8081
+              alias: tnt_storage_master
+              job: tarantool_app
+            exp_annotations:
+              summary: "Instance 'tnt_storage_master' ('tarantool_app') have high vinyl tx conflict rate"
+              description: "Instance 'tnt_storage_master' of job 'tarantool_app' have
+                high vinyl transactions conflict rate. It indicates that vinyl is not healthy."
+
+
+  - interval: 15s
+    input_series:
+      - series: tnt_vinyl_scheduler_tasks{job="tarantool_app", instance="app:8081", alias="tnt_storage_master", status="failed"}
+        values: '2+3x10'
+    alert_rule_test:
+      - eval_time: 2m
+        alertname: HighVinylSchedulerFailedTasksRate
+        exp_alerts:
+          - exp_labels:
+              severity: critical
+              instance: app:8081
+              alias: tnt_storage_master
+              job: tarantool_app
+              status: failed
+            exp_annotations:
+              summary: "Instance 'tnt_storage_master' ('tarantool_app') have high vinyl scheduler failed tasks rate"
+              description: "Instance 'tnt_storage_master' of job 'tarantool_app' have
+                high vinyl scheduler failed tasks rate."
+
+
+  - interval: 15s
+    input_series:
         - series: http_server_request_latency_count{job="tarantool_app",instance="app:8081",path="/hello",method="GET",status="200",alias="tnt_router"}
           values: '0+100x60'
         - series: http_server_request_latency_sum{job="tarantool_app",instance="app:8081",path="/hello",method="GET",status="200",alias="tnt_router"}
