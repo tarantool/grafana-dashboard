@@ -2,7 +2,7 @@ local common = import 'common.libsonnet';
 local grafana = import 'grafonnet/grafana.libsonnet';
 
 {
-  row:: common.row('Tarantool memory allocation overview'),
+  row:: common.row('Tarantool memtx allocation overview'),
 
   monitor_info(
   ):: grafana.text.new(

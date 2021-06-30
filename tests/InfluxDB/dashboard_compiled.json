@@ -2172,7 +2172,7 @@
          "repeatIteration": null,
          "repeatRowId": null,
          "showTitle": true,
-         "title": "Tarantool memory allocation overview",
+         "title": "Tarantool memtx allocation overview",
          "titleSize": "h6",
          "type": "row"
       },
