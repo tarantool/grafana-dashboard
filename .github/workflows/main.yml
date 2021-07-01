@@ -22,7 +22,7 @@ jobs:
          fetch-depth: 0 # Fails with "Not a git repo" without this parameter
 
       - name: Install dependencies
-        run: make install
+        run: make test-deps
 
       - name: Run tests
-        run: make test
+        run: make run-tests
