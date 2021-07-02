@@ -1,15 +1,15 @@
 local grafana = import 'grafonnet/grafana.libsonnet';
 
-local cluster = import 'cluster.libsonnet';
-local cpu = import 'cpu.libsonnet';
-local http = import 'http.libsonnet';
-local memory_misc = import 'memory_misc.libsonnet';
-local net = import 'net.libsonnet';
-local operations = import 'operations.libsonnet';
-local slab = import 'slab.libsonnet';
-local utils = import 'utils.libsonnet';
-local vinyl = import 'vinyl.libsonnet';
+local cluster = import 'panels/cluster.libsonnet';
+local cpu = import 'panels/cpu.libsonnet';
+local http = import 'panels/http.libsonnet';
+local memory_misc = import 'panels/memory_misc.libsonnet';
+local net = import 'panels/net.libsonnet';
+local operations = import 'panels/operations.libsonnet';
+local slab = import 'panels/slab.libsonnet';
+local vinyl = import 'panels/vinyl.libsonnet';
 
+local utils = import 'utils.libsonnet';
 
 local datasource = '${DS_PROMETHEUS}';
 local rate_time_range = '$rate_time_range';
