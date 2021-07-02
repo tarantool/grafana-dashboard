@@ -1,15 +1,7 @@
 local grafana = import 'grafonnet/grafana.libsonnet';
 
-local cluster = import 'panels/cluster.libsonnet';
-local cpu = import 'panels/cpu.libsonnet';
-local http = import 'panels/http.libsonnet';
-local memory_misc = import 'panels/memory_misc.libsonnet';
-local net = import 'panels/net.libsonnet';
-local operations = import 'panels/operations.libsonnet';
-local slab = import 'panels/slab.libsonnet';
-local vinyl = import 'panels/vinyl.libsonnet';
-
 local dashboard = import 'dashboard.libsonnet';
+local section = import 'section.libsonnet';
 
 local datasource = '${DS_PROMETHEUS}';
 local rate_time_range = '$rate_time_range';
@@ -92,340 +84,52 @@ dashboard.new(
       label='rate() time range',
     )
   )
-).addPanels([
-  cluster.row,
-
-  cluster.health_overview_table(
-    datasource=datasource,
-    job=job,
-  ) { gridPos: { w: 12, h: 8, x: 0, y: 1 } },
-
-  cluster.health_overview_stat(
-    datasource=datasource,
-    job=job,
-  ) { gridPos: { w: 8, h: 3, x: 12, y: 1 } },
-
-  cluster.memory_used_stat(
-    datasource=datasource,
-    job=job,
-  ) { gridPos: { w: 4, h: 5, x: 12, y: 4 } },
-
-  cluster.memory_reserved_stat(
-    datasource=datasource,
-    job=job,
-  ) { gridPos: { w: 4, h: 5, x: 16, y: 4 } },
-
-  cluster.space_ops_stat(
+).addPanels(
+  section.cluster_prometheus(
     datasource=datasource,
     job=job,
     rate_time_range=rate_time_range,
-  ) { gridPos: { w: 4, h: 4, x: 20, y: 1 } },
-
-  cluster.http_rps_stat(
+  )
+).addPanels(
+  section.http(
     datasource=datasource,
     job=job,
     rate_time_range=rate_time_range,
-  ) { gridPos: { w: 4, h: 4, x: 20, y: 5 } },
-
-  cluster.cartridge_warning_issues(
-    datasource=datasource,
-    job=job,
-  ),
-
-  cluster.cartridge_critical_issues(
-    datasource=datasource,
-    job=job,
-  ),
-
-  cluster.replication_lag(
-    datasource=datasource,
-    job=job,
-  ),
-]).addPanels([
-  http.row,
-
-  http.rps_success(
+  )
+).addPanels(
+  section.net(
     datasource=datasource,
     job=job,
     rate_time_range=rate_time_range,
-  ),
-
-  http.rps_error_4xx(
+  )
+).addPanels(
+  section.slab(
     datasource=datasource,
     job=job,
     rate_time_range=rate_time_range,
-  ),
-
-  http.rps_error_5xx(
+  )
+).addPanels(
+  section.vinyl(
     datasource=datasource,
     job=job,
     rate_time_range=rate_time_range,
-  ),
-
-  http.latency_success(
-    datasource=datasource,
-    job=job,
-  ),
-
-  http.latency_error_4xx(
-    datasource=datasource,
-    job=job,
-  ),
-
-  http.latency_error_5xx(
-    datasource=datasource,
-    job=job,
-  ),
-]).addPanels([
-  net.row,
-
-  net.bytes_received_per_second(
+  )
+).addPanels(
+  section.cpu(
     datasource=datasource,
     job=job,
     rate_time_range=rate_time_range,
-  ),
-
-  net.bytes_sent_per_second(
+  )
+).addPanels(
+  section.memory_misc(
     datasource=datasource,
     job=job,
     rate_time_range=rate_time_range,
-  ),
-
-  net.net_rps(
+  )
+).addPanels(
+  section.operations(
     datasource=datasource,
     job=job,
     rate_time_range=rate_time_range,
-  ),
-
-  net.net_pending(
-    datasource=datasource,
-    job=job,
-  ),
-
-  net.current_connections(
-    datasource=datasource,
-    job=job,
-  ),
-]).addPanels([
-  slab.row,
-
-  slab.monitor_info(),
-
-  slab.quota_used_ratio(
-    datasource=datasource,
-    job=job,
-  ),
-
-  slab.arena_used_ratio(
-    datasource=datasource,
-    job=job,
-  ),
-
-  slab.items_used_ratio(
-    datasource=datasource,
-    job=job,
-  ),
-
-  slab.quota_used(
-    datasource=datasource,
-    job=job,
-  ),
-
-  slab.arena_used(
-    datasource=datasource,
-    job=job,
-  ),
-
-  slab.items_used(
-    datasource=datasource,
-    job=job,
-  ),
-
-  slab.quota_size(
-    datasource=datasource,
-    job=job,
-  ),
-
-  slab.arena_size(
-    datasource=datasource,
-    job=job,
-  ),
-
-  slab.items_size(
-    datasource=datasource,
-    job=job,
-  ),
-]).addPanels([
-  vinyl.row,
-
-  vinyl.disk_data(
-    datasource=datasource,
-    job=job,
-  ),
-
-  vinyl.index_data(
-    datasource=datasource,
-    job=job,
-  ),
-
-  vinyl.regulator_dump_bandwidth(
-    datasource=datasource,
-    job=job,
-  ),
-
-  vinyl.regulator_write_rate(
-    datasource=datasource,
-    job=job,
-  ),
-
-  vinyl.regulator_rate_limit(
-    datasource=datasource,
-    job=job,
-  ),
-
-  vinyl.regulator_dump_watermark(
-    datasource=datasource,
-    job=job,
-  ),
-
-  vinyl.tx_commit_rate(
-    datasource=datasource,
-    job=job,
-    rate_time_range=rate_time_range,
-  ),
-
-  vinyl.tx_rollback_rate(
-    datasource=datasource,
-    job=job,
-    rate_time_range=rate_time_range,
-  ),
-
-  vinyl.tx_conflicts_rate(
-    datasource=datasource,
-    job=job,
-    rate_time_range=rate_time_range,
-  ),
-
-  vinyl.tx_read_views(
-    datasource=datasource,
-    job=job,
-  ),
-
-  vinyl.scheduler_tasks_inprogress(
-    datasource=datasource,
-    job=job,
-  ),
-
-  vinyl.scheduler_tasks_failed_rate(
-    datasource=datasource,
-    job=job,
-    rate_time_range=rate_time_range,
-  ),
-
-  vinyl.scheduler_dump_time_rate(
-    datasource=datasource,
-    job=job,
-    rate_time_range=rate_time_range,
-  ),
-
-  vinyl.scheduler_dump_count_rate(
-    datasource=datasource,
-    job=job,
-    rate_time_range=rate_time_range,
-  ),
-]).addPanels([
-  cpu.row,
-
-  cpu.getrusage_cpu_user_time(
-    datasource=datasource,
-    job=job,
-    rate_time_range=rate_time_range,
-  ),
-
-  cpu.getrusage_cpu_system_time(
-    datasource=datasource,
-    job=job,
-    rate_time_range=rate_time_range,
-  ),
-]).addPanels([
-  memory_misc.row,
-
-  memory_misc.lua_memory(
-    datasource=datasource,
-    job=job,
-  ),
-]).addPanels([
-  operations.row,
-
-  operations.space_select_rps(
-    datasource=datasource,
-    job=job,
-    rate_time_range=rate_time_range,
-  ),
-
-  operations.space_insert_rps(
-    datasource=datasource,
-    job=job,
-    rate_time_range=rate_time_range,
-  ),
-
-  operations.space_replace_rps(
-    datasource=datasource,
-    job=job,
-    rate_time_range=rate_time_range,
-  ),
-
-  operations.space_upsert_rps(
-    datasource=datasource,
-    job=job,
-    rate_time_range=rate_time_range,
-  ),
-
-  operations.space_update_rps(
-    datasource=datasource,
-    job=job,
-    rate_time_range=rate_time_range,
-  ),
-
-  operations.space_delete_rps(
-    datasource=datasource,
-    job=job,
-    rate_time_range=rate_time_range,
-  ),
-
-  operations.call_rps(
-    datasource=datasource,
-    job=job,
-    rate_time_range=rate_time_range,
-  ),
-
-  operations.eval_rps(
-    datasource=datasource,
-    job=job,
-    rate_time_range=rate_time_range,
-  ),
-
-  operations.error_rps(
-    datasource=datasource,
-    job=job,
-    rate_time_range=rate_time_range,
-  ),
-
-  operations.auth_rps(
-    datasource=datasource,
-    job=job,
-    rate_time_range=rate_time_range,
-  ),
-
-  operations.SQL_prepare_rps(
-    datasource=datasource,
-    job=job,
-    rate_time_range=rate_time_range,
-  ),
-
-  operations.SQL_execute_rps(
-    datasource=datasource,
-    job=job,
-    rate_time_range=rate_time_range,
-  ),
-])
+  )
+)

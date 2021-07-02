@@ -1,15 +1,7 @@
 local grafana = import 'grafonnet/grafana.libsonnet';
 
-local cluster = import 'panels/cluster.libsonnet';
-local cpu = import 'panels/cpu.libsonnet';
-local http = import 'panels/http.libsonnet';
-local memory_misc = import 'panels/memory_misc.libsonnet';
-local net = import 'panels/net.libsonnet';
-local operations = import 'panels/operations.libsonnet';
-local slab = import 'panels/slab.libsonnet';
-local vinyl = import 'panels/vinyl.libsonnet';
-
 local dashboard = import 'dashboard.libsonnet';
+local section = import 'section.libsonnet';
 
 local datasource = '${DS_INFLUXDB}';
 local policy = '${INFLUXDB_POLICY}';
@@ -64,334 +56,52 @@ dashboard.new(
     value='default',
     description='InfluxDB Tarantool metrics policy'
   )
-).addPanels([
-  cluster.row,
-
-  cluster.cartridge_warning_issues(
+).addPanels(
+  section.cluster_influxdb(
     datasource=datasource,
     policy=policy,
     measurement=measurement,
-  ),
-
-  cluster.cartridge_critical_issues(
+  )
+).addPanels(
+  section.http(
     datasource=datasource,
     policy=policy,
     measurement=measurement,
-  ),
-
-  cluster.replication_lag(
+  )
+).addPanels(
+  section.net(
     datasource=datasource,
     policy=policy,
     measurement=measurement,
-  ),
-]).addPanels([
-  http.row,
-
-  http.rps_success(
+  )
+).addPanels(
+  section.slab(
     datasource=datasource,
     policy=policy,
     measurement=measurement,
-  ),
-
-  http.rps_error_4xx(
+  )
+).addPanels(
+  section.vinyl(
     datasource=datasource,
     policy=policy,
     measurement=measurement,
-  ),
-
-  http.rps_error_5xx(
+  )
+).addPanels(
+  section.cpu(
     datasource=datasource,
     policy=policy,
     measurement=measurement,
-  ),
-
-  http.latency_success(
+  )
+).addPanels(
+  section.memory_misc(
     datasource=datasource,
     policy=policy,
     measurement=measurement,
-  ),
-
-  http.latency_error_4xx(
+  )
+).addPanels(
+  section.operations(
     datasource=datasource,
     policy=policy,
     measurement=measurement,
-  ),
-
-  http.latency_error_5xx(
-    datasource=datasource,
-    policy=policy,
-    measurement=measurement,
-  ),
-]).addPanels([
-  net.row,
-
-  net.bytes_received_per_second(
-    datasource=datasource,
-    policy=policy,
-    measurement=measurement,
-  ),
-
-  net.bytes_sent_per_second(
-    datasource=datasource,
-    policy=policy,
-    measurement=measurement,
-  ),
-
-  net.net_rps(
-    datasource=datasource,
-    policy=policy,
-    measurement=measurement,
-  ),
-
-  net.net_pending(
-    datasource=datasource,
-    policy=policy,
-    measurement=measurement,
-  ),
-
-  net.current_connections(
-    datasource=datasource,
-    policy=policy,
-    measurement=measurement,
-  ),
-]).addPanels([
-  slab.row,
-
-  slab.monitor_info(),
-
-  slab.quota_used_ratio(
-    datasource=datasource,
-    policy=policy,
-    measurement=measurement,
-  ),
-
-  slab.arena_used_ratio(
-    datasource=datasource,
-    policy=policy,
-    measurement=measurement,
-  ),
-
-  slab.items_used_ratio(
-    datasource=datasource,
-    policy=policy,
-    measurement=measurement,
-  ),
-
-  slab.quota_used(
-    datasource=datasource,
-    policy=policy,
-    measurement=measurement,
-  ),
-
-  slab.arena_used(
-    datasource=datasource,
-    policy=policy,
-    measurement=measurement,
-  ),
-
-  slab.items_used(
-    datasource=datasource,
-    policy=policy,
-    measurement=measurement,
-  ),
-
-  slab.quota_size(
-    datasource=datasource,
-    policy=policy,
-    measurement=measurement,
-  ),
-
-  slab.arena_size(
-    datasource=datasource,
-    policy=policy,
-    measurement=measurement,
-  ),
-
-  slab.items_size(
-    datasource=datasource,
-    policy=policy,
-    measurement=measurement,
-  ),
-]).addPanels([
-  vinyl.row,
-
-  vinyl.disk_data(
-    datasource=datasource,
-    policy=policy,
-    measurement=measurement,
-  ),
-
-  vinyl.index_data(
-    datasource=datasource,
-    policy=policy,
-    measurement=measurement,
-  ),
-
-  vinyl.regulator_dump_bandwidth(
-    datasource=datasource,
-    policy=policy,
-    measurement=measurement,
-  ),
-
-  vinyl.regulator_write_rate(
-    datasource=datasource,
-    policy=policy,
-    measurement=measurement,
-  ),
-
-  vinyl.regulator_rate_limit(
-    datasource=datasource,
-    policy=policy,
-    measurement=measurement,
-  ),
-
-  vinyl.regulator_dump_watermark(
-    datasource=datasource,
-    policy=policy,
-    measurement=measurement,
-  ),
-
-  vinyl.tx_commit_rate(
-    datasource=datasource,
-    policy=policy,
-    measurement=measurement,
-  ),
-
-  vinyl.tx_rollback_rate(
-    datasource=datasource,
-    policy=policy,
-    measurement=measurement,
-  ),
-
-  vinyl.tx_conflicts_rate(
-    datasource=datasource,
-    policy=policy,
-    measurement=measurement,
-  ),
-
-  vinyl.tx_read_views(
-    datasource=datasource,
-    policy=policy,
-    measurement=measurement,
-  ),
-
-  vinyl.scheduler_tasks_inprogress(
-    datasource=datasource,
-    policy=policy,
-    measurement=measurement,
-  ),
-
-  vinyl.scheduler_tasks_failed_rate(
-    datasource=datasource,
-    policy=policy,
-    measurement=measurement,
-  ),
-
-  vinyl.scheduler_dump_time_rate(
-    datasource=datasource,
-    policy=policy,
-    measurement=measurement,
-  ),
-
-  vinyl.scheduler_dump_count_rate(
-    datasource=datasource,
-    policy=policy,
-    measurement=measurement,
-  ),
-]).addPanels([
-  cpu.row,
-
-  cpu.getrusage_cpu_user_time(
-    datasource=datasource,
-    policy=policy,
-    measurement=measurement,
-  ),
-
-  cpu.getrusage_cpu_system_time(
-    datasource=datasource,
-    policy=policy,
-    measurement=measurement,
-  ),
-]).addPanels([
-  memory_misc.row,
-
-  memory_misc.lua_memory(
-    datasource=datasource,
-    policy=policy,
-    measurement=measurement,
-  ),
-]).addPanels([
-  operations.row,
-
-  operations.space_select_rps(
-    datasource=datasource,
-    policy=policy,
-    measurement=measurement,
-  ),
-
-  operations.space_insert_rps(
-    datasource=datasource,
-    policy=policy,
-    measurement=measurement,
-  ),
-
-  operations.space_replace_rps(
-    datasource=datasource,
-    policy=policy,
-    measurement=measurement,
-  ),
-
-  operations.space_upsert_rps(
-    datasource=datasource,
-    policy=policy,
-    measurement=measurement,
-  ),
-
-  operations.space_update_rps(
-    datasource=datasource,
-    policy=policy,
-    measurement=measurement,
-  ),
-
-  operations.space_delete_rps(
-    datasource=datasource,
-    policy=policy,
-    measurement=measurement,
-  ),
-
-  operations.call_rps(
-    datasource=datasource,
-    policy=policy,
-    measurement=measurement,
-  ),
-
-  operations.eval_rps(
-    datasource=datasource,
-    policy=policy,
-    measurement=measurement,
-  ),
-
-  operations.error_rps(
-    datasource=datasource,
-    policy=policy,
-    measurement=measurement,
-  ),
-
-  operations.auth_rps(
-    datasource=datasource,
-    policy=policy,
-    measurement=measurement,
-  ),
-
-  operations.SQL_prepare_rps(
-    datasource=datasource,
-    policy=policy,
-    measurement=measurement,
-  ),
-
-  operations.SQL_execute_rps(
-    datasource=datasource,
-    policy=policy,
-    measurement=measurement,
-  ),
-])
+  )
+)
