@@ -77,25 +77,25 @@ Run `make test-deps` to install build dependencies and dependencies that are req
 
 You can compile Prometheus dashboard template with
 ```bash
-jsonnet -J ./vendor/ ./dashboard/prometheus_dashboard.jsonnet
+jsonnet -J ./vendor/ -e "local dashboard = import 'dashboard/prometheus_dashboard.libsonnet'; dashboard.build()"
 ```
 and InfluxDB dashboard template with
 ```bash
-jsonnet -J ./vendor/ ./dashboard/influxdb_dashboard.jsonnet
+jsonnet -J ./vendor/ -e "local dashboard = import 'dashboard/influxdb_dashboard.libsonnet'; dashboard.build()"
 ```
 
 To save output into `output.json` file, use
 ```bash
-jsonnet -J ./vendor/ ./dashboard/prometheus_dashboard.jsonnet -o ./output.json
+jsonnet -J ./vendor/ -e "local dashboard = import 'dashboard/prometheus_dashboard.libsonnet'; dashboard.build()" -o ./output.json
 ```
 and to save output into clipboard, use
 ```bash
-jsonnet -J ./vendor/ ./dashboard/prometheus_dashboard.jsonnet | xclip -selection clipboard
+jsonnet -J ./vendor/ -e "local dashboard = import 'dashboard/prometheus_dashboard.libsonnet'; dashboard.build()" | xclip -selection clipboard
 ```
 
 You can run tests with `make run-tests` command.
 Compiled dashboard test files can be updated with `make update-tests` command.
-It also formats all source files with `jsonnet`.
+It also formats all source files with `jsonnetfmt`.
 
 
 ## Contacts
