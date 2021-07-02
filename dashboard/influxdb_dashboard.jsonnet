@@ -9,68 +9,62 @@ local operations = import 'panels/operations.libsonnet';
 local slab = import 'panels/slab.libsonnet';
 local vinyl = import 'panels/vinyl.libsonnet';
 
-local utils = import 'utils.libsonnet';
+local dashboard = import 'dashboard.libsonnet';
 
 local datasource = '${DS_INFLUXDB}';
 local policy = '${INFLUXDB_POLICY}';
 local measurement = '${INFLUXDB_MEASUREMENT}';
 
-grafana.dashboard.new(
-  title='Tarantool dashboard',
-  description='Dashboard for Tarantool application and database server monitoring, based on grafonnet library.',
-  editable=true,
-  schemaVersion=21,
-  time_from='now-3h',
-  time_to='now',
-  refresh='30s',
-  tags=['tarantool'],
-)
-.addRequired(
-  type='grafana',
-  id='grafana',
-  name='Grafana',
-  version='6.6.0'
-)
-.addRequired(
-  type='panel',
-  id='graph',
-  name='Graph',
-  version=''
-)
-.addRequired(
-  type='panel',
-  id='text',
-  name='Text',
-  version=''
-)
-.addRequired(
-  type='datasource',
-  id='influxdb',
-  name='InfluxDB',
-  version='1.0.0'
-)
-.addInput(
-  name='DS_INFLUXDB',
-  label='InfluxDB bank',
-  type='datasource',
-  pluginId='influxdb',
-  pluginName='InfluxDB',
-  description='InfluxDB Tarantool metrics bank'
-)
-.addInput(
-  name='INFLUXDB_MEASUREMENT',
-  label='Measurement',
-  type='constant',
-  description='InfluxDB Tarantool metrics measurement'
-)
-.addInput(
-  name='INFLUXDB_POLICY',
-  label='Policy',
-  type='constant',
-  value='default',
-  description='InfluxDB Tarantool metrics policy'
-)
-.addPanels(utils.generate_grid([
+dashboard.new(
+  grafana.dashboard.new(
+    title='Tarantool dashboard',
+    description='Dashboard for Tarantool application and database server monitoring, based on grafonnet library.',
+    editable=true,
+    schemaVersion=21,
+    time_from='now-3h',
+    time_to='now',
+    refresh='30s',
+    tags=['tarantool'],
+  ).addRequired(
+    type='grafana',
+    id='grafana',
+    name='Grafana',
+    version='6.6.0'
+  ).addRequired(
+    type='panel',
+    id='graph',
+    name='Graph',
+    version=''
+  ).addRequired(
+    type='panel',
+    id='text',
+    name='Text',
+    version=''
+  ).addRequired(
+    type='datasource',
+    id='influxdb',
+    name='InfluxDB',
+    version='1.0.0'
+  ).addInput(
+    name='DS_INFLUXDB',
+    label='InfluxDB bank',
+    type='datasource',
+    pluginId='influxdb',
+    pluginName='InfluxDB',
+    description='InfluxDB Tarantool metrics bank'
+  ).addInput(
+    name='INFLUXDB_MEASUREMENT',
+    label='Measurement',
+    type='constant',
+    description='InfluxDB Tarantool metrics measurement'
+  ).addInput(
+    name='INFLUXDB_POLICY',
+    label='Policy',
+    type='constant',
+    value='default',
+    description='InfluxDB Tarantool metrics policy'
+  )
+).addPanels([
   cluster.row,
 
   cluster.cartridge_warning_issues(
@@ -90,7 +84,7 @@ grafana.dashboard.new(
     policy=policy,
     measurement=measurement,
   ),
-
+]).addPanels([
   http.row,
 
   http.rps_success(
@@ -128,7 +122,7 @@ grafana.dashboard.new(
     policy=policy,
     measurement=measurement,
   ),
-
+]).addPanels([
   net.row,
 
   net.bytes_received_per_second(
@@ -160,7 +154,7 @@ grafana.dashboard.new(
     policy=policy,
     measurement=measurement,
   ),
-
+]).addPanels([
   slab.row,
 
   slab.monitor_info(),
@@ -218,8 +212,7 @@ grafana.dashboard.new(
     policy=policy,
     measurement=measurement,
   ),
-
-
+]).addPanels([
   vinyl.row,
 
   vinyl.disk_data(
@@ -305,7 +298,7 @@ grafana.dashboard.new(
     policy=policy,
     measurement=measurement,
   ),
-
+]).addPanels([
   cpu.row,
 
   cpu.getrusage_cpu_user_time(
@@ -319,7 +312,7 @@ grafana.dashboard.new(
     policy=policy,
     measurement=measurement,
   ),
-
+]).addPanels([
   memory_misc.row,
 
   memory_misc.lua_memory(
@@ -327,7 +320,7 @@ grafana.dashboard.new(
     policy=policy,
     measurement=measurement,
   ),
-
+]).addPanels([
   operations.row,
 
   operations.space_select_rps(
@@ -401,4 +394,4 @@ grafana.dashboard.new(
     policy=policy,
     measurement=measurement,
   ),
-]))
+]).build()
