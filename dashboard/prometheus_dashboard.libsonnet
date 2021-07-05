@@ -2,10 +2,7 @@ local grafana = import 'grafonnet/grafana.libsonnet';
 
 local dashboard = import 'dashboard.libsonnet';
 local section = import 'section.libsonnet';
-
-local datasource = '${DS_PROMETHEUS}';
-local rate_time_range = '$rate_time_range';
-local job = '[[job]]';
+local variable = import 'variable.libsonnet';
 
 dashboard.new(
   grafana.dashboard.new(
@@ -86,50 +83,50 @@ dashboard.new(
   )
 ).addPanels(
   section.cluster_prometheus(
-    datasource=datasource,
-    job=job,
-    rate_time_range=rate_time_range,
+    datasource=variable.datasource.prometheus,
+    job=variable.prometheus.job,
+    rate_time_range=variable.prometheus.rate_time_range,
   )
 ).addPanels(
   section.http(
-    datasource=datasource,
-    job=job,
-    rate_time_range=rate_time_range,
+    datasource=variable.datasource.prometheus,
+    job=variable.prometheus.job,
+    rate_time_range=variable.prometheus.rate_time_range,
   )
 ).addPanels(
   section.net(
-    datasource=datasource,
-    job=job,
-    rate_time_range=rate_time_range,
+    datasource=variable.datasource.prometheus,
+    job=variable.prometheus.job,
+    rate_time_range=variable.prometheus.rate_time_range,
   )
 ).addPanels(
   section.slab(
-    datasource=datasource,
-    job=job,
-    rate_time_range=rate_time_range,
+    datasource=variable.datasource.prometheus,
+    job=variable.prometheus.job,
+    rate_time_range=variable.prometheus.rate_time_range,
   )
 ).addPanels(
   section.vinyl(
-    datasource=datasource,
-    job=job,
-    rate_time_range=rate_time_range,
+    datasource=variable.datasource.prometheus,
+    job=variable.prometheus.job,
+    rate_time_range=variable.prometheus.rate_time_range,
   )
 ).addPanels(
   section.cpu(
-    datasource=datasource,
-    job=job,
-    rate_time_range=rate_time_range,
+    datasource=variable.datasource.prometheus,
+    job=variable.prometheus.job,
+    rate_time_range=variable.prometheus.rate_time_range,
   )
 ).addPanels(
   section.memory_misc(
-    datasource=datasource,
-    job=job,
-    rate_time_range=rate_time_range,
+    datasource=variable.datasource.prometheus,
+    job=variable.prometheus.job,
+    rate_time_range=variable.prometheus.rate_time_range,
   )
 ).addPanels(
   section.operations(
-    datasource=datasource,
-    job=job,
-    rate_time_range=rate_time_range,
+    datasource=variable.datasource.prometheus,
+    job=variable.prometheus.job,
+    rate_time_range=variable.prometheus.rate_time_range,
   )
 )

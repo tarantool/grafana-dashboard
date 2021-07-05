@@ -157,7 +157,7 @@
          ],
          "targets": [
             {
-               "expr": "up{job=\"[[job]]\"} * on(instance) group_left(alias) tnt_info_uptime{job=\"[[job]]\"} or\non(instance) label_replace(up{job=\"[[job]]\"}, \"alias\", \"Not available\", \"instance\", \".*\")\n",
+               "expr": "up{job=\"$job\"} * on(instance) group_left(alias) tnt_info_uptime{job=\"$job\"} or\non(instance) label_replace(up{job=\"$job\"}, \"alias\", \"Not available\", \"instance\", \".*\")\n",
                "format": "table",
                "instant": true,
                "intervalFactor": 2,
@@ -218,7 +218,7 @@
          "pluginVersion": "6.6.0",
          "targets": [
             {
-               "expr": "sum(up{job=~\"[[job]]\"})",
+               "expr": "sum(up{job=~\"$job\"})",
                "format": "time_series",
                "intervalFactor": 2,
                "legendFormat": "",
@@ -276,7 +276,7 @@
          "pluginVersion": "6.6.0",
          "targets": [
             {
-               "expr": "sum(tnt_slab_arena_used{job=~\"[[job]]\"})",
+               "expr": "sum(tnt_slab_arena_used{job=~\"$job\"})",
                "format": "time_series",
                "intervalFactor": 2,
                "legendFormat": "",
@@ -334,7 +334,7 @@
          "pluginVersion": "6.6.0",
          "targets": [
             {
-               "expr": "sum(tnt_slab_quota_size{job=~\"[[job]]\"})",
+               "expr": "sum(tnt_slab_quota_size{job=~\"$job\"})",
                "format": "time_series",
                "intervalFactor": 2,
                "legendFormat": "",
@@ -392,7 +392,7 @@
          "pluginVersion": "6.6.0",
          "targets": [
             {
-               "expr": "sum(rate(tnt_stats_op_total{job=~\"[[job]]\"}[$rate_time_range]))",
+               "expr": "sum(rate(tnt_stats_op_total{job=~\"$job\"}[$rate_time_range]))",
                "format": "time_series",
                "intervalFactor": 2,
                "legendFormat": "",
@@ -450,7 +450,7 @@
          "pluginVersion": "6.6.0",
          "targets": [
             {
-               "expr": "sum(rate(http_server_request_latency_count{job=~\"[[job]]\"}[$rate_time_range]))",
+               "expr": "sum(rate(http_server_request_latency_count{job=~\"$job\"}[$rate_time_range]))",
                "format": "time_series",
                "intervalFactor": 2,
                "legendFormat": "",
@@ -506,7 +506,7 @@
          "steppedLine": false,
          "targets": [
             {
-               "expr": "tnt_cartridge_issues{job=~\"[[job]]\",level=\"warning\"}",
+               "expr": "tnt_cartridge_issues{job=~\"$job\",level=\"warning\"}",
                "format": "time_series",
                "intervalFactor": 2,
                "legendFormat": "{{alias}}",
@@ -596,7 +596,7 @@
          "steppedLine": false,
          "targets": [
             {
-               "expr": "tnt_cartridge_issues{job=~\"[[job]]\",level=\"critical\"}",
+               "expr": "tnt_cartridge_issues{job=~\"$job\",level=\"critical\"}",
                "format": "time_series",
                "intervalFactor": 2,
                "legendFormat": "{{alias}}",
@@ -685,7 +685,7 @@
          "steppedLine": false,
          "targets": [
             {
-               "expr": "{__name__=~\"tnt_replication_[[:digit:]]{1,2}_lag\", job=~\"[[job]]\"}",
+               "expr": "{__name__=~\"tnt_replication_[[:digit:]]{1,2}_lag\", job=~\"$job\"}",
                "format": "time_series",
                "intervalFactor": 2,
                "legendFormat": "{{alias}}",
@@ -792,7 +792,7 @@
          "steppedLine": false,
          "targets": [
             {
-               "expr": "rate(http_server_request_latency_count{job=~\"[[job]]\",status=~\"^2\\\\d{2}$\"}[$rate_time_range])",
+               "expr": "rate(http_server_request_latency_count{job=~\"$job\",status=~\"^2\\\\d{2}$\"}[$rate_time_range])",
                "format": "time_series",
                "intervalFactor": 2,
                "legendFormat": "{{alias}} — {{method}} {{path}} (code {{status}})",
@@ -882,7 +882,7 @@
          "steppedLine": false,
          "targets": [
             {
-               "expr": "rate(http_server_request_latency_count{job=~\"[[job]]\",status=~\"^4\\\\d{2}$\"}[$rate_time_range])",
+               "expr": "rate(http_server_request_latency_count{job=~\"$job\",status=~\"^4\\\\d{2}$\"}[$rate_time_range])",
                "format": "time_series",
                "intervalFactor": 2,
                "legendFormat": "{{alias}} — {{method}} {{path}} (code {{status}})",
@@ -972,7 +972,7 @@
          "steppedLine": false,
          "targets": [
             {
-               "expr": "rate(http_server_request_latency_count{job=~\"[[job]]\",status=~\"^5\\\\d{2}$\"}[$rate_time_range])",
+               "expr": "rate(http_server_request_latency_count{job=~\"$job\",status=~\"^5\\\\d{2}$\"}[$rate_time_range])",
                "format": "time_series",
                "intervalFactor": 2,
                "legendFormat": "{{alias}} — {{method}} {{path}} (code {{status}})",
@@ -1062,7 +1062,7 @@
          "steppedLine": false,
          "targets": [
             {
-               "expr": "http_server_request_latency{job=~\"[[job]]\",quantile=\"0.99\",status=~\"^2\\\\d{2}$\"}",
+               "expr": "http_server_request_latency{job=~\"$job\",quantile=\"0.99\",status=~\"^2\\\\d{2}$\"}",
                "format": "time_series",
                "intervalFactor": 2,
                "legendFormat": "{{alias}} — {{method}} {{path}} (code {{status}})",
@@ -1152,7 +1152,7 @@
          "steppedLine": false,
          "targets": [
             {
-               "expr": "http_server_request_latency{job=~\"[[job]]\",quantile=\"0.99\",status=~\"^4\\\\d{2}$\"}",
+               "expr": "http_server_request_latency{job=~\"$job\",quantile=\"0.99\",status=~\"^4\\\\d{2}$\"}",
                "format": "time_series",
                "intervalFactor": 2,
                "legendFormat": "{{alias}} — {{method}} {{path}} (code {{status}})",
@@ -1242,7 +1242,7 @@
          "steppedLine": false,
          "targets": [
             {
-               "expr": "http_server_request_latency{job=~\"[[job]]\",quantile=\"0.99\",status=~\"^5\\\\d{2}$\"}",
+               "expr": "http_server_request_latency{job=~\"$job\",quantile=\"0.99\",status=~\"^5\\\\d{2}$\"}",
                "format": "time_series",
                "intervalFactor": 2,
                "legendFormat": "{{alias}} — {{method}} {{path}} (code {{status}})",
@@ -1351,7 +1351,7 @@
          "steppedLine": false,
          "targets": [
             {
-               "expr": "rate(tnt_net_received_total{job=~\"[[job]]\"}[$rate_time_range])",
+               "expr": "rate(tnt_net_received_total{job=~\"$job\"}[$rate_time_range])",
                "format": "time_series",
                "intervalFactor": 2,
                "legendFormat": "{{alias}}",
@@ -1441,7 +1441,7 @@
          "steppedLine": false,
          "targets": [
             {
-               "expr": "rate(tnt_net_sent_total{job=~\"[[job]]\"}[$rate_time_range])",
+               "expr": "rate(tnt_net_sent_total{job=~\"$job\"}[$rate_time_range])",
                "format": "time_series",
                "intervalFactor": 2,
                "legendFormat": "{{alias}}",
@@ -1531,7 +1531,7 @@
          "steppedLine": false,
          "targets": [
             {
-               "expr": "rate(tnt_net_requests_total{job=~\"[[job]]\"}[$rate_time_range])",
+               "expr": "rate(tnt_net_requests_total{job=~\"$job\"}[$rate_time_range])",
                "format": "time_series",
                "intervalFactor": 2,
                "legendFormat": "{{alias}}",
@@ -1621,7 +1621,7 @@
          "steppedLine": false,
          "targets": [
             {
-               "expr": "tnt_net_requests_current{job=~\"[[job]]\"}",
+               "expr": "tnt_net_requests_current{job=~\"$job\"}",
                "format": "time_series",
                "intervalFactor": 2,
                "legendFormat": "{{alias}}",
@@ -1711,7 +1711,7 @@
          "steppedLine": false,
          "targets": [
             {
-               "expr": "tnt_net_connections_current{job=~\"[[job]]\"}",
+               "expr": "tnt_net_connections_current{job=~\"$job\"}",
                "format": "time_series",
                "intervalFactor": 2,
                "legendFormat": "{{alias}}",
@@ -1834,7 +1834,7 @@
          "steppedLine": false,
          "targets": [
             {
-               "expr": "tnt_slab_quota_used_ratio{job=~\"[[job]]\"}",
+               "expr": "tnt_slab_quota_used_ratio{job=~\"$job\"}",
                "format": "time_series",
                "intervalFactor": 2,
                "legendFormat": "{{alias}}",
@@ -1924,7 +1924,7 @@
          "steppedLine": false,
          "targets": [
             {
-               "expr": "tnt_slab_arena_used_ratio{job=~\"[[job]]\"}",
+               "expr": "tnt_slab_arena_used_ratio{job=~\"$job\"}",
                "format": "time_series",
                "intervalFactor": 2,
                "legendFormat": "{{alias}}",
@@ -2014,7 +2014,7 @@
          "steppedLine": false,
          "targets": [
             {
-               "expr": "tnt_slab_items_used_ratio{job=~\"[[job]]\"}",
+               "expr": "tnt_slab_items_used_ratio{job=~\"$job\"}",
                "format": "time_series",
                "intervalFactor": 2,
                "legendFormat": "{{alias}}",
@@ -2104,7 +2104,7 @@
          "steppedLine": false,
          "targets": [
             {
-               "expr": "tnt_slab_quota_used{job=~\"[[job]]\"}",
+               "expr": "tnt_slab_quota_used{job=~\"$job\"}",
                "format": "time_series",
                "intervalFactor": 2,
                "legendFormat": "{{alias}}",
@@ -2194,7 +2194,7 @@
          "steppedLine": false,
          "targets": [
             {
-               "expr": "tnt_slab_arena_used{job=~\"[[job]]\"}",
+               "expr": "tnt_slab_arena_used{job=~\"$job\"}",
                "format": "time_series",
                "intervalFactor": 2,
                "legendFormat": "{{alias}}",
@@ -2284,7 +2284,7 @@
          "steppedLine": false,
          "targets": [
             {
-               "expr": "tnt_slab_items_used{job=~\"[[job]]\"}",
+               "expr": "tnt_slab_items_used{job=~\"$job\"}",
                "format": "time_series",
                "intervalFactor": 2,
                "legendFormat": "{{alias}}",
@@ -2374,7 +2374,7 @@
          "steppedLine": false,
          "targets": [
             {
-               "expr": "tnt_slab_quota_size{job=~\"[[job]]\"}",
+               "expr": "tnt_slab_quota_size{job=~\"$job\"}",
                "format": "time_series",
                "intervalFactor": 2,
                "legendFormat": "{{alias}}",
@@ -2464,7 +2464,7 @@
          "steppedLine": false,
          "targets": [
             {
-               "expr": "tnt_slab_arena_size{job=~\"[[job]]\"}",
+               "expr": "tnt_slab_arena_size{job=~\"$job\"}",
                "format": "time_series",
                "intervalFactor": 2,
                "legendFormat": "{{alias}}",
@@ -2554,7 +2554,7 @@
          "steppedLine": false,
          "targets": [
             {
-               "expr": "tnt_slab_items_size{job=~\"[[job]]\"}",
+               "expr": "tnt_slab_items_size{job=~\"$job\"}",
                "format": "time_series",
                "intervalFactor": 2,
                "legendFormat": "{{alias}}",
@@ -2663,7 +2663,7 @@
          "steppedLine": false,
          "targets": [
             {
-               "expr": "tnt_vinyl_disk_data_size{job=~\"[[job]]\"}",
+               "expr": "tnt_vinyl_disk_data_size{job=~\"$job\"}",
                "format": "time_series",
                "intervalFactor": 2,
                "legendFormat": "{{alias}}",
@@ -2753,7 +2753,7 @@
          "steppedLine": false,
          "targets": [
             {
-               "expr": "tnt_vinyl_disk_index_size{job=~\"[[job]]\"}",
+               "expr": "tnt_vinyl_disk_index_size{job=~\"$job\"}",
                "format": "time_series",
                "intervalFactor": 2,
                "legendFormat": "{{alias}}",
@@ -2843,7 +2843,7 @@
          "steppedLine": false,
          "targets": [
             {
-               "expr": "tnt_vinyl_regulator_dump_bandwidth{job=~\"[[job]]\"}",
+               "expr": "tnt_vinyl_regulator_dump_bandwidth{job=~\"$job\"}",
                "format": "time_series",
                "intervalFactor": 2,
                "legendFormat": "{{alias}}",
@@ -2933,7 +2933,7 @@
          "steppedLine": false,
          "targets": [
             {
-               "expr": "tnt_vinyl_regulator_write_rate{job=~\"[[job]]\"}",
+               "expr": "tnt_vinyl_regulator_write_rate{job=~\"$job\"}",
                "format": "time_series",
                "intervalFactor": 2,
                "legendFormat": "{{alias}}",
@@ -3023,7 +3023,7 @@
          "steppedLine": false,
          "targets": [
             {
-               "expr": "tnt_vinyl_regulator_rate_limit{job=~\"[[job]]\"}",
+               "expr": "tnt_vinyl_regulator_rate_limit{job=~\"$job\"}",
                "format": "time_series",
                "intervalFactor": 2,
                "legendFormat": "{{alias}}",
@@ -3113,7 +3113,7 @@
          "steppedLine": false,
          "targets": [
             {
-               "expr": "tnt_vinyl_regulator_dump_watermark{job=~\"[[job]]\"}",
+               "expr": "tnt_vinyl_regulator_dump_watermark{job=~\"$job\"}",
                "format": "time_series",
                "intervalFactor": 2,
                "legendFormat": "{{alias}}",
@@ -3203,7 +3203,7 @@
          "steppedLine": false,
          "targets": [
             {
-               "expr": "rate(tnt_vinyl_tx_commit{job=~\"[[job]]\"}[$rate_time_range])",
+               "expr": "rate(tnt_vinyl_tx_commit{job=~\"$job\"}[$rate_time_range])",
                "format": "time_series",
                "intervalFactor": 2,
                "legendFormat": "{{alias}}",
@@ -3293,7 +3293,7 @@
          "steppedLine": false,
          "targets": [
             {
-               "expr": "rate(tnt_vinyl_tx_rollback{job=~\"[[job]]\"}[$rate_time_range])",
+               "expr": "rate(tnt_vinyl_tx_rollback{job=~\"$job\"}[$rate_time_range])",
                "format": "time_series",
                "intervalFactor": 2,
                "legendFormat": "{{alias}}",
@@ -3383,7 +3383,7 @@
          "steppedLine": false,
          "targets": [
             {
-               "expr": "rate(tnt_vinyl_tx_conflict{job=~\"[[job]]\"}[$rate_time_range])",
+               "expr": "rate(tnt_vinyl_tx_conflict{job=~\"$job\"}[$rate_time_range])",
                "format": "time_series",
                "intervalFactor": 2,
                "legendFormat": "{{alias}}",
@@ -3473,7 +3473,7 @@
          "steppedLine": false,
          "targets": [
             {
-               "expr": "tnt_vinyl_tx_read_views{job=~\"[[job]]\"}",
+               "expr": "tnt_vinyl_tx_read_views{job=~\"$job\"}",
                "format": "time_series",
                "intervalFactor": 2,
                "legendFormat": "{{alias}}",
@@ -3563,7 +3563,7 @@
          "steppedLine": false,
          "targets": [
             {
-               "expr": "tnt_vinyl_scheduler_tasks{job=~\"[[job]]\", status=\"inprogress\"}",
+               "expr": "tnt_vinyl_scheduler_tasks{job=~\"$job\", status=\"inprogress\"}",
                "format": "time_series",
                "intervalFactor": 2,
                "legendFormat": "{{alias}}",
@@ -3653,7 +3653,7 @@
          "steppedLine": false,
          "targets": [
             {
-               "expr": "rate(tnt_vinyl_scheduler_tasks{job=~\"[[job]]\",status=\"failed\"}[$rate_time_range])",
+               "expr": "rate(tnt_vinyl_scheduler_tasks{job=~\"$job\",status=\"failed\"}[$rate_time_range])",
                "format": "time_series",
                "intervalFactor": 2,
                "legendFormat": "{{alias}}",
@@ -3743,7 +3743,7 @@
          "steppedLine": false,
          "targets": [
             {
-               "expr": "rate(tnt_vinyl_scheduler_dump_time{job=~\"[[job]]\"}[$rate_time_range])",
+               "expr": "rate(tnt_vinyl_scheduler_dump_time{job=~\"$job\"}[$rate_time_range])",
                "format": "time_series",
                "intervalFactor": 2,
                "legendFormat": "{{alias}}",
@@ -3833,7 +3833,7 @@
          "steppedLine": false,
          "targets": [
             {
-               "expr": "rate(tnt_vinyl_scheduler_dump_count{job=~\"[[job]]\"}[$rate_time_range])",
+               "expr": "rate(tnt_vinyl_scheduler_dump_count{job=~\"$job\"}[$rate_time_range])",
                "format": "time_series",
                "intervalFactor": 2,
                "legendFormat": "{{alias}}",
@@ -3942,7 +3942,7 @@
          "steppedLine": false,
          "targets": [
             {
-               "expr": "rate(tnt_cpu_user_time{job=~\"[[job]]\"}[$rate_time_range])",
+               "expr": "rate(tnt_cpu_user_time{job=~\"$job\"}[$rate_time_range])",
                "format": "time_series",
                "intervalFactor": 2,
                "legendFormat": "{{alias}}",
@@ -4032,7 +4032,7 @@
          "steppedLine": false,
          "targets": [
             {
-               "expr": "rate(tnt_cpu_system_time{job=~\"[[job]]\"}[$rate_time_range])",
+               "expr": "rate(tnt_cpu_system_time{job=~\"$job\"}[$rate_time_range])",
                "format": "time_series",
                "intervalFactor": 2,
                "legendFormat": "{{alias}}",
@@ -4141,7 +4141,7 @@
          "steppedLine": false,
          "targets": [
             {
-               "expr": "tnt_info_memory_lua{job=~\"[[job]]\"}",
+               "expr": "tnt_info_memory_lua{job=~\"$job\"}",
                "format": "time_series",
                "intervalFactor": 2,
                "legendFormat": "{{alias}}",
@@ -4250,7 +4250,7 @@
          "steppedLine": false,
          "targets": [
             {
-               "expr": "rate(tnt_stats_op_total{job=~\"[[job]]\",operation=\"select\"}[$rate_time_range])",
+               "expr": "rate(tnt_stats_op_total{job=~\"$job\",operation=\"select\"}[$rate_time_range])",
                "format": "time_series",
                "intervalFactor": 2,
                "legendFormat": "{{alias}}",
@@ -4340,7 +4340,7 @@
          "steppedLine": false,
          "targets": [
             {
-               "expr": "rate(tnt_stats_op_total{job=~\"[[job]]\",operation=\"insert\"}[$rate_time_range])",
+               "expr": "rate(tnt_stats_op_total{job=~\"$job\",operation=\"insert\"}[$rate_time_range])",
                "format": "time_series",
                "intervalFactor": 2,
                "legendFormat": "{{alias}}",
@@ -4430,7 +4430,7 @@
          "steppedLine": false,
          "targets": [
             {
-               "expr": "rate(tnt_stats_op_total{job=~\"[[job]]\",operation=\"replace\"}[$rate_time_range])",
+               "expr": "rate(tnt_stats_op_total{job=~\"$job\",operation=\"replace\"}[$rate_time_range])",
                "format": "time_series",
                "intervalFactor": 2,
                "legendFormat": "{{alias}}",
@@ -4520,7 +4520,7 @@
          "steppedLine": false,
          "targets": [
             {
-               "expr": "rate(tnt_stats_op_total{job=~\"[[job]]\",operation=\"upsert\"}[$rate_time_range])",
+               "expr": "rate(tnt_stats_op_total{job=~\"$job\",operation=\"upsert\"}[$rate_time_range])",
                "format": "time_series",
                "intervalFactor": 2,
                "legendFormat": "{{alias}}",
@@ -4610,7 +4610,7 @@
          "steppedLine": false,
          "targets": [
             {
-               "expr": "rate(tnt_stats_op_total{job=~\"[[job]]\",operation=\"update\"}[$rate_time_range])",
+               "expr": "rate(tnt_stats_op_total{job=~\"$job\",operation=\"update\"}[$rate_time_range])",
                "format": "time_series",
                "intervalFactor": 2,
                "legendFormat": "{{alias}}",
@@ -4700,7 +4700,7 @@
          "steppedLine": false,
          "targets": [
             {
-               "expr": "rate(tnt_stats_op_total{job=~\"[[job]]\",operation=\"delete\"}[$rate_time_range])",
+               "expr": "rate(tnt_stats_op_total{job=~\"$job\",operation=\"delete\"}[$rate_time_range])",
                "format": "time_series",
                "intervalFactor": 2,
                "legendFormat": "{{alias}}",
@@ -4790,7 +4790,7 @@
          "steppedLine": false,
          "targets": [
             {
-               "expr": "rate(tnt_stats_op_total{job=~\"[[job]]\",operation=\"call\"}[$rate_time_range])",
+               "expr": "rate(tnt_stats_op_total{job=~\"$job\",operation=\"call\"}[$rate_time_range])",
                "format": "time_series",
                "intervalFactor": 2,
                "legendFormat": "{{alias}}",
@@ -4880,7 +4880,7 @@
          "steppedLine": false,
          "targets": [
             {
-               "expr": "rate(tnt_stats_op_total{job=~\"[[job]]\",operation=\"eval\"}[$rate_time_range])",
+               "expr": "rate(tnt_stats_op_total{job=~\"$job\",operation=\"eval\"}[$rate_time_range])",
                "format": "time_series",
                "intervalFactor": 2,
                "legendFormat": "{{alias}}",
@@ -4970,7 +4970,7 @@
          "steppedLine": false,
          "targets": [
             {
-               "expr": "rate(tnt_stats_op_total{job=~\"[[job]]\",operation=\"error\"}[$rate_time_range])",
+               "expr": "rate(tnt_stats_op_total{job=~\"$job\",operation=\"error\"}[$rate_time_range])",
                "format": "time_series",
                "intervalFactor": 2,
                "legendFormat": "{{alias}}",
@@ -5060,7 +5060,7 @@
          "steppedLine": false,
          "targets": [
             {
-               "expr": "rate(tnt_stats_op_total{job=~\"[[job]]\",operation=\"auth\"}[$rate_time_range])",
+               "expr": "rate(tnt_stats_op_total{job=~\"$job\",operation=\"auth\"}[$rate_time_range])",
                "format": "time_series",
                "intervalFactor": 2,
                "legendFormat": "{{alias}}",
@@ -5150,7 +5150,7 @@
          "steppedLine": false,
          "targets": [
             {
-               "expr": "rate(tnt_stats_op_total{job=~\"[[job]]\",operation=\"prepare\"}[$rate_time_range])",
+               "expr": "rate(tnt_stats_op_total{job=~\"$job\",operation=\"prepare\"}[$rate_time_range])",
                "format": "time_series",
                "intervalFactor": 2,
                "legendFormat": "{{alias}}",
@@ -5240,7 +5240,7 @@
          "steppedLine": false,
          "targets": [
             {
-               "expr": "rate(tnt_stats_op_total{job=~\"[[job]]\",operation=\"execute\"}[$rate_time_range])",
+               "expr": "rate(tnt_stats_op_total{job=~\"$job\",operation=\"execute\"}[$rate_time_range])",
                "format": "time_series",
                "intervalFactor": 2,
                "legendFormat": "{{alias}}",

@@ -6,6 +6,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Unreleased
 
+### Added
+- Support adding custom panels before dashboard build
+
 ### Changed
 - Code rework: introduce grid generation, separate dashboards code
 - Code rework: use common graph template to reduce code copypaste, set panel size in code

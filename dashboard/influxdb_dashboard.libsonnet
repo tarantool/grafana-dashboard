@@ -2,10 +2,7 @@ local grafana = import 'grafonnet/grafana.libsonnet';
 
 local dashboard = import 'dashboard.libsonnet';
 local section = import 'section.libsonnet';
-
-local datasource = '${DS_INFLUXDB}';
-local policy = '${INFLUXDB_POLICY}';
-local measurement = '${INFLUXDB_MEASUREMENT}';
+local variable = import 'variable.libsonnet';
 
 dashboard.new(
   grafana.dashboard.new(
@@ -58,50 +55,50 @@ dashboard.new(
   )
 ).addPanels(
   section.cluster_influxdb(
-    datasource=datasource,
-    policy=policy,
-    measurement=measurement,
+    datasource=variable.datasource.influxdb,
+    policy=variable.influxdb.policy,
+    measurement=variable.influxdb.measurement,
   )
 ).addPanels(
   section.http(
-    datasource=datasource,
-    policy=policy,
-    measurement=measurement,
+    datasource=variable.datasource.influxdb,
+    policy=variable.influxdb.policy,
+    measurement=variable.influxdb.measurement,
   )
 ).addPanels(
   section.net(
-    datasource=datasource,
-    policy=policy,
-    measurement=measurement,
+    datasource=variable.datasource.influxdb,
+    policy=variable.influxdb.policy,
+    measurement=variable.influxdb.measurement,
   )
 ).addPanels(
   section.slab(
-    datasource=datasource,
-    policy=policy,
-    measurement=measurement,
+    datasource=variable.datasource.influxdb,
+    policy=variable.influxdb.policy,
+    measurement=variable.influxdb.measurement,
   )
 ).addPanels(
   section.vinyl(
-    datasource=datasource,
-    policy=policy,
-    measurement=measurement,
+    datasource=variable.datasource.influxdb,
+    policy=variable.influxdb.policy,
+    measurement=variable.influxdb.measurement,
   )
 ).addPanels(
   section.cpu(
-    datasource=datasource,
-    policy=policy,
-    measurement=measurement,
+    datasource=variable.datasource.influxdb,
+    policy=variable.influxdb.policy,
+    measurement=variable.influxdb.measurement,
   )
 ).addPanels(
   section.memory_misc(
-    datasource=datasource,
-    policy=policy,
-    measurement=measurement,
+    datasource=variable.datasource.influxdb,
+    policy=variable.influxdb.policy,
+    measurement=variable.influxdb.measurement,
   )
 ).addPanels(
   section.operations(
-    datasource=datasource,
-    policy=policy,
-    measurement=measurement,
+    datasource=variable.datasource.influxdb,
+    policy=variable.influxdb.policy,
+    measurement=variable.influxdb.measurement,
   )
 )
