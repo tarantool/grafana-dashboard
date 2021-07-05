@@ -1,0 +1,25 @@
+name: Destroy-deployments
+
+on:
+  pull_request:
+    types:
+      - closed
+jobs:
+  destroy-deployment:
+    runs-on: ubuntu-latest
+    container: tarantool/doc-builder:latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          token: "${{ secrets.GITHUB_TOKEN }}"
+
+      - name: Set branch name from source branch
+        run: echo "BRANCH_NAME=${GITHUB_HEAD_REF##*/}" >> $GITHUB_ENV
+
+      - name: Remove translation deployment at translate-${{env.BRANCH_NAME}}
+        uses: bobheadxi/deployments@v0.5.2
+        id: translation
+        with:
+          step: deactivate-env
+          token: ${{secrets.GITHUB_TOKEN}}
+          env: "translation-${{env.BRANCH_NAME}}"
