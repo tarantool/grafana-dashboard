@@ -22,3 +22,5 @@ node_modules
 !/tmp/.keep
 /vendor
 *_test_output.json
+doc/locale/en/
+doc/output/
