@@ -164,7 +164,7 @@ You can add your own custom panels to the bottom of the template dashboard.
 	  panel_width, # (default 8) Panel width in grid units, max is 24
 	)
 	```
-	Panel size is set with grid units. Grafana uses square-type grid where dashboard width is 24 units. For example, every row width is 24 units and heigth is 1 unit.
+	Panel size is set with grid units. Grafana uses square-type grid where dashboard width is 24 units. For example, row size is 24 x 1 units and Grafana new panel size is 12 x 9 units.
 
 	If you want to build non-graph panel or a graph panel with more complicated configuration, use `grafonnet` templates.
 	You must set a size of each panel before adding it to our dashboard template.
