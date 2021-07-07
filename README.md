@@ -228,8 +228,8 @@ You can add your own custom panels to the bottom of the template dashboard.
 
 	To summarise, you can build a simple 'select metric' prometheus panel with
 	```jsonnet
-	local common_panels = import 'dashboard/panels/common.libsonnet';
-	local variable = import 'dashboard/variable.libsonnet';
+	local common_panels = import 'grafana-dashboard/dashboard/panels/common.libsonnet';
+	local variable = import 'grafana-dashboard/dashboard/variable.libsonnet';
 
 	local my_custom_component_memory_graph = common_panels.default_graph(
       title='My custom component memory',
@@ -249,8 +249,8 @@ You can add your own custom panels to the bottom of the template dashboard.
 	```
 	and a simple rps panel with
 	```jsonnet
-	local common_panels = import 'dashboard/panels/common.libsonnet';
-	local variable = import 'dashboard/variable.libsonnet';
+	local common_panels = import 'grafana-dashboard/dashboard/panels/common.libsonnet';
+	local variable = import 'grafana-dashboard/dashboard/variable.libsonnet';
 
 	local my_custom_component_rps_graph = common.default_graph(
       title='My custom component load',
@@ -272,8 +272,8 @@ You can add your own custom panels to the bottom of the template dashboard.
 	```
 	Corresponding InfluxDB panels could be built with
 	```jsonnet
-	local common_panels = import 'dashboard/panels/common.libsonnet';
-	local variable = import 'dashboard/variable.libsonnet';
+	local common_panels = import 'grafana-dashboard/dashboard/panels/common.libsonnet';
+	local variable = import 'grafana-dashboard/dashboard/variable.libsonnet';
 
 	local my_custom_component_memory_graph = common_panels.default_graph(
       title='My custom component memory',
@@ -324,7 +324,7 @@ You can add your own custom panels to the bottom of the template dashboard.
 	]);
 	```
 
-	Finally, call `build` to compute panels positions and build a resulting dashboard:
+	Finally, call `build()` to compute panels positions and build a resulting dashboard:
 	```jsonnet
 	# my_dashboard.jsonnet
 	...
