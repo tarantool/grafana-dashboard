@@ -54,10 +54,17 @@ Refer to dashboard [documentation page](https://www.tarantool.io/en/doc/latest/b
 
 For guide on setting up your monitoring stack refer to [documentation page](https://www.tarantool.io/en/doc/latest/book/monitoring/grafana_dashboard/).
 
-This repository provides preconfigured monitoring cluster with example Tarantool app and load generatior for local development and tests. You can use them to build a monitoring cluster for your own app.
+### Example app
 
-`docker-compose up -d` will start 6 containers: Tarantool App, Tarantool Load Generator, Telegraf, InfluxDB, Prometheus and Grafana, which build cluster with two fully operational metrics datasources (InfluxDB and Prometheus), extracting metrics from Tarantool App example project.
+This repository provides preconfigured monitoring cluster with example Tarantool app and load generatior for local dashboard development and tests.
+
+```bash
+docker-compose up -d
+```
+will start 6 containers: Tarantool App, Tarantool Load Generator, Telegraf, InfluxDB, Prometheus and Grafana, which build cluster with two fully operational metrics datasources (InfluxDB and Prometheus), extracting metrics from Tarantool App example project.
 We recommend using the exact versions we use in experimental cluster (e.g. Grafana v6.6.0).
+After start, Grafana UI will be available at [localhost:3000](http://localhost:3000/).
+You can also interact with Prometheus at [localhost:9090](http://localhost:9090/) and InfluxDB at [localhost:8086](http://localhost:8086/).
 
 To set up an InfluxDB dashboard for monitoring example app, use the following variables:
 
@@ -69,12 +76,35 @@ To set up an Prometheus dashboard for monitoring example app, use the following 
 - `Job`: `tarantool_app`;
 - `Rate time range`: `2m`.
 
+### Monitoring local app
+
+If you want to monitor Tarantool cluster deployed on your local host, you can use monitoring cluster similar to example app one.
+
+Configure Telegraf/Prometheus to monitor your own app in `example/telegraf/telegraf.localapp.conf` and `example/prometheus/prometheus.localapp.yml`.
+Use `host.docker.internal` as your machine host in configuration and set cluster instances ports as targets and correct metrics HTTP path.
+See more setup tips in [documentation](https://www.tarantool.io/en/doc/latest/book/monitoring/grafana_dashboard/).
+
+Start cluster with 
+```bash
+docker-compose -f docker-compose.localapp.yml -p localapp-monitoring up -d
+```
+After start, Grafana UI will be available at [localhost:3000](http://localhost:3000/).
+You can also interact with Prometheus at [localhost:9090](http://localhost:9090/) and InfluxDB at [localhost:8086](http://localhost:8086/).
 
 ## Manual build
 
 `go` v.1.14 or greater is required to install build and test dependencies.
-Run `make build-deps` to install dependencies that are required to build dashboards.
-Run `make test-deps` to install build dependencies and dependencies that are required to run tests locally.
+Run
+```bash
+make build-deps
+```
+to install dependencies that are required to build dashboards.
+
+Run
+```bash
+make test-deps
+```
+to install build dependencies and dependencies that are required to run tests locally.
 
 You can compile Prometheus dashboard template with
 ```bash
@@ -94,8 +124,15 @@ and to save output into clipboard, use
 jsonnet -J ./vendor/ -e "local dashboard = import 'dashboard/prometheus_dashboard.libsonnet'; dashboard.build()" | xclip -selection clipboard
 ```
 
-You can run tests with `make run-tests` command.
-Compiled dashboard test files can be updated with `make update-tests` command.
+You can run tests with
+```bash
+make run-tests
+```
+
+Compiled dashboard test files can be updated with
+```bash
+make update-tests
+```
 It also formats all source files with `jsonnetfmt`.
 
 
@@ -104,7 +141,11 @@ It also formats all source files with `jsonnetfmt`.
 You can add your own custom panels to the bottom of the template dashboard.
 
 1. Add tarantool/grafana-dashboard as a dependency in your project with jsonnet-bundler.
-	Run `jb init` to initialize `jsonnetfile.json` and add this repo as a dependency:
+	Run
+	```bash
+	jb init
+	```
+	to initialize `jsonnetfile.json` and add this repo as a dependency:
 	```json
 	# jsonnetfile.json
 	{
@@ -122,7 +163,11 @@ You can add your own custom panels to the bottom of the template dashboard.
 	  "legacyImports": true
 	}
 	```
-	Run `jb install` to install dependencies. [`grafonnet`](https://github.com/grafana/grafonnet-lib) library will also be installed as a transitive dependency.
+	Run
+	```bash
+	jb install
+	```
+	to install dependencies. [`grafonnet`](https://github.com/grafana/grafonnet-lib) library will also be installed as a transitive dependency.
 
 
 2. There are two main templates: `grafana-dashboard/dashboard/prometheus_dashboard.libsonnet` and `grafana-dashboard/dashboard/influxdb_dashboard.libsonnet`.
@@ -210,17 +255,17 @@ You can add your own custom panels to the bottom of the template dashboard.
 
 	If you want to build a Prometheus dashboard, use 
 	```jsonnet
-	  datasource=variable.datasource.prometheus,
-	  job=variable.prometheus.job,
-	  rate_time_range=variable.prometheus.rate_time_range
+	datasource=variable.datasource.prometheus,
+	job=variable.prometheus.job,
+	rate_time_range=variable.prometheus.rate_time_range
 	```
 	in your targets.
 	
 	If you want to build an InfluxDB dashboard, use 
 	```jsonnet
-	  datasource=variable.datasource.influxdb,
-	  policy=variable.influxdb.policy,
-	  measurement=variable.influxdb.measurement
+	datasource=variable.datasource.influxdb,
+	policy=variable.influxdb.policy,
+	measurement=variable.influxdb.measurement
 	```
 	in your targets.
 

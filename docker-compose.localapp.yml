@@ -1,0 +1,57 @@
+version: '3'
+services:
+  telegraf:
+    image: telegraf:1.13-alpine
+    networks:
+      tarantool_dashboard_dev:
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    volumes:
+      # configure telegraf to work out of the box
+      - ./example/telegraf/telegraf.localapp.conf:/etc/telegraf/telegraf.conf:ro
+
+  influxdb:
+    image: influxdb:1.7-alpine
+    environment: 
+      INFLUXDB_REPORTING_DISABLED: "true"
+      INFLUXDB_DB: "metrics"
+      INFLUXDB_ADMIN_USER: "admin"
+      INFLUXDB_ADMIN_PASSWORD: "admin"
+      INFLUXDB_USER: "telegraf"
+      INFLUXDB_USER_PASSWORD: "telegraf"
+      INFLUXDB_HTTP_AUTH_ENABLED: "true"
+    networks:
+      tarantool_dashboard_dev:
+    ports:
+      - 8086:8086
+
+  prometheus:
+    image: prom/prometheus:v2.17.2
+    networks:
+      tarantool_dashboard_dev:
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    ports:
+      - 9090:9090
+    volumes:
+      - ./example/prometheus/prometheus.localapp.yml:/etc/prometheus/prometheus.yml
+      - ./example/prometheus/alerts.yml:/etc/prometheus/alerts.yml
+
+  grafana:
+    image: grafana/grafana:6.6.0
+    environment: 
+      GF_SECURITY_DISABLE_INITIAL_ADMIN_CREATION: "true"
+      GF_AUTH_ANONYMOUS_ENABLED: "true"
+      GF_AUTH_ANONYMOUS_ORG_ROLE: "Admin"
+      GF_AUTH_DISABLE_SIGNOUT_MENU: "true"
+      GF_AUTH_DISABLE_LOGIN_FORM: "true"
+    networks:
+      tarantool_dashboard_dev:
+    ports:
+      - 3000:3000
+    volumes:
+      - ./example/grafana/provisioning:/etc/grafana/provisioning
+
+networks:
+  tarantool_dashboard_dev:
+    driver: bridge

@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - Support adding custom panels before dashboard build
 - Add simple customization guide
+- Cluster for local Tarantool app monitoring
 
 ### Changed
 - Code rework: introduce grid generation, separate dashboards code
