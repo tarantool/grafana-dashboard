@@ -4,19 +4,20 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## Unreleased
+## [0.3.1] - 2021-07-08
+Grafana revisions: [InfluxDB revision 6](https://grafana.com/api/dashboards/12567/revisions/6/download), [Prometheus revision 6](https://grafana.com/api/dashboards/13054/revisions/6/download)
 
 ### Added
 - Support adding custom panels before dashboard build
-- Add simple customization guide
+- Simple customization guide
 - Cluster for local Tarantool app monitoring
+- Vinyl panels and alert examples
 
 ### Changed
 - Code rework: introduce grid generation, separate dashboards code
 - Code rework: use common graph template to reduce code copypaste, set panel size in code
 - Code rework: add dashboard wrap-up, group panels into sections
 - Rename "Tarantool memory allocation overview" to "Tarantool memtx allocation overview"
-- Add vinyl panels and alert examples
 
 
 ## [0.3.0] - 2021-06-17
