@@ -5296,7 +5296,7 @@
          "dashes": false,
          "datasource": "${DS_INFLUXDB}",
          "decimals": 3,
-         "description": "Panel works with `metrics >= 0.8.0`.\nThis is the average amount of time per minute\nspent by instance process executing in user mode.\nMetrics obtained using `getrusage()` call.\nIf `No data` displayed for Prometheus panel,\ncheck up your 'rate_time_range' variable.\n",
+         "description": "Panel works with `metrics >= 0.8.0`.\nThis is the average share of time\nspent by instance process executing in user mode.\nMetrics obtained using `getrusage()` call.\nIf `No data` displayed for Prometheus panel,\ncheck up your 'rate_time_range' variable.\n",
          "fill": 0,
          "gridPos": {
             "h": 8,
@@ -5407,9 +5407,9 @@
          },
          "yaxes": [
             {
-               "decimals": 3,
-               "format": "s",
-               "label": "time per minute",
+               "decimals": 0,
+               "format": "percentunit",
+               "label": null,
                "logBase": 1,
                "max": null,
                "min": 0,
@@ -5417,7 +5417,7 @@
             },
             {
                "decimals": 3,
-               "format": "s",
+               "format": "percentunit",
                "label": null,
                "logBase": 1,
                "max": null,
@@ -5433,7 +5433,7 @@
          "dashes": false,
          "datasource": "${DS_INFLUXDB}",
          "decimals": 3,
-         "description": "Panel works with `metrics >= 0.8.0`.\nThis is the average amount of time per minute\nspent by instance process executing in kernel mode.\nMetrics obtained using `getrusage()` call.\nIf `No data` displayed for Prometheus panel,\ncheck up your 'rate_time_range' variable.\n",
+         "description": "Panel works with `metrics >= 0.8.0`.\nThis is the average share of time\nspent by instance process executing in kernel mode.\nMetrics obtained using `getrusage()` call.\nIf `No data` displayed for Prometheus panel,\ncheck up your 'rate_time_range' variable.\n",
          "fill": 0,
          "gridPos": {
             "h": 8,
@@ -5544,9 +5544,9 @@
          },
          "yaxes": [
             {
-               "decimals": 3,
-               "format": "s",
-               "label": "time per minute",
+               "decimals": 0,
+               "format": "percentunit",
+               "label": null,
                "logBase": 1,
                "max": null,
                "min": 0,
@@ -5554,7 +5554,7 @@
             },
             {
                "decimals": 3,
-               "format": "s",
+               "format": "percentunit",
                "label": null,
                "logBase": 1,
                "max": null,
