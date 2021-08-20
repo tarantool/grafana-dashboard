@@ -3,7 +3,7 @@ local common = import 'common.libsonnet';
 {
   row:: common.row('Tarantool CPU statistics'),
 
-  local getrusage_cpu_time_graph(
+  local getrusage_cpu_percentage_graph(
     title,
     description,
     datasource,
@@ -16,9 +16,8 @@ local common = import 'common.libsonnet';
     title=title,
     description=description,
     datasource=datasource,
-    format='s',
-    labelY1='time per minute',
-    decimalsY1=3,
+    format='percentunit',
+    decimalsY1=0,
     min=0,
     panel_width=12,
   ).addTarget(common.default_rps_target(
@@ -34,7 +33,7 @@ local common = import 'common.libsonnet';
     title='CPU user time',
     description=|||
       Panel works with `metrics >= 0.8.0`.
-      This is the average amount of time per minute
+      This is the average share of time
       spent by instance process executing in user mode.
       Metrics obtained using `getrusage()` call.
       If `No data` displayed for Prometheus panel,
@@ -45,7 +44,7 @@ local common = import 'common.libsonnet';
     measurement=null,
     job=null,
     rate_time_range=null,
-  ):: getrusage_cpu_time_graph(
+  ):: getrusage_cpu_percentage_graph(
     title=title,
     description=description,
     datasource=datasource,
@@ -60,7 +59,7 @@ local common = import 'common.libsonnet';
     title='CPU system time',
     description=|||
       Panel works with `metrics >= 0.8.0`.
-      This is the average amount of time per minute
+      This is the average share of time
       spent by instance process executing in kernel mode.
       Metrics obtained using `getrusage()` call.
       If `No data` displayed for Prometheus panel,
@@ -71,7 +70,7 @@ local common = import 'common.libsonnet';
     measurement=null,
     job=null,
     rate_time_range=null,
-  ):: getrusage_cpu_time_graph(
+  ):: getrusage_cpu_percentage_graph(
     title=title,
     description=description,
     datasource=datasource,
