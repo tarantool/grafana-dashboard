@@ -128,9 +128,7 @@ local prometheus = grafana.prometheus;
       reducerFunction='last',
       pluginVersion='6.6.0',
     ).addThreshold(
-      { color: 'red', value: null }
-    ).addThreshold(
-      { color: 'green', value: 0.1 }
+      { color: 'green', value: null }
     ).addTarget(prometheus.target(expr=expr)),
     stat_title
   ),
