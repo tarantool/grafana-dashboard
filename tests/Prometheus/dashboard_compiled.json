@@ -196,12 +196,8 @@
                      "mode": "absolute",
                      "steps": [
                         {
-                           "color": "red",
-                           "value": null
-                        },
-                        {
                            "color": "green",
-                           "value": 0.10000000000000001
+                           "value": null
                         }
                      ]
                   },
@@ -254,12 +250,8 @@
                      "mode": "absolute",
                      "steps": [
                         {
-                           "color": "red",
-                           "value": null
-                        },
-                        {
                            "color": "green",
-                           "value": 0.10000000000000001
+                           "value": null
                         }
                      ]
                   },
@@ -312,12 +304,8 @@
                      "mode": "absolute",
                      "steps": [
                         {
-                           "color": "red",
-                           "value": null
-                        },
-                        {
                            "color": "green",
-                           "value": 0.10000000000000001
+                           "value": null
                         }
                      ]
                   },
@@ -370,12 +358,8 @@
                      "mode": "absolute",
                      "steps": [
                         {
-                           "color": "red",
-                           "value": null
-                        },
-                        {
                            "color": "green",
-                           "value": 0.10000000000000001
+                           "value": null
                         }
                      ]
                   },
@@ -428,12 +412,8 @@
                      "mode": "absolute",
                      "steps": [
                         {
-                           "color": "red",
-                           "value": null
-                        },
-                        {
                            "color": "green",
-                           "value": 0.10000000000000001
+                           "value": null
                         }
                      ]
                   },
