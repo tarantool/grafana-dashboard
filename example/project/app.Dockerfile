@@ -16,6 +16,6 @@ RUN yum install -y cartridge-cli
 RUN cartridge build
 
 ENTRYPOINT cartridge start -d && \
-	sleep 3 && \
-	(cartridge replicasets setup --bootstrap-vshard || true) && \
-	cartridge log -f
+    sleep 3 && \
+    (cartridge replicasets setup --bootstrap-vshard || true) && \
+    cartridge log -f
