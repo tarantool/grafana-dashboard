@@ -22,7 +22,7 @@ Refer to dashboard [documentation page](https://www.tarantool.io/en/doc/latest/b
 
 1. Open Grafana import menu.
 
-    ![Grafana import menu](doc/monitoring/images/grafana_import_v6.png)
+    ![Grafana import menu](doc/monitoring/images/grafana_import.png)
 
 2. To import a specific dashboard, choose one of the following options:
 
@@ -34,7 +34,7 @@ Refer to dashboard [documentation page](https://www.tarantool.io/en/doc/latest/b
 
 3. Set dashboard name, folder, uid, choose corresponding datasource from drop-down list and set datasource-related query parameters.
 
-    ![Dashboard import variables](doc/monitoring/images/grafana_import_setup_v6.png)
+    ![Dashboard import variables](doc/monitoring/images/grafana_import_setup.png)
 
     You need to set the following variables for InfluxDB datasource:
 
@@ -62,7 +62,7 @@ This repository provides preconfigured monitoring cluster with example Tarantool
 docker-compose up -d
 ```
 will start 6 containers: Tarantool App, Tarantool Load Generator, Telegraf, InfluxDB, Prometheus and Grafana, which build cluster with two fully operational metrics datasources (InfluxDB and Prometheus), extracting metrics from Tarantool App example project.
-We recommend using the exact versions we use in experimental cluster (e.g. Grafana v6.6.0).
+We recommend using the exact versions we use in experimental cluster (e.g. Grafana v8.1.5).
 After start, Grafana UI will be available at [localhost:3000](http://localhost:3000/).
 You can also interact with Prometheus at [localhost:9090](http://localhost:9090/) and InfluxDB at [localhost:8086](http://localhost:8086/).
 
