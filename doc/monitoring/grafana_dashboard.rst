@@ -122,7 +122,7 @@ Import the dashboard
 -------------------------------------------------------------------------------
 Open Grafana import menu.
 
-..  image:: images/grafana_import_v6.png
+..  image:: images/grafana_import.png
     :align: left
 
 To import a specific dashboard, choose one of the following options:
@@ -136,7 +136,7 @@ To import a specific dashboard, choose one of the following options:
 Set dashboard name, folder, uid (if needed), and datasource-related query parameters
 (InfluxDB source, measurement and policy or Prometheus source, job and rate time range).
 
-..  image:: images/grafana_import_setup_v6.png
+..  image:: images/grafana_import_setup.png
     :align: left
 
 .. _monitoring-grafana_dashboard-troubleshooting:
