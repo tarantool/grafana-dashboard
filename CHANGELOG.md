@@ -7,6 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## Unreleased
 ### Changed
 - Use green color for low values in overall panels
+- Configure default collector in example cluster
 
 
 ## [0.3.2] - 2021-08-20

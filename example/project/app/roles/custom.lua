@@ -11,7 +11,7 @@ local function init(opts) -- luacheck: no unused args
     local metrics = cartridge.service_get('metrics')
     local http_middleware = metrics.http_middleware
 
-    local http_collector = http_middleware.build_default_collector('summary')
+    http_middleware.configure_default_collector('summary')
 
     local httpd = cartridge.service_get('httpd')
     httpd:route(
@@ -20,8 +20,7 @@ local function init(opts) -- luacheck: no unused args
             function()
                 fiber.sleep(0.02)
                 return { status = 200, body = 'Hello world!' }
-            end,
-            http_collector
+            end
         )
     )
     httpd:route(
@@ -30,8 +29,7 @@ local function init(opts) -- luacheck: no unused args
             function()
                 fiber.sleep(0.01)
                 return { status = 400, body = 'Hell0 world!' }
-            end,
-            http_collector
+            end
         )
     )
     httpd:route(
@@ -40,8 +38,7 @@ local function init(opts) -- luacheck: no unused args
             function()
                 fiber.sleep(0.005)
                 return { status = 500, body = 'Goodbye cruel world!' }
-            end,
-            http_collector
+            end
         )
     )
 
