@@ -79,8 +79,8 @@ local prometheus = grafana.prometheus;
       prometheus.target(
         expr=std.format(
           |||
-            up{job="%s"} * on(instance) group_left(alias) tnt_info_uptime{job="%s"} or
-            on(instance) label_replace(up{job="%s"}, "alias", "Not available", "instance", ".*")
+            up{job=~"%s"} * on(instance) group_left(alias) tnt_info_uptime{job=~"%s"} or
+            on(instance) label_replace(up{job=~"%s"}, "alias", "Not available", "instance", ".*")
           |||,
           [job, job, job]
         ),
