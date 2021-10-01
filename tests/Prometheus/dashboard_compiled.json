@@ -157,7 +157,7 @@
          ],
          "targets": [
             {
-               "expr": "up{job=\"$job\"} * on(instance) group_left(alias) tnt_info_uptime{job=\"$job\"} or\non(instance) label_replace(up{job=\"$job\"}, \"alias\", \"Not available\", \"instance\", \".*\")\n",
+               "expr": "up{job=~\"$job\"} * on(instance) group_left(alias) tnt_info_uptime{job=~\"$job\"} or\non(instance) label_replace(up{job=~\"$job\"}, \"alias\", \"Not available\", \"instance\", \".*\")\n",
                "format": "table",
                "instant": true,
                "intervalFactor": 2,
