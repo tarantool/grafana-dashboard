@@ -162,7 +162,7 @@ local prometheus = grafana.prometheus;
     decimals=0,
     unit='none',
     expr=std.format('sum(up{job=~"%s"})', job),
-  ) { gridPos: { w: 8, h: 3 } },
+  ) { gridPos: { w: 6, h: 3 } },
 
   memory_used_stat(
     title='',
@@ -193,7 +193,7 @@ local prometheus = grafana.prometheus;
     decimals=2,
     unit='bytes',
     expr=std.format('sum(tnt_slab_arena_used{job=~"%s"})', job),
-  ) { gridPos: { w: 4, h: 5 } },
+  ) { gridPos: { w: 3, h: 3 } },
 
   memory_reserved_stat(
     title='',
@@ -224,7 +224,7 @@ local prometheus = grafana.prometheus;
     decimals=2,
     unit='bytes',
     expr=std.format('sum(tnt_slab_quota_size{job=~"%s"})', job),
-  ) { gridPos: { w: 4, h: 5 } },
+  ) { gridPos: { w: 3, h: 3 } },
 
   space_ops_stat(
     title='',
@@ -257,7 +257,7 @@ local prometheus = grafana.prometheus;
     decimals=3,
     unit='ops',
     expr=std.format('sum(rate(tnt_stats_op_total{job=~"%s"}[%s]))', [job, rate_time_range]),
-  ) { gridPos: { w: 4, h: 4 } },
+  ) { gridPos: { w: 4, h: 5 } },
 
   http_rps_stat(
     title='',
@@ -275,7 +275,7 @@ local prometheus = grafana.prometheus;
       else (
         if datasource == '${DS_PROMETHEUS}' then
           |||
-            Overall rate of requests processed on Tarantool instances (all methods and response codes).
+            Overall rate of HTTP requests processed on Tarantool instances (all methods and response codes).
             If Tarantool instance is not available for Prometheus metrics extraction now, its contribution is not counted.
             If `No data` displayed, check up your 'rate_time_range' variable.
           |||
@@ -290,7 +290,40 @@ local prometheus = grafana.prometheus;
     decimals=3,
     unit='reqps',
     expr=std.format('sum(rate(http_server_request_latency_count{job=~"%s"}[%s]))', [job, rate_time_range]),
-  ) { gridPos: { w: 4, h: 4 } },
+  ) { gridPos: { w: 4, h: 5 } },
+
+  net_rps_stat(
+    title='',
+    description=null,
+
+    datasource=null,
+    measurement=null,
+    job=null,
+    rate_time_range=null,
+  ):: overview_stat(
+    title=title,
+    description=(
+      if description != null then
+        description
+      else (
+        if datasource == '${DS_PROMETHEUS}' then
+          |||
+            Overall rate of network requests processed on Tarantool instances.
+            If Tarantool instance is not available for Prometheus metrics extraction now, its contribution is not counted.
+            If `No data` displayed, check up your 'rate_time_range' variable.
+          |||
+        else
+          null
+      )
+    ),
+    datasource=datasource,
+    measurement=measurement,
+    job=job,
+    stat_title='Overall net load:',
+    decimals=3,
+    unit='reqps',
+    expr=std.format('sum(rate(tnt_net_requests_total{job=~"%s"}[%s]))', [job, rate_time_range]),
+  ) { gridPos: { w: 4, h: 5 } },
 
   local cartridge_issues(
     title,

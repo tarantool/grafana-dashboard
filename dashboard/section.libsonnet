@@ -42,29 +42,35 @@ local vinyl = import 'panels/vinyl.libsonnet';
     cluster.health_overview_stat(
       datasource=datasource,
       job=job,
-    ) { gridPos: { w: 8, h: 3, x: 12, y: 1 } },
+    ) { gridPos: { w: 6, h: 3, x: 12, y: 1 } },
 
     cluster.memory_used_stat(
       datasource=datasource,
       job=job,
-    ) { gridPos: { w: 4, h: 5, x: 12, y: 4 } },
+    ) { gridPos: { w: 3, h: 3, x: 18, y: 1 } },
 
     cluster.memory_reserved_stat(
       datasource=datasource,
       job=job,
+    ) { gridPos: { w: 3, h: 3, x: 21, y: 1 } },
+
+    cluster.http_rps_stat(
+      datasource=datasource,
+      job=job,
+      rate_time_range=rate_time_range,
+    ) { gridPos: { w: 4, h: 5, x: 12, y: 4 } },
+
+    cluster.net_rps_stat(
+      datasource=datasource,
+      job=job,
+      rate_time_range=rate_time_range,
     ) { gridPos: { w: 4, h: 5, x: 16, y: 4 } },
 
     cluster.space_ops_stat(
       datasource=datasource,
       job=job,
       rate_time_range=rate_time_range,
-    ) { gridPos: { w: 4, h: 4, x: 20, y: 1 } },
-
-    cluster.http_rps_stat(
-      datasource=datasource,
-      job=job,
-      rate_time_range=rate_time_range,
-    ) { gridPos: { w: 4, h: 4, x: 20, y: 5 } },
+    ) { gridPos: { w: 4, h: 5, x: 20, y: 4 } },
 
     cluster.cartridge_warning_issues(
       datasource=datasource,
