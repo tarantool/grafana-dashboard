@@ -80,7 +80,7 @@ To set up an Prometheus dashboard for monitoring example app, use the following 
 
 If you want to monitor Tarantool cluster deployed on your local host, you can use monitoring cluster similar to example app one.
 
-Configure Telegraf/Prometheus to monitor your own app in `example/telegraf/telegraf.localapp.conf` and `example/prometheus/prometheus.localapp.yml`.
+Configure Telegraf/Prometheus to monitor your own app in `example_cluster/telegraf/telegraf.localapp.conf` and `example_cluster/prometheus/prometheus.localapp.yml`.
 Use `host.docker.internal` as your machine host in configuration and set cluster instances ports as targets and correct metrics HTTP path.
 See more setup tips in [documentation](https://www.tarantool.io/en/doc/latest/book/monitoring/grafana_dashboard/).
 
