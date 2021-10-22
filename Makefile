@@ -11,7 +11,7 @@ test-deps: build-deps
 
 run-tests:
 	./tests.sh
-	promtool test rules example/prometheus/test_alerts.yml
+	promtool test rules example_cluster/prometheus/test_alerts.yml
 
 update-tests:
 	./tests.sh update
