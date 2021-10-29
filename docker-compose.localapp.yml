@@ -8,7 +8,7 @@ services:
       - "host.docker.internal:host-gateway"
     volumes:
       # configure telegraf to work out of the box
-      - ./example/telegraf/telegraf.localapp.conf:/etc/telegraf/telegraf.conf:ro
+      - ./example_cluster/telegraf/telegraf.localapp.conf:/etc/telegraf/telegraf.conf:ro
 
   influxdb:
     image: influxdb:1.7-alpine
@@ -34,8 +34,8 @@ services:
     ports:
       - 9090:9090
     volumes:
-      - ./example/prometheus/prometheus.localapp.yml:/etc/prometheus/prometheus.yml
-      - ./example/prometheus/alerts.yml:/etc/prometheus/alerts.yml
+      - ./example_cluster/prometheus/prometheus.localapp.yml:/etc/prometheus/prometheus.yml
+      - ./example_cluster/prometheus/alerts.yml:/etc/prometheus/alerts.yml
 
   grafana:
     image: grafana/grafana:8.1.5
@@ -50,7 +50,7 @@ services:
     ports:
       - 3000:3000
     volumes:
-      - ./example/grafana/provisioning:/etc/grafana/provisioning
+      - ./example_cluster/grafana/provisioning:/etc/grafana/provisioning
 
 networks:
   tarantool_dashboard_dev:
