@@ -3384,6 +3384,740 @@
          "repeatIteration": null,
          "repeatRowId": null,
          "showTitle": true,
+         "title": "Tarantool space statistics",
+         "titleSize": "h6",
+         "type": "row"
+      },
+      {
+         "aliasColors": { },
+         "bars": false,
+         "dashLength": 10,
+         "dashes": false,
+         "datasource": "${DS_INFLUXDB}",
+         "decimals": 0,
+         "description": "Number of records in the space (memtx engine).\nName of space is specified after dash.\n",
+         "fill": 0,
+         "gridPos": {
+            "h": 8,
+            "w": 12,
+            "x": 0,
+            "y": 78
+         },
+         "id": 31,
+         "legend": {
+            "alignAsTable": true,
+            "avg": false,
+            "current": true,
+            "max": false,
+            "min": false,
+            "rightSide": false,
+            "show": true,
+            "sideWidth": null,
+            "sort": "current",
+            "sortDesc": true,
+            "total": false,
+            "values": true
+         },
+         "lines": true,
+         "linewidth": 1,
+         "links": [ ],
+         "nullPointMode": "null",
+         "percentage": false,
+         "pointradius": 5,
+         "points": false,
+         "renderer": "flot",
+         "repeat": null,
+         "seriesOverrides": [ ],
+         "spaceLength": 10,
+         "stack": false,
+         "steppedLine": false,
+         "targets": [
+            {
+               "alias": "$tag_label_pairs_alias — $tag_label_pairs_name",
+               "groupBy": [
+                  {
+                     "params": [
+                        "$__interval"
+                     ],
+                     "type": "time"
+                  },
+                  {
+                     "params": [
+                        "label_pairs_alias"
+                     ],
+                     "type": "tag"
+                  },
+                  {
+                     "params": [
+                        "label_pairs_name"
+                     ],
+                     "type": "tag"
+                  },
+                  {
+                     "params": [
+                        "none"
+                     ],
+                     "type": "fill"
+                  }
+               ],
+               "measurement": "${INFLUXDB_MEASUREMENT}",
+               "policy": "${INFLUXDB_POLICY}",
+               "refId": "A",
+               "resultFormat": "time_series",
+               "select": [
+                  [
+                     {
+                        "params": [
+                           "value"
+                        ],
+                        "type": "field"
+                     },
+                     {
+                        "params": [ ],
+                        "type": "last"
+                     }
+                  ]
+               ],
+               "tags": [
+                  {
+                     "key": "metric_name",
+                     "operator": "=",
+                     "value": "tnt_space_len"
+                  },
+                  {
+                     "condition": "AND",
+                     "key": "label_pairs_engine",
+                     "operator": "=",
+                     "value": "memtx"
+                  }
+               ]
+            }
+         ],
+         "thresholds": [ ],
+         "timeFrom": null,
+         "timeShift": null,
+         "title": "Number of records (memtx)",
+         "tooltip": {
+            "shared": true,
+            "sort": 2,
+            "value_type": "individual"
+         },
+         "type": "graph",
+         "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": [ ]
+         },
+         "yaxes": [
+            {
+               "decimals": 0,
+               "format": "none",
+               "label": null,
+               "logBase": 1,
+               "max": null,
+               "min": null,
+               "show": true
+            },
+            {
+               "decimals": 0,
+               "format": "none",
+               "label": null,
+               "logBase": 1,
+               "max": null,
+               "min": null,
+               "show": true
+            }
+         ]
+      },
+      {
+         "aliasColors": { },
+         "bars": false,
+         "dashLength": 10,
+         "dashes": false,
+         "datasource": "${DS_INFLUXDB}",
+         "decimals": 0,
+         "description": "Number of records in the space (vinyl engine).\nName of space is specified after dash.\nBy default this metrics is disabled,\nto enable it you must set global variable\ninclude_vinyl_count to true. Beware that\ncount() operation scans the space and may\nslow down your app. \n",
+         "fill": 0,
+         "gridPos": {
+            "h": 8,
+            "w": 12,
+            "x": 12,
+            "y": 78
+         },
+         "id": 32,
+         "legend": {
+            "alignAsTable": true,
+            "avg": false,
+            "current": true,
+            "max": false,
+            "min": false,
+            "rightSide": false,
+            "show": true,
+            "sideWidth": null,
+            "sort": "current",
+            "sortDesc": true,
+            "total": false,
+            "values": true
+         },
+         "lines": true,
+         "linewidth": 1,
+         "links": [ ],
+         "nullPointMode": "null",
+         "percentage": false,
+         "pointradius": 5,
+         "points": false,
+         "renderer": "flot",
+         "repeat": null,
+         "seriesOverrides": [ ],
+         "spaceLength": 10,
+         "stack": false,
+         "steppedLine": false,
+         "targets": [
+            {
+               "alias": "$tag_label_pairs_alias — $tag_label_pairs_name",
+               "groupBy": [
+                  {
+                     "params": [
+                        "$__interval"
+                     ],
+                     "type": "time"
+                  },
+                  {
+                     "params": [
+                        "label_pairs_alias"
+                     ],
+                     "type": "tag"
+                  },
+                  {
+                     "params": [
+                        "label_pairs_name"
+                     ],
+                     "type": "tag"
+                  },
+                  {
+                     "params": [
+                        "none"
+                     ],
+                     "type": "fill"
+                  }
+               ],
+               "measurement": "${INFLUXDB_MEASUREMENT}",
+               "policy": "${INFLUXDB_POLICY}",
+               "refId": "A",
+               "resultFormat": "time_series",
+               "select": [
+                  [
+                     {
+                        "params": [
+                           "value"
+                        ],
+                        "type": "field"
+                     },
+                     {
+                        "params": [ ],
+                        "type": "last"
+                     }
+                  ]
+               ],
+               "tags": [
+                  {
+                     "key": "metric_name",
+                     "operator": "=",
+                     "value": "tnt_space_count"
+                  },
+                  {
+                     "condition": "AND",
+                     "key": "label_pairs_engine",
+                     "operator": "=",
+                     "value": "vinyl"
+                  }
+               ]
+            }
+         ],
+         "thresholds": [ ],
+         "timeFrom": null,
+         "timeShift": null,
+         "title": "Number of records (vinyl)",
+         "tooltip": {
+            "shared": true,
+            "sort": 2,
+            "value_type": "individual"
+         },
+         "type": "graph",
+         "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": [ ]
+         },
+         "yaxes": [
+            {
+               "decimals": 0,
+               "format": "none",
+               "label": null,
+               "logBase": 1,
+               "max": null,
+               "min": null,
+               "show": true
+            },
+            {
+               "decimals": 0,
+               "format": "none",
+               "label": null,
+               "logBase": 1,
+               "max": null,
+               "min": null,
+               "show": true
+            }
+         ]
+      },
+      {
+         "aliasColors": { },
+         "bars": false,
+         "dashLength": 10,
+         "dashes": false,
+         "datasource": "${DS_INFLUXDB}",
+         "decimals": 3,
+         "description": "Total number of bytes in all tuples of the space (memtx engine).\nName of space is specified after dash.\n",
+         "fill": 0,
+         "gridPos": {
+            "h": 8,
+            "w": 8,
+            "x": 0,
+            "y": 86
+         },
+         "id": 33,
+         "legend": {
+            "alignAsTable": true,
+            "avg": false,
+            "current": true,
+            "max": false,
+            "min": false,
+            "rightSide": false,
+            "show": true,
+            "sideWidth": null,
+            "sort": "current",
+            "sortDesc": true,
+            "total": false,
+            "values": true
+         },
+         "lines": true,
+         "linewidth": 1,
+         "links": [ ],
+         "nullPointMode": "null",
+         "percentage": false,
+         "pointradius": 5,
+         "points": false,
+         "renderer": "flot",
+         "repeat": null,
+         "seriesOverrides": [ ],
+         "spaceLength": 10,
+         "stack": false,
+         "steppedLine": false,
+         "targets": [
+            {
+               "alias": "$tag_label_pairs_alias — $tag_label_pairs_name",
+               "groupBy": [
+                  {
+                     "params": [
+                        "$__interval"
+                     ],
+                     "type": "time"
+                  },
+                  {
+                     "params": [
+                        "label_pairs_alias"
+                     ],
+                     "type": "tag"
+                  },
+                  {
+                     "params": [
+                        "label_pairs_name"
+                     ],
+                     "type": "tag"
+                  },
+                  {
+                     "params": [
+                        "none"
+                     ],
+                     "type": "fill"
+                  }
+               ],
+               "measurement": "${INFLUXDB_MEASUREMENT}",
+               "policy": "${INFLUXDB_POLICY}",
+               "refId": "A",
+               "resultFormat": "time_series",
+               "select": [
+                  [
+                     {
+                        "params": [
+                           "value"
+                        ],
+                        "type": "field"
+                     },
+                     {
+                        "params": [ ],
+                        "type": "mean"
+                     }
+                  ]
+               ],
+               "tags": [
+                  {
+                     "key": "metric_name",
+                     "operator": "=",
+                     "value": "tnt_space_bsize"
+                  },
+                  {
+                     "condition": "AND",
+                     "key": "label_pairs_engine",
+                     "operator": "=",
+                     "value": "memtx"
+                  }
+               ]
+            }
+         ],
+         "thresholds": [ ],
+         "timeFrom": null,
+         "timeShift": null,
+         "title": "Data size (memtx)",
+         "tooltip": {
+            "shared": true,
+            "sort": 2,
+            "value_type": "individual"
+         },
+         "type": "graph",
+         "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": [ ]
+         },
+         "yaxes": [
+            {
+               "decimals": 0,
+               "format": "bytes",
+               "label": null,
+               "logBase": 1,
+               "max": null,
+               "min": null,
+               "show": true
+            },
+            {
+               "decimals": 3,
+               "format": "bytes",
+               "label": null,
+               "logBase": 1,
+               "max": null,
+               "min": null,
+               "show": true
+            }
+         ]
+      },
+      {
+         "aliasColors": { },
+         "bars": false,
+         "dashLength": 10,
+         "dashes": false,
+         "datasource": "${DS_INFLUXDB}",
+         "decimals": 3,
+         "description": "Total number of bytes taken by the index.\nName of space is specified after dash,\nindex name specified in parentheses.\nIncludes both memtx and vinyl spaces.\n",
+         "fill": 0,
+         "gridPos": {
+            "h": 8,
+            "w": 8,
+            "x": 8,
+            "y": 86
+         },
+         "id": 34,
+         "legend": {
+            "alignAsTable": true,
+            "avg": false,
+            "current": true,
+            "max": false,
+            "min": false,
+            "rightSide": false,
+            "show": true,
+            "sideWidth": null,
+            "sort": "current",
+            "sortDesc": true,
+            "total": false,
+            "values": true
+         },
+         "lines": true,
+         "linewidth": 1,
+         "links": [ ],
+         "nullPointMode": "null",
+         "percentage": false,
+         "pointradius": 5,
+         "points": false,
+         "renderer": "flot",
+         "repeat": null,
+         "seriesOverrides": [ ],
+         "spaceLength": 10,
+         "stack": false,
+         "steppedLine": false,
+         "targets": [
+            {
+               "alias": "$tag_label_pairs_alias — $tag_label_pairs_name ($tag_label_pairs_index_name)",
+               "groupBy": [
+                  {
+                     "params": [
+                        "$__interval"
+                     ],
+                     "type": "time"
+                  },
+                  {
+                     "params": [
+                        "label_pairs_alias"
+                     ],
+                     "type": "tag"
+                  },
+                  {
+                     "params": [
+                        "label_pairs_name"
+                     ],
+                     "type": "tag"
+                  },
+                  {
+                     "params": [
+                        "label_pairs_index_name"
+                     ],
+                     "type": "tag"
+                  },
+                  {
+                     "params": [
+                        "none"
+                     ],
+                     "type": "fill"
+                  }
+               ],
+               "measurement": "${INFLUXDB_MEASUREMENT}",
+               "policy": "${INFLUXDB_POLICY}",
+               "refId": "A",
+               "resultFormat": "time_series",
+               "select": [
+                  [
+                     {
+                        "params": [
+                           "value"
+                        ],
+                        "type": "field"
+                     },
+                     {
+                        "params": [ ],
+                        "type": "mean"
+                     }
+                  ]
+               ],
+               "tags": [
+                  {
+                     "key": "metric_name",
+                     "operator": "=",
+                     "value": "tnt_space_index_bsize"
+                  }
+               ]
+            }
+         ],
+         "thresholds": [ ],
+         "timeFrom": null,
+         "timeShift": null,
+         "title": "Index size",
+         "tooltip": {
+            "shared": true,
+            "sort": 2,
+            "value_type": "individual"
+         },
+         "type": "graph",
+         "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": [ ]
+         },
+         "yaxes": [
+            {
+               "decimals": 0,
+               "format": "bytes",
+               "label": null,
+               "logBase": 1,
+               "max": null,
+               "min": null,
+               "show": true
+            },
+            {
+               "decimals": 3,
+               "format": "bytes",
+               "label": null,
+               "logBase": 1,
+               "max": null,
+               "min": null,
+               "show": true
+            }
+         ]
+      },
+      {
+         "aliasColors": { },
+         "bars": false,
+         "dashLength": 10,
+         "dashes": false,
+         "datasource": "${DS_INFLUXDB}",
+         "decimals": 3,
+         "description": "Total size of tuples and all indexes in the space (memtx engine).\nName of space is specified after dash.\n",
+         "fill": 0,
+         "gridPos": {
+            "h": 8,
+            "w": 8,
+            "x": 16,
+            "y": 86
+         },
+         "id": 35,
+         "legend": {
+            "alignAsTable": true,
+            "avg": false,
+            "current": true,
+            "max": false,
+            "min": false,
+            "rightSide": false,
+            "show": true,
+            "sideWidth": null,
+            "sort": "current",
+            "sortDesc": true,
+            "total": false,
+            "values": true
+         },
+         "lines": true,
+         "linewidth": 1,
+         "links": [ ],
+         "nullPointMode": "null",
+         "percentage": false,
+         "pointradius": 5,
+         "points": false,
+         "renderer": "flot",
+         "repeat": null,
+         "seriesOverrides": [ ],
+         "spaceLength": 10,
+         "stack": false,
+         "steppedLine": false,
+         "targets": [
+            {
+               "alias": "$tag_label_pairs_alias — $tag_label_pairs_name",
+               "groupBy": [
+                  {
+                     "params": [
+                        "$__interval"
+                     ],
+                     "type": "time"
+                  },
+                  {
+                     "params": [
+                        "label_pairs_alias"
+                     ],
+                     "type": "tag"
+                  },
+                  {
+                     "params": [
+                        "label_pairs_name"
+                     ],
+                     "type": "tag"
+                  },
+                  {
+                     "params": [
+                        "none"
+                     ],
+                     "type": "fill"
+                  }
+               ],
+               "measurement": "${INFLUXDB_MEASUREMENT}",
+               "policy": "${INFLUXDB_POLICY}",
+               "refId": "A",
+               "resultFormat": "time_series",
+               "select": [
+                  [
+                     {
+                        "params": [
+                           "value"
+                        ],
+                        "type": "field"
+                     },
+                     {
+                        "params": [ ],
+                        "type": "mean"
+                     }
+                  ]
+               ],
+               "tags": [
+                  {
+                     "key": "metric_name",
+                     "operator": "=",
+                     "value": "tnt_space_total_bsize"
+                  },
+                  {
+                     "condition": "AND",
+                     "key": "label_pairs_engine",
+                     "operator": "=",
+                     "value": "memtx"
+                  }
+               ]
+            }
+         ],
+         "thresholds": [ ],
+         "timeFrom": null,
+         "timeShift": null,
+         "title": "Total size (memtx)",
+         "tooltip": {
+            "shared": true,
+            "sort": 2,
+            "value_type": "individual"
+         },
+         "type": "graph",
+         "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": [ ]
+         },
+         "yaxes": [
+            {
+               "decimals": 0,
+               "format": "bytes",
+               "label": null,
+               "logBase": 1,
+               "max": null,
+               "min": null,
+               "show": true
+            },
+            {
+               "decimals": 3,
+               "format": "bytes",
+               "label": null,
+               "logBase": 1,
+               "max": null,
+               "min": null,
+               "show": true
+            }
+         ]
+      },
+      {
+         "collapse": false,
+         "collapsed": false,
+         "gridPos": {
+            "h": 1,
+            "w": 24,
+            "x": 0,
+            "y": 94
+         },
+         "id": 36,
+         "panels": [ ],
+         "repeat": null,
+         "repeatIteration": null,
+         "repeatRowId": null,
+         "showTitle": true,
          "title": "Tarantool vinyl statistics",
          "titleSize": "h6",
          "type": "row"
@@ -3401,9 +4135,9 @@
             "h": 8,
             "w": 12,
             "x": 0,
-            "y": 78
+            "y": 95
          },
-         "id": 31,
+         "id": 37,
          "legend": {
             "alignAsTable": true,
             "avg": false,
@@ -3532,9 +4266,9 @@
             "h": 8,
             "w": 12,
             "x": 12,
-            "y": 78
+            "y": 95
          },
-         "id": 32,
+         "id": 38,
          "legend": {
             "alignAsTable": true,
             "avg": false,
@@ -3663,9 +4397,9 @@
             "h": 8,
             "w": 6,
             "x": 0,
-            "y": 86
+            "y": 103
          },
-         "id": 33,
+         "id": 39,
          "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -3794,9 +4528,9 @@
             "h": 8,
             "w": 6,
             "x": 6,
-            "y": 86
+            "y": 103
          },
-         "id": 34,
+         "id": 40,
          "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -3925,9 +4659,9 @@
             "h": 8,
             "w": 6,
             "x": 12,
-            "y": 86
+            "y": 103
          },
-         "id": 35,
+         "id": 41,
          "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -4056,9 +4790,9 @@
             "h": 8,
             "w": 6,
             "x": 18,
-            "y": 86
+            "y": 103
          },
-         "id": 36,
+         "id": 42,
          "legend": {
             "alignAsTable": true,
             "avg": false,
@@ -4187,9 +4921,9 @@
             "h": 8,
             "w": 6,
             "x": 0,
-            "y": 94
+            "y": 111
          },
-         "id": 37,
+         "id": 43,
          "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -4324,9 +5058,9 @@
             "h": 8,
             "w": 6,
             "x": 6,
-            "y": 94
+            "y": 111
          },
-         "id": 38,
+         "id": 44,
          "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -4461,9 +5195,9 @@
             "h": 8,
             "w": 6,
             "x": 12,
-            "y": 94
+            "y": 111
          },
-         "id": 39,
+         "id": 45,
          "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -4598,9 +5332,9 @@
             "h": 8,
             "w": 6,
             "x": 18,
-            "y": 94
+            "y": 111
          },
-         "id": 40,
+         "id": 46,
          "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -4729,9 +5463,9 @@
             "h": 8,
             "w": 6,
             "x": 0,
-            "y": 102
+            "y": 119
          },
-         "id": 41,
+         "id": 47,
          "legend": {
             "alignAsTable": true,
             "avg": false,
@@ -4866,9 +5600,9 @@
             "h": 8,
             "w": 6,
             "x": 6,
-            "y": 102
+            "y": 119
          },
-         "id": 42,
+         "id": 48,
          "legend": {
             "alignAsTable": true,
             "avg": false,
@@ -5009,9 +5743,9 @@
             "h": 8,
             "w": 6,
             "x": 12,
-            "y": 102
+            "y": 119
          },
-         "id": 43,
+         "id": 49,
          "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -5146,9 +5880,9 @@
             "h": 8,
             "w": 6,
             "x": 18,
-            "y": 102
+            "y": 119
          },
-         "id": 44,
+         "id": 50,
          "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -5277,9 +6011,9 @@
             "h": 1,
             "w": 24,
             "x": 0,
-            "y": 110
+            "y": 127
          },
-         "id": 45,
+         "id": 51,
          "panels": [ ],
          "repeat": null,
          "repeatIteration": null,
@@ -5302,9 +6036,9 @@
             "h": 8,
             "w": 12,
             "x": 0,
-            "y": 111
+            "y": 128
          },
-         "id": 46,
+         "id": 52,
          "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -5439,9 +6173,9 @@
             "h": 8,
             "w": 12,
             "x": 12,
-            "y": 111
+            "y": 128
          },
-         "id": 47,
+         "id": 53,
          "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -5570,9 +6304,9 @@
             "h": 1,
             "w": 24,
             "x": 0,
-            "y": 119
+            "y": 136
          },
-         "id": 48,
+         "id": 54,
          "panels": [ ],
          "repeat": null,
          "repeatIteration": null,
@@ -5595,9 +6329,9 @@
             "h": 8,
             "w": 24,
             "x": 0,
-            "y": 120
+            "y": 137
          },
-         "id": 49,
+         "id": 55,
          "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -5726,9 +6460,9 @@
             "h": 8,
             "w": 12,
             "x": 0,
-            "y": 128
+            "y": 145
          },
-         "id": 50,
+         "id": 56,
          "legend": {
             "alignAsTable": true,
             "avg": false,
@@ -5857,9 +6591,9 @@
             "h": 8,
             "w": 12,
             "x": 12,
-            "y": 128
+            "y": 145
          },
-         "id": 51,
+         "id": 57,
          "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -5994,9 +6728,9 @@
             "h": 8,
             "w": 12,
             "x": 0,
-            "y": 136
+            "y": 153
          },
-         "id": 52,
+         "id": 58,
          "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -6125,9 +6859,9 @@
             "h": 8,
             "w": 12,
             "x": 12,
-            "y": 136
+            "y": 153
          },
-         "id": 53,
+         "id": 59,
          "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -6250,9 +6984,9 @@
             "h": 1,
             "w": 24,
             "x": 0,
-            "y": 144
+            "y": 161
          },
-         "id": 54,
+         "id": 60,
          "panels": [ ],
          "repeat": null,
          "repeatIteration": null,
@@ -6275,9 +7009,9 @@
             "h": 8,
             "w": 8,
             "x": 0,
-            "y": 145
+            "y": 162
          },
-         "id": 55,
+         "id": 61,
          "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -6418,9 +7152,9 @@
             "h": 8,
             "w": 8,
             "x": 8,
-            "y": 145
+            "y": 162
          },
-         "id": 56,
+         "id": 62,
          "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -6561,9 +7295,9 @@
             "h": 8,
             "w": 8,
             "x": 16,
-            "y": 145
+            "y": 162
          },
-         "id": 57,
+         "id": 63,
          "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -6704,9 +7438,9 @@
             "h": 8,
             "w": 8,
             "x": 0,
-            "y": 153
+            "y": 170
          },
-         "id": 58,
+         "id": 64,
          "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -6847,9 +7581,9 @@
             "h": 8,
             "w": 8,
             "x": 8,
-            "y": 153
+            "y": 170
          },
-         "id": 59,
+         "id": 65,
          "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -6990,9 +7724,9 @@
             "h": 8,
             "w": 8,
             "x": 16,
-            "y": 153
+            "y": 170
          },
-         "id": 60,
+         "id": 66,
          "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -7133,9 +7867,9 @@
             "h": 8,
             "w": 8,
             "x": 0,
-            "y": 161
+            "y": 178
          },
-         "id": 61,
+         "id": 67,
          "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -7276,9 +8010,9 @@
             "h": 8,
             "w": 8,
             "x": 8,
-            "y": 161
+            "y": 178
          },
-         "id": 62,
+         "id": 68,
          "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -7419,9 +8153,9 @@
             "h": 8,
             "w": 8,
             "x": 16,
-            "y": 161
+            "y": 178
          },
-         "id": 63,
+         "id": 69,
          "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -7562,9 +8296,9 @@
             "h": 8,
             "w": 8,
             "x": 0,
-            "y": 169
+            "y": 186
          },
-         "id": 64,
+         "id": 70,
          "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -7705,9 +8439,9 @@
             "h": 8,
             "w": 8,
             "x": 8,
-            "y": 169
+            "y": 186
          },
-         "id": 65,
+         "id": 71,
          "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -7848,9 +8582,9 @@
             "h": 8,
             "w": 8,
             "x": 16,
-            "y": 169
+            "y": 186
          },
-         "id": 66,
+         "id": 72,
          "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -7985,9 +8719,9 @@
             "h": 1,
             "w": 24,
             "x": 0,
-            "y": 177
+            "y": 194
          },
-         "id": 67,
+         "id": 73,
          "panels": [ ],
          "repeat": null,
          "repeatIteration": null,
@@ -8010,9 +8744,9 @@
             "h": 6,
             "w": 24,
             "x": 0,
-            "y": 178
+            "y": 195
          },
-         "id": 68,
+         "id": 74,
          "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -8141,9 +8875,9 @@
             "h": 8,
             "w": 12,
             "x": 0,
-            "y": 184
+            "y": 201
          },
-         "id": 69,
+         "id": 75,
          "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -8278,9 +9012,9 @@
             "h": 8,
             "w": 12,
             "x": 12,
-            "y": 184
+            "y": 201
          },
-         "id": 70,
+         "id": 76,
          "legend": {
             "alignAsTable": true,
             "avg": true,

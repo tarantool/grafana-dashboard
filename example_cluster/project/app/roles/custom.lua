@@ -64,6 +64,8 @@ local function init(opts) -- luacheck: no unused args
         end
     end
 
+    rawset(_G, 'include_vinyl_count', true)
+
     return true
 end
 

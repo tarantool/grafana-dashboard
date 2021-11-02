@@ -2648,6 +2648,475 @@
          "repeatIteration": null,
          "repeatRowId": null,
          "showTitle": true,
+         "title": "Tarantool space statistics",
+         "titleSize": "h6",
+         "type": "row"
+      },
+      {
+         "aliasColors": { },
+         "bars": false,
+         "dashLength": 10,
+         "dashes": false,
+         "datasource": "${DS_PROMETHEUS}",
+         "decimals": 0,
+         "description": "Number of records in the space (memtx engine).\nName of space is specified after dash.\n",
+         "fill": 0,
+         "gridPos": {
+            "h": 8,
+            "w": 12,
+            "x": 0,
+            "y": 86
+         },
+         "id": 38,
+         "legend": {
+            "alignAsTable": true,
+            "avg": false,
+            "current": true,
+            "max": false,
+            "min": false,
+            "rightSide": false,
+            "show": true,
+            "sideWidth": null,
+            "sort": "current",
+            "sortDesc": true,
+            "total": false,
+            "values": true
+         },
+         "lines": true,
+         "linewidth": 1,
+         "links": [ ],
+         "nullPointMode": "null",
+         "percentage": false,
+         "pointradius": 5,
+         "points": false,
+         "renderer": "flot",
+         "repeat": null,
+         "seriesOverrides": [ ],
+         "spaceLength": 10,
+         "stack": false,
+         "steppedLine": false,
+         "targets": [
+            {
+               "expr": "tnt_space_len{job=~\"$job\", engine=\"memtx\"}",
+               "format": "time_series",
+               "intervalFactor": 2,
+               "legendFormat": "{{alias}} — {{name}}",
+               "refId": "A"
+            }
+         ],
+         "thresholds": [ ],
+         "timeFrom": null,
+         "timeShift": null,
+         "title": "Number of records (memtx)",
+         "tooltip": {
+            "shared": true,
+            "sort": 2,
+            "value_type": "individual"
+         },
+         "type": "graph",
+         "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": [ ]
+         },
+         "yaxes": [
+            {
+               "decimals": 0,
+               "format": "none",
+               "label": null,
+               "logBase": 1,
+               "max": null,
+               "min": null,
+               "show": true
+            },
+            {
+               "decimals": 0,
+               "format": "none",
+               "label": null,
+               "logBase": 1,
+               "max": null,
+               "min": null,
+               "show": true
+            }
+         ]
+      },
+      {
+         "aliasColors": { },
+         "bars": false,
+         "dashLength": 10,
+         "dashes": false,
+         "datasource": "${DS_PROMETHEUS}",
+         "decimals": 0,
+         "description": "Number of records in the space (vinyl engine).\nName of space is specified after dash.\nBy default this metrics is disabled,\nto enable it you must set global variable\ninclude_vinyl_count to true. Beware that\ncount() operation scans the space and may\nslow down your app. \n",
+         "fill": 0,
+         "gridPos": {
+            "h": 8,
+            "w": 12,
+            "x": 12,
+            "y": 86
+         },
+         "id": 39,
+         "legend": {
+            "alignAsTable": true,
+            "avg": false,
+            "current": true,
+            "max": false,
+            "min": false,
+            "rightSide": false,
+            "show": true,
+            "sideWidth": null,
+            "sort": "current",
+            "sortDesc": true,
+            "total": false,
+            "values": true
+         },
+         "lines": true,
+         "linewidth": 1,
+         "links": [ ],
+         "nullPointMode": "null",
+         "percentage": false,
+         "pointradius": 5,
+         "points": false,
+         "renderer": "flot",
+         "repeat": null,
+         "seriesOverrides": [ ],
+         "spaceLength": 10,
+         "stack": false,
+         "steppedLine": false,
+         "targets": [
+            {
+               "expr": "tnt_space_count{job=~\"$job\", engine=\"vinyl\"}",
+               "format": "time_series",
+               "intervalFactor": 2,
+               "legendFormat": "{{alias}} — {{name}}",
+               "refId": "A"
+            }
+         ],
+         "thresholds": [ ],
+         "timeFrom": null,
+         "timeShift": null,
+         "title": "Number of records (vinyl)",
+         "tooltip": {
+            "shared": true,
+            "sort": 2,
+            "value_type": "individual"
+         },
+         "type": "graph",
+         "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": [ ]
+         },
+         "yaxes": [
+            {
+               "decimals": 0,
+               "format": "none",
+               "label": null,
+               "logBase": 1,
+               "max": null,
+               "min": null,
+               "show": true
+            },
+            {
+               "decimals": 0,
+               "format": "none",
+               "label": null,
+               "logBase": 1,
+               "max": null,
+               "min": null,
+               "show": true
+            }
+         ]
+      },
+      {
+         "aliasColors": { },
+         "bars": false,
+         "dashLength": 10,
+         "dashes": false,
+         "datasource": "${DS_PROMETHEUS}",
+         "decimals": 3,
+         "description": "Total number of bytes in all tuples of the space (memtx engine).\nName of space is specified after dash.\n",
+         "fill": 0,
+         "gridPos": {
+            "h": 8,
+            "w": 8,
+            "x": 0,
+            "y": 94
+         },
+         "id": 40,
+         "legend": {
+            "alignAsTable": true,
+            "avg": false,
+            "current": true,
+            "max": false,
+            "min": false,
+            "rightSide": false,
+            "show": true,
+            "sideWidth": null,
+            "sort": "current",
+            "sortDesc": true,
+            "total": false,
+            "values": true
+         },
+         "lines": true,
+         "linewidth": 1,
+         "links": [ ],
+         "nullPointMode": "null",
+         "percentage": false,
+         "pointradius": 5,
+         "points": false,
+         "renderer": "flot",
+         "repeat": null,
+         "seriesOverrides": [ ],
+         "spaceLength": 10,
+         "stack": false,
+         "steppedLine": false,
+         "targets": [
+            {
+               "expr": "tnt_space_bsize{job=~\"$job\", engine=\"memtx\"}",
+               "format": "time_series",
+               "intervalFactor": 2,
+               "legendFormat": "{{alias}} — {{name}}",
+               "refId": "A"
+            }
+         ],
+         "thresholds": [ ],
+         "timeFrom": null,
+         "timeShift": null,
+         "title": "Data size (memtx)",
+         "tooltip": {
+            "shared": true,
+            "sort": 2,
+            "value_type": "individual"
+         },
+         "type": "graph",
+         "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": [ ]
+         },
+         "yaxes": [
+            {
+               "decimals": 0,
+               "format": "bytes",
+               "label": null,
+               "logBase": 1,
+               "max": null,
+               "min": null,
+               "show": true
+            },
+            {
+               "decimals": 3,
+               "format": "bytes",
+               "label": null,
+               "logBase": 1,
+               "max": null,
+               "min": null,
+               "show": true
+            }
+         ]
+      },
+      {
+         "aliasColors": { },
+         "bars": false,
+         "dashLength": 10,
+         "dashes": false,
+         "datasource": "${DS_PROMETHEUS}",
+         "decimals": 3,
+         "description": "Total number of bytes taken by the index.\nName of space is specified after dash,\nindex name specified in parentheses.\nIncludes both memtx and vinyl spaces.\n",
+         "fill": 0,
+         "gridPos": {
+            "h": 8,
+            "w": 8,
+            "x": 8,
+            "y": 94
+         },
+         "id": 41,
+         "legend": {
+            "alignAsTable": true,
+            "avg": false,
+            "current": true,
+            "max": false,
+            "min": false,
+            "rightSide": false,
+            "show": true,
+            "sideWidth": null,
+            "sort": "current",
+            "sortDesc": true,
+            "total": false,
+            "values": true
+         },
+         "lines": true,
+         "linewidth": 1,
+         "links": [ ],
+         "nullPointMode": "null",
+         "percentage": false,
+         "pointradius": 5,
+         "points": false,
+         "renderer": "flot",
+         "repeat": null,
+         "seriesOverrides": [ ],
+         "spaceLength": 10,
+         "stack": false,
+         "steppedLine": false,
+         "targets": [
+            {
+               "expr": "tnt_space_index_bsize{job=~\"$job\"}",
+               "format": "time_series",
+               "intervalFactor": 2,
+               "legendFormat": "{{alias}} — {{name}} ({{index_name}})",
+               "refId": "A"
+            }
+         ],
+         "thresholds": [ ],
+         "timeFrom": null,
+         "timeShift": null,
+         "title": "Index size",
+         "tooltip": {
+            "shared": true,
+            "sort": 2,
+            "value_type": "individual"
+         },
+         "type": "graph",
+         "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": [ ]
+         },
+         "yaxes": [
+            {
+               "decimals": 0,
+               "format": "bytes",
+               "label": null,
+               "logBase": 1,
+               "max": null,
+               "min": null,
+               "show": true
+            },
+            {
+               "decimals": 3,
+               "format": "bytes",
+               "label": null,
+               "logBase": 1,
+               "max": null,
+               "min": null,
+               "show": true
+            }
+         ]
+      },
+      {
+         "aliasColors": { },
+         "bars": false,
+         "dashLength": 10,
+         "dashes": false,
+         "datasource": "${DS_PROMETHEUS}",
+         "decimals": 3,
+         "description": "Total size of tuples and all indexes in the space (memtx engine).\nName of space is specified after dash.\n",
+         "fill": 0,
+         "gridPos": {
+            "h": 8,
+            "w": 8,
+            "x": 16,
+            "y": 94
+         },
+         "id": 42,
+         "legend": {
+            "alignAsTable": true,
+            "avg": false,
+            "current": true,
+            "max": false,
+            "min": false,
+            "rightSide": false,
+            "show": true,
+            "sideWidth": null,
+            "sort": "current",
+            "sortDesc": true,
+            "total": false,
+            "values": true
+         },
+         "lines": true,
+         "linewidth": 1,
+         "links": [ ],
+         "nullPointMode": "null",
+         "percentage": false,
+         "pointradius": 5,
+         "points": false,
+         "renderer": "flot",
+         "repeat": null,
+         "seriesOverrides": [ ],
+         "spaceLength": 10,
+         "stack": false,
+         "steppedLine": false,
+         "targets": [
+            {
+               "expr": "tnt_space_total_bsize{job=~\"$job\", engine=\"memtx\"}",
+               "format": "time_series",
+               "intervalFactor": 2,
+               "legendFormat": "{{alias}} — {{name}}",
+               "refId": "A"
+            }
+         ],
+         "thresholds": [ ],
+         "timeFrom": null,
+         "timeShift": null,
+         "title": "Total size (memtx)",
+         "tooltip": {
+            "shared": true,
+            "sort": 2,
+            "value_type": "individual"
+         },
+         "type": "graph",
+         "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": [ ]
+         },
+         "yaxes": [
+            {
+               "decimals": 0,
+               "format": "bytes",
+               "label": null,
+               "logBase": 1,
+               "max": null,
+               "min": null,
+               "show": true
+            },
+            {
+               "decimals": 3,
+               "format": "bytes",
+               "label": null,
+               "logBase": 1,
+               "max": null,
+               "min": null,
+               "show": true
+            }
+         ]
+      },
+      {
+         "collapse": false,
+         "collapsed": false,
+         "gridPos": {
+            "h": 1,
+            "w": 24,
+            "x": 0,
+            "y": 102
+         },
+         "id": 43,
+         "panels": [ ],
+         "repeat": null,
+         "repeatIteration": null,
+         "repeatRowId": null,
+         "showTitle": true,
          "title": "Tarantool vinyl statistics",
          "titleSize": "h6",
          "type": "row"
@@ -2665,9 +3134,9 @@
             "h": 8,
             "w": 12,
             "x": 0,
-            "y": 86
+            "y": 103
          },
-         "id": 38,
+         "id": 44,
          "legend": {
             "alignAsTable": true,
             "avg": false,
@@ -2755,9 +3224,9 @@
             "h": 8,
             "w": 12,
             "x": 12,
-            "y": 86
+            "y": 103
          },
-         "id": 39,
+         "id": 45,
          "legend": {
             "alignAsTable": true,
             "avg": false,
@@ -2845,9 +3314,9 @@
             "h": 8,
             "w": 6,
             "x": 0,
-            "y": 94
+            "y": 111
          },
-         "id": 40,
+         "id": 46,
          "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -2935,9 +3404,9 @@
             "h": 8,
             "w": 6,
             "x": 6,
-            "y": 94
+            "y": 111
          },
-         "id": 41,
+         "id": 47,
          "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -3025,9 +3494,9 @@
             "h": 8,
             "w": 6,
             "x": 12,
-            "y": 94
+            "y": 111
          },
-         "id": 42,
+         "id": 48,
          "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -3115,9 +3584,9 @@
             "h": 8,
             "w": 6,
             "x": 18,
-            "y": 94
+            "y": 111
          },
-         "id": 43,
+         "id": 49,
          "legend": {
             "alignAsTable": true,
             "avg": false,
@@ -3205,9 +3674,9 @@
             "h": 8,
             "w": 6,
             "x": 0,
-            "y": 102
+            "y": 119
          },
-         "id": 44,
+         "id": 50,
          "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -3295,9 +3764,9 @@
             "h": 8,
             "w": 6,
             "x": 6,
-            "y": 102
+            "y": 119
          },
-         "id": 45,
+         "id": 51,
          "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -3385,9 +3854,9 @@
             "h": 8,
             "w": 6,
             "x": 12,
-            "y": 102
+            "y": 119
          },
-         "id": 46,
+         "id": 52,
          "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -3475,9 +3944,9 @@
             "h": 8,
             "w": 6,
             "x": 18,
-            "y": 102
+            "y": 119
          },
-         "id": 47,
+         "id": 53,
          "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -3565,9 +4034,9 @@
             "h": 8,
             "w": 6,
             "x": 0,
-            "y": 110
+            "y": 127
          },
-         "id": 48,
+         "id": 54,
          "legend": {
             "alignAsTable": true,
             "avg": false,
@@ -3655,9 +4124,9 @@
             "h": 8,
             "w": 6,
             "x": 6,
-            "y": 110
+            "y": 127
          },
-         "id": 49,
+         "id": 55,
          "legend": {
             "alignAsTable": true,
             "avg": false,
@@ -3745,9 +4214,9 @@
             "h": 8,
             "w": 6,
             "x": 12,
-            "y": 110
+            "y": 127
          },
-         "id": 50,
+         "id": 56,
          "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -3835,9 +4304,9 @@
             "h": 8,
             "w": 6,
             "x": 18,
-            "y": 110
+            "y": 127
          },
-         "id": 51,
+         "id": 57,
          "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -3919,9 +4388,9 @@
             "h": 1,
             "w": 24,
             "x": 0,
-            "y": 118
+            "y": 135
          },
-         "id": 52,
+         "id": 58,
          "panels": [ ],
          "repeat": null,
          "repeatIteration": null,
@@ -3944,9 +4413,9 @@
             "h": 8,
             "w": 12,
             "x": 0,
-            "y": 119
+            "y": 136
          },
-         "id": 53,
+         "id": 59,
          "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -4034,9 +4503,9 @@
             "h": 8,
             "w": 12,
             "x": 12,
-            "y": 119
+            "y": 136
          },
-         "id": 54,
+         "id": 60,
          "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -4118,9 +4587,9 @@
             "h": 1,
             "w": 24,
             "x": 0,
-            "y": 127
+            "y": 144
          },
-         "id": 55,
+         "id": 61,
          "panels": [ ],
          "repeat": null,
          "repeatIteration": null,
@@ -4143,9 +4612,9 @@
             "h": 8,
             "w": 24,
             "x": 0,
-            "y": 128
+            "y": 145
          },
-         "id": 56,
+         "id": 62,
          "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -4233,9 +4702,9 @@
             "h": 8,
             "w": 12,
             "x": 0,
-            "y": 136
+            "y": 153
          },
-         "id": 57,
+         "id": 63,
          "legend": {
             "alignAsTable": true,
             "avg": false,
@@ -4323,9 +4792,9 @@
             "h": 8,
             "w": 12,
             "x": 12,
-            "y": 136
+            "y": 153
          },
-         "id": 58,
+         "id": 64,
          "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -4413,9 +4882,9 @@
             "h": 8,
             "w": 12,
             "x": 0,
-            "y": 144
+            "y": 161
          },
-         "id": 59,
+         "id": 65,
          "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -4503,9 +4972,9 @@
             "h": 8,
             "w": 12,
             "x": 12,
-            "y": 144
+            "y": 161
          },
-         "id": 60,
+         "id": 66,
          "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -4587,9 +5056,9 @@
             "h": 1,
             "w": 24,
             "x": 0,
-            "y": 152
+            "y": 169
          },
-         "id": 61,
+         "id": 67,
          "panels": [ ],
          "repeat": null,
          "repeatIteration": null,
@@ -4612,9 +5081,9 @@
             "h": 8,
             "w": 8,
             "x": 0,
-            "y": 153
+            "y": 170
          },
-         "id": 62,
+         "id": 68,
          "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -4702,9 +5171,9 @@
             "h": 8,
             "w": 8,
             "x": 8,
-            "y": 153
+            "y": 170
          },
-         "id": 63,
+         "id": 69,
          "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -4792,9 +5261,9 @@
             "h": 8,
             "w": 8,
             "x": 16,
-            "y": 153
+            "y": 170
          },
-         "id": 64,
+         "id": 70,
          "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -4882,9 +5351,9 @@
             "h": 8,
             "w": 8,
             "x": 0,
-            "y": 161
+            "y": 178
          },
-         "id": 65,
+         "id": 71,
          "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -4972,9 +5441,9 @@
             "h": 8,
             "w": 8,
             "x": 8,
-            "y": 161
+            "y": 178
          },
-         "id": 66,
+         "id": 72,
          "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -5062,9 +5531,9 @@
             "h": 8,
             "w": 8,
             "x": 16,
-            "y": 161
+            "y": 178
          },
-         "id": 67,
+         "id": 73,
          "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -5152,9 +5621,9 @@
             "h": 8,
             "w": 8,
             "x": 0,
-            "y": 169
+            "y": 186
          },
-         "id": 68,
+         "id": 74,
          "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -5242,9 +5711,9 @@
             "h": 8,
             "w": 8,
             "x": 8,
-            "y": 169
+            "y": 186
          },
-         "id": 69,
+         "id": 75,
          "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -5332,9 +5801,9 @@
             "h": 8,
             "w": 8,
             "x": 16,
-            "y": 169
+            "y": 186
          },
-         "id": 70,
+         "id": 76,
          "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -5422,9 +5891,9 @@
             "h": 8,
             "w": 8,
             "x": 0,
-            "y": 177
+            "y": 194
          },
-         "id": 71,
+         "id": 77,
          "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -5512,9 +5981,9 @@
             "h": 8,
             "w": 8,
             "x": 8,
-            "y": 177
+            "y": 194
          },
-         "id": 72,
+         "id": 78,
          "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -5602,9 +6071,9 @@
             "h": 8,
             "w": 8,
             "x": 16,
-            "y": 177
+            "y": 194
          },
-         "id": 73,
+         "id": 79,
          "legend": {
             "alignAsTable": true,
             "avg": true,
