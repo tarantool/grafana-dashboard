@@ -78,6 +78,12 @@ dashboard.new(
     measurement=variable.influxdb.measurement,
   )
 ).addPanels(
+  section.space(
+    datasource=variable.datasource.influxdb,
+    policy=variable.influxdb.policy,
+    measurement=variable.influxdb.measurement,
+  )
+).addPanels(
   section.vinyl(
     datasource=variable.datasource.influxdb,
     policy=variable.influxdb.policy,

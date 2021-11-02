@@ -5,6 +5,7 @@ local net = import 'panels/net.libsonnet';
 local operations = import 'panels/operations.libsonnet';
 local runtime = import 'panels/runtime.libsonnet';
 local slab = import 'panels/slab.libsonnet';
+local space = import 'panels/space.libsonnet';
 local vinyl = import 'panels/vinyl.libsonnet';
 
 {
@@ -241,6 +242,45 @@ local vinyl = import 'panels/vinyl.libsonnet';
     ),
 
     slab.items_size(
+      datasource=datasource,
+      policy=policy,
+      measurement=measurement,
+      job=job,
+    ),
+  ],
+
+  space(datasource, policy=null, measurement=null, job=null, rate_time_range=null):: [
+    space.row,
+
+    space.memtx_len(
+      datasource=datasource,
+      policy=policy,
+      measurement=measurement,
+      job=job,
+    ),
+
+    space.vinyl_count(
+      datasource=datasource,
+      policy=policy,
+      measurement=measurement,
+      job=job,
+    ),
+
+    space.space_bsize(
+      datasource=datasource,
+      policy=policy,
+      measurement=measurement,
+      job=job,
+    ),
+
+    space.space_index_bsize(
+      datasource=datasource,
+      policy=policy,
+      measurement=measurement,
+      job=job,
+    ),
+
+    space.space_total_bsize(
       datasource=datasource,
       policy=policy,
       measurement=measurement,
