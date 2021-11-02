@@ -52,7 +52,7 @@ local prometheus = grafana.prometheus;
   ),
 
   index_data(
-    title='Vinyl index data',
+    title='Vinyl disk index',
     description=|||
       The amount of data stored in the `.index` files located in the `vinyl_dir` directory.
       Panel works with `metrics >= 0.8.0`.
