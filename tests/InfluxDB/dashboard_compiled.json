@@ -3615,7 +3615,7 @@
          "thresholds": [ ],
          "timeFrom": null,
          "timeShift": null,
-         "title": "Vinyl index data",
+         "title": "Vinyl disk index",
          "tooltip": {
             "shared": true,
             "sort": 2,
