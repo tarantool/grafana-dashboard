@@ -145,9 +145,8 @@ You can add your own custom panels to the bottom of the template dashboard.
     ```bash
     jb init
     ```
-    to initialize `jsonnetfile.json` and add this repo as a dependency:
+    to initialize jsonnet-bundler and add this repo to `jsonnetfile.json` as a dependency:
     ```json
-    # jsonnetfile.json
     {
       "version": 1,
       "dependencies": [
