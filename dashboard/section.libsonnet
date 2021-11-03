@@ -1,9 +1,9 @@
 local cluster = import 'panels/cluster.libsonnet';
 local cpu = import 'panels/cpu.libsonnet';
 local http = import 'panels/http.libsonnet';
-local memory_misc = import 'panels/memory_misc.libsonnet';
 local net = import 'panels/net.libsonnet';
 local operations = import 'panels/operations.libsonnet';
+local runtime = import 'panels/runtime.libsonnet';
 local slab = import 'panels/slab.libsonnet';
 local vinyl = import 'panels/vinyl.libsonnet';
 
@@ -376,10 +376,39 @@ local vinyl = import 'panels/vinyl.libsonnet';
     ),
   ],
 
-  memory_misc(datasource, policy=null, measurement=null, job=null, rate_time_range=null):: [
-    memory_misc.row,
+  runtime(datasource, policy=null, measurement=null, job=null, rate_time_range=null):: [
+    runtime.row,
 
-    memory_misc.lua_memory(
+    runtime.lua_memory(
+      datasource=datasource,
+      policy=policy,
+      measurement=measurement,
+      job=job,
+    ),
+
+    runtime.fiber_count(
+      datasource=datasource,
+      policy=policy,
+      measurement=measurement,
+      job=job,
+    ),
+
+    runtime.fiber_csw_rps(
+      datasource=datasource,
+      policy=policy,
+      measurement=measurement,
+      job=job,
+      rate_time_range=rate_time_range,
+    ),
+
+    runtime.fiber_memused(
+      datasource=datasource,
+      policy=policy,
+      measurement=measurement,
+      job=job,
+    ),
+
+    runtime.fiber_memalloc(
       datasource=datasource,
       policy=policy,
       measurement=measurement,
