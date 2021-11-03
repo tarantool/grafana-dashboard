@@ -118,7 +118,7 @@ dashboard.new(
     rate_time_range=variable.prometheus.rate_time_range,
   )
 ).addPanels(
-  section.memory_misc(
+  section.runtime(
     datasource=variable.datasource.prometheus,
     job=variable.prometheus.job,
     rate_time_range=variable.prometheus.rate_time_range,

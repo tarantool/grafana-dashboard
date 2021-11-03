@@ -351,6 +351,24 @@ tests:
 
   - interval: 15s
     input_series:
+      - series: tnt_fiber_csw{job="tarantool_app", instance="app:8081", alias="tnt_router"}
+        values: '15000+1x10'
+    alert_rule_test:
+      - eval_time: 2m
+        alertname: LowFiberCSWRate
+        exp_alerts:
+          - exp_labels:
+              severity: warning
+              instance: app:8081
+              alias: tnt_router
+              job: tarantool_app
+            exp_annotations:
+              summary: "Instance 'tnt_router' ('tarantool_app') has low fiber context switches rate"
+              description: "Instance 'tnt_router' of job 'tarantool_app' has low fiber context switches rate.
+                Some high loaded fiber has too little yields. It may be the reason of 'Too long WAL write' warnings."
+
+  - interval: 15s
+    input_series:
         - series: http_server_request_latency_count{job="tarantool_app",instance="app:8081",path="/hello",method="GET",status="200",alias="tnt_router"}
           values: '0+100x60'
         - series: http_server_request_latency_sum{job="tarantool_app",instance="app:8081",path="/hello",method="GET",status="200",alias="tnt_router"}

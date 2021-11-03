@@ -90,7 +90,7 @@ dashboard.new(
     measurement=variable.influxdb.measurement,
   )
 ).addPanels(
-  section.memory_misc(
+  section.runtime(
     datasource=variable.datasource.influxdb,
     policy=variable.influxdb.policy,
     measurement=variable.influxdb.measurement,
