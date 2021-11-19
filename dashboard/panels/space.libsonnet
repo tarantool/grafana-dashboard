@@ -121,10 +121,21 @@ local prometheus = grafana.prometheus;
 
   space_bsize(
     title='Data size (memtx)',
-    description=|||
-      Total number of bytes in all tuples of the space (memtx engine).
-      Name of space is specified after dash.
-    |||,
+    description=std.join(
+      '\n',
+      [
+        |||
+          Total number of bytes in all tuples of the space (memtx engine).
+          Name of space is specified after dash.
+        |||,
+        if datasource == '${DS_INFLUXDB}' then
+          |||
+            `No data` may be displayed because of tarantool/metrics issue #321,
+            use `metrics >= 0.12.0` to fix.
+          |||
+        else null,
+      ]
+    ),
     datasource=null,
     policy=null,
     measurement=null,
@@ -176,10 +187,21 @@ local prometheus = grafana.prometheus;
 
   space_total_bsize(
     title='Total size (memtx)',
-    description=|||
-      Total size of tuples and all indexes in the space (memtx engine).
-      Name of space is specified after dash.
-    |||,
+    description=std.join(
+      '\n',
+      [
+        |||
+          Total size of tuples and all indexes in the space (memtx engine).
+          Name of space is specified after dash.
+        |||,
+        if datasource == '${DS_INFLUXDB}' then
+          |||
+            `No data` may be displayed because of tarantool/metrics issue #321,
+            use `metrics >= 0.12.0` to fix.
+          |||
+        else null,
+      ]
+    ),
     datasource=null,
     policy=null,
     measurement=null,
