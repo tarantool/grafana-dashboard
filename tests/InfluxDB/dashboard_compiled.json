@@ -3681,7 +3681,7 @@
          "dashes": false,
          "datasource": "${DS_INFLUXDB}",
          "decimals": 3,
-         "description": "Total number of bytes in all tuples of the space (memtx engine).\nName of space is specified after dash.\n",
+         "description": "Total number of bytes in all tuples of the space (memtx engine).\nName of space is specified after dash.\n\n`No data` may be displayed because of tarantool/metrics issue #321,\nuse `metrics >= 0.12.0` to fix.\n",
          "fill": 0,
          "gridPos": {
             "h": 8,
@@ -3967,7 +3967,7 @@
          "dashes": false,
          "datasource": "${DS_INFLUXDB}",
          "decimals": 3,
-         "description": "Total size of tuples and all indexes in the space (memtx engine).\nName of space is specified after dash.\n",
+         "description": "Total size of tuples and all indexes in the space (memtx engine).\nName of space is specified after dash.\n\n`No data` may be displayed because of tarantool/metrics issue #321,\nuse `metrics >= 0.12.0` to fix.\n",
          "fill": 0,
          "gridPos": {
             "h": 8,

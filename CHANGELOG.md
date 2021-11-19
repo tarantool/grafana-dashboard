@@ -13,6 +13,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changes
 - Rework "Tarantool memory memory miscellaneous" section to "Tarantool runtime overview"
 - Vinyl disk panels name
+- Update metrics version to 0.12.0
 
 ## [0.3.3] - 2021-10-08
 Grafana revisions: [InfluxDB revision 8](https://grafana.com/api/dashboards/12567/revisions/8/download), [Prometheus revision 8](https://grafana.com/api/dashboards/13054/revisions/8/download)
