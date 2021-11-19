@@ -34,8 +34,6 @@ local common = import 'common.libsonnet';
     description=|||
       Data received by instance from binary protocol connections.
       Graph shows average bytes per second.
-      If `No data` displayed for Prometheus panel,
-      check up your 'rate_time_range' variable.
     |||,
     datasource=null,
     policy=null,
@@ -44,7 +42,7 @@ local common = import 'common.libsonnet';
     rate_time_range=null,
   ):: bytes_per_second_graph(
     title=title,
-    description=description,
+    description=common.rate_warning(description, datasource),
     datasource=datasource,
     policy=policy,
     measurement=measurement,
@@ -59,8 +57,6 @@ local common = import 'common.libsonnet';
     description=|||
       Data sent by instance with binary protocol connections.
       Graph shows average bytes per second.
-      If `No data` displayed for Prometheus panel,
-      check up your 'rate_time_range' variable.
     |||,
     datasource=null,
     policy=null,
@@ -69,7 +65,7 @@ local common = import 'common.libsonnet';
     rate_time_range=null,
   ):: bytes_per_second_graph(
     title=title,
-    description=description,
+    description=common.rate_warning(description, datasource),
     datasource=datasource,
     policy=policy,
     measurement=measurement,
@@ -84,10 +80,7 @@ local common = import 'common.libsonnet';
     description=|||
       Number of network requests this instance has handled.
       Graph shows mean rps.
-      If `No data` displayed for Prometheus panel,
-      check up your 'rate_time_range' variable.
     |||,
-
     datasource=null,
     policy=null,
     measurement=null,
@@ -95,7 +88,7 @@ local common = import 'common.libsonnet';
     rate_time_range=null,
   ):: common.default_graph(
     title=title,
-    description=description,
+    description=common.rate_warning(description, datasource),
     datasource=datasource,
     labelY1='requests per second',
   ).addTarget(common.default_rps_target(
@@ -112,7 +105,6 @@ local common = import 'common.libsonnet';
     description=|||
       Number of pending network requests.
     |||,
-
     datasource=null,
     policy=null,
     measurement=null,
@@ -137,7 +129,6 @@ local common = import 'common.libsonnet';
     description=|||
       Number of current active network connections.
     |||,
-
     datasource=null,
     policy=null,
     measurement=null,

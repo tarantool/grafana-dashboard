@@ -35,6 +35,7 @@ local prometheus = grafana.prometheus;
     title='Vinyl disk data',
     description=|||
       The amount of data stored in the `.run` files located in the `vinyl_dir` directory.
+
       Panel works with `metrics >= 0.8.0`.
     |||,
     datasource=null,
@@ -55,6 +56,7 @@ local prometheus = grafana.prometheus;
     title='Vinyl disk index',
     description=|||
       The amount of data stored in the `.index` files located in the `vinyl_dir` directory.
+
       Panel works with `metrics >= 0.8.0`.
     |||,
     datasource=null,
@@ -101,6 +103,7 @@ local prometheus = grafana.prometheus;
       and being recalculated depending on the the actual rate.
       Only significant dumps that are larger than one megabyte
       are used for the estimate.
+
       Panel works with `metrics >= 0.8.0`.
     |||,
     datasource=null,
@@ -123,6 +126,7 @@ local prometheus = grafana.prometheus;
       The actual average rate of performing the write operations, bytes per second.
       The rate is calculated as a 5-second moving average.
       If the metric value is gradually going down, this can indicate some disk issues.
+
       Panel works with `metrics >= 0.8.0`.
     |||,
     datasource=null,
@@ -146,6 +150,7 @@ local prometheus = grafana.prometheus;
       The regulator imposes the limit on transactions based on the observed dump/compaction performance.
       If the metric value is down to approximately 100 Kbps,
       this indicates issues with the disk or the scheduler.
+
       Panel works with `metrics >= 0.8.0`.
     |||,
     datasource=null,
@@ -170,6 +175,7 @@ local prometheus = grafana.prometheus;
       For details, see https://www.tarantool.io/en/doc/latest/book/box/engines/#engines-algorithm-filling-lsm.
       The value is slightly smaller than the amount of memory allocated for vinyl trees,
       which is the `vinyl_memory` parameter.
+
       Panel works with `metrics >= 0.8.0`.
     |||,
 
@@ -224,6 +230,7 @@ local prometheus = grafana.prometheus;
       Average per second rate of commits (successful transaction ends).
       It includes implicit commits: for example, any insert operation causes a commit
       unless it is within a `box.begin()`–`box.commit()` block.
+
       Panel works with `metrics >= 0.8.0`.
     |||,
     datasource=null,
@@ -233,7 +240,7 @@ local prometheus = grafana.prometheus;
     rate_time_range=null,
   ):: tx_rate(
     title=title,
-    description=description,
+    description=common.rate_warning(description, datasource),
     datasource=datasource,
     policy=policy,
     measurement=measurement,
@@ -257,7 +264,7 @@ local prometheus = grafana.prometheus;
     rate_time_range=null,
   ):: tx_rate(
     title=title,
-    description=description,
+    description=common.rate_warning(description, datasource),
     datasource=datasource,
     policy=policy,
     measurement=measurement,
@@ -272,6 +279,7 @@ local prometheus = grafana.prometheus;
       Average per second rate of conflicts that caused transactions to roll back.
       The ratio `tx conflicts` / `tx commits` above 5% indicates that vinyl is not healthy.
       At this moment you’ll probably see a lot of other problems with vinyl.
+
       Panel works with `metrics >= 0.8.0`.
     |||,
     datasource=null,
@@ -281,7 +289,7 @@ local prometheus = grafana.prometheus;
     rate_time_range=null,
   ):: tx_rate(
     title=title,
-    description=description,
+    description=common.rate_warning(description, datasource),
     datasource=datasource,
     policy=policy,
     measurement=measurement,
@@ -296,6 +304,7 @@ local prometheus = grafana.prometheus;
       Number of current read views, that is, transactions entered a read-only state
       to avoid conflict temporarily.
       If the value stays non-zero for a long time, it indicates of a memory leak.
+
       Panel works with `metrics >= 0.8.0`.
     |||,
 
@@ -346,6 +355,7 @@ local prometheus = grafana.prometheus;
     title='Vinyl tuple cache memory',
     description=|||
       The amount of memory that is being used for storing vinyl tuples (data).
+
       Panel works with `metrics >= 0.8.0`.
     |||,
     datasource=null,
@@ -370,6 +380,7 @@ local prometheus = grafana.prometheus;
       By monitoring the metric, you can see when L0 is getting close to its maximum
       (regulator dump watermark) at which a dump will be taken.
       You can expect L0 = 0 immediately after the dump operation is completed.
+
       Panel works with `metrics >= 0.8.0`.
     |||,
     datasource=null,
@@ -392,6 +403,7 @@ local prometheus = grafana.prometheus;
       The amount of memory that is being used for storing indexes.
       If the metric value is close to `vinyl_memory`,
       this indicates the incorrectly chosen `vinyl_page_size`.
+
       Panel works with `metrics >= 0.8.0`.
     |||,
     datasource=null,
@@ -413,6 +425,7 @@ local prometheus = grafana.prometheus;
     description=|||
       The amount of memory used by bloom filters.
       See more here: https://www.tarantool.io/en/doc/latest/book/box/engines/#vinyl-lsm-disadvantages-compression-bloom-filters
+
       Panel works with `metrics >= 0.8.0`.
     |||,
     datasource=null,
@@ -433,6 +446,7 @@ local prometheus = grafana.prometheus;
     title='Vinyl scheduler tasks in progress',
     description=|||
       The number of the scheduler dump/compaction tasks in progress now.
+
       Panel works with `metrics >= 0.8.0`.
     |||,
     datasource=null,
@@ -467,6 +481,7 @@ local prometheus = grafana.prometheus;
     description=|||
       Scheduler dump/compaction tasks failed.
       Average per second rate is shown.
+
       Panel works with `metrics >= 0.8.0`.
     |||,
     datasource=null,
@@ -476,7 +491,7 @@ local prometheus = grafana.prometheus;
     rate_time_range=null,
   ):: common.default_graph(
     title=title,
-    description=description,
+    description=common.rate_warning(description, datasource),
     datasource=datasource,
     format='none',
     labelY1='per second rate',
@@ -503,6 +518,7 @@ local prometheus = grafana.prometheus;
     description=|||
       Time spent by all worker threads performing dumps.
       Average per second rate is shown.
+
       Panel works with `metrics >= 0.8.0`.
     |||,
     datasource=null,
@@ -512,7 +528,7 @@ local prometheus = grafana.prometheus;
     rate_time_range=null,
   ):: common.default_graph(
     title=title,
-    description=description,
+    description=common.rate_warning(description, datasource),
     datasource=datasource,
     format='s',
     labelY1='per second rate',
@@ -540,7 +556,7 @@ local prometheus = grafana.prometheus;
     rate_time_range=null,
   ):: common.default_graph(
     title=title,
-    description=description,
+    description=common.rate_warning(description, datasource),
     datasource=datasource,
     format='none',
     labelY1='per second rate',

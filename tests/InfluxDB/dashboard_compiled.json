@@ -85,7 +85,7 @@
          "dashes": false,
          "datasource": "${DS_INFLUXDB}",
          "decimals": 0,
-         "description": "Number of \"warning\" issues on each cluster instance.\nPanel works with `cartridge >= 2.0.2`, `metrics >= 0.6.0`,\nwhile `metrics >= 0.9.0` is recommended for per instance display.\n\"warning\" issues includes high replication lag, replication long idle,\nfailover and switchover issues, clock issues, memory fragmentation,\nconfiguration issues and alien members warnings.\n",
+         "description": "Number of \"warning\" issues on each cluster instance.\n\"warning\" issues includes high replication lag, replication long idle,\nfailover and switchover issues, clock issues, memory fragmentation,\nconfiguration issues and alien members warnings.\n\nPanel works with `cartridge >= 2.0.2`, `metrics >= 0.6.0`,\nwhile `metrics >= 0.9.0` is recommended for per instance display.\n",
          "fill": 0,
          "gridPos": {
             "h": 6,
@@ -222,7 +222,7 @@
          "dashes": false,
          "datasource": "${DS_INFLUXDB}",
          "decimals": 0,
-         "description": "Number of \"critical\" issues on each cluster instance.\nPanel works with `cartridge >= 2.0.2`, `metrics >= 0.6.0`,\nwhile `metrics >= 0.9.0` is recommended for per instance display.\n\"critical\" issues includes replication process critical fails and\nrunning out of available memory.\n",
+         "description": "Number of \"critical\" issues on each cluster instance.\n\"critical\" issues includes replication process critical fails and\nrunning out of available memory.\n\nPanel works with `cartridge >= 2.0.2`, `metrics >= 0.6.0`,\nwhile `metrics >= 0.9.0` is recommended for per instance display.\n",
          "fill": 0,
          "gridPos": {
             "h": 6,
@@ -506,7 +506,7 @@
          "dashes": false,
          "datasource": "${DS_INFLUXDB}",
          "decimals": 3,
-         "description": "Requests, processed with success (code 2xx) on Tarantool's side.\nGraph shows mean count per second.\nIf `No data` displayed for Prometheus panel,\ncheck up your 'rate_time_range' variable.\n",
+         "description": "Requests, processed with success (code 2xx) on Tarantool's side.\nGraph shows mean count per second.\n",
          "fill": 0,
          "gridPos": {
             "h": 8,
@@ -667,7 +667,7 @@
          "dashes": false,
          "datasource": "${DS_INFLUXDB}",
          "decimals": 3,
-         "description": "Requests, processed with 4xx error on Tarantool's side.\nGraph shows mean count per second.\nIf `No data` displayed for Prometheus panel,\ncheck up your 'rate_time_range' variable.\n",
+         "description": "Requests, processed with 4xx error on Tarantool's side.\nGraph shows mean count per second.\n",
          "fill": 0,
          "gridPos": {
             "h": 8,
@@ -828,7 +828,7 @@
          "dashes": false,
          "datasource": "${DS_INFLUXDB}",
          "decimals": 3,
-         "description": "Requests, processed with 5xx error on Tarantool's side.\nGraph shows mean count per second.\nIf `No data` displayed for Prometheus panel,\ncheck up your 'rate_time_range' variable.\n",
+         "description": "Requests, processed with 5xx error on Tarantool's side.\nGraph shows mean count per second.\n",
          "fill": 0,
          "gridPos": {
             "h": 8,
@@ -989,7 +989,7 @@
          "dashes": false,
          "datasource": "${DS_INFLUXDB}",
          "decimals": 3,
-         "description": "99th percentile of requests latency. Includes only requests processed with success (code 2xx) on Tarantool's side.\n",
+         "description": "99th percentile of requests latency.\nIncludes only requests processed with success\n(code 2xx) on Tarantool's side.\n",
          "fill": 0,
          "gridPos": {
             "h": 8,
@@ -1150,7 +1150,7 @@
          "dashes": false,
          "datasource": "${DS_INFLUXDB}",
          "decimals": 3,
-         "description": "99th percentile of requests latency. Includes only requests processed with 4xx error on Tarantool's side.\n",
+         "description": "99th percentile of requests latency.\nIncludes only requests processed with\n4xx error on Tarantool's side.\n",
          "fill": 0,
          "gridPos": {
             "h": 8,
@@ -1311,7 +1311,7 @@
          "dashes": false,
          "datasource": "${DS_INFLUXDB}",
          "decimals": 3,
-         "description": "99th percentile of requests latency. Includes only requests processed with 5xx error on Tarantool's side.\n",
+         "description": "99th percentile of requests latency.\nIncludes only requests processed with\n5xx error on Tarantool's side.\n",
          "fill": 0,
          "gridPos": {
             "h": 8,
@@ -1491,7 +1491,7 @@
          "dashes": false,
          "datasource": "${DS_INFLUXDB}",
          "decimals": 3,
-         "description": "Data received by instance from binary protocol connections.\nGraph shows average bytes per second.\nIf `No data` displayed for Prometheus panel,\ncheck up your 'rate_time_range' variable.\n",
+         "description": "Data received by instance from binary protocol connections.\nGraph shows average bytes per second.\n",
          "fill": 0,
          "gridPos": {
             "h": 8,
@@ -1628,7 +1628,7 @@
          "dashes": false,
          "datasource": "${DS_INFLUXDB}",
          "decimals": 3,
-         "description": "Data sent by instance with binary protocol connections.\nGraph shows average bytes per second.\nIf `No data` displayed for Prometheus panel,\ncheck up your 'rate_time_range' variable.\n",
+         "description": "Data sent by instance with binary protocol connections.\nGraph shows average bytes per second.\n",
          "fill": 0,
          "gridPos": {
             "h": 8,
@@ -1765,7 +1765,7 @@
          "dashes": false,
          "datasource": "${DS_INFLUXDB}",
          "decimals": 3,
-         "description": "Number of network requests this instance has handled.\nGraph shows mean rps.\nIf `No data` displayed for Prometheus panel,\ncheck up your 'rate_time_range' variable.\n",
+         "description": "Number of network requests this instance has handled.\nGraph shows mean rps.\n",
          "fill": 0,
          "gridPos": {
             "h": 8,
@@ -4129,7 +4129,7 @@
          "dashes": false,
          "datasource": "${DS_INFLUXDB}",
          "decimals": 3,
-         "description": "The amount of data stored in the `.run` files located in the `vinyl_dir` directory.\nPanel works with `metrics >= 0.8.0`.\n",
+         "description": "The amount of data stored in the `.run` files located in the `vinyl_dir` directory.\n\nPanel works with `metrics >= 0.8.0`.\n",
          "fill": 0,
          "gridPos": {
             "h": 8,
@@ -4260,7 +4260,7 @@
          "dashes": false,
          "datasource": "${DS_INFLUXDB}",
          "decimals": 3,
-         "description": "The amount of data stored in the `.index` files located in the `vinyl_dir` directory.\nPanel works with `metrics >= 0.8.0`.\n",
+         "description": "The amount of data stored in the `.index` files located in the `vinyl_dir` directory.\n\nPanel works with `metrics >= 0.8.0`.\n",
          "fill": 0,
          "gridPos": {
             "h": 8,
@@ -4391,7 +4391,7 @@
          "dashes": false,
          "datasource": "${DS_INFLUXDB}",
          "decimals": 3,
-         "description": "The estimated average rate of taking dumps, bytes per second.\nInitially, the rate value is 10 megabytes per second\nand being recalculated depending on the the actual rate.\nOnly significant dumps that are larger than one megabyte\nare used for the estimate.\nPanel works with `metrics >= 0.8.0`.\n",
+         "description": "The estimated average rate of taking dumps, bytes per second.\nInitially, the rate value is 10 megabytes per second\nand being recalculated depending on the the actual rate.\nOnly significant dumps that are larger than one megabyte\nare used for the estimate.\n\nPanel works with `metrics >= 0.8.0`.\n",
          "fill": 0,
          "gridPos": {
             "h": 8,
@@ -4522,7 +4522,7 @@
          "dashes": false,
          "datasource": "${DS_INFLUXDB}",
          "decimals": 3,
-         "description": "The actual average rate of performing the write operations, bytes per second.\nThe rate is calculated as a 5-second moving average.\nIf the metric value is gradually going down, this can indicate some disk issues.\nPanel works with `metrics >= 0.8.0`.\n",
+         "description": "The actual average rate of performing the write operations, bytes per second.\nThe rate is calculated as a 5-second moving average.\nIf the metric value is gradually going down, this can indicate some disk issues.\n\nPanel works with `metrics >= 0.8.0`.\n",
          "fill": 0,
          "gridPos": {
             "h": 8,
@@ -4653,7 +4653,7 @@
          "dashes": false,
          "datasource": "${DS_INFLUXDB}",
          "decimals": 3,
-         "description": "The write rate limit, bytes per second.\nThe regulator imposes the limit on transactions based on the observed dump/compaction performance.\nIf the metric value is down to approximately 100 Kbps,\nthis indicates issues with the disk or the scheduler.\nPanel works with `metrics >= 0.8.0`.\n",
+         "description": "The write rate limit, bytes per second.\nThe regulator imposes the limit on transactions based on the observed dump/compaction performance.\nIf the metric value is down to approximately 100 Kbps,\nthis indicates issues with the disk or the scheduler.\n\nPanel works with `metrics >= 0.8.0`.\n",
          "fill": 0,
          "gridPos": {
             "h": 8,
@@ -4784,7 +4784,7 @@
          "dashes": false,
          "datasource": "${DS_INFLUXDB}",
          "decimals": 3,
-         "description": "The maximum amount of memory used for in-memory storing of a vinyl LSM tree.\nWhen accessing this maximum, the dumping must occur.\nFor details, see https://www.tarantool.io/en/doc/latest/book/box/engines/#engines-algorithm-filling-lsm.\nThe value is slightly smaller than the amount of memory allocated for vinyl trees,\nwhich is the `vinyl_memory` parameter.\nPanel works with `metrics >= 0.8.0`.\n",
+         "description": "The maximum amount of memory used for in-memory storing of a vinyl LSM tree.\nWhen accessing this maximum, the dumping must occur.\nFor details, see https://www.tarantool.io/en/doc/latest/book/box/engines/#engines-algorithm-filling-lsm.\nThe value is slightly smaller than the amount of memory allocated for vinyl trees,\nwhich is the `vinyl_memory` parameter.\n\nPanel works with `metrics >= 0.8.0`.\n",
          "fill": 0,
          "gridPos": {
             "h": 8,
@@ -4915,7 +4915,7 @@
          "dashes": false,
          "datasource": "${DS_INFLUXDB}",
          "decimals": 3,
-         "description": "Average per second rate of commits (successful transaction ends).\nIt includes implicit commits: for example, any insert operation causes a commit\nunless it is within a `box.begin()`–`box.commit()` block.\nPanel works with `metrics >= 0.8.0`.\n",
+         "description": "Average per second rate of commits (successful transaction ends).\nIt includes implicit commits: for example, any insert operation causes a commit\nunless it is within a `box.begin()`–`box.commit()` block.\n\nPanel works with `metrics >= 0.8.0`.\n",
          "fill": 0,
          "gridPos": {
             "h": 8,
@@ -5189,7 +5189,7 @@
          "dashes": false,
          "datasource": "${DS_INFLUXDB}",
          "decimals": 3,
-         "description": "Average per second rate of conflicts that caused transactions to roll back.\nThe ratio `tx conflicts` / `tx commits` above 5% indicates that vinyl is not healthy.\nAt this moment you’ll probably see a lot of other problems with vinyl.\nPanel works with `metrics >= 0.8.0`.\n",
+         "description": "Average per second rate of conflicts that caused transactions to roll back.\nThe ratio `tx conflicts` / `tx commits` above 5% indicates that vinyl is not healthy.\nAt this moment you’ll probably see a lot of other problems with vinyl.\n\nPanel works with `metrics >= 0.8.0`.\n",
          "fill": 0,
          "gridPos": {
             "h": 8,
@@ -5326,7 +5326,7 @@
          "dashes": false,
          "datasource": "${DS_INFLUXDB}",
          "decimals": 0,
-         "description": "Number of current read views, that is, transactions entered a read-only state\nto avoid conflict temporarily.\nIf the value stays non-zero for a long time, it indicates of a memory leak.\nPanel works with `metrics >= 0.8.0`.\n",
+         "description": "Number of current read views, that is, transactions entered a read-only state\nto avoid conflict temporarily.\nIf the value stays non-zero for a long time, it indicates of a memory leak.\n\nPanel works with `metrics >= 0.8.0`.\n",
          "fill": 0,
          "gridPos": {
             "h": 8,
@@ -5457,7 +5457,7 @@
          "dashes": false,
          "datasource": "${DS_INFLUXDB}",
          "decimals": 3,
-         "description": "The number of the scheduler dump/compaction tasks in progress now.\nPanel works with `metrics >= 0.8.0`.\n",
+         "description": "The number of the scheduler dump/compaction tasks in progress now.\n\nPanel works with `metrics >= 0.8.0`.\n",
          "fill": 0,
          "gridPos": {
             "h": 8,
@@ -5594,7 +5594,7 @@
          "dashes": false,
          "datasource": "${DS_INFLUXDB}",
          "decimals": 3,
-         "description": "Scheduler dump/compaction tasks failed.\nAverage per second rate is shown.\nPanel works with `metrics >= 0.8.0`.\n",
+         "description": "Scheduler dump/compaction tasks failed.\nAverage per second rate is shown.\n\nPanel works with `metrics >= 0.8.0`.\n",
          "fill": 0,
          "gridPos": {
             "h": 8,
@@ -5737,7 +5737,7 @@
          "dashes": false,
          "datasource": "${DS_INFLUXDB}",
          "decimals": 3,
-         "description": "Time spent by all worker threads performing dumps.\nAverage per second rate is shown.\nPanel works with `metrics >= 0.8.0`.\n",
+         "description": "Time spent by all worker threads performing dumps.\nAverage per second rate is shown.\n\nPanel works with `metrics >= 0.8.0`.\n",
          "fill": 0,
          "gridPos": {
             "h": 8,
@@ -6030,7 +6030,7 @@
          "dashes": false,
          "datasource": "${DS_INFLUXDB}",
          "decimals": 3,
-         "description": "Panel works with `metrics >= 0.8.0`.\nThis is the average share of time\nspent by instance process executing in user mode.\nMetrics obtained using `getrusage()` call.\nIf `No data` displayed for Prometheus panel,\ncheck up your 'rate_time_range' variable.\n",
+         "description": "This is the average share of time\nspent by instance process executing in user mode.\nMetrics obtained using `getrusage()` call.\n\nPanel works with `metrics >= 0.8.0`.\n",
          "fill": 0,
          "gridPos": {
             "h": 8,
@@ -6167,7 +6167,7 @@
          "dashes": false,
          "datasource": "${DS_INFLUXDB}",
          "decimals": 3,
-         "description": "Panel works with `metrics >= 0.8.0`.\nThis is the average share of time\nspent by instance process executing in kernel mode.\nMetrics obtained using `getrusage()` call.\nIf `No data` displayed for Prometheus panel,\ncheck up your 'rate_time_range' variable.\n",
+         "description": "This is the average share of time\nspent by instance process executing in kernel mode.\nMetrics obtained using `getrusage()` call.\n\nPanel works with `metrics >= 0.8.0`.\n",
          "fill": 0,
          "gridPos": {
             "h": 8,
@@ -6323,7 +6323,7 @@
          "dashes": false,
          "datasource": "${DS_INFLUXDB}",
          "decimals": 3,
-         "description": "Memory used for the Lua runtime. Lua memory is bounded by 2 GB per instance. \n",
+         "description": "Memory used for the Lua runtime.\nLua memory is bounded by 2 GB per instance. \n",
          "fill": 0,
          "gridPos": {
             "h": 8,
@@ -7003,7 +7003,7 @@
          "dashes": false,
          "datasource": "${DS_INFLUXDB}",
          "decimals": 3,
-         "description": "total count of SELECT requests to all instance spaces.\nGraph shows average requests per second.\nIf `No data` displayed for Prometheus panel,\ncheck up your 'rate_time_range' variable.\n",
+         "description": "Total count of SELECT requests to all instance spaces.\nGraph shows average requests per second.\n",
          "fill": 0,
          "gridPos": {
             "h": 8,
@@ -7146,7 +7146,7 @@
          "dashes": false,
          "datasource": "${DS_INFLUXDB}",
          "decimals": 3,
-         "description": "total count of INSERT requests to all instance spaces.\nGraph shows average requests per second.\nIf `No data` displayed for Prometheus panel,\ncheck up your 'rate_time_range' variable.\n",
+         "description": "Total count of INSERT requests to all instance spaces.\nGraph shows average requests per second.\n",
          "fill": 0,
          "gridPos": {
             "h": 8,
@@ -7289,7 +7289,7 @@
          "dashes": false,
          "datasource": "${DS_INFLUXDB}",
          "decimals": 3,
-         "description": "total count of REPLACE requests to all instance spaces.\nGraph shows average requests per second.\nIf `No data` displayed for Prometheus panel,\ncheck up your 'rate_time_range' variable.\n",
+         "description": "Total count of REPLACE requests to all instance spaces.\nGraph shows average requests per second.\n",
          "fill": 0,
          "gridPos": {
             "h": 8,
@@ -7432,7 +7432,7 @@
          "dashes": false,
          "datasource": "${DS_INFLUXDB}",
          "decimals": 3,
-         "description": "total count of UPSERT requests to all instance spaces.\nGraph shows average requests per second.\nIf `No data` displayed for Prometheus panel,\ncheck up your 'rate_time_range' variable.\n",
+         "description": "Total count of UPSERT requests to all instance spaces.\nGraph shows average requests per second.\n",
          "fill": 0,
          "gridPos": {
             "h": 8,
@@ -7575,7 +7575,7 @@
          "dashes": false,
          "datasource": "${DS_INFLUXDB}",
          "decimals": 3,
-         "description": "total count of UPDATE requests to all instance spaces.\nGraph shows average requests per second.\nIf `No data` displayed for Prometheus panel,\ncheck up your 'rate_time_range' variable.\n",
+         "description": "Total count of UPDATE requests to all instance spaces.\nGraph shows average requests per second.\n",
          "fill": 0,
          "gridPos": {
             "h": 8,
@@ -7718,7 +7718,7 @@
          "dashes": false,
          "datasource": "${DS_INFLUXDB}",
          "decimals": 3,
-         "description": "total count of DELETE requests to all instance spaces.\nGraph shows average requests per second.\nIf `No data` displayed for Prometheus panel,\ncheck up your 'rate_time_range' variable.\n",
+         "description": "Total count of DELETE requests to all instance spaces.\nGraph shows average requests per second.\n",
          "fill": 0,
          "gridPos": {
             "h": 8,
@@ -7861,7 +7861,7 @@
          "dashes": false,
          "datasource": "${DS_INFLUXDB}",
          "decimals": 3,
-         "description": "Requests to execute stored procedures.\nGraph shows average requests per second.\nIf `No data` displayed for Prometheus panel,\ncheck up your 'rate_time_range' variable.\n",
+         "description": "Requests to execute stored procedures.\nGraph shows average requests per second.\n",
          "fill": 0,
          "gridPos": {
             "h": 8,
@@ -8004,7 +8004,7 @@
          "dashes": false,
          "datasource": "${DS_INFLUXDB}",
          "decimals": 3,
-         "description": "Calls to evaluate Lua code.\nGraph shows average requests per second.\nIf `No data` displayed for Prometheus panel,\ncheck up your 'rate_time_range' variable.\n",
+         "description": "Calls to evaluate Lua code.\nGraph shows average requests per second.\n",
          "fill": 0,
          "gridPos": {
             "h": 8,
@@ -8147,7 +8147,7 @@
          "dashes": false,
          "datasource": "${DS_INFLUXDB}",
          "decimals": 3,
-         "description": "Requests resulted in error.\nGraph shows average errors per second.\nIf `No data` displayed for Prometheus panel,\ncheck up your 'rate_time_range' variable.\n",
+         "description": "Requests resulted in error.\nGraph shows average errors per second.\n",
          "fill": 0,
          "gridPos": {
             "h": 8,
@@ -8290,7 +8290,7 @@
          "dashes": false,
          "datasource": "${DS_INFLUXDB}",
          "decimals": 3,
-         "description": "Authentication requests.\nGraph shows average errors per second.\nIf `No data` displayed for Prometheus panel,\ncheck up your 'rate_time_range' variable.\n",
+         "description": "Authentication requests.\nGraph shows average requests per second.\n",
          "fill": 0,
          "gridPos": {
             "h": 8,
@@ -8433,7 +8433,7 @@
          "dashes": false,
          "datasource": "${DS_INFLUXDB}",
          "decimals": 3,
-         "description": "SQL prepare calls. Panel works with Tarantool 2.x.\nGraph shows average errors per second.\nIf `No data` displayed for Prometheus panel,\ncheck up your 'rate_time_range' variable.\n",
+         "description": "SQL prepare calls.\nGraph shows average calls per second.\n\nPanel works with Tarantool 2.x.\n",
          "fill": 0,
          "gridPos": {
             "h": 8,
@@ -8576,7 +8576,7 @@
          "dashes": false,
          "datasource": "${DS_INFLUXDB}",
          "decimals": 3,
-         "description": "SQL execute calls. Panel works with Tarantool 2.x.\nGraph shows average errors per second.\nIf `No data` displayed for Prometheus panel,\ncheck up your 'rate_time_range' variable.\n",
+         "description": "SQL execute calls.\nGraph shows average calls per second.\n\nPanel works with Tarantool 2.x.\n",
          "fill": 0,
          "gridPos": {
             "h": 8,

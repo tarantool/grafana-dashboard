@@ -12,30 +12,25 @@ local prometheus = grafana.prometheus;
 
   health_overview_table(
     title='Cluster status overview',
-    description=null,
+    description=
+    if datasource == '${DS_PROMETHEUS}' then
+      |||
+        Overview of Tarantool instances observed by Prometheus job.
 
+        If instance row is *red*, it means Prometheus can't reach
+        URI specified in targets or ran into error.
+        If instance row is *green*, it means instance is up and running and
+        Prometheus is successfully extracting metrics from it.
+        "Uptime" column shows time since instant start.
+      |||
+    else if datasource == '${DS_INFLUXDB}' then
+      error 'InfluxDB target is not supported yet',
     datasource=null,
     measurement=null,
     job=null,
   ):: tablePanel.new(
     title=title,
-    description=(
-      if description != null then
-        description
-      else (
-        if datasource == '${DS_PROMETHEUS}' then
-          |||
-            Overview of Tarantool instances, observed by Prometheus job.
-
-            If instance row is *red*, it means Prometheus can't reach URI specified in targets or ran into error.
-            If instance row is *green*, it means instance is up and running and
-            Prometheus is successfully extracting metrics from it.
-            "Uptime" column shows time since instant start.
-          |||
-        else
-          null
-      )
-    ),
+    description=description,
     datasource=datasource,
 
     styles=[
@@ -88,7 +83,7 @@ local prometheus = grafana.prometheus;
         instant=true,
       )
     else if datasource == '${DS_INFLUXDB}' then
-      error 'InfluxDB target not supported yet'
+      error 'InfluxDB target is not supported yet'
   ) { gridPos: { w: 12, h: 8 } },
 
   local title_workaround(  // Workaround for missing options.fieldOptions.defaults.title https://github.com/grafana/grafonnet-lib/pull/260
@@ -135,26 +130,21 @@ local prometheus = grafana.prometheus;
 
   health_overview_stat(
     title='',
-    description=null,
-
+    description=
+    if datasource == '${DS_PROMETHEUS}' then
+      |||
+        Count of running Tarantool instances observed by Prometheus job.
+        If Prometheus can't reach URI specified in targets
+        or ran into error, instance is not counted.
+      |||
+    else if datasource == '${DS_INFLUXDB}' then
+      error 'InfluxDB target is not supported yet',
     datasource=null,
     measurement=null,
     job=null,
   ):: overview_stat(
     title=title,
-    description=(
-      if description != null then
-        description
-      else (
-        if datasource == '${DS_PROMETHEUS}' then
-          |||
-            Count of running Tarantool instances, observed by Prometheus job.
-            If Prometheus can't reach URI specified in targets or ran into error, instance is not counted.
-          |||
-        else
-          null
-      )
-    ),
+    description=description,
     datasource=datasource,
     measurement=measurement,
     job=job,
@@ -166,26 +156,23 @@ local prometheus = grafana.prometheus;
 
   memory_used_stat(
     title='',
-    description=null,
-
+    description=
+    if datasource == '${DS_PROMETHEUS}' then
+      |||
+        Overall value of memory used by Tarantool
+        items and indexes (*arena_used* value).
+        If Tarantool instance is not available
+        for Prometheus metrics extraction now,
+        its contribution is not counted.
+      |||
+    else if datasource == '${DS_INFLUXDB}' then
+      error 'InfluxDB target is not supported yet',
     datasource=null,
     measurement=null,
     job=null,
   ):: overview_stat(
     title=title,
-    description=(
-      if description != null then
-        description
-      else (
-        if datasource == '${DS_PROMETHEUS}' then
-          |||
-            Overall value of memory used by Tarantool items and indexes (*arena_used* value).
-            If Tarantool instance is not available for Prometheus metrics extraction now, its contribution is not counted.
-          |||
-        else
-          null
-      )
-    ),
+    description=description,
     datasource=datasource,
     measurement=measurement,
     job=job,
@@ -197,26 +184,22 @@ local prometheus = grafana.prometheus;
 
   memory_reserved_stat(
     title='',
-    description=null,
-
+    description=
+    if datasource == '${DS_PROMETHEUS}' then
+      |||
+        Overall value of memory available for Tarantool items
+        and indexes allocation (*memtx_memory* or *quota_size* values).
+        If Tarantool instance is not available for Prometheus metrics
+        extraction now, its contribution is not counted.
+      |||
+    else if datasource == '${DS_INFLUXDB}' then
+      error 'InfluxDB target is not supported yet',
     datasource=null,
     measurement=null,
     job=null,
   ):: overview_stat(
     title=title,
-    description=(
-      if description != null then
-        description
-      else (
-        if datasource == '${DS_PROMETHEUS}' then
-          |||
-            Overall value of memory available for Tarantool items and indexes allocation (*memtx_memory* or *quota_size* values).
-            If Tarantool instance is not available for Prometheus metrics extraction now, its contribution is not counted.
-          |||
-        else
-          null
-      )
-    ),
+    description=description,
     datasource=datasource,
     measurement=measurement,
     job=job,
@@ -228,28 +211,23 @@ local prometheus = grafana.prometheus;
 
   space_ops_stat(
     title='',
-    description=null,
-
+    description=
+    if datasource == '${DS_PROMETHEUS}' then
+      common.rate_warning(|||
+        Overall rate of operations performed on Tarantool spaces
+        (*select*, *insert*, *update* etc.).
+        If Tarantool instance is not available for Prometheus metrics
+        extraction now, its contribution is not counted.
+      |||)
+    else if datasource == '${DS_INFLUXDB}' then
+      error 'InfluxDB target is not supported yet',
     datasource=null,
     measurement=null,
     job=null,
     rate_time_range=null,
   ):: overview_stat(
     title=title,
-    description=(
-      if description != null then
-        description
-      else (
-        if datasource == '${DS_PROMETHEUS}' then
-          |||
-            Overall rate of operations performed on Tarantool spaces (*select*, *insert*, *update* etc.).
-            If Tarantool instance is not available for Prometheus metrics extraction now, its contribution is not counted.
-            If `No data` displayed, check up your 'rate_time_range' variable.
-          |||
-        else
-          null
-      )
-    ),
+    description=description,
     datasource=datasource,
     measurement=measurement,
     job=job,
@@ -261,28 +239,23 @@ local prometheus = grafana.prometheus;
 
   http_rps_stat(
     title='',
-    description=null,
-
+    description=
+    if datasource == '${DS_PROMETHEUS}' then
+      common.rate_warning(|||
+        Overall rate of HTTP requests processed
+        on Tarantool instances (all methods and response codes).
+        If Tarantool instance is not available for Prometheus metrics
+        extraction now, its contribution is not counted.
+      |||)
+    else if datasource == '${DS_INFLUXDB}' then
+      error 'InfluxDB target is not supported yet',
     datasource=null,
     measurement=null,
     job=null,
     rate_time_range=null,
   ):: overview_stat(
     title=title,
-    description=(
-      if description != null then
-        description
-      else (
-        if datasource == '${DS_PROMETHEUS}' then
-          |||
-            Overall rate of HTTP requests processed on Tarantool instances (all methods and response codes).
-            If Tarantool instance is not available for Prometheus metrics extraction now, its contribution is not counted.
-            If `No data` displayed, check up your 'rate_time_range' variable.
-          |||
-        else
-          null
-      )
-    ),
+    description=description,
     datasource=datasource,
     measurement=measurement,
     job=job,
@@ -294,28 +267,22 @@ local prometheus = grafana.prometheus;
 
   net_rps_stat(
     title='',
-    description=null,
-
+    description=
+    if datasource == '${DS_PROMETHEUS}' then
+      common.rate_warning(|||
+        Overall rate of network requests processed on Tarantool instances.
+        If Tarantool instance is not available for Prometheus metrics
+        extraction now, its contribution is not counted.
+      |||)
+    else if datasource == '${DS_INFLUXDB}' then
+      error 'InfluxDB target is not supported yet',
     datasource=null,
     measurement=null,
     job=null,
     rate_time_range=null,
   ):: overview_stat(
     title=title,
-    description=(
-      if description != null then
-        description
-      else (
-        if datasource == '${DS_PROMETHEUS}' then
-          |||
-            Overall rate of network requests processed on Tarantool instances.
-            If Tarantool instance is not available for Prometheus metrics extraction now, its contribution is not counted.
-            If `No data` displayed, check up your 'rate_time_range' variable.
-          |||
-        else
-          null
-      )
-    ),
+    description=description,
     datasource=datasource,
     measurement=measurement,
     job=job,
@@ -363,11 +330,12 @@ local prometheus = grafana.prometheus;
     title='Cartridge warning issues',
     description=|||
       Number of "warning" issues on each cluster instance.
-      Panel works with `cartridge >= 2.0.2`, `metrics >= 0.6.0`,
-      while `metrics >= 0.9.0` is recommended for per instance display.
       "warning" issues includes high replication lag, replication long idle,
       failover and switchover issues, clock issues, memory fragmentation,
       configuration issues and alien members warnings.
+
+      Panel works with `cartridge >= 2.0.2`, `metrics >= 0.6.0`,
+      while `metrics >= 0.9.0` is recommended for per instance display.
     |||,
     datasource=null,
     policy=null,
@@ -387,10 +355,11 @@ local prometheus = grafana.prometheus;
     title='Cartridge critical issues',
     description=|||
       Number of "critical" issues on each cluster instance.
-      Panel works with `cartridge >= 2.0.2`, `metrics >= 0.6.0`,
-      while `metrics >= 0.9.0` is recommended for per instance display.
       "critical" issues includes replication process critical fails and
       running out of available memory.
+
+      Panel works with `cartridge >= 2.0.2`, `metrics >= 0.6.0`,
+      while `metrics >= 0.9.0` is recommended for per instance display.
     |||,
     datasource=null,
     policy=null,

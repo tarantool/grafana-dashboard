@@ -6,7 +6,8 @@ local common = import 'common.libsonnet';
   lua_memory(
     title='Lua runtime memory',
     description=|||
-      Memory used for the Lua runtime. Lua memory is bounded by 2 GB per instance. 
+      Memory used for the Lua runtime.
+      Lua memory is bounded by 2 GB per instance. 
     |||,
     datasource=null,
     policy=null,
@@ -65,7 +66,7 @@ local common = import 'common.libsonnet';
     rate_time_range=null,
   ):: common.default_graph(
     title=title,
-    description=description,
+    description=common.rate_warning(description, datasource),
     datasource=datasource,
     labelY1='switches per second',
     panel_width=12,
