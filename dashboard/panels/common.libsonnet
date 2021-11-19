@@ -86,4 +86,13 @@ local prometheus = grafana.prometheus;
         alias='$tag_label_pairs_alias',
       ).where('metric_name', '=', metric_name)
       .selectField('value').addConverter('mean').addConverter('non_negative_derivative', ['1s']),
+
+  rate_warning(
+    description,
+    datasource='${DS_PROMETHEUS}'
+  )::
+    if datasource == '${DS_PROMETHEUS}' then
+      std.join('\n\n', [description, "If `No data` displayed, check up your 'rate_time_range' variable."])
+    else
+      description,
 }

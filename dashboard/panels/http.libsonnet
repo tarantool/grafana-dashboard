@@ -44,10 +44,7 @@ local prometheus = grafana.prometheus;
     description=|||
       Requests, processed with success (code 2xx) on Tarantool's side.
       Graph shows mean count per second.
-      If `No data` displayed for Prometheus panel,
-      check up your 'rate_time_range' variable.
     |||,
-
     datasource=null,
     policy=null,
     measurement=null,
@@ -56,7 +53,7 @@ local prometheus = grafana.prometheus;
     metric_name='http_server_request_latency_count',
   ):: rps_graph(
     title=title,
-    description=description,
+    description=common.rate_warning(description, datasource),
     datasource=datasource,
     policy=policy,
     measurement=measurement,
@@ -71,10 +68,7 @@ local prometheus = grafana.prometheus;
     description=|||
       Requests, processed with 4xx error on Tarantool's side.
       Graph shows mean count per second.
-      If `No data` displayed for Prometheus panel,
-      check up your 'rate_time_range' variable.
     |||,
-
     datasource=null,
     policy=null,
     measurement=null,
@@ -83,7 +77,7 @@ local prometheus = grafana.prometheus;
     metric_name='http_server_request_latency_count',
   ):: rps_graph(
     title=title,
-    description=description,
+    description=common.rate_warning(description, datasource),
     datasource=datasource,
     policy=policy,
     measurement=measurement,
@@ -98,10 +92,7 @@ local prometheus = grafana.prometheus;
     description=|||
       Requests, processed with 5xx error on Tarantool's side.
       Graph shows mean count per second.
-      If `No data` displayed for Prometheus panel,
-      check up your 'rate_time_range' variable.
     |||,
-
     datasource=null,
     policy=null,
     measurement=null,
@@ -110,7 +101,7 @@ local prometheus = grafana.prometheus;
     metric_name='http_server_request_latency_count',
   ):: rps_graph(
     title=title,
-    description=description,
+    description=common.rate_warning(description, datasource),
     datasource=datasource,
     policy=policy,
     measurement=measurement,
@@ -157,9 +148,10 @@ local prometheus = grafana.prometheus;
   latency_success(
     title='Success requests latency (code 2xx)',
     description=|||
-      99th percentile of requests latency. Includes only requests processed with success (code 2xx) on Tarantool's side.
+      99th percentile of requests latency.
+      Includes only requests processed with success
+      (code 2xx) on Tarantool's side.
     |||,
-
     datasource=null,
     policy=null,
     measurement=null,
@@ -183,9 +175,10 @@ local prometheus = grafana.prometheus;
   latency_error_4xx(
     title='Error requests latency (code 4xx)',
     description=|||
-      99th percentile of requests latency. Includes only requests processed with 4xx error on Tarantool's side.
+      99th percentile of requests latency.
+      Includes only requests processed with
+      4xx error on Tarantool's side.
     |||,
-
     datasource=null,
     policy=null,
     measurement=null,
@@ -209,9 +202,10 @@ local prometheus = grafana.prometheus;
   latency_error_5xx(
     title='Error requests latency (code 5xx)',
     description=|||
-      99th percentile of requests latency. Includes only requests processed with 5xx error on Tarantool's side.
+      99th percentile of requests latency.
+      Includes only requests processed with
+      5xx error on Tarantool's side.
     |||,
-
     datasource=null,
     policy=null,
     measurement=null,

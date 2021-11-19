@@ -50,17 +50,10 @@ local prometheus = grafana.prometheus;
     operation=null,
   ) = operation_rps(
     title=(if title != null then title else std.format('%s space requests', std.asciiUpper(operation))),
-    description=(
-      if description != null then
-        description
-      else
-        std.format(|||
-          total count of %s requests to all instance spaces.
-          Graph shows average requests per second.
-          If `No data` displayed for Prometheus panel,
-          check up your 'rate_time_range' variable.
-        |||, std.asciiUpper(operation))
-    ),
+    description=common.rate_warning(std.format(|||
+      Total count of %s requests to all instance spaces.
+      Graph shows average requests per second.
+    |||, std.asciiUpper(operation)), datasource),
     datasource=datasource,
     policy=policy,
     measurement=measurement,
@@ -186,12 +179,10 @@ local prometheus = grafana.prometheus;
 
   call_rps(
     title='Call requests',
-    description=|||
+    description=common.rate_warning(|||
       Requests to execute stored procedures.
       Graph shows average requests per second.
-      If `No data` displayed for Prometheus panel,
-      check up your 'rate_time_range' variable.
-    |||,
+    |||, datasource),
     datasource=null,
     policy=null,
     measurement=null,
@@ -211,12 +202,10 @@ local prometheus = grafana.prometheus;
 
   eval_rps(
     title='Eval calls',
-    description=|||
+    description=common.rate_warning(|||
       Calls to evaluate Lua code.
       Graph shows average requests per second.
-      If `No data` displayed for Prometheus panel,
-      check up your 'rate_time_range' variable.
-    |||,
+    |||, datasource),
     datasource=null,
     policy=null,
     measurement=null,
@@ -236,12 +225,10 @@ local prometheus = grafana.prometheus;
 
   error_rps(
     title='Request errors',
-    description=|||
+    description=common.rate_warning(|||
       Requests resulted in error.
       Graph shows average errors per second.
-      If `No data` displayed for Prometheus panel,
-      check up your 'rate_time_range' variable.
-    |||,
+    |||, datasource),
     datasource=null,
     policy=null,
     measurement=null,
@@ -261,12 +248,10 @@ local prometheus = grafana.prometheus;
 
   auth_rps(
     title='Authentication requests',
-    description=|||
+    description=common.rate_warning(|||
       Authentication requests.
-      Graph shows average errors per second.
-      If `No data` displayed for Prometheus panel,
-      check up your 'rate_time_range' variable.
-    |||,
+      Graph shows average requests per second.
+    |||, datasource),
     datasource=null,
     policy=null,
     measurement=null,
@@ -286,12 +271,12 @@ local prometheus = grafana.prometheus;
 
   SQL_prepare_rps(
     title='SQL prepare calls',
-    description=|||
-      SQL prepare calls. Panel works with Tarantool 2.x.
-      Graph shows average errors per second.
-      If `No data` displayed for Prometheus panel,
-      check up your 'rate_time_range' variable.
-    |||,
+    description=common.rate_warning(|||
+      SQL prepare calls.
+      Graph shows average calls per second.
+
+      Panel works with Tarantool 2.x.
+    |||, datasource),
     datasource=null,
     policy=null,
     measurement=null,
@@ -311,12 +296,12 @@ local prometheus = grafana.prometheus;
 
   SQL_execute_rps(
     title='SQL execute calls',
-    description=|||
-      SQL execute calls. Panel works with Tarantool 2.x.
-      Graph shows average errors per second.
-      If `No data` displayed for Prometheus panel,
-      check up your 'rate_time_range' variable.
-    |||,
+    description=common.rate_warning(|||
+      SQL execute calls.
+      Graph shows average calls per second.
+
+      Panel works with Tarantool 2.x.
+    |||, datasource),
     datasource=null,
     policy=null,
     measurement=null,
