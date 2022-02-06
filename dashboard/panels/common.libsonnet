@@ -40,7 +40,7 @@ local prometheus = grafana.prometheus;
     legend_sortDesc=true,
   ) { gridPos: { w: panel_width, h: panel_height } },
 
-  row(title):: grafana.row.new(title) { gridPos: { w: 24, h: 1 } },
+  row(title):: grafana.row.new(title, collapse=true) { gridPos: { w: 24, h: 1 } },
 
   default_metric_target(
     datasource,

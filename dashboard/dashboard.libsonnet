@@ -9,6 +9,6 @@ local utils = import 'utils.libsonnet';
     _panels: panels,
     addPanel(panel):: self { _panels+: [panel] },
     addPanels(panels):: self { _panels+: panels },
-    build():: self._grafana_dashboard.addPanels(utils.generate_grid(self._panels)),
+    build():: self._grafana_dashboard.addPanels(utils.collapse_rows(utils.generate_grid(self._panels))),
   },
 }
