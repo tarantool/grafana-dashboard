@@ -138,6 +138,11 @@ It also formats all source files with `jsonnetfmt`.
 
 ## Customization
 
+If you're interested in building grafonnet dashboards or custom panels,
+I suggest you to start with reading our grafonnet tutorial:
+[in English](https://medium.com/@tarantool/grafana-as-code-b642cac9ae75),
+[in Russian](https://habr.com/ru/company/vk/blog/577230/).
+
 You can add your own custom panels to the bottom of the template dashboard.
 
 1. Add tarantool/grafana-dashboard as a dependency in your project with jsonnet-bundler.
@@ -222,7 +227,6 @@ You can add your own custom panels to the bottom of the template dashboard.
       points=true,
     ) { gridPos: { w: 6, h: 4 } };
     ```
-
 
     To build a target, you may also use `common_panels` utils.
     ```jsonnet
