@@ -85,4 +85,28 @@ local grid_width = 24;
         } }]
     ), panels, [])
   ],
+
+
+  /**
+   * @name utils.collapse_rows
+   *
+   * Put all non-row panels to row panels.
+   * Effect should be the same as if user manually press collapse button
+   * on each row panel in built dashboard. Dashboard should start with row.
+   * Each row should be collapsed.
+   *
+   * @param panels List of panels (after generate_grid)
+   *
+   * @return List of panels folded to rows
+   */
+  collapse_rows(panels):: std.foldl(function(_panels, p) (
+    if p.type == 'row' then
+      _panels + [p]
+    else
+      local len = std.length(_panels);
+
+      assert len > 0 : 'Dashboard should start with row';
+
+      _panels[0:(len - 1):1] + [_panels[len - 1].addPanel(p, p.gridPos)]
+  ), panels, []),
 }
