@@ -43,7 +43,7 @@ local common = import 'common.libsonnet';
     datasource=datasource,
     decimals=0,
     legend_avg=false,
-    panel_width=12,
+    panel_width=8,
   ).addTarget(common.default_metric_target(
     datasource,
     'tnt_fiber_count',
@@ -92,7 +92,7 @@ local common = import 'common.libsonnet';
     description=description,
     datasource=datasource,
     format='bytes',
-    panel_width=12,
+    panel_width=8,
   ).addTarget(common.default_metric_target(
     datasource,
     metric_name,
@@ -138,4 +138,36 @@ local common = import 'common.libsonnet';
     job,
     'tnt_fiber_memalloc'
   ),
+
+  event_loop_time(
+    title='Event loop time',
+    description=|||
+      Duration of last event loop iteration (tx thread).
+      High duration results in longer responses,
+      possible bad health signals and may be the
+      reason of "Too long WAL write" errors.
+
+      Panel works with `metrics >= 0.13.0`.
+    |||,
+    datasource=null,
+    policy=null,
+    measurement=null,
+    job=null,
+  ):: common.default_graph(
+    title=title,
+    description=description,
+    datasource=datasource,
+    labelY1='cycle duration',
+    decimals=3,
+    decimalsY1=3,
+    format='ms',
+    panel_width=12,
+  ).addTarget(common.default_metric_target(
+    datasource,
+    'tnt_ev_loop_time',
+    job,
+    policy,
+    measurement,
+    converter='last'
+  )),
 }
