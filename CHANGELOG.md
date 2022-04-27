@@ -13,7 +13,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 - Rework "Tarantool memory memory miscellaneous" section to "Tarantool runtime overview"
 - Vinyl disk panels name
-- Update metrics version to 0.12.0
+- Update metrics version to 0.13.0
 - Update panel descriptions
 - Collapse dashboard rows
 
