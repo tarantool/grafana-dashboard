@@ -6452,8 +6452,8 @@
                "dashLength": 10,
                "dashes": false,
                "datasource": "${DS_INFLUXDB}",
-               "decimals": 0,
-               "description": "Current number of fibers in tx thread. \n",
+               "decimals": 3,
+               "description": "Average rate of fiber context switches.\nContext switches are counted over all current fibers.\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -6462,137 +6462,6 @@
                   "y": 145
                },
                "id": 56,
-               "legend": {
-                  "alignAsTable": true,
-                  "avg": false,
-                  "current": true,
-                  "max": true,
-                  "min": false,
-                  "rightSide": false,
-                  "show": true,
-                  "sideWidth": null,
-                  "sort": "current",
-                  "sortDesc": true,
-                  "total": false,
-                  "values": true
-               },
-               "lines": true,
-               "linewidth": 1,
-               "links": [ ],
-               "nullPointMode": "null",
-               "percentage": false,
-               "pointradius": 5,
-               "points": false,
-               "renderer": "flot",
-               "repeat": null,
-               "seriesOverrides": [ ],
-               "spaceLength": 10,
-               "stack": false,
-               "steppedLine": false,
-               "targets": [
-                  {
-                     "alias": "$tag_label_pairs_alias",
-                     "groupBy": [
-                        {
-                           "params": [
-                              "$__interval"
-                           ],
-                           "type": "time"
-                        },
-                        {
-                           "params": [
-                              "label_pairs_alias"
-                           ],
-                           "type": "tag"
-                        },
-                        {
-                           "params": [
-                              "none"
-                           ],
-                           "type": "fill"
-                        }
-                     ],
-                     "measurement": "${INFLUXDB_MEASUREMENT}",
-                     "policy": "${INFLUXDB_POLICY}",
-                     "refId": "A",
-                     "resultFormat": "time_series",
-                     "select": [
-                        [
-                           {
-                              "params": [
-                                 "value"
-                              ],
-                              "type": "field"
-                           },
-                           {
-                              "params": [ ],
-                              "type": "last"
-                           }
-                        ]
-                     ],
-                     "tags": [
-                        {
-                           "key": "metric_name",
-                           "operator": "=",
-                           "value": "tnt_fiber_count"
-                        }
-                     ]
-                  }
-               ],
-               "thresholds": [ ],
-               "timeFrom": null,
-               "timeShift": null,
-               "title": "Number of fibers",
-               "tooltip": {
-                  "shared": true,
-                  "sort": 2,
-                  "value_type": "individual"
-               },
-               "type": "graph",
-               "xaxis": {
-                  "buckets": null,
-                  "mode": "time",
-                  "name": null,
-                  "show": true,
-                  "values": [ ]
-               },
-               "yaxes": [
-                  {
-                     "decimals": 0,
-                     "format": "none",
-                     "label": null,
-                     "logBase": 1,
-                     "max": null,
-                     "min": null,
-                     "show": true
-                  },
-                  {
-                     "decimals": 0,
-                     "format": "none",
-                     "label": null,
-                     "logBase": 1,
-                     "max": null,
-                     "min": null,
-                     "show": true
-                  }
-               ]
-            },
-            {
-               "aliasColors": { },
-               "bars": false,
-               "dashLength": 10,
-               "dashes": false,
-               "datasource": "${DS_INFLUXDB}",
-               "decimals": 3,
-               "description": "Average rate of fiber context switches.\nContext switches are counted over all current fibers.\n",
-               "fill": 0,
-               "gridPos": {
-                  "h": 8,
-                  "w": 12,
-                  "x": 12,
-                  "y": 145
-               },
-               "id": 57,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -6721,15 +6590,277 @@
                "dashes": false,
                "datasource": "${DS_INFLUXDB}",
                "decimals": 3,
-               "description": "Amount of memory used by current fibers.\n",
+               "description": "Duration of last event loop iteration (tx thread).\nHigh duration results in longer responses,\npossible bad health signals and may be the\nreason of \"Too long WAL write\" errors.\n\nPanel works with `metrics >= 0.13.0`.\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
                   "w": 12,
+                  "x": 12,
+                  "y": 145
+               },
+               "id": 57,
+               "legend": {
+                  "alignAsTable": true,
+                  "avg": true,
+                  "current": true,
+                  "max": true,
+                  "min": false,
+                  "rightSide": false,
+                  "show": true,
+                  "sideWidth": null,
+                  "sort": "current",
+                  "sortDesc": true,
+                  "total": false,
+                  "values": true
+               },
+               "lines": true,
+               "linewidth": 1,
+               "links": [ ],
+               "nullPointMode": "null",
+               "percentage": false,
+               "pointradius": 5,
+               "points": false,
+               "renderer": "flot",
+               "repeat": null,
+               "seriesOverrides": [ ],
+               "spaceLength": 10,
+               "stack": false,
+               "steppedLine": false,
+               "targets": [
+                  {
+                     "alias": "$tag_label_pairs_alias",
+                     "groupBy": [
+                        {
+                           "params": [
+                              "$__interval"
+                           ],
+                           "type": "time"
+                        },
+                        {
+                           "params": [
+                              "label_pairs_alias"
+                           ],
+                           "type": "tag"
+                        },
+                        {
+                           "params": [
+                              "none"
+                           ],
+                           "type": "fill"
+                        }
+                     ],
+                     "measurement": "${INFLUXDB_MEASUREMENT}",
+                     "policy": "${INFLUXDB_POLICY}",
+                     "refId": "A",
+                     "resultFormat": "time_series",
+                     "select": [
+                        [
+                           {
+                              "params": [
+                                 "value"
+                              ],
+                              "type": "field"
+                           },
+                           {
+                              "params": [ ],
+                              "type": "last"
+                           }
+                        ]
+                     ],
+                     "tags": [
+                        {
+                           "key": "metric_name",
+                           "operator": "=",
+                           "value": "tnt_ev_loop_time"
+                        }
+                     ]
+                  }
+               ],
+               "thresholds": [ ],
+               "timeFrom": null,
+               "timeShift": null,
+               "title": "Event loop time",
+               "tooltip": {
+                  "shared": true,
+                  "sort": 2,
+                  "value_type": "individual"
+               },
+               "type": "graph",
+               "xaxis": {
+                  "buckets": null,
+                  "mode": "time",
+                  "name": null,
+                  "show": true,
+                  "values": [ ]
+               },
+               "yaxes": [
+                  {
+                     "decimals": 3,
+                     "format": "ms",
+                     "label": "cycle duration",
+                     "logBase": 1,
+                     "max": null,
+                     "min": null,
+                     "show": true
+                  },
+                  {
+                     "decimals": 3,
+                     "format": "ms",
+                     "label": null,
+                     "logBase": 1,
+                     "max": null,
+                     "min": null,
+                     "show": true
+                  }
+               ]
+            },
+            {
+               "aliasColors": { },
+               "bars": false,
+               "dashLength": 10,
+               "dashes": false,
+               "datasource": "${DS_INFLUXDB}",
+               "decimals": 0,
+               "description": "Current number of fibers in tx thread. \n",
+               "fill": 0,
+               "gridPos": {
+                  "h": 8,
+                  "w": 8,
                   "x": 0,
                   "y": 153
                },
                "id": 58,
+               "legend": {
+                  "alignAsTable": true,
+                  "avg": false,
+                  "current": true,
+                  "max": true,
+                  "min": false,
+                  "rightSide": false,
+                  "show": true,
+                  "sideWidth": null,
+                  "sort": "current",
+                  "sortDesc": true,
+                  "total": false,
+                  "values": true
+               },
+               "lines": true,
+               "linewidth": 1,
+               "links": [ ],
+               "nullPointMode": "null",
+               "percentage": false,
+               "pointradius": 5,
+               "points": false,
+               "renderer": "flot",
+               "repeat": null,
+               "seriesOverrides": [ ],
+               "spaceLength": 10,
+               "stack": false,
+               "steppedLine": false,
+               "targets": [
+                  {
+                     "alias": "$tag_label_pairs_alias",
+                     "groupBy": [
+                        {
+                           "params": [
+                              "$__interval"
+                           ],
+                           "type": "time"
+                        },
+                        {
+                           "params": [
+                              "label_pairs_alias"
+                           ],
+                           "type": "tag"
+                        },
+                        {
+                           "params": [
+                              "none"
+                           ],
+                           "type": "fill"
+                        }
+                     ],
+                     "measurement": "${INFLUXDB_MEASUREMENT}",
+                     "policy": "${INFLUXDB_POLICY}",
+                     "refId": "A",
+                     "resultFormat": "time_series",
+                     "select": [
+                        [
+                           {
+                              "params": [
+                                 "value"
+                              ],
+                              "type": "field"
+                           },
+                           {
+                              "params": [ ],
+                              "type": "last"
+                           }
+                        ]
+                     ],
+                     "tags": [
+                        {
+                           "key": "metric_name",
+                           "operator": "=",
+                           "value": "tnt_fiber_count"
+                        }
+                     ]
+                  }
+               ],
+               "thresholds": [ ],
+               "timeFrom": null,
+               "timeShift": null,
+               "title": "Number of fibers",
+               "tooltip": {
+                  "shared": true,
+                  "sort": 2,
+                  "value_type": "individual"
+               },
+               "type": "graph",
+               "xaxis": {
+                  "buckets": null,
+                  "mode": "time",
+                  "name": null,
+                  "show": true,
+                  "values": [ ]
+               },
+               "yaxes": [
+                  {
+                     "decimals": 0,
+                     "format": "none",
+                     "label": null,
+                     "logBase": 1,
+                     "max": null,
+                     "min": null,
+                     "show": true
+                  },
+                  {
+                     "decimals": 0,
+                     "format": "none",
+                     "label": null,
+                     "logBase": 1,
+                     "max": null,
+                     "min": null,
+                     "show": true
+                  }
+               ]
+            },
+            {
+               "aliasColors": { },
+               "bars": false,
+               "dashLength": 10,
+               "dashes": false,
+               "datasource": "${DS_INFLUXDB}",
+               "decimals": 3,
+               "description": "Amount of memory used by current fibers.\n",
+               "fill": 0,
+               "gridPos": {
+                  "h": 8,
+                  "w": 8,
+                  "x": 8,
+                  "y": 153
+               },
+               "id": 59,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -6856,11 +6987,11 @@
                "fill": 0,
                "gridPos": {
                   "h": 8,
-                  "w": 12,
-                  "x": 12,
+                  "w": 8,
+                  "x": 16,
                   "y": 153
                },
-               "id": 59,
+               "id": 60,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -6994,7 +7125,7 @@
             "x": 0,
             "y": 161
          },
-         "id": 60,
+         "id": 61,
          "panels": [
             {
                "aliasColors": { },
@@ -7011,7 +7142,7 @@
                   "x": 0,
                   "y": 162
                },
-               "id": 61,
+               "id": 62,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -7154,7 +7285,7 @@
                   "x": 8,
                   "y": 162
                },
-               "id": 62,
+               "id": 63,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -7297,7 +7428,7 @@
                   "x": 16,
                   "y": 162
                },
-               "id": 63,
+               "id": 64,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -7440,7 +7571,7 @@
                   "x": 0,
                   "y": 170
                },
-               "id": 64,
+               "id": 65,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -7583,7 +7714,7 @@
                   "x": 8,
                   "y": 170
                },
-               "id": 65,
+               "id": 66,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -7726,7 +7857,7 @@
                   "x": 16,
                   "y": 170
                },
-               "id": 66,
+               "id": 67,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -7869,7 +8000,7 @@
                   "x": 0,
                   "y": 178
                },
-               "id": 67,
+               "id": 68,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -8012,7 +8143,7 @@
                   "x": 8,
                   "y": 178
                },
-               "id": 68,
+               "id": 69,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -8155,7 +8286,7 @@
                   "x": 16,
                   "y": 178
                },
-               "id": 69,
+               "id": 70,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -8298,7 +8429,7 @@
                   "x": 0,
                   "y": 186
                },
-               "id": 70,
+               "id": 71,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -8441,7 +8572,7 @@
                   "x": 8,
                   "y": 186
                },
-               "id": 71,
+               "id": 72,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -8584,7 +8715,7 @@
                   "x": 16,
                   "y": 186
                },
-               "id": 72,
+               "id": 73,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -8730,7 +8861,7 @@
             "x": 0,
             "y": 194
          },
-         "id": 73,
+         "id": 74,
          "panels": [
             {
                "aliasColors": { },
@@ -8747,7 +8878,7 @@
                   "x": 0,
                   "y": 195
                },
-               "id": 74,
+               "id": 75,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -8878,7 +9009,7 @@
                   "x": 0,
                   "y": 201
                },
-               "id": 75,
+               "id": 76,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -9015,7 +9146,7 @@
                   "x": 12,
                   "y": 201
                },
-               "id": 76,
+               "id": 77,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,

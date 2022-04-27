@@ -426,19 +426,26 @@ local vinyl = import 'panels/vinyl.libsonnet';
       job=job,
     ),
 
-    runtime.fiber_count(
-      datasource=datasource,
-      policy=policy,
-      measurement=measurement,
-      job=job,
-    ),
-
     runtime.fiber_csw_rps(
       datasource=datasource,
       policy=policy,
       measurement=measurement,
       job=job,
       rate_time_range=rate_time_range,
+    ),
+
+    runtime.event_loop_time(
+      datasource=datasource,
+      policy=policy,
+      measurement=measurement,
+      job=job,
+    ),
+
+    runtime.fiber_count(
+      datasource=datasource,
+      policy=policy,
+      measurement=measurement,
+      job=job,
     ),
 
     runtime.fiber_memused(
