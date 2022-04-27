@@ -2,16 +2,14 @@ tnt_router:
   instances:
   - tnt_router
   roles:
-  - vshard-router
-  - app.roles.custom
+  - app.roles.router
   all_rw: false
 tnt_storage_1:
   instances:
   - tnt_storage_1_master
   - tnt_storage_1_replica
   roles:
-  - vshard-storage
-  - app.roles.custom
+  - app.roles.storage
   weight: 1
   all_rw: false
   vshard_group: default
@@ -20,8 +18,7 @@ tnt_storage_2:
   - tnt_storage_2_master
   - tnt_storage_2_replica
   roles:
-  - vshard-storage
-  - app.roles.custom
+  - app.roles.storage
   weight: 1
   all_rw: false
   vshard_group: default
