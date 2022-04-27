@@ -2,7 +2,7 @@ local cartridge = require('cartridge')
 local config = require('cartridge.argparse')
 local fiber = require('fiber')
 
-local function init(opts) -- luacheck: no unused args
+local function init(opts)
     local local_cfg = config.get_opts({
         user = 'string',
         password = 'string'
