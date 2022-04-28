@@ -162,6 +162,16 @@ groups:
       description: "Instance '{{ $labels.alias }}' of job '{{ $labels.job }}' has low fiber context switches rate.
         Some high loaded fiber has too little yields. It may be the reason of 'Too long WAL write' warnings."
 
+  # Alert for high duration of event loop iteration in Tarantool.
+  - alert: HighEVLoopTime
+    expr: tnt_ev_loop_time > 0.1
+    for: 1m
+    labels:
+      severity: warning
+    annotations:
+      summary: "Instance '{{ $labels.alias }}' ('{{ $labels.job }}') event loop has high cycle duration"
+      description: "Instance '{{ $labels.alias }}' of job '{{ $labels.job }}' event loop has high cycle duration.
+        Some high loaded fiber has too little yields. It may be the reason of 'Too long WAL write' warnings."
 
 - name: tarantool-business
   rules:
