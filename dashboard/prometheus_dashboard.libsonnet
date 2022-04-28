@@ -130,6 +130,12 @@ dashboard.new(
     rate_time_range=variable.prometheus.rate_time_range,
   )
 ).addPanels(
+  section.luajit(
+    datasource=variable.datasource.prometheus,
+    job=variable.prometheus.job,
+    rate_time_range=variable.prometheus.rate_time_range,
+  )
+).addPanels(
   section.operations(
     datasource=variable.datasource.prometheus,
     job=variable.prometheus.job,

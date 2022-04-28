@@ -1,6 +1,7 @@
 local cluster = import 'panels/cluster.libsonnet';
 local cpu = import 'panels/cpu.libsonnet';
 local http = import 'panels/http.libsonnet';
+local luajit = import 'panels/luajit.libsonnet';
 local net = import 'panels/net.libsonnet';
 local operations = import 'panels/operations.libsonnet';
 local runtime = import 'panels/runtime.libsonnet';
@@ -460,6 +461,156 @@ local vinyl = import 'panels/vinyl.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
+    ),
+  ],
+
+  luajit(datasource, policy=null, measurement=null, job=null, rate_time_range=null):: [
+    luajit.row,
+
+    luajit.snap_restores(
+      datasource=datasource,
+      policy=policy,
+      measurement=measurement,
+      job=job,
+      rate_time_range=rate_time_range,
+    ),
+
+    luajit.jit_traces(
+      datasource=datasource,
+      policy=policy,
+      measurement=measurement,
+      job=job,
+      rate_time_range=rate_time_range,
+    ),
+
+    luajit.jit_traces_aborts(
+      datasource=datasource,
+      policy=policy,
+      measurement=measurement,
+      job=job,
+      rate_time_range=rate_time_range,
+    ),
+
+    luajit.machine_code_areas(
+      datasource=datasource,
+      policy=policy,
+      measurement=measurement,
+      job=job,
+    ),
+
+    luajit.strhash_hit(
+      datasource=datasource,
+      policy=policy,
+      measurement=measurement,
+      job=job,
+      rate_time_range=rate_time_range,
+    ),
+
+    luajit.strhash_miss(
+      datasource=datasource,
+      policy=policy,
+      measurement=measurement,
+      job=job,
+      rate_time_range=rate_time_range,
+    ),
+
+    luajit.gc_steps_atomic(
+      datasource=datasource,
+      policy=policy,
+      measurement=measurement,
+      job=job,
+      rate_time_range=rate_time_range,
+    ),
+
+    luajit.gc_steps_sweepstring(
+      datasource=datasource,
+      policy=policy,
+      measurement=measurement,
+      job=job,
+      rate_time_range=rate_time_range,
+    ),
+
+    luajit.gc_steps_finalize(
+      datasource=datasource,
+      policy=policy,
+      measurement=measurement,
+      job=job,
+      rate_time_range=rate_time_range,
+    ),
+
+    luajit.gc_steps_sweep(
+      datasource=datasource,
+      policy=policy,
+      measurement=measurement,
+      job=job,
+      rate_time_range=rate_time_range,
+    ),
+
+    luajit.gc_steps_propagate(
+      datasource=datasource,
+      policy=policy,
+      measurement=measurement,
+      job=job,
+      rate_time_range=rate_time_range,
+    ),
+
+    luajit.gc_steps_pause(
+      datasource=datasource,
+      policy=policy,
+      measurement=measurement,
+      job=job,
+      rate_time_range=rate_time_range,
+    ),
+
+    luajit.strings_allocated(
+      datasource=datasource,
+      policy=policy,
+      measurement=measurement,
+      job=job,
+    ),
+
+    luajit.tables_allocated(
+      datasource=datasource,
+      policy=policy,
+      measurement=measurement,
+      job=job,
+    ),
+
+    luajit.cdata_allocated(
+      datasource=datasource,
+      policy=policy,
+      measurement=measurement,
+      job=job,
+    ),
+
+    luajit.userdata_allocated(
+      datasource=datasource,
+      policy=policy,
+      measurement=measurement,
+      job=job,
+    ),
+
+    luajit.gc_memory_current(
+      datasource=datasource,
+      policy=policy,
+      measurement=measurement,
+      job=job,
+    ),
+
+    luajit.gc_memory_freed(
+      datasource=datasource,
+      policy=policy,
+      measurement=measurement,
+      job=job,
+      rate_time_range=rate_time_range,
+    ),
+
+    luajit.gc_memory_allocated(
+      datasource=datasource,
+      policy=policy,
+      measurement=measurement,
+      job=job,
+      rate_time_range=rate_time_range,
     ),
   ],
 
