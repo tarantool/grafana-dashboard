@@ -367,6 +367,26 @@ tests:
               description: "Instance 'tnt_router' of job 'tarantool_app' has low fiber context switches rate.
                 Some high loaded fiber has too little yields. It may be the reason of 'Too long WAL write' warnings."
 
+
+  - interval: 15s
+    input_series:
+      - series: tnt_ev_loop_time{job="tarantool_app", instance="app:8081", alias="tnt_router"}
+        values: '0.11+0x10'
+    alert_rule_test:
+      - eval_time: 2m
+        alertname: HighEVLoopTime
+        exp_alerts:
+          - exp_labels:
+              severity: warning
+              instance: app:8081
+              alias: tnt_router
+              job: tarantool_app
+            exp_annotations:
+              summary: "Instance 'tnt_router' ('tarantool_app') event loop has high cycle duration"
+              description: "Instance 'tnt_router' of job 'tarantool_app' event loop has high cycle duration.
+                Some high loaded fiber has too little yields. It may be the reason of 'Too long WAL write' warnings."
+
+
   - interval: 15s
     input_series:
         - series: http_server_request_latency_count{job="tarantool_app",instance="app:8081",path="/hello",method="GET",status="200",alias="tnt_router"}
