@@ -102,6 +102,12 @@ dashboard.new(
     measurement=variable.influxdb.measurement,
   )
 ).addPanels(
+  section.luajit(
+    datasource=variable.datasource.influxdb,
+    policy=variable.influxdb.policy,
+    measurement=variable.influxdb.measurement,
+  )
+).addPanels(
   section.operations(
     datasource=variable.datasource.influxdb,
     policy=variable.influxdb.policy,
