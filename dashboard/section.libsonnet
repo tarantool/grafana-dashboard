@@ -321,6 +321,20 @@ local vinyl = import 'panels/vinyl.libsonnet';
       job=job,
     ),
 
+    vinyl.index_memory(
+      datasource=datasource,
+      policy=policy,
+      measurement=measurement,
+      job=job,
+    ),
+
+    vinyl.bloom_filter_memory(
+      datasource=datasource,
+      policy=policy,
+      measurement=measurement,
+      job=job,
+    ),
+
     vinyl.regulator_dump_bandwidth(
       datasource=datasource,
       policy=policy,

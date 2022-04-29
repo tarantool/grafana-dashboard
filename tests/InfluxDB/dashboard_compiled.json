@@ -4656,15 +4656,277 @@
                "dashes": false,
                "datasource": "${DS_INFLUXDB}",
                "decimals": 3,
+               "description": "Amount of memory in bytes currently used to store indexes.\nIf the metric value is close to box.cfg.vinyl_memory, this\nindicates that vinyl_page_size was chosen incorrectly.\n",
+               "fill": 0,
+               "gridPos": {
+                  "h": 8,
+                  "w": 12,
+                  "x": 0,
+                  "y": 111
+               },
+               "id": 41,
+               "legend": {
+                  "alignAsTable": true,
+                  "avg": true,
+                  "current": true,
+                  "max": true,
+                  "min": false,
+                  "rightSide": false,
+                  "show": true,
+                  "sideWidth": null,
+                  "sort": "current",
+                  "sortDesc": true,
+                  "total": false,
+                  "values": true
+               },
+               "lines": true,
+               "linewidth": 1,
+               "links": [ ],
+               "nullPointMode": "null",
+               "percentage": false,
+               "pointradius": 5,
+               "points": false,
+               "renderer": "flot",
+               "repeat": null,
+               "seriesOverrides": [ ],
+               "spaceLength": 10,
+               "stack": false,
+               "steppedLine": false,
+               "targets": [
+                  {
+                     "alias": "$tag_label_pairs_alias",
+                     "groupBy": [
+                        {
+                           "params": [
+                              "$__interval"
+                           ],
+                           "type": "time"
+                        },
+                        {
+                           "params": [
+                              "label_pairs_alias"
+                           ],
+                           "type": "tag"
+                        },
+                        {
+                           "params": [
+                              "none"
+                           ],
+                           "type": "fill"
+                        }
+                     ],
+                     "measurement": "${INFLUXDB_MEASUREMENT}",
+                     "policy": "${INFLUXDB_POLICY}",
+                     "refId": "A",
+                     "resultFormat": "time_series",
+                     "select": [
+                        [
+                           {
+                              "params": [
+                                 "value"
+                              ],
+                              "type": "field"
+                           },
+                           {
+                              "params": [ ],
+                              "type": "mean"
+                           }
+                        ]
+                     ],
+                     "tags": [
+                        {
+                           "key": "metric_name",
+                           "operator": "=",
+                           "value": "tnt_vinyl_memory_page_index"
+                        }
+                     ]
+                  }
+               ],
+               "thresholds": [ ],
+               "timeFrom": null,
+               "timeShift": null,
+               "title": "Index memory",
+               "tooltip": {
+                  "shared": true,
+                  "sort": 2,
+                  "value_type": "individual"
+               },
+               "type": "graph",
+               "xaxis": {
+                  "buckets": null,
+                  "mode": "time",
+                  "name": null,
+                  "show": true,
+                  "values": [ ]
+               },
+               "yaxes": [
+                  {
+                     "decimals": 0,
+                     "format": "bytes",
+                     "label": "in bytes",
+                     "logBase": 1,
+                     "max": null,
+                     "min": null,
+                     "show": true
+                  },
+                  {
+                     "decimals": 3,
+                     "format": "bytes",
+                     "label": null,
+                     "logBase": 1,
+                     "max": null,
+                     "min": null,
+                     "show": true
+                  }
+               ]
+            },
+            {
+               "aliasColors": { },
+               "bars": false,
+               "dashLength": 10,
+               "dashes": false,
+               "datasource": "${DS_INFLUXDB}",
+               "decimals": 3,
+               "description": "Amount of memory in bytes used by bloom filters.\n",
+               "fill": 0,
+               "gridPos": {
+                  "h": 8,
+                  "w": 12,
+                  "x": 12,
+                  "y": 111
+               },
+               "id": 42,
+               "legend": {
+                  "alignAsTable": true,
+                  "avg": true,
+                  "current": true,
+                  "max": true,
+                  "min": false,
+                  "rightSide": false,
+                  "show": true,
+                  "sideWidth": null,
+                  "sort": "current",
+                  "sortDesc": true,
+                  "total": false,
+                  "values": true
+               },
+               "lines": true,
+               "linewidth": 1,
+               "links": [ ],
+               "nullPointMode": "null",
+               "percentage": false,
+               "pointradius": 5,
+               "points": false,
+               "renderer": "flot",
+               "repeat": null,
+               "seriesOverrides": [ ],
+               "spaceLength": 10,
+               "stack": false,
+               "steppedLine": false,
+               "targets": [
+                  {
+                     "alias": "$tag_label_pairs_alias",
+                     "groupBy": [
+                        {
+                           "params": [
+                              "$__interval"
+                           ],
+                           "type": "time"
+                        },
+                        {
+                           "params": [
+                              "label_pairs_alias"
+                           ],
+                           "type": "tag"
+                        },
+                        {
+                           "params": [
+                              "none"
+                           ],
+                           "type": "fill"
+                        }
+                     ],
+                     "measurement": "${INFLUXDB_MEASUREMENT}",
+                     "policy": "${INFLUXDB_POLICY}",
+                     "refId": "A",
+                     "resultFormat": "time_series",
+                     "select": [
+                        [
+                           {
+                              "params": [
+                                 "value"
+                              ],
+                              "type": "field"
+                           },
+                           {
+                              "params": [ ],
+                              "type": "mean"
+                           }
+                        ]
+                     ],
+                     "tags": [
+                        {
+                           "key": "metric_name",
+                           "operator": "=",
+                           "value": "tnt_vinyl_memory_bloom_filter"
+                        }
+                     ]
+                  }
+               ],
+               "thresholds": [ ],
+               "timeFrom": null,
+               "timeShift": null,
+               "title": "Bloom filter memory",
+               "tooltip": {
+                  "shared": true,
+                  "sort": 2,
+                  "value_type": "individual"
+               },
+               "type": "graph",
+               "xaxis": {
+                  "buckets": null,
+                  "mode": "time",
+                  "name": null,
+                  "show": true,
+                  "values": [ ]
+               },
+               "yaxes": [
+                  {
+                     "decimals": 0,
+                     "format": "bytes",
+                     "label": "in bytes",
+                     "logBase": 1,
+                     "max": null,
+                     "min": null,
+                     "show": true
+                  },
+                  {
+                     "decimals": 3,
+                     "format": "bytes",
+                     "label": null,
+                     "logBase": 1,
+                     "max": null,
+                     "min": null,
+                     "show": true
+                  }
+               ]
+            },
+            {
+               "aliasColors": { },
+               "bars": false,
+               "dashLength": 10,
+               "dashes": false,
+               "datasource": "${DS_INFLUXDB}",
+               "decimals": 3,
                "description": "The estimated average rate of taking dumps, bytes per second.\nInitially, the rate value is 10 megabytes per second\nand being recalculated depending on the the actual rate.\nOnly significant dumps that are larger than one megabyte\nare used for the estimate.\n\nPanel works with `metrics >= 0.8.0`.\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
                   "w": 6,
                   "x": 0,
-                  "y": 111
+                  "y": 119
                },
-               "id": 41,
+               "id": 43,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -4793,9 +5055,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 6,
-                  "y": 111
+                  "y": 119
                },
-               "id": 42,
+               "id": 44,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -4924,9 +5186,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 12,
-                  "y": 111
+                  "y": 119
                },
-               "id": 43,
+               "id": 45,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -5055,9 +5317,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 18,
-                  "y": 111
+                  "y": 119
                },
-               "id": 44,
+               "id": 46,
                "legend": {
                   "alignAsTable": true,
                   "avg": false,
@@ -5186,9 +5448,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 0,
-                  "y": 119
+                  "y": 127
                },
-               "id": 45,
+               "id": 47,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -5323,9 +5585,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 6,
-                  "y": 119
+                  "y": 127
                },
-               "id": 46,
+               "id": 48,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -5460,9 +5722,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 12,
-                  "y": 119
+                  "y": 127
                },
-               "id": 47,
+               "id": 49,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -5597,9 +5859,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 18,
-                  "y": 119
+                  "y": 127
                },
-               "id": 48,
+               "id": 50,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -5728,9 +5990,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 0,
-                  "y": 127
+                  "y": 135
                },
-               "id": 49,
+               "id": 51,
                "legend": {
                   "alignAsTable": true,
                   "avg": false,
@@ -5865,9 +6127,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 6,
-                  "y": 127
+                  "y": 135
                },
-               "id": 50,
+               "id": 52,
                "legend": {
                   "alignAsTable": true,
                   "avg": false,
@@ -6008,9 +6270,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 12,
-                  "y": 127
+                  "y": 135
                },
-               "id": 51,
+               "id": 53,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -6145,9 +6407,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 18,
-                  "y": 127
+                  "y": 135
                },
-               "id": 52,
+               "id": 54,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -6285,9 +6547,9 @@
             "h": 1,
             "w": 24,
             "x": 0,
-            "y": 135
+            "y": 143
          },
-         "id": 53,
+         "id": 55,
          "panels": [
             {
                "aliasColors": { },
@@ -6302,9 +6564,9 @@
                   "h": 8,
                   "w": 12,
                   "x": 0,
-                  "y": 136
+                  "y": 144
                },
-               "id": 54,
+               "id": 56,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -6439,9 +6701,9 @@
                   "h": 8,
                   "w": 12,
                   "x": 12,
-                  "y": 136
+                  "y": 144
                },
-               "id": 55,
+               "id": 57,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -6579,9 +6841,9 @@
             "h": 1,
             "w": 24,
             "x": 0,
-            "y": 144
+            "y": 152
          },
-         "id": 56,
+         "id": 58,
          "panels": [
             {
                "aliasColors": { },
@@ -6596,9 +6858,9 @@
                   "h": 8,
                   "w": 12,
                   "x": 0,
-                  "y": 145
+                  "y": 153
                },
-               "id": 57,
+               "id": 59,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -6727,9 +6989,9 @@
                   "h": 8,
                   "w": 12,
                   "x": 12,
-                  "y": 145
+                  "y": 153
                },
-               "id": 58,
+               "id": 60,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -6858,9 +7120,9 @@
                   "h": 8,
                   "w": 12,
                   "x": 0,
-                  "y": 153
+                  "y": 161
                },
-               "id": 59,
+               "id": 61,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -6995,9 +7257,9 @@
                   "h": 8,
                   "w": 12,
                   "x": 12,
-                  "y": 153
+                  "y": 161
                },
-               "id": 60,
+               "id": 62,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -7126,9 +7388,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 0,
-                  "y": 161
+                  "y": 169
                },
-               "id": 61,
+               "id": 63,
                "legend": {
                   "alignAsTable": true,
                   "avg": false,
@@ -7257,9 +7519,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 8,
-                  "y": 161
+                  "y": 169
                },
-               "id": 62,
+               "id": 64,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -7388,9 +7650,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 16,
-                  "y": 161
+                  "y": 169
                },
-               "id": 63,
+               "id": 65,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -7522,9 +7784,9 @@
             "h": 1,
             "w": 24,
             "x": 0,
-            "y": 169
+            "y": 177
          },
-         "id": 64,
+         "id": 66,
          "panels": [
             {
                "aliasColors": { },
@@ -7539,9 +7801,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 0,
-                  "y": 170
+                  "y": 178
                },
-               "id": 65,
+               "id": 67,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -7676,9 +7938,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 6,
-                  "y": 170
+                  "y": 178
                },
-               "id": 66,
+               "id": 68,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -7813,9 +8075,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 12,
-                  "y": 170
+                  "y": 178
                },
-               "id": 67,
+               "id": 69,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -7950,9 +8212,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 18,
-                  "y": 170
+                  "y": 178
                },
-               "id": 68,
+               "id": 70,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -8081,9 +8343,9 @@
                   "h": 8,
                   "w": 12,
                   "x": 0,
-                  "y": 178
+                  "y": 186
                },
-               "id": 69,
+               "id": 71,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -8218,9 +8480,9 @@
                   "h": 8,
                   "w": 12,
                   "x": 12,
-                  "y": 178
+                  "y": 186
                },
-               "id": 70,
+               "id": 72,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -8355,9 +8617,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 0,
-                  "y": 186
+                  "y": 194
                },
-               "id": 71,
+               "id": 73,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -8492,9 +8754,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 8,
-                  "y": 186
+                  "y": 194
                },
-               "id": 72,
+               "id": 74,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -8629,9 +8891,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 16,
-                  "y": 186
+                  "y": 194
                },
-               "id": 73,
+               "id": 75,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -8766,9 +9028,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 0,
-                  "y": 194
+                  "y": 202
                },
-               "id": 74,
+               "id": 76,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -8903,9 +9165,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 8,
-                  "y": 194
+                  "y": 202
                },
-               "id": 75,
+               "id": 77,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -9040,9 +9302,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 16,
-                  "y": 194
+                  "y": 202
                },
-               "id": 76,
+               "id": 78,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -9177,9 +9439,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 0,
-                  "y": 202
+                  "y": 210
                },
-               "id": 77,
+               "id": 79,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -9308,9 +9570,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 6,
-                  "y": 202
+                  "y": 210
                },
-               "id": 78,
+               "id": 80,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -9439,9 +9701,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 12,
-                  "y": 202
+                  "y": 210
                },
-               "id": 79,
+               "id": 81,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -9570,9 +9832,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 18,
-                  "y": 202
+                  "y": 210
                },
-               "id": 80,
+               "id": 82,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -9701,9 +9963,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 0,
-                  "y": 210
+                  "y": 218
                },
-               "id": 81,
+               "id": 83,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -9832,9 +10094,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 8,
-                  "y": 210
+                  "y": 218
                },
-               "id": 82,
+               "id": 84,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -9969,9 +10231,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 16,
-                  "y": 210
+                  "y": 218
                },
-               "id": 83,
+               "id": 85,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -10109,9 +10371,9 @@
             "h": 1,
             "w": 24,
             "x": 0,
-            "y": 218
+            "y": 226
          },
-         "id": 84,
+         "id": 86,
          "panels": [
             {
                "aliasColors": { },
@@ -10126,9 +10388,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 0,
-                  "y": 219
+                  "y": 227
                },
-               "id": 85,
+               "id": 87,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -10269,9 +10531,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 8,
-                  "y": 219
+                  "y": 227
                },
-               "id": 86,
+               "id": 88,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -10412,9 +10674,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 16,
-                  "y": 219
+                  "y": 227
                },
-               "id": 87,
+               "id": 89,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -10555,9 +10817,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 0,
-                  "y": 227
+                  "y": 235
                },
-               "id": 88,
+               "id": 90,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -10698,9 +10960,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 8,
-                  "y": 227
+                  "y": 235
                },
-               "id": 89,
+               "id": 91,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -10841,9 +11103,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 16,
-                  "y": 227
+                  "y": 235
                },
-               "id": 90,
+               "id": 92,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -10984,9 +11246,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 0,
-                  "y": 235
+                  "y": 243
                },
-               "id": 91,
+               "id": 93,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -11127,9 +11389,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 8,
-                  "y": 235
+                  "y": 243
                },
-               "id": 92,
+               "id": 94,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -11270,9 +11532,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 16,
-                  "y": 235
+                  "y": 243
                },
-               "id": 93,
+               "id": 95,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -11413,9 +11675,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 0,
-                  "y": 243
+                  "y": 251
                },
-               "id": 94,
+               "id": 96,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -11556,9 +11818,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 8,
-                  "y": 243
+                  "y": 251
                },
-               "id": 95,
+               "id": 97,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -11699,9 +11961,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 16,
-                  "y": 243
+                  "y": 251
                },
-               "id": 96,
+               "id": 98,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,

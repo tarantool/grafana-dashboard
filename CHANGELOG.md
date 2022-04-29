@@ -13,6 +13,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - LuaJit statistics panels
 - Transactions memory panel
 - Net memory and new binary connections panels
+- Vinyl index and bloom filter memory panels
 
 ### Changed
 - Rework "Tarantool memory memory miscellaneous" section to "Tarantool runtime overview"

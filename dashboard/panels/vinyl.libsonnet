@@ -73,6 +73,56 @@ local prometheus = grafana.prometheus;
     metric_name='tnt_vinyl_disk_index_size',
   ),
 
+  index_memory(
+    title='Index memory',
+    description=|||
+      Amount of memory in bytes currently used to store indexes.
+      If the metric value is close to box.cfg.vinyl_memory, this
+      indicates that vinyl_page_size was chosen incorrectly.
+    |||,
+    datasource=null,
+    policy=null,
+    measurement=null,
+    job=null,
+  ):: common.default_graph(
+    title=title,
+    description=description,
+    datasource=datasource,
+    format='bytes',
+    labelY1='in bytes',
+    panel_width=12,
+  ).addTarget(common.default_metric_target(
+    datasource,
+    'tnt_vinyl_memory_page_index',
+    job,
+    policy,
+    measurement
+  )),
+
+  bloom_filter_memory(
+    title='Bloom filter memory',
+    description=|||
+      Amount of memory in bytes used by bloom filters.
+    |||,
+    datasource=null,
+    policy=null,
+    measurement=null,
+    job=null,
+  ):: common.default_graph(
+    title=title,
+    description=description,
+    datasource=datasource,
+    format='bytes',
+    labelY1='in bytes',
+    panel_width=12,
+  ).addTarget(common.default_metric_target(
+    datasource,
+    'tnt_vinyl_memory_bloom_filter',
+    job,
+    policy,
+    measurement
+  )),
+
   local regulator_bps(
     title=null,
     description=null,
