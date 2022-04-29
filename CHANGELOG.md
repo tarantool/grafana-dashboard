@@ -12,6 +12,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Event loop time panel and alert example
 - LuaJit statistics panels
 - Transactions memory panel
+- Net memory and new binary connections panels
 
 ### Changed
 - Rework "Tarantool memory memory miscellaneous" section to "Tarantool runtime overview"

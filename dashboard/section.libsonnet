@@ -142,6 +142,13 @@ local vinyl = import 'panels/vinyl.libsonnet';
   net(datasource, policy=null, measurement=null, job=null, rate_time_range=null):: [
     net.row,
 
+    net.net_memory(
+      datasource=datasource,
+      policy=policy,
+      measurement=measurement,
+      job=job,
+    ),
+
     net.bytes_received_per_second(
       datasource=datasource,
       policy=policy,
@@ -171,6 +178,14 @@ local vinyl = import 'panels/vinyl.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
+    ),
+
+    net.connections_per_second(
+      datasource=datasource,
+      policy=policy,
+      measurement=measurement,
+      job=job,
+      rate_time_range=rate_time_range,
     ),
 
     net.current_connections(

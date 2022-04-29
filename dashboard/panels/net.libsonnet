@@ -3,6 +3,30 @@ local common = import 'common.libsonnet';
 {
   row:: common.row('Tarantool network activity'),
 
+  net_memory(
+    title='Net memory',
+    description=|||
+      Memory used for network input/output buffers.
+    |||,
+    datasource=null,
+    policy=null,
+    measurement=null,
+    job=null,
+  ):: common.default_graph(
+    title=title,
+    description=description,
+    datasource=datasource,
+    format='bytes',
+    labelY1='in bytes',
+    panel_width=8,
+  ).addTarget(common.default_metric_target(
+    datasource,
+    'tnt_info_memory_net',
+    job,
+    policy,
+    measurement
+  )),
+
   local bytes_per_second_graph(
     title,
     description,
@@ -19,7 +43,7 @@ local common = import 'common.libsonnet';
     datasource=datasource,
     format='Bps',
     labelY1=labelY1,
-    panel_width=12,
+    panel_width=8,
   ).addTarget(common.default_rps_target(
     datasource,
     metric_name,
@@ -91,6 +115,7 @@ local common = import 'common.libsonnet';
     description=common.rate_warning(description, datasource),
     datasource=datasource,
     labelY1='requests per second',
+    panel_width=12,
   ).addTarget(common.default_rps_target(
     datasource,
     'tnt_net_requests_total',
@@ -116,6 +141,7 @@ local common = import 'common.libsonnet';
     decimals=0,
     labelY1='pending',
     min=0,
+    panel_width=12,
   ).addTarget(common.default_metric_target(
     datasource,
     'tnt_net_requests_current',
@@ -124,10 +150,35 @@ local common = import 'common.libsonnet';
     measurement
   )),
 
-  current_connections(
-    title='Binary protocol connections',
+  connections_per_second(
+    title='New binary connections',
     description=|||
-      Number of current active network connections.
+      Average number of new binary protocol connections per second.
+    |||,
+    datasource=null,
+    policy=null,
+    measurement=null,
+    job=null,
+    rate_time_range=null,
+  ):: common.default_graph(
+    title=title,
+    description=description,
+    datasource=datasource,
+    labelY1='new per second',
+    panel_width=12,
+  ).addTarget(common.default_rps_target(
+    datasource,
+    'tnt_net_connections_total',
+    job,
+    rate_time_range,
+    policy,
+    measurement,
+  )),
+
+  current_connections(
+    title='Current binary connections',
+    description=|||
+      Number of current active binary protocol connections.
     |||,
     datasource=null,
     policy=null,
@@ -139,6 +190,7 @@ local common = import 'common.libsonnet';
     datasource=datasource,
     decimals=0,
     labelY1='current',
+    panel_width=12,
   ).addTarget(common.default_metric_target(
     datasource,
     'tnt_net_connections_current',
