@@ -19,10 +19,37 @@ local common = import 'common.libsonnet';
     datasource=datasource,
     format='bytes',
     labelY1='in bytes',
-    panel_width=24,
+    panel_width=12,
   ).addTarget(common.default_metric_target(
     datasource,
     'tnt_info_memory_lua',
+    job,
+    policy,
+    measurement
+  )),
+
+  memory_tx(
+    title='Transactions memory',
+    description=|||
+      Memory in use by active transactions.
+      For the vinyl storage engine, this is the total size of
+      all allocated objects (struct txv, struct vy_tx, struct vy_read_interval)
+      and tuples pinned for those objects. 
+    |||,
+    datasource=null,
+    policy=null,
+    measurement=null,
+    job=null,
+  ):: common.default_graph(
+    title=title,
+    description=description,
+    datasource=datasource,
+    format='bytes',
+    labelY1='in bytes',
+    panel_width=12,
+  ).addTarget(common.default_metric_target(
+    datasource,
+    'tnt_info_memory_tx',
     job,
     policy,
     measurement
