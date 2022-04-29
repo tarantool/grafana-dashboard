@@ -427,6 +427,13 @@ local vinyl = import 'panels/vinyl.libsonnet';
       job=job,
     ),
 
+    runtime.memory_tx(
+      datasource=datasource,
+      policy=policy,
+      measurement=measurement,
+      job=job,
+    ),
+
     runtime.fiber_csw_rps(
       datasource=datasource,
       policy=policy,

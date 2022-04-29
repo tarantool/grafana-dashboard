@@ -6326,7 +6326,7 @@
                "fill": 0,
                "gridPos": {
                   "h": 8,
-                  "w": 24,
+                  "w": 12,
                   "x": 0,
                   "y": 137
                },
@@ -6453,6 +6453,137 @@
                "dashes": false,
                "datasource": "${DS_INFLUXDB}",
                "decimals": 3,
+               "description": "Memory in use by active transactions.\nFor the vinyl storage engine, this is the total size of\nall allocated objects (struct txv, struct vy_tx, struct vy_read_interval)\nand tuples pinned for those objects. \n",
+               "fill": 0,
+               "gridPos": {
+                  "h": 8,
+                  "w": 12,
+                  "x": 12,
+                  "y": 137
+               },
+               "id": 56,
+               "legend": {
+                  "alignAsTable": true,
+                  "avg": true,
+                  "current": true,
+                  "max": true,
+                  "min": false,
+                  "rightSide": false,
+                  "show": true,
+                  "sideWidth": null,
+                  "sort": "current",
+                  "sortDesc": true,
+                  "total": false,
+                  "values": true
+               },
+               "lines": true,
+               "linewidth": 1,
+               "links": [ ],
+               "nullPointMode": "null",
+               "percentage": false,
+               "pointradius": 5,
+               "points": false,
+               "renderer": "flot",
+               "repeat": null,
+               "seriesOverrides": [ ],
+               "spaceLength": 10,
+               "stack": false,
+               "steppedLine": false,
+               "targets": [
+                  {
+                     "alias": "$tag_label_pairs_alias",
+                     "groupBy": [
+                        {
+                           "params": [
+                              "$__interval"
+                           ],
+                           "type": "time"
+                        },
+                        {
+                           "params": [
+                              "label_pairs_alias"
+                           ],
+                           "type": "tag"
+                        },
+                        {
+                           "params": [
+                              "none"
+                           ],
+                           "type": "fill"
+                        }
+                     ],
+                     "measurement": "${INFLUXDB_MEASUREMENT}",
+                     "policy": "${INFLUXDB_POLICY}",
+                     "refId": "A",
+                     "resultFormat": "time_series",
+                     "select": [
+                        [
+                           {
+                              "params": [
+                                 "value"
+                              ],
+                              "type": "field"
+                           },
+                           {
+                              "params": [ ],
+                              "type": "mean"
+                           }
+                        ]
+                     ],
+                     "tags": [
+                        {
+                           "key": "metric_name",
+                           "operator": "=",
+                           "value": "tnt_info_memory_tx"
+                        }
+                     ]
+                  }
+               ],
+               "thresholds": [ ],
+               "timeFrom": null,
+               "timeShift": null,
+               "title": "Transactions memory",
+               "tooltip": {
+                  "shared": true,
+                  "sort": 2,
+                  "value_type": "individual"
+               },
+               "type": "graph",
+               "xaxis": {
+                  "buckets": null,
+                  "mode": "time",
+                  "name": null,
+                  "show": true,
+                  "values": [ ]
+               },
+               "yaxes": [
+                  {
+                     "decimals": 0,
+                     "format": "bytes",
+                     "label": "in bytes",
+                     "logBase": 1,
+                     "max": null,
+                     "min": null,
+                     "show": true
+                  },
+                  {
+                     "decimals": 3,
+                     "format": "bytes",
+                     "label": null,
+                     "logBase": 1,
+                     "max": null,
+                     "min": null,
+                     "show": true
+                  }
+               ]
+            },
+            {
+               "aliasColors": { },
+               "bars": false,
+               "dashLength": 10,
+               "dashes": false,
+               "datasource": "${DS_INFLUXDB}",
+               "decimals": 3,
                "description": "Average rate of fiber context switches.\nContext switches are counted over all current fibers.\n",
                "fill": 0,
                "gridPos": {
@@ -6461,7 +6592,7 @@
                   "x": 0,
                   "y": 145
                },
-               "id": 56,
+               "id": 57,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -6598,7 +6729,7 @@
                   "x": 12,
                   "y": 145
                },
-               "id": 57,
+               "id": 58,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -6729,7 +6860,7 @@
                   "x": 0,
                   "y": 153
                },
-               "id": 58,
+               "id": 59,
                "legend": {
                   "alignAsTable": true,
                   "avg": false,
@@ -6860,7 +6991,7 @@
                   "x": 8,
                   "y": 153
                },
-               "id": 59,
+               "id": 60,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -6991,7 +7122,7 @@
                   "x": 16,
                   "y": 153
                },
-               "id": 60,
+               "id": 61,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -7125,7 +7256,7 @@
             "x": 0,
             "y": 161
          },
-         "id": 61,
+         "id": 62,
          "panels": [
             {
                "aliasColors": { },
@@ -7142,7 +7273,7 @@
                   "x": 0,
                   "y": 162
                },
-               "id": 62,
+               "id": 63,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -7279,7 +7410,7 @@
                   "x": 6,
                   "y": 162
                },
-               "id": 63,
+               "id": 64,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -7416,7 +7547,7 @@
                   "x": 12,
                   "y": 162
                },
-               "id": 64,
+               "id": 65,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -7553,7 +7684,7 @@
                   "x": 18,
                   "y": 162
                },
-               "id": 65,
+               "id": 66,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -7684,7 +7815,7 @@
                   "x": 0,
                   "y": 170
                },
-               "id": 66,
+               "id": 67,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -7821,7 +7952,7 @@
                   "x": 12,
                   "y": 170
                },
-               "id": 67,
+               "id": 68,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -7958,7 +8089,7 @@
                   "x": 0,
                   "y": 178
                },
-               "id": 68,
+               "id": 69,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -8095,7 +8226,7 @@
                   "x": 8,
                   "y": 178
                },
-               "id": 69,
+               "id": 70,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -8232,7 +8363,7 @@
                   "x": 16,
                   "y": 178
                },
-               "id": 70,
+               "id": 71,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -8369,7 +8500,7 @@
                   "x": 0,
                   "y": 186
                },
-               "id": 71,
+               "id": 72,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -8506,7 +8637,7 @@
                   "x": 8,
                   "y": 186
                },
-               "id": 72,
+               "id": 73,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -8643,7 +8774,7 @@
                   "x": 16,
                   "y": 186
                },
-               "id": 73,
+               "id": 74,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -8780,7 +8911,7 @@
                   "x": 0,
                   "y": 194
                },
-               "id": 74,
+               "id": 75,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -8911,7 +9042,7 @@
                   "x": 6,
                   "y": 194
                },
-               "id": 75,
+               "id": 76,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -9042,7 +9173,7 @@
                   "x": 12,
                   "y": 194
                },
-               "id": 76,
+               "id": 77,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -9173,7 +9304,7 @@
                   "x": 18,
                   "y": 194
                },
-               "id": 77,
+               "id": 78,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -9304,7 +9435,7 @@
                   "x": 0,
                   "y": 202
                },
-               "id": 78,
+               "id": 79,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -9435,7 +9566,7 @@
                   "x": 8,
                   "y": 202
                },
-               "id": 79,
+               "id": 80,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -9572,7 +9703,7 @@
                   "x": 16,
                   "y": 202
                },
-               "id": 80,
+               "id": 81,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -9712,7 +9843,7 @@
             "x": 0,
             "y": 210
          },
-         "id": 81,
+         "id": 82,
          "panels": [
             {
                "aliasColors": { },
@@ -9729,7 +9860,7 @@
                   "x": 0,
                   "y": 211
                },
-               "id": 82,
+               "id": 83,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -9872,7 +10003,7 @@
                   "x": 8,
                   "y": 211
                },
-               "id": 83,
+               "id": 84,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -10015,7 +10146,7 @@
                   "x": 16,
                   "y": 211
                },
-               "id": 84,
+               "id": 85,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -10158,7 +10289,7 @@
                   "x": 0,
                   "y": 219
                },
-               "id": 85,
+               "id": 86,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -10301,7 +10432,7 @@
                   "x": 8,
                   "y": 219
                },
-               "id": 86,
+               "id": 87,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -10444,7 +10575,7 @@
                   "x": 16,
                   "y": 219
                },
-               "id": 87,
+               "id": 88,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -10587,7 +10718,7 @@
                   "x": 0,
                   "y": 227
                },
-               "id": 88,
+               "id": 89,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -10730,7 +10861,7 @@
                   "x": 8,
                   "y": 227
                },
-               "id": 89,
+               "id": 90,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -10873,7 +11004,7 @@
                   "x": 16,
                   "y": 227
                },
-               "id": 90,
+               "id": 91,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -11016,7 +11147,7 @@
                   "x": 0,
                   "y": 235
                },
-               "id": 91,
+               "id": 92,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -11159,7 +11290,7 @@
                   "x": 8,
                   "y": 235
                },
-               "id": 92,
+               "id": 93,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -11302,7 +11433,7 @@
                   "x": 16,
                   "y": 235
                },
-               "id": 93,
+               "id": 94,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
