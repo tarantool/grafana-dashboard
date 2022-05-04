@@ -100,7 +100,8 @@ to Telegraf configuration including each Tarantool instance metrics URL:
             "label_pairs_id",
             "label_pairs_engine",
             "label_pairs_name",
-            "label_pairs_index_name"
+            "label_pairs_index_name",
+            "label_pairs_delta"
         ]
         insecure_skip_verify = true
         interval = "10s"
