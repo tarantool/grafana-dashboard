@@ -25,6 +25,12 @@ local vinyl = import 'panels/vinyl.libsonnet';
       measurement=measurement,
     ),
 
+    cluster.replication_status(
+      datasource=datasource,
+      policy=policy,
+      measurement=measurement,
+    ),
+
     cluster.replication_lag(
       datasource=datasource,
       policy=policy,
@@ -38,7 +44,7 @@ local vinyl = import 'panels/vinyl.libsonnet';
     ),
   ],
 
-  // Must be used only in the top of a dashboard overall stat panels use complicated layout
+  // Must be used only in the top of a dashboard, overall stat panels use complicated layout
   cluster_prometheus(datasource, job, rate_time_range):: [
     cluster.row,
 
@@ -86,6 +92,11 @@ local vinyl = import 'panels/vinyl.libsonnet';
     ),
 
     cluster.cartridge_critical_issues(
+      datasource=datasource,
+      job=job,
+    ),
+
+    cluster.replication_status(
       datasource=datasource,
       job=job,
     ),

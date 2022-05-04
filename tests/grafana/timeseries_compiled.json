@@ -1,0 +1,103 @@
+{
+   "datasource": "datasource",
+   "description": "description",
+   "fieldConfig": {
+      "defaults": {
+         "color": {
+            "mode": "palette-classic"
+         },
+         "custom": {
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+               "legend": false,
+               "tooltip": false,
+               "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+               "type": "linear"
+            },
+            "showPoints": "never",
+            "spanNulls": false,
+            "stacking": {
+               "group": "A",
+               "mode": "none"
+            },
+            "thresholdsStyle": {
+               "mode": "off"
+            }
+         },
+         "mappings": [
+            {
+               "options": {
+                  "1": {
+                     "color": "green",
+                     "index": 0,
+                     "text": "ok"
+                  }
+               },
+               "type": "value"
+            },
+            {
+               "options": {
+                  "0": {
+                     "color": "red",
+                     "index": 0,
+                     "text": "error"
+                  }
+               },
+               "type": "value"
+            },
+            {
+               "options": {
+                  "from": 0.001,
+                  "result": {
+                     "index": 0,
+                     "text": "-"
+                  },
+                  "to": 0.999
+               },
+               "type": "range"
+            }
+         ],
+         "max": 1,
+         "min": 0,
+         "thresholds": {
+            "mode": "absolute",
+            "steps": [ ]
+         }
+      },
+      "overrides": [ ]
+   },
+   "gridPos": {
+      "h": 6,
+      "w": 7
+   },
+   "options": {
+      "legend": {
+         "calcs": [
+            "last"
+         ],
+         "displayMode": "table",
+         "placement": "right"
+      },
+      "tooltip": {
+         "mode": "multi"
+      }
+   },
+   "targets": [
+      {
+         "refId": "A",
+         "target": "target"
+      }
+   ],
+   "title": "title",
+   "type": "timeseries"
+}

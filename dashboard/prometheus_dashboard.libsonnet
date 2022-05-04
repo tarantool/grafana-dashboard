@@ -18,7 +18,7 @@ dashboard.new(
     type='grafana',
     id='grafana',
     name='Grafana',
-    version='6.6.0'
+    version='8.0.0'
   ).addRequired(
     type='panel',
     id='graph',
