@@ -30,6 +30,12 @@ local vinyl = import 'panels/vinyl.libsonnet';
       policy=policy,
       measurement=measurement,
     ),
+
+    cluster.clock_delta(
+      datasource=datasource,
+      policy=policy,
+      measurement=measurement,
+    ),
   ],
 
   // Must be used only in the top of a dashboard overall stat panels use complicated layout
@@ -85,6 +91,11 @@ local vinyl = import 'panels/vinyl.libsonnet';
     ),
 
     cluster.replication_lag(
+      datasource=datasource,
+      job=job,
+    ),
+
+    cluster.clock_delta(
       datasource=datasource,
       job=job,
     ),

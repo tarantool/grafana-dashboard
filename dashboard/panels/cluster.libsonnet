@@ -393,7 +393,7 @@ local prometheus = grafana.prometheus;
     decimalsY1=null,
     legend_avg=false,
     min=0,
-    panel_width=24,
+    panel_width=12,
   ).addTarget(
     if datasource == '${DS_PROMETHEUS}' then
       prometheus.target(
@@ -408,5 +408,45 @@ local prometheus = grafana.prometheus;
         alias='$tag_label_pairs_alias',
       ).where('metric_name', '=~', '/tnt_replication_\\d{1,2}_lag/')
       .selectField('value').addConverter('mean')
+  ),
+
+  clock_delta(
+    title='Instances clock delta',
+    description=|||
+      Clock drift across the cluster.
+      max shows difference with the fastest clock (always positive),
+      min shows difference with the slowest clock (always negative).
+
+      Panel works with `metrics >= 0.10.0`.
+    |||,
+    datasource=null,
+    policy=null,
+    measurement=null,
+    job=null,
+  ):: common.default_graph(
+    title=title,
+    description=description,
+    datasource=datasource,
+    format='s',
+    decimals=null,
+    decimalsY1=null,
+    fill=1,
+    legend_avg=false,
+    legend_max=false,
+    panel_width=12,
+  ).addTarget(
+    if datasource == '${DS_PROMETHEUS}' then
+      prometheus.target(
+        expr=std.format('tnt_clock_delta{job=~"%s"}', [job]),
+        legendFormat='{{alias}} ({{delta}})',
+      )
+    else if datasource == '${DS_INFLUXDB}' then
+      influxdb.target(
+        policy=policy,
+        measurement=measurement,
+        group_tags=['label_pairs_alias', 'label_pairs_delta'],
+        alias='$tag_label_pairs_alias ($tag_label_pairs_delta)',
+      ).where('metric_name', '=', 'tnt_clock_delta')
+      .selectField('value').addConverter('last')
   ),
 }
