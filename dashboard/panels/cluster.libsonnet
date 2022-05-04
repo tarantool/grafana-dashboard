@@ -1,4 +1,5 @@
 local common = import 'common.libsonnet';
+local timeseries = import 'dashboard/grafana/timeseries.libsonnet';
 local grafana = import 'grafonnet/grafana.libsonnet';
 
 local graph = grafana.graphPanel;
@@ -373,6 +374,47 @@ local prometheus = grafana.prometheus;
     measurement=measurement,
     job=job,
     level='critical',
+  ),
+
+  replication_status(
+    title='Tarantool replication status',
+    description=|||
+      `follows` status means replication is running.
+      Otherwise, `not running` is displayed.
+
+      Panel works with `metrics >= 0.13.0` and Grafana 8.x.
+    |||,
+    datasource=null,
+    policy=null,
+    measurement=null,
+    job=null,
+  ):: timeseries.new(
+    title=title,
+    description=description,
+    datasource=datasource,
+    panel_width=24,
+    max=1,
+    min=0,
+  ).addValueMapping(
+    1, 'green', 'follows'
+  ).addValueMapping(
+    0, 'red', 'not running'
+  ).addRangeMapping(
+    0.001, 0.999, '-'
+  ).addTarget(
+    if datasource == '${DS_PROMETHEUS}' then
+      prometheus.target(
+        expr=std.format('tnt_replication_status{job=~"%s"}', [job]),
+        legendFormat='{{alias}} {{stream}} ({{id}})',
+      )
+    else if datasource == '${DS_INFLUXDB}' then
+      influxdb.target(
+        policy=policy,
+        measurement=measurement,
+        group_tags=['label_pairs_alias', 'label_pairs_stream', 'label_pairs_id'],
+        alias='$tag_label_pairs_alias $tag_label_pairs_stream ($tag_label_pairs_id)',
+      ).where('metric_name', '=', 'tnt_replication_status')
+      .selectField('value').addConverter('last')
   ),
 
   replication_lag(
