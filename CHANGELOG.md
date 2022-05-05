@@ -16,6 +16,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Vinyl index and bloom filter memory panels
 - Clock delta panel
 - Replication status panel and alert example
+- Read only status panel
 
 ### Changed
 - Rework "Tarantool memory memory miscellaneous" section to "Tarantool runtime overview"
