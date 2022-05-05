@@ -625,7 +625,8 @@ local prometheus = grafana.prometheus;
     title='Vinyl scheduler dump count rate',
     description=|||
       Scheduler dumps completed average per second rate.
-      Panel works with `metrics >= 0.8.0`.
+
+      Panel works with `metrics >= 0.13.0`.
     |||,
     datasource=null,
     policy=null,
@@ -642,7 +643,7 @@ local prometheus = grafana.prometheus;
     panel_width=6,
   ).addTarget(common.default_rps_target(
     datasource,
-    'tnt_vinyl_scheduler_dump_count',
+    'tnt_vinyl_scheduler_dump_total',
     job,
     rate_time_range,
     policy,

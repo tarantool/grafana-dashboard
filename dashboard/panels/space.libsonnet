@@ -72,6 +72,8 @@ local prometheus = grafana.prometheus;
       include_vinyl_count to true. Beware that
       count() operation scans the space and may
       slow down your app. 
+
+      Panel works with `metrics >= 0.13.0`.
     |||,
     datasource=null,
     policy=null,
@@ -84,7 +86,7 @@ local prometheus = grafana.prometheus;
     policy=policy,
     measurement=measurement,
     job=job,
-    metric_name='tnt_space_count',
+    metric_name='tnt_vinyl_tuples',
     engine='vinyl'
   ),
 
