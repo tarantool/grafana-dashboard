@@ -18,6 +18,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Replication status panel and alert example
 - Read only status panel
 - Vinyl regulator blocked writers panel
+- Net requests in progress/in stream queue panels
 
 ### Changed
 - Rework "Tarantool memory memory miscellaneous" section to "Tarantool runtime overview"
