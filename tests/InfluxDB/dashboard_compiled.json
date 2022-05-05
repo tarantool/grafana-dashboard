@@ -662,7 +662,7 @@
                "dashLength": 10,
                "dashes": false,
                "datasource": "${DS_INFLUXDB}",
-               "description": "Replication lag value for Tarantool instance.\n",
+               "description": "Replication lag value for Tarantool instance.\n\nPanel works with `metrics >= 0.13.0`.\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -700,7 +700,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "alias": "$tag_label_pairs_alias",
+                     "alias": "$tag_label_pairs_alias ($tag_label_pairs_id)",
                      "groupBy": [
                         {
                            "params": [
@@ -711,6 +711,12 @@
                         {
                            "params": [
                               "label_pairs_alias"
+                           ],
+                           "type": "tag"
+                        },
+                        {
+                           "params": [
+                              "label_pairs_id"
                            ],
                            "type": "tag"
                         },
@@ -742,8 +748,8 @@
                      "tags": [
                         {
                            "key": "metric_name",
-                           "operator": "=~",
-                           "value": "/tnt_replication_\\d{1,2}_lag/"
+                           "operator": "=",
+                           "value": "tnt_replication_lag"
                         }
                      ]
                   }
@@ -4784,7 +4790,7 @@
                "dashes": false,
                "datasource": "${DS_INFLUXDB}",
                "decimals": 0,
-               "description": "Number of records in the space (vinyl engine).\nName of space is specified after dash.\nBy default this metrics is disabled,\nto enable it you must set global variable\ninclude_vinyl_count to true. Beware that\ncount() operation scans the space and may\nslow down your app. \n",
+               "description": "Number of records in the space (vinyl engine).\nName of space is specified after dash.\nBy default this metrics is disabled,\nto enable it you must set global variable\ninclude_vinyl_count to true. Beware that\ncount() operation scans the space and may\nslow down your app. \n\nPanel works with `metrics >= 0.13.0`.\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -4871,7 +4877,7 @@
                         {
                            "key": "metric_name",
                            "operator": "=",
-                           "value": "tnt_space_count"
+                           "value": "tnt_vinyl_tuples"
                         },
                         {
                            "condition": "AND",
@@ -7514,7 +7520,7 @@
                "dashes": false,
                "datasource": "${DS_INFLUXDB}",
                "decimals": 3,
-               "description": "Scheduler dumps completed average per second rate.\nPanel works with `metrics >= 0.8.0`.\n",
+               "description": "Scheduler dumps completed average per second rate.\n\nPanel works with `metrics >= 0.13.0`.\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -7601,7 +7607,7 @@
                         {
                            "key": "metric_name",
                            "operator": "=",
-                           "value": "tnt_vinyl_scheduler_dump_count"
+                           "value": "tnt_vinyl_scheduler_dump_total"
                         }
                      ]
                   }
@@ -8495,7 +8501,7 @@
                "dashes": false,
                "datasource": "${DS_INFLUXDB}",
                "decimals": 0,
-               "description": "Current number of fibers in tx thread. \n",
+               "description": "Current number of fibers in tx thread. \n\nPanel works with `metrics >= 0.13.0`.\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -8576,7 +8582,7 @@
                         {
                            "key": "metric_name",
                            "operator": "=",
-                           "value": "tnt_fiber_count"
+                           "value": "tnt_fiber_amount"
                         }
                      ]
                   }

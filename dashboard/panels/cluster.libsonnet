@@ -458,6 +458,8 @@ local prometheus = grafana.prometheus;
     title='Tarantool replication lag',
     description=|||
       Replication lag value for Tarantool instance.
+
+      Panel works with `metrics >= 0.13.0`.
     |||,
     datasource=null,
     policy=null,
@@ -476,16 +478,16 @@ local prometheus = grafana.prometheus;
   ).addTarget(
     if datasource == '${DS_PROMETHEUS}' then
       prometheus.target(
-        expr=std.format('{__name__=~"tnt_replication_[[:digit:]]{1,2}_lag", job=~"%s"}', [job]),
-        legendFormat='{{alias}}',
+        expr=std.format('tnt_replication_lag{job=~"%s"}', [job]),
+        legendFormat='{{alias}} ({{id}})',
       )
     else if datasource == '${DS_INFLUXDB}' then
       influxdb.target(
         policy=policy,
         measurement=measurement,
-        group_tags=['label_pairs_alias'],
-        alias='$tag_label_pairs_alias',
-      ).where('metric_name', '=~', '/tnt_replication_\\d{1,2}_lag/')
+        group_tags=['label_pairs_alias', 'label_pairs_id'],
+        alias='$tag_label_pairs_alias ($tag_label_pairs_id)',
+      ).where('metric_name', '=', 'tnt_replication_lag')
       .selectField('value').addConverter('mean')
   ),
 

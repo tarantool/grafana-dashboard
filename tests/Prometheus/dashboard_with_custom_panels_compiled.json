@@ -891,7 +891,7 @@
                "dashLength": 10,
                "dashes": false,
                "datasource": "${DS_PROMETHEUS}",
-               "description": "Replication lag value for Tarantool instance.\n",
+               "description": "Replication lag value for Tarantool instance.\n\nPanel works with `metrics >= 0.13.0`.\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -929,10 +929,10 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "{__name__=~\"tnt_replication_[[:digit:]]{1,2}_lag\", job=~\"$job\"}",
+                     "expr": "tnt_replication_lag{job=~\"$job\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
-                     "legendFormat": "{{alias}}",
+                     "legendFormat": "{{alias}} ({{id}})",
                      "refId": "A"
                   }
                ],
@@ -3590,7 +3590,7 @@
                "dashes": false,
                "datasource": "${DS_PROMETHEUS}",
                "decimals": 0,
-               "description": "Number of records in the space (vinyl engine).\nName of space is specified after dash.\nBy default this metrics is disabled,\nto enable it you must set global variable\ninclude_vinyl_count to true. Beware that\ncount() operation scans the space and may\nslow down your app. \n",
+               "description": "Number of records in the space (vinyl engine).\nName of space is specified after dash.\nBy default this metrics is disabled,\nto enable it you must set global variable\ninclude_vinyl_count to true. Beware that\ncount() operation scans the space and may\nslow down your app. \n\nPanel works with `metrics >= 0.13.0`.\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -3628,7 +3628,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_space_count{job=~\"$job\", engine=\"vinyl\"}",
+                     "expr": "tnt_vinyl_tuples{job=~\"$job\", engine=\"vinyl\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}} — {{name}}",
@@ -5410,7 +5410,7 @@
                "dashes": false,
                "datasource": "${DS_PROMETHEUS}",
                "decimals": 3,
-               "description": "Scheduler dumps completed average per second rate.\nPanel works with `metrics >= 0.8.0`.\n\n\nIf `No data` displayed, check up your 'rate_time_range' variable.",
+               "description": "Scheduler dumps completed average per second rate.\n\nPanel works with `metrics >= 0.13.0`.\n\n\nIf `No data` displayed, check up your 'rate_time_range' variable.",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -5448,7 +5448,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_vinyl_scheduler_dump_count{job=~\"$job\"}[$rate_time_range])",
+                     "expr": "rate(tnt_vinyl_scheduler_dump_total{job=~\"$job\"}[$rate_time_range])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -6080,7 +6080,7 @@
                "dashes": false,
                "datasource": "${DS_PROMETHEUS}",
                "decimals": 0,
-               "description": "Current number of fibers in tx thread. \n",
+               "description": "Current number of fibers in tx thread. \n\nPanel works with `metrics >= 0.13.0`.\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -6118,7 +6118,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_fiber_count{job=~\"$job\"}",
+                     "expr": "tnt_fiber_amount{job=~\"$job\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",

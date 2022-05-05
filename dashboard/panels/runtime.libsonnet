@@ -59,6 +59,8 @@ local common = import 'common.libsonnet';
     title='Number of fibers',
     description=|||
       Current number of fibers in tx thread. 
+
+      Panel works with `metrics >= 0.13.0`.
     |||,
     datasource=null,
     policy=null,
@@ -73,7 +75,7 @@ local common = import 'common.libsonnet';
     panel_width=8,
   ).addTarget(common.default_metric_target(
     datasource,
-    'tnt_fiber_count',
+    'tnt_fiber_amount',
     job,
     policy,
     measurement,
