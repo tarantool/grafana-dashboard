@@ -389,6 +389,27 @@ tests:
 
   - interval: 15s
     input_series:
+      - series: tnt_replication_status{job="tarantool_app", instance="app:8081", alias="tnt_storage_master", id="1", stream="upstream"}
+        values: '1+0x3 0+0x10'
+    alert_rule_test:
+      - eval_time: 2m
+        alertname: ReplicationNotRunning
+        exp_alerts:
+          - exp_labels:
+              severity: critical
+              instance: app:8081
+              alias: tnt_storage_master
+              job: tarantool_app
+              id: "1"
+              stream: upstream
+            exp_annotations:
+              summary: "Instance 'tnt_storage_master' ('tarantool_app') upstream (id 1) replication is not running"
+              description: "Instance 'tnt_storage_master' ('tarantool_app') upstream (id 1) replication is
+                 not running. Check Cartridge UI for details."
+
+
+  - interval: 15s
+    input_series:
         - series: http_server_request_latency_count{job="tarantool_app",instance="app:8081",path="/hello",method="GET",status="200",alias="tnt_router"}
           values: '0+100x60'
         - series: http_server_request_latency_sum{job="tarantool_app",instance="app:8081",path="/hello",method="GET",status="200",alias="tnt_router"}
