@@ -173,6 +173,18 @@ groups:
       description: "Instance '{{ $labels.alias }}' of job '{{ $labels.job }}' event loop has high cycle duration.
         Some high loaded fiber has too little yields. It may be the reason of 'Too long WAL write' warnings."
 
+  # Alert for Tarantool replication not running.
+  - alert: ReplicationNotRunning
+    expr: tnt_replication_status == 0
+    for: 1m
+    labels:
+      severity: critical
+    annotations:
+      summary: "Instance '{{ $labels.alias }}' ('{{ $labels.job }}') {{ $labels.stream }} (id {{ $labels.id }})
+         replication is not running"
+      description: "Instance '{{ $labels.alias }}' ('{{ $labels.job }}') {{ $labels.stream }} (id {{ $labels.id }})
+         replication is not running. Check Cartridge UI for details."
+
 - name: tarantool-business
   rules:
   # Warning for any endpoint of an instance in tarantool_app job that responds too long.
