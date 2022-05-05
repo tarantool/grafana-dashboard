@@ -104,6 +104,9 @@ local common = import 'common.libsonnet';
     description=|||
       Number of network requests this instance has handled.
       Graph shows mean rps.
+
+      Panel will be removed in favor of "Processed requests"
+      and "Requests in queue (overall)" panels.
     |||,
     datasource=null,
     policy=null,
@@ -129,6 +132,9 @@ local common = import 'common.libsonnet';
     title='Network requests pending',
     description=|||
       Number of pending network requests.
+
+      Panel will be removed in favor of "Requests in progress"
+      and "Requests in queue (current)" panels.
     |||,
     datasource=null,
     policy=null,
@@ -148,6 +154,115 @@ local common = import 'common.libsonnet';
     job,
     policy,
     measurement
+  )),
+
+  requests_in_progress_per_second(
+    title='Processed requests',
+    description=|||
+      Average number of requests processed by tx thread per second.
+
+      Panel works with `metrics >= 0.13.0` and `Tarantool >= 2.10-beta2`.
+    |||,
+    datasource=null,
+    policy=null,
+    measurement=null,
+    job=null,
+    rate_time_range=null,
+  ):: common.default_graph(
+    title=title,
+    description=description,
+    datasource=datasource,
+    labelY1='requests per second',
+    panel_width=6,
+  ).addTarget(common.default_rps_target(
+    datasource,
+    'tnt_net_requests_in_progress_total',
+    job,
+    rate_time_range,
+    policy,
+    measurement,
+  )),
+
+  requests_in_progress_current(
+    title='Requests in progress',
+    description=|||
+      Number of requests currently being processed in the tx thread.
+
+      Panel works with `metrics >= 0.13.0` and `Tarantool >= 2.10-beta2`.
+    |||,
+    datasource=null,
+    policy=null,
+    measurement=null,
+    job=null,
+  ):: common.default_graph(
+    title=title,
+    description=description,
+    datasource=datasource,
+    decimals=0,
+    labelY1='current',
+    panel_width=6,
+  ).addTarget(common.default_metric_target(
+    datasource,
+    'tnt_net_requests_in_progress_current',
+    job,
+    policy,
+    measurement,
+    'last'
+  )),
+
+  requests_in_queue_per_second(
+    title='Requests in queue (overall)',
+    description=|||
+      Average number of requests which was placed in queues
+      of streams per second.
+
+      Panel works with `metrics >= 0.13.0` and `Tarantool >= 2.10-beta2`.
+    |||,
+    datasource=null,
+    policy=null,
+    measurement=null,
+    job=null,
+    rate_time_range=null,
+  ):: common.default_graph(
+    title=title,
+    description=description,
+    datasource=datasource,
+    labelY1='requests per second',
+    panel_width=6,
+  ).addTarget(common.default_rps_target(
+    datasource,
+    'tnt_net_requests_in_stream_queue_total',
+    job,
+    rate_time_range,
+    policy,
+    measurement,
+  )),
+
+  requests_in_queue_current(
+    title='Requests in queue (current)',
+    description=|||
+      Number of requests currently waiting in queues of streams.
+
+      Panel works with `metrics >= 0.13.0` and `Tarantool >= 2.10-beta2`.
+    |||,
+    datasource=null,
+    policy=null,
+    measurement=null,
+    job=null,
+  ):: common.default_graph(
+    title=title,
+    description=description,
+    datasource=datasource,
+    decimals=0,
+    labelY1='current',
+    panel_width=6,
+  ).addTarget(common.default_metric_target(
+    datasource,
+    'tnt_net_requests_in_stream_queue_current',
+    job,
+    policy,
+    measurement,
+    'last'
   )),
 
   connections_per_second(

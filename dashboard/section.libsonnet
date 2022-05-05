@@ -213,6 +213,36 @@ local vinyl = import 'panels/vinyl.libsonnet';
       job=job,
     ),
 
+    net.requests_in_progress_per_second(
+      datasource=datasource,
+      policy=policy,
+      measurement=measurement,
+      job=job,
+      rate_time_range=rate_time_range,
+    ),
+
+    net.requests_in_progress_current(
+      datasource=datasource,
+      policy=policy,
+      measurement=measurement,
+      job=job,
+    ),
+
+    net.requests_in_queue_per_second(
+      datasource=datasource,
+      policy=policy,
+      measurement=measurement,
+      job=job,
+      rate_time_range=rate_time_range,
+    ),
+
+    net.requests_in_queue_current(
+      datasource=datasource,
+      policy=policy,
+      measurement=measurement,
+      job=job,
+    ),
+
     net.connections_per_second(
       datasource=datasource,
       policy=policy,
