@@ -392,7 +392,7 @@ local prometheus = grafana.prometheus;
     title=title,
     description=description,
     datasource=datasource,
-    panel_width=24,
+    panel_width=12,
     max=1,
     min=0,
   ).addValueMapping(
@@ -415,6 +415,43 @@ local prometheus = grafana.prometheus;
         alias='$tag_label_pairs_alias $tag_label_pairs_stream ($tag_label_pairs_id)',
       ).where('metric_name', '=', 'tnt_replication_status')
       .selectField('value').addConverter('last')
+  ),
+
+  read_only_status(
+    title='Tarantool instance status',
+    description=|||
+      `master` status means instance is available for read and
+      write operations. `slave` status means instance is
+      available only for read operations.
+
+      Panel works with `metrics >= 0.11.0` and Grafana 8.x.
+    |||,
+    datasource=null,
+    policy=null,
+    measurement=null,
+    job=null,
+  ):: timeseries.new(
+    title=title,
+    description=description,
+    datasource=datasource,
+    panel_width=12,
+    max=1,
+    min=0,
+  ).addValueMapping(
+    0, 'green', 'master'
+  ).addValueMapping(
+    1, 'yellow', 'slave'
+  ).addRangeMapping(
+    0.001, 0.999, '-'
+  ).addTarget(
+    common.default_metric_target(
+      datasource,
+      'tnt_read_only',
+      job,
+      policy,
+      measurement,
+      'last'
+    )
   ),
 
   replication_lag(

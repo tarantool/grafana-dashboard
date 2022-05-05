@@ -31,6 +31,12 @@ local vinyl = import 'panels/vinyl.libsonnet';
       measurement=measurement,
     ),
 
+    cluster.read_only_status(
+      datasource=datasource,
+      policy=policy,
+      measurement=measurement,
+    ),
+
     cluster.replication_lag(
       datasource=datasource,
       policy=policy,
@@ -97,6 +103,11 @@ local vinyl = import 'panels/vinyl.libsonnet';
     ),
 
     cluster.replication_status(
+      datasource=datasource,
+      job=job,
+    ),
+
+    cluster.read_only_status(
       datasource=datasource,
       job=job,
     ),
