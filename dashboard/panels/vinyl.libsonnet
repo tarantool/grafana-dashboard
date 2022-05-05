@@ -136,7 +136,7 @@ local prometheus = grafana.prometheus;
     description=description,
     datasource=datasource,
     format='Bps',
-    panel_width=6,
+    panel_width=8,
   ).addTarget(common.default_metric_target(
     datasource,
     metric_name,
@@ -240,10 +240,38 @@ local prometheus = grafana.prometheus;
     format='bytes',
     legend_avg=false,
     legend_max=false,
-    panel_width=6,
+    panel_width=12,
   ).addTarget(common.default_metric_target(
     datasource,
     'tnt_vinyl_regulator_dump_watermark',
+    job,
+    policy,
+    measurement,
+  )),
+
+  regulator_blocked_writers(
+    title='Vinyl regulator blocked writers',
+    description=|||
+      The number of fibers that are blocked waiting for Vinyl level0 memory quota.
+
+      Panel works with `metrics >= 0.13.0` and `Tarantool >= 2.8.3`.
+    |||,
+
+    datasource=null,
+    policy=null,
+    measurement=null,
+    job=null,
+  ):: common.default_graph(
+    title=title,
+    description=description,
+    datasource=datasource,
+    legend_avg=false,
+    legend_max=false,
+    labelY1='fibers',
+    panel_width=12,
+  ).addTarget(common.default_metric_target(
+    datasource,
+    'tnt_vinyl_regulator_blocked_writers',
     job,
     policy,
     measurement,

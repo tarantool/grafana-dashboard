@@ -396,6 +396,13 @@ local vinyl = import 'panels/vinyl.libsonnet';
       job=job,
     ),
 
+    vinyl.regulator_blocked_writers(
+      datasource=datasource,
+      policy=policy,
+      measurement=measurement,
+      job=job,
+    ),
+
     vinyl.tx_commit_rate(
       datasource=datasource,
       policy=policy,
