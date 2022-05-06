@@ -27,6 +27,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Update panel descriptions
 - Collapse dashboard rows
 - Use new metrics instead of deprecated ones
+- Bump Grafana requirement to 8.x
 
 
 ## [0.3.3] - 2021-10-08
