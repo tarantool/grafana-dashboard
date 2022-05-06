@@ -26,6 +26,11 @@ dashboard.new(
     version=''
   ).addRequired(
     type='panel',
+    id='timeseries',
+    name='Timeseries',
+    version=''
+  ).addRequired(
+    type='panel',
     id='text',
     name='Text',
     version=''

@@ -36,6 +36,12 @@
          "version": ""
       },
       {
+         "id": "timeseries",
+         "name": "Timeseries",
+         "type": "panel",
+         "version": ""
+      },
+      {
          "id": "text",
          "name": "Text",
          "type": "panel",
