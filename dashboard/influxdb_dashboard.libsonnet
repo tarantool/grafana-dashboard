@@ -55,7 +55,7 @@ dashboard.new(
     name='INFLUXDB_POLICY',
     label='Policy',
     type='constant',
-    value='default',
+    value='autogen',
     description='InfluxDB Tarantool metrics policy'
   )
 ).addPanels(

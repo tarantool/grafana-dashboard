@@ -19,7 +19,7 @@
          "label": "Policy",
          "name": "INFLUXDB_POLICY",
          "type": "constant",
-         "value": "default"
+         "value": "autogen"
       }
    ],
    "__requires": [
