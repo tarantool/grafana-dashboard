@@ -17,6 +17,19 @@ Dashboard requires using ``metrics`` **0.13.0** or newer for complete experience
 ``'alias'`` :ref:`global label <tarantool-metrics>` must be set on each instance
 to properly display panels (e.g. provided with ``cartridge.roles.metrics`` role).
 
+To support `CRUD` <https://github.com/tarantool/crud> statistics, install CRUD
+**0.11.1** or newer. Call ``crud.cfg`` on router to enable CRUD statistics collect
+with latency quantiles.
+
+..  code-block:: lua
+
+    crud.cfg{
+        stats = true,
+        stats_driver='metrics',
+        stats_quantiles=true
+    }
+
+
 .. image:: images/Prometheus_dashboard_1.png
    :width: 30%
 
