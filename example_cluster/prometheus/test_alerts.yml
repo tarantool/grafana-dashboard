@@ -410,6 +410,73 @@ tests:
 
   - interval: 15s
     input_series:
+      - series: tnt_crud_stats_count{job="tarantool_app", instance="app:8081", alias="tnt_router", name="customers", operation="insert", status="error"}
+        values: '0+100x100'
+    alert_rule_test:
+      - eval_time: 5m
+        alertname: CRUDHighErrorRate
+        exp_alerts:
+          - exp_labels:
+              severity: critical
+              instance: app:8081
+              alias: tnt_router
+              job: tarantool_app
+              name: customers
+              operation: insert
+              status: error
+            exp_annotations:
+              summary: "Instance 'tnt_router' ('tarantool_app') too many CRUD insert errors."
+              description: "Too many insert CRUD requests for 'customers' space on
+                'tnt_router' instance of job 'tarantool_app' get module error responses."
+
+
+  - interval: 15s
+    input_series:
+      - series: tnt_crud_stats{job="tarantool_app", instance="app:8081", alias="tnt_router", name="customers", operation="get", status="ok", quantile="0.99"}
+        values: '0.11+0x0'
+    alert_rule_test:
+      - eval_time: 2m
+        alertname: CRUDHighLatency
+        exp_alerts:
+          - exp_labels:
+              severity: warning
+              instance: app:8081
+              alias: tnt_router
+              job: tarantool_app
+              name: customers
+              operation: get
+              status: ok
+              quantile: '0.99'
+            exp_annotations:
+              summary: "Instance 'tnt_router' ('tarantool_app') too high CRUD get latency."
+              description: "Some get ok CRUD requests for 'customers' space on
+                'tnt_router' instance of job 'tarantool_app' are processed too long."
+
+
+  - interval: 15s
+    input_series:
+      - series: tnt_crud_map_reduces{job="tarantool_app", instance="app:8081", alias="tnt_router", name="customers", operation="select"}
+        values: '0+100x100'
+    alert_rule_test:
+      - eval_time: 5m
+        alertname: CRUDHighMapReduceRate
+        exp_alerts:
+          - exp_labels:
+              severity: warning
+              instance: app:8081
+              alias: tnt_router
+              job: tarantool_app
+              name: customers
+              operation: select
+            exp_annotations:
+              summary: "Instance 'tnt_router' ('tarantool_app') too many CRUD select map reduces."
+              description: "There are too many select CRUD map reduce requests for 'customers' space on
+              'tnt_router' instance of job 'tarantool_app'.
+              Check your request conditions or consider changing sharding schema."
+
+
+  - interval: 15s
+    input_series:
         - series: http_server_request_latency_count{job="tarantool_app",instance="app:8081",path="/hello",method="GET",status="200",alias="tnt_router"}
           values: '0+100x60'
         - series: http_server_request_latency_sum{job="tarantool_app",instance="app:8081",path="/hello",method="GET",status="200",alias="tnt_router"}

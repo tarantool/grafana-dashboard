@@ -185,6 +185,44 @@ groups:
       description: "Instance '{{ $labels.alias }}' ('{{ $labels.job }}') {{ $labels.stream }} (id {{ $labels.id }})
          replication is not running. Check Cartridge UI for details."
 
+
+- name: tarantool-crud
+  rules:
+  # Alert for CRUD module request errors.
+  - alert: CRUDHighErrorRate
+    expr: rate(tnt_crud_stats_count{ job="tarantool_app", status="error" }[5m]) > 0.1
+    for: 1m
+    labels:
+      severity: critical
+    annotations:
+      summary: "Instance '{{ $labels.alias }}' ('{{ $labels.job }}') too many CRUD {{ $labels.operation }} errors."
+      description: "Too many {{ $labels.operation }} CRUD requests for '{{ $labels.name }}' space on
+      '{{ $labels.alias }}' instance of job '{{ $labels.job }}' get module error responses."
+
+  # Warning for CRUD module requests too long responses.
+  - alert: CRUDHighLatency
+    expr: tnt_crud_stats{ job="tarantool_app", quantile="0.99" } > 0.1
+    for: 1m
+    labels:
+      severity: warning
+    annotations:
+      summary: "Instance '{{ $labels.alias }}' ('{{ $labels.job }}') too high CRUD {{ $labels.operation }} latency."
+      description: "Some {{ $labels.operation }} {{ $labels.status }} CRUD requests for '{{ $labels.name }}' space on
+      '{{ $labels.alias }}' instance of job '{{ $labels.job }}' are processed too long."
+
+  # Warning for too many map reduce CRUD module requests.
+  - alert: CRUDHighMapReduceRate
+    expr: rate(tnt_crud_map_reduces{ job="tarantool_app" }[5m]) > 0.1
+    for: 1m
+    labels:
+      severity: warning
+    annotations:
+      summary: "Instance '{{ $labels.alias }}' ('{{ $labels.job }}') too many CRUD {{ $labels.operation }} map reduces."
+      description: "There are too many {{ $labels.operation }} CRUD map reduce requests for '{{ $labels.name }}' space on
+      '{{ $labels.alias }}' instance of job '{{ $labels.job }}'.
+      Check your request conditions or consider changing sharding schema."
+
+
 - name: tarantool-business
   rules:
   # Warning for any endpoint of an instance in tarantool_app job that responds too long.
