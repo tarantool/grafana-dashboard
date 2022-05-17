@@ -7,6 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## Unreleased
 
 ### Added
+- Panels for CRUD module statistics
 
 ### Changed
 - Set default InfluxDB policy to `autogen`

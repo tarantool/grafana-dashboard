@@ -118,4 +118,10 @@ dashboard.new(
     policy=variable.influxdb.policy,
     measurement=variable.influxdb.measurement,
   )
+).addPanels(
+  section.crud(
+    datasource=variable.datasource.influxdb,
+    policy=variable.influxdb.policy,
+    measurement=variable.influxdb.measurement,
+  )
 )
