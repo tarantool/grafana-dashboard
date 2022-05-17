@@ -96,4 +96,18 @@ local prometheus = grafana.prometheus;
       std.join('\n\n', [description, "If `No data` displayed, check up your 'rate_time_range' variable."])
     else
       description,
+
+  group_by_fill_0_warning(
+    description,
+    datasource='${DS_INFLUXDB}'
+  )::
+    if datasource == '${DS_INFLUXDB}' then
+      std.join('\n', [description, |||
+        Current value may be 0 from time to time due to fill(0)
+        and GROUP BY including partial intervals.
+        Refer to https://github.com/influxdata/influxdb/issues/8244
+        for updates.
+      |||])
+    else
+      description,
 }

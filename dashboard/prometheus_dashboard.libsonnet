@@ -146,4 +146,10 @@ dashboard.new(
     job=variable.prometheus.job,
     rate_time_range=variable.prometheus.rate_time_range,
   )
+).addPanels(
+  section.crud(
+    datasource=variable.datasource.prometheus,
+    job=variable.prometheus.job,
+    rate_time_range=variable.prometheus.rate_time_range,
+  )
 )
