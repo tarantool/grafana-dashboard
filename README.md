@@ -39,7 +39,7 @@ Refer to dashboard [documentation page](https://www.tarantool.io/en/doc/latest/b
     You need to set the following variables for InfluxDB datasource:
 
     - `Measurement`,
-    - `Policy` (default valie is `default`).
+    - `Policy` (default valie is `autogen`).
 
     You need to set the following variables for Prometheus datasource:
 
