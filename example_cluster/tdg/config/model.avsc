@@ -1,0 +1,44 @@
+[
+    {
+        "name": "HeaderMetadata",
+        "type": "record",
+        "fields": [
+            {"name": "object_id", "type": "string"},
+            {"name": "source", "type": "string"},
+            {"name": "date", "type": "string"},
+            {"name": "seq", "type": "string"},
+            {"name": "object_type", "type": "string"}
+        ]
+    },
+    {
+        "name": "QuotationHeader",
+        "type": "record",
+        "fields": [
+            {"name": "metadata", "type": "HeaderMetadata"}
+        ]
+    },
+    {
+        "name": "QuotationBody",
+        "type": "record",
+        "fields": [
+            {"name": "Timestamps", "type": "string"},
+            {"name": "Cur1", "type": "string"},
+            {"name": "Cur2", "type": "string"},
+            {"name": "Valuebid", "type": "float"},
+            {"name": "Valueask", "type": "float"},
+            {"name": "Source", "type": "string"}
+        ]
+    },
+    {
+        "name": "Quotation",
+        "type": "record",
+        "fields": [
+            {"name": "header", "type": "QuotationHeader"},
+            {"name": "body", "type": "QuotationBody"}
+        ],
+        "indexes": [
+            {"name": "id",
+             "parts": ["header.metadata.object_id"]}
+        ]
+    }
+]
