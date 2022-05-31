@@ -1,0 +1,85 @@
+version: '3'
+services:
+  tdg:
+    image: tdg
+    environment:
+      TARANTOOL_ALIAS: tdg
+    networks:
+      tarantool_dashboard_dev:
+    ports:
+      - 8080:8080
+
+  zookeeper:
+    image: confluentinc/cp-zookeeper:latest
+    environment:
+      ZOOKEEPER_CLIENT_PORT: 32181
+      ZOOKEEPER_TICK_TIME: 2000
+    networks:
+      tarantool_dashboard_dev:
+  
+  kafka:
+    image: confluentinc/cp-kafka:latest
+    depends_on:
+      - zookeeper
+    networks:
+      tarantool_dashboard_dev:
+    ports:
+      - 9092:9092
+    environment:
+      KAFKA_BROKER_ID: 1
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:32181
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:29092,PLAINTEXT_HOST://kafka:9092
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT
+      KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+
+  telegraf:
+    image: telegraf:1.13-alpine
+    networks:
+      tarantool_dashboard_dev:
+    volumes:
+      # configure telegraf to work out of the box
+      - ./example_cluster/telegraf/telegraf.tdg.conf:/etc/telegraf/telegraf.conf:ro
+
+  influxdb:
+    image: influxdb:1.7-alpine
+    environment: 
+      INFLUXDB_REPORTING_DISABLED: "true"
+      INFLUXDB_DB: "metrics"
+      INFLUXDB_ADMIN_USER: "admin"
+      INFLUXDB_ADMIN_PASSWORD: "admin"
+      INFLUXDB_USER: "telegraf"
+      INFLUXDB_USER_PASSWORD: "telegraf"
+      INFLUXDB_HTTP_AUTH_ENABLED: "true"
+    networks:
+      tarantool_dashboard_dev:
+    ports:
+      - 8086:8086
+
+  prometheus:
+    image: prom/prometheus:v2.17.2
+    networks:
+      tarantool_dashboard_dev:
+    ports:
+      - 9090:9090
+    volumes:
+      - ./example_cluster/prometheus/prometheus.tdg.yml:/etc/prometheus/prometheus.yml
+
+  grafana:
+    image: grafana/grafana:8.1.5
+    environment: 
+      GF_SECURITY_DISABLE_INITIAL_ADMIN_CREATION: "true"
+      GF_AUTH_ANONYMOUS_ENABLED: "true"
+      GF_AUTH_ANONYMOUS_ORG_ROLE: "Admin"
+      GF_AUTH_DISABLE_SIGNOUT_MENU: "true"
+      GF_AUTH_DISABLE_LOGIN_FORM: "true"
+    networks:
+      tarantool_dashboard_dev:
+    ports:
+      - 3000:3000
+    volumes:
+      - ./example_cluster/grafana/provisioning:/etc/grafana/provisioning
+
+networks:
+  tarantool_dashboard_dev:
+    driver: bridge

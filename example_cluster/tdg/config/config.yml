@@ -1,0 +1,48 @@
+---
+types:
+  __file: model.avsc
+
+connector:
+  input:
+    - name: kafka
+      type: kafka
+      routing_key: input_key
+      brokers:
+        - kafka:9092
+      topics:
+        - orders
+        - items
+      group_id: kafka
+      options:
+        enable.auto.offset.store: "true"
+        auto.offset.reset: "earliest"
+        enable.partition.eof: "false"
+      token_name: "invalid-token"
+
+    - name: number-group
+      type: kafka
+      brokers:
+        - kafka:9092
+      topics:
+        - items
+      group_id: '1'
+
+input_processor:
+  handlers:
+    - key: input_key
+      function: decode.call
+
+  storage:
+    - key: quotation
+      type: Quotation
+
+logger:
+  enabled: true
+  severity: debug
+
+metrics:
+  export:
+    - format: prometheus
+      path: metrics/prometheus
+    - format: json
+      path: metrics/json
