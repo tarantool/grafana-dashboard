@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - TDG (ver. 2) example cluster draft
 - Dashboard templates for TDG (ver. 2)
 - Kafka metrics panels for TDG dashboard
+- Thread CPU panels for TDG dashboard
 
 
 ## [1.1.0] - 2022-05-17

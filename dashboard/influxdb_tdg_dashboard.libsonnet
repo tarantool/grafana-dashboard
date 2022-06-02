@@ -89,7 +89,7 @@ dashboard.new(
     measurement=variable.influxdb.measurement,
   )
 ).addPanels(
-  section.cpu(
+  section.cpu_extended(
     datasource=variable.datasource.influxdb,
     policy=variable.influxdb.policy,
     measurement=variable.influxdb.measurement,

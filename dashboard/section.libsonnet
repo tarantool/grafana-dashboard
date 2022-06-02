@@ -523,6 +523,42 @@ local tdg_kafka_topics = import 'panels/tdg/kafka/topics.libsonnet';
     ),
   ],
 
+  cpu_extended(datasource, policy=null, measurement=null, job=null, rate_time_range=null):: [
+    cpu.row,
+
+    cpu.getrusage_cpu_user_time(
+      datasource=datasource,
+      policy=policy,
+      measurement=measurement,
+      job=job,
+      rate_time_range=rate_time_range,
+    ),
+
+    cpu.getrusage_cpu_system_time(
+      datasource=datasource,
+      policy=policy,
+      measurement=measurement,
+      job=job,
+      rate_time_range=rate_time_range,
+    ),
+
+    cpu.procstat_thread_user_time(
+      datasource=datasource,
+      policy=policy,
+      measurement=measurement,
+      job=job,
+      rate_time_range=rate_time_range,
+    ),
+
+    cpu.procstat_thread_system_time(
+      datasource=datasource,
+      policy=policy,
+      measurement=measurement,
+      job=job,
+      rate_time_range=rate_time_range,
+    ),
+  ],
+
   runtime(datasource, policy=null, measurement=null, job=null, rate_time_range=null):: [
     runtime.row,
 
