@@ -142,4 +142,10 @@ dashboard.new(
     policy=variable.influxdb.policy,
     measurement=variable.influxdb.measurement,
   )
+).addPanels(
+  section.tdg_expirationd(
+    datasource=variable.datasource.influxdb,
+    policy=variable.influxdb.policy,
+    measurement=variable.influxdb.measurement,
+  )
 )

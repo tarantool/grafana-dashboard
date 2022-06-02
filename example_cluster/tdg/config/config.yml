@@ -46,3 +46,15 @@ metrics:
       path: metrics/prometheus
     - format: json
       path: metrics/json
+
+expiration:
+  - type: TestObj1
+    enabled: true
+    lifetime_hours: 1
+    delay_sec: 1
+    strategy: permanent
+  - type: TestObj2
+    enabled: true
+    lifetime_hours: 1
+    delay_sec: 1
+    strategy: permanent
