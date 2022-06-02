@@ -17,6 +17,7 @@ local prometheus = grafana.prometheus;
     decimalsY1=0,
     legend_avg=true,
     legend_max=true,
+    legend_rightSide=false,
     panel_height=8,
     panel_width=8,
   ):: grafana.graphPanel.new(
@@ -36,6 +37,7 @@ local prometheus = grafana.prometheus;
     legend_avg=legend_avg,
     legend_current=true,
     legend_max=legend_max,
+    legend_rightSide=legend_rightSide,
     legend_values=true,
     legend_sort='current',
     legend_sortDesc=true,

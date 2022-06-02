@@ -10,6 +10,12 @@ local slab = import 'panels/slab.libsonnet';
 local space = import 'panels/space.libsonnet';
 local vinyl = import 'panels/vinyl.libsonnet';
 
+local tdg_kafka_brokers = import 'panels/tdg/kafka/brokers.libsonnet';
+local tdg_kafka_common = import 'panels/tdg/kafka/common.libsonnet';
+local tdg_kafka_consumer = import 'panels/tdg/kafka/consumer.libsonnet';
+local tdg_kafka_producer = import 'panels/tdg/kafka/producer.libsonnet';
+local tdg_kafka_topics = import 'panels/tdg/kafka/topics.libsonnet';
+
 {
   cluster_influxdb(datasource, policy, measurement):: [
     cluster.row,
@@ -1172,6 +1178,460 @@ local vinyl = import 'panels/vinyl.libsonnet';
     ),
 
     crud.truncate_error_latency(
+      datasource=datasource,
+      policy=policy,
+      measurement=measurement,
+      job=job,
+    ),
+  ],
+
+  tdg_kafka_common(datasource, policy=null, measurement=null, job=null, rate_time_range=null):: [
+    tdg_kafka_common.row,
+
+    tdg_kafka_common.queue_operations(
+      datasource=datasource,
+      policy=policy,
+      measurement=measurement,
+      job=job,
+    ),
+
+    tdg_kafka_common.message_current(
+      datasource=datasource,
+      policy=policy,
+      measurement=measurement,
+      job=job,
+    ),
+
+    tdg_kafka_common.message_size(
+      datasource=datasource,
+      policy=policy,
+      measurement=measurement,
+      job=job,
+    ),
+
+    tdg_kafka_common.requests(
+      datasource=datasource,
+      policy=policy,
+      measurement=measurement,
+      job=job,
+      rate_time_range=rate_time_range,
+    ),
+
+    tdg_kafka_common.request_bytes(
+      datasource=datasource,
+      policy=policy,
+      measurement=measurement,
+      job=job,
+      rate_time_range=rate_time_range,
+    ),
+
+    tdg_kafka_common.responses(
+      datasource=datasource,
+      policy=policy,
+      measurement=measurement,
+      job=job,
+      rate_time_range=rate_time_range,
+    ),
+
+    tdg_kafka_common.response_bytes(
+      datasource=datasource,
+      policy=policy,
+      measurement=measurement,
+      job=job,
+      rate_time_range=rate_time_range,
+    ),
+
+    tdg_kafka_common.messages_sent(
+      datasource=datasource,
+      policy=policy,
+      measurement=measurement,
+      job=job,
+      rate_time_range=rate_time_range,
+    ),
+
+    tdg_kafka_common.message_bytes_sent(
+      datasource=datasource,
+      policy=policy,
+      measurement=measurement,
+      job=job,
+      rate_time_range=rate_time_range,
+    ),
+
+    tdg_kafka_common.messages_received(
+      datasource=datasource,
+      policy=policy,
+      measurement=measurement,
+      job=job,
+      rate_time_range=rate_time_range,
+    ),
+
+    tdg_kafka_common.message_bytes_received(
+      datasource=datasource,
+      policy=policy,
+      measurement=measurement,
+      job=job,
+      rate_time_range=rate_time_range,
+    ),
+  ],
+
+  tdg_kafka_brokers(datasource, policy=null, measurement=null, job=null, rate_time_range=null):: [
+    tdg_kafka_brokers.row,
+
+    tdg_kafka_brokers.stateage(
+      datasource=datasource,
+      policy=policy,
+      measurement=measurement,
+      job=job,
+    ),
+
+    tdg_kafka_brokers.connects(
+      datasource=datasource,
+      policy=policy,
+      measurement=measurement,
+      job=job,
+      rate_time_range=rate_time_range,
+    ),
+
+    tdg_kafka_brokers.disconnects(
+      datasource=datasource,
+      policy=policy,
+      measurement=measurement,
+      job=job,
+      rate_time_range=rate_time_range,
+    ),
+
+    tdg_kafka_brokers.poll_wakeups(
+      datasource=datasource,
+      policy=policy,
+      measurement=measurement,
+      job=job,
+      rate_time_range=rate_time_range,
+    ),
+
+    tdg_kafka_brokers.outbuf(
+      datasource=datasource,
+      policy=policy,
+      measurement=measurement,
+      job=job,
+    ),
+
+    tdg_kafka_brokers.outbuf_msg(
+      datasource=datasource,
+      policy=policy,
+      measurement=measurement,
+      job=job,
+    ),
+
+    tdg_kafka_brokers.waitresp(
+      datasource=datasource,
+      policy=policy,
+      measurement=measurement,
+      job=job,
+    ),
+
+    tdg_kafka_brokers.waitresp_msg(
+      datasource=datasource,
+      policy=policy,
+      measurement=measurement,
+      job=job,
+    ),
+
+    tdg_kafka_brokers.requests(
+      datasource=datasource,
+      policy=policy,
+      measurement=measurement,
+      job=job,
+      rate_time_range=rate_time_range,
+    ),
+
+    tdg_kafka_brokers.request_bytes(
+      datasource=datasource,
+      policy=policy,
+      measurement=measurement,
+      job=job,
+      rate_time_range=rate_time_range,
+    ),
+
+    tdg_kafka_brokers.request_errors(
+      datasource=datasource,
+      policy=policy,
+      measurement=measurement,
+      job=job,
+      rate_time_range=rate_time_range,
+    ),
+
+    tdg_kafka_brokers.request_retries(
+      datasource=datasource,
+      policy=policy,
+      measurement=measurement,
+      job=job,
+      rate_time_range=rate_time_range,
+    ),
+
+    tdg_kafka_brokers.request_idle(
+      datasource=datasource,
+      policy=policy,
+      measurement=measurement,
+      job=job,
+    ),
+
+    tdg_kafka_brokers.request_timeout(
+      datasource=datasource,
+      policy=policy,
+      measurement=measurement,
+      job=job,
+      rate_time_range=rate_time_range,
+    ),
+
+    tdg_kafka_brokers.responses(
+      datasource=datasource,
+      policy=policy,
+      measurement=measurement,
+      job=job,
+      rate_time_range=rate_time_range,
+    ),
+
+    tdg_kafka_brokers.response_bytes(
+      datasource=datasource,
+      policy=policy,
+      measurement=measurement,
+      job=job,
+      rate_time_range=rate_time_range,
+    ),
+
+    tdg_kafka_brokers.response_errors(
+      datasource=datasource,
+      policy=policy,
+      measurement=measurement,
+      job=job,
+      rate_time_range=rate_time_range,
+    ),
+
+    tdg_kafka_brokers.response_corriderrs(
+      datasource=datasource,
+      policy=policy,
+      measurement=measurement,
+      job=job,
+      rate_time_range=rate_time_range,
+    ),
+
+    tdg_kafka_brokers.response_idle(
+      datasource=datasource,
+      policy=policy,
+      measurement=measurement,
+      job=job,
+    ),
+
+    tdg_kafka_brokers.response_partial(
+      datasource=datasource,
+      policy=policy,
+      measurement=measurement,
+      job=job,
+      rate_time_range=rate_time_range,
+    ),
+
+    tdg_kafka_brokers.requests_by_type(
+      datasource=datasource,
+      policy=policy,
+      measurement=measurement,
+      job=job,
+      rate_time_range=rate_time_range,
+    ),
+
+    tdg_kafka_brokers.internal_producer_latency(
+      datasource=datasource,
+      policy=policy,
+      measurement=measurement,
+      job=job,
+    ),
+
+    tdg_kafka_brokers.internal_request_latency(
+      datasource=datasource,
+      policy=policy,
+      measurement=measurement,
+      job=job,
+    ),
+
+    tdg_kafka_brokers.broker_latency(
+      datasource=datasource,
+      policy=policy,
+      measurement=measurement,
+      job=job,
+    ),
+
+    tdg_kafka_brokers.broker_throttle(
+      datasource=datasource,
+      policy=policy,
+      measurement=measurement,
+      job=job,
+    ),
+  ],
+
+  tdg_kafka_topics(datasource, policy=null, measurement=null, job=null, rate_time_range=null):: [
+    tdg_kafka_topics.row,
+
+    tdg_kafka_topics.age(
+      datasource=datasource,
+      policy=policy,
+      measurement=measurement,
+      job=job,
+    ),
+
+    tdg_kafka_topics.metadata_age(
+      datasource=datasource,
+      policy=policy,
+      measurement=measurement,
+      job=job,
+    ),
+
+    tdg_kafka_topics.topic_batchsize(
+      datasource=datasource,
+      policy=policy,
+      measurement=measurement,
+      job=job,
+    ),
+
+    tdg_kafka_topics.topic_batchcnt(
+      datasource=datasource,
+      policy=policy,
+      measurement=measurement,
+      job=job,
+    ),
+
+    tdg_kafka_topics.partition_msgq(
+      datasource=datasource,
+      policy=policy,
+      measurement=measurement,
+      job=job,
+    ),
+
+    tdg_kafka_topics.partition_xmit_msgq(
+      datasource=datasource,
+      policy=policy,
+      measurement=measurement,
+      job=job,
+    ),
+
+    tdg_kafka_topics.partition_fetchq_msgq(
+      datasource=datasource,
+      policy=policy,
+      measurement=measurement,
+      job=job,
+    ),
+
+    tdg_kafka_topics.partition_msgq_bytes(
+      datasource=datasource,
+      policy=policy,
+      measurement=measurement,
+      job=job,
+    ),
+
+    tdg_kafka_topics.partition_xmit_msgq_bytes(
+      datasource=datasource,
+      policy=policy,
+      measurement=measurement,
+      job=job,
+    ),
+
+    tdg_kafka_topics.partition_fetchq_msgq_bytes(
+      datasource=datasource,
+      policy=policy,
+      measurement=measurement,
+      job=job,
+    ),
+
+    tdg_kafka_topics.partition_messages_sent(
+      datasource=datasource,
+      policy=policy,
+      measurement=measurement,
+      job=job,
+      rate_time_range=rate_time_range,
+    ),
+
+    tdg_kafka_topics.partition_message_bytes_sent(
+      datasource=datasource,
+      policy=policy,
+      measurement=measurement,
+      job=job,
+      rate_time_range=rate_time_range,
+    ),
+
+    tdg_kafka_topics.partition_messages_consumed(
+      datasource=datasource,
+      policy=policy,
+      measurement=measurement,
+      job=job,
+      rate_time_range=rate_time_range,
+    ),
+
+    tdg_kafka_topics.partition_message_bytes_consumed(
+      datasource=datasource,
+      policy=policy,
+      measurement=measurement,
+      job=job,
+      rate_time_range=rate_time_range,
+    ),
+
+    tdg_kafka_topics.partition_messages_dropped(
+      datasource=datasource,
+      policy=policy,
+      measurement=measurement,
+      job=job,
+      rate_time_range=rate_time_range,
+    ),
+
+    tdg_kafka_topics.partition_messages_in_flight(
+      datasource=datasource,
+      policy=policy,
+      measurement=measurement,
+      job=job,
+    ),
+  ],
+
+  tdg_kafka_consumer(datasource, policy=null, measurement=null, job=null, rate_time_range=null):: [
+    tdg_kafka_consumer.row,
+
+    tdg_kafka_consumer.stateage(
+      datasource=datasource,
+      policy=policy,
+      measurement=measurement,
+      job=job,
+    ),
+
+    tdg_kafka_consumer.rebalance_age(
+      datasource=datasource,
+      policy=policy,
+      measurement=measurement,
+      job=job,
+    ),
+
+    tdg_kafka_consumer.rebalances(
+      datasource=datasource,
+      policy=policy,
+      measurement=measurement,
+      job=job,
+      rate_time_range=rate_time_range,
+    ),
+
+    tdg_kafka_consumer.assignment_size(
+      datasource=datasource,
+      policy=policy,
+      measurement=measurement,
+      job=job,
+    ),
+  ],
+
+  tdg_kafka_producer(datasource, policy=null, measurement=null, job=null, rate_time_range=null):: [
+    tdg_kafka_producer.row,
+
+    tdg_kafka_producer.idemp_stateage(
+      datasource=datasource,
+      policy=policy,
+      measurement=measurement,
+      job=job,
+    ),
+
+    tdg_kafka_producer.txn_stateage(
       datasource=datasource,
       policy=policy,
       measurement=measurement,
