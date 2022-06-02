@@ -40,5 +40,25 @@
             {"name": "id",
              "parts": ["header.metadata.object_id"]}
         ]
+    },
+    {
+        "name": "TestObj1",
+        "type": "record",
+        "fields": [
+            {"name": "key", "type":"int"}
+        ],
+        "indexes": [
+            {"name": "primary", "parts":["key"]}
+        ]
+    },
+    {
+        "name": "TestObj2",
+        "type": "record",
+        "fields": [
+            {"name": "key", "type":"int"}
+        ],
+        "indexes": [
+            {"name": "primary", "parts":["key"]}
+        ]
     }
 ]

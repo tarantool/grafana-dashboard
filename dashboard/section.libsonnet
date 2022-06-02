@@ -10,6 +10,7 @@ local slab = import 'panels/slab.libsonnet';
 local space = import 'panels/space.libsonnet';
 local vinyl = import 'panels/vinyl.libsonnet';
 
+local tdg_expirationd = import 'panels/tdg/expirationd.libsonnet';
 local tdg_kafka_brokers = import 'panels/tdg/kafka/brokers.libsonnet';
 local tdg_kafka_common = import 'panels/tdg/kafka/common.libsonnet';
 local tdg_kafka_consumer = import 'panels/tdg/kafka/consumer.libsonnet';
@@ -1668,6 +1669,40 @@ local tdg_kafka_topics = import 'panels/tdg/kafka/topics.libsonnet';
     ),
 
     tdg_kafka_producer.txn_stateage(
+      datasource=datasource,
+      policy=policy,
+      measurement=measurement,
+      job=job,
+    ),
+  ],
+
+  tdg_expirationd(datasource, policy=null, measurement=null, job=null, rate_time_range=null):: [
+    tdg_expirationd.row,
+
+    tdg_expirationd.tuples_checked(
+      datasource=datasource,
+      policy=policy,
+      measurement=measurement,
+      job=job,
+      rate_time_range=rate_time_range,
+    ),
+
+    tdg_expirationd.tuples_expired(
+      datasource=datasource,
+      policy=policy,
+      measurement=measurement,
+      job=job,
+      rate_time_range=rate_time_range,
+    ),
+
+    tdg_expirationd.restarts(
+      datasource=datasource,
+      policy=policy,
+      measurement=measurement,
+      job=job,
+    ),
+
+    tdg_expirationd.operation_time(
       datasource=datasource,
       policy=policy,
       measurement=measurement,
