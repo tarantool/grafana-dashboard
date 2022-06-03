@@ -11,6 +11,7 @@ local space = import 'panels/space.libsonnet';
 local vinyl = import 'panels/vinyl.libsonnet';
 
 local tdg_expirationd = import 'panels/tdg/expirationd.libsonnet';
+local tdg_file_connectors = import 'panels/tdg/file_connectors.libsonnet';
 local tdg_kafka_brokers = import 'panels/tdg/kafka/brokers.libsonnet';
 local tdg_kafka_common = import 'panels/tdg/kafka/common.libsonnet';
 local tdg_kafka_consumer = import 'panels/tdg/kafka/consumer.libsonnet';
@@ -1736,6 +1737,52 @@ local tdg_tuples = import 'panels/tdg/tuples.libsonnet';
     ),
 
     tdg_tuples.tuples_returned_max(
+      datasource=datasource,
+      policy=policy,
+      measurement=measurement,
+      job=job,
+    ),
+  ],
+
+  tdg_file_connectors(datasource, policy=null, measurement=null, job=null, rate_time_range=null):: [
+    tdg_file_connectors.row,
+
+    tdg_file_connectors.files_processed(
+      datasource=datasource,
+      policy=policy,
+      measurement=measurement,
+      job=job,
+    ),
+
+    tdg_file_connectors.objects_processed(
+      datasource=datasource,
+      policy=policy,
+      measurement=measurement,
+      job=job,
+    ),
+
+    tdg_file_connectors.files_process_errors(
+      datasource=datasource,
+      policy=policy,
+      measurement=measurement,
+      job=job,
+    ),
+
+    tdg_file_connectors.file_size(
+      datasource=datasource,
+      policy=policy,
+      measurement=measurement,
+      job=job,
+    ),
+
+    tdg_file_connectors.current_bytes_processed(
+      datasource=datasource,
+      policy=policy,
+      measurement=measurement,
+      job=job,
+    ),
+
+    tdg_file_connectors.current_objects_processed(
       datasource=datasource,
       policy=policy,
       measurement=measurement,

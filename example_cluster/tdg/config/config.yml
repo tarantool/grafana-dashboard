@@ -27,6 +27,16 @@ connector:
         - items
       group_id: '1'
 
+    - name: http
+      type: http
+
+    - name: jsonl_importer
+      type: file
+      format: jsonl
+      workdir: "/var/lib/tarantool"
+      filename: data.json
+      routing_key: TestObj1
+
 input_processor:
   handlers:
     - key: input_key
@@ -58,3 +68,10 @@ expiration:
     lifetime_hours: 1
     delay_sec: 1
     strategy: permanent
+
+services:
+  test_service:
+    function: test_function.call
+    args:
+      id: string
+    return_type: TestEntity

@@ -154,4 +154,10 @@ dashboard.new(
     policy=variable.influxdb.policy,
     measurement=variable.influxdb.measurement,
   )
+).addPanels(
+  section.tdg_file_connectors(
+    datasource=variable.datasource.influxdb,
+    policy=variable.influxdb.policy,
+    measurement=variable.influxdb.measurement,
+  )
 )

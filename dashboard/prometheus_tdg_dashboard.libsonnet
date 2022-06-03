@@ -182,4 +182,10 @@ dashboard.new(
     job=variable.prometheus.job,
     rate_time_range=variable.prometheus.rate_time_range,
   )
+).addPanels(
+  section.tdg_file_connectors(
+    datasource=variable.datasource.prometheus,
+    job=variable.prometheus.job,
+    rate_time_range=variable.prometheus.rate_time_range,
+  )
 )
