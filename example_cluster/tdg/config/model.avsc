@@ -60,5 +60,40 @@
         "indexes": [
             {"name": "primary", "parts":["key"]}
         ]
+    },
+    {
+        "name": "TestEntity",
+        "type": "record",
+        "fields": [
+          {"name": "id", "type": "string"},
+          {"name": "nested", "type": "string"}
+        ],
+        "indexes": ["id", "nested"],
+        "relations": [
+          {
+            "name": "NestedEntity",
+            "to": "NestedEntity",
+            "count": "one",
+            "from_fields": "nested",
+            "to_fields": "id"
+          }
+        ]
+    },
+    {
+        "name": "NestedEntity",
+        "type": "record",
+        "fields": [
+          {"name": "id", "type": "string"}
+        ],
+        "indexes": ["id"],
+        "relations": [
+          {
+            "name": "nested_rel",
+            "to": "TestEntity",
+            "count": "many",
+            "from_fields": "id",
+            "to_fields": "nested"
+          }
+        ]
     }
 ]

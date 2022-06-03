@@ -16,6 +16,7 @@ local tdg_kafka_common = import 'panels/tdg/kafka/common.libsonnet';
 local tdg_kafka_consumer = import 'panels/tdg/kafka/consumer.libsonnet';
 local tdg_kafka_producer = import 'panels/tdg/kafka/producer.libsonnet';
 local tdg_kafka_topics = import 'panels/tdg/kafka/topics.libsonnet';
+local tdg_tuples = import 'panels/tdg/tuples.libsonnet';
 
 {
   cluster_influxdb(datasource, policy, measurement):: [
@@ -1703,6 +1704,38 @@ local tdg_kafka_topics = import 'panels/tdg/kafka/topics.libsonnet';
     ),
 
     tdg_expirationd.operation_time(
+      datasource=datasource,
+      policy=policy,
+      measurement=measurement,
+      job=job,
+    ),
+  ],
+
+  tdg_tuples(datasource, policy=null, measurement=null, job=null, rate_time_range=null):: [
+    tdg_tuples.row,
+
+    tdg_tuples.tuples_scanned_average(
+      datasource=datasource,
+      policy=policy,
+      measurement=measurement,
+      job=job,
+    ),
+
+    tdg_tuples.tuples_returned_average(
+      datasource=datasource,
+      policy=policy,
+      measurement=measurement,
+      job=job,
+    ),
+
+    tdg_tuples.tuples_scanned_max(
+      datasource=datasource,
+      policy=policy,
+      measurement=measurement,
+      job=job,
+    ),
+
+    tdg_tuples.tuples_returned_max(
       datasource=datasource,
       policy=policy,
       measurement=measurement,
