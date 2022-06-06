@@ -172,4 +172,10 @@ dashboard.new(
     policy=variable.influxdb.policy,
     measurement=variable.influxdb.measurement,
   )
+).addPanels(
+  section.tdg_rest_api(
+    datasource=variable.datasource.influxdb,
+    policy=variable.influxdb.policy,
+    measurement=variable.influxdb.measurement,
+  )
 )
