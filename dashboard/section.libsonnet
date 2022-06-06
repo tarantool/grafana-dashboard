@@ -12,6 +12,7 @@ local vinyl = import 'panels/vinyl.libsonnet';
 
 local tdg_expirationd = import 'panels/tdg/expirationd.libsonnet';
 local tdg_file_connectors = import 'panels/tdg/file_connectors.libsonnet';
+local tdg_graphql = import 'panels/tdg/graphql.libsonnet';
 local tdg_kafka_brokers = import 'panels/tdg/kafka/brokers.libsonnet';
 local tdg_kafka_common = import 'panels/tdg/kafka/common.libsonnet';
 local tdg_kafka_consumer = import 'panels/tdg/kafka/consumer.libsonnet';
@@ -1787,6 +1788,56 @@ local tdg_tuples = import 'panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
+    ),
+  ],
+
+  tdg_graphql(datasource, policy=null, measurement=null, job=null, rate_time_range=null):: [
+    tdg_graphql.row,
+
+    tdg_graphql.query_success_rps(
+      datasource=datasource,
+      policy=policy,
+      measurement=measurement,
+      job=job,
+      rate_time_range=rate_time_range,
+    ),
+
+    tdg_graphql.query_success_latency(
+      datasource=datasource,
+      policy=policy,
+      measurement=measurement,
+      job=job,
+    ),
+
+    tdg_graphql.query_error_rps(
+      datasource=datasource,
+      policy=policy,
+      measurement=measurement,
+      job=job,
+      rate_time_range=rate_time_range,
+    ),
+
+    tdg_graphql.mutation_success_rps(
+      datasource=datasource,
+      policy=policy,
+      measurement=measurement,
+      job=job,
+      rate_time_range=rate_time_range,
+    ),
+
+    tdg_graphql.mutation_success_latency(
+      datasource=datasource,
+      policy=policy,
+      measurement=measurement,
+      job=job,
+    ),
+
+    tdg_graphql.mutation_error_rps(
+      datasource=datasource,
+      policy=policy,
+      measurement=measurement,
+      job=job,
+      rate_time_range=rate_time_range,
     ),
   ],
 }
