@@ -17,6 +17,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - GraphQL requests panels for TDG dashboard
 - IProto requests panels for TDG dashboard
 - REST API requests panels for TDG dashboard
+- Task statistics panels for TDG dashboard
 
 
 ## [1.1.0] - 2022-05-17

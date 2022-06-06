@@ -20,6 +20,7 @@ local tdg_kafka_consumer = import 'panels/tdg/kafka/consumer.libsonnet';
 local tdg_kafka_producer = import 'panels/tdg/kafka/producer.libsonnet';
 local tdg_kafka_topics = import 'panels/tdg/kafka/topics.libsonnet';
 local tdg_rest_api = import 'panels/tdg/rest_api.libsonnet';
+local tdg_tasks = import 'panels/tdg/tasks.libsonnet';
 local tdg_tuples = import 'panels/tdg/tuples.libsonnet';
 
 {
@@ -2069,6 +2070,132 @@ local tdg_tuples = import 'panels/tdg/tuples.libsonnet';
     ),
 
     tdg_rest_api.write_error_5xx_latency(
+      datasource=datasource,
+      policy=policy,
+      measurement=measurement,
+      job=job,
+    ),
+  ],
+
+  tdg_tasks(datasource, policy=null, measurement=null, job=null, rate_time_range=null):: [
+    tdg_tasks.row,
+
+    tdg_tasks.jobs_started(
+      datasource=datasource,
+      policy=policy,
+      measurement=measurement,
+      job=job,
+      rate_time_range=rate_time_range,
+    ),
+
+    tdg_tasks.jobs_failed(
+      datasource=datasource,
+      policy=policy,
+      measurement=measurement,
+      job=job,
+      rate_time_range=rate_time_range,
+    ),
+
+    tdg_tasks.jobs_succeeded(
+      datasource=datasource,
+      policy=policy,
+      measurement=measurement,
+      job=job,
+      rate_time_range=rate_time_range,
+    ),
+
+    tdg_tasks.jobs_running(
+      datasource=datasource,
+      policy=policy,
+      measurement=measurement,
+      job=job,
+    ),
+
+    tdg_tasks.jobs_time(
+      datasource=datasource,
+      policy=policy,
+      measurement=measurement,
+      job=job,
+    ),
+
+    tdg_tasks.tasks_started(
+      datasource=datasource,
+      policy=policy,
+      measurement=measurement,
+      job=job,
+      rate_time_range=rate_time_range,
+    ),
+
+    tdg_tasks.tasks_failed(
+      datasource=datasource,
+      policy=policy,
+      measurement=measurement,
+      job=job,
+      rate_time_range=rate_time_range,
+    ),
+
+    tdg_tasks.tasks_succeeded(
+      datasource=datasource,
+      policy=policy,
+      measurement=measurement,
+      job=job,
+      rate_time_range=rate_time_range,
+    ),
+
+    tdg_tasks.tasks_stopped(
+      datasource=datasource,
+      policy=policy,
+      measurement=measurement,
+      job=job,
+      rate_time_range=rate_time_range,
+    ),
+
+    tdg_tasks.tasks_running(
+      datasource=datasource,
+      policy=policy,
+      measurement=measurement,
+      job=job,
+    ),
+
+    tdg_tasks.tasks_time(
+      datasource=datasource,
+      policy=policy,
+      measurement=measurement,
+      job=job,
+    ),
+
+    tdg_tasks.system_tasks_started(
+      datasource=datasource,
+      policy=policy,
+      measurement=measurement,
+      job=job,
+      rate_time_range=rate_time_range,
+    ),
+
+    tdg_tasks.system_tasks_failed(
+      datasource=datasource,
+      policy=policy,
+      measurement=measurement,
+      job=job,
+      rate_time_range=rate_time_range,
+    ),
+
+    tdg_tasks.system_tasks_succeeded(
+      datasource=datasource,
+      policy=policy,
+      measurement=measurement,
+      job=job,
+      rate_time_range=rate_time_range,
+    ),
+
+    tdg_tasks.system_tasks_running(
+      datasource=datasource,
+      policy=policy,
+      measurement=measurement,
+      job=job,
+    ),
+
+    tdg_tasks.system_tasks_time(
       datasource=datasource,
       policy=policy,
       measurement=measurement,

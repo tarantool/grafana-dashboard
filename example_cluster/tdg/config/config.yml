@@ -75,3 +75,19 @@ services:
     args:
       id: string
     return_type: TestEntity
+  trigger_job:
+    function: trigger_job.call
+    args:
+      name: string
+    return_type: string
+
+tasks:
+  succeed:
+    kind: single_shot
+    function: tasks.succeed
+  fail:
+    kind: single_shot
+    function: tasks.fail
+  long:
+    kind: single_shot
+    function: tasks.long
