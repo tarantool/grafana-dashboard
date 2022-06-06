@@ -166,4 +166,10 @@ dashboard.new(
     policy=variable.influxdb.policy,
     measurement=variable.influxdb.measurement,
   )
+).addPanels(
+  section.tdg_iproto(
+    datasource=variable.datasource.influxdb,
+    policy=variable.influxdb.policy,
+    measurement=variable.influxdb.measurement,
+  )
 )

@@ -13,6 +13,7 @@ local vinyl = import 'panels/vinyl.libsonnet';
 local tdg_expirationd = import 'panels/tdg/expirationd.libsonnet';
 local tdg_file_connectors = import 'panels/tdg/file_connectors.libsonnet';
 local tdg_graphql = import 'panels/tdg/graphql.libsonnet';
+local tdg_iproto = import 'panels/tdg/iproto.libsonnet';
 local tdg_kafka_brokers = import 'panels/tdg/kafka/brokers.libsonnet';
 local tdg_kafka_common = import 'panels/tdg/kafka/common.libsonnet';
 local tdg_kafka_consumer = import 'panels/tdg/kafka/consumer.libsonnet';
@@ -1838,6 +1839,145 @@ local tdg_tuples = import 'panels/tdg/tuples.libsonnet';
       measurement=measurement,
       job=job,
       rate_time_range=rate_time_range,
+    ),
+  ],
+
+  tdg_iproto(datasource, policy=null, measurement=null, job=null, rate_time_range=null):: [
+    tdg_iproto.row,
+
+    tdg_iproto.put_rps(
+      datasource=datasource,
+      policy=policy,
+      measurement=measurement,
+      job=job,
+      rate_time_range=rate_time_range,
+    ),
+
+    tdg_iproto.put_latency(
+      datasource=datasource,
+      policy=policy,
+      measurement=measurement,
+      job=job,
+    ),
+
+    tdg_iproto.put_batch_rps(
+      datasource=datasource,
+      policy=policy,
+      measurement=measurement,
+      job=job,
+      rate_time_range=rate_time_range,
+    ),
+
+    tdg_iproto.put_batch_latency(
+      datasource=datasource,
+      policy=policy,
+      measurement=measurement,
+      job=job,
+    ),
+
+    tdg_iproto.find_rps(
+      datasource=datasource,
+      policy=policy,
+      measurement=measurement,
+      job=job,
+      rate_time_range=rate_time_range,
+    ),
+
+    tdg_iproto.find_latency(
+      datasource=datasource,
+      policy=policy,
+      measurement=measurement,
+      job=job,
+    ),
+
+    tdg_iproto.update_rps(
+      datasource=datasource,
+      policy=policy,
+      measurement=measurement,
+      job=job,
+      rate_time_range=rate_time_range,
+    ),
+
+    tdg_iproto.update_latency(
+      datasource=datasource,
+      policy=policy,
+      measurement=measurement,
+      job=job,
+    ),
+
+    tdg_iproto.get_rps(
+      datasource=datasource,
+      policy=policy,
+      measurement=measurement,
+      job=job,
+      rate_time_range=rate_time_range,
+    ),
+
+    tdg_iproto.get_latency(
+      datasource=datasource,
+      policy=policy,
+      measurement=measurement,
+      job=job,
+    ),
+
+    tdg_iproto.delete_rps(
+      datasource=datasource,
+      policy=policy,
+      measurement=measurement,
+      job=job,
+      rate_time_range=rate_time_range,
+    ),
+
+    tdg_iproto.delete_latency(
+      datasource=datasource,
+      policy=policy,
+      measurement=measurement,
+      job=job,
+    ),
+
+    tdg_iproto.count_rps(
+      datasource=datasource,
+      policy=policy,
+      measurement=measurement,
+      job=job,
+      rate_time_range=rate_time_range,
+    ),
+
+    tdg_iproto.count_latency(
+      datasource=datasource,
+      policy=policy,
+      measurement=measurement,
+      job=job,
+    ),
+
+    tdg_iproto.map_reduce_rps(
+      datasource=datasource,
+      policy=policy,
+      measurement=measurement,
+      job=job,
+      rate_time_range=rate_time_range,
+    ),
+
+    tdg_iproto.map_reduce_latency(
+      datasource=datasource,
+      policy=policy,
+      measurement=measurement,
+      job=job,
+    ),
+
+    tdg_iproto.call_on_storage_rps(
+      datasource=datasource,
+      policy=policy,
+      measurement=measurement,
+      job=job,
+      rate_time_range=rate_time_range,
+    ),
+
+    tdg_iproto.call_on_storage_latency(
+      datasource=datasource,
+      policy=policy,
+      measurement=measurement,
+      job=job,
     ),
   ],
 }
