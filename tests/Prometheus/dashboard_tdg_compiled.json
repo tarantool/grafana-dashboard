@@ -17647,6 +17647,1106 @@
          "title": "TDG IProto requests",
          "titleSize": "h6",
          "type": "row"
+      },
+      {
+         "collapse": true,
+         "collapsed": true,
+         "gridPos": {
+            "h": 1,
+            "w": 24,
+            "x": 0,
+            "y": 558
+         },
+         "id": 215,
+         "panels": [
+            {
+               "aliasColors": { },
+               "bars": false,
+               "dashLength": 10,
+               "dashes": false,
+               "datasource": "${DS_PROMETHEUS}",
+               "decimals": 3,
+               "description": "Number of TDG REST API GET requests processed with code 2xx.\nGraph shows mean requests per second.\n\n\nIf `No data` displayed, check up your 'rate_time_range' variable.",
+               "fill": 0,
+               "gridPos": {
+                  "h": 8,
+                  "w": 8,
+                  "x": 0,
+                  "y": 559
+               },
+               "id": 216,
+               "legend": {
+                  "alignAsTable": true,
+                  "avg": true,
+                  "current": true,
+                  "max": true,
+                  "min": false,
+                  "rightSide": false,
+                  "show": true,
+                  "sideWidth": null,
+                  "sort": "current",
+                  "sortDesc": true,
+                  "total": false,
+                  "values": true
+               },
+               "lines": true,
+               "linewidth": 1,
+               "links": [ ],
+               "nullPointMode": "null",
+               "percentage": false,
+               "pointradius": 5,
+               "points": false,
+               "renderer": "flot",
+               "repeat": null,
+               "seriesOverrides": [ ],
+               "spaceLength": 10,
+               "stack": false,
+               "steppedLine": false,
+               "targets": [
+                  {
+                     "expr": "rate(tdg_rest_exec_time_count{job=~\"$job\",method=\"GET\",status_code=~\"^2\\\\d{2}$\"}[$rate_time_range])",
+                     "format": "time_series",
+                     "intervalFactor": 2,
+                     "legendFormat": "{{type}} (code {{status_code}}) — {{alias}}",
+                     "refId": "A"
+                  }
+               ],
+               "thresholds": [ ],
+               "timeFrom": null,
+               "timeShift": null,
+               "title": "Success read requests",
+               "tooltip": {
+                  "shared": true,
+                  "sort": 2,
+                  "value_type": "individual"
+               },
+               "type": "graph",
+               "xaxis": {
+                  "buckets": null,
+                  "mode": "time",
+                  "name": null,
+                  "show": true,
+                  "values": [ ]
+               },
+               "yaxes": [
+                  {
+                     "decimals": 0,
+                     "format": "none",
+                     "label": "request per second",
+                     "logBase": 1,
+                     "max": null,
+                     "min": null,
+                     "show": true
+                  },
+                  {
+                     "decimals": 3,
+                     "format": "none",
+                     "label": null,
+                     "logBase": 1,
+                     "max": null,
+                     "min": null,
+                     "show": true
+                  }
+               ]
+            },
+            {
+               "aliasColors": { },
+               "bars": false,
+               "dashLength": 10,
+               "dashes": false,
+               "datasource": "${DS_PROMETHEUS}",
+               "decimals": 3,
+               "description": "Number of TDG REST API GET requests processed with code 4xx.\nGraph shows mean requests per second.\n\n\nIf `No data` displayed, check up your 'rate_time_range' variable.",
+               "fill": 0,
+               "gridPos": {
+                  "h": 8,
+                  "w": 8,
+                  "x": 8,
+                  "y": 559
+               },
+               "id": 217,
+               "legend": {
+                  "alignAsTable": true,
+                  "avg": true,
+                  "current": true,
+                  "max": true,
+                  "min": false,
+                  "rightSide": false,
+                  "show": true,
+                  "sideWidth": null,
+                  "sort": "current",
+                  "sortDesc": true,
+                  "total": false,
+                  "values": true
+               },
+               "lines": true,
+               "linewidth": 1,
+               "links": [ ],
+               "nullPointMode": "null",
+               "percentage": false,
+               "pointradius": 5,
+               "points": false,
+               "renderer": "flot",
+               "repeat": null,
+               "seriesOverrides": [ ],
+               "spaceLength": 10,
+               "stack": false,
+               "steppedLine": false,
+               "targets": [
+                  {
+                     "expr": "rate(tdg_rest_exec_time_count{job=~\"$job\",method=\"GET\",status_code=~\"^4\\\\d{2}$\"}[$rate_time_range])",
+                     "format": "time_series",
+                     "intervalFactor": 2,
+                     "legendFormat": "{{type}} (code {{status_code}}) — {{alias}}",
+                     "refId": "A"
+                  }
+               ],
+               "thresholds": [ ],
+               "timeFrom": null,
+               "timeShift": null,
+               "title": "Error read requests (code 4xx)",
+               "tooltip": {
+                  "shared": true,
+                  "sort": 2,
+                  "value_type": "individual"
+               },
+               "type": "graph",
+               "xaxis": {
+                  "buckets": null,
+                  "mode": "time",
+                  "name": null,
+                  "show": true,
+                  "values": [ ]
+               },
+               "yaxes": [
+                  {
+                     "decimals": 0,
+                     "format": "none",
+                     "label": "request per second",
+                     "logBase": 1,
+                     "max": null,
+                     "min": null,
+                     "show": true
+                  },
+                  {
+                     "decimals": 3,
+                     "format": "none",
+                     "label": null,
+                     "logBase": 1,
+                     "max": null,
+                     "min": null,
+                     "show": true
+                  }
+               ]
+            },
+            {
+               "aliasColors": { },
+               "bars": false,
+               "dashLength": 10,
+               "dashes": false,
+               "datasource": "${DS_PROMETHEUS}",
+               "decimals": 3,
+               "description": "Number of TDG REST API GET requests processed with code 5xx.\nGraph shows mean requests per second.\n\n\nIf `No data` displayed, check up your 'rate_time_range' variable.",
+               "fill": 0,
+               "gridPos": {
+                  "h": 8,
+                  "w": 8,
+                  "x": 16,
+                  "y": 559
+               },
+               "id": 218,
+               "legend": {
+                  "alignAsTable": true,
+                  "avg": true,
+                  "current": true,
+                  "max": true,
+                  "min": false,
+                  "rightSide": false,
+                  "show": true,
+                  "sideWidth": null,
+                  "sort": "current",
+                  "sortDesc": true,
+                  "total": false,
+                  "values": true
+               },
+               "lines": true,
+               "linewidth": 1,
+               "links": [ ],
+               "nullPointMode": "null",
+               "percentage": false,
+               "pointradius": 5,
+               "points": false,
+               "renderer": "flot",
+               "repeat": null,
+               "seriesOverrides": [ ],
+               "spaceLength": 10,
+               "stack": false,
+               "steppedLine": false,
+               "targets": [
+                  {
+                     "expr": "rate(tdg_rest_exec_time_count{job=~\"$job\",method=\"GET\",status_code=~\"^5\\\\d{2}$\"}[$rate_time_range])",
+                     "format": "time_series",
+                     "intervalFactor": 2,
+                     "legendFormat": "{{type}} (code {{status_code}}) — {{alias}}",
+                     "refId": "A"
+                  }
+               ],
+               "thresholds": [ ],
+               "timeFrom": null,
+               "timeShift": null,
+               "title": "Error read requests (code 5xx)",
+               "tooltip": {
+                  "shared": true,
+                  "sort": 2,
+                  "value_type": "individual"
+               },
+               "type": "graph",
+               "xaxis": {
+                  "buckets": null,
+                  "mode": "time",
+                  "name": null,
+                  "show": true,
+                  "values": [ ]
+               },
+               "yaxes": [
+                  {
+                     "decimals": 0,
+                     "format": "none",
+                     "label": "request per second",
+                     "logBase": 1,
+                     "max": null,
+                     "min": null,
+                     "show": true
+                  },
+                  {
+                     "decimals": 3,
+                     "format": "none",
+                     "label": null,
+                     "logBase": 1,
+                     "max": null,
+                     "min": null,
+                     "show": true
+                  }
+               ]
+            },
+            {
+               "aliasColors": { },
+               "bars": false,
+               "dashLength": 10,
+               "dashes": false,
+               "datasource": "${DS_PROMETHEUS}",
+               "decimals": 3,
+               "description": "99th percentile of TDG REST API request execution time.\nOnly GET requests processed with code 2xx are displayed.\n",
+               "fill": 0,
+               "gridPos": {
+                  "h": 8,
+                  "w": 8,
+                  "x": 0,
+                  "y": 567
+               },
+               "id": 219,
+               "legend": {
+                  "alignAsTable": true,
+                  "avg": true,
+                  "current": true,
+                  "max": true,
+                  "min": false,
+                  "rightSide": false,
+                  "show": true,
+                  "sideWidth": null,
+                  "sort": "current",
+                  "sortDesc": true,
+                  "total": false,
+                  "values": true
+               },
+               "lines": true,
+               "linewidth": 1,
+               "links": [ ],
+               "nullPointMode": "null",
+               "percentage": false,
+               "pointradius": 5,
+               "points": false,
+               "renderer": "flot",
+               "repeat": null,
+               "seriesOverrides": [ ],
+               "spaceLength": 10,
+               "stack": false,
+               "steppedLine": false,
+               "targets": [
+                  {
+                     "expr": "tdg_rest_exec_time{job=~\"$job\",method=\"GET\",status_code=~\"^2\\\\d{2}$\",quantile=\"0.99\"}",
+                     "format": "time_series",
+                     "intervalFactor": 2,
+                     "legendFormat": "{{type}} (code {{status_code}}) — {{alias}}",
+                     "refId": "A"
+                  }
+               ],
+               "thresholds": [ ],
+               "timeFrom": null,
+               "timeShift": null,
+               "title": "Success read request latency",
+               "tooltip": {
+                  "shared": true,
+                  "sort": 2,
+                  "value_type": "individual"
+               },
+               "type": "graph",
+               "xaxis": {
+                  "buckets": null,
+                  "mode": "time",
+                  "name": null,
+                  "show": true,
+                  "values": [ ]
+               },
+               "yaxes": [
+                  {
+                     "decimals": 0,
+                     "format": "µs",
+                     "label": "99th percentile",
+                     "logBase": 1,
+                     "max": null,
+                     "min": null,
+                     "show": true
+                  },
+                  {
+                     "decimals": 3,
+                     "format": "µs",
+                     "label": null,
+                     "logBase": 1,
+                     "max": null,
+                     "min": null,
+                     "show": true
+                  }
+               ]
+            },
+            {
+               "aliasColors": { },
+               "bars": false,
+               "dashLength": 10,
+               "dashes": false,
+               "datasource": "${DS_PROMETHEUS}",
+               "decimals": 3,
+               "description": "99th percentile of TDG REST API request execution time.\nOnly GET requests processed with code 4xx are displayed.\n",
+               "fill": 0,
+               "gridPos": {
+                  "h": 8,
+                  "w": 8,
+                  "x": 8,
+                  "y": 567
+               },
+               "id": 220,
+               "legend": {
+                  "alignAsTable": true,
+                  "avg": true,
+                  "current": true,
+                  "max": true,
+                  "min": false,
+                  "rightSide": false,
+                  "show": true,
+                  "sideWidth": null,
+                  "sort": "current",
+                  "sortDesc": true,
+                  "total": false,
+                  "values": true
+               },
+               "lines": true,
+               "linewidth": 1,
+               "links": [ ],
+               "nullPointMode": "null",
+               "percentage": false,
+               "pointradius": 5,
+               "points": false,
+               "renderer": "flot",
+               "repeat": null,
+               "seriesOverrides": [ ],
+               "spaceLength": 10,
+               "stack": false,
+               "steppedLine": false,
+               "targets": [
+                  {
+                     "expr": "tdg_rest_exec_time{job=~\"$job\",method=\"GET\",status_code=~\"^4\\\\d{2}$\",quantile=\"0.99\"}",
+                     "format": "time_series",
+                     "intervalFactor": 2,
+                     "legendFormat": "{{type}} (code {{status_code}}) — {{alias}}",
+                     "refId": "A"
+                  }
+               ],
+               "thresholds": [ ],
+               "timeFrom": null,
+               "timeShift": null,
+               "title": "Error read request latency (code 4xx)",
+               "tooltip": {
+                  "shared": true,
+                  "sort": 2,
+                  "value_type": "individual"
+               },
+               "type": "graph",
+               "xaxis": {
+                  "buckets": null,
+                  "mode": "time",
+                  "name": null,
+                  "show": true,
+                  "values": [ ]
+               },
+               "yaxes": [
+                  {
+                     "decimals": 0,
+                     "format": "µs",
+                     "label": "99th percentile",
+                     "logBase": 1,
+                     "max": null,
+                     "min": null,
+                     "show": true
+                  },
+                  {
+                     "decimals": 3,
+                     "format": "µs",
+                     "label": null,
+                     "logBase": 1,
+                     "max": null,
+                     "min": null,
+                     "show": true
+                  }
+               ]
+            },
+            {
+               "aliasColors": { },
+               "bars": false,
+               "dashLength": 10,
+               "dashes": false,
+               "datasource": "${DS_PROMETHEUS}",
+               "decimals": 3,
+               "description": "99th percentile of TDG REST API request execution time.\nOnly GET requests processed with code 5xx are displayed.\n",
+               "fill": 0,
+               "gridPos": {
+                  "h": 8,
+                  "w": 8,
+                  "x": 16,
+                  "y": 567
+               },
+               "id": 221,
+               "legend": {
+                  "alignAsTable": true,
+                  "avg": true,
+                  "current": true,
+                  "max": true,
+                  "min": false,
+                  "rightSide": false,
+                  "show": true,
+                  "sideWidth": null,
+                  "sort": "current",
+                  "sortDesc": true,
+                  "total": false,
+                  "values": true
+               },
+               "lines": true,
+               "linewidth": 1,
+               "links": [ ],
+               "nullPointMode": "null",
+               "percentage": false,
+               "pointradius": 5,
+               "points": false,
+               "renderer": "flot",
+               "repeat": null,
+               "seriesOverrides": [ ],
+               "spaceLength": 10,
+               "stack": false,
+               "steppedLine": false,
+               "targets": [
+                  {
+                     "expr": "tdg_rest_exec_time{job=~\"$job\",method=\"GET\",status_code=~\"^5\\\\d{2}$\",quantile=\"0.99\"}",
+                     "format": "time_series",
+                     "intervalFactor": 2,
+                     "legendFormat": "{{type}} (code {{status_code}}) — {{alias}}",
+                     "refId": "A"
+                  }
+               ],
+               "thresholds": [ ],
+               "timeFrom": null,
+               "timeShift": null,
+               "title": "Error read request latency (code 5xx)",
+               "tooltip": {
+                  "shared": true,
+                  "sort": 2,
+                  "value_type": "individual"
+               },
+               "type": "graph",
+               "xaxis": {
+                  "buckets": null,
+                  "mode": "time",
+                  "name": null,
+                  "show": true,
+                  "values": [ ]
+               },
+               "yaxes": [
+                  {
+                     "decimals": 0,
+                     "format": "µs",
+                     "label": "99th percentile",
+                     "logBase": 1,
+                     "max": null,
+                     "min": null,
+                     "show": true
+                  },
+                  {
+                     "decimals": 3,
+                     "format": "µs",
+                     "label": null,
+                     "logBase": 1,
+                     "max": null,
+                     "min": null,
+                     "show": true
+                  }
+               ]
+            },
+            {
+               "aliasColors": { },
+               "bars": false,
+               "dashLength": 10,
+               "dashes": false,
+               "datasource": "${DS_PROMETHEUS}",
+               "decimals": 3,
+               "description": "Number of TDG REST API POST/PUT/DELETE requests\nprocessed with code 2xx.\nGraph shows mean requests per second.\n\n\nIf `No data` displayed, check up your 'rate_time_range' variable.",
+               "fill": 0,
+               "gridPos": {
+                  "h": 8,
+                  "w": 8,
+                  "x": 0,
+                  "y": 575
+               },
+               "id": 222,
+               "legend": {
+                  "alignAsTable": true,
+                  "avg": true,
+                  "current": true,
+                  "max": true,
+                  "min": false,
+                  "rightSide": false,
+                  "show": true,
+                  "sideWidth": null,
+                  "sort": "current",
+                  "sortDesc": true,
+                  "total": false,
+                  "values": true
+               },
+               "lines": true,
+               "linewidth": 1,
+               "links": [ ],
+               "nullPointMode": "null",
+               "percentage": false,
+               "pointradius": 5,
+               "points": false,
+               "renderer": "flot",
+               "repeat": null,
+               "seriesOverrides": [ ],
+               "spaceLength": 10,
+               "stack": false,
+               "steppedLine": false,
+               "targets": [
+                  {
+                     "expr": "rate(tdg_rest_exec_time_count{job=~\"$job\",method!=\"GET\",status_code=~\"^2\\\\d{2}$\"}[$rate_time_range])",
+                     "format": "time_series",
+                     "intervalFactor": 2,
+                     "legendFormat": "{{type}} (code {{status_code}}) — {{alias}}",
+                     "refId": "A"
+                  }
+               ],
+               "thresholds": [ ],
+               "timeFrom": null,
+               "timeShift": null,
+               "title": "Success write requests",
+               "tooltip": {
+                  "shared": true,
+                  "sort": 2,
+                  "value_type": "individual"
+               },
+               "type": "graph",
+               "xaxis": {
+                  "buckets": null,
+                  "mode": "time",
+                  "name": null,
+                  "show": true,
+                  "values": [ ]
+               },
+               "yaxes": [
+                  {
+                     "decimals": 0,
+                     "format": "none",
+                     "label": "request per second",
+                     "logBase": 1,
+                     "max": null,
+                     "min": null,
+                     "show": true
+                  },
+                  {
+                     "decimals": 3,
+                     "format": "none",
+                     "label": null,
+                     "logBase": 1,
+                     "max": null,
+                     "min": null,
+                     "show": true
+                  }
+               ]
+            },
+            {
+               "aliasColors": { },
+               "bars": false,
+               "dashLength": 10,
+               "dashes": false,
+               "datasource": "${DS_PROMETHEUS}",
+               "decimals": 3,
+               "description": "Number of TDG REST API POST/PUT/DELETE requests\nprocessed with code 4xx.\nGraph shows mean requests per second.\n\n\nIf `No data` displayed, check up your 'rate_time_range' variable.",
+               "fill": 0,
+               "gridPos": {
+                  "h": 8,
+                  "w": 8,
+                  "x": 8,
+                  "y": 575
+               },
+               "id": 223,
+               "legend": {
+                  "alignAsTable": true,
+                  "avg": true,
+                  "current": true,
+                  "max": true,
+                  "min": false,
+                  "rightSide": false,
+                  "show": true,
+                  "sideWidth": null,
+                  "sort": "current",
+                  "sortDesc": true,
+                  "total": false,
+                  "values": true
+               },
+               "lines": true,
+               "linewidth": 1,
+               "links": [ ],
+               "nullPointMode": "null",
+               "percentage": false,
+               "pointradius": 5,
+               "points": false,
+               "renderer": "flot",
+               "repeat": null,
+               "seriesOverrides": [ ],
+               "spaceLength": 10,
+               "stack": false,
+               "steppedLine": false,
+               "targets": [
+                  {
+                     "expr": "rate(tdg_rest_exec_time_count{job=~\"$job\",method!=\"GET\",status_code=~\"^4\\\\d{2}$\"}[$rate_time_range])",
+                     "format": "time_series",
+                     "intervalFactor": 2,
+                     "legendFormat": "{{type}} (code {{status_code}}) — {{alias}}",
+                     "refId": "A"
+                  }
+               ],
+               "thresholds": [ ],
+               "timeFrom": null,
+               "timeShift": null,
+               "title": "Error write requests (code 4xx)",
+               "tooltip": {
+                  "shared": true,
+                  "sort": 2,
+                  "value_type": "individual"
+               },
+               "type": "graph",
+               "xaxis": {
+                  "buckets": null,
+                  "mode": "time",
+                  "name": null,
+                  "show": true,
+                  "values": [ ]
+               },
+               "yaxes": [
+                  {
+                     "decimals": 0,
+                     "format": "none",
+                     "label": "request per second",
+                     "logBase": 1,
+                     "max": null,
+                     "min": null,
+                     "show": true
+                  },
+                  {
+                     "decimals": 3,
+                     "format": "none",
+                     "label": null,
+                     "logBase": 1,
+                     "max": null,
+                     "min": null,
+                     "show": true
+                  }
+               ]
+            },
+            {
+               "aliasColors": { },
+               "bars": false,
+               "dashLength": 10,
+               "dashes": false,
+               "datasource": "${DS_PROMETHEUS}",
+               "decimals": 3,
+               "description": "Number of TDG REST API POST/PUT/DELETE requests\nprocessed with code 5xx.\nGraph shows mean requests per second.\n\n\nIf `No data` displayed, check up your 'rate_time_range' variable.",
+               "fill": 0,
+               "gridPos": {
+                  "h": 8,
+                  "w": 8,
+                  "x": 16,
+                  "y": 575
+               },
+               "id": 224,
+               "legend": {
+                  "alignAsTable": true,
+                  "avg": true,
+                  "current": true,
+                  "max": true,
+                  "min": false,
+                  "rightSide": false,
+                  "show": true,
+                  "sideWidth": null,
+                  "sort": "current",
+                  "sortDesc": true,
+                  "total": false,
+                  "values": true
+               },
+               "lines": true,
+               "linewidth": 1,
+               "links": [ ],
+               "nullPointMode": "null",
+               "percentage": false,
+               "pointradius": 5,
+               "points": false,
+               "renderer": "flot",
+               "repeat": null,
+               "seriesOverrides": [ ],
+               "spaceLength": 10,
+               "stack": false,
+               "steppedLine": false,
+               "targets": [
+                  {
+                     "expr": "rate(tdg_rest_exec_time_count{job=~\"$job\",method!=\"GET\",status_code=~\"^5\\\\d{2}$\"}[$rate_time_range])",
+                     "format": "time_series",
+                     "intervalFactor": 2,
+                     "legendFormat": "{{type}} (code {{status_code}}) — {{alias}}",
+                     "refId": "A"
+                  }
+               ],
+               "thresholds": [ ],
+               "timeFrom": null,
+               "timeShift": null,
+               "title": "Error write requests (code 5xx)",
+               "tooltip": {
+                  "shared": true,
+                  "sort": 2,
+                  "value_type": "individual"
+               },
+               "type": "graph",
+               "xaxis": {
+                  "buckets": null,
+                  "mode": "time",
+                  "name": null,
+                  "show": true,
+                  "values": [ ]
+               },
+               "yaxes": [
+                  {
+                     "decimals": 0,
+                     "format": "none",
+                     "label": "request per second",
+                     "logBase": 1,
+                     "max": null,
+                     "min": null,
+                     "show": true
+                  },
+                  {
+                     "decimals": 3,
+                     "format": "none",
+                     "label": null,
+                     "logBase": 1,
+                     "max": null,
+                     "min": null,
+                     "show": true
+                  }
+               ]
+            },
+            {
+               "aliasColors": { },
+               "bars": false,
+               "dashLength": 10,
+               "dashes": false,
+               "datasource": "${DS_PROMETHEUS}",
+               "decimals": 3,
+               "description": "99th percentile of TDG REST API request execution time.\nOnly POST/PUT/DELETE requests processed with code 2xx\nare displayed.\n",
+               "fill": 0,
+               "gridPos": {
+                  "h": 8,
+                  "w": 8,
+                  "x": 0,
+                  "y": 583
+               },
+               "id": 225,
+               "legend": {
+                  "alignAsTable": true,
+                  "avg": true,
+                  "current": true,
+                  "max": true,
+                  "min": false,
+                  "rightSide": false,
+                  "show": true,
+                  "sideWidth": null,
+                  "sort": "current",
+                  "sortDesc": true,
+                  "total": false,
+                  "values": true
+               },
+               "lines": true,
+               "linewidth": 1,
+               "links": [ ],
+               "nullPointMode": "null",
+               "percentage": false,
+               "pointradius": 5,
+               "points": false,
+               "renderer": "flot",
+               "repeat": null,
+               "seriesOverrides": [ ],
+               "spaceLength": 10,
+               "stack": false,
+               "steppedLine": false,
+               "targets": [
+                  {
+                     "expr": "tdg_rest_exec_time{job=~\"$job\",method!=\"GET\",status_code=~\"^2\\\\d{2}$\",quantile=\"0.99\"}",
+                     "format": "time_series",
+                     "intervalFactor": 2,
+                     "legendFormat": "{{type}} (code {{status_code}}) — {{alias}}",
+                     "refId": "A"
+                  }
+               ],
+               "thresholds": [ ],
+               "timeFrom": null,
+               "timeShift": null,
+               "title": "Success write request latency",
+               "tooltip": {
+                  "shared": true,
+                  "sort": 2,
+                  "value_type": "individual"
+               },
+               "type": "graph",
+               "xaxis": {
+                  "buckets": null,
+                  "mode": "time",
+                  "name": null,
+                  "show": true,
+                  "values": [ ]
+               },
+               "yaxes": [
+                  {
+                     "decimals": 0,
+                     "format": "µs",
+                     "label": "99th percentile",
+                     "logBase": 1,
+                     "max": null,
+                     "min": null,
+                     "show": true
+                  },
+                  {
+                     "decimals": 3,
+                     "format": "µs",
+                     "label": null,
+                     "logBase": 1,
+                     "max": null,
+                     "min": null,
+                     "show": true
+                  }
+               ]
+            },
+            {
+               "aliasColors": { },
+               "bars": false,
+               "dashLength": 10,
+               "dashes": false,
+               "datasource": "${DS_PROMETHEUS}",
+               "decimals": 3,
+               "description": "99th percentile of TDG REST API request execution time.\nOnly POST/PUT/DELETE requests processed with code 4xx\nare displayed.\n",
+               "fill": 0,
+               "gridPos": {
+                  "h": 8,
+                  "w": 8,
+                  "x": 8,
+                  "y": 583
+               },
+               "id": 226,
+               "legend": {
+                  "alignAsTable": true,
+                  "avg": true,
+                  "current": true,
+                  "max": true,
+                  "min": false,
+                  "rightSide": false,
+                  "show": true,
+                  "sideWidth": null,
+                  "sort": "current",
+                  "sortDesc": true,
+                  "total": false,
+                  "values": true
+               },
+               "lines": true,
+               "linewidth": 1,
+               "links": [ ],
+               "nullPointMode": "null",
+               "percentage": false,
+               "pointradius": 5,
+               "points": false,
+               "renderer": "flot",
+               "repeat": null,
+               "seriesOverrides": [ ],
+               "spaceLength": 10,
+               "stack": false,
+               "steppedLine": false,
+               "targets": [
+                  {
+                     "expr": "tdg_rest_exec_time{job=~\"$job\",method!=\"GET\",status_code=~\"^4\\\\d{2}$\",quantile=\"0.99\"}",
+                     "format": "time_series",
+                     "intervalFactor": 2,
+                     "legendFormat": "{{type}} (code {{status_code}}) — {{alias}}",
+                     "refId": "A"
+                  }
+               ],
+               "thresholds": [ ],
+               "timeFrom": null,
+               "timeShift": null,
+               "title": "Error write request latency (code 4xx)",
+               "tooltip": {
+                  "shared": true,
+                  "sort": 2,
+                  "value_type": "individual"
+               },
+               "type": "graph",
+               "xaxis": {
+                  "buckets": null,
+                  "mode": "time",
+                  "name": null,
+                  "show": true,
+                  "values": [ ]
+               },
+               "yaxes": [
+                  {
+                     "decimals": 0,
+                     "format": "µs",
+                     "label": "99th percentile",
+                     "logBase": 1,
+                     "max": null,
+                     "min": null,
+                     "show": true
+                  },
+                  {
+                     "decimals": 3,
+                     "format": "µs",
+                     "label": null,
+                     "logBase": 1,
+                     "max": null,
+                     "min": null,
+                     "show": true
+                  }
+               ]
+            },
+            {
+               "aliasColors": { },
+               "bars": false,
+               "dashLength": 10,
+               "dashes": false,
+               "datasource": "${DS_PROMETHEUS}",
+               "decimals": 3,
+               "description": "99th percentile of TDG REST API request execution time.\nOnly POST/PUT/DELETE requests processed with code 5xx\nare displayed.\n",
+               "fill": 0,
+               "gridPos": {
+                  "h": 8,
+                  "w": 8,
+                  "x": 16,
+                  "y": 583
+               },
+               "id": 227,
+               "legend": {
+                  "alignAsTable": true,
+                  "avg": true,
+                  "current": true,
+                  "max": true,
+                  "min": false,
+                  "rightSide": false,
+                  "show": true,
+                  "sideWidth": null,
+                  "sort": "current",
+                  "sortDesc": true,
+                  "total": false,
+                  "values": true
+               },
+               "lines": true,
+               "linewidth": 1,
+               "links": [ ],
+               "nullPointMode": "null",
+               "percentage": false,
+               "pointradius": 5,
+               "points": false,
+               "renderer": "flot",
+               "repeat": null,
+               "seriesOverrides": [ ],
+               "spaceLength": 10,
+               "stack": false,
+               "steppedLine": false,
+               "targets": [
+                  {
+                     "expr": "tdg_rest_exec_time{job=~\"$job\",method!=\"GET\",status_code=~\"^5\\\\d{2}$\",quantile=\"0.99\"}",
+                     "format": "time_series",
+                     "intervalFactor": 2,
+                     "legendFormat": "{{type}} (code {{status_code}}) — {{alias}}",
+                     "refId": "A"
+                  }
+               ],
+               "thresholds": [ ],
+               "timeFrom": null,
+               "timeShift": null,
+               "title": "Error read request latency (code 5xx)",
+               "tooltip": {
+                  "shared": true,
+                  "sort": 2,
+                  "value_type": "individual"
+               },
+               "type": "graph",
+               "xaxis": {
+                  "buckets": null,
+                  "mode": "time",
+                  "name": null,
+                  "show": true,
+                  "values": [ ]
+               },
+               "yaxes": [
+                  {
+                     "decimals": 0,
+                     "format": "µs",
+                     "label": "99th percentile",
+                     "logBase": 1,
+                     "max": null,
+                     "min": null,
+                     "show": true
+                  },
+                  {
+                     "decimals": 3,
+                     "format": "µs",
+                     "label": null,
+                     "logBase": 1,
+                     "max": null,
+                     "min": null,
+                     "show": true
+                  }
+               ]
+            }
+         ],
+         "repeat": null,
+         "repeatIteration": null,
+         "repeatRowId": null,
+         "showTitle": true,
+         "title": "TDG REST API requests",
+         "titleSize": "h6",
+         "type": "row"
       }
    ],
    "refresh": "30s",

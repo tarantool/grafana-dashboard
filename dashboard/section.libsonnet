@@ -19,6 +19,7 @@ local tdg_kafka_common = import 'panels/tdg/kafka/common.libsonnet';
 local tdg_kafka_consumer = import 'panels/tdg/kafka/consumer.libsonnet';
 local tdg_kafka_producer = import 'panels/tdg/kafka/producer.libsonnet';
 local tdg_kafka_topics = import 'panels/tdg/kafka/topics.libsonnet';
+local tdg_rest_api = import 'panels/tdg/rest_api.libsonnet';
 local tdg_tuples = import 'panels/tdg/tuples.libsonnet';
 
 {
@@ -1974,6 +1975,100 @@ local tdg_tuples = import 'panels/tdg/tuples.libsonnet';
     ),
 
     tdg_iproto.call_on_storage_latency(
+      datasource=datasource,
+      policy=policy,
+      measurement=measurement,
+      job=job,
+    ),
+  ],
+
+  tdg_rest_api(datasource, policy=null, measurement=null, job=null, rate_time_range=null):: [
+    tdg_rest_api.row,
+
+    tdg_rest_api.read_success_rps(
+      datasource=datasource,
+      policy=policy,
+      measurement=measurement,
+      job=job,
+      rate_time_range=rate_time_range,
+    ),
+
+    tdg_rest_api.read_error_4xx_rps(
+      datasource=datasource,
+      policy=policy,
+      measurement=measurement,
+      job=job,
+      rate_time_range=rate_time_range,
+    ),
+
+    tdg_rest_api.read_error_5xx_rps(
+      datasource=datasource,
+      policy=policy,
+      measurement=measurement,
+      job=job,
+      rate_time_range=rate_time_range,
+    ),
+
+    tdg_rest_api.read_success_latency(
+      datasource=datasource,
+      policy=policy,
+      measurement=measurement,
+      job=job,
+    ),
+
+    tdg_rest_api.read_error_4xx_latency(
+      datasource=datasource,
+      policy=policy,
+      measurement=measurement,
+      job=job,
+    ),
+
+    tdg_rest_api.read_error_5xx_latency(
+      datasource=datasource,
+      policy=policy,
+      measurement=measurement,
+      job=job,
+    ),
+
+    tdg_rest_api.write_success_rps(
+      datasource=datasource,
+      policy=policy,
+      measurement=measurement,
+      job=job,
+      rate_time_range=rate_time_range,
+    ),
+
+    tdg_rest_api.write_error_4xx_rps(
+      datasource=datasource,
+      policy=policy,
+      measurement=measurement,
+      job=job,
+      rate_time_range=rate_time_range,
+    ),
+
+    tdg_rest_api.write_error_5xx_rps(
+      datasource=datasource,
+      policy=policy,
+      measurement=measurement,
+      job=job,
+      rate_time_range=rate_time_range,
+    ),
+
+    tdg_rest_api.write_success_latency(
+      datasource=datasource,
+      policy=policy,
+      measurement=measurement,
+      job=job,
+    ),
+
+    tdg_rest_api.write_error_4xx_latency(
+      datasource=datasource,
+      policy=policy,
+      measurement=measurement,
+      job=job,
+    ),
+
+    tdg_rest_api.write_error_5xx_latency(
       datasource=datasource,
       policy=policy,
       measurement=measurement,
