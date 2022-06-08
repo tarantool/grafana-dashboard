@@ -421,7 +421,7 @@ local prometheus = grafana.prometheus;
     title='Tarantool instance status',
     description=|||
       `master` status means instance is available for read and
-      write operations. `slave` status means instance is
+      write operations. `replica` status means instance is
       available only for read operations.
 
       Panel works with `metrics >= 0.11.0` and Grafana 8.x.
@@ -440,7 +440,7 @@ local prometheus = grafana.prometheus;
   ).addValueMapping(
     0, 'green', 'master'
   ).addValueMapping(
-    1, 'yellow', 'slave'
+    1, 'yellow', 'replica'
   ).addRangeMapping(
     0.001, 0.999, '-'
   ).addTarget(
