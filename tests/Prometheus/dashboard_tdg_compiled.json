@@ -5526,7 +5526,7 @@
                "dashes": false,
                "datasource": "${DS_PROMETHEUS}",
                "decimals": 3,
-               "description": "Average rate of fiber context switches.\nContext switches are counted over all current fibers.\n\n\nIf `No data` displayed, check up your 'rate_time_range' variable.",
+               "description": "Number of fiber context switches.\nContext switches are counted over all current fibers.\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -5564,7 +5564,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_fiber_csw{job=~\"$job\"}[$rate_time_range])",
+                     "expr": "tnt_fiber_csw{job=~\"$job\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -5592,7 +5592,7 @@
                   {
                      "decimals": 0,
                      "format": "none",
-                     "label": "switches per second",
+                     "label": "switches",
                      "logBase": 1,
                      "max": null,
                      "min": null,

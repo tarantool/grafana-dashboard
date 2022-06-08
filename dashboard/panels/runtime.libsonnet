@@ -82,28 +82,26 @@ local common = import 'common.libsonnet';
     'last'
   )),
 
-  fiber_csw_rps(
+  fiber_csw(
     title='Fiber context switches',
     description=|||
-      Average rate of fiber context switches.
+      Number of fiber context switches.
       Context switches are counted over all current fibers.
     |||,
     datasource=null,
     policy=null,
     measurement=null,
     job=null,
-    rate_time_range=null,
   ):: common.default_graph(
     title=title,
-    description=common.rate_warning(description, datasource),
+    description=description,
     datasource=datasource,
-    labelY1='switches per second',
+    labelY1='switches',
     panel_width=12,
-  ).addTarget(common.default_rps_target(
+  ).addTarget(common.default_metric_target(
     datasource,
     'tnt_fiber_csw',
     job,
-    rate_time_range,
     policy,
     measurement
   )),
