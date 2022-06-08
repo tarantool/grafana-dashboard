@@ -514,7 +514,7 @@
             },
             {
                "datasource": "${DS_INFLUXDB}",
-               "description": "`master` status means instance is available for read and\nwrite operations. `slave` status means instance is\navailable only for read operations.\n\nPanel works with `metrics >= 0.11.0` and Grafana 8.x.\n",
+               "description": "`master` status means instance is available for read and\nwrite operations. `replica` status means instance is\navailable only for read operations.\n\nPanel works with `metrics >= 0.11.0` and Grafana 8.x.\n",
                "fieldConfig": {
                   "defaults": {
                      "color": {
@@ -564,7 +564,7 @@
                               "1": {
                                  "color": "yellow",
                                  "index": 0,
-                                 "text": "slave"
+                                 "text": "replica"
                               }
                            },
                            "type": "value"
