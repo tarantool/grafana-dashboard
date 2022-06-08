@@ -151,17 +151,6 @@ groups:
       description: "Instance '{{ $labels.alias }}' of job '{{ $labels.job }}' have
         high vinyl scheduler failed tasks rate."
 
-  # Alert for Tarantool low context switches rate.
-  - alert: LowFiberCSWRate
-    expr: rate(tnt_fiber_csw[2m]) < 10
-    for: 1m
-    labels:
-      severity: warning
-    annotations:
-      summary: "Instance '{{ $labels.alias }}' ('{{ $labels.job }}') has low fiber context switches rate"
-      description: "Instance '{{ $labels.alias }}' of job '{{ $labels.job }}' has low fiber context switches rate.
-        Some high loaded fiber has too little yields. It may be the reason of 'Too long WAL write' warnings."
-
   # Alert for high duration of event loop iteration in Tarantool.
   - alert: HighEVLoopTime
     expr: tnt_ev_loop_time > 0.1
