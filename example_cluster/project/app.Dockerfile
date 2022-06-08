@@ -16,7 +16,6 @@ RUN curl -L https://tarantool.io/OtKysgx/pre-release/2/installer.sh | bash
 RUN yum install -y tarantool tarantool-devel
 
 # https://github.com/tarantool/cartridge-cli#installation
-RUN set -o pipefail && curl -L https://tarantool.io/installer.sh | bash -s -- --repo-only
 RUN yum install -y cartridge-cli
 RUN cartridge build
 
