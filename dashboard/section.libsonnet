@@ -583,12 +583,11 @@ local tdg_tuples = import 'panels/tdg/tuples.libsonnet';
       job=job,
     ),
 
-    runtime.fiber_csw_rps(
+    runtime.fiber_csw(
       datasource=datasource,
       policy=policy,
       measurement=measurement,
       job=job,
-      rate_time_range=rate_time_range,
     ),
 
     runtime.event_loop_time(

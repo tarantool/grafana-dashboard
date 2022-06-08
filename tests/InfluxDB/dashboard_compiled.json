@@ -8239,7 +8239,7 @@
                "dashes": false,
                "datasource": "${DS_INFLUXDB}",
                "decimals": 3,
-               "description": "Average rate of fiber context switches.\nContext switches are counted over all current fibers.\n",
+               "description": "Number of fiber context switches.\nContext switches are counted over all current fibers.\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -8313,12 +8313,6 @@
                            {
                               "params": [ ],
                               "type": "mean"
-                           },
-                           {
-                              "params": [
-                                 "1s"
-                              ],
-                              "type": "non_negative_derivative"
                            }
                         ]
                      ],
@@ -8352,7 +8346,7 @@
                   {
                      "decimals": 0,
                      "format": "none",
-                     "label": "switches per second",
+                     "label": "switches",
                      "logBase": 1,
                      "max": null,
                      "min": null,

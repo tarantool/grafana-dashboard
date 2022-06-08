@@ -22,6 +22,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 - Change replication status panel labels
 
+### Fixed
+- Remove rate from fiber context switches panel
+
 
 ## [1.1.0] - 2022-05-17
 Grafana revisions: [InfluxDB revision 10](https://grafana.com/api/dashboards/12567/revisions/10/download), [Prometheus revision 11](https://grafana.com/api/dashboards/13054/revisions/11/download)
