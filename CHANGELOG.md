@@ -4,7 +4,11 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## Unreleased
+## [1.2.0] - 2022-06-08
+Grafana revisions: [InfluxDB revision 12](https://grafana.com/api/dashboards/12567/revisions/12/download),
+[Prometheus revision 12](https://grafana.com/api/dashboards/13054/revisions/12/download),
+[InfluxDB TDG revision 1](https://grafana.com/api/dashboards/16405/revisions/1/download),
+[Prometheus TDG revision 1](https://grafana.com/api/dashboards/16406/revisions/1/download),
 
 ### Added
 - TDG (ver. 2) example cluster draft

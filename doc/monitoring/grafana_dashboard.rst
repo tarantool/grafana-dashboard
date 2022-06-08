@@ -9,6 +9,9 @@ Tarantool Grafana dashboard is available as part of
 There's a version
 `for Prometheus data source <https://grafana.com/grafana/dashboards/13054>`_
 and one `for InfluxDB data source <https://grafana.com/grafana/dashboards/12567>`_.
+There are also separate dashboards for TDG applications:
+`for Prometheus data source <https://grafana.com/grafana/dashboards/16406>`_
+and `for InfluxDB data source <https://grafana.com/grafana/dashboards/16405>`_.
 Tarantool Grafana dashboard is a ready for import template with basic memory,
 space operations, and HTTP load panels, based on default `metrics <https://github.com/tarantool/metrics>`_
 package functionality.
@@ -127,6 +130,51 @@ Be sure to include each label key as ``label_pairs_<key>`` so it will be
 extracted with plugin. For example, if you use :code:`{ state = 'ready' }` labels
 somewhere in metric collectors, add ``label_pairs_state`` tag key.
 
+For TDG dashboard, please use
+
+..  code-block:: toml
+
+    [[inputs.http]]
+        urls = [
+            "http://example_tdg_project:8081/metrics/json",
+            "http://example_tdg_project:8082/metrics/json",
+            "http://example_tdg_project:8083/metrics/json"
+        ]
+        timeout = "30s"
+        tag_keys = [
+            "metric_name",
+            "label_pairs_alias",
+            "label_pairs_quantile",
+            "label_pairs_path",
+            "label_pairs_method",
+            "label_pairs_status",
+            "label_pairs_operation",
+            "label_pairs_level",
+            "label_pairs_id",
+            "label_pairs_engine",
+            "label_pairs_name",
+            "label_pairs_index_name",
+            "label_pairs_delta",
+            "label_pairs_stream",
+            "label_pairs_type",
+            "label_pairs_connector_name",
+            "label_pairs_broker_name",
+            "label_pairs_topic",
+            "label_pairs_request",
+            "label_pairs_kind",
+            "label_pairs_thread_name",
+            "label_pairs_type_name",
+            "label_pairs_operation_name",
+            "label_pairs_schema",
+            "label_pairs_entity",
+            "label_pairs_status_code"
+        ]
+        insecure_skip_verify = true
+        interval = "10s"
+        data_format = "json"
+        name_prefix = "example_project_"
+        fieldpass = ["value"]
+
 If you connect Telegraf instance to InfluxDB storage, metrics will be stored
 with ``"<name_prefix>http"`` measurement (``"example_project_http"`` in our example).
 
@@ -142,9 +190,13 @@ Open Grafana import menu.
 
 To import a specific dashboard, choose one of the following options:
 
-- paste the dashboard id (``12567`` for InfluxDB dashboard, ``13054`` for Prometheus dashboard), or
-- paste a link to the dashboard (https://grafana.com/grafana/dashboards/12567 for InfluxDB dashboard,
-  https://grafana.com/grafana/dashboards/13054 for Prometheus dashboard), or
+- paste the dashboard id (``12567`` for InfluxDB dashboard, ``13054`` for Prometheus dashboard,
+  ``16405`` for InfluxDB TDG dashboard, ``16406`` for Prometheus TDG dashboard), or
+- paste a link to the dashboard (
+  https://grafana.com/grafana/dashboards/12567 for InfluxDB dashboard,
+  https://grafana.com/grafana/dashboards/13054 for Prometheus dashboard,
+  https://grafana.com/grafana/dashboards/16405 for InfluxDB TDG dashboard,
+  https://grafana.com/grafana/dashboards/16406 for Prometheus TDG dashboard), or
 - paste the dashboard JSON file contents, or
 - upload the dashboard JSON file.
 
