@@ -22990,7 +22990,7 @@
                "thresholds": [ ],
                "timeFrom": null,
                "timeShift": null,
-               "title": "Total iles processed",
+               "title": "Total files processed",
                "tooltip": {
                   "shared": true,
                   "sort": 2,
