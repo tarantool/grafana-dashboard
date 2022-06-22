@@ -33,7 +33,7 @@ local prometheus = grafana.prometheus;
       .selectField('value').addConverter('mean'),
 
   files_processed(
-    title='Total iles processed',
+    title='Total files processed',
     description=|||
       A number of files processed.
     |||,
