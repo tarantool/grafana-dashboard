@@ -368,7 +368,7 @@ local prometheus = grafana.prometheus;
     panel_width=6,
   ).addTarget(partitions_rps_target(
     datasource,
-    'tdg_kafka_partition_txmsgs',
+    'tdg_kafka_topic_partitions_txmsgs',
     job,
     rate_time_range,
     policy,
@@ -395,7 +395,7 @@ local prometheus = grafana.prometheus;
     panel_width=6,
   ).addTarget(partitions_rps_target(
     datasource,
-    'tdg_kafka_partition_txbytes',
+    'tdg_kafka_topic_partitions_txbytes',
     job,
     rate_time_range,
     policy,
@@ -422,7 +422,7 @@ local prometheus = grafana.prometheus;
     panel_width=6,
   ).addTarget(partitions_rps_target(
     datasource,
-    'tdg_kafka_partition_rxmsgs',
+    'tdg_kafka_topic_partitions_rxmsgs',
     job,
     rate_time_range,
     policy,
@@ -450,7 +450,7 @@ local prometheus = grafana.prometheus;
     panel_width=6,
   ).addTarget(partitions_rps_target(
     datasource,
-    'tdg_kafka_partition_rxbytes',
+    'tdg_kafka_topic_partitions_rxbytes',
     job,
     rate_time_range,
     policy,
@@ -476,7 +476,7 @@ local prometheus = grafana.prometheus;
     panel_width=12,
   ).addTarget(partitions_rps_target(
     datasource,
-    'tdg_kafka_partition_rx_ver_drops',
+    'tdg_kafka_topic_partitions_rx_ver_drops',
     job,
     rate_time_range,
     policy,
@@ -501,7 +501,7 @@ local prometheus = grafana.prometheus;
     panel_width=12,
   ).addTarget(partitions_target(
     datasource,
-    'tdg_kafka_partition_msgs_inflight',
+    'tdg_kafka_topic_partitions_msgs_inflight',
     job,
     policy,
     measurement,
