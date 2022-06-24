@@ -73,7 +73,7 @@ local prometheus = grafana.prometheus;
   ) =
     if datasource == '${DS_PROMETHEUS}' then
       prometheus.target(
-        expr=std.format('%s{job=~"%s"}',
+        expr=std.format('%s{job=~"%s",quantile="0.99"}',
                         [metric_name, job]),
         legendFormat='{{name}} ({{broker_name}}) — {{alias}} ({{type}}, {{connector_name}})',
       )
