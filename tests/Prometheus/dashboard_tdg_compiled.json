@@ -13044,7 +13044,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tdg_kafka_partition_txmsgs{job=~\"$job\"}[$rate_time_range])",
+                     "expr": "rate(tdg_kafka_topic_partitions_txmsgs{job=~\"$job\"}[$rate_time_range])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{name}} ({{topic}}, {{partition}}) — {{alias}} ({{type}}, {{connector_name}})",
@@ -13134,7 +13134,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tdg_kafka_partition_txbytes{job=~\"$job\"}[$rate_time_range])",
+                     "expr": "rate(tdg_kafka_topic_partitions_txbytes{job=~\"$job\"}[$rate_time_range])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{name}} ({{topic}}, {{partition}}) — {{alias}} ({{type}}, {{connector_name}})",
@@ -13224,7 +13224,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tdg_kafka_partition_rxmsgs{job=~\"$job\"}[$rate_time_range])",
+                     "expr": "rate(tdg_kafka_topic_partitions_rxmsgs{job=~\"$job\"}[$rate_time_range])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{name}} ({{topic}}, {{partition}}) — {{alias}} ({{type}}, {{connector_name}})",
@@ -13314,7 +13314,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tdg_kafka_partition_rxbytes{job=~\"$job\"}[$rate_time_range])",
+                     "expr": "rate(tdg_kafka_topic_partitions_rxbytes{job=~\"$job\"}[$rate_time_range])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{name}} ({{topic}}, {{partition}}) — {{alias}} ({{type}}, {{connector_name}})",
@@ -13404,7 +13404,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tdg_kafka_partition_rx_ver_drops{job=~\"$job\"}[$rate_time_range])",
+                     "expr": "rate(tdg_kafka_topic_partitions_rx_ver_drops{job=~\"$job\"}[$rate_time_range])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{name}} ({{topic}}, {{partition}}) — {{alias}} ({{type}}, {{connector_name}})",
@@ -13494,7 +13494,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tdg_kafka_partition_msgs_inflight{job=~\"$job\"}",
+                     "expr": "tdg_kafka_topic_partitions_msgs_inflight{job=~\"$job\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{name}} ({{topic}}, {{partition}}) — {{alias}} ({{type}}, {{connector_name}})",

@@ -19980,7 +19980,7 @@
                         {
                            "key": "metric_name",
                            "operator": "=",
-                           "value": "tdg_kafka_partition_txmsgs"
+                           "value": "tdg_kafka_topic_partitions_txmsgs"
                         }
                      ]
                   }
@@ -20147,7 +20147,7 @@
                         {
                            "key": "metric_name",
                            "operator": "=",
-                           "value": "tdg_kafka_partition_txbytes"
+                           "value": "tdg_kafka_topic_partitions_txbytes"
                         }
                      ]
                   }
@@ -20314,7 +20314,7 @@
                         {
                            "key": "metric_name",
                            "operator": "=",
-                           "value": "tdg_kafka_partition_rxmsgs"
+                           "value": "tdg_kafka_topic_partitions_rxmsgs"
                         }
                      ]
                   }
@@ -20481,7 +20481,7 @@
                         {
                            "key": "metric_name",
                            "operator": "=",
-                           "value": "tdg_kafka_partition_rxbytes"
+                           "value": "tdg_kafka_topic_partitions_rxbytes"
                         }
                      ]
                   }
@@ -20648,7 +20648,7 @@
                         {
                            "key": "metric_name",
                            "operator": "=",
-                           "value": "tdg_kafka_partition_rx_ver_drops"
+                           "value": "tdg_kafka_topic_partitions_rx_ver_drops"
                         }
                      ]
                   }
@@ -20809,7 +20809,7 @@
                         {
                            "key": "metric_name",
                            "operator": "=",
-                           "value": "tdg_kafka_partition_msgs_inflight"
+                           "value": "tdg_kafka_topic_partitions_msgs_inflight"
                         }
                      ]
                   }
