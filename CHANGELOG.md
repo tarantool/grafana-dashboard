@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## Fixed
 - TDG dashboard file connectors processed panel name changed to "Total files processed"
 - Set valid metrics name to TDG dashboard Kafka partitions panels
+- Display only 99th quantile for Prometheus TDG Kafka metrics
 
 
 ## [1.2.0] - 2022-06-08

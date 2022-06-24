@@ -11764,7 +11764,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tdg_kafka_broker_int_latency{job=~\"$job\"}",
+                     "expr": "tdg_kafka_broker_int_latency{job=~\"$job\",quantile=\"0.99\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{name}} ({{broker_name}}) — {{alias}} ({{type}}, {{connector_name}})",
@@ -11854,7 +11854,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tdg_kafka_broker_outbuf_latency{job=~\"$job\"}",
+                     "expr": "tdg_kafka_broker_outbuf_latency{job=~\"$job\",quantile=\"0.99\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{name}} ({{broker_name}}) — {{alias}} ({{type}}, {{connector_name}})",
@@ -11944,7 +11944,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tdg_kafka_broker_rtt{job=~\"$job\"}",
+                     "expr": "tdg_kafka_broker_rtt{job=~\"$job\",quantile=\"0.99\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{name}} ({{broker_name}}) — {{alias}} ({{type}}, {{connector_name}})",
@@ -12034,7 +12034,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tdg_kafka_broker_throttle{job=~\"$job\"}",
+                     "expr": "tdg_kafka_broker_throttle{job=~\"$job\",quantile=\"0.99\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{name}} ({{broker_name}}) — {{alias}} ({{type}}, {{connector_name}})",
@@ -12324,7 +12324,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tdg_kafka_topic_batchsize{job=~\"$job\"}",
+                     "expr": "tdg_kafka_topic_batchsize{job=~\"$job\",quantile=\"0.99\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{name}} ({{topic}}) — {{alias}} ({{type}}, {{connector_name}})",
@@ -12414,7 +12414,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tdg_kafka_topic_batchcnt{job=~\"$job\"}",
+                     "expr": "tdg_kafka_topic_batchcnt{job=~\"$job\",quantile=\"0.99\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{name}} ({{topic}}) — {{alias}} ({{type}}, {{connector_name}})",
