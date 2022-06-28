@@ -1,6 +1,7 @@
 local cluster = import 'panels/cluster.libsonnet';
 local cpu = import 'panels/cpu.libsonnet';
 local crud = import 'panels/crud.libsonnet';
+local expirationd = import 'panels/expirationd.libsonnet';
 local http = import 'panels/http.libsonnet';
 local luajit = import 'panels/luajit.libsonnet';
 local net = import 'panels/net.libsonnet';
@@ -1220,6 +1221,40 @@ local tdg_tuples = import 'panels/tdg/tuples.libsonnet';
     ),
 
     crud.truncate_error_latency(
+      datasource=datasource,
+      policy=policy,
+      measurement=measurement,
+      job=job,
+    ),
+  ],
+
+  expirationd(datasource, policy=null, measurement=null, job=null, rate_time_range=null):: [
+    expirationd.row,
+
+    expirationd.tuples_checked(
+      datasource=datasource,
+      policy=policy,
+      measurement=measurement,
+      job=job,
+      rate_time_range=rate_time_range,
+    ),
+
+    expirationd.tuples_expired(
+      datasource=datasource,
+      policy=policy,
+      measurement=measurement,
+      job=job,
+      rate_time_range=rate_time_range,
+    ),
+
+    expirationd.restarts(
+      datasource=datasource,
+      policy=policy,
+      measurement=measurement,
+      job=job,
+    ),
+
+    expirationd.operation_time(
       datasource=datasource,
       policy=policy,
       measurement=measurement,
