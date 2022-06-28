@@ -525,6 +525,24 @@ local load_generators = {
     generate_crud_load,
 }
 
+for name, instance in pairs(instances) do
+    if name:match('router') ~= nil then
+        local spaces = {instance.net_box.space.MY_SPACE, instance.net_box.space.MY_VINYL_SPACE}
+        for _, space in ipairs(spaces) do
+            local task_name = name .. "_" .. space.name
+            local eval_str = string.format([[
+                local expirationd = require('expirationd')
+                local half_true = function() return math.random(0, 1) == 0 and true or false end
+                local always_true = function() return true end
+                expirationd.start("%s", %d, half_true, {
+                                      process_expired_tuple = always_true,
+                                      force = true })
+            ]], task_name, space.id)
+            instance.net_box:eval(eval_str)
+        end
+    end
+end
+
 while true do
     for name, instance in pairs(instances) do
         for _, load_generator in ipairs(load_generators) do
