@@ -957,6 +957,36 @@ local tdg_tuples = import 'panels/tdg/tuples.libsonnet';
       job=job,
     ),
 
+    crud.insert_many_success_rps(
+      datasource=datasource,
+      policy=policy,
+      measurement=measurement,
+      job=job,
+      rate_time_range=rate_time_range,
+    ),
+
+    crud.insert_many_success_latency(
+      datasource=datasource,
+      policy=policy,
+      measurement=measurement,
+      job=job,
+    ),
+
+    crud.insert_many_error_rps(
+      datasource=datasource,
+      policy=policy,
+      measurement=measurement,
+      job=job,
+      rate_time_range=rate_time_range,
+    ),
+
+    crud.insert_many_error_latency(
+      datasource=datasource,
+      policy=policy,
+      measurement=measurement,
+      job=job,
+    ),
+
     crud.replace_success_rps(
       datasource=datasource,
       policy=policy,
@@ -987,6 +1017,36 @@ local tdg_tuples = import 'panels/tdg/tuples.libsonnet';
       job=job,
     ),
 
+    crud.replace_many_success_rps(
+      datasource=datasource,
+      policy=policy,
+      measurement=measurement,
+      job=job,
+      rate_time_range=rate_time_range,
+    ),
+
+    crud.replace_many_success_latency(
+      datasource=datasource,
+      policy=policy,
+      measurement=measurement,
+      job=job,
+    ),
+
+    crud.replace_many_error_rps(
+      datasource=datasource,
+      policy=policy,
+      measurement=measurement,
+      job=job,
+      rate_time_range=rate_time_range,
+    ),
+
+    crud.replace_many_error_latency(
+      datasource=datasource,
+      policy=policy,
+      measurement=measurement,
+      job=job,
+    ),
+
     crud.upsert_success_rps(
       datasource=datasource,
       policy=policy,
@@ -1011,6 +1071,36 @@ local tdg_tuples = import 'panels/tdg/tuples.libsonnet';
     ),
 
     crud.upsert_error_latency(
+      datasource=datasource,
+      policy=policy,
+      measurement=measurement,
+      job=job,
+    ),
+
+    crud.upsert_many_success_rps(
+      datasource=datasource,
+      policy=policy,
+      measurement=measurement,
+      job=job,
+      rate_time_range=rate_time_range,
+    ),
+
+    crud.upsert_many_success_latency(
+      datasource=datasource,
+      policy=policy,
+      measurement=measurement,
+      job=job,
+    ),
+
+    crud.upsert_many_error_rps(
+      datasource=datasource,
+      policy=policy,
+      measurement=measurement,
+      job=job,
+      rate_time_range=rate_time_range,
+    ),
+
+    crud.upsert_many_error_latency(
       datasource=datasource,
       policy=policy,
       measurement=measurement,

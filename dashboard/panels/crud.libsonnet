@@ -233,6 +233,63 @@ local operation_latency_object(
   status=status,
 );
 
+local operation_rps_object_many(
+  title=null,
+  description=null,
+  datasource=null,
+  policy=null,
+  measurement=null,
+  job=null,
+  rate_time_range=null,
+  operation_stripped=null,
+  status=null,
+      ) = operation_rps_template(
+  title=title,
+  description=(
+    if description != null then
+      description
+    else
+      crud_warning(std.format(|||
+        Total count of %s %s_many and %s_object_many requests to cluster spaces with CRUD module.
+        Graph shows average requests per second.
+      |||, [status_text(status), operation_stripped, operation_stripped]))
+  ),
+  datasource=datasource,
+  policy=policy,
+  measurement=measurement,
+  job=job,
+  rate_time_range=rate_time_range,
+  operation=std.format('%s_many', operation_stripped),
+  status=status,
+);
+
+local operation_latency_object_many(
+  title=null,
+  description=null,
+  datasource=null,
+  policy=null,
+  measurement=null,
+  job=null,
+  operation_stripped=null,
+  status=null,
+      ) = operation_latency_template(
+  title=title,
+  description=(
+    if description != null then
+      description
+    else
+      crud_quantile_warning(std.format(|||
+        99th percentile of %s %s_many and %s_object_many CRUD module requests latency with aging.
+      |||, [status_text(status), operation_stripped, operation_stripped]))
+  ),
+  datasource=datasource,
+  policy=policy,
+  measurement=measurement,
+  job=job,
+  operation=std.format('%s_many', operation_stripped),
+  status=status,
+);
+
 local operation_rps_select(
   title=null,
   description=null,
@@ -646,7 +703,7 @@ local module = {
 };
 
 local operations_with_object = ['insert', 'replace', 'upsert'];
-
+local operations_stripped_with_object_many = ['insert', 'replace', 'upsert'];
 local operations_without_object = ['update', 'delete', 'get', 'len', 'truncate', 'count'];
 
 // Add second set of panels to the module: panels for operations which have _object version.
@@ -730,6 +787,87 @@ local module_with_object_panels = std.foldl(function(_module, operation) (
   }
 ), operations_with_object, module);
 
+// Add third set of panels to the module: panels for _many operations.
+local module_with_object_and_many_panels = std.foldl(function(_module, operation_stripped) (
+  _module {
+    [std.format('%s_many_success_rps', operation_stripped)](
+      title=null,
+      description=null,
+      datasource=null,
+      policy=null,
+      measurement=null,
+      job=null,
+      rate_time_range=null,
+    ):: operation_rps_object_many(
+      title=title,
+      description=description,
+      datasource=datasource,
+      policy=policy,
+      measurement=measurement,
+      job=job,
+      rate_time_range=rate_time_range,
+      operation_stripped=operation_stripped,
+      status='ok',
+    ),
+
+    [std.format('%s_many_success_latency', operation_stripped)](
+      title=null,
+      description=null,
+      datasource=null,
+      policy=null,
+      measurement=null,
+      job=null,
+    ):: operation_latency_object_many(
+      title=title,
+      description=description,
+      datasource=datasource,
+      policy=policy,
+      measurement=measurement,
+      job=job,
+      operation_stripped=operation_stripped,
+      status='ok',
+    ),
+
+    [std.format('%s_many_error_rps', operation_stripped)](
+      title=null,
+      description=null,
+      datasource=null,
+      policy=null,
+      measurement=null,
+      job=null,
+      rate_time_range=null,
+    ):: operation_rps_object_many(
+      title=title,
+      description=description,
+      datasource=datasource,
+      policy=policy,
+      measurement=measurement,
+      job=job,
+      rate_time_range=rate_time_range,
+      operation_stripped=operation_stripped,
+      status='error',
+    ),
+
+    [std.format('%s_many_error_latency', operation_stripped)](
+      title=null,
+      description=null,
+      datasource=null,
+      policy=null,
+      measurement=null,
+      job=null,
+    ):: operation_latency_object_many(
+      title=title,
+      description=description,
+      datasource=datasource,
+      policy=policy,
+      measurement=measurement,
+      job=job,
+      operation_stripped=operation_stripped,
+      status='error',
+    ),
+  }
+), operations_stripped_with_object_many, module_with_object_panels);
+
 // Add last set of panels to the module: remaining operation panels without _object version.
 std.foldl(function(_module, operation) (
   _module {
@@ -809,4 +947,4 @@ std.foldl(function(_module, operation) (
       status='error',
     ),
   }
-), operations_without_object, module_with_object_panels)
+), operations_without_object, module_with_object_and_many_panels)
