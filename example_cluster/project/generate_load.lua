@@ -167,6 +167,9 @@ local BORDERS = 'BORDERS'
 local COUNT = 'COUNT'
 local TRUNCATE = 'TRUNCATE'
 local BIG_SELECT = 'BIG_SELECT'
+local INSERT_MANY = 'INSERT_MANY'
+local REPLACE_MANY = 'REPLACE_MANY'
+local UPSERT_MANY = 'UPSERT_MANY'
 local truncate_inited = false
 local crud_index = 1
 local crud_space_1 = 'customers'
@@ -212,6 +215,37 @@ local function crud_operations_ok(instance, operation, count, space_name)
                 },
             })
             crud_index = crud_index + 1
+
+            if err ~= nil then
+                log.error(err)
+            end
+        end
+
+    elseif operation == INSERT_MANY then
+        for _ = 1, count do
+            local _, err = instance.net_box:call('crud.insert_many', {
+                space_name, {
+                    {
+                        crud_index,
+                        box.NULL,
+                        random_string(8),
+                        math.random(20, 30),
+                    },
+                    {
+                        crud_index + 1,
+                        box.NULL,
+                        random_string(8),
+                        math.random(20, 30),
+                    },
+                    {
+                        crud_index + 2,
+                        box.NULL,
+                        random_string(8),
+                        math.random(20, 30),
+                    },
+                },
+            })
+            crud_index = crud_index + 3
 
             if err ~= nil then
                 log.error(err)
@@ -264,6 +298,37 @@ local function crud_operations_ok(instance, operation, count, space_name)
             end
         end
 
+    elseif operation == UPSERT_MANY then
+        for _ = 1, count do
+            local _, err = instance.net_box:call('crud.upsert_many', {
+                space_name, {
+                    {{
+                        crud_index,
+                        box.NULL,
+                        random_string(8),
+                        math.random(20, 30),
+                    }, {}},
+                    {{
+                        crud_index + 1,
+                        box.NULL,
+                        random_string(8),
+                        math.random(20, 30),
+                    }, {}},
+                    {{
+                        crud_index + 2,
+                        box.NULL,
+                        random_string(8),
+                        math.random(20, 30),
+                    }, {}},
+                },
+            })
+            crud_index = crud_index + 3
+
+            if err ~= nil then
+                log.error(err)
+            end
+        end
+
     elseif operation == REPLACE then
         for _ = 1, count do
             local _, err = instance.net_box:call('crud.replace', {
@@ -275,6 +340,37 @@ local function crud_operations_ok(instance, operation, count, space_name)
                 },
             })
             crud_index = crud_index + 1
+
+            if err ~= nil then
+                log.error(err)
+            end
+        end
+
+    elseif operation == REPLACE_MANY then
+        for _ = 1, count do
+            local _, err = instance.net_box:call('crud.replace_many', {
+                space_name, {
+                    {
+                        crud_index,
+                        box.NULL,
+                        random_string(8),
+                        math.random(20, 30),
+                    },
+                    {
+                        crud_index + 1,
+                        box.NULL,
+                        random_string(8),
+                        math.random(20, 30),
+                    },
+                    {
+                        crud_index + 2,
+                        box.NULL,
+                        random_string(8),
+                        math.random(20, 30),
+                    },
+                },
+            })
+            crud_index = crud_index + 3
 
             if err ~= nil then
                 log.error(err)
@@ -373,6 +469,11 @@ local function crud_operations_err(instance, operation, count)
             instance.net_box:call('crud.insert', {crud_bad_space, {}})
         end
 
+    elseif operation == INSERT_MANY then
+        for _ = 1, count do
+            instance.net_box:call('crud.insert_many', {crud_bad_space, {{}}})
+        end
+
     elseif operation == UPDATE then
         for _ = 1, count do
             instance.net_box:call('crud.update', {
@@ -387,9 +488,21 @@ local function crud_operations_err(instance, operation, count)
             })
         end
 
+    elseif operation == UPSERT_MANY then
+        for _ = 1, count do
+            instance.net_box:call('crud.upsert_many', {
+                crud_bad_space, {{}, {{ '==', 3, random_string(5) }}}
+            })
+        end
+
     elseif operation == REPLACE then
         for _ = 1, count do
             instance.net_box:call('crud.replace', {crud_bad_space, {}})
+        end
+
+    elseif operation == REPLACE_MANY then
+        for _ = 1, count do
+            instance.net_box:call('crud.replace_many', {crud_bad_space, {{}}})
         end
 
     elseif operation == DELETE then
@@ -433,35 +546,44 @@ local function generate_crud_load(name, instance)
 
     if name:match('router') ~= nil then
         space_load_ok_1[INSERT] = math.random(3, 5)
+        space_load_ok_1[INSERT_MANY] = math.random(1, 2)
         space_load_ok_1[SELECT] = math.random(5, 10)
         space_load_ok_1[BIG_SELECT] = math.random(1, 3)
         space_load_ok_1[GET] = math.random(5, 10)
         space_load_ok_1[UPDATE] = math.random(2, 3)
         space_load_ok_1[REPLACE] = math.random(2, 3)
+        space_load_ok_1[REPLACE_MANY] = math.random(1, 2)
         space_load_ok_1[UPSERT] = math.random(1, 2)
+        space_load_ok_1[UPSERT_MANY] = math.random(1, 2)
         space_load_ok_1[DELETE] = math.random(1, 2)
         space_load_ok_1[LEN] = math.random(0, 1)
         space_load_ok_1[COUNT] = math.random(1, 2)
         space_load_ok_1[BORDERS] = math.random(1, 2)
 
         space_load_ok_2[INSERT] = math.random(6, 8)
+        space_load_ok_2[INSERT_MANY] = math.random(1, 2)
         space_load_ok_2[SELECT] = math.random(2, 4)
         space_load_ok_2[BIG_SELECT] = math.random(2, 4)
         space_load_ok_2[GET] = math.random(5, 10)
         space_load_ok_2[UPDATE] = math.random(2, 3)
         space_load_ok_2[REPLACE] = math.random(2, 3)
+        space_load_ok_2[REPLACE_MANY] = math.random(1, 2)
         space_load_ok_2[UPSERT] = math.random(1, 2)
+        space_load_ok_2[UPSERT_MANY] = math.random(1, 2)
         space_load_ok_2[DELETE] = math.random(1, 2)
         space_load_ok_2[LEN] = math.random(0, 1)
         space_load_ok_2[COUNT] = math.random(1, 2)
         space_load_ok_2[BORDERS] = math.random(1, 2)
 
         space_load_err[INSERT] = math.random(1, 3)
+        space_load_err[INSERT_MANY] = math.random(0, 1)
         space_load_err[SELECT] = math.random(2, 5)
         space_load_err[GET] = math.random(2, 5)
         space_load_err[UPDATE] = math.random(0, 1)
         space_load_err[REPLACE] = math.random(0, 1)
+        space_load_err[REPLACE_MANY] = math.random(0, 1)
         space_load_err[UPSERT] = math.random(0, 1)
+        space_load_err[UPSERT_MANY] = math.random(0, 1)
         space_load_err[DELETE] = math.random(0, 1)
         space_load_err[LEN] = math.random(0, 1)
         space_load_err[COUNT] = math.random(0, 1)

@@ -14840,7 +14840,7 @@
                "dashes": false,
                "datasource": "${DS_INFLUXDB}",
                "decimals": 2,
-               "description": "Total count of success replace and replace_object requests to cluster spaces with CRUD module.\nGraph shows average requests per second.\n\nCRUD 0.11.0 or newer is required to use statistics.\nEnable statistics with `crud.cfg{stats = true, stats_driver = 'metrics'}`\n",
+               "description": "Total count of success insert_many and insert_object_many requests to cluster spaces with CRUD module.\nGraph shows average requests per second.\n\nCRUD 0.11.0 or newer is required to use statistics.\nEnable statistics with `crud.cfg{stats = true, stats_driver = 'metrics'}`\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -14849,6 +14849,626 @@
                   "y": 308
                },
                "id": 119,
+               "legend": {
+                  "alignAsTable": true,
+                  "avg": true,
+                  "current": true,
+                  "max": true,
+                  "min": false,
+                  "rightSide": false,
+                  "show": true,
+                  "sideWidth": null,
+                  "sort": "current",
+                  "sortDesc": true,
+                  "total": false,
+                  "values": true
+               },
+               "lines": true,
+               "linewidth": 1,
+               "links": [ ],
+               "nullPointMode": "null",
+               "percentage": false,
+               "pointradius": 5,
+               "points": false,
+               "renderer": "flot",
+               "repeat": null,
+               "seriesOverrides": [ ],
+               "spaceLength": 10,
+               "stack": false,
+               "steppedLine": false,
+               "targets": [
+                  {
+                     "alias": "$tag_label_pairs_alias — $tag_label_pairs_name",
+                     "groupBy": [
+                        {
+                           "params": [
+                              "$__interval"
+                           ],
+                           "type": "time"
+                        },
+                        {
+                           "params": [
+                              "label_pairs_alias"
+                           ],
+                           "type": "tag"
+                        },
+                        {
+                           "params": [
+                              "label_pairs_name"
+                           ],
+                           "type": "tag"
+                        },
+                        {
+                           "params": [
+                              "none"
+                           ],
+                           "type": "fill"
+                        }
+                     ],
+                     "measurement": "${INFLUXDB_MEASUREMENT}",
+                     "policy": "${INFLUXDB_POLICY}",
+                     "refId": "A",
+                     "resultFormat": "time_series",
+                     "select": [
+                        [
+                           {
+                              "params": [
+                                 "value"
+                              ],
+                              "type": "field"
+                           },
+                           {
+                              "params": [ ],
+                              "type": "mean"
+                           },
+                           {
+                              "params": [
+                                 "1s"
+                              ],
+                              "type": "non_negative_derivative"
+                           }
+                        ]
+                     ],
+                     "tags": [
+                        {
+                           "key": "metric_name",
+                           "operator": "=",
+                           "value": "tnt_crud_stats_count"
+                        },
+                        {
+                           "condition": "AND",
+                           "key": "label_pairs_operation",
+                           "operator": "=",
+                           "value": "insert_many"
+                        },
+                        {
+                           "condition": "AND",
+                           "key": "label_pairs_status",
+                           "operator": "=",
+                           "value": "ok"
+                        }
+                     ]
+                  }
+               ],
+               "thresholds": [ ],
+               "timeFrom": null,
+               "timeShift": null,
+               "title": "INSERT_MANY success requests",
+               "tooltip": {
+                  "shared": true,
+                  "sort": 2,
+                  "value_type": "individual"
+               },
+               "type": "graph",
+               "xaxis": {
+                  "buckets": null,
+                  "mode": "time",
+                  "name": null,
+                  "show": true,
+                  "values": [ ]
+               },
+               "yaxes": [
+                  {
+                     "decimals": 2,
+                     "format": "none",
+                     "label": "requests per second",
+                     "logBase": 1,
+                     "max": null,
+                     "min": 0,
+                     "show": true
+                  },
+                  {
+                     "decimals": 2,
+                     "format": "none",
+                     "label": null,
+                     "logBase": 1,
+                     "max": null,
+                     "min": 0,
+                     "show": true
+                  }
+               ]
+            },
+            {
+               "aliasColors": { },
+               "bars": false,
+               "dashLength": 10,
+               "dashes": false,
+               "datasource": "${DS_INFLUXDB}",
+               "decimals": 2,
+               "description": "99th percentile of success insert_many and insert_object_many CRUD module requests latency with aging.\n\nCRUD 0.11.0 or newer is required to use statistics.\nEnable quantiles with `crud.cfg{stats = true, stats_driver = 'metrics', stats_quantiles = true}`.\nIf `No data` displayed yet data expected, try to calibrate tolerated error with\n`crud.cfg{stats_quantile_tolerated_error=1e-4}`.\n",
+               "fill": 0,
+               "gridPos": {
+                  "h": 8,
+                  "w": 6,
+                  "x": 6,
+                  "y": 308
+               },
+               "id": 120,
+               "legend": {
+                  "alignAsTable": true,
+                  "avg": true,
+                  "current": true,
+                  "max": true,
+                  "min": false,
+                  "rightSide": false,
+                  "show": true,
+                  "sideWidth": null,
+                  "sort": "current",
+                  "sortDesc": true,
+                  "total": false,
+                  "values": true
+               },
+               "lines": true,
+               "linewidth": 1,
+               "links": [ ],
+               "nullPointMode": "null",
+               "percentage": false,
+               "pointradius": 5,
+               "points": false,
+               "renderer": "flot",
+               "repeat": null,
+               "seriesOverrides": [ ],
+               "spaceLength": 10,
+               "stack": false,
+               "steppedLine": false,
+               "targets": [
+                  {
+                     "alias": "$tag_label_pairs_alias — $tag_label_pairs_name",
+                     "groupBy": [
+                        {
+                           "params": [
+                              "$__interval"
+                           ],
+                           "type": "time"
+                        },
+                        {
+                           "params": [
+                              "label_pairs_alias"
+                           ],
+                           "type": "tag"
+                        },
+                        {
+                           "params": [
+                              "label_pairs_name"
+                           ],
+                           "type": "tag"
+                        },
+                        {
+                           "params": [
+                              "none"
+                           ],
+                           "type": "fill"
+                        }
+                     ],
+                     "measurement": "${INFLUXDB_MEASUREMENT}",
+                     "policy": "${INFLUXDB_POLICY}",
+                     "refId": "A",
+                     "resultFormat": "time_series",
+                     "select": [
+                        [
+                           {
+                              "params": [
+                                 "value"
+                              ],
+                              "type": "field"
+                           },
+                           {
+                              "params": [ ],
+                              "type": "mean"
+                           }
+                        ]
+                     ],
+                     "tags": [
+                        {
+                           "key": "metric_name",
+                           "operator": "=",
+                           "value": "tnt_crud_stats"
+                        },
+                        {
+                           "condition": "AND",
+                           "key": "label_pairs_operation",
+                           "operator": "=",
+                           "value": "insert_many"
+                        },
+                        {
+                           "condition": "AND",
+                           "key": "label_pairs_status",
+                           "operator": "=",
+                           "value": "ok"
+                        },
+                        {
+                           "condition": "AND",
+                           "key": "label_pairs_quantile",
+                           "operator": "=",
+                           "value": "0.99"
+                        }
+                     ]
+                  }
+               ],
+               "thresholds": [ ],
+               "timeFrom": null,
+               "timeShift": null,
+               "title": "INSERT_MANY success requests latency",
+               "tooltip": {
+                  "shared": true,
+                  "sort": 2,
+                  "value_type": "individual"
+               },
+               "type": "graph",
+               "xaxis": {
+                  "buckets": null,
+                  "mode": "time",
+                  "name": null,
+                  "show": true,
+                  "values": [ ]
+               },
+               "yaxes": [
+                  {
+                     "decimals": 3,
+                     "format": "s",
+                     "label": "99th percentile",
+                     "logBase": 1,
+                     "max": null,
+                     "min": 0,
+                     "show": true
+                  },
+                  {
+                     "decimals": 2,
+                     "format": "s",
+                     "label": null,
+                     "logBase": 1,
+                     "max": null,
+                     "min": 0,
+                     "show": true
+                  }
+               ]
+            },
+            {
+               "aliasColors": { },
+               "bars": false,
+               "dashLength": 10,
+               "dashes": false,
+               "datasource": "${DS_INFLUXDB}",
+               "decimals": 2,
+               "description": "Total count of error insert_many and insert_object_many requests to cluster spaces with CRUD module.\nGraph shows average requests per second.\n\nCRUD 0.11.0 or newer is required to use statistics.\nEnable statistics with `crud.cfg{stats = true, stats_driver = 'metrics'}`\n",
+               "fill": 0,
+               "gridPos": {
+                  "h": 8,
+                  "w": 6,
+                  "x": 12,
+                  "y": 308
+               },
+               "id": 121,
+               "legend": {
+                  "alignAsTable": true,
+                  "avg": true,
+                  "current": true,
+                  "max": true,
+                  "min": false,
+                  "rightSide": false,
+                  "show": true,
+                  "sideWidth": null,
+                  "sort": "current",
+                  "sortDesc": true,
+                  "total": false,
+                  "values": true
+               },
+               "lines": true,
+               "linewidth": 1,
+               "links": [ ],
+               "nullPointMode": "null",
+               "percentage": false,
+               "pointradius": 5,
+               "points": false,
+               "renderer": "flot",
+               "repeat": null,
+               "seriesOverrides": [ ],
+               "spaceLength": 10,
+               "stack": false,
+               "steppedLine": false,
+               "targets": [
+                  {
+                     "alias": "$tag_label_pairs_alias — $tag_label_pairs_name",
+                     "groupBy": [
+                        {
+                           "params": [
+                              "$__interval"
+                           ],
+                           "type": "time"
+                        },
+                        {
+                           "params": [
+                              "label_pairs_alias"
+                           ],
+                           "type": "tag"
+                        },
+                        {
+                           "params": [
+                              "label_pairs_name"
+                           ],
+                           "type": "tag"
+                        },
+                        {
+                           "params": [
+                              "none"
+                           ],
+                           "type": "fill"
+                        }
+                     ],
+                     "measurement": "${INFLUXDB_MEASUREMENT}",
+                     "policy": "${INFLUXDB_POLICY}",
+                     "refId": "A",
+                     "resultFormat": "time_series",
+                     "select": [
+                        [
+                           {
+                              "params": [
+                                 "value"
+                              ],
+                              "type": "field"
+                           },
+                           {
+                              "params": [ ],
+                              "type": "mean"
+                           },
+                           {
+                              "params": [
+                                 "1s"
+                              ],
+                              "type": "non_negative_derivative"
+                           }
+                        ]
+                     ],
+                     "tags": [
+                        {
+                           "key": "metric_name",
+                           "operator": "=",
+                           "value": "tnt_crud_stats_count"
+                        },
+                        {
+                           "condition": "AND",
+                           "key": "label_pairs_operation",
+                           "operator": "=",
+                           "value": "insert_many"
+                        },
+                        {
+                           "condition": "AND",
+                           "key": "label_pairs_status",
+                           "operator": "=",
+                           "value": "error"
+                        }
+                     ]
+                  }
+               ],
+               "thresholds": [ ],
+               "timeFrom": null,
+               "timeShift": null,
+               "title": "INSERT_MANY error requests",
+               "tooltip": {
+                  "shared": true,
+                  "sort": 2,
+                  "value_type": "individual"
+               },
+               "type": "graph",
+               "xaxis": {
+                  "buckets": null,
+                  "mode": "time",
+                  "name": null,
+                  "show": true,
+                  "values": [ ]
+               },
+               "yaxes": [
+                  {
+                     "decimals": 2,
+                     "format": "none",
+                     "label": "requests per second",
+                     "logBase": 1,
+                     "max": null,
+                     "min": 0,
+                     "show": true
+                  },
+                  {
+                     "decimals": 2,
+                     "format": "none",
+                     "label": null,
+                     "logBase": 1,
+                     "max": null,
+                     "min": 0,
+                     "show": true
+                  }
+               ]
+            },
+            {
+               "aliasColors": { },
+               "bars": false,
+               "dashLength": 10,
+               "dashes": false,
+               "datasource": "${DS_INFLUXDB}",
+               "decimals": 2,
+               "description": "99th percentile of error insert_many and insert_object_many CRUD module requests latency with aging.\n\nCRUD 0.11.0 or newer is required to use statistics.\nEnable quantiles with `crud.cfg{stats = true, stats_driver = 'metrics', stats_quantiles = true}`.\nIf `No data` displayed yet data expected, try to calibrate tolerated error with\n`crud.cfg{stats_quantile_tolerated_error=1e-4}`.\n",
+               "fill": 0,
+               "gridPos": {
+                  "h": 8,
+                  "w": 6,
+                  "x": 18,
+                  "y": 308
+               },
+               "id": 122,
+               "legend": {
+                  "alignAsTable": true,
+                  "avg": true,
+                  "current": true,
+                  "max": true,
+                  "min": false,
+                  "rightSide": false,
+                  "show": true,
+                  "sideWidth": null,
+                  "sort": "current",
+                  "sortDesc": true,
+                  "total": false,
+                  "values": true
+               },
+               "lines": true,
+               "linewidth": 1,
+               "links": [ ],
+               "nullPointMode": "null",
+               "percentage": false,
+               "pointradius": 5,
+               "points": false,
+               "renderer": "flot",
+               "repeat": null,
+               "seriesOverrides": [ ],
+               "spaceLength": 10,
+               "stack": false,
+               "steppedLine": false,
+               "targets": [
+                  {
+                     "alias": "$tag_label_pairs_alias — $tag_label_pairs_name",
+                     "groupBy": [
+                        {
+                           "params": [
+                              "$__interval"
+                           ],
+                           "type": "time"
+                        },
+                        {
+                           "params": [
+                              "label_pairs_alias"
+                           ],
+                           "type": "tag"
+                        },
+                        {
+                           "params": [
+                              "label_pairs_name"
+                           ],
+                           "type": "tag"
+                        },
+                        {
+                           "params": [
+                              "none"
+                           ],
+                           "type": "fill"
+                        }
+                     ],
+                     "measurement": "${INFLUXDB_MEASUREMENT}",
+                     "policy": "${INFLUXDB_POLICY}",
+                     "refId": "A",
+                     "resultFormat": "time_series",
+                     "select": [
+                        [
+                           {
+                              "params": [
+                                 "value"
+                              ],
+                              "type": "field"
+                           },
+                           {
+                              "params": [ ],
+                              "type": "mean"
+                           }
+                        ]
+                     ],
+                     "tags": [
+                        {
+                           "key": "metric_name",
+                           "operator": "=",
+                           "value": "tnt_crud_stats"
+                        },
+                        {
+                           "condition": "AND",
+                           "key": "label_pairs_operation",
+                           "operator": "=",
+                           "value": "insert_many"
+                        },
+                        {
+                           "condition": "AND",
+                           "key": "label_pairs_status",
+                           "operator": "=",
+                           "value": "error"
+                        },
+                        {
+                           "condition": "AND",
+                           "key": "label_pairs_quantile",
+                           "operator": "=",
+                           "value": "0.99"
+                        }
+                     ]
+                  }
+               ],
+               "thresholds": [ ],
+               "timeFrom": null,
+               "timeShift": null,
+               "title": "INSERT_MANY error requests latency",
+               "tooltip": {
+                  "shared": true,
+                  "sort": 2,
+                  "value_type": "individual"
+               },
+               "type": "graph",
+               "xaxis": {
+                  "buckets": null,
+                  "mode": "time",
+                  "name": null,
+                  "show": true,
+                  "values": [ ]
+               },
+               "yaxes": [
+                  {
+                     "decimals": 3,
+                     "format": "s",
+                     "label": "99th percentile",
+                     "logBase": 1,
+                     "max": null,
+                     "min": 0,
+                     "show": true
+                  },
+                  {
+                     "decimals": 2,
+                     "format": "s",
+                     "label": null,
+                     "logBase": 1,
+                     "max": null,
+                     "min": 0,
+                     "show": true
+                  }
+               ]
+            },
+            {
+               "aliasColors": { },
+               "bars": false,
+               "dashLength": 10,
+               "dashes": false,
+               "datasource": "${DS_INFLUXDB}",
+               "decimals": 2,
+               "description": "Total count of success replace and replace_object requests to cluster spaces with CRUD module.\nGraph shows average requests per second.\n\nCRUD 0.11.0 or newer is required to use statistics.\nEnable statistics with `crud.cfg{stats = true, stats_driver = 'metrics'}`\n",
+               "fill": 0,
+               "gridPos": {
+                  "h": 8,
+                  "w": 6,
+                  "x": 0,
+                  "y": 316
+               },
+               "id": 123,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -15001,9 +15621,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 6,
-                  "y": 308
+                  "y": 316
                },
-               "id": 120,
+               "id": 124,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -15156,9 +15776,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 12,
-                  "y": 308
+                  "y": 316
                },
-               "id": 121,
+               "id": 125,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -15311,9 +15931,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 18,
-                  "y": 308
+                  "y": 316
                },
-               "id": 122,
+               "id": 126,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -15460,15 +16080,635 @@
                "dashes": false,
                "datasource": "${DS_INFLUXDB}",
                "decimals": 2,
+               "description": "Total count of success replace_many and replace_object_many requests to cluster spaces with CRUD module.\nGraph shows average requests per second.\n\nCRUD 0.11.0 or newer is required to use statistics.\nEnable statistics with `crud.cfg{stats = true, stats_driver = 'metrics'}`\n",
+               "fill": 0,
+               "gridPos": {
+                  "h": 8,
+                  "w": 6,
+                  "x": 0,
+                  "y": 324
+               },
+               "id": 127,
+               "legend": {
+                  "alignAsTable": true,
+                  "avg": true,
+                  "current": true,
+                  "max": true,
+                  "min": false,
+                  "rightSide": false,
+                  "show": true,
+                  "sideWidth": null,
+                  "sort": "current",
+                  "sortDesc": true,
+                  "total": false,
+                  "values": true
+               },
+               "lines": true,
+               "linewidth": 1,
+               "links": [ ],
+               "nullPointMode": "null",
+               "percentage": false,
+               "pointradius": 5,
+               "points": false,
+               "renderer": "flot",
+               "repeat": null,
+               "seriesOverrides": [ ],
+               "spaceLength": 10,
+               "stack": false,
+               "steppedLine": false,
+               "targets": [
+                  {
+                     "alias": "$tag_label_pairs_alias — $tag_label_pairs_name",
+                     "groupBy": [
+                        {
+                           "params": [
+                              "$__interval"
+                           ],
+                           "type": "time"
+                        },
+                        {
+                           "params": [
+                              "label_pairs_alias"
+                           ],
+                           "type": "tag"
+                        },
+                        {
+                           "params": [
+                              "label_pairs_name"
+                           ],
+                           "type": "tag"
+                        },
+                        {
+                           "params": [
+                              "none"
+                           ],
+                           "type": "fill"
+                        }
+                     ],
+                     "measurement": "${INFLUXDB_MEASUREMENT}",
+                     "policy": "${INFLUXDB_POLICY}",
+                     "refId": "A",
+                     "resultFormat": "time_series",
+                     "select": [
+                        [
+                           {
+                              "params": [
+                                 "value"
+                              ],
+                              "type": "field"
+                           },
+                           {
+                              "params": [ ],
+                              "type": "mean"
+                           },
+                           {
+                              "params": [
+                                 "1s"
+                              ],
+                              "type": "non_negative_derivative"
+                           }
+                        ]
+                     ],
+                     "tags": [
+                        {
+                           "key": "metric_name",
+                           "operator": "=",
+                           "value": "tnt_crud_stats_count"
+                        },
+                        {
+                           "condition": "AND",
+                           "key": "label_pairs_operation",
+                           "operator": "=",
+                           "value": "replace_many"
+                        },
+                        {
+                           "condition": "AND",
+                           "key": "label_pairs_status",
+                           "operator": "=",
+                           "value": "ok"
+                        }
+                     ]
+                  }
+               ],
+               "thresholds": [ ],
+               "timeFrom": null,
+               "timeShift": null,
+               "title": "REPLACE_MANY success requests",
+               "tooltip": {
+                  "shared": true,
+                  "sort": 2,
+                  "value_type": "individual"
+               },
+               "type": "graph",
+               "xaxis": {
+                  "buckets": null,
+                  "mode": "time",
+                  "name": null,
+                  "show": true,
+                  "values": [ ]
+               },
+               "yaxes": [
+                  {
+                     "decimals": 2,
+                     "format": "none",
+                     "label": "requests per second",
+                     "logBase": 1,
+                     "max": null,
+                     "min": 0,
+                     "show": true
+                  },
+                  {
+                     "decimals": 2,
+                     "format": "none",
+                     "label": null,
+                     "logBase": 1,
+                     "max": null,
+                     "min": 0,
+                     "show": true
+                  }
+               ]
+            },
+            {
+               "aliasColors": { },
+               "bars": false,
+               "dashLength": 10,
+               "dashes": false,
+               "datasource": "${DS_INFLUXDB}",
+               "decimals": 2,
+               "description": "99th percentile of success replace_many and replace_object_many CRUD module requests latency with aging.\n\nCRUD 0.11.0 or newer is required to use statistics.\nEnable quantiles with `crud.cfg{stats = true, stats_driver = 'metrics', stats_quantiles = true}`.\nIf `No data` displayed yet data expected, try to calibrate tolerated error with\n`crud.cfg{stats_quantile_tolerated_error=1e-4}`.\n",
+               "fill": 0,
+               "gridPos": {
+                  "h": 8,
+                  "w": 6,
+                  "x": 6,
+                  "y": 324
+               },
+               "id": 128,
+               "legend": {
+                  "alignAsTable": true,
+                  "avg": true,
+                  "current": true,
+                  "max": true,
+                  "min": false,
+                  "rightSide": false,
+                  "show": true,
+                  "sideWidth": null,
+                  "sort": "current",
+                  "sortDesc": true,
+                  "total": false,
+                  "values": true
+               },
+               "lines": true,
+               "linewidth": 1,
+               "links": [ ],
+               "nullPointMode": "null",
+               "percentage": false,
+               "pointradius": 5,
+               "points": false,
+               "renderer": "flot",
+               "repeat": null,
+               "seriesOverrides": [ ],
+               "spaceLength": 10,
+               "stack": false,
+               "steppedLine": false,
+               "targets": [
+                  {
+                     "alias": "$tag_label_pairs_alias — $tag_label_pairs_name",
+                     "groupBy": [
+                        {
+                           "params": [
+                              "$__interval"
+                           ],
+                           "type": "time"
+                        },
+                        {
+                           "params": [
+                              "label_pairs_alias"
+                           ],
+                           "type": "tag"
+                        },
+                        {
+                           "params": [
+                              "label_pairs_name"
+                           ],
+                           "type": "tag"
+                        },
+                        {
+                           "params": [
+                              "none"
+                           ],
+                           "type": "fill"
+                        }
+                     ],
+                     "measurement": "${INFLUXDB_MEASUREMENT}",
+                     "policy": "${INFLUXDB_POLICY}",
+                     "refId": "A",
+                     "resultFormat": "time_series",
+                     "select": [
+                        [
+                           {
+                              "params": [
+                                 "value"
+                              ],
+                              "type": "field"
+                           },
+                           {
+                              "params": [ ],
+                              "type": "mean"
+                           }
+                        ]
+                     ],
+                     "tags": [
+                        {
+                           "key": "metric_name",
+                           "operator": "=",
+                           "value": "tnt_crud_stats"
+                        },
+                        {
+                           "condition": "AND",
+                           "key": "label_pairs_operation",
+                           "operator": "=",
+                           "value": "replace_many"
+                        },
+                        {
+                           "condition": "AND",
+                           "key": "label_pairs_status",
+                           "operator": "=",
+                           "value": "ok"
+                        },
+                        {
+                           "condition": "AND",
+                           "key": "label_pairs_quantile",
+                           "operator": "=",
+                           "value": "0.99"
+                        }
+                     ]
+                  }
+               ],
+               "thresholds": [ ],
+               "timeFrom": null,
+               "timeShift": null,
+               "title": "REPLACE_MANY success requests latency",
+               "tooltip": {
+                  "shared": true,
+                  "sort": 2,
+                  "value_type": "individual"
+               },
+               "type": "graph",
+               "xaxis": {
+                  "buckets": null,
+                  "mode": "time",
+                  "name": null,
+                  "show": true,
+                  "values": [ ]
+               },
+               "yaxes": [
+                  {
+                     "decimals": 3,
+                     "format": "s",
+                     "label": "99th percentile",
+                     "logBase": 1,
+                     "max": null,
+                     "min": 0,
+                     "show": true
+                  },
+                  {
+                     "decimals": 2,
+                     "format": "s",
+                     "label": null,
+                     "logBase": 1,
+                     "max": null,
+                     "min": 0,
+                     "show": true
+                  }
+               ]
+            },
+            {
+               "aliasColors": { },
+               "bars": false,
+               "dashLength": 10,
+               "dashes": false,
+               "datasource": "${DS_INFLUXDB}",
+               "decimals": 2,
+               "description": "Total count of error replace_many and replace_object_many requests to cluster spaces with CRUD module.\nGraph shows average requests per second.\n\nCRUD 0.11.0 or newer is required to use statistics.\nEnable statistics with `crud.cfg{stats = true, stats_driver = 'metrics'}`\n",
+               "fill": 0,
+               "gridPos": {
+                  "h": 8,
+                  "w": 6,
+                  "x": 12,
+                  "y": 324
+               },
+               "id": 129,
+               "legend": {
+                  "alignAsTable": true,
+                  "avg": true,
+                  "current": true,
+                  "max": true,
+                  "min": false,
+                  "rightSide": false,
+                  "show": true,
+                  "sideWidth": null,
+                  "sort": "current",
+                  "sortDesc": true,
+                  "total": false,
+                  "values": true
+               },
+               "lines": true,
+               "linewidth": 1,
+               "links": [ ],
+               "nullPointMode": "null",
+               "percentage": false,
+               "pointradius": 5,
+               "points": false,
+               "renderer": "flot",
+               "repeat": null,
+               "seriesOverrides": [ ],
+               "spaceLength": 10,
+               "stack": false,
+               "steppedLine": false,
+               "targets": [
+                  {
+                     "alias": "$tag_label_pairs_alias — $tag_label_pairs_name",
+                     "groupBy": [
+                        {
+                           "params": [
+                              "$__interval"
+                           ],
+                           "type": "time"
+                        },
+                        {
+                           "params": [
+                              "label_pairs_alias"
+                           ],
+                           "type": "tag"
+                        },
+                        {
+                           "params": [
+                              "label_pairs_name"
+                           ],
+                           "type": "tag"
+                        },
+                        {
+                           "params": [
+                              "none"
+                           ],
+                           "type": "fill"
+                        }
+                     ],
+                     "measurement": "${INFLUXDB_MEASUREMENT}",
+                     "policy": "${INFLUXDB_POLICY}",
+                     "refId": "A",
+                     "resultFormat": "time_series",
+                     "select": [
+                        [
+                           {
+                              "params": [
+                                 "value"
+                              ],
+                              "type": "field"
+                           },
+                           {
+                              "params": [ ],
+                              "type": "mean"
+                           },
+                           {
+                              "params": [
+                                 "1s"
+                              ],
+                              "type": "non_negative_derivative"
+                           }
+                        ]
+                     ],
+                     "tags": [
+                        {
+                           "key": "metric_name",
+                           "operator": "=",
+                           "value": "tnt_crud_stats_count"
+                        },
+                        {
+                           "condition": "AND",
+                           "key": "label_pairs_operation",
+                           "operator": "=",
+                           "value": "replace_many"
+                        },
+                        {
+                           "condition": "AND",
+                           "key": "label_pairs_status",
+                           "operator": "=",
+                           "value": "error"
+                        }
+                     ]
+                  }
+               ],
+               "thresholds": [ ],
+               "timeFrom": null,
+               "timeShift": null,
+               "title": "REPLACE_MANY error requests",
+               "tooltip": {
+                  "shared": true,
+                  "sort": 2,
+                  "value_type": "individual"
+               },
+               "type": "graph",
+               "xaxis": {
+                  "buckets": null,
+                  "mode": "time",
+                  "name": null,
+                  "show": true,
+                  "values": [ ]
+               },
+               "yaxes": [
+                  {
+                     "decimals": 2,
+                     "format": "none",
+                     "label": "requests per second",
+                     "logBase": 1,
+                     "max": null,
+                     "min": 0,
+                     "show": true
+                  },
+                  {
+                     "decimals": 2,
+                     "format": "none",
+                     "label": null,
+                     "logBase": 1,
+                     "max": null,
+                     "min": 0,
+                     "show": true
+                  }
+               ]
+            },
+            {
+               "aliasColors": { },
+               "bars": false,
+               "dashLength": 10,
+               "dashes": false,
+               "datasource": "${DS_INFLUXDB}",
+               "decimals": 2,
+               "description": "99th percentile of error replace_many and replace_object_many CRUD module requests latency with aging.\n\nCRUD 0.11.0 or newer is required to use statistics.\nEnable quantiles with `crud.cfg{stats = true, stats_driver = 'metrics', stats_quantiles = true}`.\nIf `No data` displayed yet data expected, try to calibrate tolerated error with\n`crud.cfg{stats_quantile_tolerated_error=1e-4}`.\n",
+               "fill": 0,
+               "gridPos": {
+                  "h": 8,
+                  "w": 6,
+                  "x": 18,
+                  "y": 324
+               },
+               "id": 130,
+               "legend": {
+                  "alignAsTable": true,
+                  "avg": true,
+                  "current": true,
+                  "max": true,
+                  "min": false,
+                  "rightSide": false,
+                  "show": true,
+                  "sideWidth": null,
+                  "sort": "current",
+                  "sortDesc": true,
+                  "total": false,
+                  "values": true
+               },
+               "lines": true,
+               "linewidth": 1,
+               "links": [ ],
+               "nullPointMode": "null",
+               "percentage": false,
+               "pointradius": 5,
+               "points": false,
+               "renderer": "flot",
+               "repeat": null,
+               "seriesOverrides": [ ],
+               "spaceLength": 10,
+               "stack": false,
+               "steppedLine": false,
+               "targets": [
+                  {
+                     "alias": "$tag_label_pairs_alias — $tag_label_pairs_name",
+                     "groupBy": [
+                        {
+                           "params": [
+                              "$__interval"
+                           ],
+                           "type": "time"
+                        },
+                        {
+                           "params": [
+                              "label_pairs_alias"
+                           ],
+                           "type": "tag"
+                        },
+                        {
+                           "params": [
+                              "label_pairs_name"
+                           ],
+                           "type": "tag"
+                        },
+                        {
+                           "params": [
+                              "none"
+                           ],
+                           "type": "fill"
+                        }
+                     ],
+                     "measurement": "${INFLUXDB_MEASUREMENT}",
+                     "policy": "${INFLUXDB_POLICY}",
+                     "refId": "A",
+                     "resultFormat": "time_series",
+                     "select": [
+                        [
+                           {
+                              "params": [
+                                 "value"
+                              ],
+                              "type": "field"
+                           },
+                           {
+                              "params": [ ],
+                              "type": "mean"
+                           }
+                        ]
+                     ],
+                     "tags": [
+                        {
+                           "key": "metric_name",
+                           "operator": "=",
+                           "value": "tnt_crud_stats"
+                        },
+                        {
+                           "condition": "AND",
+                           "key": "label_pairs_operation",
+                           "operator": "=",
+                           "value": "replace_many"
+                        },
+                        {
+                           "condition": "AND",
+                           "key": "label_pairs_status",
+                           "operator": "=",
+                           "value": "error"
+                        },
+                        {
+                           "condition": "AND",
+                           "key": "label_pairs_quantile",
+                           "operator": "=",
+                           "value": "0.99"
+                        }
+                     ]
+                  }
+               ],
+               "thresholds": [ ],
+               "timeFrom": null,
+               "timeShift": null,
+               "title": "REPLACE_MANY error requests latency",
+               "tooltip": {
+                  "shared": true,
+                  "sort": 2,
+                  "value_type": "individual"
+               },
+               "type": "graph",
+               "xaxis": {
+                  "buckets": null,
+                  "mode": "time",
+                  "name": null,
+                  "show": true,
+                  "values": [ ]
+               },
+               "yaxes": [
+                  {
+                     "decimals": 3,
+                     "format": "s",
+                     "label": "99th percentile",
+                     "logBase": 1,
+                     "max": null,
+                     "min": 0,
+                     "show": true
+                  },
+                  {
+                     "decimals": 2,
+                     "format": "s",
+                     "label": null,
+                     "logBase": 1,
+                     "max": null,
+                     "min": 0,
+                     "show": true
+                  }
+               ]
+            },
+            {
+               "aliasColors": { },
+               "bars": false,
+               "dashLength": 10,
+               "dashes": false,
+               "datasource": "${DS_INFLUXDB}",
+               "decimals": 2,
                "description": "Total count of success upsert and upsert_object requests to cluster spaces with CRUD module.\nGraph shows average requests per second.\n\nCRUD 0.11.0 or newer is required to use statistics.\nEnable statistics with `crud.cfg{stats = true, stats_driver = 'metrics'}`\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
                   "w": 6,
                   "x": 0,
-                  "y": 316
+                  "y": 332
                },
-               "id": 123,
+               "id": 131,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -15621,9 +16861,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 6,
-                  "y": 316
+                  "y": 332
                },
-               "id": 124,
+               "id": 132,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -15776,9 +17016,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 12,
-                  "y": 316
+                  "y": 332
                },
-               "id": 125,
+               "id": 133,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -15931,9 +17171,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 18,
-                  "y": 316
+                  "y": 332
                },
-               "id": 126,
+               "id": 134,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -16080,15 +17320,635 @@
                "dashes": false,
                "datasource": "${DS_INFLUXDB}",
                "decimals": 2,
+               "description": "Total count of success upsert_many and upsert_object_many requests to cluster spaces with CRUD module.\nGraph shows average requests per second.\n\nCRUD 0.11.0 or newer is required to use statistics.\nEnable statistics with `crud.cfg{stats = true, stats_driver = 'metrics'}`\n",
+               "fill": 0,
+               "gridPos": {
+                  "h": 8,
+                  "w": 6,
+                  "x": 0,
+                  "y": 340
+               },
+               "id": 135,
+               "legend": {
+                  "alignAsTable": true,
+                  "avg": true,
+                  "current": true,
+                  "max": true,
+                  "min": false,
+                  "rightSide": false,
+                  "show": true,
+                  "sideWidth": null,
+                  "sort": "current",
+                  "sortDesc": true,
+                  "total": false,
+                  "values": true
+               },
+               "lines": true,
+               "linewidth": 1,
+               "links": [ ],
+               "nullPointMode": "null",
+               "percentage": false,
+               "pointradius": 5,
+               "points": false,
+               "renderer": "flot",
+               "repeat": null,
+               "seriesOverrides": [ ],
+               "spaceLength": 10,
+               "stack": false,
+               "steppedLine": false,
+               "targets": [
+                  {
+                     "alias": "$tag_label_pairs_alias — $tag_label_pairs_name",
+                     "groupBy": [
+                        {
+                           "params": [
+                              "$__interval"
+                           ],
+                           "type": "time"
+                        },
+                        {
+                           "params": [
+                              "label_pairs_alias"
+                           ],
+                           "type": "tag"
+                        },
+                        {
+                           "params": [
+                              "label_pairs_name"
+                           ],
+                           "type": "tag"
+                        },
+                        {
+                           "params": [
+                              "none"
+                           ],
+                           "type": "fill"
+                        }
+                     ],
+                     "measurement": "${INFLUXDB_MEASUREMENT}",
+                     "policy": "${INFLUXDB_POLICY}",
+                     "refId": "A",
+                     "resultFormat": "time_series",
+                     "select": [
+                        [
+                           {
+                              "params": [
+                                 "value"
+                              ],
+                              "type": "field"
+                           },
+                           {
+                              "params": [ ],
+                              "type": "mean"
+                           },
+                           {
+                              "params": [
+                                 "1s"
+                              ],
+                              "type": "non_negative_derivative"
+                           }
+                        ]
+                     ],
+                     "tags": [
+                        {
+                           "key": "metric_name",
+                           "operator": "=",
+                           "value": "tnt_crud_stats_count"
+                        },
+                        {
+                           "condition": "AND",
+                           "key": "label_pairs_operation",
+                           "operator": "=",
+                           "value": "upsert_many"
+                        },
+                        {
+                           "condition": "AND",
+                           "key": "label_pairs_status",
+                           "operator": "=",
+                           "value": "ok"
+                        }
+                     ]
+                  }
+               ],
+               "thresholds": [ ],
+               "timeFrom": null,
+               "timeShift": null,
+               "title": "UPSERT_MANY success requests",
+               "tooltip": {
+                  "shared": true,
+                  "sort": 2,
+                  "value_type": "individual"
+               },
+               "type": "graph",
+               "xaxis": {
+                  "buckets": null,
+                  "mode": "time",
+                  "name": null,
+                  "show": true,
+                  "values": [ ]
+               },
+               "yaxes": [
+                  {
+                     "decimals": 2,
+                     "format": "none",
+                     "label": "requests per second",
+                     "logBase": 1,
+                     "max": null,
+                     "min": 0,
+                     "show": true
+                  },
+                  {
+                     "decimals": 2,
+                     "format": "none",
+                     "label": null,
+                     "logBase": 1,
+                     "max": null,
+                     "min": 0,
+                     "show": true
+                  }
+               ]
+            },
+            {
+               "aliasColors": { },
+               "bars": false,
+               "dashLength": 10,
+               "dashes": false,
+               "datasource": "${DS_INFLUXDB}",
+               "decimals": 2,
+               "description": "99th percentile of success upsert_many and upsert_object_many CRUD module requests latency with aging.\n\nCRUD 0.11.0 or newer is required to use statistics.\nEnable quantiles with `crud.cfg{stats = true, stats_driver = 'metrics', stats_quantiles = true}`.\nIf `No data` displayed yet data expected, try to calibrate tolerated error with\n`crud.cfg{stats_quantile_tolerated_error=1e-4}`.\n",
+               "fill": 0,
+               "gridPos": {
+                  "h": 8,
+                  "w": 6,
+                  "x": 6,
+                  "y": 340
+               },
+               "id": 136,
+               "legend": {
+                  "alignAsTable": true,
+                  "avg": true,
+                  "current": true,
+                  "max": true,
+                  "min": false,
+                  "rightSide": false,
+                  "show": true,
+                  "sideWidth": null,
+                  "sort": "current",
+                  "sortDesc": true,
+                  "total": false,
+                  "values": true
+               },
+               "lines": true,
+               "linewidth": 1,
+               "links": [ ],
+               "nullPointMode": "null",
+               "percentage": false,
+               "pointradius": 5,
+               "points": false,
+               "renderer": "flot",
+               "repeat": null,
+               "seriesOverrides": [ ],
+               "spaceLength": 10,
+               "stack": false,
+               "steppedLine": false,
+               "targets": [
+                  {
+                     "alias": "$tag_label_pairs_alias — $tag_label_pairs_name",
+                     "groupBy": [
+                        {
+                           "params": [
+                              "$__interval"
+                           ],
+                           "type": "time"
+                        },
+                        {
+                           "params": [
+                              "label_pairs_alias"
+                           ],
+                           "type": "tag"
+                        },
+                        {
+                           "params": [
+                              "label_pairs_name"
+                           ],
+                           "type": "tag"
+                        },
+                        {
+                           "params": [
+                              "none"
+                           ],
+                           "type": "fill"
+                        }
+                     ],
+                     "measurement": "${INFLUXDB_MEASUREMENT}",
+                     "policy": "${INFLUXDB_POLICY}",
+                     "refId": "A",
+                     "resultFormat": "time_series",
+                     "select": [
+                        [
+                           {
+                              "params": [
+                                 "value"
+                              ],
+                              "type": "field"
+                           },
+                           {
+                              "params": [ ],
+                              "type": "mean"
+                           }
+                        ]
+                     ],
+                     "tags": [
+                        {
+                           "key": "metric_name",
+                           "operator": "=",
+                           "value": "tnt_crud_stats"
+                        },
+                        {
+                           "condition": "AND",
+                           "key": "label_pairs_operation",
+                           "operator": "=",
+                           "value": "upsert_many"
+                        },
+                        {
+                           "condition": "AND",
+                           "key": "label_pairs_status",
+                           "operator": "=",
+                           "value": "ok"
+                        },
+                        {
+                           "condition": "AND",
+                           "key": "label_pairs_quantile",
+                           "operator": "=",
+                           "value": "0.99"
+                        }
+                     ]
+                  }
+               ],
+               "thresholds": [ ],
+               "timeFrom": null,
+               "timeShift": null,
+               "title": "UPSERT_MANY success requests latency",
+               "tooltip": {
+                  "shared": true,
+                  "sort": 2,
+                  "value_type": "individual"
+               },
+               "type": "graph",
+               "xaxis": {
+                  "buckets": null,
+                  "mode": "time",
+                  "name": null,
+                  "show": true,
+                  "values": [ ]
+               },
+               "yaxes": [
+                  {
+                     "decimals": 3,
+                     "format": "s",
+                     "label": "99th percentile",
+                     "logBase": 1,
+                     "max": null,
+                     "min": 0,
+                     "show": true
+                  },
+                  {
+                     "decimals": 2,
+                     "format": "s",
+                     "label": null,
+                     "logBase": 1,
+                     "max": null,
+                     "min": 0,
+                     "show": true
+                  }
+               ]
+            },
+            {
+               "aliasColors": { },
+               "bars": false,
+               "dashLength": 10,
+               "dashes": false,
+               "datasource": "${DS_INFLUXDB}",
+               "decimals": 2,
+               "description": "Total count of error upsert_many and upsert_object_many requests to cluster spaces with CRUD module.\nGraph shows average requests per second.\n\nCRUD 0.11.0 or newer is required to use statistics.\nEnable statistics with `crud.cfg{stats = true, stats_driver = 'metrics'}`\n",
+               "fill": 0,
+               "gridPos": {
+                  "h": 8,
+                  "w": 6,
+                  "x": 12,
+                  "y": 340
+               },
+               "id": 137,
+               "legend": {
+                  "alignAsTable": true,
+                  "avg": true,
+                  "current": true,
+                  "max": true,
+                  "min": false,
+                  "rightSide": false,
+                  "show": true,
+                  "sideWidth": null,
+                  "sort": "current",
+                  "sortDesc": true,
+                  "total": false,
+                  "values": true
+               },
+               "lines": true,
+               "linewidth": 1,
+               "links": [ ],
+               "nullPointMode": "null",
+               "percentage": false,
+               "pointradius": 5,
+               "points": false,
+               "renderer": "flot",
+               "repeat": null,
+               "seriesOverrides": [ ],
+               "spaceLength": 10,
+               "stack": false,
+               "steppedLine": false,
+               "targets": [
+                  {
+                     "alias": "$tag_label_pairs_alias — $tag_label_pairs_name",
+                     "groupBy": [
+                        {
+                           "params": [
+                              "$__interval"
+                           ],
+                           "type": "time"
+                        },
+                        {
+                           "params": [
+                              "label_pairs_alias"
+                           ],
+                           "type": "tag"
+                        },
+                        {
+                           "params": [
+                              "label_pairs_name"
+                           ],
+                           "type": "tag"
+                        },
+                        {
+                           "params": [
+                              "none"
+                           ],
+                           "type": "fill"
+                        }
+                     ],
+                     "measurement": "${INFLUXDB_MEASUREMENT}",
+                     "policy": "${INFLUXDB_POLICY}",
+                     "refId": "A",
+                     "resultFormat": "time_series",
+                     "select": [
+                        [
+                           {
+                              "params": [
+                                 "value"
+                              ],
+                              "type": "field"
+                           },
+                           {
+                              "params": [ ],
+                              "type": "mean"
+                           },
+                           {
+                              "params": [
+                                 "1s"
+                              ],
+                              "type": "non_negative_derivative"
+                           }
+                        ]
+                     ],
+                     "tags": [
+                        {
+                           "key": "metric_name",
+                           "operator": "=",
+                           "value": "tnt_crud_stats_count"
+                        },
+                        {
+                           "condition": "AND",
+                           "key": "label_pairs_operation",
+                           "operator": "=",
+                           "value": "upsert_many"
+                        },
+                        {
+                           "condition": "AND",
+                           "key": "label_pairs_status",
+                           "operator": "=",
+                           "value": "error"
+                        }
+                     ]
+                  }
+               ],
+               "thresholds": [ ],
+               "timeFrom": null,
+               "timeShift": null,
+               "title": "UPSERT_MANY error requests",
+               "tooltip": {
+                  "shared": true,
+                  "sort": 2,
+                  "value_type": "individual"
+               },
+               "type": "graph",
+               "xaxis": {
+                  "buckets": null,
+                  "mode": "time",
+                  "name": null,
+                  "show": true,
+                  "values": [ ]
+               },
+               "yaxes": [
+                  {
+                     "decimals": 2,
+                     "format": "none",
+                     "label": "requests per second",
+                     "logBase": 1,
+                     "max": null,
+                     "min": 0,
+                     "show": true
+                  },
+                  {
+                     "decimals": 2,
+                     "format": "none",
+                     "label": null,
+                     "logBase": 1,
+                     "max": null,
+                     "min": 0,
+                     "show": true
+                  }
+               ]
+            },
+            {
+               "aliasColors": { },
+               "bars": false,
+               "dashLength": 10,
+               "dashes": false,
+               "datasource": "${DS_INFLUXDB}",
+               "decimals": 2,
+               "description": "99th percentile of error upsert_many and upsert_object_many CRUD module requests latency with aging.\n\nCRUD 0.11.0 or newer is required to use statistics.\nEnable quantiles with `crud.cfg{stats = true, stats_driver = 'metrics', stats_quantiles = true}`.\nIf `No data` displayed yet data expected, try to calibrate tolerated error with\n`crud.cfg{stats_quantile_tolerated_error=1e-4}`.\n",
+               "fill": 0,
+               "gridPos": {
+                  "h": 8,
+                  "w": 6,
+                  "x": 18,
+                  "y": 340
+               },
+               "id": 138,
+               "legend": {
+                  "alignAsTable": true,
+                  "avg": true,
+                  "current": true,
+                  "max": true,
+                  "min": false,
+                  "rightSide": false,
+                  "show": true,
+                  "sideWidth": null,
+                  "sort": "current",
+                  "sortDesc": true,
+                  "total": false,
+                  "values": true
+               },
+               "lines": true,
+               "linewidth": 1,
+               "links": [ ],
+               "nullPointMode": "null",
+               "percentage": false,
+               "pointradius": 5,
+               "points": false,
+               "renderer": "flot",
+               "repeat": null,
+               "seriesOverrides": [ ],
+               "spaceLength": 10,
+               "stack": false,
+               "steppedLine": false,
+               "targets": [
+                  {
+                     "alias": "$tag_label_pairs_alias — $tag_label_pairs_name",
+                     "groupBy": [
+                        {
+                           "params": [
+                              "$__interval"
+                           ],
+                           "type": "time"
+                        },
+                        {
+                           "params": [
+                              "label_pairs_alias"
+                           ],
+                           "type": "tag"
+                        },
+                        {
+                           "params": [
+                              "label_pairs_name"
+                           ],
+                           "type": "tag"
+                        },
+                        {
+                           "params": [
+                              "none"
+                           ],
+                           "type": "fill"
+                        }
+                     ],
+                     "measurement": "${INFLUXDB_MEASUREMENT}",
+                     "policy": "${INFLUXDB_POLICY}",
+                     "refId": "A",
+                     "resultFormat": "time_series",
+                     "select": [
+                        [
+                           {
+                              "params": [
+                                 "value"
+                              ],
+                              "type": "field"
+                           },
+                           {
+                              "params": [ ],
+                              "type": "mean"
+                           }
+                        ]
+                     ],
+                     "tags": [
+                        {
+                           "key": "metric_name",
+                           "operator": "=",
+                           "value": "tnt_crud_stats"
+                        },
+                        {
+                           "condition": "AND",
+                           "key": "label_pairs_operation",
+                           "operator": "=",
+                           "value": "upsert_many"
+                        },
+                        {
+                           "condition": "AND",
+                           "key": "label_pairs_status",
+                           "operator": "=",
+                           "value": "error"
+                        },
+                        {
+                           "condition": "AND",
+                           "key": "label_pairs_quantile",
+                           "operator": "=",
+                           "value": "0.99"
+                        }
+                     ]
+                  }
+               ],
+               "thresholds": [ ],
+               "timeFrom": null,
+               "timeShift": null,
+               "title": "UPSERT_MANY error requests latency",
+               "tooltip": {
+                  "shared": true,
+                  "sort": 2,
+                  "value_type": "individual"
+               },
+               "type": "graph",
+               "xaxis": {
+                  "buckets": null,
+                  "mode": "time",
+                  "name": null,
+                  "show": true,
+                  "values": [ ]
+               },
+               "yaxes": [
+                  {
+                     "decimals": 3,
+                     "format": "s",
+                     "label": "99th percentile",
+                     "logBase": 1,
+                     "max": null,
+                     "min": 0,
+                     "show": true
+                  },
+                  {
+                     "decimals": 2,
+                     "format": "s",
+                     "label": null,
+                     "logBase": 1,
+                     "max": null,
+                     "min": 0,
+                     "show": true
+                  }
+               ]
+            },
+            {
+               "aliasColors": { },
+               "bars": false,
+               "dashLength": 10,
+               "dashes": false,
+               "datasource": "${DS_INFLUXDB}",
+               "decimals": 2,
                "description": "Total count of success update requests to cluster spaces with CRUD module.\nGraph shows average requests per second.\n\nCRUD 0.11.0 or newer is required to use statistics.\nEnable statistics with `crud.cfg{stats = true, stats_driver = 'metrics'}`\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
                   "w": 6,
                   "x": 0,
-                  "y": 324
+                  "y": 348
                },
-               "id": 127,
+               "id": 139,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -16241,9 +18101,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 6,
-                  "y": 324
+                  "y": 348
                },
-               "id": 128,
+               "id": 140,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -16396,9 +18256,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 12,
-                  "y": 324
+                  "y": 348
                },
-               "id": 129,
+               "id": 141,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -16551,9 +18411,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 18,
-                  "y": 324
+                  "y": 348
                },
-               "id": 130,
+               "id": 142,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -16706,9 +18566,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 0,
-                  "y": 332
+                  "y": 356
                },
-               "id": 131,
+               "id": 143,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -16861,9 +18721,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 6,
-                  "y": 332
+                  "y": 356
                },
-               "id": 132,
+               "id": 144,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -17016,9 +18876,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 12,
-                  "y": 332
+                  "y": 356
                },
-               "id": 133,
+               "id": 145,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -17171,9 +19031,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 18,
-                  "y": 332
+                  "y": 356
                },
-               "id": 134,
+               "id": 146,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -17326,9 +19186,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 0,
-                  "y": 340
+                  "y": 364
                },
-               "id": 135,
+               "id": 147,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -17481,9 +19341,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 6,
-                  "y": 340
+                  "y": 364
                },
-               "id": 136,
+               "id": 148,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -17636,9 +19496,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 12,
-                  "y": 340
+                  "y": 364
                },
-               "id": 137,
+               "id": 149,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -17791,9 +19651,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 18,
-                  "y": 340
+                  "y": 364
                },
-               "id": 138,
+               "id": 150,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -17946,9 +19806,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 0,
-                  "y": 348
+                  "y": 372
                },
-               "id": 139,
+               "id": 151,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -18101,9 +19961,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 6,
-                  "y": 348
+                  "y": 372
                },
-               "id": 140,
+               "id": 152,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -18256,9 +20116,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 12,
-                  "y": 348
+                  "y": 372
                },
-               "id": 141,
+               "id": 153,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -18411,9 +20271,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 18,
-                  "y": 348
+                  "y": 372
                },
-               "id": 142,
+               "id": 154,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -18566,9 +20426,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 0,
-                  "y": 356
+                  "y": 380
                },
-               "id": 143,
+               "id": 155,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -18721,9 +20581,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 6,
-                  "y": 356
+                  "y": 380
                },
-               "id": 144,
+               "id": 156,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -18876,9 +20736,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 12,
-                  "y": 356
+                  "y": 380
                },
-               "id": 145,
+               "id": 157,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -19031,9 +20891,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 18,
-                  "y": 356
+                  "y": 380
                },
-               "id": 146,
+               "id": 158,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -19186,9 +21046,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 0,
-                  "y": 364
+                  "y": 388
                },
-               "id": 147,
+               "id": 159,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -19341,9 +21201,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 6,
-                  "y": 364
+                  "y": 388
                },
-               "id": 148,
+               "id": 160,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -19496,9 +21356,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 12,
-                  "y": 364
+                  "y": 388
                },
-               "id": 149,
+               "id": 161,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -19651,9 +21511,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 18,
-                  "y": 364
+                  "y": 388
                },
-               "id": 150,
+               "id": 162,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -19806,9 +21666,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 0,
-                  "y": 372
+                  "y": 396
                },
-               "id": 151,
+               "id": 163,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -19961,9 +21821,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 6,
-                  "y": 372
+                  "y": 396
                },
-               "id": 152,
+               "id": 164,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -20116,9 +21976,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 12,
-                  "y": 372
+                  "y": 396
                },
-               "id": 153,
+               "id": 165,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -20271,9 +22131,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 18,
-                  "y": 372
+                  "y": 396
                },
-               "id": 154,
+               "id": 166,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -20429,9 +22289,9 @@
             "h": 1,
             "w": 24,
             "x": 0,
-            "y": 380
+            "y": 404
          },
-         "id": 155,
+         "id": 167,
          "panels": [
             {
                "aliasColors": { },
@@ -20446,9 +22306,9 @@
                   "h": 8,
                   "w": 12,
                   "x": 0,
-                  "y": 381
+                  "y": 405
                },
-               "id": 156,
+               "id": 168,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -20589,9 +22449,9 @@
                   "h": 8,
                   "w": 12,
                   "x": 12,
-                  "y": 381
+                  "y": 405
                },
-               "id": 157,
+               "id": 169,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -20732,9 +22592,9 @@
                   "h": 8,
                   "w": 12,
                   "x": 0,
-                  "y": 389
+                  "y": 413
                },
-               "id": 158,
+               "id": 170,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -20869,9 +22729,9 @@
                   "h": 8,
                   "w": 12,
                   "x": 12,
-                  "y": 389
+                  "y": 413
                },
-               "id": 159,
+               "id": 171,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -21009,9 +22869,9 @@
             "h": 1,
             "w": 24,
             "x": 0,
-            "y": 397
+            "y": 421
          },
-         "id": 160,
+         "id": 172,
          "panels": [
             {
                "aliasColors": { },
@@ -21026,9 +22886,9 @@
                   "h": 6,
                   "w": 24,
                   "x": 0,
-                  "y": 398
+                  "y": 422
                },
-               "id": 161,
+               "id": 173,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -21157,9 +23017,9 @@
                   "h": 8,
                   "w": 12,
                   "x": 0,
-                  "y": 404
+                  "y": 428
                },
-               "id": 162,
+               "id": 174,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -21294,9 +23154,9 @@
                   "h": 8,
                   "w": 12,
                   "x": 12,
-                  "y": 404
+                  "y": 428
                },
-               "id": 163,
+               "id": 175,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,

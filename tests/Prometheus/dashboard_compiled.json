@@ -10196,7 +10196,7 @@
                "dashes": false,
                "datasource": "${DS_PROMETHEUS}",
                "decimals": 2,
-               "description": "Total count of success replace and replace_object requests to cluster spaces with CRUD module.\nGraph shows average requests per second.\n\nCRUD 0.11.0 or newer is required to use statistics.\nEnable statistics with `crud.cfg{stats = true, stats_driver = 'metrics'}`\n\n\nIf `No data` displayed, check up your 'rate_time_range' variable.",
+               "description": "Total count of success insert_many and insert_object_many requests to cluster spaces with CRUD module.\nGraph shows average requests per second.\n\nCRUD 0.11.0 or newer is required to use statistics.\nEnable statistics with `crud.cfg{stats = true, stats_driver = 'metrics'}`\n\n\nIf `No data` displayed, check up your 'rate_time_range' variable.",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -10205,6 +10205,366 @@
                   "y": 316
                },
                "id": 126,
+               "legend": {
+                  "alignAsTable": true,
+                  "avg": true,
+                  "current": true,
+                  "max": true,
+                  "min": false,
+                  "rightSide": false,
+                  "show": true,
+                  "sideWidth": null,
+                  "sort": "current",
+                  "sortDesc": true,
+                  "total": false,
+                  "values": true
+               },
+               "lines": true,
+               "linewidth": 1,
+               "links": [ ],
+               "nullPointMode": "null",
+               "percentage": false,
+               "pointradius": 5,
+               "points": false,
+               "renderer": "flot",
+               "repeat": null,
+               "seriesOverrides": [ ],
+               "spaceLength": 10,
+               "stack": false,
+               "steppedLine": false,
+               "targets": [
+                  {
+                     "expr": "rate(tnt_crud_stats_count{job=~\"$job\",operation=\"insert_many\",status=\"ok\"}[$rate_time_range])",
+                     "format": "time_series",
+                     "intervalFactor": 2,
+                     "legendFormat": "{{alias}} — {{name}}",
+                     "refId": "A"
+                  }
+               ],
+               "thresholds": [ ],
+               "timeFrom": null,
+               "timeShift": null,
+               "title": "INSERT_MANY success requests",
+               "tooltip": {
+                  "shared": true,
+                  "sort": 2,
+                  "value_type": "individual"
+               },
+               "type": "graph",
+               "xaxis": {
+                  "buckets": null,
+                  "mode": "time",
+                  "name": null,
+                  "show": true,
+                  "values": [ ]
+               },
+               "yaxes": [
+                  {
+                     "decimals": 2,
+                     "format": "none",
+                     "label": "requests per second",
+                     "logBase": 1,
+                     "max": null,
+                     "min": 0,
+                     "show": true
+                  },
+                  {
+                     "decimals": 2,
+                     "format": "none",
+                     "label": null,
+                     "logBase": 1,
+                     "max": null,
+                     "min": 0,
+                     "show": true
+                  }
+               ]
+            },
+            {
+               "aliasColors": { },
+               "bars": false,
+               "dashLength": 10,
+               "dashes": false,
+               "datasource": "${DS_PROMETHEUS}",
+               "decimals": 2,
+               "description": "99th percentile of success insert_many and insert_object_many CRUD module requests latency with aging.\n\nCRUD 0.11.0 or newer is required to use statistics.\nEnable quantiles with `crud.cfg{stats = true, stats_driver = 'metrics', stats_quantiles = true}`.\nIf `No data` displayed yet data expected, try to calibrate tolerated error with\n`crud.cfg{stats_quantile_tolerated_error=1e-4}`.\n",
+               "fill": 0,
+               "gridPos": {
+                  "h": 8,
+                  "w": 6,
+                  "x": 6,
+                  "y": 316
+               },
+               "id": 127,
+               "legend": {
+                  "alignAsTable": true,
+                  "avg": true,
+                  "current": true,
+                  "max": true,
+                  "min": false,
+                  "rightSide": false,
+                  "show": true,
+                  "sideWidth": null,
+                  "sort": "current",
+                  "sortDesc": true,
+                  "total": false,
+                  "values": true
+               },
+               "lines": true,
+               "linewidth": 1,
+               "links": [ ],
+               "nullPointMode": "null",
+               "percentage": false,
+               "pointradius": 5,
+               "points": false,
+               "renderer": "flot",
+               "repeat": null,
+               "seriesOverrides": [ ],
+               "spaceLength": 10,
+               "stack": false,
+               "steppedLine": false,
+               "targets": [
+                  {
+                     "expr": "tnt_crud_stats{job=~\"$job\",operation=\"insert_many\",status=\"ok\",quantile=\"0.99\"}",
+                     "format": "time_series",
+                     "intervalFactor": 2,
+                     "legendFormat": "{{alias}} — {{name}}",
+                     "refId": "A"
+                  }
+               ],
+               "thresholds": [ ],
+               "timeFrom": null,
+               "timeShift": null,
+               "title": "INSERT_MANY success requests latency",
+               "tooltip": {
+                  "shared": true,
+                  "sort": 2,
+                  "value_type": "individual"
+               },
+               "type": "graph",
+               "xaxis": {
+                  "buckets": null,
+                  "mode": "time",
+                  "name": null,
+                  "show": true,
+                  "values": [ ]
+               },
+               "yaxes": [
+                  {
+                     "decimals": 3,
+                     "format": "s",
+                     "label": "99th percentile",
+                     "logBase": 1,
+                     "max": null,
+                     "min": 0,
+                     "show": true
+                  },
+                  {
+                     "decimals": 2,
+                     "format": "s",
+                     "label": null,
+                     "logBase": 1,
+                     "max": null,
+                     "min": 0,
+                     "show": true
+                  }
+               ]
+            },
+            {
+               "aliasColors": { },
+               "bars": false,
+               "dashLength": 10,
+               "dashes": false,
+               "datasource": "${DS_PROMETHEUS}",
+               "decimals": 2,
+               "description": "Total count of error insert_many and insert_object_many requests to cluster spaces with CRUD module.\nGraph shows average requests per second.\n\nCRUD 0.11.0 or newer is required to use statistics.\nEnable statistics with `crud.cfg{stats = true, stats_driver = 'metrics'}`\n\n\nIf `No data` displayed, check up your 'rate_time_range' variable.",
+               "fill": 0,
+               "gridPos": {
+                  "h": 8,
+                  "w": 6,
+                  "x": 12,
+                  "y": 316
+               },
+               "id": 128,
+               "legend": {
+                  "alignAsTable": true,
+                  "avg": true,
+                  "current": true,
+                  "max": true,
+                  "min": false,
+                  "rightSide": false,
+                  "show": true,
+                  "sideWidth": null,
+                  "sort": "current",
+                  "sortDesc": true,
+                  "total": false,
+                  "values": true
+               },
+               "lines": true,
+               "linewidth": 1,
+               "links": [ ],
+               "nullPointMode": "null",
+               "percentage": false,
+               "pointradius": 5,
+               "points": false,
+               "renderer": "flot",
+               "repeat": null,
+               "seriesOverrides": [ ],
+               "spaceLength": 10,
+               "stack": false,
+               "steppedLine": false,
+               "targets": [
+                  {
+                     "expr": "rate(tnt_crud_stats_count{job=~\"$job\",operation=\"insert_many\",status=\"error\"}[$rate_time_range])",
+                     "format": "time_series",
+                     "intervalFactor": 2,
+                     "legendFormat": "{{alias}} — {{name}}",
+                     "refId": "A"
+                  }
+               ],
+               "thresholds": [ ],
+               "timeFrom": null,
+               "timeShift": null,
+               "title": "INSERT_MANY error requests",
+               "tooltip": {
+                  "shared": true,
+                  "sort": 2,
+                  "value_type": "individual"
+               },
+               "type": "graph",
+               "xaxis": {
+                  "buckets": null,
+                  "mode": "time",
+                  "name": null,
+                  "show": true,
+                  "values": [ ]
+               },
+               "yaxes": [
+                  {
+                     "decimals": 2,
+                     "format": "none",
+                     "label": "requests per second",
+                     "logBase": 1,
+                     "max": null,
+                     "min": 0,
+                     "show": true
+                  },
+                  {
+                     "decimals": 2,
+                     "format": "none",
+                     "label": null,
+                     "logBase": 1,
+                     "max": null,
+                     "min": 0,
+                     "show": true
+                  }
+               ]
+            },
+            {
+               "aliasColors": { },
+               "bars": false,
+               "dashLength": 10,
+               "dashes": false,
+               "datasource": "${DS_PROMETHEUS}",
+               "decimals": 2,
+               "description": "99th percentile of error insert_many and insert_object_many CRUD module requests latency with aging.\n\nCRUD 0.11.0 or newer is required to use statistics.\nEnable quantiles with `crud.cfg{stats = true, stats_driver = 'metrics', stats_quantiles = true}`.\nIf `No data` displayed yet data expected, try to calibrate tolerated error with\n`crud.cfg{stats_quantile_tolerated_error=1e-4}`.\n",
+               "fill": 0,
+               "gridPos": {
+                  "h": 8,
+                  "w": 6,
+                  "x": 18,
+                  "y": 316
+               },
+               "id": 129,
+               "legend": {
+                  "alignAsTable": true,
+                  "avg": true,
+                  "current": true,
+                  "max": true,
+                  "min": false,
+                  "rightSide": false,
+                  "show": true,
+                  "sideWidth": null,
+                  "sort": "current",
+                  "sortDesc": true,
+                  "total": false,
+                  "values": true
+               },
+               "lines": true,
+               "linewidth": 1,
+               "links": [ ],
+               "nullPointMode": "null",
+               "percentage": false,
+               "pointradius": 5,
+               "points": false,
+               "renderer": "flot",
+               "repeat": null,
+               "seriesOverrides": [ ],
+               "spaceLength": 10,
+               "stack": false,
+               "steppedLine": false,
+               "targets": [
+                  {
+                     "expr": "tnt_crud_stats{job=~\"$job\",operation=\"insert_many\",status=\"error\",quantile=\"0.99\"}",
+                     "format": "time_series",
+                     "intervalFactor": 2,
+                     "legendFormat": "{{alias}} — {{name}}",
+                     "refId": "A"
+                  }
+               ],
+               "thresholds": [ ],
+               "timeFrom": null,
+               "timeShift": null,
+               "title": "INSERT_MANY error requests latency",
+               "tooltip": {
+                  "shared": true,
+                  "sort": 2,
+                  "value_type": "individual"
+               },
+               "type": "graph",
+               "xaxis": {
+                  "buckets": null,
+                  "mode": "time",
+                  "name": null,
+                  "show": true,
+                  "values": [ ]
+               },
+               "yaxes": [
+                  {
+                     "decimals": 3,
+                     "format": "s",
+                     "label": "99th percentile",
+                     "logBase": 1,
+                     "max": null,
+                     "min": 0,
+                     "show": true
+                  },
+                  {
+                     "decimals": 2,
+                     "format": "s",
+                     "label": null,
+                     "logBase": 1,
+                     "max": null,
+                     "min": 0,
+                     "show": true
+                  }
+               ]
+            },
+            {
+               "aliasColors": { },
+               "bars": false,
+               "dashLength": 10,
+               "dashes": false,
+               "datasource": "${DS_PROMETHEUS}",
+               "decimals": 2,
+               "description": "Total count of success replace and replace_object requests to cluster spaces with CRUD module.\nGraph shows average requests per second.\n\nCRUD 0.11.0 or newer is required to use statistics.\nEnable statistics with `crud.cfg{stats = true, stats_driver = 'metrics'}`\n\n\nIf `No data` displayed, check up your 'rate_time_range' variable.",
+               "fill": 0,
+               "gridPos": {
+                  "h": 8,
+                  "w": 6,
+                  "x": 0,
+                  "y": 324
+               },
+               "id": 130,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -10292,9 +10652,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 6,
-                  "y": 316
+                  "y": 324
                },
-               "id": 127,
+               "id": 131,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -10382,9 +10742,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 12,
-                  "y": 316
+                  "y": 324
                },
-               "id": 128,
+               "id": 132,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -10472,9 +10832,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 18,
-                  "y": 316
+                  "y": 324
                },
-               "id": 129,
+               "id": 133,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -10556,15 +10916,375 @@
                "dashes": false,
                "datasource": "${DS_PROMETHEUS}",
                "decimals": 2,
+               "description": "Total count of success replace_many and replace_object_many requests to cluster spaces with CRUD module.\nGraph shows average requests per second.\n\nCRUD 0.11.0 or newer is required to use statistics.\nEnable statistics with `crud.cfg{stats = true, stats_driver = 'metrics'}`\n\n\nIf `No data` displayed, check up your 'rate_time_range' variable.",
+               "fill": 0,
+               "gridPos": {
+                  "h": 8,
+                  "w": 6,
+                  "x": 0,
+                  "y": 332
+               },
+               "id": 134,
+               "legend": {
+                  "alignAsTable": true,
+                  "avg": true,
+                  "current": true,
+                  "max": true,
+                  "min": false,
+                  "rightSide": false,
+                  "show": true,
+                  "sideWidth": null,
+                  "sort": "current",
+                  "sortDesc": true,
+                  "total": false,
+                  "values": true
+               },
+               "lines": true,
+               "linewidth": 1,
+               "links": [ ],
+               "nullPointMode": "null",
+               "percentage": false,
+               "pointradius": 5,
+               "points": false,
+               "renderer": "flot",
+               "repeat": null,
+               "seriesOverrides": [ ],
+               "spaceLength": 10,
+               "stack": false,
+               "steppedLine": false,
+               "targets": [
+                  {
+                     "expr": "rate(tnt_crud_stats_count{job=~\"$job\",operation=\"replace_many\",status=\"ok\"}[$rate_time_range])",
+                     "format": "time_series",
+                     "intervalFactor": 2,
+                     "legendFormat": "{{alias}} — {{name}}",
+                     "refId": "A"
+                  }
+               ],
+               "thresholds": [ ],
+               "timeFrom": null,
+               "timeShift": null,
+               "title": "REPLACE_MANY success requests",
+               "tooltip": {
+                  "shared": true,
+                  "sort": 2,
+                  "value_type": "individual"
+               },
+               "type": "graph",
+               "xaxis": {
+                  "buckets": null,
+                  "mode": "time",
+                  "name": null,
+                  "show": true,
+                  "values": [ ]
+               },
+               "yaxes": [
+                  {
+                     "decimals": 2,
+                     "format": "none",
+                     "label": "requests per second",
+                     "logBase": 1,
+                     "max": null,
+                     "min": 0,
+                     "show": true
+                  },
+                  {
+                     "decimals": 2,
+                     "format": "none",
+                     "label": null,
+                     "logBase": 1,
+                     "max": null,
+                     "min": 0,
+                     "show": true
+                  }
+               ]
+            },
+            {
+               "aliasColors": { },
+               "bars": false,
+               "dashLength": 10,
+               "dashes": false,
+               "datasource": "${DS_PROMETHEUS}",
+               "decimals": 2,
+               "description": "99th percentile of success replace_many and replace_object_many CRUD module requests latency with aging.\n\nCRUD 0.11.0 or newer is required to use statistics.\nEnable quantiles with `crud.cfg{stats = true, stats_driver = 'metrics', stats_quantiles = true}`.\nIf `No data` displayed yet data expected, try to calibrate tolerated error with\n`crud.cfg{stats_quantile_tolerated_error=1e-4}`.\n",
+               "fill": 0,
+               "gridPos": {
+                  "h": 8,
+                  "w": 6,
+                  "x": 6,
+                  "y": 332
+               },
+               "id": 135,
+               "legend": {
+                  "alignAsTable": true,
+                  "avg": true,
+                  "current": true,
+                  "max": true,
+                  "min": false,
+                  "rightSide": false,
+                  "show": true,
+                  "sideWidth": null,
+                  "sort": "current",
+                  "sortDesc": true,
+                  "total": false,
+                  "values": true
+               },
+               "lines": true,
+               "linewidth": 1,
+               "links": [ ],
+               "nullPointMode": "null",
+               "percentage": false,
+               "pointradius": 5,
+               "points": false,
+               "renderer": "flot",
+               "repeat": null,
+               "seriesOverrides": [ ],
+               "spaceLength": 10,
+               "stack": false,
+               "steppedLine": false,
+               "targets": [
+                  {
+                     "expr": "tnt_crud_stats{job=~\"$job\",operation=\"replace_many\",status=\"ok\",quantile=\"0.99\"}",
+                     "format": "time_series",
+                     "intervalFactor": 2,
+                     "legendFormat": "{{alias}} — {{name}}",
+                     "refId": "A"
+                  }
+               ],
+               "thresholds": [ ],
+               "timeFrom": null,
+               "timeShift": null,
+               "title": "REPLACE_MANY success requests latency",
+               "tooltip": {
+                  "shared": true,
+                  "sort": 2,
+                  "value_type": "individual"
+               },
+               "type": "graph",
+               "xaxis": {
+                  "buckets": null,
+                  "mode": "time",
+                  "name": null,
+                  "show": true,
+                  "values": [ ]
+               },
+               "yaxes": [
+                  {
+                     "decimals": 3,
+                     "format": "s",
+                     "label": "99th percentile",
+                     "logBase": 1,
+                     "max": null,
+                     "min": 0,
+                     "show": true
+                  },
+                  {
+                     "decimals": 2,
+                     "format": "s",
+                     "label": null,
+                     "logBase": 1,
+                     "max": null,
+                     "min": 0,
+                     "show": true
+                  }
+               ]
+            },
+            {
+               "aliasColors": { },
+               "bars": false,
+               "dashLength": 10,
+               "dashes": false,
+               "datasource": "${DS_PROMETHEUS}",
+               "decimals": 2,
+               "description": "Total count of error replace_many and replace_object_many requests to cluster spaces with CRUD module.\nGraph shows average requests per second.\n\nCRUD 0.11.0 or newer is required to use statistics.\nEnable statistics with `crud.cfg{stats = true, stats_driver = 'metrics'}`\n\n\nIf `No data` displayed, check up your 'rate_time_range' variable.",
+               "fill": 0,
+               "gridPos": {
+                  "h": 8,
+                  "w": 6,
+                  "x": 12,
+                  "y": 332
+               },
+               "id": 136,
+               "legend": {
+                  "alignAsTable": true,
+                  "avg": true,
+                  "current": true,
+                  "max": true,
+                  "min": false,
+                  "rightSide": false,
+                  "show": true,
+                  "sideWidth": null,
+                  "sort": "current",
+                  "sortDesc": true,
+                  "total": false,
+                  "values": true
+               },
+               "lines": true,
+               "linewidth": 1,
+               "links": [ ],
+               "nullPointMode": "null",
+               "percentage": false,
+               "pointradius": 5,
+               "points": false,
+               "renderer": "flot",
+               "repeat": null,
+               "seriesOverrides": [ ],
+               "spaceLength": 10,
+               "stack": false,
+               "steppedLine": false,
+               "targets": [
+                  {
+                     "expr": "rate(tnt_crud_stats_count{job=~\"$job\",operation=\"replace_many\",status=\"error\"}[$rate_time_range])",
+                     "format": "time_series",
+                     "intervalFactor": 2,
+                     "legendFormat": "{{alias}} — {{name}}",
+                     "refId": "A"
+                  }
+               ],
+               "thresholds": [ ],
+               "timeFrom": null,
+               "timeShift": null,
+               "title": "REPLACE_MANY error requests",
+               "tooltip": {
+                  "shared": true,
+                  "sort": 2,
+                  "value_type": "individual"
+               },
+               "type": "graph",
+               "xaxis": {
+                  "buckets": null,
+                  "mode": "time",
+                  "name": null,
+                  "show": true,
+                  "values": [ ]
+               },
+               "yaxes": [
+                  {
+                     "decimals": 2,
+                     "format": "none",
+                     "label": "requests per second",
+                     "logBase": 1,
+                     "max": null,
+                     "min": 0,
+                     "show": true
+                  },
+                  {
+                     "decimals": 2,
+                     "format": "none",
+                     "label": null,
+                     "logBase": 1,
+                     "max": null,
+                     "min": 0,
+                     "show": true
+                  }
+               ]
+            },
+            {
+               "aliasColors": { },
+               "bars": false,
+               "dashLength": 10,
+               "dashes": false,
+               "datasource": "${DS_PROMETHEUS}",
+               "decimals": 2,
+               "description": "99th percentile of error replace_many and replace_object_many CRUD module requests latency with aging.\n\nCRUD 0.11.0 or newer is required to use statistics.\nEnable quantiles with `crud.cfg{stats = true, stats_driver = 'metrics', stats_quantiles = true}`.\nIf `No data` displayed yet data expected, try to calibrate tolerated error with\n`crud.cfg{stats_quantile_tolerated_error=1e-4}`.\n",
+               "fill": 0,
+               "gridPos": {
+                  "h": 8,
+                  "w": 6,
+                  "x": 18,
+                  "y": 332
+               },
+               "id": 137,
+               "legend": {
+                  "alignAsTable": true,
+                  "avg": true,
+                  "current": true,
+                  "max": true,
+                  "min": false,
+                  "rightSide": false,
+                  "show": true,
+                  "sideWidth": null,
+                  "sort": "current",
+                  "sortDesc": true,
+                  "total": false,
+                  "values": true
+               },
+               "lines": true,
+               "linewidth": 1,
+               "links": [ ],
+               "nullPointMode": "null",
+               "percentage": false,
+               "pointradius": 5,
+               "points": false,
+               "renderer": "flot",
+               "repeat": null,
+               "seriesOverrides": [ ],
+               "spaceLength": 10,
+               "stack": false,
+               "steppedLine": false,
+               "targets": [
+                  {
+                     "expr": "tnt_crud_stats{job=~\"$job\",operation=\"replace_many\",status=\"error\",quantile=\"0.99\"}",
+                     "format": "time_series",
+                     "intervalFactor": 2,
+                     "legendFormat": "{{alias}} — {{name}}",
+                     "refId": "A"
+                  }
+               ],
+               "thresholds": [ ],
+               "timeFrom": null,
+               "timeShift": null,
+               "title": "REPLACE_MANY error requests latency",
+               "tooltip": {
+                  "shared": true,
+                  "sort": 2,
+                  "value_type": "individual"
+               },
+               "type": "graph",
+               "xaxis": {
+                  "buckets": null,
+                  "mode": "time",
+                  "name": null,
+                  "show": true,
+                  "values": [ ]
+               },
+               "yaxes": [
+                  {
+                     "decimals": 3,
+                     "format": "s",
+                     "label": "99th percentile",
+                     "logBase": 1,
+                     "max": null,
+                     "min": 0,
+                     "show": true
+                  },
+                  {
+                     "decimals": 2,
+                     "format": "s",
+                     "label": null,
+                     "logBase": 1,
+                     "max": null,
+                     "min": 0,
+                     "show": true
+                  }
+               ]
+            },
+            {
+               "aliasColors": { },
+               "bars": false,
+               "dashLength": 10,
+               "dashes": false,
+               "datasource": "${DS_PROMETHEUS}",
+               "decimals": 2,
                "description": "Total count of success upsert and upsert_object requests to cluster spaces with CRUD module.\nGraph shows average requests per second.\n\nCRUD 0.11.0 or newer is required to use statistics.\nEnable statistics with `crud.cfg{stats = true, stats_driver = 'metrics'}`\n\n\nIf `No data` displayed, check up your 'rate_time_range' variable.",
                "fill": 0,
                "gridPos": {
                   "h": 8,
                   "w": 6,
                   "x": 0,
-                  "y": 324
+                  "y": 340
                },
-               "id": 130,
+               "id": 138,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -10652,9 +11372,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 6,
-                  "y": 324
+                  "y": 340
                },
-               "id": 131,
+               "id": 139,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -10742,9 +11462,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 12,
-                  "y": 324
+                  "y": 340
                },
-               "id": 132,
+               "id": 140,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -10832,9 +11552,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 18,
-                  "y": 324
+                  "y": 340
                },
-               "id": 133,
+               "id": 141,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -10916,15 +11636,375 @@
                "dashes": false,
                "datasource": "${DS_PROMETHEUS}",
                "decimals": 2,
+               "description": "Total count of success upsert_many and upsert_object_many requests to cluster spaces with CRUD module.\nGraph shows average requests per second.\n\nCRUD 0.11.0 or newer is required to use statistics.\nEnable statistics with `crud.cfg{stats = true, stats_driver = 'metrics'}`\n\n\nIf `No data` displayed, check up your 'rate_time_range' variable.",
+               "fill": 0,
+               "gridPos": {
+                  "h": 8,
+                  "w": 6,
+                  "x": 0,
+                  "y": 348
+               },
+               "id": 142,
+               "legend": {
+                  "alignAsTable": true,
+                  "avg": true,
+                  "current": true,
+                  "max": true,
+                  "min": false,
+                  "rightSide": false,
+                  "show": true,
+                  "sideWidth": null,
+                  "sort": "current",
+                  "sortDesc": true,
+                  "total": false,
+                  "values": true
+               },
+               "lines": true,
+               "linewidth": 1,
+               "links": [ ],
+               "nullPointMode": "null",
+               "percentage": false,
+               "pointradius": 5,
+               "points": false,
+               "renderer": "flot",
+               "repeat": null,
+               "seriesOverrides": [ ],
+               "spaceLength": 10,
+               "stack": false,
+               "steppedLine": false,
+               "targets": [
+                  {
+                     "expr": "rate(tnt_crud_stats_count{job=~\"$job\",operation=\"upsert_many\",status=\"ok\"}[$rate_time_range])",
+                     "format": "time_series",
+                     "intervalFactor": 2,
+                     "legendFormat": "{{alias}} — {{name}}",
+                     "refId": "A"
+                  }
+               ],
+               "thresholds": [ ],
+               "timeFrom": null,
+               "timeShift": null,
+               "title": "UPSERT_MANY success requests",
+               "tooltip": {
+                  "shared": true,
+                  "sort": 2,
+                  "value_type": "individual"
+               },
+               "type": "graph",
+               "xaxis": {
+                  "buckets": null,
+                  "mode": "time",
+                  "name": null,
+                  "show": true,
+                  "values": [ ]
+               },
+               "yaxes": [
+                  {
+                     "decimals": 2,
+                     "format": "none",
+                     "label": "requests per second",
+                     "logBase": 1,
+                     "max": null,
+                     "min": 0,
+                     "show": true
+                  },
+                  {
+                     "decimals": 2,
+                     "format": "none",
+                     "label": null,
+                     "logBase": 1,
+                     "max": null,
+                     "min": 0,
+                     "show": true
+                  }
+               ]
+            },
+            {
+               "aliasColors": { },
+               "bars": false,
+               "dashLength": 10,
+               "dashes": false,
+               "datasource": "${DS_PROMETHEUS}",
+               "decimals": 2,
+               "description": "99th percentile of success upsert_many and upsert_object_many CRUD module requests latency with aging.\n\nCRUD 0.11.0 or newer is required to use statistics.\nEnable quantiles with `crud.cfg{stats = true, stats_driver = 'metrics', stats_quantiles = true}`.\nIf `No data` displayed yet data expected, try to calibrate tolerated error with\n`crud.cfg{stats_quantile_tolerated_error=1e-4}`.\n",
+               "fill": 0,
+               "gridPos": {
+                  "h": 8,
+                  "w": 6,
+                  "x": 6,
+                  "y": 348
+               },
+               "id": 143,
+               "legend": {
+                  "alignAsTable": true,
+                  "avg": true,
+                  "current": true,
+                  "max": true,
+                  "min": false,
+                  "rightSide": false,
+                  "show": true,
+                  "sideWidth": null,
+                  "sort": "current",
+                  "sortDesc": true,
+                  "total": false,
+                  "values": true
+               },
+               "lines": true,
+               "linewidth": 1,
+               "links": [ ],
+               "nullPointMode": "null",
+               "percentage": false,
+               "pointradius": 5,
+               "points": false,
+               "renderer": "flot",
+               "repeat": null,
+               "seriesOverrides": [ ],
+               "spaceLength": 10,
+               "stack": false,
+               "steppedLine": false,
+               "targets": [
+                  {
+                     "expr": "tnt_crud_stats{job=~\"$job\",operation=\"upsert_many\",status=\"ok\",quantile=\"0.99\"}",
+                     "format": "time_series",
+                     "intervalFactor": 2,
+                     "legendFormat": "{{alias}} — {{name}}",
+                     "refId": "A"
+                  }
+               ],
+               "thresholds": [ ],
+               "timeFrom": null,
+               "timeShift": null,
+               "title": "UPSERT_MANY success requests latency",
+               "tooltip": {
+                  "shared": true,
+                  "sort": 2,
+                  "value_type": "individual"
+               },
+               "type": "graph",
+               "xaxis": {
+                  "buckets": null,
+                  "mode": "time",
+                  "name": null,
+                  "show": true,
+                  "values": [ ]
+               },
+               "yaxes": [
+                  {
+                     "decimals": 3,
+                     "format": "s",
+                     "label": "99th percentile",
+                     "logBase": 1,
+                     "max": null,
+                     "min": 0,
+                     "show": true
+                  },
+                  {
+                     "decimals": 2,
+                     "format": "s",
+                     "label": null,
+                     "logBase": 1,
+                     "max": null,
+                     "min": 0,
+                     "show": true
+                  }
+               ]
+            },
+            {
+               "aliasColors": { },
+               "bars": false,
+               "dashLength": 10,
+               "dashes": false,
+               "datasource": "${DS_PROMETHEUS}",
+               "decimals": 2,
+               "description": "Total count of error upsert_many and upsert_object_many requests to cluster spaces with CRUD module.\nGraph shows average requests per second.\n\nCRUD 0.11.0 or newer is required to use statistics.\nEnable statistics with `crud.cfg{stats = true, stats_driver = 'metrics'}`\n\n\nIf `No data` displayed, check up your 'rate_time_range' variable.",
+               "fill": 0,
+               "gridPos": {
+                  "h": 8,
+                  "w": 6,
+                  "x": 12,
+                  "y": 348
+               },
+               "id": 144,
+               "legend": {
+                  "alignAsTable": true,
+                  "avg": true,
+                  "current": true,
+                  "max": true,
+                  "min": false,
+                  "rightSide": false,
+                  "show": true,
+                  "sideWidth": null,
+                  "sort": "current",
+                  "sortDesc": true,
+                  "total": false,
+                  "values": true
+               },
+               "lines": true,
+               "linewidth": 1,
+               "links": [ ],
+               "nullPointMode": "null",
+               "percentage": false,
+               "pointradius": 5,
+               "points": false,
+               "renderer": "flot",
+               "repeat": null,
+               "seriesOverrides": [ ],
+               "spaceLength": 10,
+               "stack": false,
+               "steppedLine": false,
+               "targets": [
+                  {
+                     "expr": "rate(tnt_crud_stats_count{job=~\"$job\",operation=\"upsert_many\",status=\"error\"}[$rate_time_range])",
+                     "format": "time_series",
+                     "intervalFactor": 2,
+                     "legendFormat": "{{alias}} — {{name}}",
+                     "refId": "A"
+                  }
+               ],
+               "thresholds": [ ],
+               "timeFrom": null,
+               "timeShift": null,
+               "title": "UPSERT_MANY error requests",
+               "tooltip": {
+                  "shared": true,
+                  "sort": 2,
+                  "value_type": "individual"
+               },
+               "type": "graph",
+               "xaxis": {
+                  "buckets": null,
+                  "mode": "time",
+                  "name": null,
+                  "show": true,
+                  "values": [ ]
+               },
+               "yaxes": [
+                  {
+                     "decimals": 2,
+                     "format": "none",
+                     "label": "requests per second",
+                     "logBase": 1,
+                     "max": null,
+                     "min": 0,
+                     "show": true
+                  },
+                  {
+                     "decimals": 2,
+                     "format": "none",
+                     "label": null,
+                     "logBase": 1,
+                     "max": null,
+                     "min": 0,
+                     "show": true
+                  }
+               ]
+            },
+            {
+               "aliasColors": { },
+               "bars": false,
+               "dashLength": 10,
+               "dashes": false,
+               "datasource": "${DS_PROMETHEUS}",
+               "decimals": 2,
+               "description": "99th percentile of error upsert_many and upsert_object_many CRUD module requests latency with aging.\n\nCRUD 0.11.0 or newer is required to use statistics.\nEnable quantiles with `crud.cfg{stats = true, stats_driver = 'metrics', stats_quantiles = true}`.\nIf `No data` displayed yet data expected, try to calibrate tolerated error with\n`crud.cfg{stats_quantile_tolerated_error=1e-4}`.\n",
+               "fill": 0,
+               "gridPos": {
+                  "h": 8,
+                  "w": 6,
+                  "x": 18,
+                  "y": 348
+               },
+               "id": 145,
+               "legend": {
+                  "alignAsTable": true,
+                  "avg": true,
+                  "current": true,
+                  "max": true,
+                  "min": false,
+                  "rightSide": false,
+                  "show": true,
+                  "sideWidth": null,
+                  "sort": "current",
+                  "sortDesc": true,
+                  "total": false,
+                  "values": true
+               },
+               "lines": true,
+               "linewidth": 1,
+               "links": [ ],
+               "nullPointMode": "null",
+               "percentage": false,
+               "pointradius": 5,
+               "points": false,
+               "renderer": "flot",
+               "repeat": null,
+               "seriesOverrides": [ ],
+               "spaceLength": 10,
+               "stack": false,
+               "steppedLine": false,
+               "targets": [
+                  {
+                     "expr": "tnt_crud_stats{job=~\"$job\",operation=\"upsert_many\",status=\"error\",quantile=\"0.99\"}",
+                     "format": "time_series",
+                     "intervalFactor": 2,
+                     "legendFormat": "{{alias}} — {{name}}",
+                     "refId": "A"
+                  }
+               ],
+               "thresholds": [ ],
+               "timeFrom": null,
+               "timeShift": null,
+               "title": "UPSERT_MANY error requests latency",
+               "tooltip": {
+                  "shared": true,
+                  "sort": 2,
+                  "value_type": "individual"
+               },
+               "type": "graph",
+               "xaxis": {
+                  "buckets": null,
+                  "mode": "time",
+                  "name": null,
+                  "show": true,
+                  "values": [ ]
+               },
+               "yaxes": [
+                  {
+                     "decimals": 3,
+                     "format": "s",
+                     "label": "99th percentile",
+                     "logBase": 1,
+                     "max": null,
+                     "min": 0,
+                     "show": true
+                  },
+                  {
+                     "decimals": 2,
+                     "format": "s",
+                     "label": null,
+                     "logBase": 1,
+                     "max": null,
+                     "min": 0,
+                     "show": true
+                  }
+               ]
+            },
+            {
+               "aliasColors": { },
+               "bars": false,
+               "dashLength": 10,
+               "dashes": false,
+               "datasource": "${DS_PROMETHEUS}",
+               "decimals": 2,
                "description": "Total count of success update requests to cluster spaces with CRUD module.\nGraph shows average requests per second.\n\nCRUD 0.11.0 or newer is required to use statistics.\nEnable statistics with `crud.cfg{stats = true, stats_driver = 'metrics'}`\n\n\nIf `No data` displayed, check up your 'rate_time_range' variable.",
                "fill": 0,
                "gridPos": {
                   "h": 8,
                   "w": 6,
                   "x": 0,
-                  "y": 332
+                  "y": 356
                },
-               "id": 134,
+               "id": 146,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -11012,9 +12092,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 6,
-                  "y": 332
+                  "y": 356
                },
-               "id": 135,
+               "id": 147,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -11102,9 +12182,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 12,
-                  "y": 332
+                  "y": 356
                },
-               "id": 136,
+               "id": 148,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -11192,9 +12272,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 18,
-                  "y": 332
+                  "y": 356
                },
-               "id": 137,
+               "id": 149,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -11282,9 +12362,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 0,
-                  "y": 340
+                  "y": 364
                },
-               "id": 138,
+               "id": 150,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -11372,9 +12452,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 6,
-                  "y": 340
+                  "y": 364
                },
-               "id": 139,
+               "id": 151,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -11462,9 +12542,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 12,
-                  "y": 340
+                  "y": 364
                },
-               "id": 140,
+               "id": 152,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -11552,9 +12632,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 18,
-                  "y": 340
+                  "y": 364
                },
-               "id": 141,
+               "id": 153,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -11642,9 +12722,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 0,
-                  "y": 348
+                  "y": 372
                },
-               "id": 142,
+               "id": 154,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -11732,9 +12812,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 6,
-                  "y": 348
+                  "y": 372
                },
-               "id": 143,
+               "id": 155,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -11822,9 +12902,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 12,
-                  "y": 348
+                  "y": 372
                },
-               "id": 144,
+               "id": 156,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -11912,9 +12992,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 18,
-                  "y": 348
+                  "y": 372
                },
-               "id": 145,
+               "id": 157,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -12002,9 +13082,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 0,
-                  "y": 356
+                  "y": 380
                },
-               "id": 146,
+               "id": 158,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -12092,9 +13172,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 6,
-                  "y": 356
+                  "y": 380
                },
-               "id": 147,
+               "id": 159,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -12182,9 +13262,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 12,
-                  "y": 356
+                  "y": 380
                },
-               "id": 148,
+               "id": 160,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -12272,9 +13352,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 18,
-                  "y": 356
+                  "y": 380
                },
-               "id": 149,
+               "id": 161,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -12362,9 +13442,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 0,
-                  "y": 364
+                  "y": 388
                },
-               "id": 150,
+               "id": 162,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -12452,9 +13532,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 6,
-                  "y": 364
+                  "y": 388
                },
-               "id": 151,
+               "id": 163,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -12542,9 +13622,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 12,
-                  "y": 364
+                  "y": 388
                },
-               "id": 152,
+               "id": 164,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -12632,9 +13712,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 18,
-                  "y": 364
+                  "y": 388
                },
-               "id": 153,
+               "id": 165,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -12722,9 +13802,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 0,
-                  "y": 372
+                  "y": 396
                },
-               "id": 154,
+               "id": 166,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -12812,9 +13892,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 6,
-                  "y": 372
+                  "y": 396
                },
-               "id": 155,
+               "id": 167,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -12902,9 +13982,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 12,
-                  "y": 372
+                  "y": 396
                },
-               "id": 156,
+               "id": 168,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -12992,9 +14072,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 18,
-                  "y": 372
+                  "y": 396
                },
-               "id": 157,
+               "id": 169,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -13082,9 +14162,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 0,
-                  "y": 380
+                  "y": 404
                },
-               "id": 158,
+               "id": 170,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -13172,9 +14252,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 6,
-                  "y": 380
+                  "y": 404
                },
-               "id": 159,
+               "id": 171,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -13262,9 +14342,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 12,
-                  "y": 380
+                  "y": 404
                },
-               "id": 160,
+               "id": 172,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -13352,9 +14432,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 18,
-                  "y": 380
+                  "y": 404
                },
-               "id": 161,
+               "id": 173,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -13445,9 +14525,9 @@
             "h": 1,
             "w": 24,
             "x": 0,
-            "y": 388
+            "y": 412
          },
-         "id": 162,
+         "id": 174,
          "panels": [
             {
                "aliasColors": { },
@@ -13462,9 +14542,9 @@
                   "h": 8,
                   "w": 12,
                   "x": 0,
-                  "y": 389
+                  "y": 413
                },
-               "id": 163,
+               "id": 175,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -13552,9 +14632,9 @@
                   "h": 8,
                   "w": 12,
                   "x": 12,
-                  "y": 389
+                  "y": 413
                },
-               "id": 164,
+               "id": 176,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -13642,9 +14722,9 @@
                   "h": 8,
                   "w": 12,
                   "x": 0,
-                  "y": 397
+                  "y": 421
                },
-               "id": 165,
+               "id": 177,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -13732,9 +14812,9 @@
                   "h": 8,
                   "w": 12,
                   "x": 12,
-                  "y": 397
+                  "y": 421
                },
-               "id": 166,
+               "id": 178,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
