@@ -1,7 +1,7 @@
 local grafana = import 'grafonnet/grafana.libsonnet';
 
+local dashboard = import 'dashboard/build/prometheus/dashboard.libsonnet';
 local common = import 'dashboard/panels/common.libsonnet';
-local dashboard = import 'dashboard/prometheus_dashboard.libsonnet';
 local variable = import 'dashboard/variable.libsonnet';
 
 dashboard.addPanels([

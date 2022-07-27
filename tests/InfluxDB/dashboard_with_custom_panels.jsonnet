@@ -1,6 +1,6 @@
 local grafana = import 'grafonnet/grafana.libsonnet';
 
-local dashboard = import 'dashboard/influxdb_dashboard.libsonnet';
+local dashboard = import 'dashboard/build/influxdb/dashboard.libsonnet';
 local common = import 'dashboard/panels/common.libsonnet';
 local variable = import 'dashboard/variable.libsonnet';
 

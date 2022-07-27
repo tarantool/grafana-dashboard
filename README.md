@@ -114,22 +114,46 @@ make test-deps
 ```
 to install build dependencies and dependencies that are required to run tests locally.
 
-You can compile Prometheus dashboard template with
+To build a static dashboard with no input and dynamic variables, run `make` commands.
 ```bash
-jsonnet -J ./vendor/ -e "local dashboard = import 'dashboard/prometheus_dashboard.libsonnet'; dashboard.build()"
+make DATASOURCE=MyPrometheus JOB=MyApp \
+     OUTPUT_STATIC_DASHBOARD=mydashboard.json build-static-prometheus
+```
+Following targets are available:
+- `build-static-prometheus`: Tarantool dashboard for a Prometheus datasource;
+- `build-static-tdg-prometheus`: TDG dashboard for a Prometheus datasource;
+- `build-static-influxdb`: Tarantool dashboard for an InfluxDB datasource;
+- `build-static-tdg-influxdb`: TDG dashboard for an InfluxDB datasource.
+
+Variables for Prometheus targets:
+- `DATASOURCE`: name of a Prometheus data source;
+- `JOB`: name of a Prometheus job collecting your application metrics;
+- `RATE_TIME_RANGE` (optional, default `2m`): rps computation rate time range;
+- `OUTPUT_STATIC_DASHBOARD` (optional, default `dashboard.json`): compiled dashboard file.
+
+Variables for InfluxDB targets:
+- `DATASOURCE`: name of a InfluxDB data source;
+- `POLICY` (optional, default `autogen`): InfluxDB metrics retention policy;
+- `MEASUREMENT`: name of a InfluxDB measurement with your application metrics;
+- `OUTPUT_STATIC_DASHBOARD` (optional, default `dashboard.json`): compiled dashboard file.
+
+You can also compile configurable Prometheus dashboard template (the same we publish to
+Grafana Official & community built dashboards) with
+```bash
+jsonnet -J ./vendor/ -e "local dashboard = import 'dashboard/build/prometheus/dashboard.libsonnet'; dashboard.build()"
 ```
 and InfluxDB dashboard template with
 ```bash
-jsonnet -J ./vendor/ -e "local dashboard = import 'dashboard/influxdb_dashboard.libsonnet'; dashboard.build()"
+jsonnet -J ./vendor/ -e "local dashboard = import 'dashboard/build/influxdb/dashboard.libsonnet'; dashboard.build()"
 ```
 
 To save output into `output.json` file, use
 ```bash
-jsonnet -J ./vendor/ -e "local dashboard = import 'dashboard/prometheus_dashboard.libsonnet'; dashboard.build()" -o ./output.json
+jsonnet -J ./vendor/ -e "local dashboard = import 'dashboard/build/prometheus/dashboard.libsonnet'; dashboard.build()" -o ./output.json
 ```
 and to save output into clipboard, use
 ```bash
-jsonnet -J ./vendor/ -e "local dashboard = import 'dashboard/prometheus_dashboard.libsonnet'; dashboard.build()" | xclip -selection clipboard
+jsonnet -J ./vendor/ -e "local dashboard = import 'dashboard/build/prometheus/dashboard.libsonnet'; dashboard.build()" | xclip -selection clipboard
 ```
 
 You can run tests with
@@ -186,8 +210,8 @@ You can add your own custom panels to the bottom of the template dashboard.
     Import one of them in your jsonnet script to build your own custom dashboard.
     ```jsonnet
     # my_dashboard.jsonnet
-    local prometheus_dashboard = import 'grafana-dashboard/dashboard/prometheus_dashboard.libsonnet';
-    local influxdb_dashboard = import 'grafana-dashboard/dashboard/influxdb_dashboard.libsonnet';
+    local prometheus_dashboard = import 'grafana-dashboard/dashboard/build/prometheus/dashboard.libsonnet';
+    local influxdb_dashboard = import 'grafana-dashboard/dashboard/build/influxdb/dashboard.libsonnet';
     ```
 
 3. To add your custom panels to a dashboard template, you must create panel objects.
@@ -371,7 +395,7 @@ You can add your own custom panels to the bottom of the template dashboard.
     To add your custom panels, call `addPanel(panel)` or `addPanels(panel_array)` in dashboard template:
     ```jsonnet
     # my_dashboard.jsonnet
-    local prometheus_dashboard = import 'grafana-dashboard/dashboard/prometheus_dashboard.libsonnet';
+    local prometheus_dashboard = import 'grafana-dashboard/dashboard/build/prometheus/dashboard.libsonnet';
 
     ...
     
