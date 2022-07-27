@@ -208,7 +208,7 @@ You can add your own custom panels to the bottom of the template dashboard.
     default_graph( # graph panel shortcut
       title, # The title of the graph panel
       description, # (optional) The description of the panel
-      datasource, # Targets datasource. Use dashboard/variable.libsonnet to fill this value
+      datasource, # Targets datasource. If you use default input variables, use grafana-dashboard/dashboard/variable.libsonnet to fill this value
       format, # (default 'none') Unit of the Y axes
       min, # (optional) Min of the Y axes
       max, # (optional) Max of the Y axes
@@ -241,21 +241,21 @@ You can add your own custom panels to the bottom of the template dashboard.
     # vendor/grafana-dashboard/dashboard/panels/common.libsonnet
 
     default_metric_target( # plain "select metric" shortcut
-      datasource, # Target datasource. Use grafana-dashboard/dashboard/variable.libsonnet to fill this value
+      datasource_type, # Target datasource type. Use grafana-dashboard/dashboard/variable.libsonnet to fill this value
       metric_name, # Target metric name to select
-      job, # (Prometheus only) Prometheus metrics job. Use grafana-dashboard/dashboard/variable.libsonnet to fill this value
-      policy, # (InfluxDB only) InfluxDB metrics policy. Use grafana-dashboard/dashboard/variable.libsonnet to fill this value
-      measurement, # (InfluxDB only) InfluxDB metrics measurement. Use grafana-dashboard/dashboard/variable.libsonnet to fill this value
+      job, # (Prometheus only) Prometheus metrics job. If you use default input variables, use grafana-dashboard/dashboard/variable.libsonnet to fill this value
+      policy, # (InfluxDB only) InfluxDB metrics policy. If you use default input variables, use grafana-dashboard/dashboard/variable.libsonnet to fill this value
+      measurement, # (InfluxDB only) InfluxDB metrics measurement. If you use default input variables, use grafana-dashboard/dashboard/variable.libsonnet to fill this value
       converter, # (InfluxDB only, default 'mean') InfluxDB metrics converter (aggregation, selector, etc.)
     ),
 
     default_rps_target( # counter metric transformed to rps shortcut
-      datasource, # Target datasource. Use grafana-dashboard/dashboard/variable.libsonnet to fill this value
+      datasource_type, # Target datasource type. Use grafana-dashboard/dashboard/variable.libsonnet to fill this value
       metric_name, # Target metric name to select
-      job, # (Prometheus only) Prometheus metrics job. Use grafana-dashboard/dashboard/variable.libsonnet to fill this value
-      rate_time_range, # (Prometheus only) Prometheus rps computation rate time range. Use vendor/grafana-dashboard/dashboard/variable.libsonnet to fill this value
-      policy, # (InfluxDB only) InfluxDB metrics policy. Use grafana-dashboard/dashboard/variable.libsonnet to fill this value
-      measurement, # (InfluxDB only) InfluxDB metrics measurement. Use grafana-dashboard/dashboard/variable.libsonnet to fill this value
+      job, # (Prometheus only) Prometheus metrics job. If you use default input variables, use grafana-dashboard/dashboard/variable.libsonnet to fill this value
+      rate_time_range, # (Prometheus only) Prometheus rps computation rate time range. If you use default input variables, use grafana-dashboard/dashboard/variable.libsonnet to fill this value
+      policy, # (InfluxDB only) InfluxDB metrics policy. If you use default input variables, use grafana-dashboard/dashboard/variable.libsonnet to fill this value
+      measurement, # (InfluxDB only) InfluxDB metrics measurement. If you use default input variables, use grafana-dashboard/dashboard/variable.libsonnet to fill this value
     )
     ```
 
@@ -264,17 +264,17 @@ You can add your own custom panels to the bottom of the template dashboard.
     To use dashboard-wide input and template variables in your queries you must use `grafana-dashboard/dashboard/variable.libsonnet`.
     It imports json object with variable values you neet to set in your queries.
 
-    If you want to build a Prometheus dashboard, use 
+    If you want to build a Prometheus dashboard with default input variables, use 
     ```jsonnet
-    datasource=variable.datasource.prometheus,
+    datasource=variable.datasource_var.prometheus,
     job=variable.prometheus.job,
     rate_time_range=variable.prometheus.rate_time_range
     ```
     in your targets.
     
-    If you want to build an InfluxDB dashboard, use 
+    If you want to build an InfluxDB dashboard with default input variables, use 
     ```jsonnet
-    datasource=variable.datasource.influxdb,
+    datasource=variable.datasource_var.influxdb,
     policy=variable.influxdb.policy,
     measurement=variable.influxdb.measurement
     ```
@@ -293,12 +293,12 @@ You can add your own custom panels to the bottom of the template dashboard.
         My custom component used memory.
         Shows mean value.
       |||,
-      datasource=variable.datasource.prometheus,
+      datasource=variable.datasource_var.prometheus,
       format='bytes',
       panel_width=12,
       panel_height=6,
     ).addTarget(common.default_metric_target(
-      datasource=variable.datasource.prometheus,
+      datasource_type=variable.datasource_type.prometheus,
       metric_name='my_component_memory',
       job=variable.prometheus.job,
     ))
@@ -315,12 +315,12 @@ You can add your own custom panels to the bottom of the template dashboard.
         and collects info on process to summary collector
         'my_component_load_metric'.
       |||,
-      datasource=variable.datasource.prometheus,
+      datasource=variable.datasource_var.prometheus,
       labelY1='requests per second',
       panel_width=18,
       panel_height=6,
     ).addTarget(common.default_rps_target(
-      datasource=variable.datasource.prometheus,
+      datasource_type=variable.datasource_type.prometheus,
       metric_name='my_component_load_metric_count',
       job=variable.prometheus.job,
       rate_time_range=variable.prometheus.rate_time_range,
@@ -337,12 +337,12 @@ You can add your own custom panels to the bottom of the template dashboard.
         My custom component used memory.
         Shows mean value.
       |||,
-      datasource=variable.datasource.influxdb,
+      datasource=variable.datasource_var.influxdb,
       format='bytes',
       panel_width=12,
       panel_height=6,
     ).addTarget(common.default_metric_target(
-      datasource=variable.datasource.influxdb,
+      datasource_type=variable.datasource_type.influxdb,
       metric_name='my_component_memory',
       policy=variable.influxdb.policy,
       measurement=variable.influxdb.measurement,
@@ -355,12 +355,12 @@ You can add your own custom panels to the bottom of the template dashboard.
         and collects info on process to summary collector
         'my_component_load_metric'.
       |||,
-      datasource=variable.datasource.influxdb,
+      datasource=variable.datasource_var.influxdb,
       labelY1='requests per second',
       panel_width=18,
       panel_height=6,
     ).addTarget(common.default_rps_target(
-      datasource=variable.datasource.influxdb,
+      datasource_type=variable.datasource_type.influxdb,
       metric_name='my_component_load_metric_count',
       policy=variable.influxdb.policy,
       measurement=variable.influxdb.measurement,

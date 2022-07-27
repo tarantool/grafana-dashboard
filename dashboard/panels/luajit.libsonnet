@@ -12,6 +12,7 @@ local common = import 'common.libsonnet';
       Average number of snap restores (guard assertions
       leading to stopping trace executions) per second.
     |||,
+    datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
@@ -19,12 +20,12 @@ local common = import 'common.libsonnet';
     rate_time_range=null,
   ):: common.default_graph(
     title=title,
-    description=common.rate_warning(version_warning(description), datasource),
+    description=common.rate_warning(version_warning(description), datasource_type),
     datasource=datasource,
     labelY1='restores per second',
     panel_width=6,
   ).addTarget(common.default_rps_target(
-    datasource,
+    datasource_type,
     'lj_jit_snap_restore',
     job,
     rate_time_range,
@@ -37,6 +38,7 @@ local common = import 'common.libsonnet';
     description=|||
       Average number of new JIT traces per second.
     |||,
+    datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
@@ -44,12 +46,12 @@ local common = import 'common.libsonnet';
     rate_time_range=null,
   ):: common.default_graph(
     title=title,
-    description=common.rate_warning(version_warning(description), datasource),
+    description=common.rate_warning(version_warning(description), datasource_type),
     datasource=datasource,
     labelY1='new per second',
     panel_width=6,
   ).addTarget(common.default_rps_target(
-    datasource,
+    datasource_type,
     'lj_jit_trace_num',
     job,
     rate_time_range,
@@ -62,6 +64,7 @@ local common = import 'common.libsonnet';
     description=|||
       Average number of JIT trace aborts per second.
     |||,
+    datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
@@ -69,12 +72,12 @@ local common = import 'common.libsonnet';
     rate_time_range=null,
   ):: common.default_graph(
     title=title,
-    description=common.rate_warning(version_warning(description), datasource),
+    description=common.rate_warning(version_warning(description), datasource_type),
     datasource=datasource,
     labelY1='aborts per second',
     panel_width=6,
   ).addTarget(common.default_rps_target(
-    datasource,
+    datasource_type,
     'lj_jit_trace_abort',
     job,
     rate_time_range,
@@ -87,6 +90,7 @@ local common = import 'common.libsonnet';
     description=|||
       Total size of allocated machine code areas.
     |||,
+    datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
@@ -99,7 +103,7 @@ local common = import 'common.libsonnet';
     labelY1='in bytes',
     panel_width=6,
   ).addTarget(common.default_metric_target(
-    datasource,
+    datasource_type,
     'lj_jit_mcode_size',
     job,
     policy,
@@ -111,6 +115,7 @@ local common = import 'common.libsonnet';
     description=|||
       Average number of strings being extracted from hash instead of allocating per second.
     |||,
+    datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
@@ -118,12 +123,12 @@ local common = import 'common.libsonnet';
     rate_time_range=null,
   ):: common.default_graph(
     title=title,
-    description=common.rate_warning(version_warning(description), datasource),
+    description=common.rate_warning(version_warning(description), datasource_type),
     datasource=datasource,
     labelY1='interned per second',
     panel_width=12,
   ).addTarget(common.default_rps_target(
-    datasource,
+    datasource_type,
     'lj_strhash_hit',
     job,
     rate_time_range,
@@ -136,6 +141,7 @@ local common = import 'common.libsonnet';
     description=|||
       Average number of strings being allocated due to hash miss per second.
     |||,
+    datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
@@ -143,12 +149,12 @@ local common = import 'common.libsonnet';
     rate_time_range=null,
   ):: common.default_graph(
     title=title,
-    description=common.rate_warning(version_warning(description), datasource),
+    description=common.rate_warning(version_warning(description), datasource_type),
     datasource=datasource,
     labelY1='allocated per second',
     panel_width=12,
   ).addTarget(common.default_rps_target(
-    datasource,
+    datasource_type,
     'lj_strhash_miss',
     job,
     rate_time_range,
@@ -159,6 +165,7 @@ local common = import 'common.libsonnet';
   local gc_steps(
     title,
     description,
+    datasource_type,
     datasource,
     job,
     rate_time_range,
@@ -178,7 +185,7 @@ local common = import 'common.libsonnet';
     labelY1='steps per second',
     panel_width=8,
   ).addTarget(common.default_rps_target(
-    datasource,
+    datasource_type,
     std.format('lj_gc_steps_%s', state),
     job,
     rate_time_range,
@@ -189,6 +196,7 @@ local common = import 'common.libsonnet';
   gc_steps_atomic(
     title=null,
     description=null,
+    datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
@@ -197,6 +205,7 @@ local common = import 'common.libsonnet';
   ):: gc_steps(
     title,
     description,
+    datasource_type,
     datasource,
     job,
     rate_time_range,
@@ -208,6 +217,7 @@ local common = import 'common.libsonnet';
   gc_steps_sweepstring(
     title=null,
     description=null,
+    datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
@@ -216,6 +226,7 @@ local common = import 'common.libsonnet';
   ):: gc_steps(
     title,
     description,
+    datasource_type,
     datasource,
     job,
     rate_time_range,
@@ -227,6 +238,7 @@ local common = import 'common.libsonnet';
   gc_steps_finalize(
     title=null,
     description=null,
+    datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
@@ -235,6 +247,7 @@ local common = import 'common.libsonnet';
   ):: gc_steps(
     title,
     description,
+    datasource_type,
     datasource,
     job,
     rate_time_range,
@@ -246,6 +259,7 @@ local common = import 'common.libsonnet';
   gc_steps_sweep(
     title=null,
     description=null,
+    datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
@@ -254,6 +268,7 @@ local common = import 'common.libsonnet';
   ):: gc_steps(
     title,
     description,
+    datasource_type,
     datasource,
     job,
     rate_time_range,
@@ -265,6 +280,7 @@ local common = import 'common.libsonnet';
   gc_steps_propagate(
     title=null,
     description=null,
+    datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
@@ -273,6 +289,7 @@ local common = import 'common.libsonnet';
   ):: gc_steps(
     title,
     description,
+    datasource_type,
     datasource,
     job,
     rate_time_range,
@@ -284,6 +301,7 @@ local common = import 'common.libsonnet';
   gc_steps_pause(
     title=null,
     description=null,
+    datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
@@ -292,6 +310,7 @@ local common = import 'common.libsonnet';
   ):: gc_steps(
     title,
     description,
+    datasource_type,
     datasource,
     job,
     rate_time_range,
@@ -303,6 +322,7 @@ local common = import 'common.libsonnet';
   local allocated(
     title,
     description,
+    datasource_type,
     datasource,
     job,
     policy,
@@ -315,7 +335,7 @@ local common = import 'common.libsonnet';
     decimals=0,
     panel_width=6,
   ).addTarget(common.default_metric_target(
-    datasource,
+    datasource_type,
     metric_name,
     job,
     policy,
@@ -327,6 +347,7 @@ local common = import 'common.libsonnet';
     description=|||
       Number of allocated string objects.
     |||,
+    datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
@@ -334,6 +355,7 @@ local common = import 'common.libsonnet';
   ):: allocated(
     title,
     description,
+    datasource_type,
     datasource,
     job,
     policy,
@@ -346,6 +368,7 @@ local common = import 'common.libsonnet';
     description=|||
       Number of allocated table objects.
     |||,
+    datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
@@ -353,6 +376,7 @@ local common = import 'common.libsonnet';
   ):: allocated(
     title,
     description,
+    datasource_type,
     datasource,
     job,
     policy,
@@ -365,6 +389,7 @@ local common = import 'common.libsonnet';
     description=|||
       Number of allocated cdata objects.
     |||,
+    datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
@@ -372,6 +397,7 @@ local common = import 'common.libsonnet';
   ):: allocated(
     title,
     description,
+    datasource_type,
     datasource,
     job,
     policy,
@@ -384,6 +410,7 @@ local common = import 'common.libsonnet';
     description=|||
       Number of allocated userdata objects.
     |||,
+    datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
@@ -391,6 +418,7 @@ local common = import 'common.libsonnet';
   ):: allocated(
     title,
     description,
+    datasource_type,
     datasource,
     job,
     policy,
@@ -403,6 +431,7 @@ local common = import 'common.libsonnet';
     description=|||
       Current allocated Lua memory.
     |||,
+    datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
@@ -415,7 +444,7 @@ local common = import 'common.libsonnet';
     labelY1='in bytes',
     panel_width=8,
   ).addTarget(common.default_metric_target(
-    datasource,
+    datasource_type,
     'lj_gc_memory',
     job,
     policy,
@@ -427,6 +456,7 @@ local common = import 'common.libsonnet';
     description=|||
       Average amount of freed Lua memory per second.
     |||,
+    datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
@@ -440,7 +470,7 @@ local common = import 'common.libsonnet';
     labelY1='bytes per second',
     panel_width=8,
   ).addTarget(common.default_rps_target(
-    datasource,
+    datasource_type,
     'lj_gc_freed',
     job,
     rate_time_range,
@@ -453,6 +483,7 @@ local common = import 'common.libsonnet';
     description=|||
       Average amount of allocated Lua memory per second.
     |||,
+    datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
@@ -466,7 +497,7 @@ local common = import 'common.libsonnet';
     labelY1='bytes per second',
     panel_width=8,
   ).addTarget(common.default_rps_target(
-    datasource,
+    datasource_type,
     'lj_gc_allocated',
     job,
     rate_time_range,

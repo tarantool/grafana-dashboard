@@ -1,6 +1,7 @@
 local grafana = import 'grafonnet/grafana.libsonnet';
 
 local common = import 'common.libsonnet';
+local variable = import 'dashboard/variable.libsonnet';
 
 local influxdb = grafana.influxdb;
 local prometheus = grafana.prometheus;
@@ -11,6 +12,7 @@ local prometheus = grafana.prometheus;
   local getrusage_cpu_percentage_graph(
     title,
     description,
+    datasource_type,
     datasource,
     policy,
     measurement,
@@ -26,7 +28,7 @@ local prometheus = grafana.prometheus;
     min=0,
     panel_width=12,
   ).addTarget(common.default_rps_target(
-    datasource,
+    datasource_type,
     metric_name,
     job,
     rate_time_range,
@@ -43,6 +45,7 @@ local prometheus = grafana.prometheus;
 
       Panel works with `metrics >= 0.8.0`.
     |||,
+    datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
@@ -50,7 +53,8 @@ local prometheus = grafana.prometheus;
     rate_time_range=null,
   ):: getrusage_cpu_percentage_graph(
     title=title,
-    description=common.rate_warning(description, datasource),
+    description=common.rate_warning(description, datasource_type),
+    datasource_type=datasource_type,
     datasource=datasource,
     policy=policy,
     measurement=measurement,
@@ -68,6 +72,7 @@ local prometheus = grafana.prometheus;
 
       Panel works with `metrics >= 0.8.0`.
     |||,
+    datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
@@ -75,7 +80,8 @@ local prometheus = grafana.prometheus;
     rate_time_range=null,
   ):: getrusage_cpu_percentage_graph(
     title=title,
-    description=common.rate_warning(description, datasource),
+    description=common.rate_warning(description, datasource_type),
+    datasource_type=datasource_type,
     datasource=datasource,
     policy=policy,
     measurement=measurement,
@@ -87,6 +93,7 @@ local prometheus = grafana.prometheus;
   local procstat_thread_time_graph(
     title,
     description,
+    datasource_type,
     datasource,
     policy,
     measurement,
@@ -102,13 +109,13 @@ local prometheus = grafana.prometheus;
     decimalsY1=3,
     panel_width=12,
   ).addTarget(
-    if datasource == '${DS_PROMETHEUS}' then
+    if datasource_type == variable.datasource_type.prometheus then
       prometheus.target(
         expr=std.format('rate(tnt_cpu_thread{job=~"%s",kind="%s"}[%s])',
                         [job, kind, rate_time_range]),
         legendFormat='{{alias}} — {{thread_name}}',
       )
-    else if datasource == '${DS_INFLUXDB}' then
+    else if datasource_type == variable.datasource_type.influxdb then
       influxdb.target(
         policy=policy,
         measurement=measurement,
@@ -131,6 +138,7 @@ local prometheus = grafana.prometheus;
 
       Metrics are obtained by parsing `/proc/self/task/[pid]/stat`.
     |||,
+    datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
@@ -139,6 +147,7 @@ local prometheus = grafana.prometheus;
   ):: procstat_thread_time_graph(
     title,
     description,
+    datasource_type,
     datasource,
     policy,
     measurement,
@@ -156,6 +165,7 @@ local prometheus = grafana.prometheus;
 
       Metrics are obtained by parsing `/proc/self/task/[pid]/stat`.
     |||,
+    datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
@@ -164,6 +174,7 @@ local prometheus = grafana.prometheus;
   ):: procstat_thread_time_graph(
     title,
     description,
+    datasource_type,
     datasource,
     policy,
     measurement,

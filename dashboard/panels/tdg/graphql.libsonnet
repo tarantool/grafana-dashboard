@@ -1,6 +1,7 @@
 local grafana = import 'grafonnet/grafana.libsonnet';
 
 local common_utils = import '../common.libsonnet';
+local variable = import 'dashboard/variable.libsonnet';
 
 local influxdb = grafana.influxdb;
 local prometheus = grafana.prometheus;
@@ -9,20 +10,20 @@ local prometheus = grafana.prometheus;
   row:: common_utils.row('TDG GraphQL requests'),
 
   local rps_target(
-    datasource,
+    datasource_type,
     metric_name,
     job=null,
     rate_time_range=null,
     policy=null,
     measurement=null,
   ) =
-    if datasource == '${DS_PROMETHEUS}' then
+    if datasource_type == variable.datasource_type.prometheus then
       prometheus.target(
         expr=std.format('rate(%s{job=~"%s"}[%s])',
                         [metric_name, job, rate_time_range]),
         legendFormat='{{operation_name}} ({{schema}}, {{entity}}) — {{alias}}',
       )
-    else if datasource == '${DS_INFLUXDB}' then
+    else if datasource_type == variable.datasource_type.influxdb then
       influxdb.target(
         policy=policy,
         measurement=measurement,
@@ -37,13 +38,13 @@ local prometheus = grafana.prometheus;
       .selectField('value').addConverter('mean').addConverter('non_negative_derivative', ['1s']),
 
   local average_target(
-    datasource,
+    datasource_type,
     metric_name,
     job=null,
     policy=null,
     measurement=null,
   ) =
-    if datasource == '${DS_PROMETHEUS}' then
+    if datasource_type == variable.datasource_type.prometheus then
       prometheus.target(
         expr=std.format(
           |||
@@ -58,7 +59,7 @@ local prometheus = grafana.prometheus;
         ),
         legendFormat='{{operation_name}} ({{schema}}, {{entity}}) — {{alias}}'
       )
-    else if datasource == '${DS_INFLUXDB}' then
+    else if datasource_type == variable.datasource_type.influxdb then
       influxdb.target(
         rawQuery=true,
         query=std.format(|||
@@ -84,7 +85,8 @@ local prometheus = grafana.prometheus;
     description=common_utils.rate_warning(|||
       A number of successfully executed GraphQL queries.
       Graph shows mean requests per second.
-    |||, datasource),
+    |||, datasource_type),
+    datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
@@ -96,7 +98,7 @@ local prometheus = grafana.prometheus;
     datasource=datasource,
     labelY1='request per second',
   ).addTarget(rps_target(
-    datasource,
+    datasource_type,
     'tdg_graphql_query_time_count',
     job,
     rate_time_range,
@@ -110,6 +112,7 @@ local prometheus = grafana.prometheus;
       Average time of GraphQL query execution.
       Only success requests are count.
     |||,
+    datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
@@ -121,7 +124,7 @@ local prometheus = grafana.prometheus;
     labelY1='average',
     format='µs',
   ).addTarget(average_target(
-    datasource,
+    datasource_type,
     'tdg_graphql_query_time',
     job,
     policy,
@@ -133,7 +136,8 @@ local prometheus = grafana.prometheus;
     description=common_utils.rate_warning(|||
       A number of GraphQL queries failed to execute.
       Graph shows mean requests per second.
-    |||, datasource),
+    |||, datasource_type),
+    datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
@@ -145,7 +149,7 @@ local prometheus = grafana.prometheus;
     datasource=datasource,
     labelY1='request per second',
   ).addTarget(rps_target(
-    datasource,
+    datasource_type,
     'tdg_graphql_query_fail',
     job,
     rate_time_range,
@@ -158,7 +162,8 @@ local prometheus = grafana.prometheus;
     description=common_utils.rate_warning(|||
       A number of successfully executed GraphQL mutations.
       Graph shows mean requests per second.
-    |||, datasource),
+    |||, datasource_type),
+    datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
@@ -170,7 +175,7 @@ local prometheus = grafana.prometheus;
     datasource=datasource,
     labelY1='request per second',
   ).addTarget(rps_target(
-    datasource,
+    datasource_type,
     'tdg_graphql_mutation_time_count',
     job,
     rate_time_range,
@@ -184,6 +189,7 @@ local prometheus = grafana.prometheus;
       Average time of GraphQL mutation execution.
       Only success requests are count.
     |||,
+    datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
@@ -195,7 +201,7 @@ local prometheus = grafana.prometheus;
     labelY1='average',
     format='µs',
   ).addTarget(average_target(
-    datasource,
+    datasource_type,
     'tdg_graphql_mutation_time',
     job,
     policy,
@@ -207,7 +213,8 @@ local prometheus = grafana.prometheus;
     description=common_utils.rate_warning(|||
       A number of GraphQL mutations failed to execute.
       Graph shows mean requests per second.
-    |||, datasource),
+    |||, datasource_type),
+    datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
@@ -219,7 +226,7 @@ local prometheus = grafana.prometheus;
     datasource=datasource,
     labelY1='request per second',
   ).addTarget(rps_target(
-    datasource,
+    datasource_type,
     'tdg_graphql_mutation_fail',
     job,
     rate_time_range,

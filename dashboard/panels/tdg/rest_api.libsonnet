@@ -1,6 +1,7 @@
 local grafana = import 'grafonnet/grafana.libsonnet';
 
 local common_utils = import '../common.libsonnet';
+local variable = import 'dashboard/variable.libsonnet';
 
 local influxdb = grafana.influxdb;
 local prometheus = grafana.prometheus;
@@ -11,6 +12,7 @@ local prometheus = grafana.prometheus;
   local rps_panel(
     title,
     description,
+    datasource_type,
     datasource,
     metric_name,
     status_regex,
@@ -25,7 +27,7 @@ local prometheus = grafana.prometheus;
     datasource=datasource,
     labelY1='request per second',
   ).addTarget(
-    if datasource == '${DS_PROMETHEUS}' then
+    if datasource_type == variable.datasource_type.prometheus then
       prometheus.target(
         expr=std.format('rate(%s{job=~"%s",method%s"GET",status_code=~"%s"}[%s])', [
           metric_name,
@@ -36,7 +38,7 @@ local prometheus = grafana.prometheus;
         ]),
         legendFormat='{{type}} (code {{status_code}}) — {{alias}}',
       )
-    else if datasource == '${DS_INFLUXDB}' then
+    else if datasource_type == variable.datasource_type.influxdb then
       influxdb.target(
         policy=policy,
         measurement=measurement,
@@ -56,6 +58,7 @@ local prometheus = grafana.prometheus;
   local latency_panel(
     title,
     description,
+    datasource_type,
     datasource,
     metric_name,
     status_regex,
@@ -71,7 +74,7 @@ local prometheus = grafana.prometheus;
     labelY1='99th percentile',
     format='µs',
   ).addTarget(
-    if datasource == '${DS_PROMETHEUS}' then
+    if datasource_type == variable.datasource_type.prometheus then
       prometheus.target(
         expr=std.format('%s{job=~"%s",method%s"GET",status_code=~"%s",quantile="0.99"}', [
           metric_name,
@@ -81,7 +84,7 @@ local prometheus = grafana.prometheus;
         ]),
         legendFormat='{{type}} (code {{status_code}}) — {{alias}}',
       )
-    else if datasource == '${DS_INFLUXDB}' then
+    else if datasource_type == variable.datasource_type.influxdb then
       influxdb.target(
         policy=policy,
         measurement=measurement,
@@ -104,7 +107,8 @@ local prometheus = grafana.prometheus;
     description=common_utils.rate_warning(|||
       Number of TDG REST API GET requests processed with code 2xx.
       Graph shows mean requests per second.
-    |||, datasource),
+    |||, datasource_type),
+    datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
@@ -113,6 +117,7 @@ local prometheus = grafana.prometheus;
   ):: rps_panel(
     title=title,
     description=description,
+    datasource_type=datasource_type,
     datasource=datasource,
     metric_name='tdg_rest_exec_time_count',
     status_regex='^2\\d{2}$',
@@ -128,7 +133,8 @@ local prometheus = grafana.prometheus;
     description=common_utils.rate_warning(|||
       Number of TDG REST API GET requests processed with code 4xx.
       Graph shows mean requests per second.
-    |||, datasource),
+    |||, datasource_type),
+    datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
@@ -137,6 +143,7 @@ local prometheus = grafana.prometheus;
   ):: rps_panel(
     title=title,
     description=description,
+    datasource_type=datasource_type,
     datasource=datasource,
     metric_name='tdg_rest_exec_time_count',
     status_regex='^4\\d{2}$',
@@ -152,7 +159,8 @@ local prometheus = grafana.prometheus;
     description=common_utils.rate_warning(|||
       Number of TDG REST API GET requests processed with code 5xx.
       Graph shows mean requests per second.
-    |||, datasource),
+    |||, datasource_type),
+    datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
@@ -161,6 +169,7 @@ local prometheus = grafana.prometheus;
   ):: rps_panel(
     title=title,
     description=description,
+    datasource_type=datasource_type,
     datasource=datasource,
     metric_name='tdg_rest_exec_time_count',
     status_regex='^5\\d{2}$',
@@ -177,6 +186,7 @@ local prometheus = grafana.prometheus;
       99th percentile of TDG REST API request execution time.
       Only GET requests processed with code 2xx are displayed.
     |||,
+    datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
@@ -184,6 +194,7 @@ local prometheus = grafana.prometheus;
   ):: latency_panel(
     title=title,
     description=description,
+    datasource_type=datasource_type,
     datasource=datasource,
     metric_name='tdg_rest_exec_time',
     status_regex='^2\\d{2}$',
@@ -199,6 +210,7 @@ local prometheus = grafana.prometheus;
       99th percentile of TDG REST API request execution time.
       Only GET requests processed with code 4xx are displayed.
     |||,
+    datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
@@ -206,6 +218,7 @@ local prometheus = grafana.prometheus;
   ):: latency_panel(
     title=title,
     description=description,
+    datasource_type=datasource_type,
     datasource=datasource,
     metric_name='tdg_rest_exec_time',
     status_regex='^4\\d{2}$',
@@ -221,6 +234,7 @@ local prometheus = grafana.prometheus;
       99th percentile of TDG REST API request execution time.
       Only GET requests processed with code 5xx are displayed.
     |||,
+    datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
@@ -228,6 +242,7 @@ local prometheus = grafana.prometheus;
   ):: latency_panel(
     title=title,
     description=description,
+    datasource_type=datasource_type,
     datasource=datasource,
     metric_name='tdg_rest_exec_time',
     status_regex='^5\\d{2}$',
@@ -243,7 +258,8 @@ local prometheus = grafana.prometheus;
       Number of TDG REST API POST/PUT/DELETE requests
       processed with code 2xx.
       Graph shows mean requests per second.
-    |||, datasource),
+    |||, datasource_type),
+    datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
@@ -252,6 +268,7 @@ local prometheus = grafana.prometheus;
   ):: rps_panel(
     title=title,
     description=description,
+    datasource_type=datasource_type,
     datasource=datasource,
     metric_name='tdg_rest_exec_time_count',
     status_regex='^2\\d{2}$',
@@ -268,7 +285,8 @@ local prometheus = grafana.prometheus;
       Number of TDG REST API POST/PUT/DELETE requests
       processed with code 4xx.
       Graph shows mean requests per second.
-    |||, datasource),
+    |||, datasource_type),
+    datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
@@ -277,6 +295,7 @@ local prometheus = grafana.prometheus;
   ):: rps_panel(
     title=title,
     description=description,
+    datasource_type=datasource_type,
     datasource=datasource,
     metric_name='tdg_rest_exec_time_count',
     status_regex='^4\\d{2}$',
@@ -293,7 +312,8 @@ local prometheus = grafana.prometheus;
       Number of TDG REST API POST/PUT/DELETE requests
       processed with code 5xx.
       Graph shows mean requests per second.
-    |||, datasource),
+    |||, datasource_type),
+    datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
@@ -302,6 +322,7 @@ local prometheus = grafana.prometheus;
   ):: rps_panel(
     title=title,
     description=description,
+    datasource_type=datasource_type,
     datasource=datasource,
     metric_name='tdg_rest_exec_time_count',
     status_regex='^5\\d{2}$',
@@ -319,6 +340,7 @@ local prometheus = grafana.prometheus;
       Only POST/PUT/DELETE requests processed with code 2xx
       are displayed.
     |||,
+    datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
@@ -326,6 +348,7 @@ local prometheus = grafana.prometheus;
   ):: latency_panel(
     title=title,
     description=description,
+    datasource_type=datasource_type,
     datasource=datasource,
     metric_name='tdg_rest_exec_time',
     status_regex='^2\\d{2}$',
@@ -342,6 +365,7 @@ local prometheus = grafana.prometheus;
       Only POST/PUT/DELETE requests processed with code 4xx
       are displayed.
     |||,
+    datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
@@ -349,6 +373,7 @@ local prometheus = grafana.prometheus;
   ):: latency_panel(
     title=title,
     description=description,
+    datasource_type=datasource_type,
     datasource=datasource,
     metric_name='tdg_rest_exec_time',
     status_regex='^4\\d{2}$',
@@ -365,6 +390,7 @@ local prometheus = grafana.prometheus;
       Only POST/PUT/DELETE requests processed with code 5xx
       are displayed.
     |||,
+    datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
@@ -372,6 +398,7 @@ local prometheus = grafana.prometheus;
   ):: latency_panel(
     title=title,
     description=description,
+    datasource_type=datasource_type,
     datasource=datasource,
     metric_name='tdg_rest_exec_time',
     status_regex='^5\\d{2}$',

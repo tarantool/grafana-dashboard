@@ -1,4 +1,5 @@
 local common = import 'common.libsonnet';
+local variable = import 'dashboard/variable.libsonnet';
 
 {
   row:: common.row('Tarantool network activity'),
@@ -8,6 +9,7 @@ local common = import 'common.libsonnet';
     description=|||
       Memory used for network input/output buffers.
     |||,
+    datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
@@ -20,7 +22,7 @@ local common = import 'common.libsonnet';
     labelY1='in bytes',
     panel_width=8,
   ).addTarget(common.default_metric_target(
-    datasource,
+    datasource_type,
     'tnt_info_memory_net',
     job,
     policy,
@@ -30,6 +32,7 @@ local common = import 'common.libsonnet';
   local bytes_per_second_graph(
     title,
     description,
+    datasource_type,
     datasource,
     policy,
     measurement,
@@ -45,7 +48,7 @@ local common = import 'common.libsonnet';
     labelY1=labelY1,
     panel_width=8,
   ).addTarget(common.default_rps_target(
-    datasource,
+    datasource_type,
     metric_name,
     job,
     rate_time_range,
@@ -59,6 +62,7 @@ local common = import 'common.libsonnet';
       Data received by instance from binary protocol connections.
       Graph shows average bytes per second.
     |||,
+    datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
@@ -66,7 +70,8 @@ local common = import 'common.libsonnet';
     rate_time_range=null,
   ):: bytes_per_second_graph(
     title=title,
-    description=common.rate_warning(description, datasource),
+    description=common.rate_warning(description, datasource_type),
+    datasource_type=datasource_type,
     datasource=datasource,
     policy=policy,
     measurement=measurement,
@@ -82,6 +87,7 @@ local common = import 'common.libsonnet';
       Data sent by instance with binary protocol connections.
       Graph shows average bytes per second.
     |||,
+    datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
@@ -89,7 +95,8 @@ local common = import 'common.libsonnet';
     rate_time_range=null,
   ):: bytes_per_second_graph(
     title=title,
-    description=common.rate_warning(description, datasource),
+    description=common.rate_warning(description, datasource_type),
+    datasource_type=datasource_type,
     datasource=datasource,
     policy=policy,
     measurement=measurement,
@@ -108,6 +115,7 @@ local common = import 'common.libsonnet';
       Panel will be removed in favor of "Processed requests"
       and "Requests in queue (overall)" panels.
     |||,
+    datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
@@ -115,12 +123,12 @@ local common = import 'common.libsonnet';
     rate_time_range=null,
   ):: common.default_graph(
     title=title,
-    description=common.rate_warning(description, datasource),
+    description=common.rate_warning(description, datasource_type),
     datasource=datasource,
     labelY1='requests per second',
     panel_width=12,
   ).addTarget(common.default_rps_target(
-    datasource,
+    datasource_type,
     'tnt_net_requests_total',
     job,
     rate_time_range,
@@ -136,6 +144,7 @@ local common = import 'common.libsonnet';
       Panel will be removed in favor of "Requests in progress"
       and "Requests in queue (current)" panels.
     |||,
+    datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
@@ -149,7 +158,7 @@ local common = import 'common.libsonnet';
     min=0,
     panel_width=12,
   ).addTarget(common.default_metric_target(
-    datasource,
+    datasource_type,
     'tnt_net_requests_current',
     job,
     policy,
@@ -163,6 +172,7 @@ local common = import 'common.libsonnet';
 
       Panel works with `metrics >= 0.13.0` and `Tarantool >= 2.10-beta2`.
     |||,
+    datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
@@ -175,7 +185,7 @@ local common = import 'common.libsonnet';
     labelY1='requests per second',
     panel_width=6,
   ).addTarget(common.default_rps_target(
-    datasource,
+    datasource_type,
     'tnt_net_requests_in_progress_total',
     job,
     rate_time_range,
@@ -190,6 +200,7 @@ local common = import 'common.libsonnet';
 
       Panel works with `metrics >= 0.13.0` and `Tarantool >= 2.10-beta2`.
     |||,
+    datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
@@ -202,7 +213,7 @@ local common = import 'common.libsonnet';
     labelY1='current',
     panel_width=6,
   ).addTarget(common.default_metric_target(
-    datasource,
+    datasource_type,
     'tnt_net_requests_in_progress_current',
     job,
     policy,
@@ -218,6 +229,7 @@ local common = import 'common.libsonnet';
 
       Panel works with `metrics >= 0.13.0` and `Tarantool >= 2.10-beta2`.
     |||,
+    datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
@@ -230,7 +242,7 @@ local common = import 'common.libsonnet';
     labelY1='requests per second',
     panel_width=6,
   ).addTarget(common.default_rps_target(
-    datasource,
+    datasource_type,
     'tnt_net_requests_in_stream_queue_total',
     job,
     rate_time_range,
@@ -245,6 +257,7 @@ local common = import 'common.libsonnet';
 
       Panel works with `metrics >= 0.13.0` and `Tarantool >= 2.10-beta2`.
     |||,
+    datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
@@ -257,7 +270,7 @@ local common = import 'common.libsonnet';
     labelY1='current',
     panel_width=6,
   ).addTarget(common.default_metric_target(
-    datasource,
+    datasource_type,
     'tnt_net_requests_in_stream_queue_current',
     job,
     policy,
@@ -270,6 +283,7 @@ local common = import 'common.libsonnet';
     description=|||
       Average number of new binary protocol connections per second.
     |||,
+    datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
@@ -282,7 +296,7 @@ local common = import 'common.libsonnet';
     labelY1='new per second',
     panel_width=12,
   ).addTarget(common.default_rps_target(
-    datasource,
+    datasource_type,
     'tnt_net_connections_total',
     job,
     rate_time_range,
@@ -295,6 +309,7 @@ local common = import 'common.libsonnet';
     description=|||
       Number of current active binary protocol connections.
     |||,
+    datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
@@ -307,7 +322,7 @@ local common = import 'common.libsonnet';
     labelY1='current',
     panel_width=12,
   ).addTarget(common.default_metric_target(
-    datasource,
+    datasource_type,
     'tnt_net_connections_current',
     job,
     policy,

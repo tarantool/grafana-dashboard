@@ -1,6 +1,8 @@
 local common_utils = import 'common.libsonnet';
 local grafana = import 'grafonnet/grafana.libsonnet';
 
+local variable = import 'dashboard/variable.libsonnet';
+
 local influxdb = grafana.influxdb;
 local prometheus = grafana.prometheus;
 
@@ -8,18 +10,18 @@ local prometheus = grafana.prometheus;
   row:: common_utils.row('expirationd module statistics'),
 
   local target(
-    datasource,
+    datasource_type,
     metric_name,
     job=null,
     policy=null,
     measurement=null,
   ) =
-    if datasource == '${DS_PROMETHEUS}' then
+    if datasource_type == variable.datasource_type.prometheus then
       prometheus.target(
         expr=std.format('%s{job=~"%s"}', [metric_name, job]),
         legendFormat='{{name}} — {{alias}}',
       )
-    else if datasource == '${DS_INFLUXDB}' then
+    else if datasource_type == variable.datasource_type.influxdb then
       influxdb.target(
         policy=policy,
         measurement=measurement,
@@ -32,20 +34,20 @@ local prometheus = grafana.prometheus;
       .selectField('value').addConverter('mean'),
 
   local rps_target(
-    datasource,
+    datasource_type,
     metric_name,
     job=null,
     rate_time_range=null,
     policy=null,
     measurement=null,
   ) =
-    if datasource == '${DS_PROMETHEUS}' then
+    if datasource_type == variable.datasource_type.prometheus then
       prometheus.target(
         expr=std.format('rate(%s{job=~"%s"}[%s])',
                         [metric_name, job, rate_time_range]),
         legendFormat='{{name}} — {{alias}}',
       )
-    else if datasource == '${DS_INFLUXDB}' then
+    else if datasource_type == variable.datasource_type.influxdb then
       influxdb.target(
         policy=policy,
         measurement=measurement,
@@ -63,6 +65,7 @@ local prometheus = grafana.prometheus;
       A number of task tuples checked for expiration (expired + skipped).
       Graph shows mean tuples per second.
     |||),
+    datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
@@ -75,7 +78,7 @@ local prometheus = grafana.prometheus;
     labelY1='tuples per second',
     panel_width=12,
   ).addTarget(rps_target(
-    datasource,
+    datasource_type,
     'expirationd_checked_count',
     job,
     rate_time_range,
@@ -88,7 +91,8 @@ local prometheus = grafana.prometheus;
     description=common_utils.rate_warning(|||
       A number of task expired tuples.
       Graph shows mean tuples per second.
-    |||, datasource),
+    |||, datasource_type),
+    datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
@@ -101,7 +105,7 @@ local prometheus = grafana.prometheus;
     labelY1='tuples per second',
     panel_width=12,
   ).addTarget(rps_target(
-    datasource,
+    datasource_type,
     'expirationd_expired_count',
     job,
     rate_time_range,
@@ -115,6 +119,7 @@ local prometheus = grafana.prometheus;
       A number of task restarts since start.
       From the start is equal to 1.
     |||,
+    datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
@@ -126,7 +131,7 @@ local prometheus = grafana.prometheus;
     decimals=0,
     panel_width=12,
   ).addTarget(target(
-    datasource,
+    datasource_type,
     'expirationd_restarts',
     job,
     policy,
@@ -138,6 +143,7 @@ local prometheus = grafana.prometheus;
     description=|||
       A task's operation time.
     |||,
+    datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
@@ -149,7 +155,7 @@ local prometheus = grafana.prometheus;
     format='s',
     panel_width=12,
   ).addTarget(target(
-    datasource,
+    datasource_type,
     'expirationd_working_time',
     job,
     policy,

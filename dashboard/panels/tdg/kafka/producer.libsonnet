@@ -9,6 +9,7 @@ local kafka_utils = import 'utils.libsonnet';
     description=|||
       Time elapsed since last idemp_state change.
     |||,
+    datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
@@ -22,7 +23,7 @@ local kafka_utils = import 'utils.libsonnet';
     legend_max=false,
     panel_width=12,
   ).addTarget(kafka_utils.kafka_target(
-    datasource,
+    datasource_type,
     'tdg_kafka_eos_idemp_stateage',
     job,
     policy,
@@ -34,6 +35,7 @@ local kafka_utils = import 'utils.libsonnet';
     description=|||
       Time elapsed since last txn_state change.
     |||,
+    datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
@@ -47,7 +49,7 @@ local kafka_utils = import 'utils.libsonnet';
     legend_max=false,
     panel_width=12,
   ).addTarget(kafka_utils.kafka_target(
-    datasource,
+    datasource_type,
     'tdg_kafka_eos_txn_stateage',
     job,
     policy,

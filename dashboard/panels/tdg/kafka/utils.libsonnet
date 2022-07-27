@@ -1,22 +1,24 @@
 local grafana = import 'grafonnet/grafana.libsonnet';
 
+local variable = import 'dashboard/variable.libsonnet';
+
 local influxdb = grafana.influxdb;
 local prometheus = grafana.prometheus;
 
 {
   kafka_target(
-    datasource,
+    datasource_type,
     metric_name,
     job=null,
     policy=null,
     measurement=null,
   )::
-    if datasource == '${DS_PROMETHEUS}' then
+    if datasource_type == variable.datasource_type.prometheus then
       prometheus.target(
         expr=std.format('%s{job=~"%s"}', [metric_name, job]),
         legendFormat='{{name}} — {{alias}} ({{type}}, {{connector_name}})',
       )
-    else if datasource == '${DS_INFLUXDB}' then
+    else if datasource_type == variable.datasource_type.influxdb then
       influxdb.target(
         policy=policy,
         measurement=measurement,
@@ -26,20 +28,20 @@ local prometheus = grafana.prometheus;
       .selectField('value').addConverter('mean'),
 
   kafka_rps_target(
-    datasource,
+    datasource_type,
     metric_name,
     job=null,
     rate_time_range=null,
     policy=null,
     measurement=null,
   )::
-    if datasource == '${DS_PROMETHEUS}' then
+    if datasource_type == variable.datasource_type.prometheus then
       prometheus.target(
         expr=std.format('rate(%s{job=~"%s"}[%s])',
                         [metric_name, job, rate_time_range]),
         legendFormat='{{name}} — {{alias}} ({{type}}, {{connector_name}})',
       )
-    else if datasource == '${DS_INFLUXDB}' then
+    else if datasource_type == variable.datasource_type.influxdb then
       influxdb.target(
         policy=policy,
         measurement=measurement,

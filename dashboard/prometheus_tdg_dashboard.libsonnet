@@ -88,127 +88,148 @@ dashboard.new(
   )
 ).addPanels(
   section.cluster_prometheus(
-    datasource=variable.datasource.prometheus,
+    datasource_type=variable.datasource_type.prometheus,
+    datasource=variable.datasource_var.prometheus,
     job=variable.prometheus.job,
     rate_time_range=variable.prometheus.rate_time_range,
   )
 ).addPanels(
   section.net(
-    datasource=variable.datasource.prometheus,
+    datasource_type=variable.datasource_type.prometheus,
+    datasource=variable.datasource_var.prometheus,
     job=variable.prometheus.job,
     rate_time_range=variable.prometheus.rate_time_range,
   )
 ).addPanels(
   section.slab(
-    datasource=variable.datasource.prometheus,
+    datasource_type=variable.datasource_type.prometheus,
+    datasource=variable.datasource_var.prometheus,
     job=variable.prometheus.job,
     rate_time_range=variable.prometheus.rate_time_range,
   )
 ).addPanels(
   section.space(
-    datasource=variable.datasource.prometheus,
+    datasource_type=variable.datasource_type.prometheus,
+    datasource=variable.datasource_var.prometheus,
     job=variable.prometheus.job,
     rate_time_range=variable.prometheus.rate_time_range,
   )
 ).addPanels(
   section.vinyl(
-    datasource=variable.datasource.prometheus,
+    datasource_type=variable.datasource_type.prometheus,
+    datasource=variable.datasource_var.prometheus,
     job=variable.prometheus.job,
     rate_time_range=variable.prometheus.rate_time_range,
   )
 ).addPanels(
   section.cpu_extended(
-    datasource=variable.datasource.prometheus,
+    datasource_type=variable.datasource_type.prometheus,
+    datasource=variable.datasource_var.prometheus,
     job=variable.prometheus.job,
     rate_time_range=variable.prometheus.rate_time_range,
   )
 ).addPanels(
   section.runtime(
-    datasource=variable.datasource.prometheus,
+    datasource_type=variable.datasource_type.prometheus,
+    datasource=variable.datasource_var.prometheus,
     job=variable.prometheus.job,
     rate_time_range=variable.prometheus.rate_time_range,
   )
 ).addPanels(
   section.luajit(
-    datasource=variable.datasource.prometheus,
+    datasource_type=variable.datasource_type.prometheus,
+    datasource=variable.datasource_var.prometheus,
     job=variable.prometheus.job,
     rate_time_range=variable.prometheus.rate_time_range,
   )
 ).addPanels(
   section.operations(
-    datasource=variable.datasource.prometheus,
+    datasource_type=variable.datasource_type.prometheus,
+    datasource=variable.datasource_var.prometheus,
     job=variable.prometheus.job,
     rate_time_range=variable.prometheus.rate_time_range,
   )
 ).addPanels(
   section.tdg_kafka_common(
-    datasource=variable.datasource.prometheus,
+    datasource_type=variable.datasource_type.prometheus,
+    datasource=variable.datasource_var.prometheus,
     job=variable.prometheus.job,
     rate_time_range=variable.prometheus.rate_time_range,
   )
 ).addPanels(
   section.tdg_kafka_brokers(
-    datasource=variable.datasource.prometheus,
+    datasource_type=variable.datasource_type.prometheus,
+    datasource=variable.datasource_var.prometheus,
     job=variable.prometheus.job,
     rate_time_range=variable.prometheus.rate_time_range,
   )
 ).addPanels(
   section.tdg_kafka_topics(
-    datasource=variable.datasource.prometheus,
+    datasource_type=variable.datasource_type.prometheus,
+    datasource=variable.datasource_var.prometheus,
     job=variable.prometheus.job,
     rate_time_range=variable.prometheus.rate_time_range,
   )
 ).addPanels(
   section.tdg_kafka_consumer(
-    datasource=variable.datasource.prometheus,
+    datasource_type=variable.datasource_type.prometheus,
+    datasource=variable.datasource_var.prometheus,
     job=variable.prometheus.job,
     rate_time_range=variable.prometheus.rate_time_range,
   )
 ).addPanels(
   section.tdg_kafka_producer(
-    datasource=variable.datasource.prometheus,
+    datasource_type=variable.datasource_type.prometheus,
+    datasource=variable.datasource_var.prometheus,
     job=variable.prometheus.job,
     rate_time_range=variable.prometheus.rate_time_range,
   )
 ).addPanels(
   section.tdg_expirationd(
-    datasource=variable.datasource.prometheus,
+    datasource_type=variable.datasource_type.prometheus,
+    datasource=variable.datasource_var.prometheus,
     job=variable.prometheus.job,
     rate_time_range=variable.prometheus.rate_time_range,
   )
 ).addPanels(
   section.tdg_tuples(
-    datasource=variable.datasource.prometheus,
+    datasource_type=variable.datasource_type.prometheus,
+    datasource=variable.datasource_var.prometheus,
     job=variable.prometheus.job,
     rate_time_range=variable.prometheus.rate_time_range,
   )
 ).addPanels(
   section.tdg_file_connectors(
-    datasource=variable.datasource.prometheus,
+    datasource_type=variable.datasource_type.prometheus,
+    datasource=variable.datasource_var.prometheus,
     job=variable.prometheus.job,
     rate_time_range=variable.prometheus.rate_time_range,
   )
 ).addPanels(
   section.tdg_graphql(
-    datasource=variable.datasource.prometheus,
+    datasource_type=variable.datasource_type.prometheus,
+    datasource=variable.datasource_var.prometheus,
     job=variable.prometheus.job,
     rate_time_range=variable.prometheus.rate_time_range,
   )
 ).addPanels(
   section.tdg_iproto(
-    datasource=variable.datasource.prometheus,
+    datasource_type=variable.datasource_type.prometheus,
+    datasource=variable.datasource_var.prometheus,
     job=variable.prometheus.job,
     rate_time_range=variable.prometheus.rate_time_range,
   )
 ).addPanels(
   section.tdg_rest_api(
-    datasource=variable.datasource.prometheus,
+    datasource_type=variable.datasource_type.prometheus,
+    datasource=variable.datasource_var.prometheus,
     job=variable.prometheus.job,
     rate_time_range=variable.prometheus.rate_time_range,
   )
 ).addPanels(
   section.tdg_tasks(
-    datasource=variable.datasource.prometheus,
+    datasource_type=variable.datasource_type.prometheus,
+    datasource=variable.datasource_var.prometheus,
     job=variable.prometheus.job,
     rate_time_range=variable.prometheus.rate_time_range,
   )

@@ -1,6 +1,7 @@
 local grafana = import 'grafonnet/grafana.libsonnet';
 
 local common_utils = import '../common.libsonnet';
+local variable = import 'dashboard/variable.libsonnet';
 
 local influxdb = grafana.influxdb;
 local prometheus = grafana.prometheus;
@@ -9,18 +10,18 @@ local prometheus = grafana.prometheus;
   row:: common_utils.row('TDG file connector statistics'),
 
   local target(
-    datasource,
+    datasource_type,
     metric_name,
     job=null,
     policy=null,
     measurement=null,
   ) =
-    if datasource == '${DS_PROMETHEUS}' then
+    if datasource_type == variable.datasource_type.prometheus then
       prometheus.target(
         expr=std.format('%s{job=~"%s"}', [metric_name, job]),
         legendFormat='{{connector_name}} — {{alias}}',
       )
-    else if datasource == '${DS_INFLUXDB}' then
+    else if datasource_type == variable.datasource_type.influxdb then
       influxdb.target(
         policy=policy,
         measurement=measurement,
@@ -37,6 +38,7 @@ local prometheus = grafana.prometheus;
     description=|||
       A number of files processed.
     |||,
+    datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
@@ -51,7 +53,7 @@ local prometheus = grafana.prometheus;
     legend_avg=false,
     legend_max=false,
   ).addTarget(target(
-    datasource,
+    datasource_type,
     'tdg_connector_input_file_processed_count',
     job,
     policy,
@@ -63,6 +65,7 @@ local prometheus = grafana.prometheus;
     description=|||
       A number of objects processed over all files.
     |||,
+    datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
@@ -77,7 +80,7 @@ local prometheus = grafana.prometheus;
     legend_avg=false,
     legend_max=false,
   ).addTarget(target(
-    datasource,
+    datasource_type,
     'tdg_connector_input_file_processed_objects_count',
     job,
     policy,
@@ -89,6 +92,7 @@ local prometheus = grafana.prometheus;
     description=|||
       A number of files failed to process.
     |||,
+    datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
@@ -102,7 +106,7 @@ local prometheus = grafana.prometheus;
     legend_avg=false,
     legend_max=false,
   ).addTarget(target(
-    datasource,
+    datasource_type,
     'tdg_connector_input_file_failed_count',
     job,
     policy,
@@ -114,6 +118,7 @@ local prometheus = grafana.prometheus;
     description=|||
       Current file size.
     |||,
+    datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
@@ -126,7 +131,7 @@ local prometheus = grafana.prometheus;
     legend_avg=false,
     legend_max=false,
   ).addTarget(target(
-    datasource,
+    datasource_type,
     'tdg_connector_input_file_size',
     job,
     policy,
@@ -138,6 +143,7 @@ local prometheus = grafana.prometheus;
     description=|||
       Processed bytes count from the current file.
     |||,
+    datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
@@ -150,7 +156,7 @@ local prometheus = grafana.prometheus;
     legend_avg=false,
     legend_max=false,
   ).addTarget(target(
-    datasource,
+    datasource_type,
     'tdg_connector_input_file_current_bytes_processed',
     job,
     policy,
@@ -162,6 +168,7 @@ local prometheus = grafana.prometheus;
     description=|||
       Processed objects count from the current file.
     |||,
+    datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
@@ -175,7 +182,7 @@ local prometheus = grafana.prometheus;
     legend_avg=false,
     legend_max=false,
   ).addTarget(target(
-    datasource,
+    datasource_type,
     'tdg_connector_input_file_current_processed_objects',
     job,
     policy,

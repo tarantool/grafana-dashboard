@@ -13,12 +13,12 @@ dashboard.addPanels([
       My custom component could have 3 statuses:
       code 2 is OK, code 1 is suspended process, code 0 means issues in component.
     |||,
-    datasource=variable.datasource.prometheus,
+    datasource=variable.datasource_var.prometheus,
     labelY1='requests per second',
     panel_width=24,
     panel_height=6,
   ).addTarget(common.default_metric_target(
-    datasource=variable.datasource.prometheus,
+    datasource_type=variable.datasource_type.prometheus,
     metric_name='my_component_status',
     job=variable.prometheus.job,
     converter='last',
@@ -31,11 +31,11 @@ dashboard.addPanels([
       and collects info on process to summary collector
       'my_component_load_metric'.
     |||,
-    datasource=variable.datasource.prometheus,
+    datasource=variable.datasource_var.prometheus,
     labelY1='requests per second',
     panel_width=12,
   ).addTarget(common.default_rps_target(
-    datasource=variable.datasource.prometheus,
+    datasource_type=variable.datasource_type.prometheus,
     metric_name='my_component_load_metric_count',
     job=variable.prometheus.job,
     rate_time_range=variable.prometheus.rate_time_range,
@@ -48,7 +48,7 @@ dashboard.addPanels([
       and collects info on process to summary collector
       'my_component_load_metric'.
     |||,
-    datasource=variable.datasource.prometheus,
+    datasource=variable.datasource_var.prometheus,
     format='s',
     labelY1='process time',
     panel_width=12,

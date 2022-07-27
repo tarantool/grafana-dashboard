@@ -1,5 +1,7 @@
-local common = import 'common.libsonnet';
 local grafana = import 'grafonnet/grafana.libsonnet';
+
+local common = import 'common.libsonnet';
+local variable = import 'dashboard/variable.libsonnet';
 
 local influxdb = grafana.influxdb;
 local prometheus = grafana.prometheus;
@@ -10,6 +12,7 @@ local prometheus = grafana.prometheus;
   local count(
     title=null,
     description=null,
+    datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
@@ -26,12 +29,12 @@ local prometheus = grafana.prometheus;
     legend_max=false,
     panel_width=12,
   ).addTarget(
-    if datasource == '${DS_PROMETHEUS}' then
+    if datasource_type == variable.datasource_type.prometheus then
       prometheus.target(
         expr=std.format('%s{job=~"%s", engine="%s"}', [metric_name, job, engine]),
         legendFormat='{{alias}} — {{name}}',
       )
-    else if datasource == '${DS_INFLUXDB}' then
+    else if datasource_type == variable.datasource_type.influxdb then
       influxdb.target(
         policy=policy,
         measurement=measurement,
@@ -47,6 +50,7 @@ local prometheus = grafana.prometheus;
       Number of records in the space (memtx engine).
       Name of space is specified after dash.
     |||,
+    datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
@@ -54,6 +58,7 @@ local prometheus = grafana.prometheus;
   ):: count(
     title=title,
     description=description,
+    datasource_type=datasource_type,
     datasource=datasource,
     policy=policy,
     measurement=measurement,
@@ -75,6 +80,7 @@ local prometheus = grafana.prometheus;
 
       Panel works with `metrics >= 0.13.0`.
     |||,
+    datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
@@ -82,6 +88,7 @@ local prometheus = grafana.prometheus;
   ):: count(
     title=title,
     description=description,
+    datasource_type=datasource_type,
     datasource=datasource,
     policy=policy,
     measurement=measurement,
@@ -93,6 +100,7 @@ local prometheus = grafana.prometheus;
   local bsize_memtx(
     title=null,
     description=null,
+    datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
@@ -106,12 +114,12 @@ local prometheus = grafana.prometheus;
     legend_avg=false,
     legend_max=false,
   ).addTarget(
-    if datasource == '${DS_PROMETHEUS}' then
+    if datasource_type == variable.datasource_type.prometheus then
       prometheus.target(
         expr=std.format('%s{job=~"%s", engine="memtx"}', [metric_name, job]),
         legendFormat='{{alias}} — {{name}}',
       )
-    else if datasource == '${DS_INFLUXDB}' then
+    else if datasource_type == variable.datasource_type.influxdb then
       influxdb.target(
         policy=policy,
         measurement=measurement,
@@ -130,7 +138,7 @@ local prometheus = grafana.prometheus;
           Total number of bytes in all tuples of the space (memtx engine).
           Name of space is specified after dash.
         |||,
-        if datasource == '${DS_INFLUXDB}' then
+        if datasource_type == variable.datasource_type.influxdb then
           |||
             `No data` may be displayed because of tarantool/metrics issue #321,
             use `metrics >= 0.12.0` to fix.
@@ -138,6 +146,7 @@ local prometheus = grafana.prometheus;
         else null,
       ]
     ),
+    datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
@@ -145,6 +154,7 @@ local prometheus = grafana.prometheus;
   ):: bsize_memtx(
     title=title,
     description=description,
+    datasource_type=datasource_type,
     datasource=datasource,
     policy=policy,
     measurement=measurement,
@@ -160,6 +170,7 @@ local prometheus = grafana.prometheus;
       index name specified in parentheses.
       Includes both memtx and vinyl spaces.
     |||,
+    datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
@@ -172,12 +183,12 @@ local prometheus = grafana.prometheus;
     legend_avg=false,
     legend_max=false,
   ).addTarget(
-    if datasource == '${DS_PROMETHEUS}' then
+    if datasource_type == variable.datasource_type.prometheus then
       prometheus.target(
         expr=std.format('tnt_space_index_bsize{job=~"%s"}', [job]),
         legendFormat='{{alias}} — {{name}} ({{index_name}})',
       )
-    else if datasource == '${DS_INFLUXDB}' then
+    else if datasource_type == variable.datasource_type.influxdb then
       influxdb.target(
         policy=policy,
         measurement=measurement,
@@ -196,7 +207,7 @@ local prometheus = grafana.prometheus;
           Total size of tuples and all indexes in the space (memtx engine).
           Name of space is specified after dash.
         |||,
-        if datasource == '${DS_INFLUXDB}' then
+        if datasource_type == variable.datasource_type.influxdb then
           |||
             `No data` may be displayed because of tarantool/metrics issue #321,
             use `metrics >= 0.12.0` to fix.
@@ -204,6 +215,7 @@ local prometheus = grafana.prometheus;
         else null,
       ]
     ),
+    datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
@@ -211,6 +223,7 @@ local prometheus = grafana.prometheus;
   ):: bsize_memtx(
     title=title,
     description=description,
+    datasource_type=datasource_type,
     datasource=datasource,
     policy=policy,
     measurement=measurement,

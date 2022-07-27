@@ -1,6 +1,7 @@
 local grafana = import 'grafonnet/grafana.libsonnet';
 
 local common_utils = import '../common.libsonnet';
+local variable = import 'dashboard/variable.libsonnet';
 
 local influxdb = grafana.influxdb;
 local prometheus = grafana.prometheus;
@@ -11,6 +12,7 @@ local prometheus = grafana.prometheus;
   local jobs_rps_panel(
     title,
     description,
+    datasource_type,
     datasource,
     metric_name,
     job=null,
@@ -25,12 +27,12 @@ local prometheus = grafana.prometheus;
     labelY1='jobs per second',
     panel_width=panel_width,
   ).addTarget(
-    if datasource == '${DS_PROMETHEUS}' then
+    if datasource_type == variable.datasource_type.prometheus then
       prometheus.target(
         expr=std.format('rate(%s{job=~"%s"}[%s])', [metric_name, job, rate_time_range]),
         legendFormat='{{name}} — {{alias}}',
       )
-    else if datasource == '${DS_INFLUXDB}' then
+    else if datasource_type == variable.datasource_type.influxdb then
       influxdb.target(
         policy=policy,
         measurement=measurement,
@@ -47,6 +49,7 @@ local prometheus = grafana.prometheus;
   local jobs_metric_panel(
     title,
     description,
+    datasource_type,
     datasource,
     metric_name,
     job=null,
@@ -61,12 +64,12 @@ local prometheus = grafana.prometheus;
     legend_max=false,
     panel_width=12,
   ).addTarget(
-    if datasource == '${DS_PROMETHEUS}' then
+    if datasource_type == variable.datasource_type.prometheus then
       prometheus.target(
         expr=std.format('%s{job=~"%s"}', [metric_name, job]),
         legendFormat='{{name}} — {{alias}}',
       )
-    else if datasource == '${DS_INFLUXDB}' then
+    else if datasource_type == variable.datasource_type.influxdb then
       influxdb.target(
         policy=policy,
         measurement=measurement,
@@ -83,6 +86,7 @@ local prometheus = grafana.prometheus;
   local jobs_average_panel(
     title,
     description,
+    datasource_type,
     datasource,
     metric_name,
     job=null,
@@ -96,7 +100,7 @@ local prometheus = grafana.prometheus;
     format='s',
     panel_width=12,
   ).addTarget(
-    if datasource == '${DS_PROMETHEUS}' then
+    if datasource_type == variable.datasource_type.prometheus then
       prometheus.target(
         expr=std.format(
           |||
@@ -111,7 +115,7 @@ local prometheus = grafana.prometheus;
         ),
         legendFormat='{{name}} — {{alias}}'
       )
-    else if datasource == '${DS_INFLUXDB}' then
+    else if datasource_type == variable.datasource_type.influxdb then
       influxdb.target(
         rawQuery=true,
         query=std.format(|||
@@ -135,6 +139,7 @@ local prometheus = grafana.prometheus;
   local tasks_rps_panel(
     title,
     description,
+    datasource_type,
     datasource,
     metric_name,
     job=null,
@@ -149,12 +154,12 @@ local prometheus = grafana.prometheus;
     labelY1='tasks per second',
     panel_width=panel_width,
   ).addTarget(
-    if datasource == '${DS_PROMETHEUS}' then
+    if datasource_type == variable.datasource_type.prometheus then
       prometheus.target(
         expr=std.format('rate(%s{job=~"%s"}[%s])', [metric_name, job, rate_time_range]),
         legendFormat='{{name}} ({{kind}}) — {{alias}}',
       )
-    else if datasource == '${DS_INFLUXDB}' then
+    else if datasource_type == variable.datasource_type.influxdb then
       influxdb.target(
         policy=policy,
         measurement=measurement,
@@ -171,6 +176,7 @@ local prometheus = grafana.prometheus;
   local tasks_metric_panel(
     title,
     description,
+    datasource_type,
     datasource,
     metric_name,
     job=null,
@@ -185,12 +191,12 @@ local prometheus = grafana.prometheus;
     legend_max=false,
     panel_width=12,
   ).addTarget(
-    if datasource == '${DS_PROMETHEUS}' then
+    if datasource_type == variable.datasource_type.prometheus then
       prometheus.target(
         expr=std.format('%s{job=~"%s"}', [metric_name, job]),
         legendFormat='{{name}} ({{kind}}) — {{alias}}',
       )
-    else if datasource == '${DS_INFLUXDB}' then
+    else if datasource_type == variable.datasource_type.influxdb then
       influxdb.target(
         policy=policy,
         measurement=measurement,
@@ -207,6 +213,7 @@ local prometheus = grafana.prometheus;
   local tasks_average_panel(
     title,
     description,
+    datasource_type,
     datasource,
     metric_name,
     job=null,
@@ -220,7 +227,7 @@ local prometheus = grafana.prometheus;
     format='s',
     panel_width=12,
   ).addTarget(
-    if datasource == '${DS_PROMETHEUS}' then
+    if datasource_type == variable.datasource_type.prometheus then
       prometheus.target(
         expr=std.format(
           |||
@@ -235,7 +242,7 @@ local prometheus = grafana.prometheus;
         ),
         legendFormat='{{name}} ({{kind}}) — {{alias}}'
       )
-    else if datasource == '${DS_INFLUXDB}' then
+    else if datasource_type == variable.datasource_type.influxdb then
       influxdb.target(
         rawQuery=true,
         query=std.format(|||
@@ -262,7 +269,8 @@ local prometheus = grafana.prometheus;
     description=common_utils.rate_warning(|||
       Number of TDG jobs started.
       Graph shows mean jobs per second.
-    |||, datasource),
+    |||, datasource_type),
+    datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
@@ -271,6 +279,7 @@ local prometheus = grafana.prometheus;
   ):: jobs_rps_panel(
     title=title,
     description=description,
+    datasource_type=datasource_type,
     datasource=datasource,
     metric_name='tdg_jobs_started',
     job=job,
@@ -284,7 +293,8 @@ local prometheus = grafana.prometheus;
     description=common_utils.rate_warning(|||
       Number of TDG jobs failed.
       Graph shows mean jobs per second.
-    |||, datasource),
+    |||, datasource_type),
+    datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
@@ -293,6 +303,7 @@ local prometheus = grafana.prometheus;
   ):: jobs_rps_panel(
     title=title,
     description=description,
+    datasource_type=datasource_type,
     datasource=datasource,
     metric_name='tdg_jobs_failed',
     job=job,
@@ -306,7 +317,8 @@ local prometheus = grafana.prometheus;
     description=common_utils.rate_warning(|||
       Number of TDG jobs succeeded.
       Graph shows mean jobs per second.
-    |||, datasource),
+    |||, datasource_type),
+    datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
@@ -315,6 +327,7 @@ local prometheus = grafana.prometheus;
   ):: jobs_rps_panel(
     title=title,
     description=description,
+    datasource_type=datasource_type,
     datasource=datasource,
     metric_name='tdg_jobs_succeeded',
     job=job,
@@ -328,6 +341,7 @@ local prometheus = grafana.prometheus;
     description=|||
       Number of TDG jobs running now.
     |||,
+    datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
@@ -336,6 +350,7 @@ local prometheus = grafana.prometheus;
   ):: jobs_metric_panel(
     title=title,
     description=description,
+    datasource_type=datasource_type,
     datasource=datasource,
     metric_name='tdg_jobs_running',
     job=job,
@@ -348,6 +363,7 @@ local prometheus = grafana.prometheus;
     description=|||
       Average time of TDG job execution.
     |||,
+    datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
@@ -355,6 +371,7 @@ local prometheus = grafana.prometheus;
   ):: jobs_average_panel(
     title=title,
     description=description,
+    datasource_type=datasource_type,
     datasource=datasource,
     metric_name='tdg_jobs_execution_time',
     job=job,
@@ -367,7 +384,8 @@ local prometheus = grafana.prometheus;
     description=common_utils.rate_warning(|||
       Number of TDG tasks started.
       Graph shows mean tasks per second.
-    |||, datasource),
+    |||, datasource_type),
+    datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
@@ -376,6 +394,7 @@ local prometheus = grafana.prometheus;
   ):: tasks_rps_panel(
     title=title,
     description=description,
+    datasource_type=datasource_type,
     datasource=datasource,
     metric_name='tdg_tasks_started',
     job=job,
@@ -390,7 +409,8 @@ local prometheus = grafana.prometheus;
     description=common_utils.rate_warning(|||
       Number of TDG tasks failed.
       Graph shows mean tasks per second.
-    |||, datasource),
+    |||, datasource_type),
+    datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
@@ -399,6 +419,7 @@ local prometheus = grafana.prometheus;
   ):: tasks_rps_panel(
     title=title,
     description=description,
+    datasource_type=datasource_type,
     datasource=datasource,
     metric_name='tdg_tasks_failed',
     job=job,
@@ -413,7 +434,8 @@ local prometheus = grafana.prometheus;
     description=common_utils.rate_warning(|||
       Number of TDG tasks succeeded.
       Graph shows mean tasks per second.
-    |||, datasource),
+    |||, datasource_type),
+    datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
@@ -422,6 +444,7 @@ local prometheus = grafana.prometheus;
   ):: tasks_rps_panel(
     title=title,
     description=description,
+    datasource_type=datasource_type,
     datasource=datasource,
     metric_name='tdg_tasks_succeeded',
     job=job,
@@ -436,7 +459,8 @@ local prometheus = grafana.prometheus;
     description=common_utils.rate_warning(|||
       Number of TDG tasks stopped.
       Graph shows mean tasks per second.
-    |||, datasource),
+    |||, datasource_type),
+    datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
@@ -445,6 +469,7 @@ local prometheus = grafana.prometheus;
   ):: tasks_rps_panel(
     title=title,
     description=description,
+    datasource_type=datasource_type,
     datasource=datasource,
     metric_name='tdg_tasks_stopped',
     job=job,
@@ -459,6 +484,7 @@ local prometheus = grafana.prometheus;
     description=|||
       Number of TDG tasks running now.
     |||,
+    datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
@@ -467,6 +493,7 @@ local prometheus = grafana.prometheus;
   ):: tasks_metric_panel(
     title=title,
     description=description,
+    datasource_type=datasource_type,
     datasource=datasource,
     metric_name='tdg_tasks_running',
     job=job,
@@ -479,6 +506,7 @@ local prometheus = grafana.prometheus;
     description=|||
       Average time of TDG task execution.
     |||,
+    datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
@@ -486,6 +514,7 @@ local prometheus = grafana.prometheus;
   ):: tasks_average_panel(
     title=title,
     description=description,
+    datasource_type=datasource_type,
     datasource=datasource,
     metric_name='tdg_tasks_execution_time',
     job=job,
@@ -498,7 +527,8 @@ local prometheus = grafana.prometheus;
     description=common_utils.rate_warning(|||
       Number of TDG system tasks started.
       Graph shows mean tasks per second.
-    |||, datasource),
+    |||, datasource_type),
+    datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
@@ -507,6 +537,7 @@ local prometheus = grafana.prometheus;
   ):: tasks_rps_panel(
     title=title,
     description=description,
+    datasource_type=datasource_type,
     datasource=datasource,
     metric_name='tdg_system_tasks_started',
     job=job,
@@ -520,7 +551,8 @@ local prometheus = grafana.prometheus;
     description=common_utils.rate_warning(|||
       Number of TDG system tasks failed.
       Graph shows mean tasks per second.
-    |||, datasource),
+    |||, datasource_type),
+    datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
@@ -529,6 +561,7 @@ local prometheus = grafana.prometheus;
   ):: tasks_rps_panel(
     title=title,
     description=description,
+    datasource_type=datasource_type,
     datasource=datasource,
     metric_name='tdg_system_tasks_failed',
     job=job,
@@ -542,7 +575,8 @@ local prometheus = grafana.prometheus;
     description=common_utils.rate_warning(|||
       Number of TDG system tasks succeeded.
       Graph shows mean tasks per second.
-    |||, datasource),
+    |||, datasource_type),
+    datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
@@ -551,6 +585,7 @@ local prometheus = grafana.prometheus;
   ):: tasks_rps_panel(
     title=title,
     description=description,
+    datasource_type=datasource_type,
     datasource=datasource,
     metric_name='tdg_system_tasks_succeeded',
     job=job,
@@ -564,6 +599,7 @@ local prometheus = grafana.prometheus;
     description=|||
       Number of TDG system tasks running now.
     |||,
+    datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
@@ -572,6 +608,7 @@ local prometheus = grafana.prometheus;
   ):: tasks_metric_panel(
     title=title,
     description=description,
+    datasource_type=datasource_type,
     datasource=datasource,
     metric_name='tdg_system_tasks_running',
     job=job,
@@ -584,6 +621,7 @@ local prometheus = grafana.prometheus;
     description=|||
       Average time of TDG system task execution.
     |||,
+    datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
@@ -591,6 +629,7 @@ local prometheus = grafana.prometheus;
   ):: tasks_average_panel(
     title=title,
     description=description,
+    datasource_type=datasource_type,
     datasource=datasource,
     metric_name='tdg_system_tasks_execution_time',
     job=job,

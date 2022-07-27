@@ -88,73 +88,85 @@ dashboard.new(
   )
 ).addPanels(
   section.cluster_prometheus(
-    datasource=variable.datasource.prometheus,
+    datasource_type=variable.datasource_type.prometheus,
+    datasource=variable.datasource_var.prometheus,
     job=variable.prometheus.job,
     rate_time_range=variable.prometheus.rate_time_range,
   )
 ).addPanels(
   section.http(
-    datasource=variable.datasource.prometheus,
+    datasource_type=variable.datasource_type.prometheus,
+    datasource=variable.datasource_var.prometheus,
     job=variable.prometheus.job,
     rate_time_range=variable.prometheus.rate_time_range,
   )
 ).addPanels(
   section.net(
-    datasource=variable.datasource.prometheus,
+    datasource_type=variable.datasource_type.prometheus,
+    datasource=variable.datasource_var.prometheus,
     job=variable.prometheus.job,
     rate_time_range=variable.prometheus.rate_time_range,
   )
 ).addPanels(
   section.slab(
-    datasource=variable.datasource.prometheus,
+    datasource_type=variable.datasource_type.prometheus,
+    datasource=variable.datasource_var.prometheus,
     job=variable.prometheus.job,
     rate_time_range=variable.prometheus.rate_time_range,
   )
 ).addPanels(
   section.space(
-    datasource=variable.datasource.prometheus,
+    datasource_type=variable.datasource_type.prometheus,
+    datasource=variable.datasource_var.prometheus,
     job=variable.prometheus.job,
     rate_time_range=variable.prometheus.rate_time_range,
   )
 ).addPanels(
   section.vinyl(
-    datasource=variable.datasource.prometheus,
+    datasource_type=variable.datasource_type.prometheus,
+    datasource=variable.datasource_var.prometheus,
     job=variable.prometheus.job,
     rate_time_range=variable.prometheus.rate_time_range,
   )
 ).addPanels(
   section.cpu(
-    datasource=variable.datasource.prometheus,
+    datasource_type=variable.datasource_type.prometheus,
+    datasource=variable.datasource_var.prometheus,
     job=variable.prometheus.job,
     rate_time_range=variable.prometheus.rate_time_range,
   )
 ).addPanels(
   section.runtime(
-    datasource=variable.datasource.prometheus,
+    datasource_type=variable.datasource_type.prometheus,
+    datasource=variable.datasource_var.prometheus,
     job=variable.prometheus.job,
     rate_time_range=variable.prometheus.rate_time_range,
   )
 ).addPanels(
   section.luajit(
-    datasource=variable.datasource.prometheus,
+    datasource_type=variable.datasource_type.prometheus,
+    datasource=variable.datasource_var.prometheus,
     job=variable.prometheus.job,
     rate_time_range=variable.prometheus.rate_time_range,
   )
 ).addPanels(
   section.operations(
-    datasource=variable.datasource.prometheus,
+    datasource_type=variable.datasource_type.prometheus,
+    datasource=variable.datasource_var.prometheus,
     job=variable.prometheus.job,
     rate_time_range=variable.prometheus.rate_time_range,
   )
 ).addPanels(
   section.crud(
-    datasource=variable.datasource.prometheus,
+    datasource_type=variable.datasource_type.prometheus,
+    datasource=variable.datasource_var.prometheus,
     job=variable.prometheus.job,
     rate_time_range=variable.prometheus.rate_time_range,
   )
 ).addPanels(
   section.expirationd(
-    datasource=variable.datasource.prometheus,
+    datasource_type=variable.datasource_type.prometheus,
+    datasource=variable.datasource_var.prometheus,
     job=variable.prometheus.job,
     rate_time_range=variable.prometheus.rate_time_range,
   )

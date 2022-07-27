@@ -9,6 +9,7 @@ local common = import 'common.libsonnet';
       Memory used for the Lua runtime.
       Lua memory is bounded by 2 GB per instance. 
     |||,
+    datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
@@ -21,7 +22,7 @@ local common = import 'common.libsonnet';
     labelY1='in bytes',
     panel_width=12,
   ).addTarget(common.default_metric_target(
-    datasource,
+    datasource_type,
     'tnt_info_memory_lua',
     job,
     policy,
@@ -36,6 +37,7 @@ local common = import 'common.libsonnet';
       all allocated objects (struct txv, struct vy_tx, struct vy_read_interval)
       and tuples pinned for those objects. 
     |||,
+    datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
@@ -48,7 +50,7 @@ local common = import 'common.libsonnet';
     labelY1='in bytes',
     panel_width=12,
   ).addTarget(common.default_metric_target(
-    datasource,
+    datasource_type,
     'tnt_info_memory_tx',
     job,
     policy,
@@ -62,6 +64,7 @@ local common = import 'common.libsonnet';
 
       Panel works with `metrics >= 0.13.0`.
     |||,
+    datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
@@ -74,7 +77,7 @@ local common = import 'common.libsonnet';
     legend_avg=false,
     panel_width=8,
   ).addTarget(common.default_metric_target(
-    datasource,
+    datasource_type,
     'tnt_fiber_amount',
     job,
     policy,
@@ -88,6 +91,7 @@ local common = import 'common.libsonnet';
       Number of fiber context switches.
       Context switches are counted over all current fibers.
     |||,
+    datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
@@ -99,7 +103,7 @@ local common = import 'common.libsonnet';
     labelY1='switches',
     panel_width=12,
   ).addTarget(common.default_metric_target(
-    datasource,
+    datasource_type,
     'tnt_fiber_csw',
     job,
     policy,
@@ -109,6 +113,7 @@ local common = import 'common.libsonnet';
   local fiber_memory(
     title,
     description,
+    datasource_type,
     datasource,
     policy,
     measurement,
@@ -121,7 +126,7 @@ local common = import 'common.libsonnet';
     format='bytes',
     panel_width=8,
   ).addTarget(common.default_metric_target(
-    datasource,
+    datasource_type,
     metric_name,
     job,
     policy,
@@ -133,6 +138,7 @@ local common = import 'common.libsonnet';
     description=|||
       Amount of memory used by current fibers.
     |||,
+    datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
@@ -140,6 +146,7 @@ local common = import 'common.libsonnet';
   ):: fiber_memory(
     title,
     description,
+    datasource_type,
     datasource,
     policy,
     measurement,
@@ -152,6 +159,7 @@ local common = import 'common.libsonnet';
     description=|||
       Amount of memory reserved for current fibers.
     |||,
+    datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
@@ -159,6 +167,7 @@ local common = import 'common.libsonnet';
   ):: fiber_memory(
     title,
     description,
+    datasource_type,
     datasource,
     policy,
     measurement,
@@ -176,6 +185,7 @@ local common = import 'common.libsonnet';
 
       Panel works with `metrics >= 0.13.0`.
     |||,
+    datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
@@ -190,7 +200,7 @@ local common = import 'common.libsonnet';
     format='ms',
     panel_width=12,
   ).addTarget(common.default_metric_target(
-    datasource,
+    datasource_type,
     'tnt_ev_loop_time',
     job,
     policy,
