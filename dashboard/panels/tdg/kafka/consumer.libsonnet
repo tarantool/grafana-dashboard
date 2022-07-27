@@ -1,5 +1,5 @@
 local common_utils = import 'dashboard/panels/common.libsonnet';
-local kafka_utils = import 'utils.libsonnet';
+local kafka_utils = import 'dashboard/panels/tdg/kafka/utils.libsonnet';
 
 {
   row:: common_utils.row('TDG Kafka consumer statistics'),
