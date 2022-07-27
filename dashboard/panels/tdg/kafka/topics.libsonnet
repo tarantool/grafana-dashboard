@@ -1,6 +1,7 @@
 local grafana = import 'grafonnet/grafana.libsonnet';
 
-local common_utils = import '../../common.libsonnet';
+local common_utils = import 'dashboard/panels/common.libsonnet';
+local variable = import 'dashboard/variable.libsonnet';
 
 local influxdb = grafana.influxdb;
 local prometheus = grafana.prometheus;
@@ -9,18 +10,18 @@ local prometheus = grafana.prometheus;
   row:: common_utils.row('TDG Kafka topics statistics'),
 
   local topics_target(
-    datasource,
+    datasource_type,
     metric_name,
     job=null,
     policy=null,
     measurement=null,
   ) =
-    if datasource == '${DS_PROMETHEUS}' then
+    if datasource_type == variable.datasource_type.prometheus then
       prometheus.target(
         expr=std.format('%s{job=~"%s"}', [metric_name, job]),
         legendFormat='{{name}} ({{topic}}) — {{alias}} ({{type}}, {{connector_name}})',
       )
-    else if datasource == '${DS_INFLUXDB}' then
+    else if datasource_type == variable.datasource_type.influxdb then
       influxdb.target(
         policy=policy,
         measurement=measurement,
@@ -36,18 +37,18 @@ local prometheus = grafana.prometheus;
       .selectField('value').addConverter('mean'),
 
   local partitions_target(
-    datasource,
+    datasource_type,
     metric_name,
     job=null,
     policy=null,
     measurement=null,
   ) =
-    if datasource == '${DS_PROMETHEUS}' then
+    if datasource_type == variable.datasource_type.prometheus then
       prometheus.target(
         expr=std.format('%s{job=~"%s"}', [metric_name, job]),
         legendFormat='{{name}} ({{topic}}, {{partition}}) — {{alias}} ({{type}}, {{connector_name}})',
       )
-    else if datasource == '${DS_INFLUXDB}' then
+    else if datasource_type == variable.datasource_type.influxdb then
       influxdb.target(
         policy=policy,
         measurement=measurement,
@@ -64,20 +65,20 @@ local prometheus = grafana.prometheus;
       .selectField('value').addConverter('mean'),
 
   local partitions_rps_target(
-    datasource,
+    datasource_type,
     metric_name,
     job=null,
     rate_time_range=null,
     policy=null,
     measurement=null,
   ) =
-    if datasource == '${DS_PROMETHEUS}' then
+    if datasource_type == variable.datasource_type.prometheus then
       prometheus.target(
         expr=std.format('rate(%s{job=~"%s"}[%s])',
                         [metric_name, job, rate_time_range]),
         legendFormat='{{name}} ({{topic}}, {{partition}}) — {{alias}} ({{type}}, {{connector_name}})',
       )
-    else if datasource == '${DS_INFLUXDB}' then
+    else if datasource_type == variable.datasource_type.influxdb then
       influxdb.target(
         policy=policy,
         measurement=measurement,
@@ -94,19 +95,19 @@ local prometheus = grafana.prometheus;
       .selectField('value').addConverter('mean').addConverter('non_negative_derivative', ['1s']),
 
   local topics_quantile_target(
-    datasource,
+    datasource_type,
     metric_name,
     job=null,
     policy=null,
     measurement=null,
   ) =
-    if datasource == '${DS_PROMETHEUS}' then
+    if datasource_type == variable.datasource_type.prometheus then
       prometheus.target(
         expr=std.format('%s{job=~"%s",quantile="0.99"}',
                         [metric_name, job]),
         legendFormat='{{name}} ({{topic}}) — {{alias}} ({{type}}, {{connector_name}})',
       )
-    else if datasource == '${DS_INFLUXDB}' then
+    else if datasource_type == variable.datasource_type.influxdb then
       influxdb.target(
         policy=policy,
         measurement=measurement,
@@ -126,6 +127,7 @@ local prometheus = grafana.prometheus;
     description=|||
       Age of client's topic object.
     |||,
+    datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
@@ -137,7 +139,7 @@ local prometheus = grafana.prometheus;
     format='ms',
     panel_width=12,
   ).addTarget(topics_target(
-    datasource,
+    datasource_type,
     'tdg_kafka_topic_age',
     job,
     policy,
@@ -149,6 +151,7 @@ local prometheus = grafana.prometheus;
     description=|||
       Age of metadata from broker for this topic.
     |||,
+    datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
@@ -160,7 +163,7 @@ local prometheus = grafana.prometheus;
     format='ms',
     panel_width=12,
   ).addTarget(topics_target(
-    datasource,
+    datasource_type,
     'tdg_kafka_topic_metadata_age',
     job,
     policy,
@@ -172,6 +175,7 @@ local prometheus = grafana.prometheus;
     description=|||
       99th percentile of batch size.
     |||,
+    datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
@@ -184,7 +188,7 @@ local prometheus = grafana.prometheus;
     labelY1='99th percentile',
     panel_width=12,
   ).addTarget(topics_quantile_target(
-    datasource,
+    datasource_type,
     'tdg_kafka_topic_batchsize',
     job,
     policy,
@@ -196,6 +200,7 @@ local prometheus = grafana.prometheus;
     description=|||
       99th percentile of batch message count.
     |||,
+    datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
@@ -207,7 +212,7 @@ local prometheus = grafana.prometheus;
     labelY1='99th percentile',
     panel_width=12,
   ).addTarget(topics_quantile_target(
-    datasource,
+    datasource_type,
     'tdg_kafka_topic_batchcnt',
     job,
     policy,
@@ -220,6 +225,7 @@ local prometheus = grafana.prometheus;
       Number of messages waiting to be produced in first-level
       queue of a partition.
     |||,
+    datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
@@ -229,7 +235,7 @@ local prometheus = grafana.prometheus;
     description=description,
     datasource=datasource,
   ).addTarget(partitions_target(
-    datasource,
+    datasource_type,
     'tdg_kafka_topic_partitions_msgq_cnt',
     job,
     policy,
@@ -242,6 +248,7 @@ local prometheus = grafana.prometheus;
       Number of messages ready to be produced in transmit
       queue of a partition.
     |||,
+    datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
@@ -251,7 +258,7 @@ local prometheus = grafana.prometheus;
     description=description,
     datasource=datasource,
   ).addTarget(partitions_target(
-    datasource,
+    datasource_type,
     'tdg_kafka_topic_partitions_xmit_msgq_cnt',
     job,
     policy,
@@ -264,6 +271,7 @@ local prometheus = grafana.prometheus;
       Number of pre-fetched messages in fetch
       queue of a partition.
     |||,
+    datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
@@ -273,7 +281,7 @@ local prometheus = grafana.prometheus;
     description=description,
     datasource=datasource,
   ).addTarget(partitions_target(
-    datasource,
+    datasource_type,
     'tdg_kafka_topic_partitions_fetchq_cnt',
     job,
     policy,
@@ -286,6 +294,7 @@ local prometheus = grafana.prometheus;
       Amount of message bytes waiting to be produced in first-level
       queue of a partition.
     |||,
+    datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
@@ -296,7 +305,7 @@ local prometheus = grafana.prometheus;
     datasource=datasource,
     format='bytes',
   ).addTarget(partitions_target(
-    datasource,
+    datasource_type,
     'tdg_kafka_topic_partitions_msgq_bytes',
     job,
     policy,
@@ -309,6 +318,7 @@ local prometheus = grafana.prometheus;
       Amount of message bytes ready to be produced in transmit
       queue of a partition.
     |||,
+    datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
@@ -319,7 +329,7 @@ local prometheus = grafana.prometheus;
     datasource=datasource,
     format='bytes',
   ).addTarget(partitions_target(
-    datasource,
+    datasource_type,
     'tdg_kafka_topic_partitions_xmit_msgq_bytes',
     job,
     policy,
@@ -332,6 +342,7 @@ local prometheus = grafana.prometheus;
       Amount of pre-fetched messages bytes in
       fetch queue of a partition.
     |||,
+    datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
@@ -342,7 +353,7 @@ local prometheus = grafana.prometheus;
     datasource=datasource,
     format='bytes',
   ).addTarget(partitions_target(
-    datasource,
+    datasource_type,
     'tdg_kafka_topic_partitions_fetchq_size',
     job,
     policy,
@@ -354,7 +365,8 @@ local prometheus = grafana.prometheus;
     description=common_utils.rate_warning(|||
       Number of messages transmitted (produced) of a partition topic.
       Graph shows mean messages per second.
-    |||, datasource),
+    |||, datasource_type),
+    datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
@@ -367,7 +379,7 @@ local prometheus = grafana.prometheus;
     labelY1='messages per second',
     panel_width=6,
   ).addTarget(partitions_rps_target(
-    datasource,
+    datasource_type,
     'tdg_kafka_topic_partitions_txmsgs',
     job,
     rate_time_range,
@@ -380,7 +392,8 @@ local prometheus = grafana.prometheus;
     description=common_utils.rate_warning(|||
       Amout of message bytes transmitted (produced) of a partition topic.
       Graph shows mean bytes per second.
-    |||, datasource),
+    |||, datasource_type),
+    datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
@@ -394,7 +407,7 @@ local prometheus = grafana.prometheus;
     format='bytes',
     panel_width=6,
   ).addTarget(partitions_rps_target(
-    datasource,
+    datasource_type,
     'tdg_kafka_topic_partitions_txbytes',
     job,
     rate_time_range,
@@ -408,7 +421,8 @@ local prometheus = grafana.prometheus;
       Number of messages consumed, not including ignored messages,
       of a partition topic.
       Graph shows mean messages per second.
-    |||, datasource),
+    |||, datasource_type),
+    datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
@@ -421,7 +435,7 @@ local prometheus = grafana.prometheus;
     labelY1='messages per second',
     panel_width=6,
   ).addTarget(partitions_rps_target(
-    datasource,
+    datasource_type,
     'tdg_kafka_topic_partitions_rxmsgs',
     job,
     rate_time_range,
@@ -435,7 +449,8 @@ local prometheus = grafana.prometheus;
       Amout of message bytes consumed, not including ignored messages,
       of a partition topic.
       Graph shows mean bytes per second.
-    |||, datasource),
+    |||, datasource_type),
+    datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
@@ -449,7 +464,7 @@ local prometheus = grafana.prometheus;
     format='bytes',
     panel_width=6,
   ).addTarget(partitions_rps_target(
-    datasource,
+    datasource_type,
     'tdg_kafka_topic_partitions_rxbytes',
     job,
     rate_time_range,
@@ -462,7 +477,8 @@ local prometheus = grafana.prometheus;
     description=common_utils.rate_warning(|||
       Number of dropped outdated messages of a partition topic.
       Graph shows mean messages per second.
-    |||, datasource),
+    |||, datasource_type),
+    datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
@@ -475,7 +491,7 @@ local prometheus = grafana.prometheus;
     labelY1='messages per second',
     panel_width=12,
   ).addTarget(partitions_rps_target(
-    datasource,
+    datasource_type,
     'tdg_kafka_topic_partitions_rx_ver_drops',
     job,
     rate_time_range,
@@ -489,6 +505,7 @@ local prometheus = grafana.prometheus;
       Current number of messages in-flight to/from broker
       of a partition topic.
     |||,
+    datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
@@ -500,7 +517,7 @@ local prometheus = grafana.prometheus;
     labelY1='messages per second',
     panel_width=12,
   ).addTarget(partitions_target(
-    datasource,
+    datasource_type,
     'tdg_kafka_topic_partitions_msgs_inflight',
     job,
     policy,

@@ -1,5 +1,7 @@
 local grafana = import 'grafonnet/grafana.libsonnet';
 
+local variable = import 'dashboard/variable.libsonnet';
+
 local influxdb = grafana.influxdb;
 local prometheus = grafana.prometheus;
 
@@ -46,19 +48,19 @@ local prometheus = grafana.prometheus;
   row(title):: grafana.row.new(title, collapse=true) { gridPos: { w: 24, h: 1 } },
 
   default_metric_target(
-    datasource,
+    datasource_type,
     metric_name,
     job=null,
     policy=null,
     measurement=null,
     converter='mean'
   )::
-    if datasource == '${DS_PROMETHEUS}' then
+    if datasource_type == variable.datasource_type.prometheus then
       prometheus.target(
         expr=std.format('%s{job=~"%s"}', [metric_name, job]),
         legendFormat='{{alias}}',
       )
-    else if datasource == '${DS_INFLUXDB}' then
+    else if datasource_type == variable.datasource_type.influxdb then
       influxdb.target(
         policy=policy,
         measurement=measurement,
@@ -68,20 +70,20 @@ local prometheus = grafana.prometheus;
       .selectField('value').addConverter(converter),
 
   default_rps_target(
-    datasource,
+    datasource_type,
     metric_name,
     job=null,
     rate_time_range=null,
     policy=null,
     measurement=null,
   )::
-    if datasource == '${DS_PROMETHEUS}' then
+    if datasource_type == variable.datasource_type.prometheus then
       prometheus.target(
         expr=std.format('rate(%s{job=~"%s"}[%s])',
                         [metric_name, job, rate_time_range]),
         legendFormat='{{alias}}',
       )
-    else if datasource == '${DS_INFLUXDB}' then
+    else if datasource_type == variable.datasource_type.influxdb then
       influxdb.target(
         policy=policy,
         measurement=measurement,
@@ -92,18 +94,18 @@ local prometheus = grafana.prometheus;
 
   rate_warning(
     description,
-    datasource='${DS_PROMETHEUS}'
+    datasource_type=variable.datasource_type.prometheus,
   )::
-    if datasource == '${DS_PROMETHEUS}' then
+    if datasource_type == variable.datasource_type.prometheus then
       std.join('\n\n', [description, "If `No data` displayed, check up your 'rate_time_range' variable."])
     else
       description,
 
   group_by_fill_0_warning(
     description,
-    datasource='${DS_INFLUXDB}'
+    datasource_type=variable.datasource_type.influxdb,
   )::
-    if datasource == '${DS_INFLUXDB}' then
+    if datasource_type == variable.datasource_type.influxdb then
       std.join('\n', [description, |||
         Current value may be 0 from time to time due to fill(0)
         and GROUP BY including partial intervals.

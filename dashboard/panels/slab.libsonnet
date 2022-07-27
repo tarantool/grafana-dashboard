@@ -17,6 +17,7 @@ local grafana = import 'grafonnet/grafana.libsonnet';
   local used_panel(
     title=null,
     description=null,
+    datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
@@ -36,7 +37,7 @@ local grafana = import 'grafonnet/grafana.libsonnet';
     legend_avg=false,
     legend_max=false,
   ).addTarget(common.default_metric_target(
-    datasource,
+    datasource_type,
     metric_name,
     job,
     policy,
@@ -46,6 +47,7 @@ local grafana = import 'grafonnet/grafana.libsonnet';
   local used_ratio(
     title,
     description,
+    datasource_type,
     datasource,
     policy,
     measurement,
@@ -54,6 +56,7 @@ local grafana = import 'grafonnet/grafana.libsonnet';
   ) = used_panel(
     title,
     description,
+    datasource_type,
     datasource,
     policy,
     measurement,
@@ -74,6 +77,7 @@ local grafana = import 'grafonnet/grafana.libsonnet';
       `quota_size` – memory limit for slab allocator (as configured in the *memtx_memory* parameter).
     |||,
 
+    datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
@@ -81,6 +85,7 @@ local grafana = import 'grafonnet/grafana.libsonnet';
   ):: used_ratio(
     title=title,
     description=description,
+    datasource_type=datasource_type,
     datasource=datasource,
     policy=policy,
     measurement=measurement,
@@ -98,6 +103,7 @@ local grafana = import 'grafonnet/grafana.libsonnet';
       `arena_size` – allocated for both tuples and indexes.
     |||,
 
+    datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
@@ -105,6 +111,7 @@ local grafana = import 'grafonnet/grafana.libsonnet';
   ):: used_ratio(
     title=title,
     description=description,
+    datasource_type=datasource_type,
     datasource=datasource,
     policy=policy,
     measurement=measurement,
@@ -122,6 +129,7 @@ local grafana = import 'grafonnet/grafana.libsonnet';
       `items_size` – allocated only for tuples.
     |||,
 
+    datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
@@ -129,6 +137,7 @@ local grafana = import 'grafonnet/grafana.libsonnet';
   ):: used_ratio(
     title=title,
     description=description,
+    datasource_type=datasource_type,
     datasource=datasource,
     policy=policy,
     measurement=measurement,
@@ -139,6 +148,7 @@ local grafana = import 'grafonnet/grafana.libsonnet';
   local used_memory(
     title,
     description,
+    datasource_type,
     datasource,
     policy,
     measurement,
@@ -147,6 +157,7 @@ local grafana = import 'grafonnet/grafana.libsonnet';
   ) = used_panel(
     title,
     description,
+    datasource_type,
     datasource,
     policy,
     measurement,
@@ -162,6 +173,7 @@ local grafana = import 'grafonnet/grafana.libsonnet';
       Memory used by slab allocator (for both tuple and index slabs).
     |||,
 
+    datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
@@ -169,6 +181,7 @@ local grafana = import 'grafonnet/grafana.libsonnet';
   ):: used_memory(
     title=title,
     description=description,
+    datasource_type=datasource_type,
     datasource=datasource,
     policy=policy,
     measurement=measurement,
@@ -182,6 +195,7 @@ local grafana = import 'grafonnet/grafana.libsonnet';
       Memory limit for slab allocator (as configured in the *memtx_memory* parameter).
     |||,
 
+    datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
@@ -189,6 +203,7 @@ local grafana = import 'grafonnet/grafana.libsonnet';
   ):: used_memory(
     title=title,
     description=description,
+    datasource_type=datasource_type,
     datasource=datasource,
     policy=policy,
     measurement=measurement,
@@ -202,6 +217,7 @@ local grafana = import 'grafonnet/grafana.libsonnet';
       Memory used for both tuples and indexes.
     |||,
 
+    datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
@@ -209,6 +225,7 @@ local grafana = import 'grafonnet/grafana.libsonnet';
   ):: used_memory(
     title=title,
     description=description,
+    datasource_type=datasource_type,
     datasource=datasource,
     policy=policy,
     measurement=measurement,
@@ -222,6 +239,7 @@ local grafana = import 'grafonnet/grafana.libsonnet';
       Memory allocated for both tuples and indexes by slab allocator.
     |||,
 
+    datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
@@ -229,6 +247,7 @@ local grafana = import 'grafonnet/grafana.libsonnet';
   ):: used_memory(
     title=title,
     description=description,
+    datasource_type=datasource_type,
     datasource=datasource,
     policy=policy,
     measurement=measurement,
@@ -242,6 +261,7 @@ local grafana = import 'grafonnet/grafana.libsonnet';
       Memory used for only tuples.
     |||,
 
+    datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
@@ -249,6 +269,7 @@ local grafana = import 'grafonnet/grafana.libsonnet';
   ):: used_memory(
     title=title,
     description=description,
+    datasource_type=datasource_type,
     datasource=datasource,
     policy=policy,
     measurement=measurement,
@@ -262,6 +283,7 @@ local grafana = import 'grafonnet/grafana.libsonnet';
       Memory allocated for only tuples by slab allocator.
     |||,
 
+    datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
@@ -269,6 +291,7 @@ local grafana = import 'grafonnet/grafana.libsonnet';
   ):: used_memory(
     title=title,
     description=description,
+    datasource_type=datasource_type,
     datasource=datasource,
     policy=policy,
     measurement=measurement,

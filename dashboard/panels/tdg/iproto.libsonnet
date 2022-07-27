@@ -1,6 +1,7 @@
 local grafana = import 'grafonnet/grafana.libsonnet';
 
 local common_utils = import '../common.libsonnet';
+local variable = import 'dashboard/variable.libsonnet';
 
 local influxdb = grafana.influxdb;
 local prometheus = grafana.prometheus;
@@ -11,6 +12,7 @@ local prometheus = grafana.prometheus;
   local rps_panel(
     title,
     description,
+    datasource_type,
     datasource,
     metric_name,
     method_tail,
@@ -32,18 +34,18 @@ local prometheus = grafana.prometheus;
       common_utils.rate_warning(std.format(|||
         Number of repository.%s method calls through IProto.
         Graph shows mean requests per second.
-      |||, method_tail), datasource),
+      |||, method_tail), datasource_type),
     datasource=datasource,
     labelY1='request per second',
     panel_width=panel_width,
   ).addTarget(
-    if datasource == '${DS_PROMETHEUS}' then
+    if datasource_type == variable.datasource_type.prometheus then
       prometheus.target(
         expr=std.format('rate(%s{job=~"%s",method="repository.%s"}[%s])',
                         [metric_name, job, method_tail, rate_time_range]),
         legendFormat='{{type}} — {{alias}}',
       )
-    else if datasource == '${DS_INFLUXDB}' then
+    else if datasource_type == variable.datasource_type.influxdb then
       influxdb.target(
         policy=policy,
         measurement=measurement,
@@ -60,6 +62,7 @@ local prometheus = grafana.prometheus;
   local latency_panel(
     title,
     description,
+    datasource_type,
     datasource,
     metric_name,
     method_tail,
@@ -85,13 +88,13 @@ local prometheus = grafana.prometheus;
     format='µs',
     panel_width=panel_width,
   ).addTarget(
-    if datasource == '${DS_PROMETHEUS}' then
+    if datasource_type == variable.datasource_type.prometheus then
       prometheus.target(
         expr=std.format('%s{job=~"%s",method="repository.%s",quantile="0.99"}',
                         [metric_name, job, method_tail]),
         legendFormat='{{type}} — {{alias}}',
       )
-    else if datasource == '${DS_INFLUXDB}' then
+    else if datasource_type == variable.datasource_type.influxdb then
       influxdb.target(
         policy=policy,
         measurement=measurement,
@@ -109,6 +112,7 @@ local prometheus = grafana.prometheus;
   put_rps(
     title=null,
     description=null,
+    datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
@@ -117,6 +121,7 @@ local prometheus = grafana.prometheus;
   ):: rps_panel(
     title=title,
     description=description,
+    datasource_type=datasource_type,
     datasource=datasource,
     metric_name='tdg_iproto_data_query_exec_time_count',
     method_tail='put',
@@ -129,6 +134,7 @@ local prometheus = grafana.prometheus;
   put_latency(
     title=null,
     description=null,
+    datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
@@ -136,6 +142,7 @@ local prometheus = grafana.prometheus;
   ):: latency_panel(
     title=title,
     description=description,
+    datasource_type=datasource_type,
     datasource=datasource,
     metric_name='tdg_iproto_data_query_exec_time',
     method_tail='put',
@@ -147,6 +154,7 @@ local prometheus = grafana.prometheus;
   put_batch_rps(
     title=null,
     description=null,
+    datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
@@ -155,6 +163,7 @@ local prometheus = grafana.prometheus;
   ):: rps_panel(
     title=title,
     description=description,
+    datasource_type=datasource_type,
     datasource=datasource,
     metric_name='tdg_iproto_data_query_exec_time_count',
     method_tail='put_batch',
@@ -167,6 +176,7 @@ local prometheus = grafana.prometheus;
   put_batch_latency(
     title=null,
     description=null,
+    datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
@@ -174,6 +184,7 @@ local prometheus = grafana.prometheus;
   ):: latency_panel(
     title=title,
     description=description,
+    datasource_type=datasource_type,
     datasource=datasource,
     metric_name='tdg_iproto_data_query_exec_time',
     method_tail='put_batch',
@@ -185,6 +196,7 @@ local prometheus = grafana.prometheus;
   find_rps(
     title=null,
     description=null,
+    datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
@@ -193,6 +205,7 @@ local prometheus = grafana.prometheus;
   ):: rps_panel(
     title=title,
     description=description,
+    datasource_type=datasource_type,
     datasource=datasource,
     metric_name='tdg_iproto_data_query_exec_time_count',
     method_tail='find',
@@ -206,6 +219,7 @@ local prometheus = grafana.prometheus;
   find_latency(
     title=null,
     description=null,
+    datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
@@ -213,6 +227,7 @@ local prometheus = grafana.prometheus;
   ):: latency_panel(
     title=title,
     description=description,
+    datasource_type=datasource_type,
     datasource=datasource,
     metric_name='tdg_iproto_data_query_exec_time',
     method_tail='find',
@@ -225,6 +240,7 @@ local prometheus = grafana.prometheus;
   update_rps(
     title=null,
     description=null,
+    datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
@@ -233,6 +249,7 @@ local prometheus = grafana.prometheus;
   ):: rps_panel(
     title=title,
     description=description,
+    datasource_type=datasource_type,
     datasource=datasource,
     metric_name='tdg_iproto_data_query_exec_time_count',
     method_tail='update',
@@ -245,6 +262,7 @@ local prometheus = grafana.prometheus;
   update_latency(
     title=null,
     description=null,
+    datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
@@ -252,6 +270,7 @@ local prometheus = grafana.prometheus;
   ):: latency_panel(
     title=title,
     description=description,
+    datasource_type=datasource_type,
     datasource=datasource,
     metric_name='tdg_iproto_data_query_exec_time',
     method_tail='update',
@@ -263,6 +282,7 @@ local prometheus = grafana.prometheus;
   get_rps(
     title=null,
     description=null,
+    datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
@@ -271,6 +291,7 @@ local prometheus = grafana.prometheus;
   ):: rps_panel(
     title=title,
     description=description,
+    datasource_type=datasource_type,
     datasource=datasource,
     metric_name='tdg_iproto_data_query_exec_time_count',
     method_tail='get',
@@ -283,6 +304,7 @@ local prometheus = grafana.prometheus;
   get_latency(
     title=null,
     description=null,
+    datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
@@ -290,6 +312,7 @@ local prometheus = grafana.prometheus;
   ):: latency_panel(
     title=title,
     description=description,
+    datasource_type=datasource_type,
     datasource=datasource,
     metric_name='tdg_iproto_data_query_exec_time',
     method_tail='get',
@@ -301,6 +324,7 @@ local prometheus = grafana.prometheus;
   delete_rps(
     title=null,
     description=null,
+    datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
@@ -309,6 +333,7 @@ local prometheus = grafana.prometheus;
   ):: rps_panel(
     title=title,
     description=description,
+    datasource_type=datasource_type,
     datasource=datasource,
     metric_name='tdg_iproto_data_query_exec_time_count',
     method_tail='delete',
@@ -321,6 +346,7 @@ local prometheus = grafana.prometheus;
   delete_latency(
     title=null,
     description=null,
+    datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
@@ -328,6 +354,7 @@ local prometheus = grafana.prometheus;
   ):: latency_panel(
     title=title,
     description=description,
+    datasource_type=datasource_type,
     datasource=datasource,
     metric_name='tdg_iproto_data_query_exec_time',
     method_tail='delete',
@@ -339,6 +366,7 @@ local prometheus = grafana.prometheus;
   count_rps(
     title=null,
     description=null,
+    datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
@@ -347,6 +375,7 @@ local prometheus = grafana.prometheus;
   ):: rps_panel(
     title=title,
     description=description,
+    datasource_type=datasource_type,
     datasource=datasource,
     metric_name='tdg_iproto_data_query_exec_time_count',
     method_tail='count',
@@ -359,6 +388,7 @@ local prometheus = grafana.prometheus;
   count_latency(
     title=null,
     description=null,
+    datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
@@ -366,6 +396,7 @@ local prometheus = grafana.prometheus;
   ):: latency_panel(
     title=title,
     description=description,
+    datasource_type=datasource_type,
     datasource=datasource,
     metric_name='tdg_iproto_data_query_exec_time',
     method_tail='count',
@@ -377,6 +408,7 @@ local prometheus = grafana.prometheus;
   map_reduce_rps(
     title=null,
     description=null,
+    datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
@@ -385,6 +417,7 @@ local prometheus = grafana.prometheus;
   ):: rps_panel(
     title=title,
     description=description,
+    datasource_type=datasource_type,
     datasource=datasource,
     metric_name='tdg_iproto_data_query_exec_time_count',
     method_tail='map_reduce',
@@ -397,6 +430,7 @@ local prometheus = grafana.prometheus;
   map_reduce_latency(
     title=null,
     description=null,
+    datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
@@ -404,6 +438,7 @@ local prometheus = grafana.prometheus;
   ):: latency_panel(
     title=title,
     description=description,
+    datasource_type=datasource_type,
     datasource=datasource,
     metric_name='tdg_iproto_data_query_exec_time',
     method_tail='map_reduce',
@@ -415,6 +450,7 @@ local prometheus = grafana.prometheus;
   call_on_storage_rps(
     title=null,
     description=null,
+    datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
@@ -423,6 +459,7 @@ local prometheus = grafana.prometheus;
   ):: rps_panel(
     title=title,
     description=description,
+    datasource_type=datasource_type,
     datasource=datasource,
     metric_name='tdg_iproto_data_query_exec_time_count',
     method_tail='call_on_storage',
@@ -435,6 +472,7 @@ local prometheus = grafana.prometheus;
   call_on_storage_latency(
     title=null,
     description=null,
+    datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
@@ -442,6 +480,7 @@ local prometheus = grafana.prometheus;
   ):: latency_panel(
     title=title,
     description=description,
+    datasource_type=datasource_type,
     datasource=datasource,
     metric_name='tdg_iproto_data_query_exec_time',
     method_tail='call_on_storage',

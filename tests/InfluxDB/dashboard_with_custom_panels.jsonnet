@@ -18,7 +18,7 @@ dashboard.addPanels([
     panel_width=24,
     panel_height=6,
   ).addTarget(common.default_metric_target(
-    datasource=variable.datasource.influxdb,
+    datasource_type=variable.datasource_type.influxdb,
     metric_name='my_component_status',
     policy=variable.influxdb.policy,
     measurement=variable.influxdb.measurement,
@@ -36,7 +36,7 @@ dashboard.addPanels([
     labelY1='requests per second',
     panel_width=12,
   ).addTarget(common.default_rps_target(
-    datasource=variable.datasource.influxdb,
+    datasource_type=variable.datasource_type.influxdb,
     metric_name='my_component_load_metric_count',
     policy=variable.influxdb.policy,
     measurement=variable.influxdb.measurement,

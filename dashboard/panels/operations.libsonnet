@@ -1,5 +1,7 @@
-local common = import 'common.libsonnet';
 local grafana = import 'grafonnet/grafana.libsonnet';
+
+local common = import 'common.libsonnet';
+local variable = import 'dashboard/variable.libsonnet';
 
 local influxdb = grafana.influxdb;
 local prometheus = grafana.prometheus;
@@ -10,6 +12,7 @@ local prometheus = grafana.prometheus;
   local operation_rps(
     title=null,
     description=null,
+    datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
@@ -24,12 +27,12 @@ local prometheus = grafana.prometheus;
     min=0,
     labelY1=labelY1,
   ).addTarget(
-    if datasource == '${DS_PROMETHEUS}' then
+    if datasource_type == variable.datasource_type.prometheus then
       prometheus.target(
         expr=std.format('rate(tnt_stats_op_total{job=~"%s",operation="%s"}[%s])', [job, operation, rate_time_range]),
         legendFormat='{{alias}}'
       )
-    else if datasource == '${DS_INFLUXDB}' then
+    else if datasource_type == variable.datasource_type.influxdb then
       influxdb.target(
         policy=policy,
         measurement=measurement,
@@ -42,6 +45,7 @@ local prometheus = grafana.prometheus;
   local space_operation_rps(
     title=null,
     description=null,
+    datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
@@ -53,7 +57,8 @@ local prometheus = grafana.prometheus;
     description=common.rate_warning(std.format(|||
       Total count of %s requests to all instance spaces.
       Graph shows average requests per second.
-    |||, std.asciiUpper(operation)), datasource),
+    |||, std.asciiUpper(operation)), datasource_type),
+    datasource_type=datasource_type,
     datasource=datasource,
     policy=policy,
     measurement=measurement,
@@ -66,6 +71,7 @@ local prometheus = grafana.prometheus;
   space_select_rps(
     title=null,
     description=null,
+    datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
@@ -74,6 +80,7 @@ local prometheus = grafana.prometheus;
   ):: space_operation_rps(
     title=title,
     description=description,
+    datasource_type=datasource_type,
     datasource=datasource,
     policy=policy,
     measurement=measurement,
@@ -85,6 +92,7 @@ local prometheus = grafana.prometheus;
   space_insert_rps(
     title=null,
     description=null,
+    datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
@@ -93,6 +101,7 @@ local prometheus = grafana.prometheus;
   ):: space_operation_rps(
     title=title,
     description=description,
+    datasource_type=datasource_type,
     datasource=datasource,
     policy=policy,
     measurement=measurement,
@@ -104,6 +113,7 @@ local prometheus = grafana.prometheus;
   space_replace_rps(
     title=null,
     description=null,
+    datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
@@ -112,6 +122,7 @@ local prometheus = grafana.prometheus;
   ):: space_operation_rps(
     title=title,
     description=description,
+    datasource_type=datasource_type,
     datasource=datasource,
     policy=policy,
     measurement=measurement,
@@ -123,6 +134,7 @@ local prometheus = grafana.prometheus;
   space_upsert_rps(
     title=null,
     description=null,
+    datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
@@ -131,6 +143,7 @@ local prometheus = grafana.prometheus;
   ):: space_operation_rps(
     title=title,
     description=description,
+    datasource_type=datasource_type,
     datasource=datasource,
     policy=policy,
     measurement=measurement,
@@ -142,6 +155,7 @@ local prometheus = grafana.prometheus;
   space_update_rps(
     title=null,
     description=null,
+    datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
@@ -150,6 +164,7 @@ local prometheus = grafana.prometheus;
   ):: space_operation_rps(
     title=title,
     description=description,
+    datasource_type=datasource_type,
     datasource=datasource,
     policy=policy,
     measurement=measurement,
@@ -161,6 +176,7 @@ local prometheus = grafana.prometheus;
   space_delete_rps(
     title=null,
     description=null,
+    datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
@@ -169,6 +185,7 @@ local prometheus = grafana.prometheus;
   ):: space_operation_rps(
     title=title,
     description=description,
+    datasource_type=datasource_type,
     datasource=datasource,
     policy=policy,
     measurement=measurement,
@@ -182,7 +199,8 @@ local prometheus = grafana.prometheus;
     description=common.rate_warning(|||
       Requests to execute stored procedures.
       Graph shows average requests per second.
-    |||, datasource),
+    |||, datasource_type),
+    datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
@@ -191,6 +209,7 @@ local prometheus = grafana.prometheus;
   ):: operation_rps(
     title=title,
     description=description,
+    datasource_type=datasource_type,
     datasource=datasource,
     policy=policy,
     measurement=measurement,
@@ -205,7 +224,8 @@ local prometheus = grafana.prometheus;
     description=common.rate_warning(|||
       Calls to evaluate Lua code.
       Graph shows average requests per second.
-    |||, datasource),
+    |||, datasource_type),
+    datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
@@ -214,6 +234,7 @@ local prometheus = grafana.prometheus;
   ):: operation_rps(
     title=title,
     description=description,
+    datasource_type=datasource_type,
     datasource=datasource,
     policy=policy,
     measurement=measurement,
@@ -228,7 +249,8 @@ local prometheus = grafana.prometheus;
     description=common.rate_warning(|||
       Requests resulted in error.
       Graph shows average errors per second.
-    |||, datasource),
+    |||, datasource_type),
+    datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
@@ -237,6 +259,7 @@ local prometheus = grafana.prometheus;
   ):: operation_rps(
     title=title,
     description=description,
+    datasource_type=datasource_type,
     datasource=datasource,
     policy=policy,
     measurement=measurement,
@@ -251,7 +274,8 @@ local prometheus = grafana.prometheus;
     description=common.rate_warning(|||
       Authentication requests.
       Graph shows average requests per second.
-    |||, datasource),
+    |||, datasource_type),
+    datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
@@ -260,6 +284,7 @@ local prometheus = grafana.prometheus;
   ):: operation_rps(
     title=title,
     description=description,
+    datasource_type=datasource_type,
     datasource=datasource,
     policy=policy,
     measurement=measurement,
@@ -276,7 +301,8 @@ local prometheus = grafana.prometheus;
       Graph shows average calls per second.
 
       Panel works with Tarantool 2.x.
-    |||, datasource),
+    |||, datasource_type),
+    datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
@@ -285,6 +311,7 @@ local prometheus = grafana.prometheus;
   ):: operation_rps(
     title=title,
     description=description,
+    datasource_type=datasource_type,
     datasource=datasource,
     policy=policy,
     measurement=measurement,
@@ -301,7 +328,8 @@ local prometheus = grafana.prometheus;
       Graph shows average calls per second.
 
       Panel works with Tarantool 2.x.
-    |||, datasource),
+    |||, datasource_type),
+    datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
@@ -310,6 +338,7 @@ local prometheus = grafana.prometheus;
   ):: operation_rps(
     title=title,
     description=description,
+    datasource_type=datasource_type,
     datasource=datasource,
     policy=policy,
     measurement=measurement,

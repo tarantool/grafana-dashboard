@@ -1,5 +1,7 @@
-local common = import 'common.libsonnet';
 local grafana = import 'grafonnet/grafana.libsonnet';
+
+local common = import 'common.libsonnet';
+local variable = import 'dashboard/variable.libsonnet';
 
 local influxdb = grafana.influxdb;
 local prometheus = grafana.prometheus;
@@ -29,6 +31,7 @@ local status_text(status) = (if status == 'ok' then 'success' else 'error');
 local operation_rps_template(
   title=null,
   description=null,
+  datasource_type=null,
   datasource=null,
   policy=null,
   measurement=null,
@@ -43,7 +46,7 @@ local operation_rps_template(
     else
       std.format('%s %s requests', [std.asciiUpper(operation), status_text(status)])
   ),
-  description=common.rate_warning(description, datasource),
+  description=common.rate_warning(description, datasource_type),
   datasource=datasource,
   min=0,
   labelY1='requests per second',
@@ -52,7 +55,7 @@ local operation_rps_template(
   panel_height=8,
   panel_width=6,
 ).addTarget(
-  if datasource == '${DS_PROMETHEUS}' then
+  if datasource_type == variable.datasource_type.prometheus then
     prometheus.target(
       expr=std.format(
         'rate(tnt_crud_stats_count{job=~"%s",operation="%s",status="%s"}[%s])',
@@ -60,7 +63,7 @@ local operation_rps_template(
       ),
       legendFormat='{{alias}} — {{name}}'
     )
-  else if datasource == '${DS_INFLUXDB}' then
+  else if datasource_type == variable.datasource_type.influxdb then
     influxdb.target(
       policy=policy,
       measurement=measurement,
@@ -75,6 +78,7 @@ local operation_rps_template(
 local operation_latency_template(
   title=null,
   description=null,
+  datasource_type=null,
   datasource=null,
   policy=null,
   measurement=null,
@@ -98,7 +102,7 @@ local operation_latency_template(
   panel_height=8,
   panel_width=6,
 ).addTarget(
-  if datasource == '${DS_PROMETHEUS}' then
+  if datasource_type == variable.datasource_type.prometheus then
     prometheus.target(
       expr=std.format(
         'tnt_crud_stats{job=~"%s",operation="%s",status="%s",quantile="0.99"}',
@@ -106,7 +110,7 @@ local operation_latency_template(
       ),
       legendFormat='{{alias}} — {{name}}'
     )
-  else if datasource == '${DS_INFLUXDB}' then
+  else if datasource_type == variable.datasource_type.influxdb then
     influxdb.target(
       policy=policy,
       measurement=measurement,
@@ -122,6 +126,7 @@ local operation_latency_template(
 local operation_rps(
   title=null,
   description=null,
+  datasource_type=null,
   datasource=null,
   policy=null,
   measurement=null,
@@ -140,6 +145,7 @@ local operation_rps(
         Graph shows average requests per second.
       |||, [status_text(status), operation]))
   ),
+  datasource_type=datasource_type,
   datasource=datasource,
   policy=policy,
   measurement=measurement,
@@ -152,6 +158,7 @@ local operation_rps(
 local operation_latency(
   title=null,
   description=null,
+  datasource_type=null,
   datasource=null,
   policy=null,
   measurement=null,
@@ -168,6 +175,7 @@ local operation_latency(
         99th percentile of %s %s CRUD module requests latency with aging.
       |||, [status_text(status), operation]))
   ),
+  datasource_type=datasource_type,
   datasource=datasource,
   policy=policy,
   measurement=measurement,
@@ -179,6 +187,7 @@ local operation_latency(
 local operation_rps_object(
   title=null,
   description=null,
+  datasource_type=null,
   datasource=null,
   policy=null,
   measurement=null,
@@ -197,6 +206,7 @@ local operation_rps_object(
         Graph shows average requests per second.
       |||, [status_text(status), operation, operation]))
   ),
+  datasource_type=datasource_type,
   datasource=datasource,
   policy=policy,
   measurement=measurement,
@@ -209,6 +219,7 @@ local operation_rps_object(
 local operation_latency_object(
   title=null,
   description=null,
+  datasource_type=null,
   datasource=null,
   policy=null,
   measurement=null,
@@ -225,6 +236,7 @@ local operation_latency_object(
         99th percentile of %s %s and %s_object CRUD module requests latency with aging.
       |||, [status_text(status), operation, operation]))
   ),
+  datasource_type=datasource_type,
   datasource=datasource,
   policy=policy,
   measurement=measurement,
@@ -236,6 +248,7 @@ local operation_latency_object(
 local operation_rps_object_many(
   title=null,
   description=null,
+  datasource_type=null,
   datasource=null,
   policy=null,
   measurement=null,
@@ -254,6 +267,7 @@ local operation_rps_object_many(
         Graph shows average requests per second.
       |||, [status_text(status), operation_stripped, operation_stripped]))
   ),
+  datasource_type=datasource_type,
   datasource=datasource,
   policy=policy,
   measurement=measurement,
@@ -266,6 +280,7 @@ local operation_rps_object_many(
 local operation_latency_object_many(
   title=null,
   description=null,
+  datasource_type=null,
   datasource=null,
   policy=null,
   measurement=null,
@@ -282,6 +297,7 @@ local operation_latency_object_many(
         99th percentile of %s %s_many and %s_object_many CRUD module requests latency with aging.
       |||, [status_text(status), operation_stripped, operation_stripped]))
   ),
+  datasource_type=datasource_type,
   datasource=datasource,
   policy=policy,
   measurement=measurement,
@@ -293,6 +309,7 @@ local operation_latency_object_many(
 local operation_rps_select(
   title=null,
   description=null,
+  datasource_type=null,
   datasource=null,
   policy=null,
   measurement=null,
@@ -310,6 +327,7 @@ local operation_rps_select(
         Graph shows average requests per second.
       |||, status_text(status)))
   ),
+  datasource_type=datasource_type,
   datasource=datasource,
   policy=policy,
   measurement=measurement,
@@ -322,6 +340,7 @@ local operation_rps_select(
 local operation_latency_select(
   title=null,
   description=null,
+  datasource_type=null,
   datasource=null,
   policy=null,
   measurement=null,
@@ -338,6 +357,7 @@ local operation_latency_select(
         99th percentile of %s SELECT and PAIRS CRUD module requests latency with aging.
       |||, status_text(status)))
   ),
+  datasource_type=datasource_type,
   datasource=datasource,
   policy=policy,
   measurement=measurement,
@@ -349,6 +369,7 @@ local operation_latency_select(
 local operation_rps_borders(
   title=null,
   description=null,
+  datasource_type=null,
   datasource=null,
   policy=null,
   measurement=null,
@@ -366,6 +387,7 @@ local operation_rps_borders(
         Graph shows average requests per second.
       |||, status_text(status)))
   ),
+  datasource_type=datasource_type,
   datasource=datasource,
   policy=policy,
   measurement=measurement,
@@ -378,6 +400,7 @@ local operation_rps_borders(
 local operation_latency_borders(
   title=null,
   description=null,
+  datasource_type=null,
   datasource=null,
   policy=null,
   measurement=null,
@@ -394,6 +417,7 @@ local operation_latency_borders(
         99th percentile of %s MIN and MAX CRUD module requests latency with aging.
       |||, status_text(status)))
   ),
+  datasource_type=datasource_type,
   datasource=datasource,
   policy=policy,
   measurement=measurement,
@@ -405,6 +429,7 @@ local operation_latency_borders(
 local tuples_panel(
   title=null,
   description=null,
+  datasource_type=null,
   datasource=null,
   policy=null,
   measurement=null,
@@ -416,9 +441,9 @@ local tuples_panel(
   description=common.group_by_fill_0_warning(
     common.rate_warning(
       crud_warning(description),
-      datasource,
+      datasource_type,
     ),
-    datasource,
+    datasource_type,
   ),
   datasource=datasource,
   min=0,
@@ -426,7 +451,7 @@ local tuples_panel(
   panel_height=8,
   panel_width=8,
 ).addTarget(
-  if datasource == '${DS_PROMETHEUS}' then
+  if datasource_type == variable.datasource_type.prometheus then
     prometheus.target(
       expr=std.format(
         |||
@@ -441,7 +466,7 @@ local tuples_panel(
       ),
       legendFormat='{{alias}} — {{name}}'
     )
-  else if datasource == '${DS_INFLUXDB}' then
+  else if datasource_type == variable.datasource_type.influxdb then
     influxdb.target(
       rawQuery=true,
       query=std.format(|||
@@ -472,6 +497,7 @@ local module = {
   select_success_rps(
     title=null,
     description=null,
+    datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
@@ -480,6 +506,7 @@ local module = {
   ):: operation_rps_select(
     title=title,
     description=description,
+    datasource_type=datasource_type,
     datasource=datasource,
     policy=policy,
     measurement=measurement,
@@ -491,6 +518,7 @@ local module = {
   select_success_latency(
     title=null,
     description=null,
+    datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
@@ -498,6 +526,7 @@ local module = {
   ):: operation_latency_select(
     title=title,
     description=description,
+    datasource_type=datasource_type,
     datasource=datasource,
     policy=policy,
     measurement=measurement,
@@ -508,6 +537,7 @@ local module = {
   select_error_rps(
     title=null,
     description=null,
+    datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
@@ -516,6 +546,7 @@ local module = {
   ):: operation_rps_select(
     title=title,
     description=description,
+    datasource_type=datasource_type,
     datasource=datasource,
     policy=policy,
     measurement=measurement,
@@ -527,6 +558,7 @@ local module = {
   select_error_latency(
     title=null,
     description=null,
+    datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
@@ -534,6 +566,7 @@ local module = {
   ):: operation_latency_select(
     title=title,
     description=description,
+    datasource_type=datasource_type,
     datasource=datasource,
     policy=policy,
     measurement=measurement,
@@ -547,6 +580,7 @@ local module = {
       Average number of tuples fetched during SELECT/PAIRS request for a space.
       Both success and error requests are taken into consideration.
     |||,
+    datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
@@ -555,6 +589,7 @@ local module = {
   ):: tuples_panel(
     title=title,
     description=description,
+    datasource_type=datasource_type,
     datasource=datasource,
     policy=policy,
     measurement=measurement,
@@ -570,6 +605,7 @@ local module = {
       for SELECT/PAIRS requests (including scrolls for multibatch requests)
       for a space. Both success and error requests are taken into consideration.
     |||,
+    datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
@@ -578,6 +614,7 @@ local module = {
   ):: tuples_panel(
     title=title,
     description=description,
+    datasource_type=datasource_type,
     datasource=datasource,
     policy=policy,
     measurement=measurement,
@@ -594,8 +631,9 @@ local module = {
         Graph shows average requests per second.
         Both success and error requests are taken into consideration.
       |||),
-      datasource,
+      datasource_type,
     ),
+    datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
@@ -610,7 +648,7 @@ local module = {
     panel_height=8,
     panel_width=8,
   ).addTarget(
-    if datasource == '${DS_PROMETHEUS}' then
+    if datasource_type == variable.datasource_type.prometheus then
       prometheus.target(
         expr=std.format(
           'rate(tnt_crud_map_reduces{job=~"%s",operation="select"}[%s])',
@@ -618,7 +656,7 @@ local module = {
         ),
         legendFormat='{{alias}} — {{name}}'
       )
-    else if datasource == '${DS_INFLUXDB}' then
+    else if datasource_type == variable.datasource_type.influxdb then
       influxdb.target(
         policy=policy,
         measurement=measurement,
@@ -632,6 +670,7 @@ local module = {
   borders_success_rps(
     title=null,
     description=null,
+    datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
@@ -640,6 +679,7 @@ local module = {
   ):: operation_rps_borders(
     title=title,
     description=description,
+    datasource_type=datasource_type,
     datasource=datasource,
     policy=policy,
     measurement=measurement,
@@ -651,6 +691,7 @@ local module = {
   borders_success_latency(
     title=null,
     description=null,
+    datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
@@ -658,6 +699,7 @@ local module = {
   ):: operation_latency_borders(
     title=title,
     description=description,
+    datasource_type=datasource_type,
     datasource=datasource,
     policy=policy,
     measurement=measurement,
@@ -668,6 +710,7 @@ local module = {
   borders_error_rps(
     title=null,
     description=null,
+    datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
@@ -676,6 +719,7 @@ local module = {
   ):: operation_rps_borders(
     title=title,
     description=description,
+    datasource_type=datasource_type,
     datasource=datasource,
     policy=policy,
     measurement=measurement,
@@ -687,6 +731,7 @@ local module = {
   borders_error_latency(
     title=null,
     description=null,
+    datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
@@ -694,6 +739,7 @@ local module = {
   ):: operation_latency_borders(
     title=title,
     description=description,
+    datasource_type=datasource_type,
     datasource=datasource,
     policy=policy,
     measurement=measurement,
@@ -712,6 +758,7 @@ local module_with_object_panels = std.foldl(function(_module, operation) (
     [std.format('%s_success_rps', operation)](
       title=null,
       description=null,
+      datasource_type=null,
       datasource=null,
       policy=null,
       measurement=null,
@@ -720,6 +767,7 @@ local module_with_object_panels = std.foldl(function(_module, operation) (
     ):: operation_rps_object(
       title=title,
       description=description,
+      datasource_type=datasource_type,
       datasource=datasource,
       policy=policy,
       measurement=measurement,
@@ -732,6 +780,7 @@ local module_with_object_panels = std.foldl(function(_module, operation) (
     [std.format('%s_success_latency', operation)](
       title=null,
       description=null,
+      datasource_type=null,
       datasource=null,
       policy=null,
       measurement=null,
@@ -739,6 +788,7 @@ local module_with_object_panels = std.foldl(function(_module, operation) (
     ):: operation_latency_object(
       title=title,
       description=description,
+      datasource_type=datasource_type,
       datasource=datasource,
       policy=policy,
       measurement=measurement,
@@ -750,6 +800,7 @@ local module_with_object_panels = std.foldl(function(_module, operation) (
     [std.format('%s_error_rps', operation)](
       title=null,
       description=null,
+      datasource_type=null,
       datasource=null,
       policy=null,
       measurement=null,
@@ -758,6 +809,7 @@ local module_with_object_panels = std.foldl(function(_module, operation) (
     ):: operation_rps_object(
       title=title,
       description=description,
+      datasource_type=datasource_type,
       datasource=datasource,
       policy=policy,
       measurement=measurement,
@@ -770,6 +822,7 @@ local module_with_object_panels = std.foldl(function(_module, operation) (
     [std.format('%s_error_latency', operation)](
       title=null,
       description=null,
+      datasource_type=null,
       datasource=null,
       policy=null,
       measurement=null,
@@ -777,6 +830,7 @@ local module_with_object_panels = std.foldl(function(_module, operation) (
     ):: operation_latency_object(
       title=title,
       description=description,
+      datasource_type=datasource_type,
       datasource=datasource,
       policy=policy,
       measurement=measurement,
@@ -793,6 +847,7 @@ local module_with_object_and_many_panels = std.foldl(function(_module, operation
     [std.format('%s_many_success_rps', operation_stripped)](
       title=null,
       description=null,
+      datasource_type=null,
       datasource=null,
       policy=null,
       measurement=null,
@@ -801,6 +856,7 @@ local module_with_object_and_many_panels = std.foldl(function(_module, operation
     ):: operation_rps_object_many(
       title=title,
       description=description,
+      datasource_type=datasource_type,
       datasource=datasource,
       policy=policy,
       measurement=measurement,
@@ -813,6 +869,7 @@ local module_with_object_and_many_panels = std.foldl(function(_module, operation
     [std.format('%s_many_success_latency', operation_stripped)](
       title=null,
       description=null,
+      datasource_type=null,
       datasource=null,
       policy=null,
       measurement=null,
@@ -820,6 +877,7 @@ local module_with_object_and_many_panels = std.foldl(function(_module, operation
     ):: operation_latency_object_many(
       title=title,
       description=description,
+      datasource_type=datasource_type,
       datasource=datasource,
       policy=policy,
       measurement=measurement,
@@ -831,6 +889,7 @@ local module_with_object_and_many_panels = std.foldl(function(_module, operation
     [std.format('%s_many_error_rps', operation_stripped)](
       title=null,
       description=null,
+      datasource_type=null,
       datasource=null,
       policy=null,
       measurement=null,
@@ -839,6 +898,7 @@ local module_with_object_and_many_panels = std.foldl(function(_module, operation
     ):: operation_rps_object_many(
       title=title,
       description=description,
+      datasource_type=datasource_type,
       datasource=datasource,
       policy=policy,
       measurement=measurement,
@@ -851,6 +911,7 @@ local module_with_object_and_many_panels = std.foldl(function(_module, operation
     [std.format('%s_many_error_latency', operation_stripped)](
       title=null,
       description=null,
+      datasource_type=null,
       datasource=null,
       policy=null,
       measurement=null,
@@ -858,6 +919,7 @@ local module_with_object_and_many_panels = std.foldl(function(_module, operation
     ):: operation_latency_object_many(
       title=title,
       description=description,
+      datasource_type=datasource_type,
       datasource=datasource,
       policy=policy,
       measurement=measurement,
@@ -874,6 +936,7 @@ std.foldl(function(_module, operation) (
     [std.format('%s_success_rps', operation)](
       title=null,
       description=null,
+      datasource_type=null,
       datasource=null,
       policy=null,
       measurement=null,
@@ -882,6 +945,7 @@ std.foldl(function(_module, operation) (
     ):: operation_rps(
       title=title,
       description=description,
+      datasource_type=datasource_type,
       datasource=datasource,
       policy=policy,
       measurement=measurement,
@@ -894,6 +958,7 @@ std.foldl(function(_module, operation) (
     [std.format('%s_success_latency', operation)](
       title=null,
       description=null,
+      datasource_type=null,
       datasource=null,
       policy=null,
       measurement=null,
@@ -901,6 +966,7 @@ std.foldl(function(_module, operation) (
     ):: operation_latency(
       title=title,
       description=description,
+      datasource_type=datasource_type,
       datasource=datasource,
       policy=policy,
       measurement=measurement,
@@ -912,6 +978,7 @@ std.foldl(function(_module, operation) (
     [std.format('%s_error_rps', operation)](
       title=null,
       description=null,
+      datasource_type=null,
       datasource=null,
       policy=null,
       measurement=null,
@@ -920,6 +987,7 @@ std.foldl(function(_module, operation) (
     ):: operation_rps(
       title=title,
       description=description,
+      datasource_type=datasource_type,
       datasource=datasource,
       policy=policy,
       measurement=measurement,
@@ -932,6 +1000,7 @@ std.foldl(function(_module, operation) (
     [std.format('%s_error_latency', operation)](
       title=null,
       description=null,
+      datasource_type=null,
       datasource=null,
       policy=null,
       measurement=null,
@@ -939,6 +1008,7 @@ std.foldl(function(_module, operation) (
     ):: operation_latency(
       title=title,
       description=description,
+      datasource_type=datasource_type,
       datasource=datasource,
       policy=policy,
       measurement=measurement,

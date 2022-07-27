@@ -1,4 +1,8 @@
 {
+  datasource_type: {
+    influxdb: 'influxdb',
+    prometheus: 'prometheus',
+  },
   datasource: {
     influxdb: '${DS_INFLUXDB}',
     prometheus: '${DS_PROMETHEUS}',
