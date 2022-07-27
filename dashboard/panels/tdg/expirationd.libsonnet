@@ -64,7 +64,7 @@ local prometheus = grafana.prometheus;
     description=common_utils.rate_warning(|||
       A number of task tuples checked for expiration (expired + skipped).
       Graph shows mean tuples per second.
-    |||),
+    |||, datasource_type),
     datasource_type=null,
     datasource=null,
     policy=null,
