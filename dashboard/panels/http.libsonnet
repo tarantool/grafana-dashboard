@@ -1,6 +1,8 @@
 local common = import 'common.libsonnet';
 local grafana = import 'grafonnet/grafana.libsonnet';
 
+local variable = import 'dashboard/variable.libsonnet';
+
 local influxdb = grafana.influxdb;
 local prometheus = grafana.prometheus;
 
@@ -10,6 +12,7 @@ local prometheus = grafana.prometheus;
   local rps_graph(
     title,
     description,
+    datasource_type,
     datasource,
     policy,
     measurement,
@@ -23,13 +26,13 @@ local prometheus = grafana.prometheus;
     datasource=datasource,
     labelY1='requests per second',
   ).addTarget(
-    if datasource == '${DS_PROMETHEUS}' then
+    if datasource_type == variable.datasource_type.prometheus then
       prometheus.target(
         expr=std.format('rate(%s{job=~"%s",status=~"%s"}[%s])',
                         [metric_name, job, std.strReplace(status_regex, '\\', '\\\\'), rate_time_range]),
         legendFormat='{{alias}} — {{method}} {{path}} (code {{status}})',
       )
-    else if datasource == '${DS_INFLUXDB}' then
+    else if datasource_type == variable.datasource_type.influxdb then
       influxdb.target(
         policy=policy,
         measurement=measurement,
@@ -45,6 +48,7 @@ local prometheus = grafana.prometheus;
       Requests, processed with success (code 2xx) on Tarantool's side.
       Graph shows mean count per second.
     |||,
+    datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
@@ -53,7 +57,8 @@ local prometheus = grafana.prometheus;
     metric_name='http_server_request_latency_count',
   ):: rps_graph(
     title=title,
-    description=common.rate_warning(description, datasource),
+    description=common.rate_warning(description, datasource_type),
+    datasource_type=datasource_type,
     datasource=datasource,
     policy=policy,
     measurement=measurement,
@@ -69,6 +74,7 @@ local prometheus = grafana.prometheus;
       Requests, processed with 4xx error on Tarantool's side.
       Graph shows mean count per second.
     |||,
+    datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
@@ -77,7 +83,8 @@ local prometheus = grafana.prometheus;
     metric_name='http_server_request_latency_count',
   ):: rps_graph(
     title=title,
-    description=common.rate_warning(description, datasource),
+    description=common.rate_warning(description, datasource_type),
+    datasource_type=datasource_type,
     datasource=datasource,
     policy=policy,
     measurement=measurement,
@@ -93,6 +100,7 @@ local prometheus = grafana.prometheus;
       Requests, processed with 5xx error on Tarantool's side.
       Graph shows mean count per second.
     |||,
+    datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
@@ -101,7 +109,8 @@ local prometheus = grafana.prometheus;
     metric_name='http_server_request_latency_count',
   ):: rps_graph(
     title=title,
-    description=common.rate_warning(description, datasource),
+    description=common.rate_warning(description, datasource_type),
+    datasource_type=datasource_type,
     datasource=datasource,
     policy=policy,
     measurement=measurement,
@@ -114,6 +123,7 @@ local prometheus = grafana.prometheus;
   local latency_graph(
     title,
     description,
+    datasource_type,
     datasource,
     policy,
     measurement,
@@ -130,12 +140,12 @@ local prometheus = grafana.prometheus;
     labelY1=label,
     decimalsY1=null,
   ).addTarget(
-    if datasource == '${DS_PROMETHEUS}' then
+    if datasource_type == variable.datasource_type.prometheus then
       prometheus.target(
         expr=std.format('%s{job=~"%s",quantile="%s",status=~"%s"}', [metric_name, job, quantile, std.strReplace(status_regex, '\\', '\\\\')]),
         legendFormat='{{alias}} — {{method}} {{path}} (code {{status}})',
       )
-    else if datasource == '${DS_INFLUXDB}' then
+    else if datasource_type == variable.datasource_type.influxdb then
       influxdb.target(
         policy=policy,
         measurement=measurement,
@@ -152,6 +162,7 @@ local prometheus = grafana.prometheus;
       Includes only requests processed with success
       (code 2xx) on Tarantool's side.
     |||,
+    datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
@@ -162,6 +173,7 @@ local prometheus = grafana.prometheus;
   ):: latency_graph(
     title=title,
     description=description,
+    datasource_type=datasource_type,
     datasource=datasource,
     policy=policy,
     measurement=measurement,
@@ -179,6 +191,7 @@ local prometheus = grafana.prometheus;
       Includes only requests processed with
       4xx error on Tarantool's side.
     |||,
+    datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
@@ -189,6 +202,7 @@ local prometheus = grafana.prometheus;
   ):: latency_graph(
     title=title,
     description=description,
+    datasource_type=datasource_type,
     datasource=datasource,
     policy=policy,
     measurement=measurement,
@@ -206,6 +220,7 @@ local prometheus = grafana.prometheus;
       Includes only requests processed with
       5xx error on Tarantool's side.
     |||,
+    datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
@@ -216,6 +231,7 @@ local prometheus = grafana.prometheus;
   ):: latency_graph(
     title=title,
     description=description,
+    datasource_type=datasource_type,
     datasource=datasource,
     policy=policy,
     measurement=measurement,

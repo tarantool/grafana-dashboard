@@ -60,72 +60,84 @@ dashboard.new(
   )
 ).addPanels(
   section.cluster_influxdb(
+    datasource_type=variable.datasource_type.influxdb,
     datasource=variable.datasource.influxdb,
     policy=variable.influxdb.policy,
     measurement=variable.influxdb.measurement,
   )
 ).addPanels(
   section.http(
+    datasource_type=variable.datasource_type.influxdb,
     datasource=variable.datasource.influxdb,
     policy=variable.influxdb.policy,
     measurement=variable.influxdb.measurement,
   )
 ).addPanels(
   section.net(
+    datasource_type=variable.datasource_type.influxdb,
     datasource=variable.datasource.influxdb,
     policy=variable.influxdb.policy,
     measurement=variable.influxdb.measurement,
   )
 ).addPanels(
   section.slab(
+    datasource_type=variable.datasource_type.influxdb,
     datasource=variable.datasource.influxdb,
     policy=variable.influxdb.policy,
     measurement=variable.influxdb.measurement,
   )
 ).addPanels(
   section.space(
+    datasource_type=variable.datasource_type.influxdb,
     datasource=variable.datasource.influxdb,
     policy=variable.influxdb.policy,
     measurement=variable.influxdb.measurement,
   )
 ).addPanels(
   section.vinyl(
+    datasource_type=variable.datasource_type.influxdb,
     datasource=variable.datasource.influxdb,
     policy=variable.influxdb.policy,
     measurement=variable.influxdb.measurement,
   )
 ).addPanels(
   section.cpu(
+    datasource_type=variable.datasource_type.influxdb,
     datasource=variable.datasource.influxdb,
     policy=variable.influxdb.policy,
     measurement=variable.influxdb.measurement,
   )
 ).addPanels(
   section.runtime(
+    datasource_type=variable.datasource_type.influxdb,
     datasource=variable.datasource.influxdb,
     policy=variable.influxdb.policy,
     measurement=variable.influxdb.measurement,
   )
 ).addPanels(
   section.luajit(
+    datasource_type=variable.datasource_type.influxdb,
     datasource=variable.datasource.influxdb,
     policy=variable.influxdb.policy,
     measurement=variable.influxdb.measurement,
   )
 ).addPanels(
   section.operations(
+    datasource_type=variable.datasource_type.influxdb,
     datasource=variable.datasource.influxdb,
     policy=variable.influxdb.policy,
     measurement=variable.influxdb.measurement,
   )
 ).addPanels(
   section.crud(
+    datasource_type=variable.datasource_type.influxdb,
     datasource=variable.datasource.influxdb,
     policy=variable.influxdb.policy,
     measurement=variable.influxdb.measurement,
   )
 ).addPanels(
   section.expirationd(
+    datasource_type=variable.datasource_type.influxdb,
     datasource=variable.datasource.influxdb,
     policy=variable.influxdb.policy,
     measurement=variable.influxdb.measurement,

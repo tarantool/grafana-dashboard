@@ -1,5 +1,7 @@
-local common = import 'common.libsonnet';
 local grafana = import 'grafonnet/grafana.libsonnet';
+
+local common = import 'common.libsonnet';
+local variable = import 'dashboard/variable.libsonnet';
 
 local influxdb = grafana.influxdb;
 local prometheus = grafana.prometheus;
@@ -10,6 +12,7 @@ local prometheus = grafana.prometheus;
   local disk_size(
     title=null,
     description=null,
+    datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
@@ -24,7 +27,7 @@ local prometheus = grafana.prometheus;
     legend_max=false,
     panel_width=12,
   ).addTarget(common.default_metric_target(
-    datasource,
+    datasource_type,
     metric_name,
     job,
     policy,
@@ -38,6 +41,7 @@ local prometheus = grafana.prometheus;
 
       Panel works with `metrics >= 0.8.0`.
     |||,
+    datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
@@ -45,6 +49,7 @@ local prometheus = grafana.prometheus;
   ):: disk_size(
     title=title,
     description=description,
+    datasource_type=datasource_type,
     datasource=datasource,
     policy=policy,
     measurement=measurement,
@@ -59,6 +64,7 @@ local prometheus = grafana.prometheus;
 
       Panel works with `metrics >= 0.8.0`.
     |||,
+    datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
@@ -66,6 +72,7 @@ local prometheus = grafana.prometheus;
   ):: disk_size(
     title=title,
     description=description,
+    datasource_type=datasource_type,
     datasource=datasource,
     policy=policy,
     measurement=measurement,
@@ -80,6 +87,7 @@ local prometheus = grafana.prometheus;
       If the metric value is close to box.cfg.vinyl_memory, this
       indicates that vinyl_page_size was chosen incorrectly.
     |||,
+    datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
@@ -92,7 +100,7 @@ local prometheus = grafana.prometheus;
     labelY1='in bytes',
     panel_width=12,
   ).addTarget(common.default_metric_target(
-    datasource,
+    datasource_type,
     'tnt_vinyl_memory_page_index',
     job,
     policy,
@@ -104,6 +112,7 @@ local prometheus = grafana.prometheus;
     description=|||
       Amount of memory in bytes used by bloom filters.
     |||,
+    datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
@@ -116,7 +125,7 @@ local prometheus = grafana.prometheus;
     labelY1='in bytes',
     panel_width=12,
   ).addTarget(common.default_metric_target(
-    datasource,
+    datasource_type,
     'tnt_vinyl_memory_bloom_filter',
     job,
     policy,
@@ -126,6 +135,7 @@ local prometheus = grafana.prometheus;
   local regulator_bps(
     title=null,
     description=null,
+    datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
@@ -138,7 +148,7 @@ local prometheus = grafana.prometheus;
     format='Bps',
     panel_width=8,
   ).addTarget(common.default_metric_target(
-    datasource,
+    datasource_type,
     metric_name,
     job,
     policy,
@@ -156,6 +166,7 @@ local prometheus = grafana.prometheus;
 
       Panel works with `metrics >= 0.8.0`.
     |||,
+    datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
@@ -163,6 +174,7 @@ local prometheus = grafana.prometheus;
   ):: regulator_bps(
     title=title,
     description=description,
+    datasource_type=datasource_type,
     datasource=datasource,
     policy=policy,
     measurement=measurement,
@@ -179,6 +191,7 @@ local prometheus = grafana.prometheus;
 
       Panel works with `metrics >= 0.8.0`.
     |||,
+    datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
@@ -186,6 +199,7 @@ local prometheus = grafana.prometheus;
   ):: regulator_bps(
     title=title,
     description=description,
+    datasource_type=datasource_type,
     datasource=datasource,
     policy=policy,
     measurement=measurement,
@@ -203,6 +217,7 @@ local prometheus = grafana.prometheus;
 
       Panel works with `metrics >= 0.8.0`.
     |||,
+    datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
@@ -210,6 +225,7 @@ local prometheus = grafana.prometheus;
   ):: regulator_bps(
     title=title,
     description=description,
+    datasource_type=datasource_type,
     datasource=datasource,
     policy=policy,
     measurement=measurement,
@@ -229,6 +245,7 @@ local prometheus = grafana.prometheus;
       Panel works with `metrics >= 0.8.0`.
     |||,
 
+    datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
@@ -242,7 +259,7 @@ local prometheus = grafana.prometheus;
     legend_max=false,
     panel_width=12,
   ).addTarget(common.default_metric_target(
-    datasource,
+    datasource_type,
     'tnt_vinyl_regulator_dump_watermark',
     job,
     policy,
@@ -257,6 +274,7 @@ local prometheus = grafana.prometheus;
       Panel works with `metrics >= 0.13.0` and `Tarantool >= 2.8.3`.
     |||,
 
+    datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
@@ -270,7 +288,7 @@ local prometheus = grafana.prometheus;
     labelY1='fibers',
     panel_width=12,
   ).addTarget(common.default_metric_target(
-    datasource,
+    datasource_type,
     'tnt_vinyl_regulator_blocked_writers',
     job,
     policy,
@@ -280,6 +298,7 @@ local prometheus = grafana.prometheus;
   local tx_rate(
     title=null,
     description=null,
+    datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
@@ -294,7 +313,7 @@ local prometheus = grafana.prometheus;
     labelY1='transactions per second',
     panel_width=6,
   ).addTarget(common.default_rps_target(
-    datasource,
+    datasource_type,
     metric_name,
     job,
     rate_time_range,
@@ -311,6 +330,7 @@ local prometheus = grafana.prometheus;
 
       Panel works with `metrics >= 0.8.0`.
     |||,
+    datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
@@ -318,7 +338,8 @@ local prometheus = grafana.prometheus;
     rate_time_range=null,
   ):: tx_rate(
     title=title,
-    description=common.rate_warning(description, datasource),
+    description=common.rate_warning(description, datasource_type),
+    datasource_type=datasource_type,
     datasource=datasource,
     policy=policy,
     measurement=measurement,
@@ -335,6 +356,7 @@ local prometheus = grafana.prometheus;
       that ended with errors.
       Panel works with `metrics >= 0.8.0`.
     |||,
+    datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
@@ -342,7 +364,8 @@ local prometheus = grafana.prometheus;
     rate_time_range=null,
   ):: tx_rate(
     title=title,
-    description=common.rate_warning(description, datasource),
+    description=common.rate_warning(description, datasource_type),
+    datasource_type=datasource_type,
     datasource=datasource,
     policy=policy,
     measurement=measurement,
@@ -360,6 +383,7 @@ local prometheus = grafana.prometheus;
 
       Panel works with `metrics >= 0.8.0`.
     |||,
+    datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
@@ -367,7 +391,8 @@ local prometheus = grafana.prometheus;
     rate_time_range=null,
   ):: tx_rate(
     title=title,
-    description=common.rate_warning(description, datasource),
+    description=common.rate_warning(description, datasource_type),
+    datasource_type=datasource_type,
     datasource=datasource,
     policy=policy,
     measurement=measurement,
@@ -386,6 +411,7 @@ local prometheus = grafana.prometheus;
       Panel works with `metrics >= 0.8.0`.
     |||,
 
+    datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
@@ -398,7 +424,7 @@ local prometheus = grafana.prometheus;
     labelY1='current',
     panel_width=6,
   ).addTarget(common.default_metric_target(
-    datasource,
+    datasource_type,
     'tnt_vinyl_tx_read_views',
     job,
     policy,
@@ -409,6 +435,7 @@ local prometheus = grafana.prometheus;
   local memory(
     title=null,
     description=null,
+    datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
@@ -422,7 +449,7 @@ local prometheus = grafana.prometheus;
     legend_avg=false,
     panel_width=6,
   ).addTarget(common.default_metric_target(
-    datasource,
+    datasource_type,
     metric_name,
     job,
     policy,
@@ -436,6 +463,7 @@ local prometheus = grafana.prometheus;
 
       Panel works with `metrics >= 0.8.0`.
     |||,
+    datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
@@ -443,6 +471,7 @@ local prometheus = grafana.prometheus;
   ):: memory(
     title=title,
     description=description,
+    datasource_type=datasource_type,
     datasource=datasource,
     policy=policy,
     measurement=measurement,
@@ -461,6 +490,7 @@ local prometheus = grafana.prometheus;
 
       Panel works with `metrics >= 0.8.0`.
     |||,
+    datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
@@ -468,6 +498,7 @@ local prometheus = grafana.prometheus;
   ):: memory(
     title=title,
     description=description,
+    datasource_type=datasource_type,
     datasource=datasource,
     policy=policy,
     measurement=measurement,
@@ -484,6 +515,7 @@ local prometheus = grafana.prometheus;
 
       Panel works with `metrics >= 0.8.0`.
     |||,
+    datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
@@ -491,6 +523,7 @@ local prometheus = grafana.prometheus;
   ):: memory(
     title=title,
     description=description,
+    datasource_type=datasource_type,
     datasource=datasource,
     policy=policy,
     measurement=measurement,
@@ -506,6 +539,7 @@ local prometheus = grafana.prometheus;
 
       Panel works with `metrics >= 0.8.0`.
     |||,
+    datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
@@ -513,6 +547,7 @@ local prometheus = grafana.prometheus;
   ):: memory(
     title=title,
     description=description,
+    datasource_type=datasource_type,
     datasource=datasource,
     policy=policy,
     measurement=measurement,
@@ -527,6 +562,7 @@ local prometheus = grafana.prometheus;
 
       Panel works with `metrics >= 0.8.0`.
     |||,
+    datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
@@ -539,12 +575,12 @@ local prometheus = grafana.prometheus;
     legend_avg=false,
     panel_width=6,
   ).addTarget(
-    if datasource == '${DS_PROMETHEUS}' then
+    if datasource_type == variable.datasource_type.prometheus then
       prometheus.target(
         expr=std.format('tnt_vinyl_scheduler_tasks{job=~"%s", status="inprogress"}', [job]),
         legendFormat='{{alias}}',
       )
-    else if datasource == '${DS_INFLUXDB}' then
+    else if datasource_type == variable.datasource_type.influxdb then
       influxdb.target(
         policy=policy,
         measurement=measurement,
@@ -562,6 +598,7 @@ local prometheus = grafana.prometheus;
 
       Panel works with `metrics >= 0.8.0`.
     |||,
+    datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
@@ -569,19 +606,19 @@ local prometheus = grafana.prometheus;
     rate_time_range=null,
   ):: common.default_graph(
     title=title,
-    description=common.rate_warning(description, datasource),
+    description=common.rate_warning(description, datasource_type),
     datasource=datasource,
     format='none',
     labelY1='per second rate',
     legend_avg=false,
     panel_width=6,
   ).addTarget(
-    if datasource == '${DS_PROMETHEUS}' then
+    if datasource_type == variable.datasource_type.prometheus then
       prometheus.target(
         expr=std.format('rate(tnt_vinyl_scheduler_tasks{job=~"%s",status="failed"}[%s])', [job, rate_time_range]),
         legendFormat='{{alias}}',
       )
-    else if datasource == '${DS_INFLUXDB}' then
+    else if datasource_type == variable.datasource_type.influxdb then
       influxdb.target(
         policy=policy,
         measurement=measurement,
@@ -599,6 +636,7 @@ local prometheus = grafana.prometheus;
 
       Panel works with `metrics >= 0.8.0`.
     |||,
+    datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
@@ -606,14 +644,14 @@ local prometheus = grafana.prometheus;
     rate_time_range=null,
   ):: common.default_graph(
     title=title,
-    description=common.rate_warning(description, datasource),
+    description=common.rate_warning(description, datasource_type),
     datasource=datasource,
     format='s',
     labelY1='per second rate',
     decimalsY1=null,
     panel_width=6,
   ).addTarget(common.default_rps_target(
-    datasource,
+    datasource_type,
     'tnt_vinyl_scheduler_dump_time',
     job,
     rate_time_range,
@@ -628,6 +666,7 @@ local prometheus = grafana.prometheus;
 
       Panel works with `metrics >= 0.13.0`.
     |||,
+    datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
@@ -635,14 +674,14 @@ local prometheus = grafana.prometheus;
     rate_time_range=null,
   ):: common.default_graph(
     title=title,
-    description=common.rate_warning(description, datasource),
+    description=common.rate_warning(description, datasource_type),
     datasource=datasource,
     format='none',
     labelY1='per second rate',
     decimalsY1=null,
     panel_width=6,
   ).addTarget(common.default_rps_target(
-    datasource,
+    datasource_type,
     'tnt_vinyl_scheduler_dump_total',
     job,
     rate_time_range,

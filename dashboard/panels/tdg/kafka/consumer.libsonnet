@@ -1,4 +1,4 @@
-local common_utils = import '../../common.libsonnet';
+local common_utils = import 'dashboard/panels/common.libsonnet';
 local kafka_utils = import 'utils.libsonnet';
 
 {
@@ -9,6 +9,7 @@ local kafka_utils = import 'utils.libsonnet';
     description=|||
       Time elapsed since last state change.
     |||,
+    datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
@@ -22,7 +23,7 @@ local kafka_utils = import 'utils.libsonnet';
     legend_max=false,
     panel_width=12,
   ).addTarget(kafka_utils.kafka_target(
-    datasource,
+    datasource_type,
     'tdg_kafka_cgrp_stateage',
     job,
     policy,
@@ -34,6 +35,7 @@ local kafka_utils = import 'utils.libsonnet';
     description=|||
       Time elapsed since last rebalance (assign or revoke).
     |||,
+    datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
@@ -45,7 +47,7 @@ local kafka_utils = import 'utils.libsonnet';
     format='ms',
     panel_width=12,
   ).addTarget(kafka_utils.kafka_target(
-    datasource,
+    datasource_type,
     'tdg_kafka_cgrp_rebalance_age',
     job,
     policy,
@@ -57,7 +59,8 @@ local kafka_utils = import 'utils.libsonnet';
     description=common_utils.rate_warning(|||
       Number of rebalances (assign or revoke).
       Graph shows mean requests per second.
-    |||, datasource),
+    |||, datasource_type),
+    datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
@@ -70,7 +73,7 @@ local kafka_utils = import 'utils.libsonnet';
     labelY1='rebalances per second',
     panel_width=12,
   ).addTarget(kafka_utils.kafka_rps_target(
-    datasource,
+    datasource_type,
     'tdg_kafka_cgrp_rebalance_cnt',
     job,
     rate_time_range,
@@ -83,6 +86,7 @@ local kafka_utils = import 'utils.libsonnet';
     description=|||
       Current assignment's partition count.
     |||,
+    datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
@@ -93,7 +97,7 @@ local kafka_utils = import 'utils.libsonnet';
     datasource=datasource,
     panel_width=12,
   ).addTarget(kafka_utils.kafka_target(
-    datasource,
+    datasource_type,
     'tdg_kafka_cgrp_assignment_size',
     job,
     policy,

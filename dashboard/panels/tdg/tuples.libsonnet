@@ -1,6 +1,7 @@
 local grafana = import 'grafonnet/grafana.libsonnet';
 
 local common_utils = import '../common.libsonnet';
+local variable = import 'dashboard/variable.libsonnet';
 
 local influxdb = grafana.influxdb;
 local prometheus = grafana.prometheus;
@@ -9,13 +10,13 @@ local prometheus = grafana.prometheus;
   row:: common_utils.row('TDG tuples statistics'),
 
   local average_target(
-    datasource,
+    datasource_type,
     metric_name,
     job=null,
     policy=null,
     measurement=null,
   ) =
-    if datasource == '${DS_PROMETHEUS}' then
+    if datasource_type == variable.datasource_type.prometheus then
       prometheus.target(
         expr=std.format(
           |||
@@ -30,7 +31,7 @@ local prometheus = grafana.prometheus;
         ),
         legendFormat='{{type_name}} — {{alias}}'
       )
-    else if datasource == '${DS_INFLUXDB}' then
+    else if datasource_type == variable.datasource_type.influxdb then
       influxdb.target(
         rawQuery=true,
         query=std.format(|||
@@ -57,6 +58,7 @@ local prometheus = grafana.prometheus;
       Data resets between each collect.
       Graph shows average per request.
     |||,
+    datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
@@ -68,7 +70,7 @@ local prometheus = grafana.prometheus;
     labelY1='tuples per request',
     panel_width=12,
   ).addTarget(average_target(
-    datasource,
+    datasource_type,
     'tdg_scanned_tuples',
     job,
     policy,
@@ -82,6 +84,7 @@ local prometheus = grafana.prometheus;
       Data resets between each collect.
       Graph shows average per request.
     |||,
+    datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
@@ -93,7 +96,7 @@ local prometheus = grafana.prometheus;
     labelY1='tuples per request',
     panel_width=12,
   ).addTarget(average_target(
-    datasource,
+    datasource_type,
     'tdg_returned_tuples',
     job,
     policy,
@@ -107,6 +110,7 @@ local prometheus = grafana.prometheus;
       Data resets between each collect.
       Graph shows maximum observation.
     |||,
+    datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
@@ -120,7 +124,7 @@ local prometheus = grafana.prometheus;
     decimals=0,
     panel_width=12,
   ).addTarget(common_utils.default_metric_target(
-    datasource,
+    datasource_type,
     'tdg_scanned_tuples_max',
     job,
     policy,
@@ -134,6 +138,7 @@ local prometheus = grafana.prometheus;
       Data resets between each collect.
       Graph shows maximum observation.
     |||,
+    datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
@@ -147,7 +152,7 @@ local prometheus = grafana.prometheus;
     decimals=0,
     panel_width=12,
   ).addTarget(common_utils.default_metric_target(
-    datasource,
+    datasource_type,
     'tdg_returned_tuples_max',
     job,
     policy,

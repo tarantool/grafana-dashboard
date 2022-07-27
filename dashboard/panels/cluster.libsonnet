@@ -1,6 +1,8 @@
+local grafana = import 'grafonnet/grafana.libsonnet';
+
 local common = import 'common.libsonnet';
 local timeseries = import 'dashboard/grafana/timeseries.libsonnet';
-local grafana = import 'grafonnet/grafana.libsonnet';
+local variable = import 'dashboard/variable.libsonnet';
 
 local graph = grafana.graphPanel;
 local statPanel = grafana.statPanel;
@@ -14,7 +16,7 @@ local prometheus = grafana.prometheus;
   health_overview_table(
     title='Cluster status overview',
     description=
-    if datasource == '${DS_PROMETHEUS}' then
+    if datasource_type == variable.datasource_type.prometheus then
       |||
         Overview of Tarantool instances observed by Prometheus job.
 
@@ -24,8 +26,9 @@ local prometheus = grafana.prometheus;
         Prometheus is successfully extracting metrics from it.
         "Uptime" column shows time since instant start.
       |||
-    else if datasource == '${DS_INFLUXDB}' then
+    else if datasource == variable.datasource_type.influxdb then
       error 'InfluxDB target is not supported yet',
+    datasource_type=null,
     datasource=null,
     measurement=null,
     job=null,
@@ -71,7 +74,7 @@ local prometheus = grafana.prometheus;
     },
     transform='table',
   ).hideColumn('job').hideColumn('__name__').hideColumn('Time').addTarget(
-    if datasource == '${DS_PROMETHEUS}' then
+    if datasource_type == variable.datasource_type.prometheus then
       prometheus.target(
         expr=std.format(
           |||
@@ -83,7 +86,7 @@ local prometheus = grafana.prometheus;
         format='table',
         instant=true,
       )
-    else if datasource == '${DS_INFLUXDB}' then
+    else if datasource_type == variable.datasource_type.influxdb then
       error 'InfluxDB target is not supported yet'
   ) { gridPos: { w: 12, h: 8 } },
 
@@ -105,6 +108,7 @@ local prometheus = grafana.prometheus;
   local overview_stat(
     title,
     description,
+    datasource_type,
     datasource,
     measurement=null,
     job=null,
@@ -125,27 +129,34 @@ local prometheus = grafana.prometheus;
       pluginVersion='6.6.0',
     ).addThreshold(
       { color: 'green', value: null }
-    ).addTarget(prometheus.target(expr=expr)),
+    ).addTarget(
+      if datasource_type == variable.datasource_type.prometheus then
+        prometheus.target(expr=expr)
+      else if datasource_type == variable.datasource_type.influxdb then
+        error 'InfluxDB target is not supported yet'
+    ),
     stat_title
   ),
 
   health_overview_stat(
     title='',
     description=
-    if datasource == '${DS_PROMETHEUS}' then
+    if datasource_type == variable.datasource_type.prometheus then
       |||
         Count of running Tarantool instances observed by Prometheus job.
         If Prometheus can't reach URI specified in targets
         or ran into error, instance is not counted.
       |||
-    else if datasource == '${DS_INFLUXDB}' then
+    else if datasource_type == variable.datasource_type.influxdb then
       error 'InfluxDB target is not supported yet',
+    datasource_type=null,
     datasource=null,
     measurement=null,
     job=null,
   ):: overview_stat(
     title=title,
     description=description,
+    datasource_type=datasource_type,
     datasource=datasource,
     measurement=measurement,
     job=job,
@@ -158,7 +169,7 @@ local prometheus = grafana.prometheus;
   memory_used_stat(
     title='',
     description=
-    if datasource == '${DS_PROMETHEUS}' then
+    if datasource_type == variable.datasource_type.prometheus then
       |||
         Overall value of memory used by Tarantool
         items and indexes (*arena_used* value).
@@ -166,14 +177,16 @@ local prometheus = grafana.prometheus;
         for Prometheus metrics extraction now,
         its contribution is not counted.
       |||
-    else if datasource == '${DS_INFLUXDB}' then
+    else if datasource_type == variable.datasource_type.influxdb then
       error 'InfluxDB target is not supported yet',
+    datasource_type=null,
     datasource=null,
     measurement=null,
     job=null,
   ):: overview_stat(
     title=title,
     description=description,
+    datasource_type=datasource_type,
     datasource=datasource,
     measurement=measurement,
     job=job,
@@ -186,21 +199,23 @@ local prometheus = grafana.prometheus;
   memory_reserved_stat(
     title='',
     description=
-    if datasource == '${DS_PROMETHEUS}' then
+    if datasource_type == variable.datasource_type.prometheus then
       |||
         Overall value of memory available for Tarantool items
         and indexes allocation (*memtx_memory* or *quota_size* values).
         If Tarantool instance is not available for Prometheus metrics
         extraction now, its contribution is not counted.
       |||
-    else if datasource == '${DS_INFLUXDB}' then
+    else if datasource_type == variable.datasource_type.influxdb then
       error 'InfluxDB target is not supported yet',
+    datasource_type=null,
     datasource=null,
     measurement=null,
     job=null,
   ):: overview_stat(
     title=title,
     description=description,
+    datasource_type=datasource_type,
     datasource=datasource,
     measurement=measurement,
     job=job,
@@ -213,15 +228,16 @@ local prometheus = grafana.prometheus;
   space_ops_stat(
     title='',
     description=
-    if datasource == '${DS_PROMETHEUS}' then
+    if datasource_type == variable.datasource_type.prometheus then
       common.rate_warning(|||
         Overall rate of operations performed on Tarantool spaces
         (*select*, *insert*, *update* etc.).
         If Tarantool instance is not available for Prometheus metrics
         extraction now, its contribution is not counted.
       |||)
-    else if datasource == '${DS_INFLUXDB}' then
+    else if datasource_type == variable.datasource_type.influxdb then
       error 'InfluxDB target is not supported yet',
+    datasource_type=null,
     datasource=null,
     measurement=null,
     job=null,
@@ -229,6 +245,7 @@ local prometheus = grafana.prometheus;
   ):: overview_stat(
     title=title,
     description=description,
+    datasource_type=datasource_type,
     datasource=datasource,
     measurement=measurement,
     job=job,
@@ -241,15 +258,16 @@ local prometheus = grafana.prometheus;
   http_rps_stat(
     title='',
     description=
-    if datasource == '${DS_PROMETHEUS}' then
+    if datasource_type == variable.datasource_type.prometheus then
       common.rate_warning(|||
         Overall rate of HTTP requests processed
         on Tarantool instances (all methods and response codes).
         If Tarantool instance is not available for Prometheus metrics
         extraction now, its contribution is not counted.
       |||)
-    else if datasource == '${DS_INFLUXDB}' then
+    else if datasource_type == variable.datasource_type.influxdb then
       error 'InfluxDB target is not supported yet',
+    datasource_type=null,
     datasource=null,
     measurement=null,
     job=null,
@@ -257,6 +275,7 @@ local prometheus = grafana.prometheus;
   ):: overview_stat(
     title=title,
     description=description,
+    datasource_type=datasource_type,
     datasource=datasource,
     measurement=measurement,
     job=job,
@@ -269,14 +288,15 @@ local prometheus = grafana.prometheus;
   net_rps_stat(
     title='',
     description=
-    if datasource == '${DS_PROMETHEUS}' then
+    if datasource_type == variable.datasource_type.prometheus then
       common.rate_warning(|||
         Overall rate of network requests processed on Tarantool instances.
         If Tarantool instance is not available for Prometheus metrics
         extraction now, its contribution is not counted.
       |||)
-    else if datasource == '${DS_INFLUXDB}' then
+    else if datasource_type == variable.datasource_type.influxdb then
       error 'InfluxDB target is not supported yet',
+    datasource_type=null,
     datasource=null,
     measurement=null,
     job=null,
@@ -284,6 +304,7 @@ local prometheus = grafana.prometheus;
   ):: overview_stat(
     title=title,
     description=description,
+    datasource_type=datasource_type,
     datasource=datasource,
     measurement=measurement,
     job=job,
@@ -296,6 +317,7 @@ local prometheus = grafana.prometheus;
   local cartridge_issues(
     title,
     description,
+    datasource_type,
     datasource,
     policy,
     measurement,
@@ -312,12 +334,12 @@ local prometheus = grafana.prometheus;
     panel_height=6,
     panel_width=12,
   ).addTarget(
-    if datasource == '${DS_PROMETHEUS}' then
+    if datasource_type == variable.datasource_type.prometheus then
       prometheus.target(
         expr=std.format('tnt_cartridge_issues{job=~"%s",level="%s"}', [job, level]),
         legendFormat='{{alias}}',
       )
-    else if datasource == '${DS_INFLUXDB}' then
+    else if datasource_type == variable.datasource_type.influxdb then
       influxdb.target(
         policy=policy,
         measurement=measurement,
@@ -338,6 +360,7 @@ local prometheus = grafana.prometheus;
       Panel works with `cartridge >= 2.0.2`, `metrics >= 0.6.0`,
       while `metrics >= 0.9.0` is recommended for per instance display.
     |||,
+    datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
@@ -345,6 +368,7 @@ local prometheus = grafana.prometheus;
   ):: cartridge_issues(
     title=title,
     description=description,
+    datasource_type=datasource_type,
     datasource=datasource,
     policy=policy,
     measurement=measurement,
@@ -362,6 +386,7 @@ local prometheus = grafana.prometheus;
       Panel works with `cartridge >= 2.0.2`, `metrics >= 0.6.0`,
       while `metrics >= 0.9.0` is recommended for per instance display.
     |||,
+    datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
@@ -369,6 +394,7 @@ local prometheus = grafana.prometheus;
   ):: cartridge_issues(
     title=title,
     description=description,
+    datasource_type=datasource_type,
     datasource=datasource,
     policy=policy,
     measurement=measurement,
@@ -384,6 +410,7 @@ local prometheus = grafana.prometheus;
 
       Panel works with `metrics >= 0.13.0` and Grafana 8.x.
     |||,
+    datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
@@ -402,12 +429,12 @@ local prometheus = grafana.prometheus;
   ).addRangeMapping(
     0.001, 0.999, '-'
   ).addTarget(
-    if datasource == '${DS_PROMETHEUS}' then
+    if datasource_type == variable.datasource_type.prometheus then
       prometheus.target(
         expr=std.format('tnt_replication_status{job=~"%s"}', [job]),
         legendFormat='{{alias}} {{stream}} ({{id}})',
       )
-    else if datasource == '${DS_INFLUXDB}' then
+    else if datasource_type == variable.datasource_type.influxdb then
       influxdb.target(
         policy=policy,
         measurement=measurement,
@@ -426,6 +453,7 @@ local prometheus = grafana.prometheus;
 
       Panel works with `metrics >= 0.11.0` and Grafana 8.x.
     |||,
+    datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
@@ -445,7 +473,7 @@ local prometheus = grafana.prometheus;
     0.001, 0.999, '-'
   ).addTarget(
     common.default_metric_target(
-      datasource,
+      datasource_type,
       'tnt_read_only',
       job,
       policy,
@@ -461,6 +489,7 @@ local prometheus = grafana.prometheus;
 
       Panel works with `metrics >= 0.13.0`.
     |||,
+    datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
@@ -476,12 +505,12 @@ local prometheus = grafana.prometheus;
     min=0,
     panel_width=12,
   ).addTarget(
-    if datasource == '${DS_PROMETHEUS}' then
+    if datasource_type == variable.datasource_type.prometheus then
       prometheus.target(
         expr=std.format('tnt_replication_lag{job=~"%s"}', [job]),
         legendFormat='{{alias}} ({{id}})',
       )
-    else if datasource == '${DS_INFLUXDB}' then
+    else if datasource_type == variable.datasource_type.influxdb then
       influxdb.target(
         policy=policy,
         measurement=measurement,
@@ -500,6 +529,7 @@ local prometheus = grafana.prometheus;
 
       Panel works with `metrics >= 0.10.0`.
     |||,
+    datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
@@ -516,12 +546,12 @@ local prometheus = grafana.prometheus;
     legend_max=false,
     panel_width=12,
   ).addTarget(
-    if datasource == '${DS_PROMETHEUS}' then
+    if datasource_type == variable.datasource_type.prometheus then
       prometheus.target(
         expr=std.format('tnt_clock_delta{job=~"%s"}', [job]),
         legendFormat='{{alias}} ({{delta}})',
       )
-    else if datasource == '${DS_INFLUXDB}' then
+    else if datasource_type == variable.datasource_type.influxdb then
       influxdb.target(
         policy=policy,
         measurement=measurement,
