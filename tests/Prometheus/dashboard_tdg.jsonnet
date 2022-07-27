@@ -1,3 +1,3 @@
-local dashboard = import 'dashboard/prometheus_tdg_dashboard.libsonnet';
+local dashboard = import 'dashboard/build/prometheus/tdg_dashboard.libsonnet';
 
 dashboard.build()
