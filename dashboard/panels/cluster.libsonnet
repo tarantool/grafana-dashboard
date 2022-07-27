@@ -1,7 +1,7 @@
 local grafana = import 'grafonnet/grafana.libsonnet';
 
-local common = import 'common.libsonnet';
 local timeseries = import 'dashboard/grafana/timeseries.libsonnet';
+local common = import 'dashboard/panels/common.libsonnet';
 local variable = import 'dashboard/variable.libsonnet';
 
 local graph = grafana.graphPanel;
