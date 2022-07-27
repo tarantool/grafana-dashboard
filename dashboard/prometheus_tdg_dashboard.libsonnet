@@ -1,8 +1,8 @@
 local grafana = import 'grafonnet/grafana.libsonnet';
 
-local dashboard = import 'dashboard.libsonnet';
-local section = import 'section.libsonnet';
-local variable = import 'variable.libsonnet';
+local dashboard = import 'dashboard/dashboard.libsonnet';
+local section = import 'dashboard/section.libsonnet';
+local variable = import 'dashboard/variable.libsonnet';
 
 dashboard.new(
   grafana.dashboard.new(

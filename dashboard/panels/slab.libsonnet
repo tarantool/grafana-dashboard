@@ -1,5 +1,6 @@
-local common = import 'common.libsonnet';
 local grafana = import 'grafonnet/grafana.libsonnet';
+
+local common = import 'dashboard/panels/common.libsonnet';
 
 {
   row:: common.row('Tarantool memtx allocation overview'),

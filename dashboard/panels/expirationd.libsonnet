@@ -1,6 +1,6 @@
-local common_utils = import 'common.libsonnet';
 local grafana = import 'grafonnet/grafana.libsonnet';
 
+local common_utils = import 'dashboard/panels/common.libsonnet';
 local variable = import 'dashboard/variable.libsonnet';
 
 local influxdb = grafana.influxdb;

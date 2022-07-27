@@ -1,4 +1,4 @@
-local common = import 'common.libsonnet';
+local common = import 'dashboard/panels/common.libsonnet';
 
 {
   row:: common.row('Tarantool LuaJit statistics'),
