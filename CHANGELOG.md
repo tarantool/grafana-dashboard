@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## Unreleased
+
+## Added
+- Options to build static dashboards
+
+
 ## [1.3.0] - 2022-06-29
 Grafana revisions: [InfluxDB revision 13](https://grafana.com/api/dashboards/12567/revisions/13/download), [Prometheus revision 13](https://grafana.com/api/dashboards/13054/revisions/13/download), [InfluxDB TDG revision 2](https://grafana.com/api/dashboards/16405/revisions/2/download), [Prometheus TDG revision 2](https://grafana.com/api/dashboards/16406/revisions/2/download).
 

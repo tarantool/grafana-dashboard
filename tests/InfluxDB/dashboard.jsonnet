@@ -1,3 +1,3 @@
-local dashboard = import 'dashboard/influxdb_dashboard.libsonnet';
+local dashboard = import 'dashboard/build/influxdb/dashboard.libsonnet';
 
 dashboard.build()
