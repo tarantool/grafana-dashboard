@@ -16,6 +16,7 @@ Grafana revisions: [InfluxDB revision 13](https://grafana.com/api/dashboards/125
 ## Added
 - Panels for expirationd module statistics
 
+
 ## [1.2.1] - 2022-06-24
 Grafana revisions: [InfluxDB revision 12](https://grafana.com/api/dashboards/12567/revisions/12/download), [Prometheus revision 12](https://grafana.com/api/dashboards/13054/revisions/12/download), [InfluxDB TDG revision 2](https://grafana.com/api/dashboards/16405/revisions/2/download), [Prometheus TDG revision 2](https://grafana.com/api/dashboards/16406/revisions/2/download).
 
