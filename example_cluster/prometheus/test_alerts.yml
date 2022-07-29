@@ -9,9 +9,9 @@ evaluation_interval: 15s
 tests:
   - interval: 15s
     input_series:
-      - series: 'up{job="tarantool_app",instance="app:8081"}'
+      - series: 'up{job="tarantool",instance="app:8081"}'
         values: '1+0x12'
-      - series: 'up{job="tarantool_app",instance="app:8082"}'
+      - series: 'up{job="tarantool",instance="app:8082"}'
         values: '1 0+0x11'
     alert_rule_test:
       - eval_time: 2m
@@ -20,15 +20,15 @@ tests:
           - exp_labels:
               severity: page
               instance: app:8082
-              job: tarantool_app
+              job: tarantool
             exp_annotations:
-              summary: "Instance 'app:8082' ('tarantool_app') down"
-              description: "'app:8082' of job 'tarantool_app' has been down for more than a minute."
+              summary: "Instance 'app:8082' ('tarantool') down"
+              description: "'app:8082' of job 'tarantool' has been down for more than a minute."
 
 
   - interval: 15s
     input_series:
-      - series: 'tnt_info_memory_lua{job="tarantool_app",instance="app:8081",alias="tnt_router"}'
+      - series: 'tnt_info_memory_lua{job="tarantool",instance="app:8081",alias="tnt_router"}'
         values: '209715200+104857600x8' # 200 Mb + 100 Mb each interval
     alert_rule_test:
       - eval_time: 2m
@@ -38,10 +38,10 @@ tests:
               severity: warning
               instance: app:8081
               alias: tnt_router
-              job: tarantool_app
+              job: tarantool
             exp_annotations:
-              summary: "Instance 'tnt_router' ('tarantool_app') Lua runtime warning"
-              description: "'tnt_router' instance of job 'tarantool_app' uses too much Lua memory
+              summary: "Instance 'tnt_router' ('tarantool') Lua runtime warning"
+              description: "'tnt_router' instance of job 'tarantool' uses too much Lua memory
                 and may hit threshold soon."
       - eval_time: 2m
         alertname: LuaRuntimeAlert
@@ -50,7 +50,7 @@ tests:
 
   - interval: 15s
     input_series:
-      - series: 'tnt_info_memory_lua{job="tarantool_app",instance="app:8081",alias="tnt_router"}'
+      - series: 'tnt_info_memory_lua{job="tarantool",instance="app:8081",alias="tnt_router"}'
         values: '419430400+209715200x8' # 400 Mb + 200 Mb each interval
     alert_rule_test:
       - eval_time: 2m
@@ -60,10 +60,10 @@ tests:
               severity: warning
               instance: app:8081
               alias: tnt_router
-              job: tarantool_app
+              job: tarantool
             exp_annotations:
-              summary: "Instance 'tnt_router' ('tarantool_app') Lua runtime warning"
-              description: "'tnt_router' instance of job 'tarantool_app' uses too much Lua memory
+              summary: "Instance 'tnt_router' ('tarantool') Lua runtime warning"
+              description: "'tnt_router' instance of job 'tarantool' uses too much Lua memory
                 and may hit threshold soon."
       - eval_time: 2m
         alertname: LuaRuntimeAlert
@@ -72,18 +72,18 @@ tests:
               severity: page
               instance: app:8081
               alias: tnt_router
-              job: tarantool_app
+              job: tarantool
             exp_annotations:
-              summary: "Instance 'tnt_router' ('tarantool_app') Lua runtime alert"
-              description: "'tnt_router' instance of job 'tarantool_app' uses too much Lua memory
+              summary: "Instance 'tnt_router' ('tarantool') Lua runtime alert"
+              description: "'tnt_router' instance of job 'tarantool' uses too much Lua memory
                 and likely to hit threshold soon."
 
 
   - interval: 15s
     input_series:
-      - series: 'tnt_slab_quota_used_ratio{job="tarantool_app",instance="app:8081",alias="tnt_router"}'
+      - series: 'tnt_slab_quota_used_ratio{job="tarantool",instance="app:8081",alias="tnt_router"}'
         values: '75+0x2 92+0x8'
-      - series: 'tnt_slab_arena_used_ratio{job="tarantool_app",instance="app:8081",alias="tnt_router"}'
+      - series: 'tnt_slab_arena_used_ratio{job="tarantool",instance="app:8081",alias="tnt_router"}'
         values: '92+0x2 76+0x8'
     alert_rule_test:
       - eval_time: 2m
@@ -96,9 +96,9 @@ tests:
 
   - interval: 15s
     input_series:
-      - series: 'tnt_slab_quota_used_ratio{job="tarantool_app",instance="app:8081",alias="tnt_router"}'
+      - series: 'tnt_slab_quota_used_ratio{job="tarantool",instance="app:8081",alias="tnt_router"}'
         values: '75+0x2 92+0x8'
-      - series: 'tnt_slab_arena_used_ratio{job="tarantool_app",instance="app:8081",alias="tnt_router"}'
+      - series: 'tnt_slab_arena_used_ratio{job="tarantool",instance="app:8081",alias="tnt_router"}'
         values: '92+0x2 82+0x8'
     alert_rule_test:
       - eval_time: 2m
@@ -108,10 +108,10 @@ tests:
               severity: warning
               instance: app:8081
               alias: tnt_router
-              job: tarantool_app
+              job: tarantool
             exp_annotations:
-              summary: "Instance 'tnt_router' ('tarantool_app') low arena memory remaining"
-              description: "Low arena memory (tuples and indexes) remaining for 'tnt_router' instance of job 'tarantool_app'.
+              summary: "Instance 'tnt_router' ('tarantool') low arena memory remaining"
+              description: "Low arena memory (tuples and indexes) remaining for 'tnt_router' instance of job 'tarantool'.
                 Consider increasing memtx_memory or number of storages in case of sharded data."
       - eval_time: 2m
         alertname: MemtxArenaAlert
@@ -120,9 +120,9 @@ tests:
 
   - interval: 15s
     input_series:
-      - series: 'tnt_slab_quota_used_ratio{job="tarantool_app",instance="app:8081",alias="tnt_router"}'
+      - series: 'tnt_slab_quota_used_ratio{job="tarantool",instance="app:8081",alias="tnt_router"}'
         values: '85+0x2 92+0x8'
-      - series: 'tnt_slab_arena_used_ratio{job="tarantool_app",instance="app:8081",alias="tnt_router"}'
+      - series: 'tnt_slab_arena_used_ratio{job="tarantool",instance="app:8081",alias="tnt_router"}'
         values: '92+0x2 91+0x8'
     alert_rule_test:
       - eval_time: 2m
@@ -132,10 +132,10 @@ tests:
               severity: warning
               instance: app:8081
               alias: tnt_router
-              job: tarantool_app
+              job: tarantool
             exp_annotations:
-              summary: "Instance 'tnt_router' ('tarantool_app') low arena memory remaining"
-              description: "Low arena memory (tuples and indexes) remaining for 'tnt_router' instance of job 'tarantool_app'.
+              summary: "Instance 'tnt_router' ('tarantool') low arena memory remaining"
+              description: "Low arena memory (tuples and indexes) remaining for 'tnt_router' instance of job 'tarantool'.
                 Consider increasing memtx_memory or number of storages in case of sharded data."
       - eval_time: 2m
         alertname: MemtxArenaAlert
@@ -144,19 +144,19 @@ tests:
               severity: page
               instance: app:8081
               alias: tnt_router
-              job: tarantool_app
+              job: tarantool
             exp_annotations:
-              summary: "Instance 'tnt_router' ('tarantool_app') low arena memory remaining"
-              description: "Low arena memory (tuples and indexes) remaining for 'tnt_router' instance of job 'tarantool_app'.
+              summary: "Instance 'tnt_router' ('tarantool') low arena memory remaining"
+              description: "Low arena memory (tuples and indexes) remaining for 'tnt_router' instance of job 'tarantool'.
                 You are likely to hit limit soon.
                 It is strongly recommended to increase memtx_memory or number of storages in case of sharded data."
 
 
   - interval: 15s
     input_series:
-      - series: 'tnt_slab_quota_used_ratio{job="tarantool_app",instance="app:8081",alias="tnt_router"}'
+      - series: 'tnt_slab_quota_used_ratio{job="tarantool",instance="app:8081",alias="tnt_router"}'
         values: '75+0x2 92+0x8'
-      - series: 'tnt_slab_items_used_ratio{job="tarantool_app",instance="app:8081",alias="tnt_router"}'
+      - series: 'tnt_slab_items_used_ratio{job="tarantool",instance="app:8081",alias="tnt_router"}'
         values: '95+0x2 79+0x8'
     alert_rule_test:
       - eval_time: 2m
@@ -169,9 +169,9 @@ tests:
 
   - interval: 15s
     input_series:
-      - series: 'tnt_slab_quota_used_ratio{job="tarantool_app",instance="app:8081",alias="tnt_router"}'
+      - series: 'tnt_slab_quota_used_ratio{job="tarantool",instance="app:8081",alias="tnt_router"}'
         values: '75+0x2 92+0x8'
-      - series: 'tnt_slab_items_used_ratio{job="tarantool_app",instance="app:8081",alias="tnt_router"}'
+      - series: 'tnt_slab_items_used_ratio{job="tarantool",instance="app:8081",alias="tnt_router"}'
         values: '92+0x2 82+0x8'
     alert_rule_test:
       - eval_time: 2m
@@ -181,10 +181,10 @@ tests:
               severity: warning
               instance: app:8081
               alias: tnt_router
-              job: tarantool_app
+              job: tarantool
             exp_annotations:
-              summary: "Instance 'tnt_router' ('tarantool_app') low items memory remaining"
-              description: "Low items memory (tuples) remaining for 'tnt_router' instance of job 'tarantool_app'.
+              summary: "Instance 'tnt_router' ('tarantool') low items memory remaining"
+              description: "Low items memory (tuples) remaining for 'tnt_router' instance of job 'tarantool'.
                 Consider increasing memtx_memory or number of storages in case of sharded data."
       - eval_time: 2m
         alertname: MemtxItemsAlert
@@ -193,9 +193,9 @@ tests:
 
   - interval: 15s
     input_series:
-      - series: 'tnt_cartridge_issues{job="tarantool_app", instance="app:8081", alias="tnt_router", level="warning"}'
+      - series: 'tnt_cartridge_issues{job="tarantool", instance="app:8081", alias="tnt_router", level="warning"}'
         values: '0+0x2 1+0x8'
-      - series: 'tnt_cartridge_issues{job="tarantool_app", instance="app:8081", alias="tnt_router", level="critical"}'
+      - series: 'tnt_cartridge_issues{job="tarantool", instance="app:8081", alias="tnt_router", level="critical"}'
         values: '0+0x10'
     alert_rule_test:
       - eval_time: 2m
@@ -206,10 +206,10 @@ tests:
               level: warning
               instance: app:8081
               alias: tnt_router
-              job: tarantool_app
+              job: tarantool
             exp_annotations:
-              summary: "Instance 'tnt_router' ('tarantool_app') has 'warning'-level Cartridge issues"
-              description: "Instance 'tnt_router' of job 'tarantool_app' has 'warning'-level Cartridge issues.
+              summary: "Instance 'tnt_router' ('tarantool') has 'warning'-level Cartridge issues"
+              description: "Instance 'tnt_router' of job 'tarantool' has 'warning'-level Cartridge issues.
                 Possible reasons: high replication lag, replication long idle,
                 failover or switchover issues, clock issues, memory fragmentation,
                 configuration issues, alien members."
@@ -220,9 +220,9 @@ tests:
 
   - interval: 15s
     input_series:
-      - series: 'tnt_cartridge_issues{job="tarantool_app", instance="app:8081", alias="tnt_router", level="warning"}'
+      - series: 'tnt_cartridge_issues{job="tarantool", instance="app:8081", alias="tnt_router", level="warning"}'
         values: '0+0x2 2+0x8'
-      - series: 'tnt_cartridge_issues{job="tarantool_app", instance="app:8081", alias="tnt_router", level="critical"}'
+      - series: 'tnt_cartridge_issues{job="tarantool", instance="app:8081", alias="tnt_router", level="critical"}'
         values: '1+0x10'
     alert_rule_test:
       - eval_time: 2m
@@ -233,10 +233,10 @@ tests:
               level: warning
               instance: app:8081
               alias: tnt_router
-              job: tarantool_app
+              job: tarantool
             exp_annotations:
-              summary: "Instance 'tnt_router' ('tarantool_app') has 'warning'-level Cartridge issues"
-              description: "Instance 'tnt_router' of job 'tarantool_app' has 'warning'-level Cartridge issues.
+              summary: "Instance 'tnt_router' ('tarantool') has 'warning'-level Cartridge issues"
+              description: "Instance 'tnt_router' of job 'tarantool' has 'warning'-level Cartridge issues.
                 Possible reasons: high replication lag, replication long idle,
                 failover or switchover issues, clock issues, memory fragmentation,
                 configuration issues, alien members."
@@ -248,19 +248,19 @@ tests:
               level: critical
               instance: app:8081
               alias: tnt_router
-              job: tarantool_app
+              job: tarantool
             exp_annotations:
-              summary: "Instance 'tnt_router' ('tarantool_app') has 'critical'-level Cartridge issues"
-              description: "Instance 'tnt_router' of job 'tarantool_app' has 'critical'-level Cartridge issues.
+              summary: "Instance 'tnt_router' ('tarantool') has 'critical'-level Cartridge issues"
+              description: "Instance 'tnt_router' of job 'tarantool' has 'critical'-level Cartridge issues.
                 Possible reasons: replication process critical fail,
                 running out of available memory."
 
 
   - interval: 15s
     input_series:
-      - series: tnt_replication_1_lag{job="tarantool_app", instance="app:8081", alias="tnt_storage_master"}
+      - series: tnt_replication_1_lag{job="tarantool", instance="app:8081", alias="tnt_storage_master"}
         values: '0+0x10'
-      - series: tnt_replication_2_lag{job="tarantool_app", instance="app:8082", alias="tnt_storage_replica"}
+      - series: tnt_replication_2_lag{job="tarantool", instance="app:8082", alias="tnt_storage_replica"}
         values: '1+15x10'
     alert_rule_test:
       - eval_time: 2m
@@ -270,16 +270,16 @@ tests:
               severity: warning
               instance: app:8082
               alias: tnt_storage_replica
-              job: tarantool_app
+              job: tarantool
             exp_annotations:
-              summary: "Instance 'tnt_storage_replica' ('tarantool_app') have high replication lag"
-              description: "Instance 'tnt_storage_replica' of job 'tarantool_app' have high replication lag,
+              summary: "Instance 'tnt_storage_replica' ('tarantool') have high replication lag"
+              description: "Instance 'tnt_storage_replica' of job 'tarantool' have high replication lag,
                 check up your network and cluster state."
 
 
   - interval: 15s
     input_series:
-      - series: tnt_vinyl_regulator_rate_limit{job="tarantool_app", instance="app:8081", alias="tnt_storage_master"}
+      - series: tnt_vinyl_regulator_rate_limit{job="tarantool", instance="app:8081", alias="tnt_storage_master"}
         values: '10000000+0x2 10000+0x8'
     alert_rule_test:
       - eval_time: 2m
@@ -289,18 +289,18 @@ tests:
               severity: warning
               instance: app:8081
               alias: tnt_storage_master
-              job: tarantool_app
+              job: tarantool
             exp_annotations:
-              summary: "Instance 'tnt_storage_master' ('tarantool_app') have low vinyl regulator rate limit"
-              description: "Instance 'tnt_storage_master' of job 'tarantool_app' have low vinyl engine regulator rate limit.
+              summary: "Instance 'tnt_storage_master' ('tarantool') have low vinyl regulator rate limit"
+              description: "Instance 'tnt_storage_master' of job 'tarantool' have low vinyl engine regulator rate limit.
                 This indicates issues with the disk or the scheduler."
 
 
   - interval: 15s
     input_series:
-      - series: tnt_vinyl_tx_commit{job="tarantool_app", instance="app:8081", alias="tnt_storage_master"}
+      - series: tnt_vinyl_tx_commit{job="tarantool", instance="app:8081", alias="tnt_storage_master"}
         values: '100000+100x10'
-      - series: tnt_vinyl_tx_conflict{job="tarantool_app", instance="app:8081", alias="tnt_storage_master"}
+      - series: tnt_vinyl_tx_conflict{job="tarantool", instance="app:8081", alias="tnt_storage_master"}
         values: '0+0x3 2+0x6'
     alert_rule_test:
       - eval_time: 2m
@@ -310,9 +310,9 @@ tests:
 
   - interval: 15s
     input_series:
-      - series: tnt_vinyl_tx_commit{job="tarantool_app", instance="app:8081", alias="tnt_storage_master"}
+      - series: tnt_vinyl_tx_commit{job="tarantool", instance="app:8081", alias="tnt_storage_master"}
         values: '100000+100x10'
-      - series: tnt_vinyl_tx_conflict{job="tarantool_app", instance="app:8081", alias="tnt_storage_master"}
+      - series: tnt_vinyl_tx_conflict{job="tarantool", instance="app:8081", alias="tnt_storage_master"}
         values: '6+6x10'
     alert_rule_test:
       - eval_time: 2m
@@ -322,16 +322,16 @@ tests:
               severity: critical
               instance: app:8081
               alias: tnt_storage_master
-              job: tarantool_app
+              job: tarantool
             exp_annotations:
-              summary: "Instance 'tnt_storage_master' ('tarantool_app') have high vinyl tx conflict rate"
-              description: "Instance 'tnt_storage_master' of job 'tarantool_app' have
+              summary: "Instance 'tnt_storage_master' ('tarantool') have high vinyl tx conflict rate"
+              description: "Instance 'tnt_storage_master' of job 'tarantool' have
                 high vinyl transactions conflict rate. It indicates that vinyl is not healthy."
 
 
   - interval: 15s
     input_series:
-      - series: tnt_vinyl_scheduler_tasks{job="tarantool_app", instance="app:8081", alias="tnt_storage_master", status="failed"}
+      - series: tnt_vinyl_scheduler_tasks{job="tarantool", instance="app:8081", alias="tnt_storage_master", status="failed"}
         values: '2+3x10'
     alert_rule_test:
       - eval_time: 2m
@@ -341,17 +341,17 @@ tests:
               severity: critical
               instance: app:8081
               alias: tnt_storage_master
-              job: tarantool_app
+              job: tarantool
               status: failed
             exp_annotations:
-              summary: "Instance 'tnt_storage_master' ('tarantool_app') have high vinyl scheduler failed tasks rate"
-              description: "Instance 'tnt_storage_master' of job 'tarantool_app' have
+              summary: "Instance 'tnt_storage_master' ('tarantool') have high vinyl scheduler failed tasks rate"
+              description: "Instance 'tnt_storage_master' of job 'tarantool' have
                 high vinyl scheduler failed tasks rate."
 
 
   - interval: 15s
     input_series:
-      - series: tnt_ev_loop_time{job="tarantool_app", instance="app:8081", alias="tnt_router"}
+      - series: tnt_ev_loop_time{job="tarantool", instance="app:8081", alias="tnt_router"}
         values: '0.11+0x10'
     alert_rule_test:
       - eval_time: 2m
@@ -361,16 +361,16 @@ tests:
               severity: warning
               instance: app:8081
               alias: tnt_router
-              job: tarantool_app
+              job: tarantool
             exp_annotations:
-              summary: "Instance 'tnt_router' ('tarantool_app') event loop has high cycle duration"
-              description: "Instance 'tnt_router' of job 'tarantool_app' event loop has high cycle duration.
+              summary: "Instance 'tnt_router' ('tarantool') event loop has high cycle duration"
+              description: "Instance 'tnt_router' of job 'tarantool' event loop has high cycle duration.
                 Some high loaded fiber has too little yields. It may be the reason of 'Too long WAL write' warnings."
 
 
   - interval: 15s
     input_series:
-      - series: tnt_replication_status{job="tarantool_app", instance="app:8081", alias="tnt_storage_master", id="1", stream="upstream"}
+      - series: tnt_replication_status{job="tarantool", instance="app:8081", alias="tnt_storage_master", id="1", stream="upstream"}
         values: '1+0x3 0+0x10'
     alert_rule_test:
       - eval_time: 2m
@@ -380,18 +380,18 @@ tests:
               severity: critical
               instance: app:8081
               alias: tnt_storage_master
-              job: tarantool_app
+              job: tarantool
               id: "1"
               stream: upstream
             exp_annotations:
-              summary: "Instance 'tnt_storage_master' ('tarantool_app') upstream (id 1) replication is not running"
-              description: "Instance 'tnt_storage_master' ('tarantool_app') upstream (id 1) replication is
+              summary: "Instance 'tnt_storage_master' ('tarantool') upstream (id 1) replication is not running"
+              description: "Instance 'tnt_storage_master' ('tarantool') upstream (id 1) replication is
                  not running. Check Cartridge UI for details."
 
 
   - interval: 15s
     input_series:
-      - series: tnt_crud_stats_count{job="tarantool_app", instance="app:8081", alias="tnt_router", name="customers", operation="insert", status="error"}
+      - series: tnt_crud_stats_count{job="tarantool", instance="app:8081", alias="tnt_router", name="customers", operation="insert", status="error"}
         values: '0+100x100'
     alert_rule_test:
       - eval_time: 5m
@@ -401,19 +401,19 @@ tests:
               severity: critical
               instance: app:8081
               alias: tnt_router
-              job: tarantool_app
+              job: tarantool
               name: customers
               operation: insert
               status: error
             exp_annotations:
-              summary: "Instance 'tnt_router' ('tarantool_app') too many CRUD insert errors."
+              summary: "Instance 'tnt_router' ('tarantool') too many CRUD insert errors."
               description: "Too many insert CRUD requests for 'customers' space on
-                'tnt_router' instance of job 'tarantool_app' get module error responses."
+                'tnt_router' instance of job 'tarantool' get module error responses."
 
 
   - interval: 15s
     input_series:
-      - series: tnt_crud_stats{job="tarantool_app", instance="app:8081", alias="tnt_router", name="customers", operation="get", status="ok", quantile="0.99"}
+      - series: tnt_crud_stats{job="tarantool", instance="app:8081", alias="tnt_router", name="customers", operation="get", status="ok", quantile="0.99"}
         values: '0.11+0x0'
     alert_rule_test:
       - eval_time: 2m
@@ -423,20 +423,20 @@ tests:
               severity: warning
               instance: app:8081
               alias: tnt_router
-              job: tarantool_app
+              job: tarantool
               name: customers
               operation: get
               status: ok
               quantile: '0.99'
             exp_annotations:
-              summary: "Instance 'tnt_router' ('tarantool_app') too high CRUD get latency."
+              summary: "Instance 'tnt_router' ('tarantool') too high CRUD get latency."
               description: "Some get ok CRUD requests for 'customers' space on
-                'tnt_router' instance of job 'tarantool_app' are processed too long."
+                'tnt_router' instance of job 'tarantool' are processed too long."
 
 
   - interval: 15s
     input_series:
-      - series: tnt_crud_map_reduces{job="tarantool_app", instance="app:8081", alias="tnt_router", name="customers", operation="select"}
+      - series: tnt_crud_map_reduces{job="tarantool", instance="app:8081", alias="tnt_router", name="customers", operation="select"}
         values: '0+100x100'
     alert_rule_test:
       - eval_time: 5m
@@ -446,27 +446,27 @@ tests:
               severity: warning
               instance: app:8081
               alias: tnt_router
-              job: tarantool_app
+              job: tarantool
               name: customers
               operation: select
             exp_annotations:
-              summary: "Instance 'tnt_router' ('tarantool_app') too many CRUD select map reduces."
+              summary: "Instance 'tnt_router' ('tarantool') too many CRUD select map reduces."
               description: "There are too many select CRUD map reduce requests for 'customers' space on
-              'tnt_router' instance of job 'tarantool_app'.
+              'tnt_router' instance of job 'tarantool'.
               Check your request conditions or consider changing sharding schema."
 
 
   - interval: 15s
     input_series:
-        - series: http_server_request_latency_count{job="tarantool_app",instance="app:8081",path="/hello",method="GET",status="200",alias="tnt_router"}
+        - series: http_server_request_latency_count{job="tarantool",instance="app:8081",path="/hello",method="GET",status="200",alias="tnt_router"}
           values: '0+100x60'
-        - series: http_server_request_latency_sum{job="tarantool_app",instance="app:8081",path="/hello",method="GET",status="200",alias="tnt_router"}
+        - series: http_server_request_latency_sum{job="tarantool",instance="app:8081",path="/hello",method="GET",status="200",alias="tnt_router"}
           values: '0+2x60'
-        - series: http_server_request_latency{job="tarantool_app",instance="app:8081",path="/hello",method="GET",status="200",alias="tnt_router",quantile="0.5"}
+        - series: http_server_request_latency{job="tarantool",instance="app:8081",path="/hello",method="GET",status="200",alias="tnt_router",quantile="0.5"}
           values: '0.02+0x60'
-        - series: http_server_request_latency{job="tarantool_app",instance="app:8081",path="/hello",method="GET",status="200",alias="tnt_router",quantile="0.9"}
+        - series: http_server_request_latency{job="tarantool",instance="app:8081",path="/hello",method="GET",status="200",alias="tnt_router",quantile="0.9"}
           values: '0.05+0x60'
-        - series: http_server_request_latency{job="tarantool_app",instance="app:8081",path="/hello",method="GET",status="200",alias="tnt_router",quantile="0.99"}
+        - series: http_server_request_latency{job="tarantool",instance="app:8081",path="/hello",method="GET",status="200",alias="tnt_router",quantile="0.99"}
           values: '0.11+0x60'
     alert_rule_test:
       - eval_time: 10m
@@ -476,28 +476,28 @@ tests:
               severity: warning
               instance: app:8081
               alias: tnt_router
-              job: tarantool_app
+              job: tarantool
               path: /hello
               method: GET
               status: '200'
               quantile: '0.99'
             exp_annotations:
-              summary: "Instance 'tnt_router' ('tarantool_app') high HTTP latency"
+              summary: "Instance 'tnt_router' ('tarantool') high HTTP latency"
               description: "Some GET requests to /hello path with 200 response status
-                on 'tnt_router' instance of job 'tarantool_app' are processed too long."
+                on 'tnt_router' instance of job 'tarantool' are processed too long."
 
 
   - interval: 15s
     input_series:
-        - series: http_server_request_latency_count{job="tarantool_app",instance="app:8081",path="/hell0",method="GET",status="400",alias="tnt_router"}
+        - series: http_server_request_latency_count{job="tarantool",instance="app:8081",path="/hell0",method="GET",status="400",alias="tnt_router"}
           values: '0+200x100'
-        - series: http_server_request_latency_sum{job="tarantool_app",instance="app:8081",path="/hell0",method="GET",status="400",alias="tnt_router"}
+        - series: http_server_request_latency_sum{job="tarantool",instance="app:8081",path="/hell0",method="GET",status="400",alias="tnt_router"}
           values: '0+2x100'
-        - series: http_server_request_latency{job="tarantool_app",instance="app:8081",path="/hell0",method="GET",status="400",alias="tnt_router",quantile="0.5"}
+        - series: http_server_request_latency{job="tarantool",instance="app:8081",path="/hell0",method="GET",status="400",alias="tnt_router",quantile="0.5"}
           values: '0.02+0x100'
-        - series: http_server_request_latency{job="tarantool_app",instance="app:8081",path="/hell0",method="GET",status="400",alias="tnt_router",quantile="0.9"}
+        - series: http_server_request_latency{job="tarantool",instance="app:8081",path="/hell0",method="GET",status="400",alias="tnt_router",quantile="0.9"}
           values: '0.02+0x100'
-        - series: http_server_request_latency{job="tarantool_app",instance="app:8081",path="/hell0",method="GET",status="400",alias="tnt_router",quantile="0.99"}
+        - series: http_server_request_latency{job="tarantool",instance="app:8081",path="/hell0",method="GET",status="400",alias="tnt_router",quantile="0.99"}
           values: '0.02+0x100'
     alert_rule_test:
       - eval_time: 5m
@@ -507,46 +507,46 @@ tests:
               severity: warning
               instance: app:8081
               alias: tnt_router
-              job: tarantool_app
+              job: tarantool
               path: /hell0
               method: GET
             exp_annotations:
-              summary: "Instance 'tnt_router' ('tarantool_app') high rate of client error responses"
+              summary: "Instance 'tnt_router' ('tarantool') high rate of client error responses"
               description: "Too many GET requests to /hell0 path 
-                on 'tnt_router' instance of job 'tarantool_app' get client error (4xx) responses."
+                on 'tnt_router' instance of job 'tarantool' get client error (4xx) responses."
 
   # Total rate of 4xx is high, but distributed between different routers
   - interval: 15s
     input_series:
-        - series: http_server_request_latency_count{job="tarantool_app",instance="app:8081",path="/hell0",method="GET",status="400",alias="tnt_router_1"}
+        - series: http_server_request_latency_count{job="tarantool",instance="app:8081",path="/hell0",method="GET",status="400",alias="tnt_router_1"}
           values: '0+150x100'
-        - series: http_server_request_latency_sum{job="tarantool_app",instance="app:8081",path="/hell0",method="GET",status="400",alias="tnt_router_1"}
+        - series: http_server_request_latency_sum{job="tarantool",instance="app:8081",path="/hell0",method="GET",status="400",alias="tnt_router_1"}
           values: '0+2x100'
-        - series: http_server_request_latency{job="tarantool_app",instance="app:8081",path="/hell0",method="GET",status="400",alias="tnt_router_1",quantile="0.5"}
+        - series: http_server_request_latency{job="tarantool",instance="app:8081",path="/hell0",method="GET",status="400",alias="tnt_router_1",quantile="0.5"}
           values: '0.02+0x100'
-        - series: http_server_request_latency{job="tarantool_app",instance="app:8081",path="/hell0",method="GET",status="400",alias="tnt_router_1",quantile="0.9"}
+        - series: http_server_request_latency{job="tarantool",instance="app:8081",path="/hell0",method="GET",status="400",alias="tnt_router_1",quantile="0.9"}
           values: '0.02+0x100'
-        - series: http_server_request_latency{job="tarantool_app",instance="app:8081",path="/hell0",method="GET",status="400",alias="tnt_router_1",quantile="0.99"}
+        - series: http_server_request_latency{job="tarantool",instance="app:8081",path="/hell0",method="GET",status="400",alias="tnt_router_1",quantile="0.99"}
           values: '0.02+0x100'
-        - series: http_server_request_latency_count{job="tarantool_app",instance="app:8081",path="/hell0",method="GET",status="400",alias="tnt_router_2"}
+        - series: http_server_request_latency_count{job="tarantool",instance="app:8081",path="/hell0",method="GET",status="400",alias="tnt_router_2"}
           values: '0+150x100'
-        - series: http_server_request_latency_sum{job="tarantool_app",instance="app:8081",path="/hell0",method="GET",status="400",alias="tnt_router_2"}
+        - series: http_server_request_latency_sum{job="tarantool",instance="app:8081",path="/hell0",method="GET",status="400",alias="tnt_router_2"}
           values: '0+2x100'
-        - series: http_server_request_latency{job="tarantool_app",instance="app:8081",path="/hell0",method="GET",status="400",alias="tnt_router_2",quantile="0.5"}
+        - series: http_server_request_latency{job="tarantool",instance="app:8081",path="/hell0",method="GET",status="400",alias="tnt_router_2",quantile="0.5"}
           values: '0.02+0x100'
-        - series: http_server_request_latency{job="tarantool_app",instance="app:8081",path="/hell0",method="GET",status="400",alias="tnt_router_2",quantile="0.9"}
+        - series: http_server_request_latency{job="tarantool",instance="app:8081",path="/hell0",method="GET",status="400",alias="tnt_router_2",quantile="0.9"}
           values: '0.02+0x100'
-        - series: http_server_request_latency{job="tarantool_app",instance="app:8081",path="/hell0",method="GET",status="400",alias="tnt_router_2",quantile="0.99"}
+        - series: http_server_request_latency{job="tarantool",instance="app:8081",path="/hell0",method="GET",status="400",alias="tnt_router_2",quantile="0.99"}
           values: '0.02+0x100'
-        - series: http_server_request_latency_count{job="tarantool_app",instance="app:8081",path="/hell0",method="GET",status="400",alias="tnt_router_3"}
+        - series: http_server_request_latency_count{job="tarantool",instance="app:8081",path="/hell0",method="GET",status="400",alias="tnt_router_3"}
           values: '0+150x100'
-        - series: http_server_request_latency_sum{job="tarantool_app",instance="app:8081",path="/hell0",method="GET",status="400",alias="tnt_router_3"}
+        - series: http_server_request_latency_sum{job="tarantool",instance="app:8081",path="/hell0",method="GET",status="400",alias="tnt_router_3"}
           values: '0+2x100'
-        - series: http_server_request_latency{job="tarantool_app",instance="app:8081",path="/hell0",method="GET",status="400",alias="tnt_router_3",quantile="0.5"}
+        - series: http_server_request_latency{job="tarantool",instance="app:8081",path="/hell0",method="GET",status="400",alias="tnt_router_3",quantile="0.5"}
           values: '0.02+0x100'
-        - series: http_server_request_latency{job="tarantool_app",instance="app:8081",path="/hell0",method="GET",status="400",alias="tnt_router_3",quantile="0.9"}
+        - series: http_server_request_latency{job="tarantool",instance="app:8081",path="/hell0",method="GET",status="400",alias="tnt_router_3",quantile="0.9"}
           values: '0.02+0x100'
-        - series: http_server_request_latency{job="tarantool_app",instance="app:8081",path="/hell0",method="GET",status="400",alias="tnt_router_3",quantile="0.99"}
+        - series: http_server_request_latency{job="tarantool",instance="app:8081",path="/hell0",method="GET",status="400",alias="tnt_router_3",quantile="0.99"}
           values: '0.02+0x100'
     alert_rule_test:
       - eval_time: 5m
@@ -557,25 +557,25 @@ tests:
         exp_alerts:
           - exp_labels:
               severity: warning
-              job: tarantool_app
+              job: tarantool
               path: /hell0
               method: GET
             exp_annotations:
-              summary: "Job 'tarantool_app' high rate of client error responses"
+              summary: "Job 'tarantool' high rate of client error responses"
               description: "Too many GET requests to /hell0 path
-                on instances of job 'tarantool_app' get client error (4xx) responses."
+                on instances of job 'tarantool' get client error (4xx) responses."
 
   - interval: 15s
     input_series:
-        - series: http_server_request_latency_count{job="tarantool_app",instance="app:8081",path="/goodbye",method="POST",status="500",alias="tnt_router"}
+        - series: http_server_request_latency_count{job="tarantool",instance="app:8081",path="/goodbye",method="POST",status="500",alias="tnt_router"}
           values: '0+0x10 1+0x10 2+0x10 3+0x10 4+0x10 5+0x10 6+0x10 7+0x10 8+0x10 9+0x10'
-        - series: http_server_request_latency_sum{job="tarantool_app",instance="app:8081",path="/goodbye",method="POST",status="500",alias="tnt_router"}
+        - series: http_server_request_latency_sum{job="tarantool",instance="app:8081",path="/goodbye",method="POST",status="500",alias="tnt_router"}
           values: '0+0x10 0.01+0x10 0.02+0x10 0.03+0x10 0.04+0x10 0.05+0x10 0.06+0x10 0.07+0x10 0.08+0x10 0.09+0x10'
-        - series: http_server_request_latency{job="tarantool_app",instance="app:8081",path="/goodbye",method="POST",status="500",alias="tnt_router",quantile="0.5"}
+        - series: http_server_request_latency{job="tarantool",instance="app:8081",path="/goodbye",method="POST",status="500",alias="tnt_router",quantile="0.5"}
           values: '0+0x10 0.01+0x100'
-        - series: http_server_request_latency{job="tarantool_app",instance="app:8081",path="/goodbye",method="POST",status="500",alias="tnt_router",quantile="0.9"}
+        - series: http_server_request_latency{job="tarantool",instance="app:8081",path="/goodbye",method="POST",status="500",alias="tnt_router",quantile="0.9"}
           values: '0+0x10 0.01+0x100'
-        - series: http_server_request_latency{job="tarantool_app",instance="app:8081",path="/goodbye",method="POST",status="500",alias="tnt_router",quantile="0.99"}
+        - series: http_server_request_latency{job="tarantool",instance="app:8081",path="/goodbye",method="POST",status="500",alias="tnt_router",quantile="0.99"}
           values: '0+0x10 0.01+0x100'
     alert_rule_test:
       - eval_time: 5m
@@ -585,25 +585,25 @@ tests:
               severity: warning
               instance: app:8081
               alias: tnt_router
-              job: tarantool_app
+              job: tarantool
               path: /goodbye
               method: POST
             exp_annotations:
-              summary: "Instance 'tnt_router' ('tarantool_app') server error responses"
+              summary: "Instance 'tnt_router' ('tarantool') server error responses"
               description: "Some POST requests to /goodbye path 
-                on 'tnt_router' instance of job 'tarantool_app' get server error (5xx) responses."
+                on 'tnt_router' instance of job 'tarantool' get server error (5xx) responses."
 
   - interval: 15s
     input_series:
-        - series: http_server_request_latency_count{job="tarantool_app",instance="app:8081",path="/hello",method="GET",status="200",alias="tnt_router"}
+        - series: http_server_request_latency_count{job="tarantool",instance="app:8081",path="/hello",method="GET",status="200",alias="tnt_router"}
           values: '0+0x10 1+0x10 2+0x10 3+0x10 4+0x10 5+0x10 6+0x10 7+0x10 8+0x10 9+0x10'
-        - series: http_server_request_latency_sum{job="tarantool_app",instance="app:8081",path="/hello",method="GET",status="200",alias="tnt_router"}
+        - series: http_server_request_latency_sum{job="tarantool",instance="app:8081",path="/hello",method="GET",status="200",alias="tnt_router"}
           values: '0+0x10 0.01+0x10 0.02+0x10 0.03+0x10 0.04+0x10 0.05+0x10 0.06+0x10 0.07+0x10 0.08+0x10 0.09+0x10'
-        - series: http_server_request_latency{job="tarantool_app",instance="app:8081",path="/hello",method="GET",status="200",alias="tnt_router",quantile="0.5"}
+        - series: http_server_request_latency{job="tarantool",instance="app:8081",path="/hello",method="GET",status="200",alias="tnt_router",quantile="0.5"}
           values: '0+0x10 0.01+0x100'
-        - series: http_server_request_latency{job="tarantool_app",instance="app:8081",path="/hello",method="GET",status="200",alias="tnt_router",quantile="0.9"}
+        - series: http_server_request_latency{job="tarantool",instance="app:8081",path="/hello",method="GET",status="200",alias="tnt_router",quantile="0.9"}
           values: '0+0x10 0.01+0x100'
-        - series: http_server_request_latency{job="tarantool_app",instance="app:8081",path="/hello",method="GET",status="200",alias="tnt_router",quantile="0.99"}
+        - series: http_server_request_latency{job="tarantool",instance="app:8081",path="/hello",method="GET",status="200",alias="tnt_router",quantile="0.99"}
           values: '0+0x10 0.01+0x100'
     alert_rule_test:
       - eval_time: 15m
@@ -613,8 +613,8 @@ tests:
               severity: warning
               instance: app:8081
               alias: tnt_router
-              job: tarantool_app
+              job: tarantool
             exp_annotations:
-              summary: "Router 'tnt_router' ('tarantool_app') low activity"
-              description: Router 'tnt_router' instance of job 'tarantool_app' gets too little requests.
+              summary: "Router 'tnt_router' ('tarantool') low activity"
+              description: Router 'tnt_router' instance of job 'tarantool' gets too little requests.
                 Please, check up your balancer middleware."

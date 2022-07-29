@@ -1,3 +1,4 @@
+JOB ?= tarantool
 RATE_TIME_RANGE ?= 2m
 POLICY ?= autogen
 OUTPUT_STATIC_DASHBOARD ?= dashboard.json
@@ -14,10 +15,7 @@ ifndef DATASOURCE
 	@echo 1>&2 "DATASOURCE must be set"
 		false
 endif
-ifndef JOB
-	@echo 1>&2 "JOB must be set"
-		false
-endif
+	# JOB is optional, default is "tarantool"
 	# RATE_TIME_RANGE is optional, default is "2m"
 	jsonnet -J ./vendor -J . \
 		--ext-str DATASOURCE=${DATASOURCE} \
