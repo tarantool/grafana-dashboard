@@ -68,6 +68,7 @@ local operation_rps_template(
       measurement=measurement,
       group_tags=['label_pairs_alias', 'label_pairs_name'],
       alias='$tag_label_pairs_alias — $tag_label_pairs_name',
+      fill='null',
     ).where('metric_name', '=', 'tnt_crud_stats_count')
     .where('label_pairs_operation', '=', operation)
     .where('label_pairs_status', '=', status)
@@ -115,6 +116,7 @@ local operation_latency_template(
       measurement=measurement,
       group_tags=['label_pairs_alias', 'label_pairs_name'],
       alias='$tag_label_pairs_alias — $tag_label_pairs_name',
+      fill='null',
     ).where('metric_name', '=', 'tnt_crud_stats')
     .where('label_pairs_operation', '=', operation)
     .where('label_pairs_status', '=', status)
@@ -634,6 +636,7 @@ local module = {
         measurement=measurement,
         group_tags=['label_pairs_alias', 'label_pairs_name'],
         alias='$tag_label_pairs_alias — $tag_label_pairs_name',
+        fill='null',
       ).where('metric_name', '=', 'tnt_crud_map_reduces')
       .where('label_pairs_operation', '=', 'select')
       .selectField('value').addConverter('mean').addConverter('non_negative_derivative', ['1s'])

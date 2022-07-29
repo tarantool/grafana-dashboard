@@ -66,6 +66,7 @@ local prometheus = grafana.prometheus;
         measurement=measurement,
         group_tags=['label_pairs_alias'],
         alias='$tag_label_pairs_alias',
+        fill='null',
       ).where('metric_name', '=', metric_name)
       .selectField('value').addConverter(converter),
 
@@ -88,6 +89,7 @@ local prometheus = grafana.prometheus;
         measurement=measurement,
         group_tags=['label_pairs_alias'],
         alias='$tag_label_pairs_alias',
+        fill='null',
       ).where('metric_name', '=', metric_name)
       .selectField('value').addConverter('mean').addConverter('non_negative_derivative', ['1s']),
 

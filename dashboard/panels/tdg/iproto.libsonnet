@@ -53,6 +53,7 @@ local prometheus = grafana.prometheus;
           'label_pairs_type',
         ],
         alias='$tag_label_pairs_type — $tag_label_pairs_alias',
+        fill='null',
       ).where('metric_name', '=', metric_name)
       .where('label_pairs_method', '=', std.format('repository.%s', method_tail))
       .selectField('value').addConverter('mean').addConverter('non_negative_derivative', ['1s']),
@@ -102,6 +103,7 @@ local prometheus = grafana.prometheus;
           'label_pairs_type',
         ],
         alias='$tag_label_pairs_type — $tag_label_pairs_alias',
+        fill='null',
       ).where('metric_name', '=', metric_name)
       .where('label_pairs_method', '=', std.format('repository.%s', method_tail))
       .where('label_pairs_quantile', '=', '0.99')

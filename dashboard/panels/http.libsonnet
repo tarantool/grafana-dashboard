@@ -37,6 +37,7 @@ local prometheus = grafana.prometheus;
         measurement=measurement,
         group_tags=['label_pairs_alias', 'label_pairs_path', 'label_pairs_method', 'label_pairs_status'],
         alias='$tag_label_pairs_alias — $tag_label_pairs_method $tag_label_pairs_path (code $tag_label_pairs_status)',
+        fill='null',
       ).where('metric_name', '=', metric_name).where('label_pairs_status', '=~', std.format('/%s/', status_regex))
       .selectField('value').addConverter('mean').addConverter('non_negative_derivative', ['1s'])
   ),
@@ -144,6 +145,7 @@ local prometheus = grafana.prometheus;
         measurement=measurement,
         group_tags=['label_pairs_alias', 'label_pairs_path', 'label_pairs_method', 'label_pairs_status'],
         alias='$tag_label_pairs_alias — $tag_label_pairs_method $tag_label_pairs_path (code $tag_label_pairs_status)',
+        fill='null',
       ).where('metric_name', '=', metric_name).where('label_pairs_quantile', '=', quantile)
       .where('label_pairs_status', '=~', std.format('/%s/', status_regex)).selectField('value').addConverter('mean')
   ),

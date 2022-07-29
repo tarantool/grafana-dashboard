@@ -59,6 +59,7 @@ dashboard.addPanels([
       measurement=variable.influxdb.measurement,
       group_tags=['label_pairs_alias'],
       alias='$tag_label_pairs_alias',
+      fill='null',
     ).where('metric_name', '=', 'my_component_load_metric').where('label_pairs_quantile', '=', '0.99')
     .selectField('value').addConverter('mean')
   ),
