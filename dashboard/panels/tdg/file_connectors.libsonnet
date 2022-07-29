@@ -30,6 +30,7 @@ local prometheus = grafana.prometheus;
           'label_pairs_connector_name',
         ],
         alias='$tag_label_pairs_connector_name — $tag_label_pairs_alias',
+        fill='null',
       ).where('metric_name', '=', metric_name)
       .selectField('value').addConverter('mean'),
 

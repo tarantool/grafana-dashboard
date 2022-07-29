@@ -33,6 +33,7 @@ local prometheus = grafana.prometheus;
           'label_pairs_broker_name',
         ],
         alias='$tag_label_pairs_name ($tag_label_pairs_broker_name) — $tag_label_pairs_alias ($tag_label_pairs_type, $tag_label_pairs_connector_name)',
+        fill='null',
       ).where('metric_name', '=', metric_name)
       .selectField('value').addConverter('mean'),
 
@@ -61,6 +62,7 @@ local prometheus = grafana.prometheus;
           'label_pairs_broker_name',
         ],
         alias='$tag_label_pairs_name ($tag_label_pairs_broker_name) — $tag_label_pairs_alias ($tag_label_pairs_type, $tag_label_pairs_connector_name)',
+        fill='null',
       ).where('metric_name', '=', metric_name)
       .selectField('value').addConverter('mean').addConverter('non_negative_derivative', ['1s']),
 
@@ -89,6 +91,7 @@ local prometheus = grafana.prometheus;
           'label_pairs_broker_name',
         ],
         alias='$tag_label_pairs_name ($tag_label_pairs_broker_name) — $tag_label_pairs_alias ($tag_label_pairs_type, $tag_label_pairs_connector_name)',
+        fill='null',
       ).where('metric_name', '=', metric_name).where('label_pairs_quantile', '=', '0.99')
       .selectField('value').addConverter('last'),
 
@@ -620,6 +623,7 @@ local prometheus = grafana.prometheus;
           'label_pairs_request',
         ],
         alias='$tag_label_pairs_request — $tag_label_pairs_name ($tag_label_pairs_broker_name) — $tag_label_pairs_alias ($tag_label_pairs_type, $tag_label_pairs_connector_name)',
+        fill='null',
       ).where('metric_name', '=', 'tdg_kafka_broker_req')
       .selectField('value').addConverter('mean').addConverter('non_negative_derivative', ['1s']),
   ),

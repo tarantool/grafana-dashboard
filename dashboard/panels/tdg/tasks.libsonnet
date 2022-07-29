@@ -41,6 +41,7 @@ local prometheus = grafana.prometheus;
           'label_pairs_kind',
         ],
         alias='$tag_label_pairs_name — $tag_label_pairs_alias',
+        fill='null',
       ).where('metric_name', '=', metric_name)
       .selectField('value').addConverter('mean').addConverter('non_negative_derivative', ['1s']),
   ),
@@ -78,6 +79,7 @@ local prometheus = grafana.prometheus;
           'label_pairs_kind',
         ],
         alias='$tag_label_pairs_name — $tag_label_pairs_alias',
+        fill='null',
       ).where('metric_name', '=', metric_name)
       .selectField('value').addConverter('mean'),
   ),
@@ -124,7 +126,7 @@ local prometheus = grafana.prometheus;
           WHERE ("metric_name" = '%(metric_name_sum)s') AND $timeFilter),
           (SELECT "value" as "%(metric_name_count)s" FROM %(policy_prefix)s"%(measurement)s"
           WHERE ("metric_name" = '%(metric_name_count)s') AND $timeFilter)
-          GROUP BY time($__interval), "label_pairs_alias", "label_pairs_name" fill(none)
+          GROUP BY time($__interval), "label_pairs_alias", "label_pairs_name" fill(null)
         |||, {
           metric_name_sum: std.join('_', [metric_name, 'sum']),
           metric_name_count: std.join('_', [metric_name, 'count']),
@@ -167,6 +169,7 @@ local prometheus = grafana.prometheus;
           'label_pairs_kind',
         ],
         alias='$tag_label_pairs_name ($tag_label_pairs_kind) — $tag_label_pairs_alias',
+        fill='null',
       ).where('metric_name', '=', metric_name)
       .selectField('value').addConverter('mean').addConverter('non_negative_derivative', ['1s']),
   ),
@@ -204,6 +207,7 @@ local prometheus = grafana.prometheus;
           'label_pairs_kind',
         ],
         alias='$tag_label_pairs_name ($tag_label_pairs_kind) — $tag_label_pairs_alias',
+        fill='null',
       ).where('metric_name', '=', metric_name)
       .selectField('value').addConverter('mean'),
   ),
@@ -251,7 +255,7 @@ local prometheus = grafana.prometheus;
           (SELECT "value" as "%(metric_name_count)s" FROM %(policy_prefix)s"%(measurement)s"
           WHERE ("metric_name" = '%(metric_name_count)s') AND $timeFilter)
           GROUP BY time($__interval), "label_pairs_alias", "label_pairs_name",
-          "label_pairs_kind" fill(none)
+          "label_pairs_kind" fill(null)
         |||, {
           metric_name_sum: std.join('_', [metric_name, 'sum']),
           metric_name_count: std.join('_', [metric_name, 'count']),

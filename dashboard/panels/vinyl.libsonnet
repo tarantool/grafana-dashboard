@@ -590,6 +590,7 @@ local prometheus = grafana.prometheus;
         measurement=measurement,
         group_tags=['label_pairs_alias'],
         alias='$tag_label_pairs_alias',
+        fill='null',
       ).where('metric_name', '=', 'tnt_vinyl_scheduler_tasks').where('label_pairs_status', '=', 'inprogress')
       .selectField('value').addConverter('last')
   ),
@@ -627,6 +628,7 @@ local prometheus = grafana.prometheus;
         measurement=measurement,
         group_tags=['label_pairs_alias'],
         alias='$tag_label_pairs_alias',
+        fill='null',
       ).where('metric_name', '=', 'tnt_vinyl_scheduler_tasks').where('label_pairs_status', '=', 'failed')
       .selectField('value').addConverter('mean').addConverter('non_negative_derivative', ['1s'])
   ),

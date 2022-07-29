@@ -40,6 +40,7 @@ local prometheus = grafana.prometheus;
         measurement=measurement,
         group_tags=['label_pairs_alias', 'label_pairs_name'],
         alias='$tag_label_pairs_alias — $tag_label_pairs_name',
+        fill='null',
       ).where('metric_name', '=', metric_name).where('label_pairs_engine', '=', engine)
       .selectField('value').addConverter('last')
   ),
@@ -125,6 +126,7 @@ local prometheus = grafana.prometheus;
         measurement=measurement,
         group_tags=['label_pairs_alias', 'label_pairs_name'],
         alias='$tag_label_pairs_alias — $tag_label_pairs_name',
+        fill='null',
       ).where('metric_name', '=', metric_name).where('label_pairs_engine', '=', 'memtx')
       .selectField('value').addConverter('mean')
   ),
@@ -194,6 +196,7 @@ local prometheus = grafana.prometheus;
         measurement=measurement,
         group_tags=['label_pairs_alias', 'label_pairs_name', 'label_pairs_index_name'],
         alias='$tag_label_pairs_alias — $tag_label_pairs_name ($tag_label_pairs_index_name)',
+        fill='null',
       ).where('metric_name', '=', 'tnt_space_index_bsize')
       .selectField('value').addConverter('mean')
   ),

@@ -33,6 +33,7 @@ local prometheus = grafana.prometheus;
           'label_pairs_entity',
         ],
         alias='$tag_label_pairs_operation_name ($tag_label_pairs_schema, $tag_label_pairs_entity) — $tag_label_pairs_alias',
+        fill='null',
       ).where('metric_name', '=', metric_name)
       .selectField('value').addConverter('mean').addConverter('non_negative_derivative', ['1s']),
 
@@ -69,7 +70,7 @@ local prometheus = grafana.prometheus;
           (SELECT "value" as "%(metric_name_count)s" FROM %(policy_prefix)s"%(measurement)s"
           WHERE ("metric_name" = '%(metric_name_count)s') AND $timeFilter)
           GROUP BY time($__interval), "label_pairs_alias", "label_pairs_operation_name",
-          "label_pairs_schema", "label_pairs_entity" fill(none)
+          "label_pairs_schema", "label_pairs_entity" fill(null)
         |||, {
           metric_name_sum: std.join('_', [metric_name, 'sum']),
           metric_name_count: std.join('_', [metric_name, 'count']),

@@ -47,6 +47,7 @@ local prometheus = grafana.prometheus;
           'label_pairs_method',
         ],
         alias='$tag_label_pairs_method $tag_label_pairs_type (code $tag_label_pairs_status_code) — $tag_label_pairs_alias',
+        fill='null',
       ).where('metric_name', '=', metric_name)
       .where('label_pairs_method', get_condition, 'GET')
       .where('label_pairs_status_code', '=~', std.format('/%s/', status_regex))
@@ -92,6 +93,7 @@ local prometheus = grafana.prometheus;
           'label_pairs_method',
         ],
         alias='$tag_label_pairs_method $tag_label_pairs_type (code $tag_label_pairs_status_code) — $tag_label_pairs_alias',
+        fill='null',
       ).where('metric_name', '=', metric_name)
       .where('label_pairs_method', get_condition, 'GET')
       .where('label_pairs_status_code', '=~', std.format('/%s/', status_regex))

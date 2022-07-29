@@ -342,6 +342,7 @@ local prometheus = grafana.prometheus;
         measurement=measurement,
         group_tags=['label_pairs_alias'],
         alias='$tag_label_pairs_alias',
+        fill='null',
       ).where('metric_name', '=', 'tnt_cartridge_issues').where('label_pairs_level', '=', level)
       .selectField('value').addConverter('last')
   ),
@@ -437,6 +438,7 @@ local prometheus = grafana.prometheus;
         measurement=measurement,
         group_tags=['label_pairs_alias', 'label_pairs_stream', 'label_pairs_id'],
         alias='$tag_label_pairs_alias $tag_label_pairs_stream ($tag_label_pairs_id)',
+        fill='null',
       ).where('metric_name', '=', 'tnt_replication_status')
       .selectField('value').addConverter('last')
   ),
@@ -513,6 +515,7 @@ local prometheus = grafana.prometheus;
         measurement=measurement,
         group_tags=['label_pairs_alias', 'label_pairs_id'],
         alias='$tag_label_pairs_alias ($tag_label_pairs_id)',
+        fill='null',
       ).where('metric_name', '=', 'tnt_replication_lag')
       .selectField('value').addConverter('mean')
   ),
@@ -554,6 +557,7 @@ local prometheus = grafana.prometheus;
         measurement=measurement,
         group_tags=['label_pairs_alias', 'label_pairs_delta'],
         alias='$tag_label_pairs_alias ($tag_label_pairs_delta)',
+        fill='null',
       ).where('metric_name', '=', 'tnt_clock_delta')
       .selectField('value').addConverter('last')
   ),

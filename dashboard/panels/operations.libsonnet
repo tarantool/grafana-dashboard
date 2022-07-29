@@ -37,6 +37,7 @@ local prometheus = grafana.prometheus;
         measurement=measurement,
         group_tags=['label_pairs_alias'],
         alias='$tag_label_pairs_alias',
+        fill='null',
       ).where('metric_name', '=', 'tnt_stats_op_total').where('label_pairs_operation', '=', operation)
       .selectField('value').addConverter('mean').addConverter('non_negative_derivative', ['1s'])
   ),
