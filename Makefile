@@ -1,6 +1,7 @@
 JOB ?= tarantool
 RATE_TIME_RANGE ?= 2m
 POLICY ?= autogen
+MEASUREMENT ?= tarantool_http
 OUTPUT_STATIC_DASHBOARD ?= dashboard.json
 
 .PHONY: build-deps
@@ -38,10 +39,7 @@ ifndef DATASOURCE
 		false
 endif
 	# POLICY is optional, default is "autogen"
-ifndef MEASUREMENT
-	@echo 1>&2 "MEASUREMENT must be set"
-		false
-endif
+	# MEASUREMENT is optional, default is "tarantool_http"
 	jsonnet -J ./vendor -J . \
 		--ext-str DATASOURCE=${DATASOURCE} \
 		--ext-str POLICY=${POLICY} \
