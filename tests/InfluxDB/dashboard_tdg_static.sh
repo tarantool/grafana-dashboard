@@ -2,5 +2,5 @@
 
 make DATASOURCE=influxdb \
      POLICY=autogen \
-     MEASUREMENT=tarantool_app_http \
+     MEASUREMENT=tarantool_http \
      build-static-tdg-influxdb

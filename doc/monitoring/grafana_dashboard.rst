@@ -123,7 +123,7 @@ to Telegraf configuration including each Tarantool instance metrics URL:
         insecure_skip_verify = true
         interval = "10s"
         data_format = "json"
-        name_prefix = "example_project_"
+        name_prefix = "tarantool_"
         fieldpass = ["value"]
 
 Be sure to include each label key as ``label_pairs_<key>`` so it will be
@@ -172,11 +172,11 @@ For TDG dashboard, please use
         insecure_skip_verify = true
         interval = "10s"
         data_format = "json"
-        name_prefix = "example_project_"
+        name_prefix = "tarantool_"
         fieldpass = ["value"]
 
 If you connect Telegraf instance to InfluxDB storage, metrics will be stored
-with ``"<name_prefix>http"`` measurement (``"example_project_http"`` in our example).
+with ``"<name_prefix>http"`` measurement (``"tarantool_http"`` in our example).
 
 .. _monitoring-grafana_dashboard-import:
 

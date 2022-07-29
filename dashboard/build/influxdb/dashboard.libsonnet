@@ -18,6 +18,7 @@ dashboard_raw(
   name='INFLUXDB_MEASUREMENT',
   label='Measurement',
   type='constant',
+  value='tarantool_http',
   description='InfluxDB Tarantool metrics measurement'
 ).addInput(
   name='INFLUXDB_POLICY',
