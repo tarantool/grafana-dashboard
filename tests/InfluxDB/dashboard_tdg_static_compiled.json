@@ -120,7 +120,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "tarantool_app_http",
+                     "measurement": "tarantool_http",
                      "policy": "autogen",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -257,7 +257,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "tarantool_app_http",
+                     "measurement": "tarantool_http",
                      "policy": "autogen",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -460,7 +460,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "tarantool_app_http",
+                     "measurement": "tarantool_http",
                      "policy": "autogen",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -610,7 +610,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "tarantool_app_http",
+                     "measurement": "tarantool_http",
                      "policy": "autogen",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -711,7 +711,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "tarantool_app_http",
+                     "measurement": "tarantool_http",
                      "policy": "autogen",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -845,7 +845,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "tarantool_app_http",
+                     "measurement": "tarantool_http",
                      "policy": "autogen",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -994,7 +994,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "tarantool_app_http",
+                     "measurement": "tarantool_http",
                      "policy": "autogen",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -1125,7 +1125,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "tarantool_app_http",
+                     "measurement": "tarantool_http",
                      "policy": "autogen",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -1262,7 +1262,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "tarantool_app_http",
+                     "measurement": "tarantool_http",
                      "policy": "autogen",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -1399,7 +1399,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "tarantool_app_http",
+                     "measurement": "tarantool_http",
                      "policy": "autogen",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -1536,7 +1536,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "tarantool_app_http",
+                     "measurement": "tarantool_http",
                      "policy": "autogen",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -1667,7 +1667,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "tarantool_app_http",
+                     "measurement": "tarantool_http",
                      "policy": "autogen",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -1804,7 +1804,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "tarantool_app_http",
+                     "measurement": "tarantool_http",
                      "policy": "autogen",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -1935,7 +1935,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "tarantool_app_http",
+                     "measurement": "tarantool_http",
                      "policy": "autogen",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -2072,7 +2072,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "tarantool_app_http",
+                     "measurement": "tarantool_http",
                      "policy": "autogen",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -2203,7 +2203,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "tarantool_app_http",
+                     "measurement": "tarantool_http",
                      "policy": "autogen",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -2340,7 +2340,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "tarantool_app_http",
+                     "measurement": "tarantool_http",
                      "policy": "autogen",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -2505,7 +2505,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "tarantool_app_http",
+                     "measurement": "tarantool_http",
                      "policy": "autogen",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -2636,7 +2636,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "tarantool_app_http",
+                     "measurement": "tarantool_http",
                      "policy": "autogen",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -2767,7 +2767,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "tarantool_app_http",
+                     "measurement": "tarantool_http",
                      "policy": "autogen",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -2898,7 +2898,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "tarantool_app_http",
+                     "measurement": "tarantool_http",
                      "policy": "autogen",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -3029,7 +3029,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "tarantool_app_http",
+                     "measurement": "tarantool_http",
                      "policy": "autogen",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -3160,7 +3160,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "tarantool_app_http",
+                     "measurement": "tarantool_http",
                      "policy": "autogen",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -3291,7 +3291,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "tarantool_app_http",
+                     "measurement": "tarantool_http",
                      "policy": "autogen",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -3422,7 +3422,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "tarantool_app_http",
+                     "measurement": "tarantool_http",
                      "policy": "autogen",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -3553,7 +3553,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "tarantool_app_http",
+                     "measurement": "tarantool_http",
                      "policy": "autogen",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -3710,7 +3710,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "tarantool_app_http",
+                     "measurement": "tarantool_http",
                      "policy": "autogen",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -3853,7 +3853,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "tarantool_app_http",
+                     "measurement": "tarantool_http",
                      "policy": "autogen",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -3996,7 +3996,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "tarantool_app_http",
+                     "measurement": "tarantool_http",
                      "policy": "autogen",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -4145,7 +4145,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "tarantool_app_http",
+                     "measurement": "tarantool_http",
                      "policy": "autogen",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -4282,7 +4282,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "tarantool_app_http",
+                     "measurement": "tarantool_http",
                      "policy": "autogen",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -4439,7 +4439,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "tarantool_app_http",
+                     "measurement": "tarantool_http",
                      "policy": "autogen",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -4570,7 +4570,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "tarantool_app_http",
+                     "measurement": "tarantool_http",
                      "policy": "autogen",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -4701,7 +4701,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "tarantool_app_http",
+                     "measurement": "tarantool_http",
                      "policy": "autogen",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -4832,7 +4832,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "tarantool_app_http",
+                     "measurement": "tarantool_http",
                      "policy": "autogen",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -4963,7 +4963,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "tarantool_app_http",
+                     "measurement": "tarantool_http",
                      "policy": "autogen",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -5094,7 +5094,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "tarantool_app_http",
+                     "measurement": "tarantool_http",
                      "policy": "autogen",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -5225,7 +5225,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "tarantool_app_http",
+                     "measurement": "tarantool_http",
                      "policy": "autogen",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -5356,7 +5356,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "tarantool_app_http",
+                     "measurement": "tarantool_http",
                      "policy": "autogen",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -5487,7 +5487,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "tarantool_app_http",
+                     "measurement": "tarantool_http",
                      "policy": "autogen",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -5618,7 +5618,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "tarantool_app_http",
+                     "measurement": "tarantool_http",
                      "policy": "autogen",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -5755,7 +5755,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "tarantool_app_http",
+                     "measurement": "tarantool_http",
                      "policy": "autogen",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -5892,7 +5892,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "tarantool_app_http",
+                     "measurement": "tarantool_http",
                      "policy": "autogen",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -6029,7 +6029,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "tarantool_app_http",
+                     "measurement": "tarantool_http",
                      "policy": "autogen",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -6160,7 +6160,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "tarantool_app_http",
+                     "measurement": "tarantool_http",
                      "policy": "autogen",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -6297,7 +6297,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "tarantool_app_http",
+                     "measurement": "tarantool_http",
                      "policy": "autogen",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -6440,7 +6440,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "tarantool_app_http",
+                     "measurement": "tarantool_http",
                      "policy": "autogen",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -6577,7 +6577,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "tarantool_app_http",
+                     "measurement": "tarantool_http",
                      "policy": "autogen",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -6734,7 +6734,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "tarantool_app_http",
+                     "measurement": "tarantool_http",
                      "policy": "autogen",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -6871,7 +6871,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "tarantool_app_http",
+                     "measurement": "tarantool_http",
                      "policy": "autogen",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -7014,7 +7014,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "tarantool_app_http",
+                     "measurement": "tarantool_http",
                      "policy": "autogen",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -7163,7 +7163,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "tarantool_app_http",
+                     "measurement": "tarantool_http",
                      "policy": "autogen",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -7326,7 +7326,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "tarantool_app_http",
+                     "measurement": "tarantool_http",
                      "policy": "autogen",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -7457,7 +7457,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "tarantool_app_http",
+                     "measurement": "tarantool_http",
                      "policy": "autogen",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -7588,7 +7588,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "tarantool_app_http",
+                     "measurement": "tarantool_http",
                      "policy": "autogen",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -7719,7 +7719,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "tarantool_app_http",
+                     "measurement": "tarantool_http",
                      "policy": "autogen",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -7850,7 +7850,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "tarantool_app_http",
+                     "measurement": "tarantool_http",
                      "policy": "autogen",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -7981,7 +7981,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "tarantool_app_http",
+                     "measurement": "tarantool_http",
                      "policy": "autogen",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -8112,7 +8112,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "tarantool_app_http",
+                     "measurement": "tarantool_http",
                      "policy": "autogen",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -8263,7 +8263,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "tarantool_app_http",
+                     "measurement": "tarantool_http",
                      "policy": "autogen",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -8400,7 +8400,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "tarantool_app_http",
+                     "measurement": "tarantool_http",
                      "policy": "autogen",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -8537,7 +8537,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "tarantool_app_http",
+                     "measurement": "tarantool_http",
                      "policy": "autogen",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -8674,7 +8674,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "tarantool_app_http",
+                     "measurement": "tarantool_http",
                      "policy": "autogen",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -8805,7 +8805,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "tarantool_app_http",
+                     "measurement": "tarantool_http",
                      "policy": "autogen",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -8942,7 +8942,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "tarantool_app_http",
+                     "measurement": "tarantool_http",
                      "policy": "autogen",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -9079,7 +9079,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "tarantool_app_http",
+                     "measurement": "tarantool_http",
                      "policy": "autogen",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -9216,7 +9216,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "tarantool_app_http",
+                     "measurement": "tarantool_http",
                      "policy": "autogen",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -9353,7 +9353,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "tarantool_app_http",
+                     "measurement": "tarantool_http",
                      "policy": "autogen",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -9490,7 +9490,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "tarantool_app_http",
+                     "measurement": "tarantool_http",
                      "policy": "autogen",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -9627,7 +9627,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "tarantool_app_http",
+                     "measurement": "tarantool_http",
                      "policy": "autogen",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -9764,7 +9764,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "tarantool_app_http",
+                     "measurement": "tarantool_http",
                      "policy": "autogen",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -9901,7 +9901,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "tarantool_app_http",
+                     "measurement": "tarantool_http",
                      "policy": "autogen",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -10032,7 +10032,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "tarantool_app_http",
+                     "measurement": "tarantool_http",
                      "policy": "autogen",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -10163,7 +10163,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "tarantool_app_http",
+                     "measurement": "tarantool_http",
                      "policy": "autogen",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -10294,7 +10294,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "tarantool_app_http",
+                     "measurement": "tarantool_http",
                      "policy": "autogen",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -10425,7 +10425,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "tarantool_app_http",
+                     "measurement": "tarantool_http",
                      "policy": "autogen",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -10556,7 +10556,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "tarantool_app_http",
+                     "measurement": "tarantool_http",
                      "policy": "autogen",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -10693,7 +10693,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "tarantool_app_http",
+                     "measurement": "tarantool_http",
                      "policy": "autogen",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -10850,7 +10850,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "tarantool_app_http",
+                     "measurement": "tarantool_http",
                      "policy": "autogen",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -10993,7 +10993,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "tarantool_app_http",
+                     "measurement": "tarantool_http",
                      "policy": "autogen",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -11136,7 +11136,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "tarantool_app_http",
+                     "measurement": "tarantool_http",
                      "policy": "autogen",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -11279,7 +11279,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "tarantool_app_http",
+                     "measurement": "tarantool_http",
                      "policy": "autogen",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -11422,7 +11422,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "tarantool_app_http",
+                     "measurement": "tarantool_http",
                      "policy": "autogen",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -11565,7 +11565,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "tarantool_app_http",
+                     "measurement": "tarantool_http",
                      "policy": "autogen",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -11708,7 +11708,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "tarantool_app_http",
+                     "measurement": "tarantool_http",
                      "policy": "autogen",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -11851,7 +11851,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "tarantool_app_http",
+                     "measurement": "tarantool_http",
                      "policy": "autogen",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -11994,7 +11994,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "tarantool_app_http",
+                     "measurement": "tarantool_http",
                      "policy": "autogen",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -12137,7 +12137,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "tarantool_app_http",
+                     "measurement": "tarantool_http",
                      "policy": "autogen",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -12280,7 +12280,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "tarantool_app_http",
+                     "measurement": "tarantool_http",
                      "policy": "autogen",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -12423,7 +12423,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "tarantool_app_http",
+                     "measurement": "tarantool_http",
                      "policy": "autogen",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -12604,7 +12604,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "tarantool_app_http",
+                     "measurement": "tarantool_http",
                      "policy": "autogen",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -12753,7 +12753,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "tarantool_app_http",
+                     "measurement": "tarantool_http",
                      "policy": "autogen",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -12902,7 +12902,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "tarantool_app_http",
+                     "measurement": "tarantool_http",
                      "policy": "autogen",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -13051,7 +13051,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "tarantool_app_http",
+                     "measurement": "tarantool_http",
                      "policy": "autogen",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -13206,7 +13206,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "tarantool_app_http",
+                     "measurement": "tarantool_http",
                      "policy": "autogen",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -13361,7 +13361,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "tarantool_app_http",
+                     "measurement": "tarantool_http",
                      "policy": "autogen",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -13516,7 +13516,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "tarantool_app_http",
+                     "measurement": "tarantool_http",
                      "policy": "autogen",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -13671,7 +13671,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "tarantool_app_http",
+                     "measurement": "tarantool_http",
                      "policy": "autogen",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -13826,7 +13826,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "tarantool_app_http",
+                     "measurement": "tarantool_http",
                      "policy": "autogen",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -13981,7 +13981,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "tarantool_app_http",
+                     "measurement": "tarantool_http",
                      "policy": "autogen",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -14136,7 +14136,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "tarantool_app_http",
+                     "measurement": "tarantool_http",
                      "policy": "autogen",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -14317,7 +14317,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "tarantool_app_http",
+                     "measurement": "tarantool_http",
                      "policy": "autogen",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -14472,7 +14472,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "tarantool_app_http",
+                     "measurement": "tarantool_http",
                      "policy": "autogen",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -14633,7 +14633,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "tarantool_app_http",
+                     "measurement": "tarantool_http",
                      "policy": "autogen",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -14794,7 +14794,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "tarantool_app_http",
+                     "measurement": "tarantool_http",
                      "policy": "autogen",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -14955,7 +14955,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "tarantool_app_http",
+                     "measurement": "tarantool_http",
                      "policy": "autogen",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -15110,7 +15110,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "tarantool_app_http",
+                     "measurement": "tarantool_http",
                      "policy": "autogen",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -15265,7 +15265,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "tarantool_app_http",
+                     "measurement": "tarantool_http",
                      "policy": "autogen",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -15420,7 +15420,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "tarantool_app_http",
+                     "measurement": "tarantool_http",
                      "policy": "autogen",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -15575,7 +15575,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "tarantool_app_http",
+                     "measurement": "tarantool_http",
                      "policy": "autogen",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -15736,7 +15736,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "tarantool_app_http",
+                     "measurement": "tarantool_http",
                      "policy": "autogen",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -15897,7 +15897,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "tarantool_app_http",
+                     "measurement": "tarantool_http",
                      "policy": "autogen",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -16058,7 +16058,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "tarantool_app_http",
+                     "measurement": "tarantool_http",
                      "policy": "autogen",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -16219,7 +16219,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "tarantool_app_http",
+                     "measurement": "tarantool_http",
                      "policy": "autogen",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -16374,7 +16374,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "tarantool_app_http",
+                     "measurement": "tarantool_http",
                      "policy": "autogen",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -16535,7 +16535,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "tarantool_app_http",
+                     "measurement": "tarantool_http",
                      "policy": "autogen",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -16696,7 +16696,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "tarantool_app_http",
+                     "measurement": "tarantool_http",
                      "policy": "autogen",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -16857,7 +16857,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "tarantool_app_http",
+                     "measurement": "tarantool_http",
                      "policy": "autogen",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -17018,7 +17018,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "tarantool_app_http",
+                     "measurement": "tarantool_http",
                      "policy": "autogen",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -17179,7 +17179,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "tarantool_app_http",
+                     "measurement": "tarantool_http",
                      "policy": "autogen",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -17334,7 +17334,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "tarantool_app_http",
+                     "measurement": "tarantool_http",
                      "policy": "autogen",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -17501,7 +17501,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "tarantool_app_http",
+                     "measurement": "tarantool_http",
                      "policy": "autogen",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -17662,7 +17662,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "tarantool_app_http",
+                     "measurement": "tarantool_http",
                      "policy": "autogen",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -17823,7 +17823,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "tarantool_app_http",
+                     "measurement": "tarantool_http",
                      "policy": "autogen",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -17984,7 +17984,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "tarantool_app_http",
+                     "measurement": "tarantool_http",
                      "policy": "autogen",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -18145,7 +18145,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "tarantool_app_http",
+                     "measurement": "tarantool_http",
                      "policy": "autogen",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -18326,7 +18326,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "tarantool_app_http",
+                     "measurement": "tarantool_http",
                      "policy": "autogen",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -18481,7 +18481,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "tarantool_app_http",
+                     "measurement": "tarantool_http",
                      "policy": "autogen",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -18636,7 +18636,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "tarantool_app_http",
+                     "measurement": "tarantool_http",
                      "policy": "autogen",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -18797,7 +18797,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "tarantool_app_http",
+                     "measurement": "tarantool_http",
                      "policy": "autogen",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -18964,7 +18964,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "tarantool_app_http",
+                     "measurement": "tarantool_http",
                      "policy": "autogen",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -19125,7 +19125,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "tarantool_app_http",
+                     "measurement": "tarantool_http",
                      "policy": "autogen",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -19286,7 +19286,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "tarantool_app_http",
+                     "measurement": "tarantool_http",
                      "policy": "autogen",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -19447,7 +19447,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "tarantool_app_http",
+                     "measurement": "tarantool_http",
                      "policy": "autogen",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -19608,7 +19608,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "tarantool_app_http",
+                     "measurement": "tarantool_http",
                      "policy": "autogen",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -19769,7 +19769,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "tarantool_app_http",
+                     "measurement": "tarantool_http",
                      "policy": "autogen",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -19930,7 +19930,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "tarantool_app_http",
+                     "measurement": "tarantool_http",
                      "policy": "autogen",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -20097,7 +20097,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "tarantool_app_http",
+                     "measurement": "tarantool_http",
                      "policy": "autogen",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -20264,7 +20264,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "tarantool_app_http",
+                     "measurement": "tarantool_http",
                      "policy": "autogen",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -20431,7 +20431,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "tarantool_app_http",
+                     "measurement": "tarantool_http",
                      "policy": "autogen",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -20598,7 +20598,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "tarantool_app_http",
+                     "measurement": "tarantool_http",
                      "policy": "autogen",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -20765,7 +20765,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "tarantool_app_http",
+                     "measurement": "tarantool_http",
                      "policy": "autogen",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -20934,7 +20934,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "tarantool_app_http",
+                     "measurement": "tarantool_http",
                      "policy": "autogen",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -21083,7 +21083,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "tarantool_app_http",
+                     "measurement": "tarantool_http",
                      "policy": "autogen",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -21232,7 +21232,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "tarantool_app_http",
+                     "measurement": "tarantool_http",
                      "policy": "autogen",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -21387,7 +21387,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "tarantool_app_http",
+                     "measurement": "tarantool_http",
                      "policy": "autogen",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -21556,7 +21556,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "tarantool_app_http",
+                     "measurement": "tarantool_http",
                      "policy": "autogen",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -21705,7 +21705,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "tarantool_app_http",
+                     "measurement": "tarantool_http",
                      "policy": "autogen",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -21862,7 +21862,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "tarantool_app_http",
+                     "measurement": "tarantool_http",
                      "policy": "autogen",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -22005,7 +22005,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "tarantool_app_http",
+                     "measurement": "tarantool_http",
                      "policy": "autogen",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -22148,7 +22148,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "tarantool_app_http",
+                     "measurement": "tarantool_http",
                      "policy": "autogen",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -22285,7 +22285,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "tarantool_app_http",
+                     "measurement": "tarantool_http",
                      "policy": "autogen",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -22431,7 +22431,7 @@
                         }
                      ],
                      "policy": "default",
-                     "query": "SELECT mean(\"tdg_scanned_tuples_sum\") / mean(\"tdg_scanned_tuples_count\")\nas \"average\" FROM\n(SELECT \"value\" as \"tdg_scanned_tuples_sum\" FROM \"autogen\".\"tarantool_app_http\"\nWHERE (\"metric_name\" = 'tdg_scanned_tuples_sum') AND $timeFilter),\n(SELECT \"value\" as \"tdg_scanned_tuples_count\" FROM \"autogen\".\"tarantool_app_http\"\nWHERE (\"metric_name\" = 'tdg_scanned_tuples_count') AND $timeFilter)\nGROUP BY time($__interval), \"label_pairs_alias\", \"label_pairs_type_name\" fill(none)\n",
+                     "query": "SELECT mean(\"tdg_scanned_tuples_sum\") / mean(\"tdg_scanned_tuples_count\")\nas \"average\" FROM\n(SELECT \"value\" as \"tdg_scanned_tuples_sum\" FROM \"autogen\".\"tarantool_http\"\nWHERE (\"metric_name\" = 'tdg_scanned_tuples_sum') AND $timeFilter),\n(SELECT \"value\" as \"tdg_scanned_tuples_count\" FROM \"autogen\".\"tarantool_http\"\nWHERE (\"metric_name\" = 'tdg_scanned_tuples_count') AND $timeFilter)\nGROUP BY time($__interval), \"label_pairs_alias\", \"label_pairs_type_name\" fill(none)\n",
                      "rawQuery": true,
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -22538,7 +22538,7 @@
                         }
                      ],
                      "policy": "default",
-                     "query": "SELECT mean(\"tdg_returned_tuples_sum\") / mean(\"tdg_returned_tuples_count\")\nas \"average\" FROM\n(SELECT \"value\" as \"tdg_returned_tuples_sum\" FROM \"autogen\".\"tarantool_app_http\"\nWHERE (\"metric_name\" = 'tdg_returned_tuples_sum') AND $timeFilter),\n(SELECT \"value\" as \"tdg_returned_tuples_count\" FROM \"autogen\".\"tarantool_app_http\"\nWHERE (\"metric_name\" = 'tdg_returned_tuples_count') AND $timeFilter)\nGROUP BY time($__interval), \"label_pairs_alias\", \"label_pairs_type_name\" fill(none)\n",
+                     "query": "SELECT mean(\"tdg_returned_tuples_sum\") / mean(\"tdg_returned_tuples_count\")\nas \"average\" FROM\n(SELECT \"value\" as \"tdg_returned_tuples_sum\" FROM \"autogen\".\"tarantool_http\"\nWHERE (\"metric_name\" = 'tdg_returned_tuples_sum') AND $timeFilter),\n(SELECT \"value\" as \"tdg_returned_tuples_count\" FROM \"autogen\".\"tarantool_http\"\nWHERE (\"metric_name\" = 'tdg_returned_tuples_count') AND $timeFilter)\nGROUP BY time($__interval), \"label_pairs_alias\", \"label_pairs_type_name\" fill(none)\n",
                      "rawQuery": true,
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -22650,7 +22650,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "tarantool_app_http",
+                     "measurement": "tarantool_http",
                      "policy": "autogen",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -22781,7 +22781,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "tarantool_app_http",
+                     "measurement": "tarantool_http",
                      "policy": "autogen",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -22938,7 +22938,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "tarantool_app_http",
+                     "measurement": "tarantool_http",
                      "policy": "autogen",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -23075,7 +23075,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "tarantool_app_http",
+                     "measurement": "tarantool_http",
                      "policy": "autogen",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -23212,7 +23212,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "tarantool_app_http",
+                     "measurement": "tarantool_http",
                      "policy": "autogen",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -23349,7 +23349,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "tarantool_app_http",
+                     "measurement": "tarantool_http",
                      "policy": "autogen",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -23486,7 +23486,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "tarantool_app_http",
+                     "measurement": "tarantool_http",
                      "policy": "autogen",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -23623,7 +23623,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "tarantool_app_http",
+                     "measurement": "tarantool_http",
                      "policy": "autogen",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -23792,7 +23792,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "tarantool_app_http",
+                     "measurement": "tarantool_http",
                      "policy": "autogen",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -23924,7 +23924,7 @@
                         }
                      ],
                      "policy": "default",
-                     "query": "SELECT mean(\"tdg_graphql_query_time_sum\") / mean(\"tdg_graphql_query_time_count\")\nas \"average\" FROM\n(SELECT \"value\" as \"tdg_graphql_query_time_sum\" FROM \"autogen\".\"tarantool_app_http\"\nWHERE (\"metric_name\" = 'tdg_graphql_query_time_sum') AND $timeFilter),\n(SELECT \"value\" as \"tdg_graphql_query_time_count\" FROM \"autogen\".\"tarantool_app_http\"\nWHERE (\"metric_name\" = 'tdg_graphql_query_time_count') AND $timeFilter)\nGROUP BY time($__interval), \"label_pairs_alias\", \"label_pairs_operation_name\",\n\"label_pairs_schema\", \"label_pairs_entity\" fill(none)\n",
+                     "query": "SELECT mean(\"tdg_graphql_query_time_sum\") / mean(\"tdg_graphql_query_time_count\")\nas \"average\" FROM\n(SELECT \"value\" as \"tdg_graphql_query_time_sum\" FROM \"autogen\".\"tarantool_http\"\nWHERE (\"metric_name\" = 'tdg_graphql_query_time_sum') AND $timeFilter),\n(SELECT \"value\" as \"tdg_graphql_query_time_count\" FROM \"autogen\".\"tarantool_http\"\nWHERE (\"metric_name\" = 'tdg_graphql_query_time_count') AND $timeFilter)\nGROUP BY time($__interval), \"label_pairs_alias\", \"label_pairs_operation_name\",\n\"label_pairs_schema\", \"label_pairs_entity\" fill(none)\n",
                      "rawQuery": true,
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -24054,7 +24054,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "tarantool_app_http",
+                     "measurement": "tarantool_http",
                      "policy": "autogen",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -24209,7 +24209,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "tarantool_app_http",
+                     "measurement": "tarantool_http",
                      "policy": "autogen",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -24341,7 +24341,7 @@
                         }
                      ],
                      "policy": "default",
-                     "query": "SELECT mean(\"tdg_graphql_mutation_time_sum\") / mean(\"tdg_graphql_mutation_time_count\")\nas \"average\" FROM\n(SELECT \"value\" as \"tdg_graphql_mutation_time_sum\" FROM \"autogen\".\"tarantool_app_http\"\nWHERE (\"metric_name\" = 'tdg_graphql_mutation_time_sum') AND $timeFilter),\n(SELECT \"value\" as \"tdg_graphql_mutation_time_count\" FROM \"autogen\".\"tarantool_app_http\"\nWHERE (\"metric_name\" = 'tdg_graphql_mutation_time_count') AND $timeFilter)\nGROUP BY time($__interval), \"label_pairs_alias\", \"label_pairs_operation_name\",\n\"label_pairs_schema\", \"label_pairs_entity\" fill(none)\n",
+                     "query": "SELECT mean(\"tdg_graphql_mutation_time_sum\") / mean(\"tdg_graphql_mutation_time_count\")\nas \"average\" FROM\n(SELECT \"value\" as \"tdg_graphql_mutation_time_sum\" FROM \"autogen\".\"tarantool_http\"\nWHERE (\"metric_name\" = 'tdg_graphql_mutation_time_sum') AND $timeFilter),\n(SELECT \"value\" as \"tdg_graphql_mutation_time_count\" FROM \"autogen\".\"tarantool_http\"\nWHERE (\"metric_name\" = 'tdg_graphql_mutation_time_count') AND $timeFilter)\nGROUP BY time($__interval), \"label_pairs_alias\", \"label_pairs_operation_name\",\n\"label_pairs_schema\", \"label_pairs_entity\" fill(none)\n",
                      "rawQuery": true,
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -24471,7 +24471,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "tarantool_app_http",
+                     "measurement": "tarantool_http",
                      "policy": "autogen",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -24634,7 +24634,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "tarantool_app_http",
+                     "measurement": "tarantool_http",
                      "policy": "autogen",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -24783,7 +24783,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "tarantool_app_http",
+                     "measurement": "tarantool_http",
                      "policy": "autogen",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -24932,7 +24932,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "tarantool_app_http",
+                     "measurement": "tarantool_http",
                      "policy": "autogen",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -25081,7 +25081,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "tarantool_app_http",
+                     "measurement": "tarantool_http",
                      "policy": "autogen",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -25230,7 +25230,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "tarantool_app_http",
+                     "measurement": "tarantool_http",
                      "policy": "autogen",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -25379,7 +25379,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "tarantool_app_http",
+                     "measurement": "tarantool_http",
                      "policy": "autogen",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -25528,7 +25528,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "tarantool_app_http",
+                     "measurement": "tarantool_http",
                      "policy": "autogen",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -25677,7 +25677,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "tarantool_app_http",
+                     "measurement": "tarantool_http",
                      "policy": "autogen",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -25826,7 +25826,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "tarantool_app_http",
+                     "measurement": "tarantool_http",
                      "policy": "autogen",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -25975,7 +25975,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "tarantool_app_http",
+                     "measurement": "tarantool_http",
                      "policy": "autogen",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -26124,7 +26124,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "tarantool_app_http",
+                     "measurement": "tarantool_http",
                      "policy": "autogen",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -26273,7 +26273,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "tarantool_app_http",
+                     "measurement": "tarantool_http",
                      "policy": "autogen",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -26422,7 +26422,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "tarantool_app_http",
+                     "measurement": "tarantool_http",
                      "policy": "autogen",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -26571,7 +26571,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "tarantool_app_http",
+                     "measurement": "tarantool_http",
                      "policy": "autogen",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -26720,7 +26720,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "tarantool_app_http",
+                     "measurement": "tarantool_http",
                      "policy": "autogen",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -26869,7 +26869,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "tarantool_app_http",
+                     "measurement": "tarantool_http",
                      "policy": "autogen",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -27018,7 +27018,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "tarantool_app_http",
+                     "measurement": "tarantool_http",
                      "policy": "autogen",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -27167,7 +27167,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "tarantool_app_http",
+                     "measurement": "tarantool_http",
                      "policy": "autogen",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -27348,7 +27348,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "tarantool_app_http",
+                     "measurement": "tarantool_http",
                      "policy": "autogen",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -27515,7 +27515,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "tarantool_app_http",
+                     "measurement": "tarantool_http",
                      "policy": "autogen",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -27682,7 +27682,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "tarantool_app_http",
+                     "measurement": "tarantool_http",
                      "policy": "autogen",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -27849,7 +27849,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "tarantool_app_http",
+                     "measurement": "tarantool_http",
                      "policy": "autogen",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -28016,7 +28016,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "tarantool_app_http",
+                     "measurement": "tarantool_http",
                      "policy": "autogen",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -28183,7 +28183,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "tarantool_app_http",
+                     "measurement": "tarantool_http",
                      "policy": "autogen",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -28350,7 +28350,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "tarantool_app_http",
+                     "measurement": "tarantool_http",
                      "policy": "autogen",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -28517,7 +28517,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "tarantool_app_http",
+                     "measurement": "tarantool_http",
                      "policy": "autogen",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -28684,7 +28684,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "tarantool_app_http",
+                     "measurement": "tarantool_http",
                      "policy": "autogen",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -28851,7 +28851,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "tarantool_app_http",
+                     "measurement": "tarantool_http",
                      "policy": "autogen",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -29018,7 +29018,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "tarantool_app_http",
+                     "measurement": "tarantool_http",
                      "policy": "autogen",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -29185,7 +29185,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "tarantool_app_http",
+                     "measurement": "tarantool_http",
                      "policy": "autogen",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -29366,7 +29366,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "tarantool_app_http",
+                     "measurement": "tarantool_http",
                      "policy": "autogen",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -29515,7 +29515,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "tarantool_app_http",
+                     "measurement": "tarantool_http",
                      "policy": "autogen",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -29664,7 +29664,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "tarantool_app_http",
+                     "measurement": "tarantool_http",
                      "policy": "autogen",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -29813,7 +29813,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "tarantool_app_http",
+                     "measurement": "tarantool_http",
                      "policy": "autogen",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -29939,7 +29939,7 @@
                         }
                      ],
                      "policy": "default",
-                     "query": "SELECT mean(\"tdg_jobs_execution_time_sum\") / mean(\"tdg_jobs_execution_time_count\")\nas \"average\" FROM\n(SELECT \"value\" as \"tdg_jobs_execution_time_sum\" FROM \"autogen\".\"tarantool_app_http\"\nWHERE (\"metric_name\" = 'tdg_jobs_execution_time_sum') AND $timeFilter),\n(SELECT \"value\" as \"tdg_jobs_execution_time_count\" FROM \"autogen\".\"tarantool_app_http\"\nWHERE (\"metric_name\" = 'tdg_jobs_execution_time_count') AND $timeFilter)\nGROUP BY time($__interval), \"label_pairs_alias\", \"label_pairs_name\" fill(none)\n",
+                     "query": "SELECT mean(\"tdg_jobs_execution_time_sum\") / mean(\"tdg_jobs_execution_time_count\")\nas \"average\" FROM\n(SELECT \"value\" as \"tdg_jobs_execution_time_sum\" FROM \"autogen\".\"tarantool_http\"\nWHERE (\"metric_name\" = 'tdg_jobs_execution_time_sum') AND $timeFilter),\n(SELECT \"value\" as \"tdg_jobs_execution_time_count\" FROM \"autogen\".\"tarantool_http\"\nWHERE (\"metric_name\" = 'tdg_jobs_execution_time_count') AND $timeFilter)\nGROUP BY time($__interval), \"label_pairs_alias\", \"label_pairs_name\" fill(none)\n",
                      "rawQuery": true,
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -30063,7 +30063,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "tarantool_app_http",
+                     "measurement": "tarantool_http",
                      "policy": "autogen",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -30212,7 +30212,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "tarantool_app_http",
+                     "measurement": "tarantool_http",
                      "policy": "autogen",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -30361,7 +30361,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "tarantool_app_http",
+                     "measurement": "tarantool_http",
                      "policy": "autogen",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -30510,7 +30510,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "tarantool_app_http",
+                     "measurement": "tarantool_http",
                      "policy": "autogen",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -30659,7 +30659,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "tarantool_app_http",
+                     "measurement": "tarantool_http",
                      "policy": "autogen",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -30785,7 +30785,7 @@
                         }
                      ],
                      "policy": "default",
-                     "query": "SELECT mean(\"tdg_tasks_execution_time_sum\") / mean(\"tdg_tasks_execution_time_count\")\nas \"average\" FROM\n(SELECT \"value\" as \"tdg_tasks_execution_time_sum\" FROM \"autogen\".\"tarantool_app_http\"\nWHERE (\"metric_name\" = 'tdg_tasks_execution_time_sum') AND $timeFilter),\n(SELECT \"value\" as \"tdg_tasks_execution_time_count\" FROM \"autogen\".\"tarantool_app_http\"\nWHERE (\"metric_name\" = 'tdg_tasks_execution_time_count') AND $timeFilter)\nGROUP BY time($__interval), \"label_pairs_alias\", \"label_pairs_name\",\n\"label_pairs_kind\" fill(none)\n",
+                     "query": "SELECT mean(\"tdg_tasks_execution_time_sum\") / mean(\"tdg_tasks_execution_time_count\")\nas \"average\" FROM\n(SELECT \"value\" as \"tdg_tasks_execution_time_sum\" FROM \"autogen\".\"tarantool_http\"\nWHERE (\"metric_name\" = 'tdg_tasks_execution_time_sum') AND $timeFilter),\n(SELECT \"value\" as \"tdg_tasks_execution_time_count\" FROM \"autogen\".\"tarantool_http\"\nWHERE (\"metric_name\" = 'tdg_tasks_execution_time_count') AND $timeFilter)\nGROUP BY time($__interval), \"label_pairs_alias\", \"label_pairs_name\",\n\"label_pairs_kind\" fill(none)\n",
                      "rawQuery": true,
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -30909,7 +30909,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "tarantool_app_http",
+                     "measurement": "tarantool_http",
                      "policy": "autogen",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -31058,7 +31058,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "tarantool_app_http",
+                     "measurement": "tarantool_http",
                      "policy": "autogen",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -31207,7 +31207,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "tarantool_app_http",
+                     "measurement": "tarantool_http",
                      "policy": "autogen",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -31356,7 +31356,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "tarantool_app_http",
+                     "measurement": "tarantool_http",
                      "policy": "autogen",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -31482,7 +31482,7 @@
                         }
                      ],
                      "policy": "default",
-                     "query": "SELECT mean(\"tdg_system_tasks_execution_time_sum\") / mean(\"tdg_system_tasks_execution_time_count\")\nas \"average\" FROM\n(SELECT \"value\" as \"tdg_system_tasks_execution_time_sum\" FROM \"autogen\".\"tarantool_app_http\"\nWHERE (\"metric_name\" = 'tdg_system_tasks_execution_time_sum') AND $timeFilter),\n(SELECT \"value\" as \"tdg_system_tasks_execution_time_count\" FROM \"autogen\".\"tarantool_app_http\"\nWHERE (\"metric_name\" = 'tdg_system_tasks_execution_time_count') AND $timeFilter)\nGROUP BY time($__interval), \"label_pairs_alias\", \"label_pairs_name\",\n\"label_pairs_kind\" fill(none)\n",
+                     "query": "SELECT mean(\"tdg_system_tasks_execution_time_sum\") / mean(\"tdg_system_tasks_execution_time_count\")\nas \"average\" FROM\n(SELECT \"value\" as \"tdg_system_tasks_execution_time_sum\" FROM \"autogen\".\"tarantool_http\"\nWHERE (\"metric_name\" = 'tdg_system_tasks_execution_time_sum') AND $timeFilter),\n(SELECT \"value\" as \"tdg_system_tasks_execution_time_count\" FROM \"autogen\".\"tarantool_http\"\nWHERE (\"metric_name\" = 'tdg_system_tasks_execution_time_count') AND $timeFilter)\nGROUP BY time($__interval), \"label_pairs_alias\", \"label_pairs_name\",\n\"label_pairs_kind\" fill(none)\n",
                      "rawQuery": true,
                      "refId": "A",
                      "resultFormat": "time_series",

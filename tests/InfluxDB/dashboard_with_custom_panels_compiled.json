@@ -12,7 +12,8 @@
          "description": "InfluxDB Tarantool metrics measurement",
          "label": "Measurement",
          "name": "INFLUXDB_MEASUREMENT",
-         "type": "constant"
+         "type": "constant",
+         "value": "tarantool_http"
       },
       {
          "description": "InfluxDB Tarantool metrics policy",

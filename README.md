@@ -76,7 +76,7 @@ You can also interact with Prometheus at [localhost:9090](http://localhost:9090/
 
 To set up an InfluxDB dashboard for monitoring example app, use the following variables:
 
-- `Measurement`: `tarantool_app_http`;
+- `Measurement`: `tarantool_http`;
 - `Policy`: `default`.
 
 To set up an Prometheus dashboard for monitoring example app, use the following variables:
@@ -134,7 +134,7 @@ Variables for Prometheus targets:
 Variables for InfluxDB targets:
 - `DATASOURCE`: name of a InfluxDB data source;
 - `POLICY` (optional, default `autogen`): InfluxDB metrics retention policy;
-- `MEASUREMENT`: name of a InfluxDB measurement with your application metrics;
+- `MEASUREMENT` (optional, default `tarantool_http`): name of a InfluxDB measurement with your application metrics;
 - `OUTPUT_STATIC_DASHBOARD` (optional, default `dashboard.json`): compiled dashboard file.
 
 You can also compile configurable Prometheus dashboard template (the same we publish to
