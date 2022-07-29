@@ -133,7 +133,7 @@
                ],
                "targets": [
                   {
-                     "expr": "up{job=~\"tarantool_app\"} * on(instance) group_left(alias) tnt_info_uptime{job=~\"tarantool_app\"} or\non(instance) label_replace(up{job=~\"tarantool_app\"}, \"alias\", \"Not available\", \"instance\", \".*\")\n",
+                     "expr": "up{job=~\"tarantool\"} * on(instance) group_left(alias) tnt_info_uptime{job=~\"tarantool\"} or\non(instance) label_replace(up{job=~\"tarantool\"}, \"alias\", \"Not available\", \"instance\", \".*\")\n",
                      "format": "table",
                      "instant": true,
                      "intervalFactor": 2,
@@ -190,7 +190,7 @@
                "pluginVersion": "6.6.0",
                "targets": [
                   {
-                     "expr": "sum(up{job=~\"tarantool_app\"})",
+                     "expr": "sum(up{job=~\"tarantool\"})",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "",
@@ -244,7 +244,7 @@
                "pluginVersion": "6.6.0",
                "targets": [
                   {
-                     "expr": "sum(tnt_slab_arena_used{job=~\"tarantool_app\"})",
+                     "expr": "sum(tnt_slab_arena_used{job=~\"tarantool\"})",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "",
@@ -298,7 +298,7 @@
                "pluginVersion": "6.6.0",
                "targets": [
                   {
-                     "expr": "sum(tnt_slab_quota_size{job=~\"tarantool_app\"})",
+                     "expr": "sum(tnt_slab_quota_size{job=~\"tarantool\"})",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "",
@@ -352,7 +352,7 @@
                "pluginVersion": "6.6.0",
                "targets": [
                   {
-                     "expr": "sum(rate(http_server_request_latency_count{job=~\"tarantool_app\"}[2m]))",
+                     "expr": "sum(rate(http_server_request_latency_count{job=~\"tarantool\"}[2m]))",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "",
@@ -406,7 +406,7 @@
                "pluginVersion": "6.6.0",
                "targets": [
                   {
-                     "expr": "sum(rate(tnt_net_requests_total{job=~\"tarantool_app\"}[2m]))",
+                     "expr": "sum(rate(tnt_net_requests_total{job=~\"tarantool\"}[2m]))",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "",
@@ -460,7 +460,7 @@
                "pluginVersion": "6.6.0",
                "targets": [
                   {
-                     "expr": "sum(rate(tnt_stats_op_total{job=~\"tarantool_app\"}[2m]))",
+                     "expr": "sum(rate(tnt_stats_op_total{job=~\"tarantool\"}[2m]))",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "",
@@ -516,7 +516,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_cartridge_issues{job=~\"tarantool_app\",level=\"warning\"}",
+                     "expr": "tnt_cartridge_issues{job=~\"tarantool\",level=\"warning\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -606,7 +606,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_cartridge_issues{job=~\"tarantool_app\",level=\"critical\"}",
+                     "expr": "tnt_cartridge_issues{job=~\"tarantool\",level=\"critical\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -750,7 +750,7 @@
                },
                "targets": [
                   {
-                     "expr": "tnt_replication_status{job=~\"tarantool_app\"}",
+                     "expr": "tnt_replication_status{job=~\"tarantool\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}} {{stream}} ({{id}})",
@@ -859,7 +859,7 @@
                },
                "targets": [
                   {
-                     "expr": "tnt_read_only{job=~\"tarantool_app\"}",
+                     "expr": "tnt_read_only{job=~\"tarantool\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -913,7 +913,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_replication_lag{job=~\"tarantool_app\"}",
+                     "expr": "tnt_replication_lag{job=~\"tarantool\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}} ({{id}})",
@@ -1000,7 +1000,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_clock_delta{job=~\"tarantool_app\"}",
+                     "expr": "tnt_clock_delta{job=~\"tarantool\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}} ({{delta}})",
@@ -1108,7 +1108,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_info_memory_net{job=~\"tarantool_app\"}",
+                     "expr": "tnt_info_memory_net{job=~\"tarantool\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -1198,7 +1198,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_net_received_total{job=~\"tarantool_app\"}[2m])",
+                     "expr": "rate(tnt_net_received_total{job=~\"tarantool\"}[2m])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -1288,7 +1288,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_net_sent_total{job=~\"tarantool_app\"}[2m])",
+                     "expr": "rate(tnt_net_sent_total{job=~\"tarantool\"}[2m])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -1378,7 +1378,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_net_requests_total{job=~\"tarantool_app\"}[2m])",
+                     "expr": "rate(tnt_net_requests_total{job=~\"tarantool\"}[2m])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -1468,7 +1468,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_net_requests_current{job=~\"tarantool_app\"}",
+                     "expr": "tnt_net_requests_current{job=~\"tarantool\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -1558,7 +1558,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_net_requests_in_progress_total{job=~\"tarantool_app\"}[2m])",
+                     "expr": "rate(tnt_net_requests_in_progress_total{job=~\"tarantool\"}[2m])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -1648,7 +1648,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_net_requests_in_progress_current{job=~\"tarantool_app\"}",
+                     "expr": "tnt_net_requests_in_progress_current{job=~\"tarantool\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -1738,7 +1738,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_net_requests_in_stream_queue_total{job=~\"tarantool_app\"}[2m])",
+                     "expr": "rate(tnt_net_requests_in_stream_queue_total{job=~\"tarantool\"}[2m])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -1828,7 +1828,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_net_requests_in_stream_queue_current{job=~\"tarantool_app\"}",
+                     "expr": "tnt_net_requests_in_stream_queue_current{job=~\"tarantool\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -1918,7 +1918,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_net_connections_total{job=~\"tarantool_app\"}[2m])",
+                     "expr": "rate(tnt_net_connections_total{job=~\"tarantool\"}[2m])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -2008,7 +2008,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_net_connections_current{job=~\"tarantool_app\"}",
+                     "expr": "tnt_net_connections_current{job=~\"tarantool\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -2132,7 +2132,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_slab_quota_used_ratio{job=~\"tarantool_app\"}",
+                     "expr": "tnt_slab_quota_used_ratio{job=~\"tarantool\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -2222,7 +2222,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_slab_arena_used_ratio{job=~\"tarantool_app\"}",
+                     "expr": "tnt_slab_arena_used_ratio{job=~\"tarantool\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -2312,7 +2312,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_slab_items_used_ratio{job=~\"tarantool_app\"}",
+                     "expr": "tnt_slab_items_used_ratio{job=~\"tarantool\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -2402,7 +2402,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_slab_quota_used{job=~\"tarantool_app\"}",
+                     "expr": "tnt_slab_quota_used{job=~\"tarantool\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -2492,7 +2492,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_slab_arena_used{job=~\"tarantool_app\"}",
+                     "expr": "tnt_slab_arena_used{job=~\"tarantool\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -2582,7 +2582,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_slab_items_used{job=~\"tarantool_app\"}",
+                     "expr": "tnt_slab_items_used{job=~\"tarantool\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -2672,7 +2672,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_slab_quota_size{job=~\"tarantool_app\"}",
+                     "expr": "tnt_slab_quota_size{job=~\"tarantool\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -2762,7 +2762,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_slab_arena_size{job=~\"tarantool_app\"}",
+                     "expr": "tnt_slab_arena_size{job=~\"tarantool\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -2852,7 +2852,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_slab_items_size{job=~\"tarantool_app\"}",
+                     "expr": "tnt_slab_items_size{job=~\"tarantool\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -2962,7 +2962,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_space_len{job=~\"tarantool_app\", engine=\"memtx\"}",
+                     "expr": "tnt_space_len{job=~\"tarantool\", engine=\"memtx\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}} — {{name}}",
@@ -3052,7 +3052,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_vinyl_tuples{job=~\"tarantool_app\", engine=\"vinyl\"}",
+                     "expr": "tnt_vinyl_tuples{job=~\"tarantool\", engine=\"vinyl\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}} — {{name}}",
@@ -3142,7 +3142,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_space_bsize{job=~\"tarantool_app\", engine=\"memtx\"}",
+                     "expr": "tnt_space_bsize{job=~\"tarantool\", engine=\"memtx\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}} — {{name}}",
@@ -3232,7 +3232,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_space_index_bsize{job=~\"tarantool_app\"}",
+                     "expr": "tnt_space_index_bsize{job=~\"tarantool\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}} — {{name}} ({{index_name}})",
@@ -3322,7 +3322,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_space_total_bsize{job=~\"tarantool_app\", engine=\"memtx\"}",
+                     "expr": "tnt_space_total_bsize{job=~\"tarantool\", engine=\"memtx\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}} — {{name}}",
@@ -3432,7 +3432,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_vinyl_disk_data_size{job=~\"tarantool_app\"}",
+                     "expr": "tnt_vinyl_disk_data_size{job=~\"tarantool\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -3522,7 +3522,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_vinyl_disk_index_size{job=~\"tarantool_app\"}",
+                     "expr": "tnt_vinyl_disk_index_size{job=~\"tarantool\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -3612,7 +3612,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_vinyl_memory_page_index{job=~\"tarantool_app\"}",
+                     "expr": "tnt_vinyl_memory_page_index{job=~\"tarantool\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -3702,7 +3702,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_vinyl_memory_bloom_filter{job=~\"tarantool_app\"}",
+                     "expr": "tnt_vinyl_memory_bloom_filter{job=~\"tarantool\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -3792,7 +3792,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_vinyl_regulator_dump_bandwidth{job=~\"tarantool_app\"}",
+                     "expr": "tnt_vinyl_regulator_dump_bandwidth{job=~\"tarantool\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -3882,7 +3882,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_vinyl_regulator_write_rate{job=~\"tarantool_app\"}",
+                     "expr": "tnt_vinyl_regulator_write_rate{job=~\"tarantool\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -3972,7 +3972,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_vinyl_regulator_rate_limit{job=~\"tarantool_app\"}",
+                     "expr": "tnt_vinyl_regulator_rate_limit{job=~\"tarantool\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -4062,7 +4062,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_vinyl_regulator_dump_watermark{job=~\"tarantool_app\"}",
+                     "expr": "tnt_vinyl_regulator_dump_watermark{job=~\"tarantool\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -4152,7 +4152,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_vinyl_regulator_blocked_writers{job=~\"tarantool_app\"}",
+                     "expr": "tnt_vinyl_regulator_blocked_writers{job=~\"tarantool\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -4242,7 +4242,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_vinyl_tx_commit{job=~\"tarantool_app\"}[2m])",
+                     "expr": "rate(tnt_vinyl_tx_commit{job=~\"tarantool\"}[2m])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -4332,7 +4332,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_vinyl_tx_rollback{job=~\"tarantool_app\"}[2m])",
+                     "expr": "rate(tnt_vinyl_tx_rollback{job=~\"tarantool\"}[2m])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -4422,7 +4422,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_vinyl_tx_conflict{job=~\"tarantool_app\"}[2m])",
+                     "expr": "rate(tnt_vinyl_tx_conflict{job=~\"tarantool\"}[2m])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -4512,7 +4512,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_vinyl_tx_read_views{job=~\"tarantool_app\"}",
+                     "expr": "tnt_vinyl_tx_read_views{job=~\"tarantool\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -4602,7 +4602,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_vinyl_scheduler_tasks{job=~\"tarantool_app\", status=\"inprogress\"}",
+                     "expr": "tnt_vinyl_scheduler_tasks{job=~\"tarantool\", status=\"inprogress\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -4692,7 +4692,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_vinyl_scheduler_tasks{job=~\"tarantool_app\",status=\"failed\"}[2m])",
+                     "expr": "rate(tnt_vinyl_scheduler_tasks{job=~\"tarantool\",status=\"failed\"}[2m])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -4782,7 +4782,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_vinyl_scheduler_dump_time{job=~\"tarantool_app\"}[2m])",
+                     "expr": "rate(tnt_vinyl_scheduler_dump_time{job=~\"tarantool\"}[2m])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -4872,7 +4872,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_vinyl_scheduler_dump_total{job=~\"tarantool_app\"}[2m])",
+                     "expr": "rate(tnt_vinyl_scheduler_dump_total{job=~\"tarantool\"}[2m])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -4982,7 +4982,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_cpu_user_time{job=~\"tarantool_app\"}[2m])",
+                     "expr": "rate(tnt_cpu_user_time{job=~\"tarantool\"}[2m])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -5072,7 +5072,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_cpu_system_time{job=~\"tarantool_app\"}[2m])",
+                     "expr": "rate(tnt_cpu_system_time{job=~\"tarantool\"}[2m])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -5162,7 +5162,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_cpu_thread{job=~\"tarantool_app\",kind=\"user\"}[2m])",
+                     "expr": "rate(tnt_cpu_thread{job=~\"tarantool\",kind=\"user\"}[2m])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}} — {{thread_name}}",
@@ -5252,7 +5252,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_cpu_thread{job=~\"tarantool_app\",kind=\"system\"}[2m])",
+                     "expr": "rate(tnt_cpu_thread{job=~\"tarantool\",kind=\"system\"}[2m])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}} — {{thread_name}}",
@@ -5362,7 +5362,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_info_memory_lua{job=~\"tarantool_app\"}",
+                     "expr": "tnt_info_memory_lua{job=~\"tarantool\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -5452,7 +5452,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_info_memory_tx{job=~\"tarantool_app\"}",
+                     "expr": "tnt_info_memory_tx{job=~\"tarantool\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -5542,7 +5542,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_fiber_csw{job=~\"tarantool_app\"}",
+                     "expr": "tnt_fiber_csw{job=~\"tarantool\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -5632,7 +5632,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_ev_loop_time{job=~\"tarantool_app\"}",
+                     "expr": "tnt_ev_loop_time{job=~\"tarantool\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -5722,7 +5722,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_fiber_amount{job=~\"tarantool_app\"}",
+                     "expr": "tnt_fiber_amount{job=~\"tarantool\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -5812,7 +5812,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_fiber_memused{job=~\"tarantool_app\"}",
+                     "expr": "tnt_fiber_memused{job=~\"tarantool\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -5902,7 +5902,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_fiber_memalloc{job=~\"tarantool_app\"}",
+                     "expr": "tnt_fiber_memalloc{job=~\"tarantool\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -6012,7 +6012,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(lj_jit_snap_restore{job=~\"tarantool_app\"}[2m])",
+                     "expr": "rate(lj_jit_snap_restore{job=~\"tarantool\"}[2m])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -6102,7 +6102,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(lj_jit_trace_num{job=~\"tarantool_app\"}[2m])",
+                     "expr": "rate(lj_jit_trace_num{job=~\"tarantool\"}[2m])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -6192,7 +6192,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(lj_jit_trace_abort{job=~\"tarantool_app\"}[2m])",
+                     "expr": "rate(lj_jit_trace_abort{job=~\"tarantool\"}[2m])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -6282,7 +6282,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "lj_jit_mcode_size{job=~\"tarantool_app\"}",
+                     "expr": "lj_jit_mcode_size{job=~\"tarantool\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -6372,7 +6372,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(lj_strhash_hit{job=~\"tarantool_app\"}[2m])",
+                     "expr": "rate(lj_strhash_hit{job=~\"tarantool\"}[2m])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -6462,7 +6462,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(lj_strhash_miss{job=~\"tarantool_app\"}[2m])",
+                     "expr": "rate(lj_strhash_miss{job=~\"tarantool\"}[2m])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -6552,7 +6552,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(lj_gc_steps_atomic{job=~\"tarantool_app\"}[2m])",
+                     "expr": "rate(lj_gc_steps_atomic{job=~\"tarantool\"}[2m])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -6642,7 +6642,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(lj_gc_steps_sweepstring{job=~\"tarantool_app\"}[2m])",
+                     "expr": "rate(lj_gc_steps_sweepstring{job=~\"tarantool\"}[2m])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -6732,7 +6732,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(lj_gc_steps_finalize{job=~\"tarantool_app\"}[2m])",
+                     "expr": "rate(lj_gc_steps_finalize{job=~\"tarantool\"}[2m])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -6822,7 +6822,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(lj_gc_steps_sweep{job=~\"tarantool_app\"}[2m])",
+                     "expr": "rate(lj_gc_steps_sweep{job=~\"tarantool\"}[2m])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -6912,7 +6912,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(lj_gc_steps_propagate{job=~\"tarantool_app\"}[2m])",
+                     "expr": "rate(lj_gc_steps_propagate{job=~\"tarantool\"}[2m])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -7002,7 +7002,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(lj_gc_steps_pause{job=~\"tarantool_app\"}[2m])",
+                     "expr": "rate(lj_gc_steps_pause{job=~\"tarantool\"}[2m])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -7092,7 +7092,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "lj_gc_strnum{job=~\"tarantool_app\"}",
+                     "expr": "lj_gc_strnum{job=~\"tarantool\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -7182,7 +7182,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "lj_gc_tabnum{job=~\"tarantool_app\"}",
+                     "expr": "lj_gc_tabnum{job=~\"tarantool\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -7272,7 +7272,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "lj_gc_cdatanum{job=~\"tarantool_app\"}",
+                     "expr": "lj_gc_cdatanum{job=~\"tarantool\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -7362,7 +7362,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "lj_gc_udatanum{job=~\"tarantool_app\"}",
+                     "expr": "lj_gc_udatanum{job=~\"tarantool\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -7452,7 +7452,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "lj_gc_memory{job=~\"tarantool_app\"}",
+                     "expr": "lj_gc_memory{job=~\"tarantool\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -7542,7 +7542,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(lj_gc_freed{job=~\"tarantool_app\"}[2m])",
+                     "expr": "rate(lj_gc_freed{job=~\"tarantool\"}[2m])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -7632,7 +7632,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(lj_gc_allocated{job=~\"tarantool_app\"}[2m])",
+                     "expr": "rate(lj_gc_allocated{job=~\"tarantool\"}[2m])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -7742,7 +7742,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_stats_op_total{job=~\"tarantool_app\",operation=\"select\"}[2m])",
+                     "expr": "rate(tnt_stats_op_total{job=~\"tarantool\",operation=\"select\"}[2m])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -7832,7 +7832,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_stats_op_total{job=~\"tarantool_app\",operation=\"insert\"}[2m])",
+                     "expr": "rate(tnt_stats_op_total{job=~\"tarantool\",operation=\"insert\"}[2m])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -7922,7 +7922,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_stats_op_total{job=~\"tarantool_app\",operation=\"replace\"}[2m])",
+                     "expr": "rate(tnt_stats_op_total{job=~\"tarantool\",operation=\"replace\"}[2m])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -8012,7 +8012,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_stats_op_total{job=~\"tarantool_app\",operation=\"upsert\"}[2m])",
+                     "expr": "rate(tnt_stats_op_total{job=~\"tarantool\",operation=\"upsert\"}[2m])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -8102,7 +8102,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_stats_op_total{job=~\"tarantool_app\",operation=\"update\"}[2m])",
+                     "expr": "rate(tnt_stats_op_total{job=~\"tarantool\",operation=\"update\"}[2m])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -8192,7 +8192,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_stats_op_total{job=~\"tarantool_app\",operation=\"delete\"}[2m])",
+                     "expr": "rate(tnt_stats_op_total{job=~\"tarantool\",operation=\"delete\"}[2m])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -8282,7 +8282,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_stats_op_total{job=~\"tarantool_app\",operation=\"call\"}[2m])",
+                     "expr": "rate(tnt_stats_op_total{job=~\"tarantool\",operation=\"call\"}[2m])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -8372,7 +8372,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_stats_op_total{job=~\"tarantool_app\",operation=\"eval\"}[2m])",
+                     "expr": "rate(tnt_stats_op_total{job=~\"tarantool\",operation=\"eval\"}[2m])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -8462,7 +8462,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_stats_op_total{job=~\"tarantool_app\",operation=\"error\"}[2m])",
+                     "expr": "rate(tnt_stats_op_total{job=~\"tarantool\",operation=\"error\"}[2m])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -8552,7 +8552,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_stats_op_total{job=~\"tarantool_app\",operation=\"auth\"}[2m])",
+                     "expr": "rate(tnt_stats_op_total{job=~\"tarantool\",operation=\"auth\"}[2m])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -8642,7 +8642,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_stats_op_total{job=~\"tarantool_app\",operation=\"prepare\"}[2m])",
+                     "expr": "rate(tnt_stats_op_total{job=~\"tarantool\",operation=\"prepare\"}[2m])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -8732,7 +8732,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_stats_op_total{job=~\"tarantool_app\",operation=\"execute\"}[2m])",
+                     "expr": "rate(tnt_stats_op_total{job=~\"tarantool\",operation=\"execute\"}[2m])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -8842,7 +8842,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tdg_kafka_replyq{job=~\"tarantool_app\"}",
+                     "expr": "tdg_kafka_replyq{job=~\"tarantool\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{name}} — {{alias}} ({{type}}, {{connector_name}})",
@@ -8932,7 +8932,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tdg_kafka_msg_size{job=~\"tarantool_app\"}",
+                     "expr": "tdg_kafka_msg_size{job=~\"tarantool\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{name}} — {{alias}} ({{type}}, {{connector_name}})",
@@ -9022,7 +9022,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tdg_kafka_msg_cnt{job=~\"tarantool_app\"}",
+                     "expr": "tdg_kafka_msg_cnt{job=~\"tarantool\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{name}} — {{alias}} ({{type}}, {{connector_name}})",
@@ -9112,7 +9112,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tdg_kafka_tx{job=~\"tarantool_app\"}[2m])",
+                     "expr": "rate(tdg_kafka_tx{job=~\"tarantool\"}[2m])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{name}} — {{alias}} ({{type}}, {{connector_name}})",
@@ -9202,7 +9202,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tdg_kafka_tx_bytes{job=~\"tarantool_app\"}[2m])",
+                     "expr": "rate(tdg_kafka_tx_bytes{job=~\"tarantool\"}[2m])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{name}} — {{alias}} ({{type}}, {{connector_name}})",
@@ -9292,7 +9292,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tdg_kafka_rx{job=~\"tarantool_app\"}[2m])",
+                     "expr": "rate(tdg_kafka_rx{job=~\"tarantool\"}[2m])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{name}} — {{alias}} ({{type}}, {{connector_name}})",
@@ -9382,7 +9382,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tdg_kafka_rx_bytes{job=~\"tarantool_app\"}[2m])",
+                     "expr": "rate(tdg_kafka_rx_bytes{job=~\"tarantool\"}[2m])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{name}} — {{alias}} ({{type}}, {{connector_name}})",
@@ -9472,7 +9472,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tdg_kafka_txmsgs{job=~\"tarantool_app\"}[2m])",
+                     "expr": "rate(tdg_kafka_txmsgs{job=~\"tarantool\"}[2m])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{name}} — {{alias}} ({{type}}, {{connector_name}})",
@@ -9562,7 +9562,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tdg_kafka_txmsg_bytes{job=~\"tarantool_app\"}[2m])",
+                     "expr": "rate(tdg_kafka_txmsg_bytes{job=~\"tarantool\"}[2m])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{name}} — {{alias}} ({{type}}, {{connector_name}})",
@@ -9652,7 +9652,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tdg_kafka_rxmsgs{job=~\"tarantool_app\"}[2m])",
+                     "expr": "rate(tdg_kafka_rxmsgs{job=~\"tarantool\"}[2m])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{name}} — {{alias}} ({{type}}, {{connector_name}})",
@@ -9742,7 +9742,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tdg_kafka_rxmsg_bytes{job=~\"tarantool_app\"}[2m])",
+                     "expr": "rate(tdg_kafka_rxmsg_bytes{job=~\"tarantool\"}[2m])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{name}} — {{alias}} ({{type}}, {{connector_name}})",
@@ -9852,7 +9852,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tdg_kafka_broker_stateage{job=~\"tarantool_app\"}",
+                     "expr": "tdg_kafka_broker_stateage{job=~\"tarantool\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{name}} ({{broker_name}}) — {{alias}} ({{type}}, {{connector_name}})",
@@ -9942,7 +9942,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tdg_kafka_broker_connects{job=~\"tarantool_app\"}[2m])",
+                     "expr": "rate(tdg_kafka_broker_connects{job=~\"tarantool\"}[2m])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{name}} ({{broker_name}}) — {{alias}} ({{type}}, {{connector_name}})",
@@ -10032,7 +10032,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tdg_kafka_broker_disconnects{job=~\"tarantool_app\"}[2m])",
+                     "expr": "rate(tdg_kafka_broker_disconnects{job=~\"tarantool\"}[2m])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{name}} ({{broker_name}}) — {{alias}} ({{type}}, {{connector_name}})",
@@ -10122,7 +10122,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tdg_kafka_broker_wakeups{job=~\"tarantool_app\"}[2m])",
+                     "expr": "rate(tdg_kafka_broker_wakeups{job=~\"tarantool\"}[2m])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{name}} ({{broker_name}}) — {{alias}} ({{type}}, {{connector_name}})",
@@ -10212,7 +10212,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tdg_kafka_broker_outbuf_cnt{job=~\"tarantool_app\"}",
+                     "expr": "tdg_kafka_broker_outbuf_cnt{job=~\"tarantool\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{name}} ({{broker_name}}) — {{alias}} ({{type}}, {{connector_name}})",
@@ -10302,7 +10302,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tdg_kafka_broker_outbuf_msg_cnt{job=~\"tarantool_app\"}",
+                     "expr": "tdg_kafka_broker_outbuf_msg_cnt{job=~\"tarantool\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{name}} ({{broker_name}}) — {{alias}} ({{type}}, {{connector_name}})",
@@ -10392,7 +10392,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tdg_kafka_broker_waitresp_cnt{job=~\"tarantool_app\"}",
+                     "expr": "tdg_kafka_broker_waitresp_cnt{job=~\"tarantool\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{name}} ({{broker_name}}) — {{alias}} ({{type}}, {{connector_name}})",
@@ -10482,7 +10482,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tdg_kafka_broker_waitresp_msg_cnt{job=~\"tarantool_app\"}",
+                     "expr": "tdg_kafka_broker_waitresp_msg_cnt{job=~\"tarantool\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{name}} ({{broker_name}}) — {{alias}} ({{type}}, {{connector_name}})",
@@ -10572,7 +10572,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tdg_kafka_broker_tx{job=~\"tarantool_app\"}[2m])",
+                     "expr": "rate(tdg_kafka_broker_tx{job=~\"tarantool\"}[2m])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{name}} ({{broker_name}}) — {{alias}} ({{type}}, {{connector_name}})",
@@ -10662,7 +10662,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tdg_kafka_broker_txbytes{job=~\"tarantool_app\"}[2m])",
+                     "expr": "rate(tdg_kafka_broker_txbytes{job=~\"tarantool\"}[2m])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{name}} ({{broker_name}}) — {{alias}} ({{type}}, {{connector_name}})",
@@ -10752,7 +10752,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tdg_kafka_broker_txerrs{job=~\"tarantool_app\"}[2m])",
+                     "expr": "rate(tdg_kafka_broker_txerrs{job=~\"tarantool\"}[2m])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{name}} ({{broker_name}}) — {{alias}} ({{type}}, {{connector_name}})",
@@ -10842,7 +10842,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tdg_kafka_broker_txretries{job=~\"tarantool_app\"}[2m])",
+                     "expr": "rate(tdg_kafka_broker_txretries{job=~\"tarantool\"}[2m])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{name}} ({{broker_name}}) — {{alias}} ({{type}}, {{connector_name}})",
@@ -10932,7 +10932,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tdg_kafka_broker_txidle{job=~\"tarantool_app\"}",
+                     "expr": "tdg_kafka_broker_txidle{job=~\"tarantool\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{name}} ({{broker_name}}) — {{alias}} ({{type}}, {{connector_name}})",
@@ -11022,7 +11022,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tdg_kafka_broker_req_timeouts{job=~\"tarantool_app\"}[2m])",
+                     "expr": "rate(tdg_kafka_broker_req_timeouts{job=~\"tarantool\"}[2m])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{name}} ({{broker_name}}) — {{alias}} ({{type}}, {{connector_name}})",
@@ -11112,7 +11112,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tdg_kafka_broker_rx{job=~\"tarantool_app\"}[2m])",
+                     "expr": "rate(tdg_kafka_broker_rx{job=~\"tarantool\"}[2m])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{name}} ({{broker_name}}) — {{alias}} ({{type}}, {{connector_name}})",
@@ -11202,7 +11202,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tdg_kafka_broker_rxbytes{job=~\"tarantool_app\"}[2m])",
+                     "expr": "rate(tdg_kafka_broker_rxbytes{job=~\"tarantool\"}[2m])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{name}} ({{broker_name}}) — {{alias}} ({{type}}, {{connector_name}})",
@@ -11292,7 +11292,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tdg_kafka_broker_rxerrs{job=~\"tarantool_app\"}[2m])",
+                     "expr": "rate(tdg_kafka_broker_rxerrs{job=~\"tarantool\"}[2m])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{name}} ({{broker_name}}) — {{alias}} ({{type}}, {{connector_name}})",
@@ -11382,7 +11382,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tdg_kafka_broker_rxcorriderrs{job=~\"tarantool_app\"}[2m])",
+                     "expr": "rate(tdg_kafka_broker_rxcorriderrs{job=~\"tarantool\"}[2m])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{name}} ({{broker_name}}) — {{alias}} ({{type}}, {{connector_name}})",
@@ -11472,7 +11472,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tdg_kafka_broker_rxidle{job=~\"tarantool_app\"}",
+                     "expr": "tdg_kafka_broker_rxidle{job=~\"tarantool\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{name}} ({{broker_name}}) — {{alias}} ({{type}}, {{connector_name}})",
@@ -11562,7 +11562,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tdg_kafka_broker_rxpartial{job=~\"tarantool_app\"}[2m])",
+                     "expr": "rate(tdg_kafka_broker_rxpartial{job=~\"tarantool\"}[2m])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{name}} ({{broker_name}}) — {{alias}} ({{type}}, {{connector_name}})",
@@ -11652,7 +11652,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tdg_kafka_broker_req{job=~\"tarantool_app\"}[2m])",
+                     "expr": "rate(tdg_kafka_broker_req{job=~\"tarantool\"}[2m])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{request}} — {{name}} ({{broker_name}}) — {{alias}} ({{type}}, {{connector_name}})",
@@ -11742,7 +11742,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tdg_kafka_broker_int_latency{job=~\"tarantool_app\",quantile=\"0.99\"}",
+                     "expr": "tdg_kafka_broker_int_latency{job=~\"tarantool\",quantile=\"0.99\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{name}} ({{broker_name}}) — {{alias}} ({{type}}, {{connector_name}})",
@@ -11832,7 +11832,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tdg_kafka_broker_outbuf_latency{job=~\"tarantool_app\",quantile=\"0.99\"}",
+                     "expr": "tdg_kafka_broker_outbuf_latency{job=~\"tarantool\",quantile=\"0.99\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{name}} ({{broker_name}}) — {{alias}} ({{type}}, {{connector_name}})",
@@ -11922,7 +11922,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tdg_kafka_broker_rtt{job=~\"tarantool_app\",quantile=\"0.99\"}",
+                     "expr": "tdg_kafka_broker_rtt{job=~\"tarantool\",quantile=\"0.99\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{name}} ({{broker_name}}) — {{alias}} ({{type}}, {{connector_name}})",
@@ -12012,7 +12012,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tdg_kafka_broker_throttle{job=~\"tarantool_app\",quantile=\"0.99\"}",
+                     "expr": "tdg_kafka_broker_throttle{job=~\"tarantool\",quantile=\"0.99\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{name}} ({{broker_name}}) — {{alias}} ({{type}}, {{connector_name}})",
@@ -12122,7 +12122,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tdg_kafka_topic_age{job=~\"tarantool_app\"}",
+                     "expr": "tdg_kafka_topic_age{job=~\"tarantool\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{name}} ({{topic}}) — {{alias}} ({{type}}, {{connector_name}})",
@@ -12212,7 +12212,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tdg_kafka_topic_metadata_age{job=~\"tarantool_app\"}",
+                     "expr": "tdg_kafka_topic_metadata_age{job=~\"tarantool\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{name}} ({{topic}}) — {{alias}} ({{type}}, {{connector_name}})",
@@ -12302,7 +12302,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tdg_kafka_topic_batchsize{job=~\"tarantool_app\",quantile=\"0.99\"}",
+                     "expr": "tdg_kafka_topic_batchsize{job=~\"tarantool\",quantile=\"0.99\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{name}} ({{topic}}) — {{alias}} ({{type}}, {{connector_name}})",
@@ -12392,7 +12392,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tdg_kafka_topic_batchcnt{job=~\"tarantool_app\",quantile=\"0.99\"}",
+                     "expr": "tdg_kafka_topic_batchcnt{job=~\"tarantool\",quantile=\"0.99\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{name}} ({{topic}}) — {{alias}} ({{type}}, {{connector_name}})",
@@ -12482,7 +12482,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tdg_kafka_topic_partitions_msgq_cnt{job=~\"tarantool_app\"}",
+                     "expr": "tdg_kafka_topic_partitions_msgq_cnt{job=~\"tarantool\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{name}} ({{topic}}, {{partition}}) — {{alias}} ({{type}}, {{connector_name}})",
@@ -12572,7 +12572,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tdg_kafka_topic_partitions_xmit_msgq_cnt{job=~\"tarantool_app\"}",
+                     "expr": "tdg_kafka_topic_partitions_xmit_msgq_cnt{job=~\"tarantool\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{name}} ({{topic}}, {{partition}}) — {{alias}} ({{type}}, {{connector_name}})",
@@ -12662,7 +12662,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tdg_kafka_topic_partitions_fetchq_cnt{job=~\"tarantool_app\"}",
+                     "expr": "tdg_kafka_topic_partitions_fetchq_cnt{job=~\"tarantool\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{name}} ({{topic}}, {{partition}}) — {{alias}} ({{type}}, {{connector_name}})",
@@ -12752,7 +12752,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tdg_kafka_topic_partitions_msgq_bytes{job=~\"tarantool_app\"}",
+                     "expr": "tdg_kafka_topic_partitions_msgq_bytes{job=~\"tarantool\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{name}} ({{topic}}, {{partition}}) — {{alias}} ({{type}}, {{connector_name}})",
@@ -12842,7 +12842,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tdg_kafka_topic_partitions_xmit_msgq_bytes{job=~\"tarantool_app\"}",
+                     "expr": "tdg_kafka_topic_partitions_xmit_msgq_bytes{job=~\"tarantool\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{name}} ({{topic}}, {{partition}}) — {{alias}} ({{type}}, {{connector_name}})",
@@ -12932,7 +12932,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tdg_kafka_topic_partitions_fetchq_size{job=~\"tarantool_app\"}",
+                     "expr": "tdg_kafka_topic_partitions_fetchq_size{job=~\"tarantool\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{name}} ({{topic}}, {{partition}}) — {{alias}} ({{type}}, {{connector_name}})",
@@ -13022,7 +13022,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tdg_kafka_topic_partitions_txmsgs{job=~\"tarantool_app\"}[2m])",
+                     "expr": "rate(tdg_kafka_topic_partitions_txmsgs{job=~\"tarantool\"}[2m])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{name}} ({{topic}}, {{partition}}) — {{alias}} ({{type}}, {{connector_name}})",
@@ -13112,7 +13112,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tdg_kafka_topic_partitions_txbytes{job=~\"tarantool_app\"}[2m])",
+                     "expr": "rate(tdg_kafka_topic_partitions_txbytes{job=~\"tarantool\"}[2m])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{name}} ({{topic}}, {{partition}}) — {{alias}} ({{type}}, {{connector_name}})",
@@ -13202,7 +13202,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tdg_kafka_topic_partitions_rxmsgs{job=~\"tarantool_app\"}[2m])",
+                     "expr": "rate(tdg_kafka_topic_partitions_rxmsgs{job=~\"tarantool\"}[2m])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{name}} ({{topic}}, {{partition}}) — {{alias}} ({{type}}, {{connector_name}})",
@@ -13292,7 +13292,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tdg_kafka_topic_partitions_rxbytes{job=~\"tarantool_app\"}[2m])",
+                     "expr": "rate(tdg_kafka_topic_partitions_rxbytes{job=~\"tarantool\"}[2m])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{name}} ({{topic}}, {{partition}}) — {{alias}} ({{type}}, {{connector_name}})",
@@ -13382,7 +13382,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tdg_kafka_topic_partitions_rx_ver_drops{job=~\"tarantool_app\"}[2m])",
+                     "expr": "rate(tdg_kafka_topic_partitions_rx_ver_drops{job=~\"tarantool\"}[2m])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{name}} ({{topic}}, {{partition}}) — {{alias}} ({{type}}, {{connector_name}})",
@@ -13472,7 +13472,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tdg_kafka_topic_partitions_msgs_inflight{job=~\"tarantool_app\"}",
+                     "expr": "tdg_kafka_topic_partitions_msgs_inflight{job=~\"tarantool\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{name}} ({{topic}}, {{partition}}) — {{alias}} ({{type}}, {{connector_name}})",
@@ -13582,7 +13582,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tdg_kafka_cgrp_stateage{job=~\"tarantool_app\"}",
+                     "expr": "tdg_kafka_cgrp_stateage{job=~\"tarantool\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{name}} — {{alias}} ({{type}}, {{connector_name}})",
@@ -13672,7 +13672,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tdg_kafka_cgrp_rebalance_age{job=~\"tarantool_app\"}",
+                     "expr": "tdg_kafka_cgrp_rebalance_age{job=~\"tarantool\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{name}} — {{alias}} ({{type}}, {{connector_name}})",
@@ -13762,7 +13762,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tdg_kafka_cgrp_rebalance_cnt{job=~\"tarantool_app\"}[2m])",
+                     "expr": "rate(tdg_kafka_cgrp_rebalance_cnt{job=~\"tarantool\"}[2m])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{name}} — {{alias}} ({{type}}, {{connector_name}})",
@@ -13852,7 +13852,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tdg_kafka_cgrp_assignment_size{job=~\"tarantool_app\"}",
+                     "expr": "tdg_kafka_cgrp_assignment_size{job=~\"tarantool\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{name}} — {{alias}} ({{type}}, {{connector_name}})",
@@ -13962,7 +13962,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tdg_kafka_eos_idemp_stateage{job=~\"tarantool_app\"}",
+                     "expr": "tdg_kafka_eos_idemp_stateage{job=~\"tarantool\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{name}} — {{alias}} ({{type}}, {{connector_name}})",
@@ -14052,7 +14052,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tdg_kafka_eos_txn_stateage{job=~\"tarantool_app\"}",
+                     "expr": "tdg_kafka_eos_txn_stateage{job=~\"tarantool\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{name}} — {{alias}} ({{type}}, {{connector_name}})",
@@ -14162,7 +14162,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tdg_expiration_checked_count{job=~\"tarantool_app\"}[2m])",
+                     "expr": "rate(tdg_expiration_checked_count{job=~\"tarantool\"}[2m])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{name}} — {{alias}}",
@@ -14252,7 +14252,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tdg_expiration_expired_count{job=~\"tarantool_app\"}[2m])",
+                     "expr": "rate(tdg_expiration_expired_count{job=~\"tarantool\"}[2m])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{name}} — {{alias}}",
@@ -14342,7 +14342,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tdg_expiration_restarts{job=~\"tarantool_app\"}",
+                     "expr": "tdg_expiration_restarts{job=~\"tarantool\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{name}} — {{alias}}",
@@ -14432,7 +14432,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tdg_expiration_working_time{job=~\"tarantool_app\"}",
+                     "expr": "tdg_expiration_working_time{job=~\"tarantool\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{name}} — {{alias}}",
@@ -14542,7 +14542,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tdg_scanned_tuples_sum{job=~\"tarantool_app\"} /\ntdg_scanned_tuples_count{job=~\"tarantool_app\"}\n",
+                     "expr": "tdg_scanned_tuples_sum{job=~\"tarantool\"} /\ntdg_scanned_tuples_count{job=~\"tarantool\"}\n",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{type_name}} — {{alias}}",
@@ -14632,7 +14632,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tdg_returned_tuples_sum{job=~\"tarantool_app\"} /\ntdg_returned_tuples_count{job=~\"tarantool_app\"}\n",
+                     "expr": "tdg_returned_tuples_sum{job=~\"tarantool\"} /\ntdg_returned_tuples_count{job=~\"tarantool\"}\n",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{type_name}} — {{alias}}",
@@ -14722,7 +14722,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tdg_scanned_tuples_max{job=~\"tarantool_app\"}",
+                     "expr": "tdg_scanned_tuples_max{job=~\"tarantool\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -14812,7 +14812,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tdg_returned_tuples_max{job=~\"tarantool_app\"}",
+                     "expr": "tdg_returned_tuples_max{job=~\"tarantool\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -14922,7 +14922,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tdg_connector_input_file_processed_count{job=~\"tarantool_app\"}",
+                     "expr": "tdg_connector_input_file_processed_count{job=~\"tarantool\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{connector_name}} — {{alias}}",
@@ -15012,7 +15012,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tdg_connector_input_file_processed_objects_count{job=~\"tarantool_app\"}",
+                     "expr": "tdg_connector_input_file_processed_objects_count{job=~\"tarantool\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{connector_name}} — {{alias}}",
@@ -15102,7 +15102,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tdg_connector_input_file_failed_count{job=~\"tarantool_app\"}",
+                     "expr": "tdg_connector_input_file_failed_count{job=~\"tarantool\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{connector_name}} — {{alias}}",
@@ -15192,7 +15192,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tdg_connector_input_file_size{job=~\"tarantool_app\"}",
+                     "expr": "tdg_connector_input_file_size{job=~\"tarantool\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{connector_name}} — {{alias}}",
@@ -15282,7 +15282,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tdg_connector_input_file_current_bytes_processed{job=~\"tarantool_app\"}",
+                     "expr": "tdg_connector_input_file_current_bytes_processed{job=~\"tarantool\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{connector_name}} — {{alias}}",
@@ -15372,7 +15372,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tdg_connector_input_file_current_processed_objects{job=~\"tarantool_app\"}",
+                     "expr": "tdg_connector_input_file_current_processed_objects{job=~\"tarantool\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{connector_name}} — {{alias}}",
@@ -15482,7 +15482,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tdg_graphql_query_time_count{job=~\"tarantool_app\"}[2m])",
+                     "expr": "rate(tdg_graphql_query_time_count{job=~\"tarantool\"}[2m])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{operation_name}} ({{schema}}, {{entity}}) — {{alias}}",
@@ -15572,7 +15572,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tdg_graphql_query_time_sum{job=~\"tarantool_app\"} /\ntdg_graphql_query_time_count{job=~\"tarantool_app\"}\n",
+                     "expr": "tdg_graphql_query_time_sum{job=~\"tarantool\"} /\ntdg_graphql_query_time_count{job=~\"tarantool\"}\n",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{operation_name}} ({{schema}}, {{entity}}) — {{alias}}",
@@ -15662,7 +15662,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tdg_graphql_query_fail{job=~\"tarantool_app\"}[2m])",
+                     "expr": "rate(tdg_graphql_query_fail{job=~\"tarantool\"}[2m])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{operation_name}} ({{schema}}, {{entity}}) — {{alias}}",
@@ -15752,7 +15752,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tdg_graphql_mutation_time_count{job=~\"tarantool_app\"}[2m])",
+                     "expr": "rate(tdg_graphql_mutation_time_count{job=~\"tarantool\"}[2m])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{operation_name}} ({{schema}}, {{entity}}) — {{alias}}",
@@ -15842,7 +15842,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tdg_graphql_mutation_time_sum{job=~\"tarantool_app\"} /\ntdg_graphql_mutation_time_count{job=~\"tarantool_app\"}\n",
+                     "expr": "tdg_graphql_mutation_time_sum{job=~\"tarantool\"} /\ntdg_graphql_mutation_time_count{job=~\"tarantool\"}\n",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{operation_name}} ({{schema}}, {{entity}}) — {{alias}}",
@@ -15932,7 +15932,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tdg_graphql_mutation_fail{job=~\"tarantool_app\"}[2m])",
+                     "expr": "rate(tdg_graphql_mutation_fail{job=~\"tarantool\"}[2m])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{operation_name}} ({{schema}}, {{entity}}) — {{alias}}",
@@ -16042,7 +16042,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tdg_iproto_data_query_exec_time_count{job=~\"tarantool_app\",method=\"repository.put\"}[2m])",
+                     "expr": "rate(tdg_iproto_data_query_exec_time_count{job=~\"tarantool\",method=\"repository.put\"}[2m])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{type}} — {{alias}}",
@@ -16132,7 +16132,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tdg_iproto_data_query_exec_time{job=~\"tarantool_app\",method=\"repository.put\",quantile=\"0.99\"}",
+                     "expr": "tdg_iproto_data_query_exec_time{job=~\"tarantool\",method=\"repository.put\",quantile=\"0.99\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{type}} — {{alias}}",
@@ -16222,7 +16222,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tdg_iproto_data_query_exec_time_count{job=~\"tarantool_app\",method=\"repository.put_batch\"}[2m])",
+                     "expr": "rate(tdg_iproto_data_query_exec_time_count{job=~\"tarantool\",method=\"repository.put_batch\"}[2m])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{type}} — {{alias}}",
@@ -16312,7 +16312,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tdg_iproto_data_query_exec_time{job=~\"tarantool_app\",method=\"repository.put_batch\",quantile=\"0.99\"}",
+                     "expr": "tdg_iproto_data_query_exec_time{job=~\"tarantool\",method=\"repository.put_batch\",quantile=\"0.99\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{type}} — {{alias}}",
@@ -16402,7 +16402,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tdg_iproto_data_query_exec_time_count{job=~\"tarantool_app\",method=\"repository.find\"}[2m])",
+                     "expr": "rate(tdg_iproto_data_query_exec_time_count{job=~\"tarantool\",method=\"repository.find\"}[2m])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{type}} — {{alias}}",
@@ -16492,7 +16492,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tdg_iproto_data_query_exec_time{job=~\"tarantool_app\",method=\"repository.find\",quantile=\"0.99\"}",
+                     "expr": "tdg_iproto_data_query_exec_time{job=~\"tarantool\",method=\"repository.find\",quantile=\"0.99\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{type}} — {{alias}}",
@@ -16582,7 +16582,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tdg_iproto_data_query_exec_time_count{job=~\"tarantool_app\",method=\"repository.update\"}[2m])",
+                     "expr": "rate(tdg_iproto_data_query_exec_time_count{job=~\"tarantool\",method=\"repository.update\"}[2m])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{type}} — {{alias}}",
@@ -16672,7 +16672,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tdg_iproto_data_query_exec_time{job=~\"tarantool_app\",method=\"repository.update\",quantile=\"0.99\"}",
+                     "expr": "tdg_iproto_data_query_exec_time{job=~\"tarantool\",method=\"repository.update\",quantile=\"0.99\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{type}} — {{alias}}",
@@ -16762,7 +16762,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tdg_iproto_data_query_exec_time_count{job=~\"tarantool_app\",method=\"repository.get\"}[2m])",
+                     "expr": "rate(tdg_iproto_data_query_exec_time_count{job=~\"tarantool\",method=\"repository.get\"}[2m])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{type}} — {{alias}}",
@@ -16852,7 +16852,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tdg_iproto_data_query_exec_time{job=~\"tarantool_app\",method=\"repository.get\",quantile=\"0.99\"}",
+                     "expr": "tdg_iproto_data_query_exec_time{job=~\"tarantool\",method=\"repository.get\",quantile=\"0.99\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{type}} — {{alias}}",
@@ -16942,7 +16942,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tdg_iproto_data_query_exec_time_count{job=~\"tarantool_app\",method=\"repository.delete\"}[2m])",
+                     "expr": "rate(tdg_iproto_data_query_exec_time_count{job=~\"tarantool\",method=\"repository.delete\"}[2m])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{type}} — {{alias}}",
@@ -17032,7 +17032,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tdg_iproto_data_query_exec_time{job=~\"tarantool_app\",method=\"repository.delete\",quantile=\"0.99\"}",
+                     "expr": "tdg_iproto_data_query_exec_time{job=~\"tarantool\",method=\"repository.delete\",quantile=\"0.99\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{type}} — {{alias}}",
@@ -17122,7 +17122,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tdg_iproto_data_query_exec_time_count{job=~\"tarantool_app\",method=\"repository.count\"}[2m])",
+                     "expr": "rate(tdg_iproto_data_query_exec_time_count{job=~\"tarantool\",method=\"repository.count\"}[2m])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{type}} — {{alias}}",
@@ -17212,7 +17212,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tdg_iproto_data_query_exec_time{job=~\"tarantool_app\",method=\"repository.count\",quantile=\"0.99\"}",
+                     "expr": "tdg_iproto_data_query_exec_time{job=~\"tarantool\",method=\"repository.count\",quantile=\"0.99\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{type}} — {{alias}}",
@@ -17302,7 +17302,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tdg_iproto_data_query_exec_time_count{job=~\"tarantool_app\",method=\"repository.map_reduce\"}[2m])",
+                     "expr": "rate(tdg_iproto_data_query_exec_time_count{job=~\"tarantool\",method=\"repository.map_reduce\"}[2m])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{type}} — {{alias}}",
@@ -17392,7 +17392,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tdg_iproto_data_query_exec_time{job=~\"tarantool_app\",method=\"repository.map_reduce\",quantile=\"0.99\"}",
+                     "expr": "tdg_iproto_data_query_exec_time{job=~\"tarantool\",method=\"repository.map_reduce\",quantile=\"0.99\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{type}} — {{alias}}",
@@ -17482,7 +17482,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tdg_iproto_data_query_exec_time_count{job=~\"tarantool_app\",method=\"repository.call_on_storage\"}[2m])",
+                     "expr": "rate(tdg_iproto_data_query_exec_time_count{job=~\"tarantool\",method=\"repository.call_on_storage\"}[2m])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{type}} — {{alias}}",
@@ -17572,7 +17572,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tdg_iproto_data_query_exec_time{job=~\"tarantool_app\",method=\"repository.call_on_storage\",quantile=\"0.99\"}",
+                     "expr": "tdg_iproto_data_query_exec_time{job=~\"tarantool\",method=\"repository.call_on_storage\",quantile=\"0.99\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{type}} — {{alias}}",
@@ -17682,7 +17682,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tdg_rest_exec_time_count{job=~\"tarantool_app\",method=\"GET\",status_code=~\"^2\\\\d{2}$\"}[2m])",
+                     "expr": "rate(tdg_rest_exec_time_count{job=~\"tarantool\",method=\"GET\",status_code=~\"^2\\\\d{2}$\"}[2m])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{type}} (code {{status_code}}) — {{alias}}",
@@ -17772,7 +17772,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tdg_rest_exec_time_count{job=~\"tarantool_app\",method=\"GET\",status_code=~\"^4\\\\d{2}$\"}[2m])",
+                     "expr": "rate(tdg_rest_exec_time_count{job=~\"tarantool\",method=\"GET\",status_code=~\"^4\\\\d{2}$\"}[2m])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{type}} (code {{status_code}}) — {{alias}}",
@@ -17862,7 +17862,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tdg_rest_exec_time_count{job=~\"tarantool_app\",method=\"GET\",status_code=~\"^5\\\\d{2}$\"}[2m])",
+                     "expr": "rate(tdg_rest_exec_time_count{job=~\"tarantool\",method=\"GET\",status_code=~\"^5\\\\d{2}$\"}[2m])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{type}} (code {{status_code}}) — {{alias}}",
@@ -17952,7 +17952,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tdg_rest_exec_time{job=~\"tarantool_app\",method=\"GET\",status_code=~\"^2\\\\d{2}$\",quantile=\"0.99\"}",
+                     "expr": "tdg_rest_exec_time{job=~\"tarantool\",method=\"GET\",status_code=~\"^2\\\\d{2}$\",quantile=\"0.99\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{type}} (code {{status_code}}) — {{alias}}",
@@ -18042,7 +18042,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tdg_rest_exec_time{job=~\"tarantool_app\",method=\"GET\",status_code=~\"^4\\\\d{2}$\",quantile=\"0.99\"}",
+                     "expr": "tdg_rest_exec_time{job=~\"tarantool\",method=\"GET\",status_code=~\"^4\\\\d{2}$\",quantile=\"0.99\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{type}} (code {{status_code}}) — {{alias}}",
@@ -18132,7 +18132,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tdg_rest_exec_time{job=~\"tarantool_app\",method=\"GET\",status_code=~\"^5\\\\d{2}$\",quantile=\"0.99\"}",
+                     "expr": "tdg_rest_exec_time{job=~\"tarantool\",method=\"GET\",status_code=~\"^5\\\\d{2}$\",quantile=\"0.99\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{type}} (code {{status_code}}) — {{alias}}",
@@ -18222,7 +18222,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tdg_rest_exec_time_count{job=~\"tarantool_app\",method!=\"GET\",status_code=~\"^2\\\\d{2}$\"}[2m])",
+                     "expr": "rate(tdg_rest_exec_time_count{job=~\"tarantool\",method!=\"GET\",status_code=~\"^2\\\\d{2}$\"}[2m])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{type}} (code {{status_code}}) — {{alias}}",
@@ -18312,7 +18312,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tdg_rest_exec_time_count{job=~\"tarantool_app\",method!=\"GET\",status_code=~\"^4\\\\d{2}$\"}[2m])",
+                     "expr": "rate(tdg_rest_exec_time_count{job=~\"tarantool\",method!=\"GET\",status_code=~\"^4\\\\d{2}$\"}[2m])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{type}} (code {{status_code}}) — {{alias}}",
@@ -18402,7 +18402,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tdg_rest_exec_time_count{job=~\"tarantool_app\",method!=\"GET\",status_code=~\"^5\\\\d{2}$\"}[2m])",
+                     "expr": "rate(tdg_rest_exec_time_count{job=~\"tarantool\",method!=\"GET\",status_code=~\"^5\\\\d{2}$\"}[2m])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{type}} (code {{status_code}}) — {{alias}}",
@@ -18492,7 +18492,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tdg_rest_exec_time{job=~\"tarantool_app\",method!=\"GET\",status_code=~\"^2\\\\d{2}$\",quantile=\"0.99\"}",
+                     "expr": "tdg_rest_exec_time{job=~\"tarantool\",method!=\"GET\",status_code=~\"^2\\\\d{2}$\",quantile=\"0.99\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{type}} (code {{status_code}}) — {{alias}}",
@@ -18582,7 +18582,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tdg_rest_exec_time{job=~\"tarantool_app\",method!=\"GET\",status_code=~\"^4\\\\d{2}$\",quantile=\"0.99\"}",
+                     "expr": "tdg_rest_exec_time{job=~\"tarantool\",method!=\"GET\",status_code=~\"^4\\\\d{2}$\",quantile=\"0.99\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{type}} (code {{status_code}}) — {{alias}}",
@@ -18672,7 +18672,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tdg_rest_exec_time{job=~\"tarantool_app\",method!=\"GET\",status_code=~\"^5\\\\d{2}$\",quantile=\"0.99\"}",
+                     "expr": "tdg_rest_exec_time{job=~\"tarantool\",method!=\"GET\",status_code=~\"^5\\\\d{2}$\",quantile=\"0.99\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{type}} (code {{status_code}}) — {{alias}}",
@@ -18782,7 +18782,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tdg_jobs_started{job=~\"tarantool_app\"}[2m])",
+                     "expr": "rate(tdg_jobs_started{job=~\"tarantool\"}[2m])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{name}} — {{alias}}",
@@ -18872,7 +18872,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tdg_jobs_failed{job=~\"tarantool_app\"}[2m])",
+                     "expr": "rate(tdg_jobs_failed{job=~\"tarantool\"}[2m])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{name}} — {{alias}}",
@@ -18962,7 +18962,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tdg_jobs_succeeded{job=~\"tarantool_app\"}[2m])",
+                     "expr": "rate(tdg_jobs_succeeded{job=~\"tarantool\"}[2m])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{name}} — {{alias}}",
@@ -19052,7 +19052,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tdg_jobs_running{job=~\"tarantool_app\"}",
+                     "expr": "tdg_jobs_running{job=~\"tarantool\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{name}} — {{alias}}",
@@ -19142,7 +19142,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tdg_jobs_execution_time_sum{job=~\"tarantool_app\"} /\ntdg_jobs_execution_time_count{job=~\"tarantool_app\"}\n",
+                     "expr": "tdg_jobs_execution_time_sum{job=~\"tarantool\"} /\ntdg_jobs_execution_time_count{job=~\"tarantool\"}\n",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{name}} — {{alias}}",
@@ -19232,7 +19232,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tdg_tasks_started{job=~\"tarantool_app\"}[2m])",
+                     "expr": "rate(tdg_tasks_started{job=~\"tarantool\"}[2m])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{name}} ({{kind}}) — {{alias}}",
@@ -19322,7 +19322,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tdg_tasks_failed{job=~\"tarantool_app\"}[2m])",
+                     "expr": "rate(tdg_tasks_failed{job=~\"tarantool\"}[2m])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{name}} ({{kind}}) — {{alias}}",
@@ -19412,7 +19412,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tdg_tasks_succeeded{job=~\"tarantool_app\"}[2m])",
+                     "expr": "rate(tdg_tasks_succeeded{job=~\"tarantool\"}[2m])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{name}} ({{kind}}) — {{alias}}",
@@ -19502,7 +19502,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tdg_tasks_stopped{job=~\"tarantool_app\"}[2m])",
+                     "expr": "rate(tdg_tasks_stopped{job=~\"tarantool\"}[2m])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{name}} ({{kind}}) — {{alias}}",
@@ -19592,7 +19592,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tdg_tasks_running{job=~\"tarantool_app\"}",
+                     "expr": "tdg_tasks_running{job=~\"tarantool\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{name}} ({{kind}}) — {{alias}}",
@@ -19682,7 +19682,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tdg_tasks_execution_time_sum{job=~\"tarantool_app\"} /\ntdg_tasks_execution_time_count{job=~\"tarantool_app\"}\n",
+                     "expr": "tdg_tasks_execution_time_sum{job=~\"tarantool\"} /\ntdg_tasks_execution_time_count{job=~\"tarantool\"}\n",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{name}} ({{kind}}) — {{alias}}",
@@ -19772,7 +19772,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tdg_system_tasks_started{job=~\"tarantool_app\"}[2m])",
+                     "expr": "rate(tdg_system_tasks_started{job=~\"tarantool\"}[2m])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{name}} ({{kind}}) — {{alias}}",
@@ -19862,7 +19862,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tdg_system_tasks_failed{job=~\"tarantool_app\"}[2m])",
+                     "expr": "rate(tdg_system_tasks_failed{job=~\"tarantool\"}[2m])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{name}} ({{kind}}) — {{alias}}",
@@ -19952,7 +19952,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tdg_system_tasks_succeeded{job=~\"tarantool_app\"}[2m])",
+                     "expr": "rate(tdg_system_tasks_succeeded{job=~\"tarantool\"}[2m])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{name}} ({{kind}}) — {{alias}}",
@@ -20042,7 +20042,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tdg_system_tasks_running{job=~\"tarantool_app\"}",
+                     "expr": "tdg_system_tasks_running{job=~\"tarantool\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{name}} ({{kind}}) — {{alias}}",
@@ -20132,7 +20132,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tdg_system_tasks_execution_time_sum{job=~\"tarantool_app\"} /\ntdg_system_tasks_execution_time_count{job=~\"tarantool_app\"}\n",
+                     "expr": "tdg_system_tasks_execution_time_sum{job=~\"tarantool\"} /\ntdg_system_tasks_execution_time_count{job=~\"tarantool\"}\n",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{name}} ({{kind}}) — {{alias}}",

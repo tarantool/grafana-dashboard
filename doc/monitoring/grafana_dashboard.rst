@@ -79,7 +79,7 @@ metrics path as it was configured on Tarantool instances:
 ..  code-block:: yaml
 
     scrape_configs:
-      - job_name: "example_project"
+      - job_name: tarantool
         static_configs:
           - targets: 
             - "example_project:8081"

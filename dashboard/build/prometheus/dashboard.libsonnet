@@ -18,8 +18,7 @@ dashboard_raw(
   name='PROMETHEUS_JOB',
   label='Job',
   type='constant',
-  pluginId=null,
-  pluginName=null,
+  value='tarantool',
   description='Prometheus Tarantool metrics job'
 ).addInput(
   name='PROMETHEUS_RATE_TIME_RANGE',

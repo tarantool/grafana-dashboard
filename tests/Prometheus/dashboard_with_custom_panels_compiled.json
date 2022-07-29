@@ -12,7 +12,8 @@
          "description": "Prometheus Tarantool metrics job",
          "label": "Job",
          "name": "PROMETHEUS_JOB",
-         "type": "constant"
+         "type": "constant",
+         "value": "tarantool"
       },
       {
          "description": "Time range for computing rps graphs with rate(). At the very minimum it should be two times the scrape interval.",
