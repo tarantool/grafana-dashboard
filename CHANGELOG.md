@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Changed
 - Set default Prometheus job to `tarantool`
+- Set default InfluxDB measurement to `tarantool_http`
 
 
 ## [1.3.0] - 2022-06-29
