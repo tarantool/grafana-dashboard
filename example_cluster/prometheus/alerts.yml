@@ -179,7 +179,7 @@ groups:
   rules:
   # Alert for CRUD module request errors.
   - alert: CRUDHighErrorRate
-    expr: rate(tnt_crud_stats_count{ job="tarantool_app", status="error" }[5m]) > 0.1
+    expr: rate(tnt_crud_stats_count{ job="tarantool", status="error" }[5m]) > 0.1
     for: 1m
     labels:
       severity: critical
@@ -190,7 +190,7 @@ groups:
 
   # Warning for CRUD module requests too long responses.
   - alert: CRUDHighLatency
-    expr: tnt_crud_stats{ job="tarantool_app", quantile="0.99" } > 0.1
+    expr: tnt_crud_stats{ job="tarantool", quantile="0.99" } > 0.1
     for: 1m
     labels:
       severity: warning
@@ -201,7 +201,7 @@ groups:
 
   # Warning for too many map reduce CRUD module requests.
   - alert: CRUDHighMapReduceRate
-    expr: rate(tnt_crud_map_reduces{ job="tarantool_app" }[5m]) > 0.1
+    expr: rate(tnt_crud_map_reduces{ job="tarantool" }[5m]) > 0.1
     for: 1m
     labels:
       severity: warning
@@ -214,12 +214,12 @@ groups:
 
 - name: tarantool-business
   rules:
-  # Warning for any endpoint of an instance in tarantool_app job that responds too long.
+  # Warning for any endpoint of an instance in tarantool job that responds too long.
   # Beware that metric name depends on name of the collector you use in HTTP metrics middleware
   # and request depends on type of this collector.
   # This example based on summary collector with default name.
   - alert: HTTPHighLatency
-    expr: http_server_request_latency{ job="tarantool_app", quantile="0.99" } > 0.1
+    expr: http_server_request_latency{ job="tarantool", quantile="0.99" } > 0.1
     for: 5m
     labels:
       severity: warning
@@ -228,12 +228,12 @@ groups:
       description: "Some {{ $labels.method }} requests to {{ $labels.path }} path with {{ $labels.status }} response status
         on '{{ $labels.alias }}' instance of job '{{ $labels.job }}' are processed too long."
 
-  # Warning for any endpoint of an instance in tarantool_app job that sends too much 4xx responses.
+  # Warning for any endpoint of an instance in tarantool job that sends too much 4xx responses.
   # Beware that metric name depends on name of the collector you use in HTTP metrics middleware
   # and request depends on type of this collector.
   # This example based on summary collector with default name.
   - alert: HTTPHighClientErrorRateInstance
-    expr: sum by (job, instance, method, path, alias) (rate(http_server_request_latency_count{ job="tarantool_app", status=~"^4\\d{2}$" }[5m])) > 10
+    expr: sum by (job, instance, method, path, alias) (rate(http_server_request_latency_count{ job="tarantool", status=~"^4\\d{2}$" }[5m])) > 10
     for: 1m
     labels:
       severity: warning
@@ -242,12 +242,12 @@ groups:
       description: "Too many {{ $labels.method }} requests to {{ $labels.path }} path 
         on '{{ $labels.alias }}' instance of job '{{ $labels.job }}' get client error (4xx) responses."
 
-  # Warning for any endpoint in tarantool_app job that sends too much 4xx responses (cluster overall).
+  # Warning for any endpoint in tarantool job that sends too much 4xx responses (cluster overall).
   # Beware that metric name depends on name of the collector you use in HTTP metrics middleware
   # and request depends on type of this collector.
   # This example based on summary collector with default name.
   - alert: HTTPHighClientErrorRate
-    expr: sum by (job, method, path) (rate(http_server_request_latency_count{ job="tarantool_app", status=~"^4\\d{2}$" }[5m])) > 20
+    expr: sum by (job, method, path) (rate(http_server_request_latency_count{ job="tarantool", status=~"^4\\d{2}$" }[5m])) > 20
     for: 1m
     labels:
       severity: warning
@@ -256,12 +256,12 @@ groups:
       description: "Too many {{ $labels.method }} requests to {{ $labels.path }} path
         on instances of job '{{ $labels.job }}' get client error (4xx) responses."
 
-  # Warning for any endpoint of an instance in tarantool_app job that sends 5xx responses.
+  # Warning for any endpoint of an instance in tarantool job that sends 5xx responses.
   # Beware that metric name depends on name of the collector you use in HTTP metrics middleware
   # and request depends on type of this collector.
   # This example based on summary collector with default name.
   - alert: HTTPServerErrors
-    expr: sum by (job, instance, method, path, alias) (rate(http_server_request_latency_count{ job="tarantool_app", status=~"^5\\d{2}$" }[5m])) > 0
+    expr: sum by (job, instance, method, path, alias) (rate(http_server_request_latency_count{ job="tarantool", status=~"^5\\d{2}$" }[5m])) > 0
     for: 1m
     labels:
       severity: warning
@@ -270,12 +270,12 @@ groups:
       description: "Some {{ $labels.method }} requests to {{ $labels.path }} path 
         on '{{ $labels.alias }}' instance of job '{{ $labels.job }}' get server error (5xx) responses."
 
-  # Warning for any endpoint of a router instance (with "router" in alias) in tarantool_app job that gets too little requests.
+  # Warning for any endpoint of a router instance (with "router" in alias) in tarantool job that gets too little requests.
   # Beware that metric name depends on name of the collector you use in HTTP metrics middleware
   # and request depends on type of this collector.
   # This example based on summary collector with default name.
   - alert: HTTPLowRequestRateRouter
-    expr: sum by (job, instance, alias) (rate(http_server_request_latency_count{ job="tarantool_app", alias=~"^.*router.*$" }[5m])) < 10
+    expr: sum by (job, instance, alias) (rate(http_server_request_latency_count{ job="tarantool", alias=~"^.*router.*$" }[5m])) < 10
     for: 5m
     labels:
       severity: warning

@@ -81,7 +81,7 @@ To set up an InfluxDB dashboard for monitoring example app, use the following va
 
 To set up an Prometheus dashboard for monitoring example app, use the following variables:
 
-- `Job`: `tarantool_app`;
+- `Job`: `tarantool`;
 - `Rate time range`: `2m`.
 
 ### Monitoring local app
@@ -116,7 +116,7 @@ to install build dependencies and dependencies that are required to run tests lo
 
 To build a static dashboard with no input and dynamic variables, run `make` commands.
 ```bash
-make DATASOURCE=MyPrometheus JOB=MyApp \
+make DATASOURCE=Prometheus JOB=tarantool \
      OUTPUT_STATIC_DASHBOARD=mydashboard.json build-static-prometheus
 ```
 Following targets are available:
@@ -127,7 +127,7 @@ Following targets are available:
 
 Variables for Prometheus targets:
 - `DATASOURCE`: name of a Prometheus data source;
-- `JOB`: name of a Prometheus job collecting your application metrics;
+- `JOB` (optional, default `tarantool`): name of a Prometheus job collecting your application metrics;
 - `RATE_TIME_RANGE` (optional, default `2m`): rps computation rate time range;
 - `OUTPUT_STATIC_DASHBOARD` (optional, default `dashboard.json`): compiled dashboard file.
 
