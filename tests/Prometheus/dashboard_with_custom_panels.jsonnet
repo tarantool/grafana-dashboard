@@ -38,7 +38,6 @@ dashboard.addPanels([
     datasource_type=variable.datasource_type.prometheus,
     metric_name='my_component_load_metric_count',
     job=variable.prometheus.job,
-    rate_time_range=variable.prometheus.rate_time_range,
   )),
 
   common.default_graph(

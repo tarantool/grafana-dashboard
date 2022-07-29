@@ -17,7 +17,6 @@ local prometheus = grafana.prometheus;
     metric_name,
     method_tail,
     job=null,
-    rate_time_range=null,
     policy=null,
     measurement=null,
     panel_width=6,
@@ -31,18 +30,18 @@ local prometheus = grafana.prometheus;
     if description != null then
       description
     else
-      common_utils.rate_warning(std.format(|||
+      std.format(|||
         Number of repository.%s method calls through IProto.
         Graph shows mean requests per second.
-      |||, method_tail), datasource_type),
+      |||, method_tail),
     datasource=datasource,
     labelY1='request per second',
     panel_width=panel_width,
   ).addTarget(
     if datasource_type == variable.datasource_type.prometheus then
       prometheus.target(
-        expr=std.format('rate(%s{job=~"%s",method="repository.%s"}[%s])',
-                        [metric_name, job, method_tail, rate_time_range]),
+        expr=std.format('rate(%s{job=~"%s",method="repository.%s"}[$__rate_interval])',
+                        [metric_name, job, method_tail]),
         legendFormat='{{type}} — {{alias}}',
       )
     else if datasource_type == variable.datasource_type.influxdb then
@@ -117,7 +116,6 @@ local prometheus = grafana.prometheus;
     policy=null,
     measurement=null,
     job=null,
-    rate_time_range=null,
   ):: rps_panel(
     title=title,
     description=description,
@@ -126,7 +124,6 @@ local prometheus = grafana.prometheus;
     metric_name='tdg_iproto_data_query_exec_time_count',
     method_tail='put',
     job=job,
-    rate_time_range=rate_time_range,
     policy=policy,
     measurement=measurement,
   ),
@@ -159,7 +156,6 @@ local prometheus = grafana.prometheus;
     policy=null,
     measurement=null,
     job=null,
-    rate_time_range=null,
   ):: rps_panel(
     title=title,
     description=description,
@@ -168,7 +164,6 @@ local prometheus = grafana.prometheus;
     metric_name='tdg_iproto_data_query_exec_time_count',
     method_tail='put_batch',
     job=job,
-    rate_time_range=rate_time_range,
     policy=policy,
     measurement=measurement,
   ),
@@ -201,7 +196,6 @@ local prometheus = grafana.prometheus;
     policy=null,
     measurement=null,
     job=null,
-    rate_time_range=null,
   ):: rps_panel(
     title=title,
     description=description,
@@ -210,7 +204,6 @@ local prometheus = grafana.prometheus;
     metric_name='tdg_iproto_data_query_exec_time_count',
     method_tail='find',
     job=job,
-    rate_time_range=rate_time_range,
     policy=policy,
     measurement=measurement,
     panel_width=12,
@@ -245,7 +238,6 @@ local prometheus = grafana.prometheus;
     policy=null,
     measurement=null,
     job=null,
-    rate_time_range=null,
   ):: rps_panel(
     title=title,
     description=description,
@@ -254,7 +246,6 @@ local prometheus = grafana.prometheus;
     metric_name='tdg_iproto_data_query_exec_time_count',
     method_tail='update',
     job=job,
-    rate_time_range=rate_time_range,
     policy=policy,
     measurement=measurement,
   ),
@@ -287,7 +278,6 @@ local prometheus = grafana.prometheus;
     policy=null,
     measurement=null,
     job=null,
-    rate_time_range=null,
   ):: rps_panel(
     title=title,
     description=description,
@@ -296,7 +286,6 @@ local prometheus = grafana.prometheus;
     metric_name='tdg_iproto_data_query_exec_time_count',
     method_tail='get',
     job=job,
-    rate_time_range=rate_time_range,
     policy=policy,
     measurement=measurement,
   ),
@@ -329,7 +318,6 @@ local prometheus = grafana.prometheus;
     policy=null,
     measurement=null,
     job=null,
-    rate_time_range=null,
   ):: rps_panel(
     title=title,
     description=description,
@@ -338,7 +326,6 @@ local prometheus = grafana.prometheus;
     metric_name='tdg_iproto_data_query_exec_time_count',
     method_tail='delete',
     job=job,
-    rate_time_range=rate_time_range,
     policy=policy,
     measurement=measurement,
   ),
@@ -371,7 +358,6 @@ local prometheus = grafana.prometheus;
     policy=null,
     measurement=null,
     job=null,
-    rate_time_range=null,
   ):: rps_panel(
     title=title,
     description=description,
@@ -380,7 +366,6 @@ local prometheus = grafana.prometheus;
     metric_name='tdg_iproto_data_query_exec_time_count',
     method_tail='count',
     job=job,
-    rate_time_range=rate_time_range,
     policy=policy,
     measurement=measurement,
   ),
@@ -413,7 +398,6 @@ local prometheus = grafana.prometheus;
     policy=null,
     measurement=null,
     job=null,
-    rate_time_range=null,
   ):: rps_panel(
     title=title,
     description=description,
@@ -422,7 +406,6 @@ local prometheus = grafana.prometheus;
     metric_name='tdg_iproto_data_query_exec_time_count',
     method_tail='map_reduce',
     job=job,
-    rate_time_range=rate_time_range,
     policy=policy,
     measurement=measurement,
   ),
@@ -455,7 +438,6 @@ local prometheus = grafana.prometheus;
     policy=null,
     measurement=null,
     job=null,
-    rate_time_range=null,
   ):: rps_panel(
     title=title,
     description=description,
@@ -464,7 +446,6 @@ local prometheus = grafana.prometheus;
     metric_name='tdg_iproto_data_query_exec_time_count',
     method_tail='call_on_storage',
     job=job,
-    rate_time_range=rate_time_range,
     policy=policy,
     measurement=measurement,
   ),

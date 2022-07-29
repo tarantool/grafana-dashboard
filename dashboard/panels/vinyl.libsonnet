@@ -303,7 +303,6 @@ local prometheus = grafana.prometheus;
     policy=null,
     measurement=null,
     job=null,
-    rate_time_range=null,
     metric_name=null,
   ) = common.default_graph(
     title=title,
@@ -316,7 +315,6 @@ local prometheus = grafana.prometheus;
     datasource_type,
     metric_name,
     job,
-    rate_time_range,
     policy,
     measurement,
   )),
@@ -335,16 +333,14 @@ local prometheus = grafana.prometheus;
     policy=null,
     measurement=null,
     job=null,
-    rate_time_range=null,
   ):: tx_rate(
     title=title,
-    description=common.rate_warning(description, datasource_type),
+    description=description,
     datasource_type=datasource_type,
     datasource=datasource,
     policy=policy,
     measurement=measurement,
     job=job,
-    rate_time_range=rate_time_range,
     metric_name='tnt_vinyl_tx_commit',
   ),
 
@@ -361,16 +357,14 @@ local prometheus = grafana.prometheus;
     policy=null,
     measurement=null,
     job=null,
-    rate_time_range=null,
   ):: tx_rate(
     title=title,
-    description=common.rate_warning(description, datasource_type),
+    description=description,
     datasource_type=datasource_type,
     datasource=datasource,
     policy=policy,
     measurement=measurement,
     job=job,
-    rate_time_range=rate_time_range,
     metric_name='tnt_vinyl_tx_rollback',
   ),
 
@@ -388,16 +382,14 @@ local prometheus = grafana.prometheus;
     policy=null,
     measurement=null,
     job=null,
-    rate_time_range=null,
   ):: tx_rate(
     title=title,
-    description=common.rate_warning(description, datasource_type),
+    description=description,
     datasource_type=datasource_type,
     datasource=datasource,
     policy=policy,
     measurement=measurement,
     job=job,
-    rate_time_range=rate_time_range,
     metric_name='tnt_vinyl_tx_conflict',
   ),
 
@@ -603,10 +595,9 @@ local prometheus = grafana.prometheus;
     policy=null,
     measurement=null,
     job=null,
-    rate_time_range=null,
   ):: common.default_graph(
     title=title,
-    description=common.rate_warning(description, datasource_type),
+    description=description,
     datasource=datasource,
     format='none',
     labelY1='per second rate',
@@ -615,7 +606,7 @@ local prometheus = grafana.prometheus;
   ).addTarget(
     if datasource_type == variable.datasource_type.prometheus then
       prometheus.target(
-        expr=std.format('rate(tnt_vinyl_scheduler_tasks{job=~"%s",status="failed"}[%s])', [job, rate_time_range]),
+        expr=std.format('rate(tnt_vinyl_scheduler_tasks{job=~"%s",status="failed"}[$__rate_interval])', [job]),
         legendFormat='{{alias}}',
       )
     else if datasource_type == variable.datasource_type.influxdb then
@@ -641,10 +632,9 @@ local prometheus = grafana.prometheus;
     policy=null,
     measurement=null,
     job=null,
-    rate_time_range=null,
   ):: common.default_graph(
     title=title,
-    description=common.rate_warning(description, datasource_type),
+    description=description,
     datasource=datasource,
     format='s',
     labelY1='per second rate',
@@ -654,7 +644,6 @@ local prometheus = grafana.prometheus;
     datasource_type,
     'tnt_vinyl_scheduler_dump_time',
     job,
-    rate_time_range,
     policy,
     measurement,
   )),
@@ -671,10 +660,9 @@ local prometheus = grafana.prometheus;
     policy=null,
     measurement=null,
     job=null,
-    rate_time_range=null,
   ):: common.default_graph(
     title=title,
-    description=common.rate_warning(description, datasource_type),
+    description=description,
     datasource=datasource,
     format='none',
     labelY1='per second rate',
@@ -684,7 +672,6 @@ local prometheus = grafana.prometheus;
     datasource_type,
     'tnt_vinyl_scheduler_dump_total',
     job,
-    rate_time_range,
     policy,
     measurement,
   )),

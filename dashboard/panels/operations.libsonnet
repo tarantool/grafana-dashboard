@@ -17,7 +17,6 @@ local prometheus = grafana.prometheus;
     policy=null,
     measurement=null,
     job=null,
-    rate_time_range=null,
     labelY1=null,
     operation=null,
   ) = common.default_graph(
@@ -29,7 +28,7 @@ local prometheus = grafana.prometheus;
   ).addTarget(
     if datasource_type == variable.datasource_type.prometheus then
       prometheus.target(
-        expr=std.format('rate(tnt_stats_op_total{job=~"%s",operation="%s"}[%s])', [job, operation, rate_time_range]),
+        expr=std.format('rate(tnt_stats_op_total{job=~"%s",operation="%s"}[$__rate_interval])', [job, operation]),
         legendFormat='{{alias}}'
       )
     else if datasource_type == variable.datasource_type.influxdb then
@@ -50,20 +49,18 @@ local prometheus = grafana.prometheus;
     policy=null,
     measurement=null,
     job=null,
-    rate_time_range=null,
     operation=null,
   ) = operation_rps(
     title=(if title != null then title else std.format('%s space requests', std.asciiUpper(operation))),
-    description=common.rate_warning(std.format(|||
+    description=std.format(|||
       Total count of %s requests to all instance spaces.
       Graph shows average requests per second.
-    |||, std.asciiUpper(operation)), datasource_type),
+    |||, std.asciiUpper(operation)),
     datasource_type=datasource_type,
     datasource=datasource,
     policy=policy,
     measurement=measurement,
     job=job,
-    rate_time_range=rate_time_range,
     labelY1='requests per second',
     operation=operation,
   ),
@@ -76,7 +73,6 @@ local prometheus = grafana.prometheus;
     policy=null,
     measurement=null,
     job=null,
-    rate_time_range=null,
   ):: space_operation_rps(
     title=title,
     description=description,
@@ -85,7 +81,6 @@ local prometheus = grafana.prometheus;
     policy=policy,
     measurement=measurement,
     job=job,
-    rate_time_range=rate_time_range,
     operation='select'
   ),
 
@@ -97,7 +92,6 @@ local prometheus = grafana.prometheus;
     policy=null,
     measurement=null,
     job=null,
-    rate_time_range=null,
   ):: space_operation_rps(
     title=title,
     description=description,
@@ -106,7 +100,6 @@ local prometheus = grafana.prometheus;
     policy=policy,
     measurement=measurement,
     job=job,
-    rate_time_range=rate_time_range,
     operation='insert'
   ),
 
@@ -118,7 +111,6 @@ local prometheus = grafana.prometheus;
     policy=null,
     measurement=null,
     job=null,
-    rate_time_range=null,
   ):: space_operation_rps(
     title=title,
     description=description,
@@ -127,7 +119,6 @@ local prometheus = grafana.prometheus;
     policy=policy,
     measurement=measurement,
     job=job,
-    rate_time_range=rate_time_range,
     operation='replace'
   ),
 
@@ -139,7 +130,6 @@ local prometheus = grafana.prometheus;
     policy=null,
     measurement=null,
     job=null,
-    rate_time_range=null,
   ):: space_operation_rps(
     title=title,
     description=description,
@@ -148,7 +138,6 @@ local prometheus = grafana.prometheus;
     policy=policy,
     measurement=measurement,
     job=job,
-    rate_time_range=rate_time_range,
     operation='upsert'
   ),
 
@@ -160,7 +149,6 @@ local prometheus = grafana.prometheus;
     policy=null,
     measurement=null,
     job=null,
-    rate_time_range=null,
   ):: space_operation_rps(
     title=title,
     description=description,
@@ -169,7 +157,6 @@ local prometheus = grafana.prometheus;
     policy=policy,
     measurement=measurement,
     job=job,
-    rate_time_range=rate_time_range,
     operation='update'
   ),
 
@@ -181,7 +168,6 @@ local prometheus = grafana.prometheus;
     policy=null,
     measurement=null,
     job=null,
-    rate_time_range=null,
   ):: space_operation_rps(
     title=title,
     description=description,
@@ -190,22 +176,20 @@ local prometheus = grafana.prometheus;
     policy=policy,
     measurement=measurement,
     job=job,
-    rate_time_range=rate_time_range,
     operation='delete'
   ),
 
   call_rps(
     title='Call requests',
-    description=common.rate_warning(|||
+    description=|||
       Requests to execute stored procedures.
       Graph shows average requests per second.
-    |||, datasource_type),
+    |||,
     datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
     job=null,
-    rate_time_range=null,
   ):: operation_rps(
     title=title,
     description=description,
@@ -214,23 +198,21 @@ local prometheus = grafana.prometheus;
     policy=policy,
     measurement=measurement,
     job=job,
-    rate_time_range=rate_time_range,
     labelY1='requests per second',
     operation='call'
   ),
 
   eval_rps(
     title='Eval calls',
-    description=common.rate_warning(|||
+    description=|||
       Calls to evaluate Lua code.
       Graph shows average requests per second.
-    |||, datasource_type),
+    |||,
     datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
     job=null,
-    rate_time_range=null,
   ):: operation_rps(
     title=title,
     description=description,
@@ -239,23 +221,21 @@ local prometheus = grafana.prometheus;
     policy=policy,
     measurement=measurement,
     job=job,
-    rate_time_range=rate_time_range,
     labelY1='requests per second',
     operation='eval'
   ),
 
   error_rps(
     title='Request errors',
-    description=common.rate_warning(|||
+    description=|||
       Requests resulted in error.
       Graph shows average errors per second.
-    |||, datasource_type),
+    |||,
     datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
     job=null,
-    rate_time_range=null,
   ):: operation_rps(
     title=title,
     description=description,
@@ -264,23 +244,21 @@ local prometheus = grafana.prometheus;
     policy=policy,
     measurement=measurement,
     job=job,
-    rate_time_range=rate_time_range,
     labelY1='errors per second',
     operation='error'
   ),
 
   auth_rps(
     title='Authentication requests',
-    description=common.rate_warning(|||
+    description=|||
       Authentication requests.
       Graph shows average requests per second.
-    |||, datasource_type),
+    |||,
     datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
     job=null,
-    rate_time_range=null,
   ):: operation_rps(
     title=title,
     description=description,
@@ -289,25 +267,23 @@ local prometheus = grafana.prometheus;
     policy=policy,
     measurement=measurement,
     job=job,
-    rate_time_range=rate_time_range,
     labelY1='requests per second',
     operation='auth'
   ),
 
   SQL_prepare_rps(
     title='SQL prepare calls',
-    description=common.rate_warning(|||
+    description=|||
       SQL prepare calls.
       Graph shows average calls per second.
 
       Panel works with Tarantool 2.x.
-    |||, datasource_type),
+    |||,
     datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
     job=null,
-    rate_time_range=null,
   ):: operation_rps(
     title=title,
     description=description,
@@ -316,25 +292,23 @@ local prometheus = grafana.prometheus;
     policy=policy,
     measurement=measurement,
     job=job,
-    rate_time_range=rate_time_range,
     labelY1='requests per second',
     operation='prepare'
   ),
 
   SQL_execute_rps(
     title='SQL execute calls',
-    description=common.rate_warning(|||
+    description=|||
       SQL execute calls.
       Graph shows average calls per second.
 
       Panel works with Tarantool 2.x.
-    |||, datasource_type),
+    |||,
     datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
     job=null,
-    rate_time_range=null,
   ):: operation_rps(
     title=title,
     description=description,
@@ -343,7 +317,6 @@ local prometheus = grafana.prometheus;
     policy=policy,
     measurement=measurement,
     job=job,
-    rate_time_range=rate_time_range,
     labelY1='requests per second',
     operation='execute'
   ),

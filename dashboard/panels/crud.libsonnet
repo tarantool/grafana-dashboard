@@ -36,7 +36,6 @@ local operation_rps_template(
   policy=null,
   measurement=null,
   job=null,
-  rate_time_range=null,
   operation=null,
   status=null,
       ) = common.default_graph(
@@ -46,7 +45,7 @@ local operation_rps_template(
     else
       std.format('%s %s requests', [std.asciiUpper(operation), status_text(status)])
   ),
-  description=common.rate_warning(description, datasource_type),
+  description=description,
   datasource=datasource,
   min=0,
   labelY1='requests per second',
@@ -58,8 +57,8 @@ local operation_rps_template(
   if datasource_type == variable.datasource_type.prometheus then
     prometheus.target(
       expr=std.format(
-        'rate(tnt_crud_stats_count{job=~"%s",operation="%s",status="%s"}[%s])',
-        [job, operation, status, rate_time_range]
+        'rate(tnt_crud_stats_count{job=~"%s",operation="%s",status="%s"}[$__rate_interval])',
+        [job, operation, status]
       ),
       legendFormat='{{alias}} — {{name}}'
     )
@@ -131,7 +130,6 @@ local operation_rps(
   policy=null,
   measurement=null,
   job=null,
-  rate_time_range=null,
   operation=null,
   status=null,
       ) = operation_rps_template(
@@ -150,7 +148,6 @@ local operation_rps(
   policy=policy,
   measurement=measurement,
   job=job,
-  rate_time_range=rate_time_range,
   operation=operation,
   status=status,
 );
@@ -192,7 +189,6 @@ local operation_rps_object(
   policy=null,
   measurement=null,
   job=null,
-  rate_time_range=null,
   operation=null,
   status=null,
       ) = operation_rps_template(
@@ -211,7 +207,6 @@ local operation_rps_object(
   policy=policy,
   measurement=measurement,
   job=job,
-  rate_time_range=rate_time_range,
   operation=operation,
   status=status,
 );
@@ -253,7 +248,6 @@ local operation_rps_object_many(
   policy=null,
   measurement=null,
   job=null,
-  rate_time_range=null,
   operation_stripped=null,
   status=null,
       ) = operation_rps_template(
@@ -272,7 +266,6 @@ local operation_rps_object_many(
   policy=policy,
   measurement=measurement,
   job=job,
-  rate_time_range=rate_time_range,
   operation=std.format('%s_many', operation_stripped),
   status=status,
 );
@@ -314,7 +307,6 @@ local operation_rps_select(
   policy=null,
   measurement=null,
   job=null,
-  rate_time_range=null,
   status=null,
       ) = operation_rps_template(
   title=title,
@@ -332,7 +324,6 @@ local operation_rps_select(
   policy=policy,
   measurement=measurement,
   job=job,
-  rate_time_range=rate_time_range,
   operation='select',
   status=status,
 );
@@ -374,7 +365,6 @@ local operation_rps_borders(
   policy=null,
   measurement=null,
   job=null,
-  rate_time_range=null,
   status=null,
       ) = operation_rps_template(
   title=title,
@@ -392,7 +382,6 @@ local operation_rps_borders(
   policy=policy,
   measurement=measurement,
   job=job,
-  rate_time_range=rate_time_range,
   operation='borders',
   status=status,
 );
@@ -434,15 +423,11 @@ local tuples_panel(
   policy=null,
   measurement=null,
   job=null,
-  rate_time_range=null,
   metric_name=null,
       ) = common.default_graph(
   title=title,
   description=common.group_by_fill_0_warning(
-    common.rate_warning(
-      crud_warning(description),
-      datasource_type,
-    ),
+    crud_warning(description),
     datasource_type,
   ),
   datasource=datasource,
@@ -455,13 +440,12 @@ local tuples_panel(
     prometheus.target(
       expr=std.format(
         |||
-          rate(%(metric_name)s{job=~"%(job)s",operation="select"}[%(rate_time_range)s]) /
-          (sum without (status) (rate(tnt_crud_stats_count{job=~"%(job)s",operation="select"}[%(rate_time_range)s])))
+          rate(%(metric_name)s{job=~"%(job)s",operation="select"}[$__rate_interval]) /
+          (sum without (status) (rate(tnt_crud_stats_count{job=~"%(job)s",operation="select"}[$__rate_interval])))
         |||,
         {
           metric_name: metric_name,
           job: job,
-          rate_time_range: rate_time_range,
         }
       ),
       legendFormat='{{alias}} — {{name}}'
@@ -502,7 +486,6 @@ local module = {
     policy=null,
     measurement=null,
     job=null,
-    rate_time_range=null,
   ):: operation_rps_select(
     title=title,
     description=description,
@@ -511,7 +494,6 @@ local module = {
     policy=policy,
     measurement=measurement,
     job=job,
-    rate_time_range=rate_time_range,
     status='ok',
   ),
 
@@ -542,7 +524,6 @@ local module = {
     policy=null,
     measurement=null,
     job=null,
-    rate_time_range=null,
   ):: operation_rps_select(
     title=title,
     description=description,
@@ -551,7 +532,6 @@ local module = {
     policy=policy,
     measurement=measurement,
     job=job,
-    rate_time_range=rate_time_range,
     status='error',
   ),
 
@@ -585,7 +565,6 @@ local module = {
     policy=null,
     measurement=null,
     job=null,
-    rate_time_range=null,
   ):: tuples_panel(
     title=title,
     description=description,
@@ -594,7 +573,6 @@ local module = {
     policy=policy,
     measurement=measurement,
     job=job,
-    rate_time_range=rate_time_range,
     metric_name='tnt_crud_tuples_fetched',
   ),
 
@@ -610,7 +588,6 @@ local module = {
     policy=null,
     measurement=null,
     job=null,
-    rate_time_range=null,
   ):: tuples_panel(
     title=title,
     description=description,
@@ -619,26 +596,21 @@ local module = {
     policy=policy,
     measurement=measurement,
     job=job,
-    rate_time_range=rate_time_range,
     metric_name='tnt_crud_tuples_lookup',
   ),
 
   map_reduces(
     title='Map reduce SELECT requests',
-    description=common.rate_warning(
-      crud_warning(|||
-        Number of SELECT and PAIRS requests that resulted in map reduce.
-        Graph shows average requests per second.
-        Both success and error requests are taken into consideration.
-      |||),
-      datasource_type,
-    ),
+    description=crud_warning(|||
+      Number of SELECT and PAIRS requests that resulted in map reduce.
+      Graph shows average requests per second.
+      Both success and error requests are taken into consideration.
+    |||),
     datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
     job=null,
-    rate_time_range=null,
   ):: common.default_graph(
     title=title,
     description=description,
@@ -651,8 +623,8 @@ local module = {
     if datasource_type == variable.datasource_type.prometheus then
       prometheus.target(
         expr=std.format(
-          'rate(tnt_crud_map_reduces{job=~"%s",operation="select"}[%s])',
-          [job, rate_time_range],
+          'rate(tnt_crud_map_reduces{job=~"%s",operation="select"}[$__rate_interval])',
+          [job],
         ),
         legendFormat='{{alias}} — {{name}}'
       )
@@ -675,7 +647,6 @@ local module = {
     policy=null,
     measurement=null,
     job=null,
-    rate_time_range=null,
   ):: operation_rps_borders(
     title=title,
     description=description,
@@ -684,7 +655,6 @@ local module = {
     policy=policy,
     measurement=measurement,
     job=job,
-    rate_time_range=rate_time_range,
     status='ok',
   ),
 
@@ -715,7 +685,6 @@ local module = {
     policy=null,
     measurement=null,
     job=null,
-    rate_time_range=null,
   ):: operation_rps_borders(
     title=title,
     description=description,
@@ -724,7 +693,6 @@ local module = {
     policy=policy,
     measurement=measurement,
     job=job,
-    rate_time_range=rate_time_range,
     status='error',
   ),
 
@@ -763,7 +731,6 @@ local module_with_object_panels = std.foldl(function(_module, operation) (
       policy=null,
       measurement=null,
       job=null,
-      rate_time_range=null,
     ):: operation_rps_object(
       title=title,
       description=description,
@@ -772,7 +739,6 @@ local module_with_object_panels = std.foldl(function(_module, operation) (
       policy=policy,
       measurement=measurement,
       job=job,
-      rate_time_range=rate_time_range,
       operation=operation,
       status='ok',
     ),
@@ -805,7 +771,6 @@ local module_with_object_panels = std.foldl(function(_module, operation) (
       policy=null,
       measurement=null,
       job=null,
-      rate_time_range=null,
     ):: operation_rps_object(
       title=title,
       description=description,
@@ -814,7 +779,6 @@ local module_with_object_panels = std.foldl(function(_module, operation) (
       policy=policy,
       measurement=measurement,
       job=job,
-      rate_time_range=rate_time_range,
       operation=operation,
       status='error',
     ),
@@ -852,7 +816,6 @@ local module_with_object_and_many_panels = std.foldl(function(_module, operation
       policy=null,
       measurement=null,
       job=null,
-      rate_time_range=null,
     ):: operation_rps_object_many(
       title=title,
       description=description,
@@ -861,7 +824,6 @@ local module_with_object_and_many_panels = std.foldl(function(_module, operation
       policy=policy,
       measurement=measurement,
       job=job,
-      rate_time_range=rate_time_range,
       operation_stripped=operation_stripped,
       status='ok',
     ),
@@ -894,7 +856,6 @@ local module_with_object_and_many_panels = std.foldl(function(_module, operation
       policy=null,
       measurement=null,
       job=null,
-      rate_time_range=null,
     ):: operation_rps_object_many(
       title=title,
       description=description,
@@ -903,7 +864,6 @@ local module_with_object_and_many_panels = std.foldl(function(_module, operation
       policy=policy,
       measurement=measurement,
       job=job,
-      rate_time_range=rate_time_range,
       operation_stripped=operation_stripped,
       status='error',
     ),
@@ -941,7 +901,6 @@ std.foldl(function(_module, operation) (
       policy=null,
       measurement=null,
       job=null,
-      rate_time_range=null,
     ):: operation_rps(
       title=title,
       description=description,
@@ -950,7 +909,6 @@ std.foldl(function(_module, operation) (
       policy=policy,
       measurement=measurement,
       job=job,
-      rate_time_range=rate_time_range,
       operation=operation,
       status='ok',
     ),
@@ -983,7 +941,6 @@ std.foldl(function(_module, operation) (
       policy=null,
       measurement=null,
       job=null,
-      rate_time_range=null,
     ):: operation_rps(
       title=title,
       description=description,
@@ -992,7 +949,6 @@ std.foldl(function(_module, operation) (
       policy=policy,
       measurement=measurement,
       job=job,
-      rate_time_range=rate_time_range,
       operation=operation,
       status='error',
     ),

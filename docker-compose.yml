@@ -59,7 +59,7 @@ services:
       - ./example_cluster/prometheus/alerts.yml:/etc/prometheus/alerts.yml
 
   grafana:
-    image: grafana/grafana:8.1.5
+    image: grafana/grafana:8.1.3
     environment: 
       GF_SECURITY_DISABLE_INITIAL_ADMIN_CREATION: "true"
       GF_AUTH_ANONYMOUS_ENABLED: "true"
