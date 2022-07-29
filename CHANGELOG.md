@@ -12,6 +12,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## Changed
 - Set default Prometheus job to `tarantool`
 - Set default InfluxDB measurement to `tarantool_http`
+- Use in-built `$__rate_interval` instead of user-defined `$rate_time_range`
 
 
 ## [1.3.0] - 2022-06-29

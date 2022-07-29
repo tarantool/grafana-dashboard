@@ -311,7 +311,7 @@
             },
             {
                "datasource": "Prometheus",
-               "description": "Overall rate of HTTP requests processed\non Tarantool instances (all methods and response codes).\nIf Tarantool instance is not available for Prometheus metrics\nextraction now, its contribution is not counted.\n\n\nIf `No data` displayed, check up your 'rate_time_range' variable.",
+               "description": "Overall rate of HTTP requests processed\non Tarantool instances (all methods and response codes).\nIf Tarantool instance is not available for Prometheus metrics\nextraction now, its contribution is not counted.\n",
                "gridPos": {
                   "h": 5,
                   "w": 4,
@@ -352,7 +352,7 @@
                "pluginVersion": "6.6.0",
                "targets": [
                   {
-                     "expr": "sum(rate(http_server_request_latency_count{job=~\"tarantool\"}[2m]))",
+                     "expr": "sum(rate(http_server_request_latency_count{job=~\"tarantool\"}[$__rate_interval]))",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "",
@@ -365,7 +365,7 @@
             },
             {
                "datasource": "Prometheus",
-               "description": "Overall rate of network requests processed on Tarantool instances.\nIf Tarantool instance is not available for Prometheus metrics\nextraction now, its contribution is not counted.\n\n\nIf `No data` displayed, check up your 'rate_time_range' variable.",
+               "description": "Overall rate of network requests processed on Tarantool instances.\nIf Tarantool instance is not available for Prometheus metrics\nextraction now, its contribution is not counted.\n",
                "gridPos": {
                   "h": 5,
                   "w": 4,
@@ -406,7 +406,7 @@
                "pluginVersion": "6.6.0",
                "targets": [
                   {
-                     "expr": "sum(rate(tnt_net_requests_total{job=~\"tarantool\"}[2m]))",
+                     "expr": "sum(rate(tnt_net_requests_total{job=~\"tarantool\"}[$__rate_interval]))",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "",
@@ -419,7 +419,7 @@
             },
             {
                "datasource": "Prometheus",
-               "description": "Overall rate of operations performed on Tarantool spaces\n(*select*, *insert*, *update* etc.).\nIf Tarantool instance is not available for Prometheus metrics\nextraction now, its contribution is not counted.\n\n\nIf `No data` displayed, check up your 'rate_time_range' variable.",
+               "description": "Overall rate of operations performed on Tarantool spaces\n(*select*, *insert*, *update* etc.).\nIf Tarantool instance is not available for Prometheus metrics\nextraction now, its contribution is not counted.\n",
                "gridPos": {
                   "h": 5,
                   "w": 4,
@@ -460,7 +460,7 @@
                "pluginVersion": "6.6.0",
                "targets": [
                   {
-                     "expr": "sum(rate(tnt_stats_op_total{job=~\"tarantool\"}[2m]))",
+                     "expr": "sum(rate(tnt_stats_op_total{job=~\"tarantool\"}[$__rate_interval]))",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "",
@@ -1160,7 +1160,7 @@
                "dashes": false,
                "datasource": "Prometheus",
                "decimals": 3,
-               "description": "Data received by instance from binary protocol connections.\nGraph shows average bytes per second.\n\n\nIf `No data` displayed, check up your 'rate_time_range' variable.",
+               "description": "Data received by instance from binary protocol connections.\nGraph shows average bytes per second.\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -1198,7 +1198,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_net_received_total{job=~\"tarantool\"}[2m])",
+                     "expr": "rate(tnt_net_received_total{job=~\"tarantool\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -1250,7 +1250,7 @@
                "dashes": false,
                "datasource": "Prometheus",
                "decimals": 3,
-               "description": "Data sent by instance with binary protocol connections.\nGraph shows average bytes per second.\n\n\nIf `No data` displayed, check up your 'rate_time_range' variable.",
+               "description": "Data sent by instance with binary protocol connections.\nGraph shows average bytes per second.\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -1288,7 +1288,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_net_sent_total{job=~\"tarantool\"}[2m])",
+                     "expr": "rate(tnt_net_sent_total{job=~\"tarantool\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -1340,7 +1340,7 @@
                "dashes": false,
                "datasource": "Prometheus",
                "decimals": 3,
-               "description": "Number of network requests this instance has handled.\nGraph shows mean rps.\n\nPanel will be removed in favor of \"Processed requests\"\nand \"Requests in queue (overall)\" panels.\n\n\nIf `No data` displayed, check up your 'rate_time_range' variable.",
+               "description": "Number of network requests this instance has handled.\nGraph shows mean rps.\n\nPanel will be removed in favor of \"Processed requests\"\nand \"Requests in queue (overall)\" panels.\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -1378,7 +1378,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_net_requests_total{job=~\"tarantool\"}[2m])",
+                     "expr": "rate(tnt_net_requests_total{job=~\"tarantool\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -1558,7 +1558,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_net_requests_in_progress_total{job=~\"tarantool\"}[2m])",
+                     "expr": "rate(tnt_net_requests_in_progress_total{job=~\"tarantool\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -1738,7 +1738,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_net_requests_in_stream_queue_total{job=~\"tarantool\"}[2m])",
+                     "expr": "rate(tnt_net_requests_in_stream_queue_total{job=~\"tarantool\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -1918,7 +1918,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_net_connections_total{job=~\"tarantool\"}[2m])",
+                     "expr": "rate(tnt_net_connections_total{job=~\"tarantool\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -4204,7 +4204,7 @@
                "dashes": false,
                "datasource": "Prometheus",
                "decimals": 3,
-               "description": "Average per second rate of commits (successful transaction ends).\nIt includes implicit commits: for example, any insert operation causes a commit\nunless it is within a `box.begin()`–`box.commit()` block.\n\nPanel works with `metrics >= 0.8.0`.\n\n\nIf `No data` displayed, check up your 'rate_time_range' variable.",
+               "description": "Average per second rate of commits (successful transaction ends).\nIt includes implicit commits: for example, any insert operation causes a commit\nunless it is within a `box.begin()`–`box.commit()` block.\n\nPanel works with `metrics >= 0.8.0`.\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -4242,7 +4242,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_vinyl_tx_commit{job=~\"tarantool\"}[2m])",
+                     "expr": "rate(tnt_vinyl_tx_commit{job=~\"tarantool\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -4294,7 +4294,7 @@
                "dashes": false,
                "datasource": "Prometheus",
                "decimals": 3,
-               "description": "Average per second rate of rollbacks (unsuccessful transaction ends).\nThis is not merely a count of explicit `box.rollback()` requests — it includes requests\nthat ended with errors.\nPanel works with `metrics >= 0.8.0`.\n\n\nIf `No data` displayed, check up your 'rate_time_range' variable.",
+               "description": "Average per second rate of rollbacks (unsuccessful transaction ends).\nThis is not merely a count of explicit `box.rollback()` requests — it includes requests\nthat ended with errors.\nPanel works with `metrics >= 0.8.0`.\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -4332,7 +4332,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_vinyl_tx_rollback{job=~\"tarantool\"}[2m])",
+                     "expr": "rate(tnt_vinyl_tx_rollback{job=~\"tarantool\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -4384,7 +4384,7 @@
                "dashes": false,
                "datasource": "Prometheus",
                "decimals": 3,
-               "description": "Average per second rate of conflicts that caused transactions to roll back.\nThe ratio `tx conflicts` / `tx commits` above 5% indicates that vinyl is not healthy.\nAt this moment you’ll probably see a lot of other problems with vinyl.\n\nPanel works with `metrics >= 0.8.0`.\n\n\nIf `No data` displayed, check up your 'rate_time_range' variable.",
+               "description": "Average per second rate of conflicts that caused transactions to roll back.\nThe ratio `tx conflicts` / `tx commits` above 5% indicates that vinyl is not healthy.\nAt this moment you’ll probably see a lot of other problems with vinyl.\n\nPanel works with `metrics >= 0.8.0`.\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -4422,7 +4422,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_vinyl_tx_conflict{job=~\"tarantool\"}[2m])",
+                     "expr": "rate(tnt_vinyl_tx_conflict{job=~\"tarantool\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -4654,7 +4654,7 @@
                "dashes": false,
                "datasource": "Prometheus",
                "decimals": 3,
-               "description": "Scheduler dump/compaction tasks failed.\nAverage per second rate is shown.\n\nPanel works with `metrics >= 0.8.0`.\n\n\nIf `No data` displayed, check up your 'rate_time_range' variable.",
+               "description": "Scheduler dump/compaction tasks failed.\nAverage per second rate is shown.\n\nPanel works with `metrics >= 0.8.0`.\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -4692,7 +4692,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_vinyl_scheduler_tasks{job=~\"tarantool\",status=\"failed\"}[2m])",
+                     "expr": "rate(tnt_vinyl_scheduler_tasks{job=~\"tarantool\",status=\"failed\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -4744,7 +4744,7 @@
                "dashes": false,
                "datasource": "Prometheus",
                "decimals": 3,
-               "description": "Time spent by all worker threads performing dumps.\nAverage per second rate is shown.\n\nPanel works with `metrics >= 0.8.0`.\n\n\nIf `No data` displayed, check up your 'rate_time_range' variable.",
+               "description": "Time spent by all worker threads performing dumps.\nAverage per second rate is shown.\n\nPanel works with `metrics >= 0.8.0`.\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -4782,7 +4782,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_vinyl_scheduler_dump_time{job=~\"tarantool\"}[2m])",
+                     "expr": "rate(tnt_vinyl_scheduler_dump_time{job=~\"tarantool\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -4834,7 +4834,7 @@
                "dashes": false,
                "datasource": "Prometheus",
                "decimals": 3,
-               "description": "Scheduler dumps completed average per second rate.\n\nPanel works with `metrics >= 0.13.0`.\n\n\nIf `No data` displayed, check up your 'rate_time_range' variable.",
+               "description": "Scheduler dumps completed average per second rate.\n\nPanel works with `metrics >= 0.13.0`.\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -4872,7 +4872,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_vinyl_scheduler_dump_total{job=~\"tarantool\"}[2m])",
+                     "expr": "rate(tnt_vinyl_scheduler_dump_total{job=~\"tarantool\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -4944,7 +4944,7 @@
                "dashes": false,
                "datasource": "Prometheus",
                "decimals": 3,
-               "description": "This is the average share of time\nspent by instance process executing in user mode.\nMetrics obtained using `getrusage()` call.\n\nPanel works with `metrics >= 0.8.0`.\n\n\nIf `No data` displayed, check up your 'rate_time_range' variable.",
+               "description": "This is the average share of time\nspent by instance process executing in user mode.\nMetrics obtained using `getrusage()` call.\n\nPanel works with `metrics >= 0.8.0`.\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -4982,7 +4982,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_cpu_user_time{job=~\"tarantool\"}[2m])",
+                     "expr": "rate(tnt_cpu_user_time{job=~\"tarantool\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -5034,7 +5034,7 @@
                "dashes": false,
                "datasource": "Prometheus",
                "decimals": 3,
-               "description": "This is the average share of time\nspent by instance process executing in kernel mode.\nMetrics obtained using `getrusage()` call.\n\nPanel works with `metrics >= 0.8.0`.\n\n\nIf `No data` displayed, check up your 'rate_time_range' variable.",
+               "description": "This is the average share of time\nspent by instance process executing in kernel mode.\nMetrics obtained using `getrusage()` call.\n\nPanel works with `metrics >= 0.8.0`.\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -5072,7 +5072,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_cpu_system_time{job=~\"tarantool\"}[2m])",
+                     "expr": "rate(tnt_cpu_system_time{job=~\"tarantool\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -5162,7 +5162,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_cpu_thread{job=~\"tarantool\",kind=\"user\"}[2m])",
+                     "expr": "rate(tnt_cpu_thread{job=~\"tarantool\",kind=\"user\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}} — {{thread_name}}",
@@ -5252,7 +5252,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_cpu_thread{job=~\"tarantool\",kind=\"system\"}[2m])",
+                     "expr": "rate(tnt_cpu_thread{job=~\"tarantool\",kind=\"system\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}} — {{thread_name}}",
@@ -5974,7 +5974,7 @@
                "dashes": false,
                "datasource": "Prometheus",
                "decimals": 3,
-               "description": "Average number of snap restores (guard assertions\nleading to stopping trace executions) per second.\n\n\nPanel works with `metrics >= 0.6.0` and `Tarantool >= 2.6`.\n\nIf `No data` displayed, check up your 'rate_time_range' variable.",
+               "description": "Average number of snap restores (guard assertions\nleading to stopping trace executions) per second.\n\n\nPanel works with `metrics >= 0.6.0` and `Tarantool >= 2.6`.",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -6012,7 +6012,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(lj_jit_snap_restore{job=~\"tarantool\"}[2m])",
+                     "expr": "rate(lj_jit_snap_restore{job=~\"tarantool\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -6064,7 +6064,7 @@
                "dashes": false,
                "datasource": "Prometheus",
                "decimals": 3,
-               "description": "Average number of new JIT traces per second.\n\n\nPanel works with `metrics >= 0.6.0` and `Tarantool >= 2.6`.\n\nIf `No data` displayed, check up your 'rate_time_range' variable.",
+               "description": "Average number of new JIT traces per second.\n\n\nPanel works with `metrics >= 0.6.0` and `Tarantool >= 2.6`.",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -6102,7 +6102,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(lj_jit_trace_num{job=~\"tarantool\"}[2m])",
+                     "expr": "rate(lj_jit_trace_num{job=~\"tarantool\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -6154,7 +6154,7 @@
                "dashes": false,
                "datasource": "Prometheus",
                "decimals": 3,
-               "description": "Average number of JIT trace aborts per second.\n\n\nPanel works with `metrics >= 0.6.0` and `Tarantool >= 2.6`.\n\nIf `No data` displayed, check up your 'rate_time_range' variable.",
+               "description": "Average number of JIT trace aborts per second.\n\n\nPanel works with `metrics >= 0.6.0` and `Tarantool >= 2.6`.",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -6192,7 +6192,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(lj_jit_trace_abort{job=~\"tarantool\"}[2m])",
+                     "expr": "rate(lj_jit_trace_abort{job=~\"tarantool\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -6334,7 +6334,7 @@
                "dashes": false,
                "datasource": "Prometheus",
                "decimals": 3,
-               "description": "Average number of strings being extracted from hash instead of allocating per second.\n\n\nPanel works with `metrics >= 0.6.0` and `Tarantool >= 2.6`.\n\nIf `No data` displayed, check up your 'rate_time_range' variable.",
+               "description": "Average number of strings being extracted from hash instead of allocating per second.\n\n\nPanel works with `metrics >= 0.6.0` and `Tarantool >= 2.6`.",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -6372,7 +6372,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(lj_strhash_hit{job=~\"tarantool\"}[2m])",
+                     "expr": "rate(lj_strhash_hit{job=~\"tarantool\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -6424,7 +6424,7 @@
                "dashes": false,
                "datasource": "Prometheus",
                "decimals": 3,
-               "description": "Average number of strings being allocated due to hash miss per second.\n\n\nPanel works with `metrics >= 0.6.0` and `Tarantool >= 2.6`.\n\nIf `No data` displayed, check up your 'rate_time_range' variable.",
+               "description": "Average number of strings being allocated due to hash miss per second.\n\n\nPanel works with `metrics >= 0.6.0` and `Tarantool >= 2.6`.",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -6462,7 +6462,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(lj_strhash_miss{job=~\"tarantool\"}[2m])",
+                     "expr": "rate(lj_strhash_miss{job=~\"tarantool\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -6514,7 +6514,7 @@
                "dashes": false,
                "datasource": "Prometheus",
                "decimals": 3,
-               "description": "Average count of incremental GC steps (atomic state) per second.\n\n\nPanel works with `metrics >= 0.6.0` and `Tarantool >= 2.6`.\n\nIf `No data` displayed, check up your 'rate_time_range' variable.",
+               "description": "Average count of incremental GC steps (atomic state) per second.\n\n\nPanel works with `metrics >= 0.6.0` and `Tarantool >= 2.6`.",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -6552,7 +6552,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(lj_gc_steps_atomic{job=~\"tarantool\"}[2m])",
+                     "expr": "rate(lj_gc_steps_atomic{job=~\"tarantool\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -6604,7 +6604,7 @@
                "dashes": false,
                "datasource": "Prometheus",
                "decimals": 3,
-               "description": "Average count of incremental GC steps (sweepstring state) per second.\n\n\nPanel works with `metrics >= 0.6.0` and `Tarantool >= 2.6`.\n\nIf `No data` displayed, check up your 'rate_time_range' variable.",
+               "description": "Average count of incremental GC steps (sweepstring state) per second.\n\n\nPanel works with `metrics >= 0.6.0` and `Tarantool >= 2.6`.",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -6642,7 +6642,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(lj_gc_steps_sweepstring{job=~\"tarantool\"}[2m])",
+                     "expr": "rate(lj_gc_steps_sweepstring{job=~\"tarantool\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -6694,7 +6694,7 @@
                "dashes": false,
                "datasource": "Prometheus",
                "decimals": 3,
-               "description": "Average count of incremental GC steps (finalize state) per second.\n\n\nPanel works with `metrics >= 0.6.0` and `Tarantool >= 2.6`.\n\nIf `No data` displayed, check up your 'rate_time_range' variable.",
+               "description": "Average count of incremental GC steps (finalize state) per second.\n\n\nPanel works with `metrics >= 0.6.0` and `Tarantool >= 2.6`.",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -6732,7 +6732,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(lj_gc_steps_finalize{job=~\"tarantool\"}[2m])",
+                     "expr": "rate(lj_gc_steps_finalize{job=~\"tarantool\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -6784,7 +6784,7 @@
                "dashes": false,
                "datasource": "Prometheus",
                "decimals": 3,
-               "description": "Average count of incremental GC steps (sweep state) per second.\n\n\nPanel works with `metrics >= 0.6.0` and `Tarantool >= 2.6`.\n\nIf `No data` displayed, check up your 'rate_time_range' variable.",
+               "description": "Average count of incremental GC steps (sweep state) per second.\n\n\nPanel works with `metrics >= 0.6.0` and `Tarantool >= 2.6`.",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -6822,7 +6822,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(lj_gc_steps_sweep{job=~\"tarantool\"}[2m])",
+                     "expr": "rate(lj_gc_steps_sweep{job=~\"tarantool\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -6874,7 +6874,7 @@
                "dashes": false,
                "datasource": "Prometheus",
                "decimals": 3,
-               "description": "Average count of incremental GC steps (propagate state) per second.\n\n\nPanel works with `metrics >= 0.6.0` and `Tarantool >= 2.6`.\n\nIf `No data` displayed, check up your 'rate_time_range' variable.",
+               "description": "Average count of incremental GC steps (propagate state) per second.\n\n\nPanel works with `metrics >= 0.6.0` and `Tarantool >= 2.6`.",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -6912,7 +6912,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(lj_gc_steps_propagate{job=~\"tarantool\"}[2m])",
+                     "expr": "rate(lj_gc_steps_propagate{job=~\"tarantool\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -6964,7 +6964,7 @@
                "dashes": false,
                "datasource": "Prometheus",
                "decimals": 3,
-               "description": "Average count of incremental GC steps (pause state) per second.\n\n\nPanel works with `metrics >= 0.6.0` and `Tarantool >= 2.6`.\n\nIf `No data` displayed, check up your 'rate_time_range' variable.",
+               "description": "Average count of incremental GC steps (pause state) per second.\n\n\nPanel works with `metrics >= 0.6.0` and `Tarantool >= 2.6`.",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -7002,7 +7002,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(lj_gc_steps_pause{job=~\"tarantool\"}[2m])",
+                     "expr": "rate(lj_gc_steps_pause{job=~\"tarantool\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -7542,7 +7542,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(lj_gc_freed{job=~\"tarantool\"}[2m])",
+                     "expr": "rate(lj_gc_freed{job=~\"tarantool\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -7632,7 +7632,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(lj_gc_allocated{job=~\"tarantool\"}[2m])",
+                     "expr": "rate(lj_gc_allocated{job=~\"tarantool\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -7704,7 +7704,7 @@
                "dashes": false,
                "datasource": "Prometheus",
                "decimals": 3,
-               "description": "Total count of SELECT requests to all instance spaces.\nGraph shows average requests per second.\n\n\nIf `No data` displayed, check up your 'rate_time_range' variable.",
+               "description": "Total count of SELECT requests to all instance spaces.\nGraph shows average requests per second.\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -7742,7 +7742,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_stats_op_total{job=~\"tarantool\",operation=\"select\"}[2m])",
+                     "expr": "rate(tnt_stats_op_total{job=~\"tarantool\",operation=\"select\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -7794,7 +7794,7 @@
                "dashes": false,
                "datasource": "Prometheus",
                "decimals": 3,
-               "description": "Total count of INSERT requests to all instance spaces.\nGraph shows average requests per second.\n\n\nIf `No data` displayed, check up your 'rate_time_range' variable.",
+               "description": "Total count of INSERT requests to all instance spaces.\nGraph shows average requests per second.\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -7832,7 +7832,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_stats_op_total{job=~\"tarantool\",operation=\"insert\"}[2m])",
+                     "expr": "rate(tnt_stats_op_total{job=~\"tarantool\",operation=\"insert\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -7884,7 +7884,7 @@
                "dashes": false,
                "datasource": "Prometheus",
                "decimals": 3,
-               "description": "Total count of REPLACE requests to all instance spaces.\nGraph shows average requests per second.\n\n\nIf `No data` displayed, check up your 'rate_time_range' variable.",
+               "description": "Total count of REPLACE requests to all instance spaces.\nGraph shows average requests per second.\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -7922,7 +7922,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_stats_op_total{job=~\"tarantool\",operation=\"replace\"}[2m])",
+                     "expr": "rate(tnt_stats_op_total{job=~\"tarantool\",operation=\"replace\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -7974,7 +7974,7 @@
                "dashes": false,
                "datasource": "Prometheus",
                "decimals": 3,
-               "description": "Total count of UPSERT requests to all instance spaces.\nGraph shows average requests per second.\n\n\nIf `No data` displayed, check up your 'rate_time_range' variable.",
+               "description": "Total count of UPSERT requests to all instance spaces.\nGraph shows average requests per second.\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -8012,7 +8012,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_stats_op_total{job=~\"tarantool\",operation=\"upsert\"}[2m])",
+                     "expr": "rate(tnt_stats_op_total{job=~\"tarantool\",operation=\"upsert\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -8064,7 +8064,7 @@
                "dashes": false,
                "datasource": "Prometheus",
                "decimals": 3,
-               "description": "Total count of UPDATE requests to all instance spaces.\nGraph shows average requests per second.\n\n\nIf `No data` displayed, check up your 'rate_time_range' variable.",
+               "description": "Total count of UPDATE requests to all instance spaces.\nGraph shows average requests per second.\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -8102,7 +8102,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_stats_op_total{job=~\"tarantool\",operation=\"update\"}[2m])",
+                     "expr": "rate(tnt_stats_op_total{job=~\"tarantool\",operation=\"update\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -8154,7 +8154,7 @@
                "dashes": false,
                "datasource": "Prometheus",
                "decimals": 3,
-               "description": "Total count of DELETE requests to all instance spaces.\nGraph shows average requests per second.\n\n\nIf `No data` displayed, check up your 'rate_time_range' variable.",
+               "description": "Total count of DELETE requests to all instance spaces.\nGraph shows average requests per second.\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -8192,7 +8192,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_stats_op_total{job=~\"tarantool\",operation=\"delete\"}[2m])",
+                     "expr": "rate(tnt_stats_op_total{job=~\"tarantool\",operation=\"delete\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -8244,7 +8244,7 @@
                "dashes": false,
                "datasource": "Prometheus",
                "decimals": 3,
-               "description": "Requests to execute stored procedures.\nGraph shows average requests per second.\n\n\nIf `No data` displayed, check up your 'rate_time_range' variable.",
+               "description": "Requests to execute stored procedures.\nGraph shows average requests per second.\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -8282,7 +8282,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_stats_op_total{job=~\"tarantool\",operation=\"call\"}[2m])",
+                     "expr": "rate(tnt_stats_op_total{job=~\"tarantool\",operation=\"call\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -8334,7 +8334,7 @@
                "dashes": false,
                "datasource": "Prometheus",
                "decimals": 3,
-               "description": "Calls to evaluate Lua code.\nGraph shows average requests per second.\n\n\nIf `No data` displayed, check up your 'rate_time_range' variable.",
+               "description": "Calls to evaluate Lua code.\nGraph shows average requests per second.\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -8372,7 +8372,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_stats_op_total{job=~\"tarantool\",operation=\"eval\"}[2m])",
+                     "expr": "rate(tnt_stats_op_total{job=~\"tarantool\",operation=\"eval\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -8424,7 +8424,7 @@
                "dashes": false,
                "datasource": "Prometheus",
                "decimals": 3,
-               "description": "Requests resulted in error.\nGraph shows average errors per second.\n\n\nIf `No data` displayed, check up your 'rate_time_range' variable.",
+               "description": "Requests resulted in error.\nGraph shows average errors per second.\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -8462,7 +8462,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_stats_op_total{job=~\"tarantool\",operation=\"error\"}[2m])",
+                     "expr": "rate(tnt_stats_op_total{job=~\"tarantool\",operation=\"error\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -8514,7 +8514,7 @@
                "dashes": false,
                "datasource": "Prometheus",
                "decimals": 3,
-               "description": "Authentication requests.\nGraph shows average requests per second.\n\n\nIf `No data` displayed, check up your 'rate_time_range' variable.",
+               "description": "Authentication requests.\nGraph shows average requests per second.\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -8552,7 +8552,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_stats_op_total{job=~\"tarantool\",operation=\"auth\"}[2m])",
+                     "expr": "rate(tnt_stats_op_total{job=~\"tarantool\",operation=\"auth\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -8604,7 +8604,7 @@
                "dashes": false,
                "datasource": "Prometheus",
                "decimals": 3,
-               "description": "SQL prepare calls.\nGraph shows average calls per second.\n\nPanel works with Tarantool 2.x.\n\n\nIf `No data` displayed, check up your 'rate_time_range' variable.",
+               "description": "SQL prepare calls.\nGraph shows average calls per second.\n\nPanel works with Tarantool 2.x.\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -8642,7 +8642,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_stats_op_total{job=~\"tarantool\",operation=\"prepare\"}[2m])",
+                     "expr": "rate(tnt_stats_op_total{job=~\"tarantool\",operation=\"prepare\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -8694,7 +8694,7 @@
                "dashes": false,
                "datasource": "Prometheus",
                "decimals": 3,
-               "description": "SQL execute calls.\nGraph shows average calls per second.\n\nPanel works with Tarantool 2.x.\n\n\nIf `No data` displayed, check up your 'rate_time_range' variable.",
+               "description": "SQL execute calls.\nGraph shows average calls per second.\n\nPanel works with Tarantool 2.x.\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -8732,7 +8732,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_stats_op_total{job=~\"tarantool\",operation=\"execute\"}[2m])",
+                     "expr": "rate(tnt_stats_op_total{job=~\"tarantool\",operation=\"execute\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -9074,7 +9074,7 @@
                "dashes": false,
                "datasource": "Prometheus",
                "decimals": 3,
-               "description": "Number of requests sent to Kafka brokers.\nGraph shows mean requests per second.\n\n\nIf `No data` displayed, check up your 'rate_time_range' variable.",
+               "description": "Number of requests sent to Kafka brokers.\nGraph shows mean requests per second.\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -9112,7 +9112,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tdg_kafka_tx{job=~\"tarantool\"}[2m])",
+                     "expr": "rate(tdg_kafka_tx{job=~\"tarantool\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{name}} — {{alias}} ({{type}}, {{connector_name}})",
@@ -9164,7 +9164,7 @@
                "dashes": false,
                "datasource": "Prometheus",
                "decimals": 3,
-               "description": "Amount of bytes transmitted to Kafka brokers.\nGraph shows mean bytes per second.\n\n\nIf `No data` displayed, check up your 'rate_time_range' variable.",
+               "description": "Amount of bytes transmitted to Kafka brokers.\nGraph shows mean bytes per second.\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -9202,7 +9202,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tdg_kafka_tx_bytes{job=~\"tarantool\"}[2m])",
+                     "expr": "rate(tdg_kafka_tx_bytes{job=~\"tarantool\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{name}} — {{alias}} ({{type}}, {{connector_name}})",
@@ -9254,7 +9254,7 @@
                "dashes": false,
                "datasource": "Prometheus",
                "decimals": 3,
-               "description": "Number of responses received from Kafka brokers.\nGraph shows mean responses per second.\n\n\nIf `No data` displayed, check up your 'rate_time_range' variable.",
+               "description": "Number of responses received from Kafka brokers.\nGraph shows mean responses per second.\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -9292,7 +9292,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tdg_kafka_rx{job=~\"tarantool\"}[2m])",
+                     "expr": "rate(tdg_kafka_rx{job=~\"tarantool\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{name}} — {{alias}} ({{type}}, {{connector_name}})",
@@ -9344,7 +9344,7 @@
                "dashes": false,
                "datasource": "Prometheus",
                "decimals": 3,
-               "description": "Amount of bytes received from Kafka brokers.\nGraph shows mean bytes per second.\n\n\nIf `No data` displayed, check up your 'rate_time_range' variable.",
+               "description": "Amount of bytes received from Kafka brokers.\nGraph shows mean bytes per second.\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -9382,7 +9382,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tdg_kafka_rx_bytes{job=~\"tarantool\"}[2m])",
+                     "expr": "rate(tdg_kafka_rx_bytes{job=~\"tarantool\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{name}} — {{alias}} ({{type}}, {{connector_name}})",
@@ -9434,7 +9434,7 @@
                "dashes": false,
                "datasource": "Prometheus",
                "decimals": 3,
-               "description": "Number of messages transmitted (produced) to Kafka brokers.\nGraph shows mean messages per second.\n\n\nIf `No data` displayed, check up your 'rate_time_range' variable.",
+               "description": "Number of messages transmitted (produced) to Kafka brokers.\nGraph shows mean messages per second.\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -9472,7 +9472,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tdg_kafka_txmsgs{job=~\"tarantool\"}[2m])",
+                     "expr": "rate(tdg_kafka_txmsgs{job=~\"tarantool\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{name}} — {{alias}} ({{type}}, {{connector_name}})",
@@ -9524,7 +9524,7 @@
                "dashes": false,
                "datasource": "Prometheus",
                "decimals": 3,
-               "description": "Amount of message bytes (including framing, such as per-Message\nframing and MessageSet/batch framing) transmitted to Kafka brokers.\nGraph shows mean bytes per second.\n\n\nIf `No data` displayed, check up your 'rate_time_range' variable.",
+               "description": "Amount of message bytes (including framing, such as per-Message\nframing and MessageSet/batch framing) transmitted to Kafka brokers.\nGraph shows mean bytes per second.\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -9562,7 +9562,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tdg_kafka_txmsg_bytes{job=~\"tarantool\"}[2m])",
+                     "expr": "rate(tdg_kafka_txmsg_bytes{job=~\"tarantool\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{name}} — {{alias}} ({{type}}, {{connector_name}})",
@@ -9614,7 +9614,7 @@
                "dashes": false,
                "datasource": "Prometheus",
                "decimals": 3,
-               "description": "Number of messages consumed, not including ignored\nmessages (due to offset, etc), from Kafka brokers.\n\n\nIf `No data` displayed, check up your 'rate_time_range' variable.",
+               "description": "Number of messages consumed, not including ignored\nmessages (due to offset, etc), from Kafka brokers.\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -9652,7 +9652,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tdg_kafka_rxmsgs{job=~\"tarantool\"}[2m])",
+                     "expr": "rate(tdg_kafka_rxmsgs{job=~\"tarantool\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{name}} — {{alias}} ({{type}}, {{connector_name}})",
@@ -9704,7 +9704,7 @@
                "dashes": false,
                "datasource": "Prometheus",
                "decimals": 3,
-               "description": "Amount of message bytes (including framing) received\nfrom Kafka brokers.\nGraph shows mean bytes per second.\n\n\nIf `No data` displayed, check up your 'rate_time_range' variable.",
+               "description": "Amount of message bytes (including framing) received\nfrom Kafka brokers.\nGraph shows mean bytes per second.\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -9742,7 +9742,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tdg_kafka_rxmsg_bytes{job=~\"tarantool\"}[2m])",
+                     "expr": "rate(tdg_kafka_rxmsg_bytes{job=~\"tarantool\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{name}} — {{alias}} ({{type}}, {{connector_name}})",
@@ -9904,7 +9904,7 @@
                "dashes": false,
                "datasource": "Prometheus",
                "decimals": 3,
-               "description": "Number of connection attempts to a broker, including successful and failed,\nand name resolution failures.\nGraph shows mean attempts per second.\n\n\nIf `No data` displayed, check up your 'rate_time_range' variable.",
+               "description": "Number of connection attempts to a broker, including successful and failed,\nand name resolution failures.\nGraph shows mean attempts per second.\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -9942,7 +9942,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tdg_kafka_broker_connects{job=~\"tarantool\"}[2m])",
+                     "expr": "rate(tdg_kafka_broker_connects{job=~\"tarantool\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{name}} ({{broker_name}}) — {{alias}} ({{type}}, {{connector_name}})",
@@ -9994,7 +9994,7 @@
                "dashes": false,
                "datasource": "Prometheus",
                "decimals": 3,
-               "description": "Number of disconnects from a broker (triggered by broker, network, load-balancer, etc.)\nGraph shows mean disconnects per second.\n\n\nIf `No data` displayed, check up your 'rate_time_range' variable.",
+               "description": "Number of disconnects from a broker (triggered by broker, network, load-balancer, etc.)\nGraph shows mean disconnects per second.\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -10032,7 +10032,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tdg_kafka_broker_disconnects{job=~\"tarantool\"}[2m])",
+                     "expr": "rate(tdg_kafka_broker_disconnects{job=~\"tarantool\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{name}} ({{broker_name}}) — {{alias}} ({{type}}, {{connector_name}})",
@@ -10084,7 +10084,7 @@
                "dashes": false,
                "datasource": "Prometheus",
                "decimals": 3,
-               "description": "Number of broker thread poll wakeups.\nGraph shows mean wakeups per second.\n\n\nIf `No data` displayed, check up your 'rate_time_range' variable.",
+               "description": "Number of broker thread poll wakeups.\nGraph shows mean wakeups per second.\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -10122,7 +10122,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tdg_kafka_broker_wakeups{job=~\"tarantool\"}[2m])",
+                     "expr": "rate(tdg_kafka_broker_wakeups{job=~\"tarantool\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{name}} ({{broker_name}}) — {{alias}} ({{type}}, {{connector_name}})",
@@ -10534,7 +10534,7 @@
                "dashes": false,
                "datasource": "Prometheus",
                "decimals": 3,
-               "description": "Number of requests sent to a broker.\nGraph shows mean attempts per second.\n\n\nIf `No data` displayed, check up your 'rate_time_range' variable.",
+               "description": "Number of requests sent to a broker.\nGraph shows mean attempts per second.\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -10572,7 +10572,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tdg_kafka_broker_tx{job=~\"tarantool\"}[2m])",
+                     "expr": "rate(tdg_kafka_broker_tx{job=~\"tarantool\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{name}} ({{broker_name}}) — {{alias}} ({{type}}, {{connector_name}})",
@@ -10624,7 +10624,7 @@
                "dashes": false,
                "datasource": "Prometheus",
                "decimals": 3,
-               "description": "Amount of bytes sent to a broker.\nGraph shows mean bytes per second.\n\n\nIf `No data` displayed, check up your 'rate_time_range' variable.",
+               "description": "Amount of bytes sent to a broker.\nGraph shows mean bytes per second.\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -10662,7 +10662,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tdg_kafka_broker_txbytes{job=~\"tarantool\"}[2m])",
+                     "expr": "rate(tdg_kafka_broker_txbytes{job=~\"tarantool\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{name}} ({{broker_name}}) — {{alias}} ({{type}}, {{connector_name}})",
@@ -10714,7 +10714,7 @@
                "dashes": false,
                "datasource": "Prometheus",
                "decimals": 3,
-               "description": "Number of transmission errors to a broker.\nGraph shows mean errors per second.\n\n\nIf `No data` displayed, check up your 'rate_time_range' variable.",
+               "description": "Number of transmission errors to a broker.\nGraph shows mean errors per second.\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -10752,7 +10752,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tdg_kafka_broker_txerrs{job=~\"tarantool\"}[2m])",
+                     "expr": "rate(tdg_kafka_broker_txerrs{job=~\"tarantool\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{name}} ({{broker_name}}) — {{alias}} ({{type}}, {{connector_name}})",
@@ -10804,7 +10804,7 @@
                "dashes": false,
                "datasource": "Prometheus",
                "decimals": 3,
-               "description": "Number of request retries to a broker.\nGraph shows mean retries per second.\n\n\nIf `No data` displayed, check up your 'rate_time_range' variable.",
+               "description": "Number of request retries to a broker.\nGraph shows mean retries per second.\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -10842,7 +10842,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tdg_kafka_broker_txretries{job=~\"tarantool\"}[2m])",
+                     "expr": "rate(tdg_kafka_broker_txretries{job=~\"tarantool\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{name}} ({{broker_name}}) — {{alias}} ({{type}}, {{connector_name}})",
@@ -10984,7 +10984,7 @@
                "dashes": false,
                "datasource": "Prometheus",
                "decimals": 3,
-               "description": "Number of requests timed out for a broker.\nGraph shows mean retries per second.\n\n\nIf `No data` displayed, check up your 'rate_time_range' variable.",
+               "description": "Number of requests timed out for a broker.\nGraph shows mean retries per second.\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -11022,7 +11022,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tdg_kafka_broker_req_timeouts{job=~\"tarantool\"}[2m])",
+                     "expr": "rate(tdg_kafka_broker_req_timeouts{job=~\"tarantool\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{name}} ({{broker_name}}) — {{alias}} ({{type}}, {{connector_name}})",
@@ -11074,7 +11074,7 @@
                "dashes": false,
                "datasource": "Prometheus",
                "decimals": 3,
-               "description": "Number of responses received from a broker.\nGraph shows mean attempts per second.\n\n\nIf `No data` displayed, check up your 'rate_time_range' variable.",
+               "description": "Number of responses received from a broker.\nGraph shows mean attempts per second.\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -11112,7 +11112,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tdg_kafka_broker_rx{job=~\"tarantool\"}[2m])",
+                     "expr": "rate(tdg_kafka_broker_rx{job=~\"tarantool\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{name}} ({{broker_name}}) — {{alias}} ({{type}}, {{connector_name}})",
@@ -11164,7 +11164,7 @@
                "dashes": false,
                "datasource": "Prometheus",
                "decimals": 3,
-               "description": "Amount of bytes received from a broker.\nGraph shows mean bytes per second.\n\n\nIf `No data` displayed, check up your 'rate_time_range' variable.",
+               "description": "Amount of bytes received from a broker.\nGraph shows mean bytes per second.\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -11202,7 +11202,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tdg_kafka_broker_rxbytes{job=~\"tarantool\"}[2m])",
+                     "expr": "rate(tdg_kafka_broker_rxbytes{job=~\"tarantool\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{name}} ({{broker_name}}) — {{alias}} ({{type}}, {{connector_name}})",
@@ -11254,7 +11254,7 @@
                "dashes": false,
                "datasource": "Prometheus",
                "decimals": 3,
-               "description": "Number of errors received from a broker.\nGraph shows mean errors per second.\n\n\nIf `No data` displayed, check up your 'rate_time_range' variable.",
+               "description": "Number of errors received from a broker.\nGraph shows mean errors per second.\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -11292,7 +11292,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tdg_kafka_broker_rxerrs{job=~\"tarantool\"}[2m])",
+                     "expr": "rate(tdg_kafka_broker_rxerrs{job=~\"tarantool\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{name}} ({{broker_name}}) — {{alias}} ({{type}}, {{connector_name}})",
@@ -11344,7 +11344,7 @@
                "dashes": false,
                "datasource": "Prometheus",
                "decimals": 3,
-               "description": "Number of mber of unmatched correlation ids in response\n(typically for timed out requests).\nGraph shows mean errors per second.\n\n\nIf `No data` displayed, check up your 'rate_time_range' variable.",
+               "description": "Number of mber of unmatched correlation ids in response\n(typically for timed out requests).\nGraph shows mean errors per second.\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -11382,7 +11382,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tdg_kafka_broker_rxcorriderrs{job=~\"tarantool\"}[2m])",
+                     "expr": "rate(tdg_kafka_broker_rxcorriderrs{job=~\"tarantool\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{name}} ({{broker_name}}) — {{alias}} ({{type}}, {{connector_name}})",
@@ -11524,7 +11524,7 @@
                "dashes": false,
                "datasource": "Prometheus",
                "decimals": 3,
-               "description": "Number of partial MessageSets received.\nGraph shows mean retries per second.\n\n\nIf `No data` displayed, check up your 'rate_time_range' variable.",
+               "description": "Number of partial MessageSets received.\nGraph shows mean retries per second.\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -11562,7 +11562,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tdg_kafka_broker_rxpartial{job=~\"tarantool\"}[2m])",
+                     "expr": "rate(tdg_kafka_broker_rxpartial{job=~\"tarantool\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{name}} ({{broker_name}}) — {{alias}} ({{type}}, {{connector_name}})",
@@ -11614,7 +11614,7 @@
                "dashes": false,
                "datasource": "Prometheus",
                "decimals": 3,
-               "description": "Number of requests sent, separated by type.\nGraph shows mean requests per second.\n\n\nIf `No data` displayed, check up your 'rate_time_range' variable.",
+               "description": "Number of requests sent, separated by type.\nGraph shows mean requests per second.\n",
                "fill": 0,
                "gridPos": {
                   "h": 10,
@@ -11652,7 +11652,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tdg_kafka_broker_req{job=~\"tarantool\"}[2m])",
+                     "expr": "rate(tdg_kafka_broker_req{job=~\"tarantool\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{request}} — {{name}} ({{broker_name}}) — {{alias}} ({{type}}, {{connector_name}})",
@@ -12984,7 +12984,7 @@
                "dashes": false,
                "datasource": "Prometheus",
                "decimals": 3,
-               "description": "Number of messages transmitted (produced) of a partition topic.\nGraph shows mean messages per second.\n\n\nIf `No data` displayed, check up your 'rate_time_range' variable.",
+               "description": "Number of messages transmitted (produced) of a partition topic.\nGraph shows mean messages per second.\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -13022,7 +13022,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tdg_kafka_topic_partitions_txmsgs{job=~\"tarantool\"}[2m])",
+                     "expr": "rate(tdg_kafka_topic_partitions_txmsgs{job=~\"tarantool\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{name}} ({{topic}}, {{partition}}) — {{alias}} ({{type}}, {{connector_name}})",
@@ -13074,7 +13074,7 @@
                "dashes": false,
                "datasource": "Prometheus",
                "decimals": 3,
-               "description": "Amout of message bytes transmitted (produced) of a partition topic.\nGraph shows mean bytes per second.\n\n\nIf `No data` displayed, check up your 'rate_time_range' variable.",
+               "description": "Amout of message bytes transmitted (produced) of a partition topic.\nGraph shows mean bytes per second.\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -13112,7 +13112,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tdg_kafka_topic_partitions_txbytes{job=~\"tarantool\"}[2m])",
+                     "expr": "rate(tdg_kafka_topic_partitions_txbytes{job=~\"tarantool\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{name}} ({{topic}}, {{partition}}) — {{alias}} ({{type}}, {{connector_name}})",
@@ -13164,7 +13164,7 @@
                "dashes": false,
                "datasource": "Prometheus",
                "decimals": 3,
-               "description": "Number of messages consumed, not including ignored messages,\nof a partition topic.\nGraph shows mean messages per second.\n\n\nIf `No data` displayed, check up your 'rate_time_range' variable.",
+               "description": "Number of messages consumed, not including ignored messages,\nof a partition topic.\nGraph shows mean messages per second.\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -13202,7 +13202,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tdg_kafka_topic_partitions_rxmsgs{job=~\"tarantool\"}[2m])",
+                     "expr": "rate(tdg_kafka_topic_partitions_rxmsgs{job=~\"tarantool\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{name}} ({{topic}}, {{partition}}) — {{alias}} ({{type}}, {{connector_name}})",
@@ -13254,7 +13254,7 @@
                "dashes": false,
                "datasource": "Prometheus",
                "decimals": 3,
-               "description": "Amout of message bytes consumed, not including ignored messages,\nof a partition topic.\nGraph shows mean bytes per second.\n\n\nIf `No data` displayed, check up your 'rate_time_range' variable.",
+               "description": "Amout of message bytes consumed, not including ignored messages,\nof a partition topic.\nGraph shows mean bytes per second.\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -13292,7 +13292,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tdg_kafka_topic_partitions_rxbytes{job=~\"tarantool\"}[2m])",
+                     "expr": "rate(tdg_kafka_topic_partitions_rxbytes{job=~\"tarantool\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{name}} ({{topic}}, {{partition}}) — {{alias}} ({{type}}, {{connector_name}})",
@@ -13344,7 +13344,7 @@
                "dashes": false,
                "datasource": "Prometheus",
                "decimals": 3,
-               "description": "Number of dropped outdated messages of a partition topic.\nGraph shows mean messages per second.\n\n\nIf `No data` displayed, check up your 'rate_time_range' variable.",
+               "description": "Number of dropped outdated messages of a partition topic.\nGraph shows mean messages per second.\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -13382,7 +13382,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tdg_kafka_topic_partitions_rx_ver_drops{job=~\"tarantool\"}[2m])",
+                     "expr": "rate(tdg_kafka_topic_partitions_rx_ver_drops{job=~\"tarantool\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{name}} ({{topic}}, {{partition}}) — {{alias}} ({{type}}, {{connector_name}})",
@@ -13724,7 +13724,7 @@
                "dashes": false,
                "datasource": "Prometheus",
                "decimals": 3,
-               "description": "Number of rebalances (assign or revoke).\nGraph shows mean requests per second.\n\n\nIf `No data` displayed, check up your 'rate_time_range' variable.",
+               "description": "Number of rebalances (assign or revoke).\nGraph shows mean requests per second.\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -13762,7 +13762,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tdg_kafka_cgrp_rebalance_cnt{job=~\"tarantool\"}[2m])",
+                     "expr": "rate(tdg_kafka_cgrp_rebalance_cnt{job=~\"tarantool\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{name}} — {{alias}} ({{type}}, {{connector_name}})",
@@ -14124,7 +14124,7 @@
                "dashes": false,
                "datasource": "Prometheus",
                "decimals": 3,
-               "description": "A number of task tuples checked for expiration (expired + skipped).\nGraph shows mean tuples per second.\n\n\nIf `No data` displayed, check up your 'rate_time_range' variable.",
+               "description": "A number of task tuples checked for expiration (expired + skipped).\nGraph shows mean tuples per second.\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -14162,7 +14162,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tdg_expiration_checked_count{job=~\"tarantool\"}[2m])",
+                     "expr": "rate(tdg_expiration_checked_count{job=~\"tarantool\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{name}} — {{alias}}",
@@ -14214,7 +14214,7 @@
                "dashes": false,
                "datasource": "Prometheus",
                "decimals": 3,
-               "description": "A number of task expired tuples.\nGraph shows mean tuples per second.\n\n\nIf `No data` displayed, check up your 'rate_time_range' variable.",
+               "description": "A number of task expired tuples.\nGraph shows mean tuples per second.\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -14252,7 +14252,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tdg_expiration_expired_count{job=~\"tarantool\"}[2m])",
+                     "expr": "rate(tdg_expiration_expired_count{job=~\"tarantool\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{name}} — {{alias}}",
@@ -15444,7 +15444,7 @@
                "dashes": false,
                "datasource": "Prometheus",
                "decimals": 3,
-               "description": "A number of successfully executed GraphQL queries.\nGraph shows mean requests per second.\n\n\nIf `No data` displayed, check up your 'rate_time_range' variable.",
+               "description": "A number of successfully executed GraphQL queries.\nGraph shows mean requests per second.\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -15482,7 +15482,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tdg_graphql_query_time_count{job=~\"tarantool\"}[2m])",
+                     "expr": "rate(tdg_graphql_query_time_count{job=~\"tarantool\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{operation_name}} ({{schema}}, {{entity}}) — {{alias}}",
@@ -15624,7 +15624,7 @@
                "dashes": false,
                "datasource": "Prometheus",
                "decimals": 3,
-               "description": "A number of GraphQL queries failed to execute.\nGraph shows mean requests per second.\n\n\nIf `No data` displayed, check up your 'rate_time_range' variable.",
+               "description": "A number of GraphQL queries failed to execute.\nGraph shows mean requests per second.\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -15662,7 +15662,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tdg_graphql_query_fail{job=~\"tarantool\"}[2m])",
+                     "expr": "rate(tdg_graphql_query_fail{job=~\"tarantool\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{operation_name}} ({{schema}}, {{entity}}) — {{alias}}",
@@ -15714,7 +15714,7 @@
                "dashes": false,
                "datasource": "Prometheus",
                "decimals": 3,
-               "description": "A number of successfully executed GraphQL mutations.\nGraph shows mean requests per second.\n\n\nIf `No data` displayed, check up your 'rate_time_range' variable.",
+               "description": "A number of successfully executed GraphQL mutations.\nGraph shows mean requests per second.\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -15752,7 +15752,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tdg_graphql_mutation_time_count{job=~\"tarantool\"}[2m])",
+                     "expr": "rate(tdg_graphql_mutation_time_count{job=~\"tarantool\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{operation_name}} ({{schema}}, {{entity}}) — {{alias}}",
@@ -15894,7 +15894,7 @@
                "dashes": false,
                "datasource": "Prometheus",
                "decimals": 3,
-               "description": "A number of GraphQL mutations failed to execute.\nGraph shows mean requests per second.\n\n\nIf `No data` displayed, check up your 'rate_time_range' variable.",
+               "description": "A number of GraphQL mutations failed to execute.\nGraph shows mean requests per second.\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -15932,7 +15932,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tdg_graphql_mutation_fail{job=~\"tarantool\"}[2m])",
+                     "expr": "rate(tdg_graphql_mutation_fail{job=~\"tarantool\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{operation_name}} ({{schema}}, {{entity}}) — {{alias}}",
@@ -16004,7 +16004,7 @@
                "dashes": false,
                "datasource": "Prometheus",
                "decimals": 3,
-               "description": "Number of repository.put method calls through IProto.\nGraph shows mean requests per second.\n\n\nIf `No data` displayed, check up your 'rate_time_range' variable.",
+               "description": "Number of repository.put method calls through IProto.\nGraph shows mean requests per second.\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -16042,7 +16042,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tdg_iproto_data_query_exec_time_count{job=~\"tarantool\",method=\"repository.put\"}[2m])",
+                     "expr": "rate(tdg_iproto_data_query_exec_time_count{job=~\"tarantool\",method=\"repository.put\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{type}} — {{alias}}",
@@ -16184,7 +16184,7 @@
                "dashes": false,
                "datasource": "Prometheus",
                "decimals": 3,
-               "description": "Number of repository.put_batch method calls through IProto.\nGraph shows mean requests per second.\n\n\nIf `No data` displayed, check up your 'rate_time_range' variable.",
+               "description": "Number of repository.put_batch method calls through IProto.\nGraph shows mean requests per second.\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -16222,7 +16222,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tdg_iproto_data_query_exec_time_count{job=~\"tarantool\",method=\"repository.put_batch\"}[2m])",
+                     "expr": "rate(tdg_iproto_data_query_exec_time_count{job=~\"tarantool\",method=\"repository.put_batch\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{type}} — {{alias}}",
@@ -16364,7 +16364,7 @@
                "dashes": false,
                "datasource": "Prometheus",
                "decimals": 3,
-               "description": "Number of repository.find method calls through IProto.\nGraph shows mean requests per second.\n\n\nIf `No data` displayed, check up your 'rate_time_range' variable.",
+               "description": "Number of repository.find method calls through IProto.\nGraph shows mean requests per second.\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -16402,7 +16402,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tdg_iproto_data_query_exec_time_count{job=~\"tarantool\",method=\"repository.find\"}[2m])",
+                     "expr": "rate(tdg_iproto_data_query_exec_time_count{job=~\"tarantool\",method=\"repository.find\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{type}} — {{alias}}",
@@ -16544,7 +16544,7 @@
                "dashes": false,
                "datasource": "Prometheus",
                "decimals": 3,
-               "description": "Number of repository.update method calls through IProto.\nGraph shows mean requests per second.\n\n\nIf `No data` displayed, check up your 'rate_time_range' variable.",
+               "description": "Number of repository.update method calls through IProto.\nGraph shows mean requests per second.\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -16582,7 +16582,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tdg_iproto_data_query_exec_time_count{job=~\"tarantool\",method=\"repository.update\"}[2m])",
+                     "expr": "rate(tdg_iproto_data_query_exec_time_count{job=~\"tarantool\",method=\"repository.update\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{type}} — {{alias}}",
@@ -16724,7 +16724,7 @@
                "dashes": false,
                "datasource": "Prometheus",
                "decimals": 3,
-               "description": "Number of repository.get method calls through IProto.\nGraph shows mean requests per second.\n\n\nIf `No data` displayed, check up your 'rate_time_range' variable.",
+               "description": "Number of repository.get method calls through IProto.\nGraph shows mean requests per second.\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -16762,7 +16762,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tdg_iproto_data_query_exec_time_count{job=~\"tarantool\",method=\"repository.get\"}[2m])",
+                     "expr": "rate(tdg_iproto_data_query_exec_time_count{job=~\"tarantool\",method=\"repository.get\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{type}} — {{alias}}",
@@ -16904,7 +16904,7 @@
                "dashes": false,
                "datasource": "Prometheus",
                "decimals": 3,
-               "description": "Number of repository.delete method calls through IProto.\nGraph shows mean requests per second.\n\n\nIf `No data` displayed, check up your 'rate_time_range' variable.",
+               "description": "Number of repository.delete method calls through IProto.\nGraph shows mean requests per second.\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -16942,7 +16942,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tdg_iproto_data_query_exec_time_count{job=~\"tarantool\",method=\"repository.delete\"}[2m])",
+                     "expr": "rate(tdg_iproto_data_query_exec_time_count{job=~\"tarantool\",method=\"repository.delete\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{type}} — {{alias}}",
@@ -17084,7 +17084,7 @@
                "dashes": false,
                "datasource": "Prometheus",
                "decimals": 3,
-               "description": "Number of repository.count method calls through IProto.\nGraph shows mean requests per second.\n\n\nIf `No data` displayed, check up your 'rate_time_range' variable.",
+               "description": "Number of repository.count method calls through IProto.\nGraph shows mean requests per second.\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -17122,7 +17122,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tdg_iproto_data_query_exec_time_count{job=~\"tarantool\",method=\"repository.count\"}[2m])",
+                     "expr": "rate(tdg_iproto_data_query_exec_time_count{job=~\"tarantool\",method=\"repository.count\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{type}} — {{alias}}",
@@ -17264,7 +17264,7 @@
                "dashes": false,
                "datasource": "Prometheus",
                "decimals": 3,
-               "description": "Number of repository.map_reduce method calls through IProto.\nGraph shows mean requests per second.\n\n\nIf `No data` displayed, check up your 'rate_time_range' variable.",
+               "description": "Number of repository.map_reduce method calls through IProto.\nGraph shows mean requests per second.\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -17302,7 +17302,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tdg_iproto_data_query_exec_time_count{job=~\"tarantool\",method=\"repository.map_reduce\"}[2m])",
+                     "expr": "rate(tdg_iproto_data_query_exec_time_count{job=~\"tarantool\",method=\"repository.map_reduce\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{type}} — {{alias}}",
@@ -17444,7 +17444,7 @@
                "dashes": false,
                "datasource": "Prometheus",
                "decimals": 3,
-               "description": "Number of repository.call_on_storage method calls through IProto.\nGraph shows mean requests per second.\n\n\nIf `No data` displayed, check up your 'rate_time_range' variable.",
+               "description": "Number of repository.call_on_storage method calls through IProto.\nGraph shows mean requests per second.\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -17482,7 +17482,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tdg_iproto_data_query_exec_time_count{job=~\"tarantool\",method=\"repository.call_on_storage\"}[2m])",
+                     "expr": "rate(tdg_iproto_data_query_exec_time_count{job=~\"tarantool\",method=\"repository.call_on_storage\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{type}} — {{alias}}",
@@ -17644,7 +17644,7 @@
                "dashes": false,
                "datasource": "Prometheus",
                "decimals": 3,
-               "description": "Number of TDG REST API GET requests processed with code 2xx.\nGraph shows mean requests per second.\n\n\nIf `No data` displayed, check up your 'rate_time_range' variable.",
+               "description": "Number of TDG REST API GET requests processed with code 2xx.\nGraph shows mean requests per second.\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -17682,7 +17682,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tdg_rest_exec_time_count{job=~\"tarantool\",method=\"GET\",status_code=~\"^2\\\\d{2}$\"}[2m])",
+                     "expr": "rate(tdg_rest_exec_time_count{job=~\"tarantool\",method=\"GET\",status_code=~\"^2\\\\d{2}$\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{type}} (code {{status_code}}) — {{alias}}",
@@ -17734,7 +17734,7 @@
                "dashes": false,
                "datasource": "Prometheus",
                "decimals": 3,
-               "description": "Number of TDG REST API GET requests processed with code 4xx.\nGraph shows mean requests per second.\n\n\nIf `No data` displayed, check up your 'rate_time_range' variable.",
+               "description": "Number of TDG REST API GET requests processed with code 4xx.\nGraph shows mean requests per second.\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -17772,7 +17772,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tdg_rest_exec_time_count{job=~\"tarantool\",method=\"GET\",status_code=~\"^4\\\\d{2}$\"}[2m])",
+                     "expr": "rate(tdg_rest_exec_time_count{job=~\"tarantool\",method=\"GET\",status_code=~\"^4\\\\d{2}$\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{type}} (code {{status_code}}) — {{alias}}",
@@ -17824,7 +17824,7 @@
                "dashes": false,
                "datasource": "Prometheus",
                "decimals": 3,
-               "description": "Number of TDG REST API GET requests processed with code 5xx.\nGraph shows mean requests per second.\n\n\nIf `No data` displayed, check up your 'rate_time_range' variable.",
+               "description": "Number of TDG REST API GET requests processed with code 5xx.\nGraph shows mean requests per second.\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -17862,7 +17862,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tdg_rest_exec_time_count{job=~\"tarantool\",method=\"GET\",status_code=~\"^5\\\\d{2}$\"}[2m])",
+                     "expr": "rate(tdg_rest_exec_time_count{job=~\"tarantool\",method=\"GET\",status_code=~\"^5\\\\d{2}$\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{type}} (code {{status_code}}) — {{alias}}",
@@ -18184,7 +18184,7 @@
                "dashes": false,
                "datasource": "Prometheus",
                "decimals": 3,
-               "description": "Number of TDG REST API POST/PUT/DELETE requests\nprocessed with code 2xx.\nGraph shows mean requests per second.\n\n\nIf `No data` displayed, check up your 'rate_time_range' variable.",
+               "description": "Number of TDG REST API POST/PUT/DELETE requests\nprocessed with code 2xx.\nGraph shows mean requests per second.\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -18222,7 +18222,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tdg_rest_exec_time_count{job=~\"tarantool\",method!=\"GET\",status_code=~\"^2\\\\d{2}$\"}[2m])",
+                     "expr": "rate(tdg_rest_exec_time_count{job=~\"tarantool\",method!=\"GET\",status_code=~\"^2\\\\d{2}$\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{type}} (code {{status_code}}) — {{alias}}",
@@ -18274,7 +18274,7 @@
                "dashes": false,
                "datasource": "Prometheus",
                "decimals": 3,
-               "description": "Number of TDG REST API POST/PUT/DELETE requests\nprocessed with code 4xx.\nGraph shows mean requests per second.\n\n\nIf `No data` displayed, check up your 'rate_time_range' variable.",
+               "description": "Number of TDG REST API POST/PUT/DELETE requests\nprocessed with code 4xx.\nGraph shows mean requests per second.\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -18312,7 +18312,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tdg_rest_exec_time_count{job=~\"tarantool\",method!=\"GET\",status_code=~\"^4\\\\d{2}$\"}[2m])",
+                     "expr": "rate(tdg_rest_exec_time_count{job=~\"tarantool\",method!=\"GET\",status_code=~\"^4\\\\d{2}$\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{type}} (code {{status_code}}) — {{alias}}",
@@ -18364,7 +18364,7 @@
                "dashes": false,
                "datasource": "Prometheus",
                "decimals": 3,
-               "description": "Number of TDG REST API POST/PUT/DELETE requests\nprocessed with code 5xx.\nGraph shows mean requests per second.\n\n\nIf `No data` displayed, check up your 'rate_time_range' variable.",
+               "description": "Number of TDG REST API POST/PUT/DELETE requests\nprocessed with code 5xx.\nGraph shows mean requests per second.\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -18402,7 +18402,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tdg_rest_exec_time_count{job=~\"tarantool\",method!=\"GET\",status_code=~\"^5\\\\d{2}$\"}[2m])",
+                     "expr": "rate(tdg_rest_exec_time_count{job=~\"tarantool\",method!=\"GET\",status_code=~\"^5\\\\d{2}$\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{type}} (code {{status_code}}) — {{alias}}",
@@ -18744,7 +18744,7 @@
                "dashes": false,
                "datasource": "Prometheus",
                "decimals": 3,
-               "description": "Number of TDG jobs started.\nGraph shows mean jobs per second.\n\n\nIf `No data` displayed, check up your 'rate_time_range' variable.",
+               "description": "Number of TDG jobs started.\nGraph shows mean jobs per second.\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -18782,7 +18782,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tdg_jobs_started{job=~\"tarantool\"}[2m])",
+                     "expr": "rate(tdg_jobs_started{job=~\"tarantool\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{name}} — {{alias}}",
@@ -18834,7 +18834,7 @@
                "dashes": false,
                "datasource": "Prometheus",
                "decimals": 3,
-               "description": "Number of TDG jobs failed.\nGraph shows mean jobs per second.\n\n\nIf `No data` displayed, check up your 'rate_time_range' variable.",
+               "description": "Number of TDG jobs failed.\nGraph shows mean jobs per second.\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -18872,7 +18872,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tdg_jobs_failed{job=~\"tarantool\"}[2m])",
+                     "expr": "rate(tdg_jobs_failed{job=~\"tarantool\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{name}} — {{alias}}",
@@ -18924,7 +18924,7 @@
                "dashes": false,
                "datasource": "Prometheus",
                "decimals": 3,
-               "description": "Number of TDG jobs succeeded.\nGraph shows mean jobs per second.\n\n\nIf `No data` displayed, check up your 'rate_time_range' variable.",
+               "description": "Number of TDG jobs succeeded.\nGraph shows mean jobs per second.\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -18962,7 +18962,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tdg_jobs_succeeded{job=~\"tarantool\"}[2m])",
+                     "expr": "rate(tdg_jobs_succeeded{job=~\"tarantool\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{name}} — {{alias}}",
@@ -19194,7 +19194,7 @@
                "dashes": false,
                "datasource": "Prometheus",
                "decimals": 3,
-               "description": "Number of TDG tasks started.\nGraph shows mean tasks per second.\n\n\nIf `No data` displayed, check up your 'rate_time_range' variable.",
+               "description": "Number of TDG tasks started.\nGraph shows mean tasks per second.\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -19232,7 +19232,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tdg_tasks_started{job=~\"tarantool\"}[2m])",
+                     "expr": "rate(tdg_tasks_started{job=~\"tarantool\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{name}} ({{kind}}) — {{alias}}",
@@ -19284,7 +19284,7 @@
                "dashes": false,
                "datasource": "Prometheus",
                "decimals": 3,
-               "description": "Number of TDG tasks failed.\nGraph shows mean tasks per second.\n\n\nIf `No data` displayed, check up your 'rate_time_range' variable.",
+               "description": "Number of TDG tasks failed.\nGraph shows mean tasks per second.\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -19322,7 +19322,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tdg_tasks_failed{job=~\"tarantool\"}[2m])",
+                     "expr": "rate(tdg_tasks_failed{job=~\"tarantool\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{name}} ({{kind}}) — {{alias}}",
@@ -19374,7 +19374,7 @@
                "dashes": false,
                "datasource": "Prometheus",
                "decimals": 3,
-               "description": "Number of TDG tasks succeeded.\nGraph shows mean tasks per second.\n\n\nIf `No data` displayed, check up your 'rate_time_range' variable.",
+               "description": "Number of TDG tasks succeeded.\nGraph shows mean tasks per second.\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -19412,7 +19412,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tdg_tasks_succeeded{job=~\"tarantool\"}[2m])",
+                     "expr": "rate(tdg_tasks_succeeded{job=~\"tarantool\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{name}} ({{kind}}) — {{alias}}",
@@ -19464,7 +19464,7 @@
                "dashes": false,
                "datasource": "Prometheus",
                "decimals": 3,
-               "description": "Number of TDG tasks stopped.\nGraph shows mean tasks per second.\n\n\nIf `No data` displayed, check up your 'rate_time_range' variable.",
+               "description": "Number of TDG tasks stopped.\nGraph shows mean tasks per second.\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -19502,7 +19502,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tdg_tasks_stopped{job=~\"tarantool\"}[2m])",
+                     "expr": "rate(tdg_tasks_stopped{job=~\"tarantool\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{name}} ({{kind}}) — {{alias}}",
@@ -19734,7 +19734,7 @@
                "dashes": false,
                "datasource": "Prometheus",
                "decimals": 3,
-               "description": "Number of TDG system tasks started.\nGraph shows mean tasks per second.\n\n\nIf `No data` displayed, check up your 'rate_time_range' variable.",
+               "description": "Number of TDG system tasks started.\nGraph shows mean tasks per second.\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -19772,7 +19772,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tdg_system_tasks_started{job=~\"tarantool\"}[2m])",
+                     "expr": "rate(tdg_system_tasks_started{job=~\"tarantool\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{name}} ({{kind}}) — {{alias}}",
@@ -19824,7 +19824,7 @@
                "dashes": false,
                "datasource": "Prometheus",
                "decimals": 3,
-               "description": "Number of TDG system tasks failed.\nGraph shows mean tasks per second.\n\n\nIf `No data` displayed, check up your 'rate_time_range' variable.",
+               "description": "Number of TDG system tasks failed.\nGraph shows mean tasks per second.\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -19862,7 +19862,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tdg_system_tasks_failed{job=~\"tarantool\"}[2m])",
+                     "expr": "rate(tdg_system_tasks_failed{job=~\"tarantool\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{name}} ({{kind}}) — {{alias}}",
@@ -19914,7 +19914,7 @@
                "dashes": false,
                "datasource": "Prometheus",
                "decimals": 3,
-               "description": "Number of TDG system tasks succeeded.\nGraph shows mean tasks per second.\n\n\nIf `No data` displayed, check up your 'rate_time_range' variable.",
+               "description": "Number of TDG system tasks succeeded.\nGraph shows mean tasks per second.\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -19952,7 +19952,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tdg_system_tasks_succeeded{job=~\"tarantool\"}[2m])",
+                     "expr": "rate(tdg_system_tasks_succeeded{job=~\"tarantool\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{name}} ({{kind}}) — {{alias}}",

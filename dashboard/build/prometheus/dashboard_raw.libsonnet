@@ -4,7 +4,7 @@ local dashboard = import 'dashboard/dashboard.libsonnet';
 local section = import 'dashboard/section.libsonnet';
 local variable = import 'dashboard/variable.libsonnet';
 
-function(datasource, job, rate_time_range) dashboard.new(
+function(datasource, job) dashboard.new(
   grafana.dashboard.new(
     title='Tarantool dashboard',
     description='Dashboard for Tarantool application and database server monitoring, based on grafonnet library.',
@@ -55,83 +55,71 @@ function(datasource, job, rate_time_range) dashboard.new(
     datasource_type=variable.datasource_type.prometheus,
     datasource=datasource,
     job=job,
-    rate_time_range=rate_time_range,
   )
 ).addPanels(
   section.http(
     datasource_type=variable.datasource_type.prometheus,
     datasource=datasource,
     job=job,
-    rate_time_range=rate_time_range,
   )
 ).addPanels(
   section.net(
     datasource_type=variable.datasource_type.prometheus,
     datasource=datasource,
     job=job,
-    rate_time_range=rate_time_range,
   )
 ).addPanels(
   section.slab(
     datasource_type=variable.datasource_type.prometheus,
     datasource=datasource,
     job=job,
-    rate_time_range=rate_time_range,
   )
 ).addPanels(
   section.space(
     datasource_type=variable.datasource_type.prometheus,
     datasource=datasource,
     job=job,
-    rate_time_range=rate_time_range,
   )
 ).addPanels(
   section.vinyl(
     datasource_type=variable.datasource_type.prometheus,
     datasource=datasource,
     job=job,
-    rate_time_range=rate_time_range,
   )
 ).addPanels(
   section.cpu(
     datasource_type=variable.datasource_type.prometheus,
     datasource=datasource,
     job=job,
-    rate_time_range=rate_time_range,
   )
 ).addPanels(
   section.runtime(
     datasource_type=variable.datasource_type.prometheus,
     datasource=datasource,
     job=job,
-    rate_time_range=rate_time_range,
   )
 ).addPanels(
   section.luajit(
     datasource_type=variable.datasource_type.prometheus,
     datasource=datasource,
     job=job,
-    rate_time_range=rate_time_range,
   )
 ).addPanels(
   section.operations(
     datasource_type=variable.datasource_type.prometheus,
     datasource=datasource,
     job=job,
-    rate_time_range=rate_time_range,
   )
 ).addPanels(
   section.crud(
     datasource_type=variable.datasource_type.prometheus,
     datasource=datasource,
     job=job,
-    rate_time_range=rate_time_range,
   )
 ).addPanels(
   section.expirationd(
     datasource_type=variable.datasource_type.prometheus,
     datasource=datasource,
     job=job,
-    rate_time_range=rate_time_range,
   )
 )

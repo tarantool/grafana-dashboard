@@ -72,7 +72,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
   ],
 
   // Must be used only in the top of a dashboard, overall stat panels use complicated layout
-  cluster_prometheus(datasource_type, datasource, job, rate_time_range):: [
+  cluster_prometheus(datasource_type, datasource, job):: [
     cluster.row,
 
     cluster.health_overview_table(
@@ -103,21 +103,18 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       datasource_type=datasource_type,
       datasource=datasource,
       job=job,
-      rate_time_range=rate_time_range,
     ) { gridPos: { w: 4, h: 5, x: 12, y: 4 } },
 
     cluster.net_rps_stat(
       datasource_type=datasource_type,
       datasource=datasource,
       job=job,
-      rate_time_range=rate_time_range,
     ) { gridPos: { w: 4, h: 5, x: 16, y: 4 } },
 
     cluster.space_ops_stat(
       datasource_type=datasource_type,
       datasource=datasource,
       job=job,
-      rate_time_range=rate_time_range,
     ) { gridPos: { w: 4, h: 5, x: 20, y: 4 } },
 
     cluster.cartridge_warning_issues(
@@ -157,7 +154,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
     ),
   ],
 
-  http(datasource_type, datasource, policy=null, measurement=null, job=null, rate_time_range=null):: [
+  http(datasource_type, datasource, policy=null, measurement=null, job=null):: [
     http.row,
 
     http.rps_success(
@@ -166,7 +163,6 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
-      rate_time_range=rate_time_range,
     ),
 
     http.rps_error_4xx(
@@ -175,7 +171,6 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
-      rate_time_range=rate_time_range,
     ),
 
     http.rps_error_5xx(
@@ -184,7 +179,6 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
-      rate_time_range=rate_time_range,
     ),
 
     http.latency_success(
@@ -212,7 +206,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
     ),
   ],
 
-  net(datasource_type, datasource, policy=null, measurement=null, job=null, rate_time_range=null):: [
+  net(datasource_type, datasource, policy=null, measurement=null, job=null):: [
     net.row,
 
     net.net_memory(
@@ -229,7 +223,6 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
-      rate_time_range=rate_time_range,
     ),
 
     net.bytes_sent_per_second(
@@ -238,7 +231,6 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
-      rate_time_range=rate_time_range,
     ),
 
     net.net_rps(
@@ -247,7 +239,6 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
-      rate_time_range=rate_time_range,
     ),
 
     net.net_pending(
@@ -264,7 +255,6 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
-      rate_time_range=rate_time_range,
     ),
 
     net.requests_in_progress_current(
@@ -281,7 +271,6 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
-      rate_time_range=rate_time_range,
     ),
 
     net.requests_in_queue_current(
@@ -298,7 +287,6 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
-      rate_time_range=rate_time_range,
     ),
 
     net.current_connections(
@@ -310,7 +298,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
     ),
   ],
 
-  slab(datasource_type, datasource, policy=null, measurement=null, job=null, rate_time_range=null):: [
+  slab(datasource_type, datasource, policy=null, measurement=null, job=null):: [
     slab.row,
 
     slab.monitor_info(),
@@ -388,7 +376,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
     ),
   ],
 
-  space(datasource_type, datasource, policy=null, measurement=null, job=null, rate_time_range=null):: [
+  space(datasource_type, datasource, policy=null, measurement=null, job=null):: [
     space.row,
 
     space.memtx_len(
@@ -432,7 +420,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
     ),
   ],
 
-  vinyl(datasource_type, datasource, policy=null, measurement=null, job=null, rate_time_range=null):: [
+  vinyl(datasource_type, datasource, policy=null, measurement=null, job=null):: [
     vinyl.row,
 
     vinyl.disk_data(
@@ -513,7 +501,6 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
-      rate_time_range=rate_time_range,
     ),
 
     vinyl.tx_rollback_rate(
@@ -522,7 +509,6 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
-      rate_time_range=rate_time_range,
     ),
 
     vinyl.tx_conflicts_rate(
@@ -531,7 +517,6 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
-      rate_time_range=rate_time_range,
     ),
 
     vinyl.tx_read_views(
@@ -556,7 +541,6 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
-      rate_time_range=rate_time_range,
     ),
 
     vinyl.scheduler_dump_time_rate(
@@ -565,7 +549,6 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
-      rate_time_range=rate_time_range,
     ),
 
     vinyl.scheduler_dump_count_rate(
@@ -574,11 +557,10 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
-      rate_time_range=rate_time_range,
     ),
   ],
 
-  cpu(datasource_type, datasource, policy=null, measurement=null, job=null, rate_time_range=null):: [
+  cpu(datasource_type, datasource, policy=null, measurement=null, job=null):: [
     cpu.row,
 
     cpu.getrusage_cpu_user_time(
@@ -587,7 +569,6 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
-      rate_time_range=rate_time_range,
     ),
 
     cpu.getrusage_cpu_system_time(
@@ -596,11 +577,10 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
-      rate_time_range=rate_time_range,
     ),
   ],
 
-  cpu_extended(datasource_type, datasource, policy=null, measurement=null, job=null, rate_time_range=null):: [
+  cpu_extended(datasource_type, datasource, policy=null, measurement=null, job=null):: [
     cpu.row,
 
     cpu.getrusage_cpu_user_time(
@@ -609,7 +589,6 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
-      rate_time_range=rate_time_range,
     ),
 
     cpu.getrusage_cpu_system_time(
@@ -618,7 +597,6 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
-      rate_time_range=rate_time_range,
     ),
 
     cpu.procstat_thread_user_time(
@@ -627,7 +605,6 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
-      rate_time_range=rate_time_range,
     ),
 
     cpu.procstat_thread_system_time(
@@ -636,11 +613,10 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
-      rate_time_range=rate_time_range,
     ),
   ],
 
-  runtime(datasource_type, datasource, policy=null, measurement=null, job=null, rate_time_range=null):: [
+  runtime(datasource_type, datasource, policy=null, measurement=null, job=null):: [
     runtime.row,
 
     runtime.lua_memory(
@@ -700,7 +676,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
     ),
   ],
 
-  luajit(datasource_type, datasource, policy=null, measurement=null, job=null, rate_time_range=null):: [
+  luajit(datasource_type, datasource, policy=null, measurement=null, job=null):: [
     luajit.row,
 
     luajit.snap_restores(
@@ -709,7 +685,6 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
-      rate_time_range=rate_time_range,
     ),
 
     luajit.jit_traces(
@@ -718,7 +693,6 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
-      rate_time_range=rate_time_range,
     ),
 
     luajit.jit_traces_aborts(
@@ -727,7 +701,6 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
-      rate_time_range=rate_time_range,
     ),
 
     luajit.machine_code_areas(
@@ -744,7 +717,6 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
-      rate_time_range=rate_time_range,
     ),
 
     luajit.strhash_miss(
@@ -753,7 +725,6 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
-      rate_time_range=rate_time_range,
     ),
 
     luajit.gc_steps_atomic(
@@ -762,7 +733,6 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
-      rate_time_range=rate_time_range,
     ),
 
     luajit.gc_steps_sweepstring(
@@ -771,7 +741,6 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
-      rate_time_range=rate_time_range,
     ),
 
     luajit.gc_steps_finalize(
@@ -780,7 +749,6 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
-      rate_time_range=rate_time_range,
     ),
 
     luajit.gc_steps_sweep(
@@ -789,7 +757,6 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
-      rate_time_range=rate_time_range,
     ),
 
     luajit.gc_steps_propagate(
@@ -798,7 +765,6 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
-      rate_time_range=rate_time_range,
     ),
 
     luajit.gc_steps_pause(
@@ -807,7 +773,6 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
-      rate_time_range=rate_time_range,
     ),
 
     luajit.strings_allocated(
@@ -856,7 +821,6 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
-      rate_time_range=rate_time_range,
     ),
 
     luajit.gc_memory_allocated(
@@ -865,11 +829,10 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
-      rate_time_range=rate_time_range,
     ),
   ],
 
-  operations(datasource_type, datasource, policy=null, measurement=null, job=null, rate_time_range=null):: [
+  operations(datasource_type, datasource, policy=null, measurement=null, job=null):: [
     operations.row,
 
     operations.space_select_rps(
@@ -878,7 +841,6 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
-      rate_time_range=rate_time_range,
     ),
 
     operations.space_insert_rps(
@@ -887,7 +849,6 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
-      rate_time_range=rate_time_range,
     ),
 
     operations.space_replace_rps(
@@ -896,7 +857,6 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
-      rate_time_range=rate_time_range,
     ),
 
     operations.space_upsert_rps(
@@ -905,7 +865,6 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
-      rate_time_range=rate_time_range,
     ),
 
     operations.space_update_rps(
@@ -914,7 +873,6 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
-      rate_time_range=rate_time_range,
     ),
 
     operations.space_delete_rps(
@@ -923,7 +881,6 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
-      rate_time_range=rate_time_range,
     ),
 
     operations.call_rps(
@@ -932,7 +889,6 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
-      rate_time_range=rate_time_range,
     ),
 
     operations.eval_rps(
@@ -941,7 +897,6 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
-      rate_time_range=rate_time_range,
     ),
 
     operations.error_rps(
@@ -950,7 +905,6 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
-      rate_time_range=rate_time_range,
     ),
 
     operations.auth_rps(
@@ -959,7 +913,6 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
-      rate_time_range=rate_time_range,
     ),
 
     operations.SQL_prepare_rps(
@@ -968,7 +921,6 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
-      rate_time_range=rate_time_range,
     ),
 
     operations.SQL_execute_rps(
@@ -977,11 +929,10 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
-      rate_time_range=rate_time_range,
     ),
   ],
 
-  crud(datasource_type, datasource, policy=null, measurement=null, job=null, rate_time_range=null):: [
+  crud(datasource_type, datasource, policy=null, measurement=null, job=null):: [
     crud.row,
 
     crud.select_success_rps(
@@ -990,7 +941,6 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
-      rate_time_range=rate_time_range,
     ),
 
     crud.select_success_latency(
@@ -1007,7 +957,6 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
-      rate_time_range=rate_time_range,
     ),
 
     crud.select_error_latency(
@@ -1024,7 +973,6 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
-      rate_time_range=rate_time_range,
     ),
 
     crud.tuples_lookup_panel(
@@ -1033,7 +981,6 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
-      rate_time_range=rate_time_range,
     ),
 
     crud.map_reduces(
@@ -1042,7 +989,6 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
-      rate_time_range=rate_time_range,
     ),
 
     crud.insert_success_rps(
@@ -1051,7 +997,6 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
-      rate_time_range=rate_time_range,
     ),
 
     crud.insert_success_latency(
@@ -1068,7 +1013,6 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
-      rate_time_range=rate_time_range,
     ),
 
     crud.insert_error_latency(
@@ -1085,7 +1029,6 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
-      rate_time_range=rate_time_range,
     ),
 
     crud.insert_many_success_latency(
@@ -1102,7 +1045,6 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
-      rate_time_range=rate_time_range,
     ),
 
     crud.insert_many_error_latency(
@@ -1119,7 +1061,6 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
-      rate_time_range=rate_time_range,
     ),
 
     crud.replace_success_latency(
@@ -1136,7 +1077,6 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
-      rate_time_range=rate_time_range,
     ),
 
     crud.replace_error_latency(
@@ -1153,7 +1093,6 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
-      rate_time_range=rate_time_range,
     ),
 
     crud.replace_many_success_latency(
@@ -1170,7 +1109,6 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
-      rate_time_range=rate_time_range,
     ),
 
     crud.replace_many_error_latency(
@@ -1187,7 +1125,6 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
-      rate_time_range=rate_time_range,
     ),
 
     crud.upsert_success_latency(
@@ -1204,7 +1141,6 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
-      rate_time_range=rate_time_range,
     ),
 
     crud.upsert_error_latency(
@@ -1221,7 +1157,6 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
-      rate_time_range=rate_time_range,
     ),
 
     crud.upsert_many_success_latency(
@@ -1238,7 +1173,6 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
-      rate_time_range=rate_time_range,
     ),
 
     crud.upsert_many_error_latency(
@@ -1255,7 +1189,6 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
-      rate_time_range=rate_time_range,
     ),
 
     crud.update_success_latency(
@@ -1272,7 +1205,6 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
-      rate_time_range=rate_time_range,
     ),
 
     crud.update_error_latency(
@@ -1289,7 +1221,6 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
-      rate_time_range=rate_time_range,
     ),
 
     crud.delete_success_latency(
@@ -1306,7 +1237,6 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
-      rate_time_range=rate_time_range,
     ),
 
     crud.delete_error_latency(
@@ -1323,7 +1253,6 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
-      rate_time_range=rate_time_range,
     ),
 
     crud.count_success_latency(
@@ -1340,7 +1269,6 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
-      rate_time_range=rate_time_range,
     ),
 
     crud.count_error_latency(
@@ -1357,7 +1285,6 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
-      rate_time_range=rate_time_range,
     ),
 
     crud.get_success_latency(
@@ -1374,7 +1301,6 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
-      rate_time_range=rate_time_range,
     ),
 
     crud.get_error_latency(
@@ -1391,7 +1317,6 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
-      rate_time_range=rate_time_range,
     ),
 
     crud.borders_success_latency(
@@ -1408,7 +1333,6 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
-      rate_time_range=rate_time_range,
     ),
 
     crud.borders_error_latency(
@@ -1425,7 +1349,6 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
-      rate_time_range=rate_time_range,
     ),
 
     crud.len_success_latency(
@@ -1442,7 +1365,6 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
-      rate_time_range=rate_time_range,
     ),
 
     crud.len_error_latency(
@@ -1459,7 +1381,6 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
-      rate_time_range=rate_time_range,
     ),
 
     crud.truncate_success_latency(
@@ -1476,7 +1397,6 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
-      rate_time_range=rate_time_range,
     ),
 
     crud.truncate_error_latency(
@@ -1488,7 +1408,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
     ),
   ],
 
-  expirationd(datasource_type, datasource, policy=null, measurement=null, job=null, rate_time_range=null):: [
+  expirationd(datasource_type, datasource, policy=null, measurement=null, job=null):: [
     expirationd.row,
 
     expirationd.tuples_checked(
@@ -1497,7 +1417,6 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
-      rate_time_range=rate_time_range,
     ),
 
     expirationd.tuples_expired(
@@ -1506,7 +1425,6 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
-      rate_time_range=rate_time_range,
     ),
 
     expirationd.restarts(
@@ -1526,7 +1444,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
     ),
   ],
 
-  tdg_kafka_common(datasource_type, datasource, policy=null, measurement=null, job=null, rate_time_range=null):: [
+  tdg_kafka_common(datasource_type, datasource, policy=null, measurement=null, job=null):: [
     tdg_kafka_common.row,
 
     tdg_kafka_common.queue_operations(
@@ -1559,7 +1477,6 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
-      rate_time_range=rate_time_range,
     ),
 
     tdg_kafka_common.request_bytes(
@@ -1568,7 +1485,6 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
-      rate_time_range=rate_time_range,
     ),
 
     tdg_kafka_common.responses(
@@ -1577,7 +1493,6 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
-      rate_time_range=rate_time_range,
     ),
 
     tdg_kafka_common.response_bytes(
@@ -1586,7 +1501,6 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
-      rate_time_range=rate_time_range,
     ),
 
     tdg_kafka_common.messages_sent(
@@ -1595,7 +1509,6 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
-      rate_time_range=rate_time_range,
     ),
 
     tdg_kafka_common.message_bytes_sent(
@@ -1604,7 +1517,6 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
-      rate_time_range=rate_time_range,
     ),
 
     tdg_kafka_common.messages_received(
@@ -1613,7 +1525,6 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
-      rate_time_range=rate_time_range,
     ),
 
     tdg_kafka_common.message_bytes_received(
@@ -1622,11 +1533,10 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
-      rate_time_range=rate_time_range,
     ),
   ],
 
-  tdg_kafka_brokers(datasource_type, datasource, policy=null, measurement=null, job=null, rate_time_range=null):: [
+  tdg_kafka_brokers(datasource_type, datasource, policy=null, measurement=null, job=null):: [
     tdg_kafka_brokers.row,
 
     tdg_kafka_brokers.stateage(
@@ -1643,7 +1553,6 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
-      rate_time_range=rate_time_range,
     ),
 
     tdg_kafka_brokers.disconnects(
@@ -1652,7 +1561,6 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
-      rate_time_range=rate_time_range,
     ),
 
     tdg_kafka_brokers.poll_wakeups(
@@ -1661,7 +1569,6 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
-      rate_time_range=rate_time_range,
     ),
 
     tdg_kafka_brokers.outbuf(
@@ -1702,7 +1609,6 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
-      rate_time_range=rate_time_range,
     ),
 
     tdg_kafka_brokers.request_bytes(
@@ -1711,7 +1617,6 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
-      rate_time_range=rate_time_range,
     ),
 
     tdg_kafka_brokers.request_errors(
@@ -1720,7 +1625,6 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
-      rate_time_range=rate_time_range,
     ),
 
     tdg_kafka_brokers.request_retries(
@@ -1729,7 +1633,6 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
-      rate_time_range=rate_time_range,
     ),
 
     tdg_kafka_brokers.request_idle(
@@ -1746,7 +1649,6 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
-      rate_time_range=rate_time_range,
     ),
 
     tdg_kafka_brokers.responses(
@@ -1755,7 +1657,6 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
-      rate_time_range=rate_time_range,
     ),
 
     tdg_kafka_brokers.response_bytes(
@@ -1764,7 +1665,6 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
-      rate_time_range=rate_time_range,
     ),
 
     tdg_kafka_brokers.response_errors(
@@ -1773,7 +1673,6 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
-      rate_time_range=rate_time_range,
     ),
 
     tdg_kafka_brokers.response_corriderrs(
@@ -1782,7 +1681,6 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
-      rate_time_range=rate_time_range,
     ),
 
     tdg_kafka_brokers.response_idle(
@@ -1799,7 +1697,6 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
-      rate_time_range=rate_time_range,
     ),
 
     tdg_kafka_brokers.requests_by_type(
@@ -1808,7 +1705,6 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
-      rate_time_range=rate_time_range,
     ),
 
     tdg_kafka_brokers.internal_producer_latency(
@@ -1844,7 +1740,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
     ),
   ],
 
-  tdg_kafka_topics(datasource_type, datasource, policy=null, measurement=null, job=null, rate_time_range=null):: [
+  tdg_kafka_topics(datasource_type, datasource, policy=null, measurement=null, job=null):: [
     tdg_kafka_topics.row,
 
     tdg_kafka_topics.age(
@@ -1933,7 +1829,6 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
-      rate_time_range=rate_time_range,
     ),
 
     tdg_kafka_topics.partition_message_bytes_sent(
@@ -1942,7 +1837,6 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
-      rate_time_range=rate_time_range,
     ),
 
     tdg_kafka_topics.partition_messages_consumed(
@@ -1951,7 +1845,6 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
-      rate_time_range=rate_time_range,
     ),
 
     tdg_kafka_topics.partition_message_bytes_consumed(
@@ -1960,7 +1853,6 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
-      rate_time_range=rate_time_range,
     ),
 
     tdg_kafka_topics.partition_messages_dropped(
@@ -1969,7 +1861,6 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
-      rate_time_range=rate_time_range,
     ),
 
     tdg_kafka_topics.partition_messages_in_flight(
@@ -1981,7 +1872,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
     ),
   ],
 
-  tdg_kafka_consumer(datasource_type, datasource, policy=null, measurement=null, job=null, rate_time_range=null):: [
+  tdg_kafka_consumer(datasource_type, datasource, policy=null, measurement=null, job=null):: [
     tdg_kafka_consumer.row,
 
     tdg_kafka_consumer.stateage(
@@ -2006,7 +1897,6 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
-      rate_time_range=rate_time_range,
     ),
 
     tdg_kafka_consumer.assignment_size(
@@ -2018,7 +1908,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
     ),
   ],
 
-  tdg_kafka_producer(datasource_type, datasource, policy=null, measurement=null, job=null, rate_time_range=null):: [
+  tdg_kafka_producer(datasource_type, datasource, policy=null, measurement=null, job=null):: [
     tdg_kafka_producer.row,
 
     tdg_kafka_producer.idemp_stateage(
@@ -2038,7 +1928,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
     ),
   ],
 
-  tdg_expirationd(datasource_type, datasource, policy=null, measurement=null, job=null, rate_time_range=null):: [
+  tdg_expirationd(datasource_type, datasource, policy=null, measurement=null, job=null):: [
     tdg_expirationd.row,
 
     tdg_expirationd.tuples_checked(
@@ -2047,7 +1937,6 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
-      rate_time_range=rate_time_range,
     ),
 
     tdg_expirationd.tuples_expired(
@@ -2056,7 +1945,6 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
-      rate_time_range=rate_time_range,
     ),
 
     tdg_expirationd.restarts(
@@ -2076,7 +1964,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
     ),
   ],
 
-  tdg_tuples(datasource_type, datasource, policy=null, measurement=null, job=null, rate_time_range=null):: [
+  tdg_tuples(datasource_type, datasource, policy=null, measurement=null, job=null):: [
     tdg_tuples.row,
 
     tdg_tuples.tuples_scanned_average(
@@ -2112,7 +2000,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
     ),
   ],
 
-  tdg_file_connectors(datasource_type, datasource, policy=null, measurement=null, job=null, rate_time_range=null):: [
+  tdg_file_connectors(datasource_type, datasource, policy=null, measurement=null, job=null):: [
     tdg_file_connectors.row,
 
     tdg_file_connectors.files_processed(
@@ -2164,7 +2052,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
     ),
   ],
 
-  tdg_graphql(datasource_type, datasource, policy=null, measurement=null, job=null, rate_time_range=null):: [
+  tdg_graphql(datasource_type, datasource, policy=null, measurement=null, job=null):: [
     tdg_graphql.row,
 
     tdg_graphql.query_success_rps(
@@ -2173,7 +2061,6 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
-      rate_time_range=rate_time_range,
     ),
 
     tdg_graphql.query_success_latency(
@@ -2190,7 +2077,6 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
-      rate_time_range=rate_time_range,
     ),
 
     tdg_graphql.mutation_success_rps(
@@ -2199,7 +2085,6 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
-      rate_time_range=rate_time_range,
     ),
 
     tdg_graphql.mutation_success_latency(
@@ -2216,11 +2101,10 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
-      rate_time_range=rate_time_range,
     ),
   ],
 
-  tdg_iproto(datasource_type, datasource, policy=null, measurement=null, job=null, rate_time_range=null):: [
+  tdg_iproto(datasource_type, datasource, policy=null, measurement=null, job=null):: [
     tdg_iproto.row,
 
     tdg_iproto.put_rps(
@@ -2229,7 +2113,6 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
-      rate_time_range=rate_time_range,
     ),
 
     tdg_iproto.put_latency(
@@ -2246,7 +2129,6 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
-      rate_time_range=rate_time_range,
     ),
 
     tdg_iproto.put_batch_latency(
@@ -2263,7 +2145,6 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
-      rate_time_range=rate_time_range,
     ),
 
     tdg_iproto.find_latency(
@@ -2280,7 +2161,6 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
-      rate_time_range=rate_time_range,
     ),
 
     tdg_iproto.update_latency(
@@ -2297,7 +2177,6 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
-      rate_time_range=rate_time_range,
     ),
 
     tdg_iproto.get_latency(
@@ -2314,7 +2193,6 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
-      rate_time_range=rate_time_range,
     ),
 
     tdg_iproto.delete_latency(
@@ -2331,7 +2209,6 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
-      rate_time_range=rate_time_range,
     ),
 
     tdg_iproto.count_latency(
@@ -2348,7 +2225,6 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
-      rate_time_range=rate_time_range,
     ),
 
     tdg_iproto.map_reduce_latency(
@@ -2365,7 +2241,6 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
-      rate_time_range=rate_time_range,
     ),
 
     tdg_iproto.call_on_storage_latency(
@@ -2377,7 +2252,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
     ),
   ],
 
-  tdg_rest_api(datasource_type, datasource, policy=null, measurement=null, job=null, rate_time_range=null):: [
+  tdg_rest_api(datasource_type, datasource, policy=null, measurement=null, job=null):: [
     tdg_rest_api.row,
 
     tdg_rest_api.read_success_rps(
@@ -2386,7 +2261,6 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
-      rate_time_range=rate_time_range,
     ),
 
     tdg_rest_api.read_error_4xx_rps(
@@ -2395,7 +2269,6 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
-      rate_time_range=rate_time_range,
     ),
 
     tdg_rest_api.read_error_5xx_rps(
@@ -2404,7 +2277,6 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
-      rate_time_range=rate_time_range,
     ),
 
     tdg_rest_api.read_success_latency(
@@ -2437,7 +2309,6 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
-      rate_time_range=rate_time_range,
     ),
 
     tdg_rest_api.write_error_4xx_rps(
@@ -2446,7 +2317,6 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
-      rate_time_range=rate_time_range,
     ),
 
     tdg_rest_api.write_error_5xx_rps(
@@ -2455,7 +2325,6 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
-      rate_time_range=rate_time_range,
     ),
 
     tdg_rest_api.write_success_latency(
@@ -2483,7 +2352,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
     ),
   ],
 
-  tdg_tasks(datasource_type, datasource, policy=null, measurement=null, job=null, rate_time_range=null):: [
+  tdg_tasks(datasource_type, datasource, policy=null, measurement=null, job=null):: [
     tdg_tasks.row,
 
     tdg_tasks.jobs_started(
@@ -2492,7 +2361,6 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
-      rate_time_range=rate_time_range,
     ),
 
     tdg_tasks.jobs_failed(
@@ -2501,7 +2369,6 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
-      rate_time_range=rate_time_range,
     ),
 
     tdg_tasks.jobs_succeeded(
@@ -2510,7 +2377,6 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
-      rate_time_range=rate_time_range,
     ),
 
     tdg_tasks.jobs_running(
@@ -2535,7 +2401,6 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
-      rate_time_range=rate_time_range,
     ),
 
     tdg_tasks.tasks_failed(
@@ -2544,7 +2409,6 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
-      rate_time_range=rate_time_range,
     ),
 
     tdg_tasks.tasks_succeeded(
@@ -2553,7 +2417,6 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
-      rate_time_range=rate_time_range,
     ),
 
     tdg_tasks.tasks_stopped(
@@ -2562,7 +2425,6 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
-      rate_time_range=rate_time_range,
     ),
 
     tdg_tasks.tasks_running(
@@ -2587,7 +2449,6 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
-      rate_time_range=rate_time_range,
     ),
 
     tdg_tasks.system_tasks_failed(
@@ -2596,7 +2457,6 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
-      rate_time_range=rate_time_range,
     ),
 
     tdg_tasks.system_tasks_succeeded(
@@ -2605,7 +2465,6 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
-      rate_time_range=rate_time_range,
     ),
 
     tdg_tasks.system_tasks_running(

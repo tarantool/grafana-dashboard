@@ -201,7 +201,7 @@ To import a specific dashboard, choose one of the following options:
 - upload the dashboard JSON file.
 
 Set dashboard name, folder, uid (if needed), and datasource-related query parameters
-(InfluxDB source, measurement and policy or Prometheus source, job and rate time range).
+(InfluxDB source, measurement and policy or Prometheus source and job).
 
 ..  image:: images/grafana_import_setup.png
     :align: left
@@ -214,5 +214,5 @@ Troubleshooting
 
 If there's no data on the graphs, make sure that you have set up datasource and job/measurement correctly.
 
-If there's no data on the rps graphs on Prometheus table, make sure that
-your rate time range parameter is at least twice as Prometheus scrape interval.
+If some Prometheus graphs shows no data because of "parse error: missing unit character in duration",
+ensure that you use Grafana 7.2 or newer.

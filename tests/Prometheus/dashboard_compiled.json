@@ -14,13 +14,6 @@
          "name": "PROMETHEUS_JOB",
          "type": "constant",
          "value": "tarantool"
-      },
-      {
-         "description": "Time range for computing rps graphs with rate(). At the very minimum it should be two times the scrape interval.",
-         "label": "Rate time range",
-         "name": "PROMETHEUS_RATE_TIME_RANGE",
-         "type": "constant",
-         "value": "2m"
       }
    ],
    "__requires": [
@@ -334,7 +327,7 @@
             },
             {
                "datasource": "${DS_PROMETHEUS}",
-               "description": "Overall rate of HTTP requests processed\non Tarantool instances (all methods and response codes).\nIf Tarantool instance is not available for Prometheus metrics\nextraction now, its contribution is not counted.\n\n\nIf `No data` displayed, check up your 'rate_time_range' variable.",
+               "description": "Overall rate of HTTP requests processed\non Tarantool instances (all methods and response codes).\nIf Tarantool instance is not available for Prometheus metrics\nextraction now, its contribution is not counted.\n",
                "gridPos": {
                   "h": 5,
                   "w": 4,
@@ -375,7 +368,7 @@
                "pluginVersion": "6.6.0",
                "targets": [
                   {
-                     "expr": "sum(rate(http_server_request_latency_count{job=~\"$job\"}[$rate_time_range]))",
+                     "expr": "sum(rate(http_server_request_latency_count{job=~\"$job\"}[$__rate_interval]))",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "",
@@ -388,7 +381,7 @@
             },
             {
                "datasource": "${DS_PROMETHEUS}",
-               "description": "Overall rate of network requests processed on Tarantool instances.\nIf Tarantool instance is not available for Prometheus metrics\nextraction now, its contribution is not counted.\n\n\nIf `No data` displayed, check up your 'rate_time_range' variable.",
+               "description": "Overall rate of network requests processed on Tarantool instances.\nIf Tarantool instance is not available for Prometheus metrics\nextraction now, its contribution is not counted.\n",
                "gridPos": {
                   "h": 5,
                   "w": 4,
@@ -429,7 +422,7 @@
                "pluginVersion": "6.6.0",
                "targets": [
                   {
-                     "expr": "sum(rate(tnt_net_requests_total{job=~\"$job\"}[$rate_time_range]))",
+                     "expr": "sum(rate(tnt_net_requests_total{job=~\"$job\"}[$__rate_interval]))",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "",
@@ -442,7 +435,7 @@
             },
             {
                "datasource": "${DS_PROMETHEUS}",
-               "description": "Overall rate of operations performed on Tarantool spaces\n(*select*, *insert*, *update* etc.).\nIf Tarantool instance is not available for Prometheus metrics\nextraction now, its contribution is not counted.\n\n\nIf `No data` displayed, check up your 'rate_time_range' variable.",
+               "description": "Overall rate of operations performed on Tarantool spaces\n(*select*, *insert*, *update* etc.).\nIf Tarantool instance is not available for Prometheus metrics\nextraction now, its contribution is not counted.\n",
                "gridPos": {
                   "h": 5,
                   "w": 4,
@@ -483,7 +476,7 @@
                "pluginVersion": "6.6.0",
                "targets": [
                   {
-                     "expr": "sum(rate(tnt_stats_op_total{job=~\"$job\"}[$rate_time_range]))",
+                     "expr": "sum(rate(tnt_stats_op_total{job=~\"$job\"}[$__rate_interval]))",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "",
@@ -1093,7 +1086,7 @@
                "dashes": false,
                "datasource": "${DS_PROMETHEUS}",
                "decimals": 3,
-               "description": "Requests, processed with success (code 2xx) on Tarantool's side.\nGraph shows mean count per second.\n\n\nIf `No data` displayed, check up your 'rate_time_range' variable.",
+               "description": "Requests, processed with success (code 2xx) on Tarantool's side.\nGraph shows mean count per second.\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -1131,7 +1124,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(http_server_request_latency_count{job=~\"$job\",status=~\"^2\\\\d{2}$\"}[$rate_time_range])",
+                     "expr": "rate(http_server_request_latency_count{job=~\"$job\",status=~\"^2\\\\d{2}$\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}} — {{method}} {{path}} (code {{status}})",
@@ -1183,7 +1176,7 @@
                "dashes": false,
                "datasource": "${DS_PROMETHEUS}",
                "decimals": 3,
-               "description": "Requests, processed with 4xx error on Tarantool's side.\nGraph shows mean count per second.\n\n\nIf `No data` displayed, check up your 'rate_time_range' variable.",
+               "description": "Requests, processed with 4xx error on Tarantool's side.\nGraph shows mean count per second.\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -1221,7 +1214,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(http_server_request_latency_count{job=~\"$job\",status=~\"^4\\\\d{2}$\"}[$rate_time_range])",
+                     "expr": "rate(http_server_request_latency_count{job=~\"$job\",status=~\"^4\\\\d{2}$\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}} — {{method}} {{path}} (code {{status}})",
@@ -1273,7 +1266,7 @@
                "dashes": false,
                "datasource": "${DS_PROMETHEUS}",
                "decimals": 3,
-               "description": "Requests, processed with 5xx error on Tarantool's side.\nGraph shows mean count per second.\n\n\nIf `No data` displayed, check up your 'rate_time_range' variable.",
+               "description": "Requests, processed with 5xx error on Tarantool's side.\nGraph shows mean count per second.\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -1311,7 +1304,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(http_server_request_latency_count{job=~\"$job\",status=~\"^5\\\\d{2}$\"}[$rate_time_range])",
+                     "expr": "rate(http_server_request_latency_count{job=~\"$job\",status=~\"^5\\\\d{2}$\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}} — {{method}} {{path}} (code {{status}})",
@@ -1743,7 +1736,7 @@
                "dashes": false,
                "datasource": "${DS_PROMETHEUS}",
                "decimals": 3,
-               "description": "Data received by instance from binary protocol connections.\nGraph shows average bytes per second.\n\n\nIf `No data` displayed, check up your 'rate_time_range' variable.",
+               "description": "Data received by instance from binary protocol connections.\nGraph shows average bytes per second.\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -1781,7 +1774,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_net_received_total{job=~\"$job\"}[$rate_time_range])",
+                     "expr": "rate(tnt_net_received_total{job=~\"$job\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -1833,7 +1826,7 @@
                "dashes": false,
                "datasource": "${DS_PROMETHEUS}",
                "decimals": 3,
-               "description": "Data sent by instance with binary protocol connections.\nGraph shows average bytes per second.\n\n\nIf `No data` displayed, check up your 'rate_time_range' variable.",
+               "description": "Data sent by instance with binary protocol connections.\nGraph shows average bytes per second.\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -1871,7 +1864,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_net_sent_total{job=~\"$job\"}[$rate_time_range])",
+                     "expr": "rate(tnt_net_sent_total{job=~\"$job\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -1923,7 +1916,7 @@
                "dashes": false,
                "datasource": "${DS_PROMETHEUS}",
                "decimals": 3,
-               "description": "Number of network requests this instance has handled.\nGraph shows mean rps.\n\nPanel will be removed in favor of \"Processed requests\"\nand \"Requests in queue (overall)\" panels.\n\n\nIf `No data` displayed, check up your 'rate_time_range' variable.",
+               "description": "Number of network requests this instance has handled.\nGraph shows mean rps.\n\nPanel will be removed in favor of \"Processed requests\"\nand \"Requests in queue (overall)\" panels.\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -1961,7 +1954,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_net_requests_total{job=~\"$job\"}[$rate_time_range])",
+                     "expr": "rate(tnt_net_requests_total{job=~\"$job\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -2141,7 +2134,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_net_requests_in_progress_total{job=~\"$job\"}[$rate_time_range])",
+                     "expr": "rate(tnt_net_requests_in_progress_total{job=~\"$job\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -2321,7 +2314,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_net_requests_in_stream_queue_total{job=~\"$job\"}[$rate_time_range])",
+                     "expr": "rate(tnt_net_requests_in_stream_queue_total{job=~\"$job\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -2501,7 +2494,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_net_connections_total{job=~\"$job\"}[$rate_time_range])",
+                     "expr": "rate(tnt_net_connections_total{job=~\"$job\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -4787,7 +4780,7 @@
                "dashes": false,
                "datasource": "${DS_PROMETHEUS}",
                "decimals": 3,
-               "description": "Average per second rate of commits (successful transaction ends).\nIt includes implicit commits: for example, any insert operation causes a commit\nunless it is within a `box.begin()`–`box.commit()` block.\n\nPanel works with `metrics >= 0.8.0`.\n\n\nIf `No data` displayed, check up your 'rate_time_range' variable.",
+               "description": "Average per second rate of commits (successful transaction ends).\nIt includes implicit commits: for example, any insert operation causes a commit\nunless it is within a `box.begin()`–`box.commit()` block.\n\nPanel works with `metrics >= 0.8.0`.\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -4825,7 +4818,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_vinyl_tx_commit{job=~\"$job\"}[$rate_time_range])",
+                     "expr": "rate(tnt_vinyl_tx_commit{job=~\"$job\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -4877,7 +4870,7 @@
                "dashes": false,
                "datasource": "${DS_PROMETHEUS}",
                "decimals": 3,
-               "description": "Average per second rate of rollbacks (unsuccessful transaction ends).\nThis is not merely a count of explicit `box.rollback()` requests — it includes requests\nthat ended with errors.\nPanel works with `metrics >= 0.8.0`.\n\n\nIf `No data` displayed, check up your 'rate_time_range' variable.",
+               "description": "Average per second rate of rollbacks (unsuccessful transaction ends).\nThis is not merely a count of explicit `box.rollback()` requests — it includes requests\nthat ended with errors.\nPanel works with `metrics >= 0.8.0`.\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -4915,7 +4908,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_vinyl_tx_rollback{job=~\"$job\"}[$rate_time_range])",
+                     "expr": "rate(tnt_vinyl_tx_rollback{job=~\"$job\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -4967,7 +4960,7 @@
                "dashes": false,
                "datasource": "${DS_PROMETHEUS}",
                "decimals": 3,
-               "description": "Average per second rate of conflicts that caused transactions to roll back.\nThe ratio `tx conflicts` / `tx commits` above 5% indicates that vinyl is not healthy.\nAt this moment you’ll probably see a lot of other problems with vinyl.\n\nPanel works with `metrics >= 0.8.0`.\n\n\nIf `No data` displayed, check up your 'rate_time_range' variable.",
+               "description": "Average per second rate of conflicts that caused transactions to roll back.\nThe ratio `tx conflicts` / `tx commits` above 5% indicates that vinyl is not healthy.\nAt this moment you’ll probably see a lot of other problems with vinyl.\n\nPanel works with `metrics >= 0.8.0`.\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -5005,7 +4998,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_vinyl_tx_conflict{job=~\"$job\"}[$rate_time_range])",
+                     "expr": "rate(tnt_vinyl_tx_conflict{job=~\"$job\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -5237,7 +5230,7 @@
                "dashes": false,
                "datasource": "${DS_PROMETHEUS}",
                "decimals": 3,
-               "description": "Scheduler dump/compaction tasks failed.\nAverage per second rate is shown.\n\nPanel works with `metrics >= 0.8.0`.\n\n\nIf `No data` displayed, check up your 'rate_time_range' variable.",
+               "description": "Scheduler dump/compaction tasks failed.\nAverage per second rate is shown.\n\nPanel works with `metrics >= 0.8.0`.\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -5275,7 +5268,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_vinyl_scheduler_tasks{job=~\"$job\",status=\"failed\"}[$rate_time_range])",
+                     "expr": "rate(tnt_vinyl_scheduler_tasks{job=~\"$job\",status=\"failed\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -5327,7 +5320,7 @@
                "dashes": false,
                "datasource": "${DS_PROMETHEUS}",
                "decimals": 3,
-               "description": "Time spent by all worker threads performing dumps.\nAverage per second rate is shown.\n\nPanel works with `metrics >= 0.8.0`.\n\n\nIf `No data` displayed, check up your 'rate_time_range' variable.",
+               "description": "Time spent by all worker threads performing dumps.\nAverage per second rate is shown.\n\nPanel works with `metrics >= 0.8.0`.\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -5365,7 +5358,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_vinyl_scheduler_dump_time{job=~\"$job\"}[$rate_time_range])",
+                     "expr": "rate(tnt_vinyl_scheduler_dump_time{job=~\"$job\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -5417,7 +5410,7 @@
                "dashes": false,
                "datasource": "${DS_PROMETHEUS}",
                "decimals": 3,
-               "description": "Scheduler dumps completed average per second rate.\n\nPanel works with `metrics >= 0.13.0`.\n\n\nIf `No data` displayed, check up your 'rate_time_range' variable.",
+               "description": "Scheduler dumps completed average per second rate.\n\nPanel works with `metrics >= 0.13.0`.\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -5455,7 +5448,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_vinyl_scheduler_dump_total{job=~\"$job\"}[$rate_time_range])",
+                     "expr": "rate(tnt_vinyl_scheduler_dump_total{job=~\"$job\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -5527,7 +5520,7 @@
                "dashes": false,
                "datasource": "${DS_PROMETHEUS}",
                "decimals": 3,
-               "description": "This is the average share of time\nspent by instance process executing in user mode.\nMetrics obtained using `getrusage()` call.\n\nPanel works with `metrics >= 0.8.0`.\n\n\nIf `No data` displayed, check up your 'rate_time_range' variable.",
+               "description": "This is the average share of time\nspent by instance process executing in user mode.\nMetrics obtained using `getrusage()` call.\n\nPanel works with `metrics >= 0.8.0`.\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -5565,7 +5558,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_cpu_user_time{job=~\"$job\"}[$rate_time_range])",
+                     "expr": "rate(tnt_cpu_user_time{job=~\"$job\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -5617,7 +5610,7 @@
                "dashes": false,
                "datasource": "${DS_PROMETHEUS}",
                "decimals": 3,
-               "description": "This is the average share of time\nspent by instance process executing in kernel mode.\nMetrics obtained using `getrusage()` call.\n\nPanel works with `metrics >= 0.8.0`.\n\n\nIf `No data` displayed, check up your 'rate_time_range' variable.",
+               "description": "This is the average share of time\nspent by instance process executing in kernel mode.\nMetrics obtained using `getrusage()` call.\n\nPanel works with `metrics >= 0.8.0`.\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -5655,7 +5648,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_cpu_system_time{job=~\"$job\"}[$rate_time_range])",
+                     "expr": "rate(tnt_cpu_system_time{job=~\"$job\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -6377,7 +6370,7 @@
                "dashes": false,
                "datasource": "${DS_PROMETHEUS}",
                "decimals": 3,
-               "description": "Average number of snap restores (guard assertions\nleading to stopping trace executions) per second.\n\n\nPanel works with `metrics >= 0.6.0` and `Tarantool >= 2.6`.\n\nIf `No data` displayed, check up your 'rate_time_range' variable.",
+               "description": "Average number of snap restores (guard assertions\nleading to stopping trace executions) per second.\n\n\nPanel works with `metrics >= 0.6.0` and `Tarantool >= 2.6`.",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -6415,7 +6408,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(lj_jit_snap_restore{job=~\"$job\"}[$rate_time_range])",
+                     "expr": "rate(lj_jit_snap_restore{job=~\"$job\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -6467,7 +6460,7 @@
                "dashes": false,
                "datasource": "${DS_PROMETHEUS}",
                "decimals": 3,
-               "description": "Average number of new JIT traces per second.\n\n\nPanel works with `metrics >= 0.6.0` and `Tarantool >= 2.6`.\n\nIf `No data` displayed, check up your 'rate_time_range' variable.",
+               "description": "Average number of new JIT traces per second.\n\n\nPanel works with `metrics >= 0.6.0` and `Tarantool >= 2.6`.",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -6505,7 +6498,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(lj_jit_trace_num{job=~\"$job\"}[$rate_time_range])",
+                     "expr": "rate(lj_jit_trace_num{job=~\"$job\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -6557,7 +6550,7 @@
                "dashes": false,
                "datasource": "${DS_PROMETHEUS}",
                "decimals": 3,
-               "description": "Average number of JIT trace aborts per second.\n\n\nPanel works with `metrics >= 0.6.0` and `Tarantool >= 2.6`.\n\nIf `No data` displayed, check up your 'rate_time_range' variable.",
+               "description": "Average number of JIT trace aborts per second.\n\n\nPanel works with `metrics >= 0.6.0` and `Tarantool >= 2.6`.",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -6595,7 +6588,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(lj_jit_trace_abort{job=~\"$job\"}[$rate_time_range])",
+                     "expr": "rate(lj_jit_trace_abort{job=~\"$job\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -6737,7 +6730,7 @@
                "dashes": false,
                "datasource": "${DS_PROMETHEUS}",
                "decimals": 3,
-               "description": "Average number of strings being extracted from hash instead of allocating per second.\n\n\nPanel works with `metrics >= 0.6.0` and `Tarantool >= 2.6`.\n\nIf `No data` displayed, check up your 'rate_time_range' variable.",
+               "description": "Average number of strings being extracted from hash instead of allocating per second.\n\n\nPanel works with `metrics >= 0.6.0` and `Tarantool >= 2.6`.",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -6775,7 +6768,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(lj_strhash_hit{job=~\"$job\"}[$rate_time_range])",
+                     "expr": "rate(lj_strhash_hit{job=~\"$job\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -6827,7 +6820,7 @@
                "dashes": false,
                "datasource": "${DS_PROMETHEUS}",
                "decimals": 3,
-               "description": "Average number of strings being allocated due to hash miss per second.\n\n\nPanel works with `metrics >= 0.6.0` and `Tarantool >= 2.6`.\n\nIf `No data` displayed, check up your 'rate_time_range' variable.",
+               "description": "Average number of strings being allocated due to hash miss per second.\n\n\nPanel works with `metrics >= 0.6.0` and `Tarantool >= 2.6`.",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -6865,7 +6858,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(lj_strhash_miss{job=~\"$job\"}[$rate_time_range])",
+                     "expr": "rate(lj_strhash_miss{job=~\"$job\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -6917,7 +6910,7 @@
                "dashes": false,
                "datasource": "${DS_PROMETHEUS}",
                "decimals": 3,
-               "description": "Average count of incremental GC steps (atomic state) per second.\n\n\nPanel works with `metrics >= 0.6.0` and `Tarantool >= 2.6`.\n\nIf `No data` displayed, check up your 'rate_time_range' variable.",
+               "description": "Average count of incremental GC steps (atomic state) per second.\n\n\nPanel works with `metrics >= 0.6.0` and `Tarantool >= 2.6`.",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -6955,7 +6948,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(lj_gc_steps_atomic{job=~\"$job\"}[$rate_time_range])",
+                     "expr": "rate(lj_gc_steps_atomic{job=~\"$job\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -7007,7 +7000,7 @@
                "dashes": false,
                "datasource": "${DS_PROMETHEUS}",
                "decimals": 3,
-               "description": "Average count of incremental GC steps (sweepstring state) per second.\n\n\nPanel works with `metrics >= 0.6.0` and `Tarantool >= 2.6`.\n\nIf `No data` displayed, check up your 'rate_time_range' variable.",
+               "description": "Average count of incremental GC steps (sweepstring state) per second.\n\n\nPanel works with `metrics >= 0.6.0` and `Tarantool >= 2.6`.",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -7045,7 +7038,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(lj_gc_steps_sweepstring{job=~\"$job\"}[$rate_time_range])",
+                     "expr": "rate(lj_gc_steps_sweepstring{job=~\"$job\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -7097,7 +7090,7 @@
                "dashes": false,
                "datasource": "${DS_PROMETHEUS}",
                "decimals": 3,
-               "description": "Average count of incremental GC steps (finalize state) per second.\n\n\nPanel works with `metrics >= 0.6.0` and `Tarantool >= 2.6`.\n\nIf `No data` displayed, check up your 'rate_time_range' variable.",
+               "description": "Average count of incremental GC steps (finalize state) per second.\n\n\nPanel works with `metrics >= 0.6.0` and `Tarantool >= 2.6`.",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -7135,7 +7128,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(lj_gc_steps_finalize{job=~\"$job\"}[$rate_time_range])",
+                     "expr": "rate(lj_gc_steps_finalize{job=~\"$job\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -7187,7 +7180,7 @@
                "dashes": false,
                "datasource": "${DS_PROMETHEUS}",
                "decimals": 3,
-               "description": "Average count of incremental GC steps (sweep state) per second.\n\n\nPanel works with `metrics >= 0.6.0` and `Tarantool >= 2.6`.\n\nIf `No data` displayed, check up your 'rate_time_range' variable.",
+               "description": "Average count of incremental GC steps (sweep state) per second.\n\n\nPanel works with `metrics >= 0.6.0` and `Tarantool >= 2.6`.",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -7225,7 +7218,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(lj_gc_steps_sweep{job=~\"$job\"}[$rate_time_range])",
+                     "expr": "rate(lj_gc_steps_sweep{job=~\"$job\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -7277,7 +7270,7 @@
                "dashes": false,
                "datasource": "${DS_PROMETHEUS}",
                "decimals": 3,
-               "description": "Average count of incremental GC steps (propagate state) per second.\n\n\nPanel works with `metrics >= 0.6.0` and `Tarantool >= 2.6`.\n\nIf `No data` displayed, check up your 'rate_time_range' variable.",
+               "description": "Average count of incremental GC steps (propagate state) per second.\n\n\nPanel works with `metrics >= 0.6.0` and `Tarantool >= 2.6`.",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -7315,7 +7308,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(lj_gc_steps_propagate{job=~\"$job\"}[$rate_time_range])",
+                     "expr": "rate(lj_gc_steps_propagate{job=~\"$job\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -7367,7 +7360,7 @@
                "dashes": false,
                "datasource": "${DS_PROMETHEUS}",
                "decimals": 3,
-               "description": "Average count of incremental GC steps (pause state) per second.\n\n\nPanel works with `metrics >= 0.6.0` and `Tarantool >= 2.6`.\n\nIf `No data` displayed, check up your 'rate_time_range' variable.",
+               "description": "Average count of incremental GC steps (pause state) per second.\n\n\nPanel works with `metrics >= 0.6.0` and `Tarantool >= 2.6`.",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -7405,7 +7398,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(lj_gc_steps_pause{job=~\"$job\"}[$rate_time_range])",
+                     "expr": "rate(lj_gc_steps_pause{job=~\"$job\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -7945,7 +7938,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(lj_gc_freed{job=~\"$job\"}[$rate_time_range])",
+                     "expr": "rate(lj_gc_freed{job=~\"$job\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -8035,7 +8028,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(lj_gc_allocated{job=~\"$job\"}[$rate_time_range])",
+                     "expr": "rate(lj_gc_allocated{job=~\"$job\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -8107,7 +8100,7 @@
                "dashes": false,
                "datasource": "${DS_PROMETHEUS}",
                "decimals": 3,
-               "description": "Total count of SELECT requests to all instance spaces.\nGraph shows average requests per second.\n\n\nIf `No data` displayed, check up your 'rate_time_range' variable.",
+               "description": "Total count of SELECT requests to all instance spaces.\nGraph shows average requests per second.\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -8145,7 +8138,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_stats_op_total{job=~\"$job\",operation=\"select\"}[$rate_time_range])",
+                     "expr": "rate(tnt_stats_op_total{job=~\"$job\",operation=\"select\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -8197,7 +8190,7 @@
                "dashes": false,
                "datasource": "${DS_PROMETHEUS}",
                "decimals": 3,
-               "description": "Total count of INSERT requests to all instance spaces.\nGraph shows average requests per second.\n\n\nIf `No data` displayed, check up your 'rate_time_range' variable.",
+               "description": "Total count of INSERT requests to all instance spaces.\nGraph shows average requests per second.\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -8235,7 +8228,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_stats_op_total{job=~\"$job\",operation=\"insert\"}[$rate_time_range])",
+                     "expr": "rate(tnt_stats_op_total{job=~\"$job\",operation=\"insert\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -8287,7 +8280,7 @@
                "dashes": false,
                "datasource": "${DS_PROMETHEUS}",
                "decimals": 3,
-               "description": "Total count of REPLACE requests to all instance spaces.\nGraph shows average requests per second.\n\n\nIf `No data` displayed, check up your 'rate_time_range' variable.",
+               "description": "Total count of REPLACE requests to all instance spaces.\nGraph shows average requests per second.\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -8325,7 +8318,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_stats_op_total{job=~\"$job\",operation=\"replace\"}[$rate_time_range])",
+                     "expr": "rate(tnt_stats_op_total{job=~\"$job\",operation=\"replace\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -8377,7 +8370,7 @@
                "dashes": false,
                "datasource": "${DS_PROMETHEUS}",
                "decimals": 3,
-               "description": "Total count of UPSERT requests to all instance spaces.\nGraph shows average requests per second.\n\n\nIf `No data` displayed, check up your 'rate_time_range' variable.",
+               "description": "Total count of UPSERT requests to all instance spaces.\nGraph shows average requests per second.\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -8415,7 +8408,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_stats_op_total{job=~\"$job\",operation=\"upsert\"}[$rate_time_range])",
+                     "expr": "rate(tnt_stats_op_total{job=~\"$job\",operation=\"upsert\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -8467,7 +8460,7 @@
                "dashes": false,
                "datasource": "${DS_PROMETHEUS}",
                "decimals": 3,
-               "description": "Total count of UPDATE requests to all instance spaces.\nGraph shows average requests per second.\n\n\nIf `No data` displayed, check up your 'rate_time_range' variable.",
+               "description": "Total count of UPDATE requests to all instance spaces.\nGraph shows average requests per second.\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -8505,7 +8498,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_stats_op_total{job=~\"$job\",operation=\"update\"}[$rate_time_range])",
+                     "expr": "rate(tnt_stats_op_total{job=~\"$job\",operation=\"update\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -8557,7 +8550,7 @@
                "dashes": false,
                "datasource": "${DS_PROMETHEUS}",
                "decimals": 3,
-               "description": "Total count of DELETE requests to all instance spaces.\nGraph shows average requests per second.\n\n\nIf `No data` displayed, check up your 'rate_time_range' variable.",
+               "description": "Total count of DELETE requests to all instance spaces.\nGraph shows average requests per second.\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -8595,7 +8588,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_stats_op_total{job=~\"$job\",operation=\"delete\"}[$rate_time_range])",
+                     "expr": "rate(tnt_stats_op_total{job=~\"$job\",operation=\"delete\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -8647,7 +8640,7 @@
                "dashes": false,
                "datasource": "${DS_PROMETHEUS}",
                "decimals": 3,
-               "description": "Requests to execute stored procedures.\nGraph shows average requests per second.\n\n\nIf `No data` displayed, check up your 'rate_time_range' variable.",
+               "description": "Requests to execute stored procedures.\nGraph shows average requests per second.\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -8685,7 +8678,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_stats_op_total{job=~\"$job\",operation=\"call\"}[$rate_time_range])",
+                     "expr": "rate(tnt_stats_op_total{job=~\"$job\",operation=\"call\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -8737,7 +8730,7 @@
                "dashes": false,
                "datasource": "${DS_PROMETHEUS}",
                "decimals": 3,
-               "description": "Calls to evaluate Lua code.\nGraph shows average requests per second.\n\n\nIf `No data` displayed, check up your 'rate_time_range' variable.",
+               "description": "Calls to evaluate Lua code.\nGraph shows average requests per second.\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -8775,7 +8768,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_stats_op_total{job=~\"$job\",operation=\"eval\"}[$rate_time_range])",
+                     "expr": "rate(tnt_stats_op_total{job=~\"$job\",operation=\"eval\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -8827,7 +8820,7 @@
                "dashes": false,
                "datasource": "${DS_PROMETHEUS}",
                "decimals": 3,
-               "description": "Requests resulted in error.\nGraph shows average errors per second.\n\n\nIf `No data` displayed, check up your 'rate_time_range' variable.",
+               "description": "Requests resulted in error.\nGraph shows average errors per second.\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -8865,7 +8858,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_stats_op_total{job=~\"$job\",operation=\"error\"}[$rate_time_range])",
+                     "expr": "rate(tnt_stats_op_total{job=~\"$job\",operation=\"error\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -8917,7 +8910,7 @@
                "dashes": false,
                "datasource": "${DS_PROMETHEUS}",
                "decimals": 3,
-               "description": "Authentication requests.\nGraph shows average requests per second.\n\n\nIf `No data` displayed, check up your 'rate_time_range' variable.",
+               "description": "Authentication requests.\nGraph shows average requests per second.\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -8955,7 +8948,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_stats_op_total{job=~\"$job\",operation=\"auth\"}[$rate_time_range])",
+                     "expr": "rate(tnt_stats_op_total{job=~\"$job\",operation=\"auth\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -9007,7 +9000,7 @@
                "dashes": false,
                "datasource": "${DS_PROMETHEUS}",
                "decimals": 3,
-               "description": "SQL prepare calls.\nGraph shows average calls per second.\n\nPanel works with Tarantool 2.x.\n\n\nIf `No data` displayed, check up your 'rate_time_range' variable.",
+               "description": "SQL prepare calls.\nGraph shows average calls per second.\n\nPanel works with Tarantool 2.x.\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -9045,7 +9038,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_stats_op_total{job=~\"$job\",operation=\"prepare\"}[$rate_time_range])",
+                     "expr": "rate(tnt_stats_op_total{job=~\"$job\",operation=\"prepare\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -9097,7 +9090,7 @@
                "dashes": false,
                "datasource": "${DS_PROMETHEUS}",
                "decimals": 3,
-               "description": "SQL execute calls.\nGraph shows average calls per second.\n\nPanel works with Tarantool 2.x.\n\n\nIf `No data` displayed, check up your 'rate_time_range' variable.",
+               "description": "SQL execute calls.\nGraph shows average calls per second.\n\nPanel works with Tarantool 2.x.\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -9135,7 +9128,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_stats_op_total{job=~\"$job\",operation=\"execute\"}[$rate_time_range])",
+                     "expr": "rate(tnt_stats_op_total{job=~\"$job\",operation=\"execute\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -9207,7 +9200,7 @@
                "dashes": false,
                "datasource": "${DS_PROMETHEUS}",
                "decimals": 2,
-               "description": "Total count of success SELECT and PAIRS requests to cluster spaces with CRUD module.\nGraph shows average requests per second.\n\nCRUD 0.11.0 or newer is required to use statistics.\nEnable statistics with `crud.cfg{stats = true, stats_driver = 'metrics'}`\n\n\nIf `No data` displayed, check up your 'rate_time_range' variable.",
+               "description": "Total count of success SELECT and PAIRS requests to cluster spaces with CRUD module.\nGraph shows average requests per second.\n\nCRUD 0.11.0 or newer is required to use statistics.\nEnable statistics with `crud.cfg{stats = true, stats_driver = 'metrics'}`\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -9245,7 +9238,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_crud_stats_count{job=~\"$job\",operation=\"select\",status=\"ok\"}[$rate_time_range])",
+                     "expr": "rate(tnt_crud_stats_count{job=~\"$job\",operation=\"select\",status=\"ok\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}} — {{name}}",
@@ -9387,7 +9380,7 @@
                "dashes": false,
                "datasource": "${DS_PROMETHEUS}",
                "decimals": 2,
-               "description": "Total count of error SELECT and PAIRS requests to cluster spaces with CRUD module.\nGraph shows average requests per second.\n\nCRUD 0.11.0 or newer is required to use statistics.\nEnable statistics with `crud.cfg{stats = true, stats_driver = 'metrics'}`\n\n\nIf `No data` displayed, check up your 'rate_time_range' variable.",
+               "description": "Total count of error SELECT and PAIRS requests to cluster spaces with CRUD module.\nGraph shows average requests per second.\n\nCRUD 0.11.0 or newer is required to use statistics.\nEnable statistics with `crud.cfg{stats = true, stats_driver = 'metrics'}`\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -9425,7 +9418,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_crud_stats_count{job=~\"$job\",operation=\"select\",status=\"error\"}[$rate_time_range])",
+                     "expr": "rate(tnt_crud_stats_count{job=~\"$job\",operation=\"select\",status=\"error\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}} — {{name}}",
@@ -9567,7 +9560,7 @@
                "dashes": false,
                "datasource": "${DS_PROMETHEUS}",
                "decimals": 3,
-               "description": "Average number of tuples fetched during SELECT/PAIRS request for a space.\nBoth success and error requests are taken into consideration.\n\nCRUD 0.11.0 or newer is required to use statistics.\nEnable statistics with `crud.cfg{stats = true, stats_driver = 'metrics'}`\n\n\nIf `No data` displayed, check up your 'rate_time_range' variable.",
+               "description": "Average number of tuples fetched during SELECT/PAIRS request for a space.\nBoth success and error requests are taken into consideration.\n\nCRUD 0.11.0 or newer is required to use statistics.\nEnable statistics with `crud.cfg{stats = true, stats_driver = 'metrics'}`\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -9605,7 +9598,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_crud_tuples_fetched{job=~\"$job\",operation=\"select\"}[$rate_time_range]) /\n(sum without (status) (rate(tnt_crud_stats_count{job=~\"$job\",operation=\"select\"}[$rate_time_range])))\n",
+                     "expr": "rate(tnt_crud_tuples_fetched{job=~\"$job\",operation=\"select\"}[$__rate_interval]) /\n(sum without (status) (rate(tnt_crud_stats_count{job=~\"$job\",operation=\"select\"}[$__rate_interval])))\n",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}} — {{name}}",
@@ -9657,7 +9650,7 @@
                "dashes": false,
                "datasource": "${DS_PROMETHEUS}",
                "decimals": 3,
-               "description": "Average number of tuples looked up on storages while collecting responses\nfor SELECT/PAIRS requests (including scrolls for multibatch requests)\nfor a space. Both success and error requests are taken into consideration.\n\nCRUD 0.11.0 or newer is required to use statistics.\nEnable statistics with `crud.cfg{stats = true, stats_driver = 'metrics'}`\n\n\nIf `No data` displayed, check up your 'rate_time_range' variable.",
+               "description": "Average number of tuples looked up on storages while collecting responses\nfor SELECT/PAIRS requests (including scrolls for multibatch requests)\nfor a space. Both success and error requests are taken into consideration.\n\nCRUD 0.11.0 or newer is required to use statistics.\nEnable statistics with `crud.cfg{stats = true, stats_driver = 'metrics'}`\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -9695,7 +9688,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_crud_tuples_lookup{job=~\"$job\",operation=\"select\"}[$rate_time_range]) /\n(sum without (status) (rate(tnt_crud_stats_count{job=~\"$job\",operation=\"select\"}[$rate_time_range])))\n",
+                     "expr": "rate(tnt_crud_tuples_lookup{job=~\"$job\",operation=\"select\"}[$__rate_interval]) /\n(sum without (status) (rate(tnt_crud_stats_count{job=~\"$job\",operation=\"select\"}[$__rate_interval])))\n",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}} — {{name}}",
@@ -9747,7 +9740,7 @@
                "dashes": false,
                "datasource": "${DS_PROMETHEUS}",
                "decimals": 3,
-               "description": "Number of SELECT and PAIRS requests that resulted in map reduce.\nGraph shows average requests per second.\nBoth success and error requests are taken into consideration.\n\nCRUD 0.11.0 or newer is required to use statistics.\nEnable statistics with `crud.cfg{stats = true, stats_driver = 'metrics'}`\n\n\nIf `No data` displayed, check up your 'rate_time_range' variable.",
+               "description": "Number of SELECT and PAIRS requests that resulted in map reduce.\nGraph shows average requests per second.\nBoth success and error requests are taken into consideration.\n\nCRUD 0.11.0 or newer is required to use statistics.\nEnable statistics with `crud.cfg{stats = true, stats_driver = 'metrics'}`\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -9785,7 +9778,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_crud_map_reduces{job=~\"$job\",operation=\"select\"}[$rate_time_range])",
+                     "expr": "rate(tnt_crud_map_reduces{job=~\"$job\",operation=\"select\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}} — {{name}}",
@@ -9837,7 +9830,7 @@
                "dashes": false,
                "datasource": "${DS_PROMETHEUS}",
                "decimals": 2,
-               "description": "Total count of success insert and insert_object requests to cluster spaces with CRUD module.\nGraph shows average requests per second.\n\nCRUD 0.11.0 or newer is required to use statistics.\nEnable statistics with `crud.cfg{stats = true, stats_driver = 'metrics'}`\n\n\nIf `No data` displayed, check up your 'rate_time_range' variable.",
+               "description": "Total count of success insert and insert_object requests to cluster spaces with CRUD module.\nGraph shows average requests per second.\n\nCRUD 0.11.0 or newer is required to use statistics.\nEnable statistics with `crud.cfg{stats = true, stats_driver = 'metrics'}`\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -9875,7 +9868,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_crud_stats_count{job=~\"$job\",operation=\"insert\",status=\"ok\"}[$rate_time_range])",
+                     "expr": "rate(tnt_crud_stats_count{job=~\"$job\",operation=\"insert\",status=\"ok\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}} — {{name}}",
@@ -10017,7 +10010,7 @@
                "dashes": false,
                "datasource": "${DS_PROMETHEUS}",
                "decimals": 2,
-               "description": "Total count of error insert and insert_object requests to cluster spaces with CRUD module.\nGraph shows average requests per second.\n\nCRUD 0.11.0 or newer is required to use statistics.\nEnable statistics with `crud.cfg{stats = true, stats_driver = 'metrics'}`\n\n\nIf `No data` displayed, check up your 'rate_time_range' variable.",
+               "description": "Total count of error insert and insert_object requests to cluster spaces with CRUD module.\nGraph shows average requests per second.\n\nCRUD 0.11.0 or newer is required to use statistics.\nEnable statistics with `crud.cfg{stats = true, stats_driver = 'metrics'}`\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -10055,7 +10048,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_crud_stats_count{job=~\"$job\",operation=\"insert\",status=\"error\"}[$rate_time_range])",
+                     "expr": "rate(tnt_crud_stats_count{job=~\"$job\",operation=\"insert\",status=\"error\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}} — {{name}}",
@@ -10197,7 +10190,7 @@
                "dashes": false,
                "datasource": "${DS_PROMETHEUS}",
                "decimals": 2,
-               "description": "Total count of success insert_many and insert_object_many requests to cluster spaces with CRUD module.\nGraph shows average requests per second.\n\nCRUD 0.11.0 or newer is required to use statistics.\nEnable statistics with `crud.cfg{stats = true, stats_driver = 'metrics'}`\n\n\nIf `No data` displayed, check up your 'rate_time_range' variable.",
+               "description": "Total count of success insert_many and insert_object_many requests to cluster spaces with CRUD module.\nGraph shows average requests per second.\n\nCRUD 0.11.0 or newer is required to use statistics.\nEnable statistics with `crud.cfg{stats = true, stats_driver = 'metrics'}`\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -10235,7 +10228,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_crud_stats_count{job=~\"$job\",operation=\"insert_many\",status=\"ok\"}[$rate_time_range])",
+                     "expr": "rate(tnt_crud_stats_count{job=~\"$job\",operation=\"insert_many\",status=\"ok\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}} — {{name}}",
@@ -10377,7 +10370,7 @@
                "dashes": false,
                "datasource": "${DS_PROMETHEUS}",
                "decimals": 2,
-               "description": "Total count of error insert_many and insert_object_many requests to cluster spaces with CRUD module.\nGraph shows average requests per second.\n\nCRUD 0.11.0 or newer is required to use statistics.\nEnable statistics with `crud.cfg{stats = true, stats_driver = 'metrics'}`\n\n\nIf `No data` displayed, check up your 'rate_time_range' variable.",
+               "description": "Total count of error insert_many and insert_object_many requests to cluster spaces with CRUD module.\nGraph shows average requests per second.\n\nCRUD 0.11.0 or newer is required to use statistics.\nEnable statistics with `crud.cfg{stats = true, stats_driver = 'metrics'}`\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -10415,7 +10408,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_crud_stats_count{job=~\"$job\",operation=\"insert_many\",status=\"error\"}[$rate_time_range])",
+                     "expr": "rate(tnt_crud_stats_count{job=~\"$job\",operation=\"insert_many\",status=\"error\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}} — {{name}}",
@@ -10557,7 +10550,7 @@
                "dashes": false,
                "datasource": "${DS_PROMETHEUS}",
                "decimals": 2,
-               "description": "Total count of success replace and replace_object requests to cluster spaces with CRUD module.\nGraph shows average requests per second.\n\nCRUD 0.11.0 or newer is required to use statistics.\nEnable statistics with `crud.cfg{stats = true, stats_driver = 'metrics'}`\n\n\nIf `No data` displayed, check up your 'rate_time_range' variable.",
+               "description": "Total count of success replace and replace_object requests to cluster spaces with CRUD module.\nGraph shows average requests per second.\n\nCRUD 0.11.0 or newer is required to use statistics.\nEnable statistics with `crud.cfg{stats = true, stats_driver = 'metrics'}`\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -10595,7 +10588,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_crud_stats_count{job=~\"$job\",operation=\"replace\",status=\"ok\"}[$rate_time_range])",
+                     "expr": "rate(tnt_crud_stats_count{job=~\"$job\",operation=\"replace\",status=\"ok\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}} — {{name}}",
@@ -10737,7 +10730,7 @@
                "dashes": false,
                "datasource": "${DS_PROMETHEUS}",
                "decimals": 2,
-               "description": "Total count of error replace and replace_object requests to cluster spaces with CRUD module.\nGraph shows average requests per second.\n\nCRUD 0.11.0 or newer is required to use statistics.\nEnable statistics with `crud.cfg{stats = true, stats_driver = 'metrics'}`\n\n\nIf `No data` displayed, check up your 'rate_time_range' variable.",
+               "description": "Total count of error replace and replace_object requests to cluster spaces with CRUD module.\nGraph shows average requests per second.\n\nCRUD 0.11.0 or newer is required to use statistics.\nEnable statistics with `crud.cfg{stats = true, stats_driver = 'metrics'}`\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -10775,7 +10768,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_crud_stats_count{job=~\"$job\",operation=\"replace\",status=\"error\"}[$rate_time_range])",
+                     "expr": "rate(tnt_crud_stats_count{job=~\"$job\",operation=\"replace\",status=\"error\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}} — {{name}}",
@@ -10917,7 +10910,7 @@
                "dashes": false,
                "datasource": "${DS_PROMETHEUS}",
                "decimals": 2,
-               "description": "Total count of success replace_many and replace_object_many requests to cluster spaces with CRUD module.\nGraph shows average requests per second.\n\nCRUD 0.11.0 or newer is required to use statistics.\nEnable statistics with `crud.cfg{stats = true, stats_driver = 'metrics'}`\n\n\nIf `No data` displayed, check up your 'rate_time_range' variable.",
+               "description": "Total count of success replace_many and replace_object_many requests to cluster spaces with CRUD module.\nGraph shows average requests per second.\n\nCRUD 0.11.0 or newer is required to use statistics.\nEnable statistics with `crud.cfg{stats = true, stats_driver = 'metrics'}`\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -10955,7 +10948,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_crud_stats_count{job=~\"$job\",operation=\"replace_many\",status=\"ok\"}[$rate_time_range])",
+                     "expr": "rate(tnt_crud_stats_count{job=~\"$job\",operation=\"replace_many\",status=\"ok\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}} — {{name}}",
@@ -11097,7 +11090,7 @@
                "dashes": false,
                "datasource": "${DS_PROMETHEUS}",
                "decimals": 2,
-               "description": "Total count of error replace_many and replace_object_many requests to cluster spaces with CRUD module.\nGraph shows average requests per second.\n\nCRUD 0.11.0 or newer is required to use statistics.\nEnable statistics with `crud.cfg{stats = true, stats_driver = 'metrics'}`\n\n\nIf `No data` displayed, check up your 'rate_time_range' variable.",
+               "description": "Total count of error replace_many and replace_object_many requests to cluster spaces with CRUD module.\nGraph shows average requests per second.\n\nCRUD 0.11.0 or newer is required to use statistics.\nEnable statistics with `crud.cfg{stats = true, stats_driver = 'metrics'}`\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -11135,7 +11128,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_crud_stats_count{job=~\"$job\",operation=\"replace_many\",status=\"error\"}[$rate_time_range])",
+                     "expr": "rate(tnt_crud_stats_count{job=~\"$job\",operation=\"replace_many\",status=\"error\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}} — {{name}}",
@@ -11277,7 +11270,7 @@
                "dashes": false,
                "datasource": "${DS_PROMETHEUS}",
                "decimals": 2,
-               "description": "Total count of success upsert and upsert_object requests to cluster spaces with CRUD module.\nGraph shows average requests per second.\n\nCRUD 0.11.0 or newer is required to use statistics.\nEnable statistics with `crud.cfg{stats = true, stats_driver = 'metrics'}`\n\n\nIf `No data` displayed, check up your 'rate_time_range' variable.",
+               "description": "Total count of success upsert and upsert_object requests to cluster spaces with CRUD module.\nGraph shows average requests per second.\n\nCRUD 0.11.0 or newer is required to use statistics.\nEnable statistics with `crud.cfg{stats = true, stats_driver = 'metrics'}`\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -11315,7 +11308,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_crud_stats_count{job=~\"$job\",operation=\"upsert\",status=\"ok\"}[$rate_time_range])",
+                     "expr": "rate(tnt_crud_stats_count{job=~\"$job\",operation=\"upsert\",status=\"ok\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}} — {{name}}",
@@ -11457,7 +11450,7 @@
                "dashes": false,
                "datasource": "${DS_PROMETHEUS}",
                "decimals": 2,
-               "description": "Total count of error upsert and upsert_object requests to cluster spaces with CRUD module.\nGraph shows average requests per second.\n\nCRUD 0.11.0 or newer is required to use statistics.\nEnable statistics with `crud.cfg{stats = true, stats_driver = 'metrics'}`\n\n\nIf `No data` displayed, check up your 'rate_time_range' variable.",
+               "description": "Total count of error upsert and upsert_object requests to cluster spaces with CRUD module.\nGraph shows average requests per second.\n\nCRUD 0.11.0 or newer is required to use statistics.\nEnable statistics with `crud.cfg{stats = true, stats_driver = 'metrics'}`\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -11495,7 +11488,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_crud_stats_count{job=~\"$job\",operation=\"upsert\",status=\"error\"}[$rate_time_range])",
+                     "expr": "rate(tnt_crud_stats_count{job=~\"$job\",operation=\"upsert\",status=\"error\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}} — {{name}}",
@@ -11637,7 +11630,7 @@
                "dashes": false,
                "datasource": "${DS_PROMETHEUS}",
                "decimals": 2,
-               "description": "Total count of success upsert_many and upsert_object_many requests to cluster spaces with CRUD module.\nGraph shows average requests per second.\n\nCRUD 0.11.0 or newer is required to use statistics.\nEnable statistics with `crud.cfg{stats = true, stats_driver = 'metrics'}`\n\n\nIf `No data` displayed, check up your 'rate_time_range' variable.",
+               "description": "Total count of success upsert_many and upsert_object_many requests to cluster spaces with CRUD module.\nGraph shows average requests per second.\n\nCRUD 0.11.0 or newer is required to use statistics.\nEnable statistics with `crud.cfg{stats = true, stats_driver = 'metrics'}`\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -11675,7 +11668,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_crud_stats_count{job=~\"$job\",operation=\"upsert_many\",status=\"ok\"}[$rate_time_range])",
+                     "expr": "rate(tnt_crud_stats_count{job=~\"$job\",operation=\"upsert_many\",status=\"ok\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}} — {{name}}",
@@ -11817,7 +11810,7 @@
                "dashes": false,
                "datasource": "${DS_PROMETHEUS}",
                "decimals": 2,
-               "description": "Total count of error upsert_many and upsert_object_many requests to cluster spaces with CRUD module.\nGraph shows average requests per second.\n\nCRUD 0.11.0 or newer is required to use statistics.\nEnable statistics with `crud.cfg{stats = true, stats_driver = 'metrics'}`\n\n\nIf `No data` displayed, check up your 'rate_time_range' variable.",
+               "description": "Total count of error upsert_many and upsert_object_many requests to cluster spaces with CRUD module.\nGraph shows average requests per second.\n\nCRUD 0.11.0 or newer is required to use statistics.\nEnable statistics with `crud.cfg{stats = true, stats_driver = 'metrics'}`\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -11855,7 +11848,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_crud_stats_count{job=~\"$job\",operation=\"upsert_many\",status=\"error\"}[$rate_time_range])",
+                     "expr": "rate(tnt_crud_stats_count{job=~\"$job\",operation=\"upsert_many\",status=\"error\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}} — {{name}}",
@@ -11997,7 +11990,7 @@
                "dashes": false,
                "datasource": "${DS_PROMETHEUS}",
                "decimals": 2,
-               "description": "Total count of success update requests to cluster spaces with CRUD module.\nGraph shows average requests per second.\n\nCRUD 0.11.0 or newer is required to use statistics.\nEnable statistics with `crud.cfg{stats = true, stats_driver = 'metrics'}`\n\n\nIf `No data` displayed, check up your 'rate_time_range' variable.",
+               "description": "Total count of success update requests to cluster spaces with CRUD module.\nGraph shows average requests per second.\n\nCRUD 0.11.0 or newer is required to use statistics.\nEnable statistics with `crud.cfg{stats = true, stats_driver = 'metrics'}`\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -12035,7 +12028,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_crud_stats_count{job=~\"$job\",operation=\"update\",status=\"ok\"}[$rate_time_range])",
+                     "expr": "rate(tnt_crud_stats_count{job=~\"$job\",operation=\"update\",status=\"ok\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}} — {{name}}",
@@ -12177,7 +12170,7 @@
                "dashes": false,
                "datasource": "${DS_PROMETHEUS}",
                "decimals": 2,
-               "description": "Total count of error update requests to cluster spaces with CRUD module.\nGraph shows average requests per second.\n\nCRUD 0.11.0 or newer is required to use statistics.\nEnable statistics with `crud.cfg{stats = true, stats_driver = 'metrics'}`\n\n\nIf `No data` displayed, check up your 'rate_time_range' variable.",
+               "description": "Total count of error update requests to cluster spaces with CRUD module.\nGraph shows average requests per second.\n\nCRUD 0.11.0 or newer is required to use statistics.\nEnable statistics with `crud.cfg{stats = true, stats_driver = 'metrics'}`\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -12215,7 +12208,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_crud_stats_count{job=~\"$job\",operation=\"update\",status=\"error\"}[$rate_time_range])",
+                     "expr": "rate(tnt_crud_stats_count{job=~\"$job\",operation=\"update\",status=\"error\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}} — {{name}}",
@@ -12357,7 +12350,7 @@
                "dashes": false,
                "datasource": "${DS_PROMETHEUS}",
                "decimals": 2,
-               "description": "Total count of success delete requests to cluster spaces with CRUD module.\nGraph shows average requests per second.\n\nCRUD 0.11.0 or newer is required to use statistics.\nEnable statistics with `crud.cfg{stats = true, stats_driver = 'metrics'}`\n\n\nIf `No data` displayed, check up your 'rate_time_range' variable.",
+               "description": "Total count of success delete requests to cluster spaces with CRUD module.\nGraph shows average requests per second.\n\nCRUD 0.11.0 or newer is required to use statistics.\nEnable statistics with `crud.cfg{stats = true, stats_driver = 'metrics'}`\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -12395,7 +12388,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_crud_stats_count{job=~\"$job\",operation=\"delete\",status=\"ok\"}[$rate_time_range])",
+                     "expr": "rate(tnt_crud_stats_count{job=~\"$job\",operation=\"delete\",status=\"ok\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}} — {{name}}",
@@ -12537,7 +12530,7 @@
                "dashes": false,
                "datasource": "${DS_PROMETHEUS}",
                "decimals": 2,
-               "description": "Total count of error delete requests to cluster spaces with CRUD module.\nGraph shows average requests per second.\n\nCRUD 0.11.0 or newer is required to use statistics.\nEnable statistics with `crud.cfg{stats = true, stats_driver = 'metrics'}`\n\n\nIf `No data` displayed, check up your 'rate_time_range' variable.",
+               "description": "Total count of error delete requests to cluster spaces with CRUD module.\nGraph shows average requests per second.\n\nCRUD 0.11.0 or newer is required to use statistics.\nEnable statistics with `crud.cfg{stats = true, stats_driver = 'metrics'}`\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -12575,7 +12568,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_crud_stats_count{job=~\"$job\",operation=\"delete\",status=\"error\"}[$rate_time_range])",
+                     "expr": "rate(tnt_crud_stats_count{job=~\"$job\",operation=\"delete\",status=\"error\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}} — {{name}}",
@@ -12717,7 +12710,7 @@
                "dashes": false,
                "datasource": "${DS_PROMETHEUS}",
                "decimals": 2,
-               "description": "Total count of success count requests to cluster spaces with CRUD module.\nGraph shows average requests per second.\n\nCRUD 0.11.0 or newer is required to use statistics.\nEnable statistics with `crud.cfg{stats = true, stats_driver = 'metrics'}`\n\n\nIf `No data` displayed, check up your 'rate_time_range' variable.",
+               "description": "Total count of success count requests to cluster spaces with CRUD module.\nGraph shows average requests per second.\n\nCRUD 0.11.0 or newer is required to use statistics.\nEnable statistics with `crud.cfg{stats = true, stats_driver = 'metrics'}`\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -12755,7 +12748,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_crud_stats_count{job=~\"$job\",operation=\"count\",status=\"ok\"}[$rate_time_range])",
+                     "expr": "rate(tnt_crud_stats_count{job=~\"$job\",operation=\"count\",status=\"ok\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}} — {{name}}",
@@ -12897,7 +12890,7 @@
                "dashes": false,
                "datasource": "${DS_PROMETHEUS}",
                "decimals": 2,
-               "description": "Total count of error count requests to cluster spaces with CRUD module.\nGraph shows average requests per second.\n\nCRUD 0.11.0 or newer is required to use statistics.\nEnable statistics with `crud.cfg{stats = true, stats_driver = 'metrics'}`\n\n\nIf `No data` displayed, check up your 'rate_time_range' variable.",
+               "description": "Total count of error count requests to cluster spaces with CRUD module.\nGraph shows average requests per second.\n\nCRUD 0.11.0 or newer is required to use statistics.\nEnable statistics with `crud.cfg{stats = true, stats_driver = 'metrics'}`\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -12935,7 +12928,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_crud_stats_count{job=~\"$job\",operation=\"count\",status=\"error\"}[$rate_time_range])",
+                     "expr": "rate(tnt_crud_stats_count{job=~\"$job\",operation=\"count\",status=\"error\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}} — {{name}}",
@@ -13077,7 +13070,7 @@
                "dashes": false,
                "datasource": "${DS_PROMETHEUS}",
                "decimals": 2,
-               "description": "Total count of success get requests to cluster spaces with CRUD module.\nGraph shows average requests per second.\n\nCRUD 0.11.0 or newer is required to use statistics.\nEnable statistics with `crud.cfg{stats = true, stats_driver = 'metrics'}`\n\n\nIf `No data` displayed, check up your 'rate_time_range' variable.",
+               "description": "Total count of success get requests to cluster spaces with CRUD module.\nGraph shows average requests per second.\n\nCRUD 0.11.0 or newer is required to use statistics.\nEnable statistics with `crud.cfg{stats = true, stats_driver = 'metrics'}`\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -13115,7 +13108,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_crud_stats_count{job=~\"$job\",operation=\"get\",status=\"ok\"}[$rate_time_range])",
+                     "expr": "rate(tnt_crud_stats_count{job=~\"$job\",operation=\"get\",status=\"ok\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}} — {{name}}",
@@ -13257,7 +13250,7 @@
                "dashes": false,
                "datasource": "${DS_PROMETHEUS}",
                "decimals": 2,
-               "description": "Total count of error get requests to cluster spaces with CRUD module.\nGraph shows average requests per second.\n\nCRUD 0.11.0 or newer is required to use statistics.\nEnable statistics with `crud.cfg{stats = true, stats_driver = 'metrics'}`\n\n\nIf `No data` displayed, check up your 'rate_time_range' variable.",
+               "description": "Total count of error get requests to cluster spaces with CRUD module.\nGraph shows average requests per second.\n\nCRUD 0.11.0 or newer is required to use statistics.\nEnable statistics with `crud.cfg{stats = true, stats_driver = 'metrics'}`\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -13295,7 +13288,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_crud_stats_count{job=~\"$job\",operation=\"get\",status=\"error\"}[$rate_time_range])",
+                     "expr": "rate(tnt_crud_stats_count{job=~\"$job\",operation=\"get\",status=\"error\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}} — {{name}}",
@@ -13437,7 +13430,7 @@
                "dashes": false,
                "datasource": "${DS_PROMETHEUS}",
                "decimals": 2,
-               "description": "Total count of success MIN and MAX requests to cluster spaces with CRUD module.\nGraph shows average requests per second.\n\nCRUD 0.11.0 or newer is required to use statistics.\nEnable statistics with `crud.cfg{stats = true, stats_driver = 'metrics'}`\n\n\nIf `No data` displayed, check up your 'rate_time_range' variable.",
+               "description": "Total count of success MIN and MAX requests to cluster spaces with CRUD module.\nGraph shows average requests per second.\n\nCRUD 0.11.0 or newer is required to use statistics.\nEnable statistics with `crud.cfg{stats = true, stats_driver = 'metrics'}`\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -13475,7 +13468,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_crud_stats_count{job=~\"$job\",operation=\"borders\",status=\"ok\"}[$rate_time_range])",
+                     "expr": "rate(tnt_crud_stats_count{job=~\"$job\",operation=\"borders\",status=\"ok\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}} — {{name}}",
@@ -13617,7 +13610,7 @@
                "dashes": false,
                "datasource": "${DS_PROMETHEUS}",
                "decimals": 2,
-               "description": "Total count of error MIN and MAX requests to cluster spaces with CRUD module.\nGraph shows average requests per second.\n\nCRUD 0.11.0 or newer is required to use statistics.\nEnable statistics with `crud.cfg{stats = true, stats_driver = 'metrics'}`\n\n\nIf `No data` displayed, check up your 'rate_time_range' variable.",
+               "description": "Total count of error MIN and MAX requests to cluster spaces with CRUD module.\nGraph shows average requests per second.\n\nCRUD 0.11.0 or newer is required to use statistics.\nEnable statistics with `crud.cfg{stats = true, stats_driver = 'metrics'}`\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -13655,7 +13648,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_crud_stats_count{job=~\"$job\",operation=\"borders\",status=\"error\"}[$rate_time_range])",
+                     "expr": "rate(tnt_crud_stats_count{job=~\"$job\",operation=\"borders\",status=\"error\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}} — {{name}}",
@@ -13797,7 +13790,7 @@
                "dashes": false,
                "datasource": "${DS_PROMETHEUS}",
                "decimals": 2,
-               "description": "Total count of success len requests to cluster spaces with CRUD module.\nGraph shows average requests per second.\n\nCRUD 0.11.0 or newer is required to use statistics.\nEnable statistics with `crud.cfg{stats = true, stats_driver = 'metrics'}`\n\n\nIf `No data` displayed, check up your 'rate_time_range' variable.",
+               "description": "Total count of success len requests to cluster spaces with CRUD module.\nGraph shows average requests per second.\n\nCRUD 0.11.0 or newer is required to use statistics.\nEnable statistics with `crud.cfg{stats = true, stats_driver = 'metrics'}`\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -13835,7 +13828,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_crud_stats_count{job=~\"$job\",operation=\"len\",status=\"ok\"}[$rate_time_range])",
+                     "expr": "rate(tnt_crud_stats_count{job=~\"$job\",operation=\"len\",status=\"ok\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}} — {{name}}",
@@ -13977,7 +13970,7 @@
                "dashes": false,
                "datasource": "${DS_PROMETHEUS}",
                "decimals": 2,
-               "description": "Total count of error len requests to cluster spaces with CRUD module.\nGraph shows average requests per second.\n\nCRUD 0.11.0 or newer is required to use statistics.\nEnable statistics with `crud.cfg{stats = true, stats_driver = 'metrics'}`\n\n\nIf `No data` displayed, check up your 'rate_time_range' variable.",
+               "description": "Total count of error len requests to cluster spaces with CRUD module.\nGraph shows average requests per second.\n\nCRUD 0.11.0 or newer is required to use statistics.\nEnable statistics with `crud.cfg{stats = true, stats_driver = 'metrics'}`\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -14015,7 +14008,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_crud_stats_count{job=~\"$job\",operation=\"len\",status=\"error\"}[$rate_time_range])",
+                     "expr": "rate(tnt_crud_stats_count{job=~\"$job\",operation=\"len\",status=\"error\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}} — {{name}}",
@@ -14157,7 +14150,7 @@
                "dashes": false,
                "datasource": "${DS_PROMETHEUS}",
                "decimals": 2,
-               "description": "Total count of success truncate requests to cluster spaces with CRUD module.\nGraph shows average requests per second.\n\nCRUD 0.11.0 or newer is required to use statistics.\nEnable statistics with `crud.cfg{stats = true, stats_driver = 'metrics'}`\n\n\nIf `No data` displayed, check up your 'rate_time_range' variable.",
+               "description": "Total count of success truncate requests to cluster spaces with CRUD module.\nGraph shows average requests per second.\n\nCRUD 0.11.0 or newer is required to use statistics.\nEnable statistics with `crud.cfg{stats = true, stats_driver = 'metrics'}`\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -14195,7 +14188,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_crud_stats_count{job=~\"$job\",operation=\"truncate\",status=\"ok\"}[$rate_time_range])",
+                     "expr": "rate(tnt_crud_stats_count{job=~\"$job\",operation=\"truncate\",status=\"ok\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}} — {{name}}",
@@ -14337,7 +14330,7 @@
                "dashes": false,
                "datasource": "${DS_PROMETHEUS}",
                "decimals": 2,
-               "description": "Total count of error truncate requests to cluster spaces with CRUD module.\nGraph shows average requests per second.\n\nCRUD 0.11.0 or newer is required to use statistics.\nEnable statistics with `crud.cfg{stats = true, stats_driver = 'metrics'}`\n\n\nIf `No data` displayed, check up your 'rate_time_range' variable.",
+               "description": "Total count of error truncate requests to cluster spaces with CRUD module.\nGraph shows average requests per second.\n\nCRUD 0.11.0 or newer is required to use statistics.\nEnable statistics with `crud.cfg{stats = true, stats_driver = 'metrics'}`\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -14375,7 +14368,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_crud_stats_count{job=~\"$job\",operation=\"truncate\",status=\"error\"}[$rate_time_range])",
+                     "expr": "rate(tnt_crud_stats_count{job=~\"$job\",operation=\"truncate\",status=\"error\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}} — {{name}}",
@@ -14537,7 +14530,7 @@
                "dashes": false,
                "datasource": "${DS_PROMETHEUS}",
                "decimals": 3,
-               "description": "A number of task tuples checked for expiration (expired + skipped).\nGraph shows mean tuples per second.\n\n\nIf `No data` displayed, check up your 'rate_time_range' variable.",
+               "description": "A number of task tuples checked for expiration (expired + skipped).\nGraph shows mean tuples per second.\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -14575,7 +14568,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(expirationd_checked_count{job=~\"$job\"}[$rate_time_range])",
+                     "expr": "rate(expirationd_checked_count{job=~\"$job\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{name}} — {{alias}}",
@@ -14627,7 +14620,7 @@
                "dashes": false,
                "datasource": "${DS_PROMETHEUS}",
                "decimals": 3,
-               "description": "A number of task expired tuples.\nGraph shows mean tuples per second.\n\n\nIf `No data` displayed, check up your 'rate_time_range' variable.",
+               "description": "A number of task expired tuples.\nGraph shows mean tuples per second.\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -14665,7 +14658,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(expirationd_expired_count{job=~\"$job\"}[$rate_time_range])",
+                     "expr": "rate(expirationd_expired_count{job=~\"$job\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{name}} — {{alias}}",
@@ -14927,27 +14920,6 @@
                }
             ],
             "query": "${PROMETHEUS_JOB}",
-            "refresh": 0,
-            "type": "custom"
-         },
-         {
-            "allValue": null,
-            "current": {
-               "text": "${PROMETHEUS_RATE_TIME_RANGE}",
-               "value": "${PROMETHEUS_RATE_TIME_RANGE}"
-            },
-            "hide": 2,
-            "includeAll": false,
-            "label": "rate() time range",
-            "multi": false,
-            "name": "rate_time_range",
-            "options": [
-               {
-                  "text": "${PROMETHEUS_RATE_TIME_RANGE}",
-                  "value": "${PROMETHEUS_RATE_TIME_RANGE}"
-               }
-            ],
-            "query": "${PROMETHEUS_RATE_TIME_RANGE}",
             "refresh": 0,
             "type": "custom"
          }

@@ -17,7 +17,6 @@ local prometheus = grafana.prometheus;
     policy,
     measurement,
     job,
-    rate_time_range,
     metric_name,
   ) = common.default_graph(
     title=title,
@@ -31,7 +30,6 @@ local prometheus = grafana.prometheus;
     datasource_type,
     metric_name,
     job,
-    rate_time_range,
     policy,
     measurement
   )),
@@ -50,16 +48,14 @@ local prometheus = grafana.prometheus;
     policy=null,
     measurement=null,
     job=null,
-    rate_time_range=null,
   ):: getrusage_cpu_percentage_graph(
     title=title,
-    description=common.rate_warning(description, datasource_type),
+    description=description,
     datasource_type=datasource_type,
     datasource=datasource,
     policy=policy,
     measurement=measurement,
     job=job,
-    rate_time_range=rate_time_range,
     metric_name='tnt_cpu_user_time',
   ),
 
@@ -77,16 +73,14 @@ local prometheus = grafana.prometheus;
     policy=null,
     measurement=null,
     job=null,
-    rate_time_range=null,
   ):: getrusage_cpu_percentage_graph(
     title=title,
-    description=common.rate_warning(description, datasource_type),
+    description=description,
     datasource_type=datasource_type,
     datasource=datasource,
     policy=policy,
     measurement=measurement,
     job=job,
-    rate_time_range=rate_time_range,
     metric_name='tnt_cpu_system_time',
   ),
 
@@ -98,7 +92,6 @@ local prometheus = grafana.prometheus;
     policy,
     measurement,
     job,
-    rate_time_range,
     kind,
   ) = common.default_graph(
     title=title,
@@ -111,8 +104,8 @@ local prometheus = grafana.prometheus;
   ).addTarget(
     if datasource_type == variable.datasource_type.prometheus then
       prometheus.target(
-        expr=std.format('rate(tnt_cpu_thread{job=~"%s",kind="%s"}[%s])',
-                        [job, kind, rate_time_range]),
+        expr=std.format('rate(tnt_cpu_thread{job=~"%s",kind="%s"}[$__rate_interval])',
+                        [job, kind]),
         legendFormat='{{alias}} — {{thread_name}}',
       )
     else if datasource_type == variable.datasource_type.influxdb then
@@ -143,7 +136,6 @@ local prometheus = grafana.prometheus;
     policy=null,
     measurement=null,
     job=null,
-    rate_time_range=null,
   ):: procstat_thread_time_graph(
     title,
     description,
@@ -152,7 +144,6 @@ local prometheus = grafana.prometheus;
     policy,
     measurement,
     job,
-    rate_time_range,
     'user',
   ),
 
@@ -170,7 +161,6 @@ local prometheus = grafana.prometheus;
     policy=null,
     measurement=null,
     job=null,
-    rate_time_range=null,
   ):: procstat_thread_time_graph(
     title,
     description,
@@ -179,7 +169,6 @@ local prometheus = grafana.prometheus;
     policy,
     measurement,
     job,
-    rate_time_range,
     'system',
   ),
 }
