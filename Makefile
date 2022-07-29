@@ -1,5 +1,4 @@
 JOB ?= tarantool
-RATE_TIME_RANGE ?= 2m
 POLICY ?= autogen
 MEASUREMENT ?= tarantool_http
 OUTPUT_STATIC_DASHBOARD ?= dashboard.json
@@ -17,11 +16,9 @@ ifndef DATASOURCE
 		false
 endif
 	# JOB is optional, default is "tarantool"
-	# RATE_TIME_RANGE is optional, default is "2m"
 	jsonnet -J ./vendor -J . \
 		--ext-str DATASOURCE=${DATASOURCE} \
 		--ext-str JOB=${JOB} \
-		--ext-str RATE_TIME_RANGE=${RATE_TIME_RANGE} \
 		dashboard/build/prometheus/${DASHBOARD_BUILD_SOURCE} -o ${OUTPUT_STATIC_DASHBOARD}
 
 .PHONY: build-static-prometheus

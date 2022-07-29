@@ -17,10 +17,9 @@ local common = import 'dashboard/panels/common.libsonnet';
     policy=null,
     measurement=null,
     job=null,
-    rate_time_range=null,
   ):: common.default_graph(
     title=title,
-    description=common.rate_warning(version_warning(description), datasource_type),
+    description=version_warning(description),
     datasource=datasource,
     labelY1='restores per second',
     panel_width=6,
@@ -28,7 +27,6 @@ local common = import 'dashboard/panels/common.libsonnet';
     datasource_type,
     'lj_jit_snap_restore',
     job,
-    rate_time_range,
     policy,
     measurement
   )),
@@ -43,10 +41,9 @@ local common = import 'dashboard/panels/common.libsonnet';
     policy=null,
     measurement=null,
     job=null,
-    rate_time_range=null,
   ):: common.default_graph(
     title=title,
-    description=common.rate_warning(version_warning(description), datasource_type),
+    description=version_warning(description),
     datasource=datasource,
     labelY1='new per second',
     panel_width=6,
@@ -54,7 +51,6 @@ local common = import 'dashboard/panels/common.libsonnet';
     datasource_type,
     'lj_jit_trace_num',
     job,
-    rate_time_range,
     policy,
     measurement
   )),
@@ -69,10 +65,9 @@ local common = import 'dashboard/panels/common.libsonnet';
     policy=null,
     measurement=null,
     job=null,
-    rate_time_range=null,
   ):: common.default_graph(
     title=title,
-    description=common.rate_warning(version_warning(description), datasource_type),
+    description=version_warning(description),
     datasource=datasource,
     labelY1='aborts per second',
     panel_width=6,
@@ -80,7 +75,6 @@ local common = import 'dashboard/panels/common.libsonnet';
     datasource_type,
     'lj_jit_trace_abort',
     job,
-    rate_time_range,
     policy,
     measurement
   )),
@@ -120,10 +114,9 @@ local common = import 'dashboard/panels/common.libsonnet';
     policy=null,
     measurement=null,
     job=null,
-    rate_time_range=null,
   ):: common.default_graph(
     title=title,
-    description=common.rate_warning(version_warning(description), datasource_type),
+    description=version_warning(description),
     datasource=datasource,
     labelY1='interned per second',
     panel_width=12,
@@ -131,7 +124,6 @@ local common = import 'dashboard/panels/common.libsonnet';
     datasource_type,
     'lj_strhash_hit',
     job,
-    rate_time_range,
     policy,
     measurement
   )),
@@ -146,10 +138,9 @@ local common = import 'dashboard/panels/common.libsonnet';
     policy=null,
     measurement=null,
     job=null,
-    rate_time_range=null,
   ):: common.default_graph(
     title=title,
-    description=common.rate_warning(version_warning(description), datasource_type),
+    description=version_warning(description),
     datasource=datasource,
     labelY1='allocated per second',
     panel_width=12,
@@ -157,7 +148,6 @@ local common = import 'dashboard/panels/common.libsonnet';
     datasource_type,
     'lj_strhash_miss',
     job,
-    rate_time_range,
     policy,
     measurement
   )),
@@ -168,7 +158,6 @@ local common = import 'dashboard/panels/common.libsonnet';
     datasource_type,
     datasource,
     job,
-    rate_time_range,
     policy,
     measurement,
     state
@@ -177,9 +166,9 @@ local common = import 'dashboard/panels/common.libsonnet';
     description=(
       if description != null then
         description
-      else common.rate_warning(version_warning(std.format(|||
+      else version_warning(std.format(|||
         Average count of incremental GC steps (%s state) per second.
-      |||, state)))
+      |||, state))
     ),
     datasource=datasource,
     labelY1='steps per second',
@@ -188,7 +177,6 @@ local common = import 'dashboard/panels/common.libsonnet';
     datasource_type,
     std.format('lj_gc_steps_%s', state),
     job,
-    rate_time_range,
     policy,
     measurement
   )),
@@ -201,14 +189,12 @@ local common = import 'dashboard/panels/common.libsonnet';
     policy=null,
     measurement=null,
     job=null,
-    rate_time_range=null,
   ):: gc_steps(
     title,
     description,
     datasource_type,
     datasource,
     job,
-    rate_time_range,
     policy,
     measurement,
     'atomic'
@@ -222,14 +208,12 @@ local common = import 'dashboard/panels/common.libsonnet';
     policy=null,
     measurement=null,
     job=null,
-    rate_time_range=null,
   ):: gc_steps(
     title,
     description,
     datasource_type,
     datasource,
     job,
-    rate_time_range,
     policy,
     measurement,
     'sweepstring'
@@ -243,14 +227,12 @@ local common = import 'dashboard/panels/common.libsonnet';
     policy=null,
     measurement=null,
     job=null,
-    rate_time_range=null,
   ):: gc_steps(
     title,
     description,
     datasource_type,
     datasource,
     job,
-    rate_time_range,
     policy,
     measurement,
     'finalize'
@@ -264,14 +246,12 @@ local common = import 'dashboard/panels/common.libsonnet';
     policy=null,
     measurement=null,
     job=null,
-    rate_time_range=null,
   ):: gc_steps(
     title,
     description,
     datasource_type,
     datasource,
     job,
-    rate_time_range,
     policy,
     measurement,
     'sweep'
@@ -285,14 +265,12 @@ local common = import 'dashboard/panels/common.libsonnet';
     policy=null,
     measurement=null,
     job=null,
-    rate_time_range=null,
   ):: gc_steps(
     title,
     description,
     datasource_type,
     datasource,
     job,
-    rate_time_range,
     policy,
     measurement,
     'propagate'
@@ -306,14 +284,12 @@ local common = import 'dashboard/panels/common.libsonnet';
     policy=null,
     measurement=null,
     job=null,
-    rate_time_range=null,
   ):: gc_steps(
     title,
     description,
     datasource_type,
     datasource,
     job,
-    rate_time_range,
     policy,
     measurement,
     'pause'
@@ -461,7 +437,6 @@ local common = import 'dashboard/panels/common.libsonnet';
     policy=null,
     measurement=null,
     job=null,
-    rate_time_range=null,
   ):: common.default_graph(
     title=title,
     description=version_warning(description),
@@ -473,7 +448,6 @@ local common = import 'dashboard/panels/common.libsonnet';
     datasource_type,
     'lj_gc_freed',
     job,
-    rate_time_range,
     policy,
     measurement
   )),
@@ -488,7 +462,6 @@ local common = import 'dashboard/panels/common.libsonnet';
     policy=null,
     measurement=null,
     job=null,
-    rate_time_range=null,
   ):: common.default_graph(
     title=title,
     description=version_warning(description),
@@ -500,7 +473,6 @@ local common = import 'dashboard/panels/common.libsonnet';
     datasource_type,
     'lj_gc_allocated',
     job,
-    rate_time_range,
     policy,
     measurement
   )),

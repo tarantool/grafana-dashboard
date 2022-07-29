@@ -18,7 +18,6 @@ local prometheus = grafana.prometheus;
     status_regex,
     get_condition,
     job=null,
-    rate_time_range=null,
     policy=null,
     measurement=null,
   ) = common_utils.default_graph(
@@ -29,12 +28,11 @@ local prometheus = grafana.prometheus;
   ).addTarget(
     if datasource_type == variable.datasource_type.prometheus then
       prometheus.target(
-        expr=std.format('rate(%s{job=~"%s",method%s"GET",status_code=~"%s"}[%s])', [
+        expr=std.format('rate(%s{job=~"%s",method%s"GET",status_code=~"%s"}[$__rate_interval])', [
           metric_name,
           job,
           get_condition,
           std.strReplace(status_regex, '\\', '\\\\'),
-          rate_time_range,
         ]),
         legendFormat='{{type}} (code {{status_code}}) — {{alias}}',
       )
@@ -64,7 +62,6 @@ local prometheus = grafana.prometheus;
     status_regex,
     get_condition,
     job=null,
-    rate_time_range=null,
     policy=null,
     measurement=null,
   ) = common_utils.default_graph(
@@ -104,16 +101,15 @@ local prometheus = grafana.prometheus;
 
   read_success_rps(
     title='Success read requests',
-    description=common_utils.rate_warning(|||
+    description=|||
       Number of TDG REST API GET requests processed with code 2xx.
       Graph shows mean requests per second.
-    |||, datasource_type),
+    |||,
     datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
     job=null,
-    rate_time_range=null,
   ):: rps_panel(
     title=title,
     description=description,
@@ -123,23 +119,21 @@ local prometheus = grafana.prometheus;
     status_regex='^2\\d{2}$',
     get_condition='=',
     job=job,
-    rate_time_range=rate_time_range,
     policy=policy,
     measurement=measurement,
   ),
 
   read_error_4xx_rps(
     title='Error read requests (code 4xx)',
-    description=common_utils.rate_warning(|||
+    description=|||
       Number of TDG REST API GET requests processed with code 4xx.
       Graph shows mean requests per second.
-    |||, datasource_type),
+    |||,
     datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
     job=null,
-    rate_time_range=null,
   ):: rps_panel(
     title=title,
     description=description,
@@ -149,23 +143,21 @@ local prometheus = grafana.prometheus;
     status_regex='^4\\d{2}$',
     get_condition='=',
     job=job,
-    rate_time_range=rate_time_range,
     policy=policy,
     measurement=measurement,
   ),
 
   read_error_5xx_rps(
     title='Error read requests (code 5xx)',
-    description=common_utils.rate_warning(|||
+    description=|||
       Number of TDG REST API GET requests processed with code 5xx.
       Graph shows mean requests per second.
-    |||, datasource_type),
+    |||,
     datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
     job=null,
-    rate_time_range=null,
   ):: rps_panel(
     title=title,
     description=description,
@@ -175,7 +167,6 @@ local prometheus = grafana.prometheus;
     status_regex='^5\\d{2}$',
     get_condition='=',
     job=job,
-    rate_time_range=rate_time_range,
     policy=policy,
     measurement=measurement,
   ),
@@ -254,17 +245,16 @@ local prometheus = grafana.prometheus;
 
   write_success_rps(
     title='Success write requests',
-    description=common_utils.rate_warning(|||
+    description=|||
       Number of TDG REST API POST/PUT/DELETE requests
       processed with code 2xx.
       Graph shows mean requests per second.
-    |||, datasource_type),
+    |||,
     datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
     job=null,
-    rate_time_range=null,
   ):: rps_panel(
     title=title,
     description=description,
@@ -274,24 +264,22 @@ local prometheus = grafana.prometheus;
     status_regex='^2\\d{2}$',
     get_condition='!=',
     job=job,
-    rate_time_range=rate_time_range,
     policy=policy,
     measurement=measurement,
   ),
 
   write_error_4xx_rps(
     title='Error write requests (code 4xx)',
-    description=common_utils.rate_warning(|||
+    description=|||
       Number of TDG REST API POST/PUT/DELETE requests
       processed with code 4xx.
       Graph shows mean requests per second.
-    |||, datasource_type),
+    |||,
     datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
     job=null,
-    rate_time_range=null,
   ):: rps_panel(
     title=title,
     description=description,
@@ -301,24 +289,22 @@ local prometheus = grafana.prometheus;
     status_regex='^4\\d{2}$',
     get_condition='!=',
     job=job,
-    rate_time_range=rate_time_range,
     policy=policy,
     measurement=measurement,
   ),
 
   write_error_5xx_rps(
     title='Error write requests (code 5xx)',
-    description=common_utils.rate_warning(|||
+    description=|||
       Number of TDG REST API POST/PUT/DELETE requests
       processed with code 5xx.
       Graph shows mean requests per second.
-    |||, datasource_type),
+    |||,
     datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
     job=null,
-    rate_time_range=null,
   ):: rps_panel(
     title=title,
     description=description,
@@ -328,7 +314,6 @@ local prometheus = grafana.prometheus;
     status_regex='^5\\d{2}$',
     get_condition='!=',
     job=job,
-    rate_time_range=rate_time_range,
     policy=policy,
     measurement=measurement,
   ),

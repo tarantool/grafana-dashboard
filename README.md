@@ -51,8 +51,7 @@ Refer to dashboard [documentation page](https://www.tarantool.io/en/doc/latest/b
 
     You need to set the following variables for Prometheus datasource:
 
-    - `Job`,
-    - `Rate time range` (default valie is `2m`).
+    - `Job`.
 
     Datasource variables can be obtained from your datasource configuration.
     Variables for example monitoring cluster are described in [Monitoring cluster](#monitoring-cluster) section.
@@ -81,8 +80,7 @@ To set up an InfluxDB dashboard for monitoring example app, use the following va
 
 To set up an Prometheus dashboard for monitoring example app, use the following variables:
 
-- `Job`: `tarantool`;
-- `Rate time range`: `2m`.
+- `Job`: `tarantool`.
 
 ### Monitoring local app
 
@@ -128,7 +126,6 @@ Following targets are available:
 Variables for Prometheus targets:
 - `DATASOURCE`: name of a Prometheus data source;
 - `JOB` (optional, default `tarantool`): name of a Prometheus job collecting your application metrics;
-- `RATE_TIME_RANGE` (optional, default `2m`): rps computation rate time range;
 - `OUTPUT_STATIC_DASHBOARD` (optional, default `dashboard.json`): compiled dashboard file.
 
 Variables for InfluxDB targets:
@@ -277,7 +274,6 @@ You can add your own custom panels to the bottom of the template dashboard.
       datasource_type, # Target datasource type. Use grafana-dashboard/dashboard/variable.libsonnet to fill this value
       metric_name, # Target metric name to select
       job, # (Prometheus only) Prometheus metrics job. If you use default input variables, use grafana-dashboard/dashboard/variable.libsonnet to fill this value
-      rate_time_range, # (Prometheus only) Prometheus rps computation rate time range. If you use default input variables, use grafana-dashboard/dashboard/variable.libsonnet to fill this value
       policy, # (InfluxDB only) InfluxDB metrics policy. If you use default input variables, use grafana-dashboard/dashboard/variable.libsonnet to fill this value
       measurement, # (InfluxDB only) InfluxDB metrics measurement. If you use default input variables, use grafana-dashboard/dashboard/variable.libsonnet to fill this value
     )
@@ -291,8 +287,7 @@ You can add your own custom panels to the bottom of the template dashboard.
     If you want to build a Prometheus dashboard with default input variables, use 
     ```jsonnet
     datasource=variable.datasource_var.prometheus,
-    job=variable.prometheus.job,
-    rate_time_range=variable.prometheus.rate_time_range
+    job=variable.prometheus.job
     ```
     in your targets.
     
@@ -347,7 +342,6 @@ You can add your own custom panels to the bottom of the template dashboard.
       datasource_type=variable.datasource_type.prometheus,
       metric_name='my_component_load_metric_count',
       job=variable.prometheus.job,
-      rate_time_range=variable.prometheus.rate_time_range,
     ))
     ```
     Corresponding InfluxDB panels could be built with

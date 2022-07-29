@@ -78,16 +78,15 @@ local variable = import 'dashboard/variable.libsonnet';
 
   requests(
     title='Requests sent',
-    description=common_utils.rate_warning(|||
+    description=|||
       Number of requests sent to Kafka brokers.
       Graph shows mean requests per second.
-    |||, datasource_type),
+    |||,
     datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
     job=null,
-    rate_time_range=null,
   ):: common_utils.default_graph(
     title=title,
     description=description,
@@ -98,23 +97,21 @@ local variable = import 'dashboard/variable.libsonnet';
     datasource_type,
     'tdg_kafka_tx',
     job,
-    rate_time_range,
     policy,
     measurement,
   )),
 
   request_bytes(
     title='Bytes sent',
-    description=common_utils.rate_warning(|||
+    description=|||
       Amount of bytes transmitted to Kafka brokers.
       Graph shows mean bytes per second.
-    |||, datasource_type),
+    |||,
     datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
     job=null,
-    rate_time_range=null,
   ):: common_utils.default_graph(
     title=title,
     description=description,
@@ -125,23 +122,21 @@ local variable = import 'dashboard/variable.libsonnet';
     datasource_type,
     'tdg_kafka_tx_bytes',
     job,
-    rate_time_range,
     policy,
     measurement,
   )),
 
   responses(
     title='Responses received',
-    description=common_utils.rate_warning(|||
+    description=|||
       Number of responses received from Kafka brokers.
       Graph shows mean responses per second.
-    |||, datasource_type),
+    |||,
     datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
     job=null,
-    rate_time_range=null,
   ):: common_utils.default_graph(
     title=title,
     description=description,
@@ -152,23 +147,21 @@ local variable = import 'dashboard/variable.libsonnet';
     datasource_type,
     'tdg_kafka_rx',
     job,
-    rate_time_range,
     policy,
     measurement,
   )),
 
   response_bytes(
     title='Bytes received',
-    description=common_utils.rate_warning(|||
+    description=|||
       Amount of bytes received from Kafka brokers.
       Graph shows mean bytes per second.
-    |||, datasource_type),
+    |||,
     datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
     job=null,
-    rate_time_range=null,
   ):: common_utils.default_graph(
     title=title,
     description=description,
@@ -179,23 +172,21 @@ local variable = import 'dashboard/variable.libsonnet';
     datasource_type,
     'tdg_kafka_rx_bytes',
     job,
-    rate_time_range,
     policy,
     measurement,
   )),
 
   messages_sent(
     title='Messages sent',
-    description=common_utils.rate_warning(|||
+    description=|||
       Number of messages transmitted (produced) to Kafka brokers.
       Graph shows mean messages per second.
-    |||, datasource_type),
+    |||,
     datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
     job=null,
-    rate_time_range=null,
   ):: common_utils.default_graph(
     title=title,
     description=description,
@@ -206,24 +197,22 @@ local variable = import 'dashboard/variable.libsonnet';
     datasource_type,
     'tdg_kafka_txmsgs',
     job,
-    rate_time_range,
     policy,
     measurement,
   )),
 
   message_bytes_sent(
     title='Message bytes sent',
-    description=common_utils.rate_warning(|||
+    description=|||
       Amount of message bytes (including framing, such as per-Message
       framing and MessageSet/batch framing) transmitted to Kafka brokers.
       Graph shows mean bytes per second.
-    |||, datasource_type),
+    |||,
     datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
     job=null,
-    rate_time_range=null,
   ):: common_utils.default_graph(
     title=title,
     description=description,
@@ -234,23 +223,21 @@ local variable = import 'dashboard/variable.libsonnet';
     datasource_type,
     'tdg_kafka_txmsg_bytes',
     job,
-    rate_time_range,
     policy,
     measurement,
   )),
 
   messages_received(
     title='Messages received',
-    description=common_utils.rate_warning(|||
+    description=|||
       Number of messages consumed, not including ignored
       messages (due to offset, etc), from Kafka brokers.
-    |||, datasource_type),
+    |||,
     datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
     job=null,
-    rate_time_range=null,
   ):: common_utils.default_graph(
     title=title,
     description=description,
@@ -261,24 +248,22 @@ local variable = import 'dashboard/variable.libsonnet';
     datasource_type,
     'tdg_kafka_rxmsgs',
     job,
-    rate_time_range,
     policy,
     measurement,
   )),
 
   message_bytes_received(
     title='Message bytes received',
-    description=common_utils.rate_warning(|||
+    description=|||
       Amount of message bytes (including framing) received
       from Kafka brokers.
       Graph shows mean bytes per second.
-    |||, datasource_type),
+    |||,
     datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
     job=null,
-    rate_time_range=null,
   ):: common_utils.default_graph(
     title=title,
     description=description,
@@ -289,7 +274,6 @@ local variable = import 'dashboard/variable.libsonnet';
     datasource_type,
     'tdg_kafka_rxmsg_bytes',
     job,
-    rate_time_range,
     policy,
     measurement,
   )),

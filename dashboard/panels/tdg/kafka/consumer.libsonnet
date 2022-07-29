@@ -56,16 +56,15 @@ local kafka_utils = import 'dashboard/panels/tdg/kafka/utils.libsonnet';
 
   rebalances(
     title='Rebalance activity',
-    description=common_utils.rate_warning(|||
+    description=|||
       Number of rebalances (assign or revoke).
       Graph shows mean requests per second.
-    |||, datasource_type),
+    |||,
     datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
     job=null,
-    rate_time_range=null,
   ):: common_utils.default_graph(
     title=title,
     description=description,
@@ -76,7 +75,6 @@ local kafka_utils = import 'dashboard/panels/tdg/kafka/utils.libsonnet';
     datasource_type,
     'tdg_kafka_cgrp_rebalance_cnt',
     job,
-    rate_time_range,
     policy,
     measurement,
   )),

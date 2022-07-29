@@ -229,19 +229,18 @@ local prometheus = grafana.prometheus;
     title='',
     description=
     if datasource_type == variable.datasource_type.prometheus then
-      common.rate_warning(|||
+      |||
         Overall rate of operations performed on Tarantool spaces
         (*select*, *insert*, *update* etc.).
         If Tarantool instance is not available for Prometheus metrics
         extraction now, its contribution is not counted.
-      |||)
+      |||
     else if datasource_type == variable.datasource_type.influxdb then
       error 'InfluxDB target is not supported yet',
     datasource_type=null,
     datasource=null,
     measurement=null,
     job=null,
-    rate_time_range=null,
   ):: overview_stat(
     title=title,
     description=description,
@@ -252,26 +251,25 @@ local prometheus = grafana.prometheus;
     stat_title='Overall space load:',
     decimals=3,
     unit='ops',
-    expr=std.format('sum(rate(tnt_stats_op_total{job=~"%s"}[%s]))', [job, rate_time_range]),
+    expr=std.format('sum(rate(tnt_stats_op_total{job=~"%s"}[$__rate_interval]))', [job]),
   ) { gridPos: { w: 4, h: 5 } },
 
   http_rps_stat(
     title='',
     description=
     if datasource_type == variable.datasource_type.prometheus then
-      common.rate_warning(|||
+      |||
         Overall rate of HTTP requests processed
         on Tarantool instances (all methods and response codes).
         If Tarantool instance is not available for Prometheus metrics
         extraction now, its contribution is not counted.
-      |||)
+      |||
     else if datasource_type == variable.datasource_type.influxdb then
       error 'InfluxDB target is not supported yet',
     datasource_type=null,
     datasource=null,
     measurement=null,
     job=null,
-    rate_time_range=null,
   ):: overview_stat(
     title=title,
     description=description,
@@ -282,25 +280,24 @@ local prometheus = grafana.prometheus;
     stat_title='Overall HTTP load:',
     decimals=3,
     unit='reqps',
-    expr=std.format('sum(rate(http_server_request_latency_count{job=~"%s"}[%s]))', [job, rate_time_range]),
+    expr=std.format('sum(rate(http_server_request_latency_count{job=~"%s"}[$__rate_interval]))', [job]),
   ) { gridPos: { w: 4, h: 5 } },
 
   net_rps_stat(
     title='',
     description=
     if datasource_type == variable.datasource_type.prometheus then
-      common.rate_warning(|||
+      |||
         Overall rate of network requests processed on Tarantool instances.
         If Tarantool instance is not available for Prometheus metrics
         extraction now, its contribution is not counted.
-      |||)
+      |||
     else if datasource_type == variable.datasource_type.influxdb then
       error 'InfluxDB target is not supported yet',
     datasource_type=null,
     datasource=null,
     measurement=null,
     job=null,
-    rate_time_range=null,
   ):: overview_stat(
     title=title,
     description=description,
@@ -311,7 +308,7 @@ local prometheus = grafana.prometheus;
     stat_title='Overall net load:',
     decimals=3,
     unit='reqps',
-    expr=std.format('sum(rate(tnt_net_requests_total{job=~"%s"}[%s]))', [job, rate_time_range]),
+    expr=std.format('sum(rate(tnt_net_requests_total{job=~"%s"}[$__rate_interval]))', [job]),
   ) { gridPos: { w: 4, h: 5 } },
 
   local cartridge_issues(

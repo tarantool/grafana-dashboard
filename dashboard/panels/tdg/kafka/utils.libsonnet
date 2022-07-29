@@ -31,14 +31,13 @@ local prometheus = grafana.prometheus;
     datasource_type,
     metric_name,
     job=null,
-    rate_time_range=null,
     policy=null,
     measurement=null,
   )::
     if datasource_type == variable.datasource_type.prometheus then
       prometheus.target(
-        expr=std.format('rate(%s{job=~"%s"}[%s])',
-                        [metric_name, job, rate_time_range]),
+        expr=std.format('rate(%s{job=~"%s"}[$__rate_interval])',
+                        [metric_name, job]),
         legendFormat='{{name}} — {{alias}} ({{type}}, {{connector_name}})',
       )
     else if datasource_type == variable.datasource_type.influxdb then

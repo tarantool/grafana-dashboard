@@ -68,14 +68,13 @@ local prometheus = grafana.prometheus;
     datasource_type,
     metric_name,
     job=null,
-    rate_time_range=null,
     policy=null,
     measurement=null,
   ) =
     if datasource_type == variable.datasource_type.prometheus then
       prometheus.target(
-        expr=std.format('rate(%s{job=~"%s"}[%s])',
-                        [metric_name, job, rate_time_range]),
+        expr=std.format('rate(%s{job=~"%s"}[$__rate_interval])',
+                        [metric_name, job]),
         legendFormat='{{name}} ({{topic}}, {{partition}}) — {{alias}} ({{type}}, {{connector_name}})',
       )
     else if datasource_type == variable.datasource_type.influxdb then
@@ -362,16 +361,15 @@ local prometheus = grafana.prometheus;
 
   partition_messages_sent(
     title='Partition messages sent',
-    description=common_utils.rate_warning(|||
+    description=|||
       Number of messages transmitted (produced) of a partition topic.
       Graph shows mean messages per second.
-    |||, datasource_type),
+    |||,
     datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
     job=null,
-    rate_time_range=null,
   ):: common_utils.default_graph(
     title=title,
     description=description,
@@ -382,23 +380,21 @@ local prometheus = grafana.prometheus;
     datasource_type,
     'tdg_kafka_topic_partitions_txmsgs',
     job,
-    rate_time_range,
     policy,
     measurement,
   )),
 
   partition_message_bytes_sent(
     title='Partition message bytes sent',
-    description=common_utils.rate_warning(|||
+    description=|||
       Amout of message bytes transmitted (produced) of a partition topic.
       Graph shows mean bytes per second.
-    |||, datasource_type),
+    |||,
     datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
     job=null,
-    rate_time_range=null,
   ):: common_utils.default_graph(
     title=title,
     description=description,
@@ -410,24 +406,22 @@ local prometheus = grafana.prometheus;
     datasource_type,
     'tdg_kafka_topic_partitions_txbytes',
     job,
-    rate_time_range,
     policy,
     measurement,
   )),
 
   partition_messages_consumed(
     title='Partition messages consumed',
-    description=common_utils.rate_warning(|||
+    description=|||
       Number of messages consumed, not including ignored messages,
       of a partition topic.
       Graph shows mean messages per second.
-    |||, datasource_type),
+    |||,
     datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
     job=null,
-    rate_time_range=null,
   ):: common_utils.default_graph(
     title=title,
     description=description,
@@ -438,24 +432,22 @@ local prometheus = grafana.prometheus;
     datasource_type,
     'tdg_kafka_topic_partitions_rxmsgs',
     job,
-    rate_time_range,
     policy,
     measurement,
   )),
 
   partition_message_bytes_consumed(
     title='Partition message bytes consumed',
-    description=common_utils.rate_warning(|||
+    description=|||
       Amout of message bytes consumed, not including ignored messages,
       of a partition topic.
       Graph shows mean bytes per second.
-    |||, datasource_type),
+    |||,
     datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
     job=null,
-    rate_time_range=null,
   ):: common_utils.default_graph(
     title=title,
     description=description,
@@ -467,23 +459,21 @@ local prometheus = grafana.prometheus;
     datasource_type,
     'tdg_kafka_topic_partitions_rxbytes',
     job,
-    rate_time_range,
     policy,
     measurement,
   )),
 
   partition_messages_dropped(
     title='Partition messages dropped',
-    description=common_utils.rate_warning(|||
+    description=|||
       Number of dropped outdated messages of a partition topic.
       Graph shows mean messages per second.
-    |||, datasource_type),
+    |||,
     datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
     job=null,
-    rate_time_range=null,
   ):: common_utils.default_graph(
     title=title,
     description=description,
@@ -494,7 +484,6 @@ local prometheus = grafana.prometheus;
     datasource_type,
     'tdg_kafka_topic_partitions_rx_ver_drops',
     job,
-    rate_time_range,
     policy,
     measurement,
   )),

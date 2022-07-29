@@ -13,14 +13,13 @@ local prometheus = grafana.prometheus;
     datasource_type,
     metric_name,
     job=null,
-    rate_time_range=null,
     policy=null,
     measurement=null,
   ) =
     if datasource_type == variable.datasource_type.prometheus then
       prometheus.target(
-        expr=std.format('rate(%s{job=~"%s"}[%s])',
-                        [metric_name, job, rate_time_range]),
+        expr=std.format('rate(%s{job=~"%s"}[$__rate_interval])',
+                        [metric_name, job]),
         legendFormat='{{operation_name}} ({{schema}}, {{entity}}) — {{alias}}',
       )
     else if datasource_type == variable.datasource_type.influxdb then
@@ -82,16 +81,15 @@ local prometheus = grafana.prometheus;
 
   query_success_rps(
     title='Success queries',
-    description=common_utils.rate_warning(|||
+    description=|||
       A number of successfully executed GraphQL queries.
       Graph shows mean requests per second.
-    |||, datasource_type),
+    |||,
     datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
     job=null,
-    rate_time_range=null,
   ):: common_utils.default_graph(
     title=title,
     description=description,
@@ -101,7 +99,6 @@ local prometheus = grafana.prometheus;
     datasource_type,
     'tdg_graphql_query_time_count',
     job,
-    rate_time_range,
     policy,
     measurement,
   )),
@@ -133,16 +130,15 @@ local prometheus = grafana.prometheus;
 
   query_error_rps(
     title='Error queries',
-    description=common_utils.rate_warning(|||
+    description=|||
       A number of GraphQL queries failed to execute.
       Graph shows mean requests per second.
-    |||, datasource_type),
+    |||,
     datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
     job=null,
-    rate_time_range=null,
   ):: common_utils.default_graph(
     title=title,
     description=description,
@@ -152,23 +148,21 @@ local prometheus = grafana.prometheus;
     datasource_type,
     'tdg_graphql_query_fail',
     job,
-    rate_time_range,
     policy,
     measurement,
   )),
 
   mutation_success_rps(
     title='Success mutations',
-    description=common_utils.rate_warning(|||
+    description=|||
       A number of successfully executed GraphQL mutations.
       Graph shows mean requests per second.
-    |||, datasource_type),
+    |||,
     datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
     job=null,
-    rate_time_range=null,
   ):: common_utils.default_graph(
     title=title,
     description=description,
@@ -178,7 +172,6 @@ local prometheus = grafana.prometheus;
     datasource_type,
     'tdg_graphql_mutation_time_count',
     job,
-    rate_time_range,
     policy,
     measurement,
   )),
@@ -210,16 +203,15 @@ local prometheus = grafana.prometheus;
 
   mutation_error_rps(
     title='Error mutations',
-    description=common_utils.rate_warning(|||
+    description=|||
       A number of GraphQL mutations failed to execute.
       Graph shows mean requests per second.
-    |||, datasource_type),
+    |||,
     datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
     job=null,
-    rate_time_range=null,
   ):: common_utils.default_graph(
     title=title,
     description=description,
@@ -229,7 +221,6 @@ local prometheus = grafana.prometheus;
     datasource_type,
     'tdg_graphql_mutation_fail',
     job,
-    rate_time_range,
     policy,
     measurement,
   )),

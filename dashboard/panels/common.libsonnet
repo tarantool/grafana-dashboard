@@ -73,14 +73,13 @@ local prometheus = grafana.prometheus;
     datasource_type,
     metric_name,
     job=null,
-    rate_time_range=null,
     policy=null,
     measurement=null,
   )::
     if datasource_type == variable.datasource_type.prometheus then
       prometheus.target(
-        expr=std.format('rate(%s{job=~"%s"}[%s])',
-                        [metric_name, job, rate_time_range]),
+        expr=std.format('rate(%s{job=~"%s"}[$__rate_interval])',
+                        [metric_name, job]),
         legendFormat='{{alias}}',
       )
     else if datasource_type == variable.datasource_type.influxdb then
@@ -91,15 +90,6 @@ local prometheus = grafana.prometheus;
         alias='$tag_label_pairs_alias',
       ).where('metric_name', '=', metric_name)
       .selectField('value').addConverter('mean').addConverter('non_negative_derivative', ['1s']),
-
-  rate_warning(
-    description,
-    datasource_type=variable.datasource_type.prometheus,
-  )::
-    if datasource_type == variable.datasource_type.prometheus then
-      std.join('\n\n', [description, "If `No data` displayed, check up your 'rate_time_range' variable."])
-    else
-      description,
 
   group_by_fill_0_warning(
     description,

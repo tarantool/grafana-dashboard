@@ -115,7 +115,6 @@ local prometheus = grafana.prometheus;
     policy=null,
     measurement=null,
     job=null,
-    rate_time_range=null,
   ):: common_utils.default_graph(
     title=title,
     description=description,
@@ -143,7 +142,6 @@ local prometheus = grafana.prometheus;
     policy=null,
     measurement=null,
     job=null,
-    rate_time_range=null,
   ):: common_utils.default_graph(
     title=title,
     description=description,

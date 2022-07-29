@@ -40,14 +40,13 @@ local prometheus = grafana.prometheus;
     datasource_type,
     metric_name,
     job=null,
-    rate_time_range=null,
     policy=null,
     measurement=null,
   ) =
     if datasource_type == variable.datasource_type.prometheus then
       prometheus.target(
-        expr=std.format('rate(%s{job=~"%s"}[%s])',
-                        [metric_name, job, rate_time_range]),
+        expr=std.format('rate(%s{job=~"%s"}[$__rate_interval])',
+                        [metric_name, job]),
         legendFormat='{{name}} ({{broker_name}}) — {{alias}} ({{type}}, {{connector_name}})',
       )
     else if datasource_type == variable.datasource_type.influxdb then
@@ -121,17 +120,16 @@ local prometheus = grafana.prometheus;
 
   connects(
     title='Connection attempts',
-    description=common_utils.rate_warning(|||
+    description=|||
       Number of connection attempts to a broker, including successful and failed,
       and name resolution failures.
       Graph shows mean attempts per second.
-    |||, datasource_type),
+    |||,
     datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
     job=null,
-    rate_time_range=null,
   ):: common_utils.default_graph(
     title=title,
     description=description,
@@ -142,23 +140,21 @@ local prometheus = grafana.prometheus;
     datasource_type,
     'tdg_kafka_broker_connects',
     job,
-    rate_time_range,
     policy,
     measurement
   )),
 
   disconnects(
     title='Disconnects',
-    description=common_utils.rate_warning(|||
+    description=|||
       Number of disconnects from a broker (triggered by broker, network, load-balancer, etc.)
       Graph shows mean disconnects per second.
-    |||, datasource_type),
+    |||,
     datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
     job=null,
-    rate_time_range=null,
   ):: common_utils.default_graph(
     title=title,
     description=description,
@@ -169,23 +165,21 @@ local prometheus = grafana.prometheus;
     datasource_type,
     'tdg_kafka_broker_disconnects',
     job,
-    rate_time_range,
     policy,
     measurement
   )),
 
   poll_wakeups(
     title='Poll wakeups',
-    description=common_utils.rate_warning(|||
+    description=|||
       Number of broker thread poll wakeups.
       Graph shows mean wakeups per second.
-    |||, datasource_type),
+    |||,
     datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
     job=null,
-    rate_time_range=null,
   ):: common_utils.default_graph(
     title=title,
     description=description,
@@ -196,7 +190,6 @@ local prometheus = grafana.prometheus;
     datasource_type,
     'tdg_kafka_broker_wakeups',
     job,
-    rate_time_range,
     policy,
     measurement
   )),
@@ -299,16 +292,15 @@ local prometheus = grafana.prometheus;
 
   requests(
     title='Requests sent',
-    description=common_utils.rate_warning(|||
+    description=|||
       Number of requests sent to a broker.
       Graph shows mean attempts per second.
-    |||, datasource_type),
+    |||,
     datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
     job=null,
-    rate_time_range=null,
   ):: common_utils.default_graph(
     title=title,
     description=description,
@@ -318,23 +310,21 @@ local prometheus = grafana.prometheus;
     datasource_type,
     'tdg_kafka_broker_tx',
     job,
-    rate_time_range,
     policy,
     measurement
   )),
 
   request_bytes(
     title='Bytes sent',
-    description=common_utils.rate_warning(|||
+    description=|||
       Amount of bytes sent to a broker.
       Graph shows mean bytes per second.
-    |||, datasource_type),
+    |||,
     datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
     job=null,
-    rate_time_range=null,
   ):: common_utils.default_graph(
     title=title,
     description=description,
@@ -344,23 +334,21 @@ local prometheus = grafana.prometheus;
     datasource_type,
     'tdg_kafka_broker_txbytes',
     job,
-    rate_time_range,
     policy,
     measurement,
   )),
 
   request_errors(
     title='Transmission errors',
-    description=common_utils.rate_warning(|||
+    description=|||
       Number of transmission errors to a broker.
       Graph shows mean errors per second.
-    |||, datasource_type),
+    |||,
     datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
     job=null,
-    rate_time_range=null,
   ):: common_utils.default_graph(
     title=title,
     description=description,
@@ -370,23 +358,21 @@ local prometheus = grafana.prometheus;
     datasource_type,
     'tdg_kafka_broker_txerrs',
     job,
-    rate_time_range,
     policy,
     measurement,
   )),
 
   request_retries(
     title='Request retries',
-    description=common_utils.rate_warning(|||
+    description=|||
       Number of request retries to a broker.
       Graph shows mean retries per second.
-    |||, datasource_type),
+    |||,
     datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
     job=null,
-    rate_time_range=null,
   ):: common_utils.default_graph(
     title=title,
     description=description,
@@ -396,7 +382,6 @@ local prometheus = grafana.prometheus;
     datasource_type,
     'tdg_kafka_broker_txretries',
     job,
-    rate_time_range,
     policy,
     measurement,
   )),
@@ -428,16 +413,15 @@ local prometheus = grafana.prometheus;
 
   request_timeout(
     title='Requests timed out',
-    description=common_utils.rate_warning(|||
+    description=|||
       Number of requests timed out for a broker.
       Graph shows mean retries per second.
-    |||, datasource_type),
+    |||,
     datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
     job=null,
-    rate_time_range=null,
   ):: common_utils.default_graph(
     title=title,
     description=description,
@@ -447,23 +431,21 @@ local prometheus = grafana.prometheus;
     datasource_type,
     'tdg_kafka_broker_req_timeouts',
     job,
-    rate_time_range,
     policy,
     measurement,
   )),
 
   responses(
     title='Responses received',
-    description=common_utils.rate_warning(|||
+    description=|||
       Number of responses received from a broker.
       Graph shows mean attempts per second.
-    |||, datasource_type),
+    |||,
     datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
     job=null,
-    rate_time_range=null,
   ):: common_utils.default_graph(
     title=title,
     description=description,
@@ -473,23 +455,21 @@ local prometheus = grafana.prometheus;
     datasource_type,
     'tdg_kafka_broker_rx',
     job,
-    rate_time_range,
     policy,
     measurement
   )),
 
   response_bytes(
     title='Bytes received',
-    description=common_utils.rate_warning(|||
+    description=|||
       Amount of bytes received from a broker.
       Graph shows mean bytes per second.
-    |||, datasource_type),
+    |||,
     datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
     job=null,
-    rate_time_range=null,
   ):: common_utils.default_graph(
     title=title,
     description=description,
@@ -499,23 +479,21 @@ local prometheus = grafana.prometheus;
     datasource_type,
     'tdg_kafka_broker_rxbytes',
     job,
-    rate_time_range,
     policy,
     measurement,
   )),
 
   response_errors(
     title='Response errors',
-    description=common_utils.rate_warning(|||
+    description=|||
       Number of errors received from a broker.
       Graph shows mean errors per second.
-    |||, datasource_type),
+    |||,
     datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
     job=null,
-    rate_time_range=null,
   ):: common_utils.default_graph(
     title=title,
     description=description,
@@ -525,24 +503,22 @@ local prometheus = grafana.prometheus;
     datasource_type,
     'tdg_kafka_broker_rxerrs',
     job,
-    rate_time_range,
     policy,
     measurement,
   )),
 
   response_corriderrs(
     title='Response corellation errors',
-    description=common_utils.rate_warning(|||
+    description=|||
       Number of mber of unmatched correlation ids in response
       (typically for timed out requests).
       Graph shows mean errors per second.
-    |||, datasource_type),
+    |||,
     datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
     job=null,
-    rate_time_range=null,
   ):: common_utils.default_graph(
     title=title,
     description=description,
@@ -552,7 +528,6 @@ local prometheus = grafana.prometheus;
     datasource_type,
     'tdg_kafka_broker_rxcorriderrs',
     job,
-    rate_time_range,
     policy,
     measurement,
   )),
@@ -584,16 +559,15 @@ local prometheus = grafana.prometheus;
 
   response_partial(
     title='Partial MessageSets received',
-    description=common_utils.rate_warning(|||
+    description=|||
       Number of partial MessageSets received.
       Graph shows mean retries per second.
-    |||, datasource_type),
+    |||,
     datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
     job=null,
-    rate_time_range=null,
   ):: common_utils.default_graph(
     title=title,
     description=description,
@@ -603,23 +577,21 @@ local prometheus = grafana.prometheus;
     datasource_type,
     'tdg_kafka_broker_rxpartial',
     job,
-    rate_time_range,
     policy,
     measurement,
   )),
 
   requests_by_type(
     title='Requests sent by type',
-    description=common_utils.rate_warning(|||
+    description=|||
       Number of requests sent, separated by type.
       Graph shows mean requests per second.
-    |||, datasource_type),
+    |||,
     datasource_type=null,
     datasource=null,
     policy=null,
     measurement=null,
     job=null,
-    rate_time_range=null,
   ):: common_utils.default_graph(
     title=title,
     description=description,
@@ -631,8 +603,8 @@ local prometheus = grafana.prometheus;
   ).addTarget(
     if datasource_type == variable.datasource_type.prometheus then
       prometheus.target(
-        expr=std.format('rate(tdg_kafka_broker_req{job=~"%s"}[%s])',
-                        [job, rate_time_range]),
+        expr=std.format('rate(tdg_kafka_broker_req{job=~"%s"}[$__rate_interval])',
+                        [job]),
         legendFormat='{{request}} — {{name}} ({{broker_name}}) — {{alias}} ({{type}}, {{connector_name}})',
       )
     else if datasource_type == variable.datasource_type.influxdb then
@@ -662,7 +634,6 @@ local prometheus = grafana.prometheus;
     policy=null,
     measurement=null,
     job=null,
-    rate_time_range=null,
   ):: common_utils.default_graph(
     title=title,
     description=description,
@@ -688,7 +659,6 @@ local prometheus = grafana.prometheus;
     policy=null,
     measurement=null,
     job=null,
-    rate_time_range=null,
   ):: common_utils.default_graph(
     title=title,
     description=description,
@@ -714,7 +684,6 @@ local prometheus = grafana.prometheus;
     policy=null,
     measurement=null,
     job=null,
-    rate_time_range=null,
   ):: common_utils.default_graph(
     title=title,
     description=description,
@@ -740,7 +709,6 @@ local prometheus = grafana.prometheus;
     policy=null,
     measurement=null,
     job=null,
-    rate_time_range=null,
   ):: common_utils.default_graph(
     title=title,
     description=description,
