@@ -80,6 +80,33 @@ local prometheus = grafana.prometheus;
     metric_name='tnt_vinyl_disk_index_size',
   ),
 
+  tuples_cache_memory(
+    title='Tuples cache memory',
+    description=|||
+      Amount of memory in bytes currently used to store tuples (data).
+
+      Panel works with `metrics >= 0.8.0`.
+    |||,
+    datasource_type=null,
+    datasource=null,
+    policy=null,
+    measurement=null,
+    job=null,
+  ):: common.default_graph(
+    title=title,
+    description=description,
+    datasource=datasource,
+    format='bytes',
+    labelY1='in bytes',
+    panel_width=8,
+  ).addTarget(common.default_metric_target(
+    datasource_type,
+    'tnt_vinyl_memory_tuple_cache',
+    job,
+    policy,
+    measurement
+  )),
+
   index_memory(
     title='Index memory',
     description=|||
@@ -100,7 +127,7 @@ local prometheus = grafana.prometheus;
     datasource=datasource,
     format='bytes',
     labelY1='in bytes',
-    panel_width=12,
+    panel_width=8,
   ).addTarget(common.default_metric_target(
     datasource_type,
     'tnt_vinyl_memory_page_index',
@@ -125,7 +152,7 @@ local prometheus = grafana.prometheus;
     datasource=datasource,
     format='bytes',
     labelY1='in bytes',
-    panel_width=12,
+    panel_width=8,
   ).addTarget(common.default_metric_target(
     datasource_type,
     'tnt_vinyl_memory_bloom_filter',
@@ -235,6 +262,39 @@ local prometheus = grafana.prometheus;
     metric_name='tnt_vinyl_regulator_rate_limit',
   ),
 
+  memory_level0(
+    title='Level 0 memory',
+    description=|||
+      «Level 0» (L0) memory area in bytes. L0 is the area that
+      vinyl can use for in-memory storage of an LSM tree.
+      By monitoring this metric, you can see when L0 is getting
+      close to its maximum (tnt_vinyl_regulator_dump_watermark),
+      at which time a dump will occur. You can expect L0 = 0
+      immediately after the dump operation is completed.
+
+      Panel works with `metrics >= 0.8.0`.
+    |||,
+
+    datasource_type=null,
+    datasource=null,
+    policy=null,
+    measurement=null,
+    job=null,
+  ):: common.default_graph(
+    title=title,
+    description=description,
+    datasource=datasource,
+    format='bytes',
+    legend_avg=false,
+    panel_width=8,
+  ).addTarget(common.default_metric_target(
+    datasource_type,
+    'tnt_vinyl_memory_level0',
+    job,
+    policy,
+    measurement,
+  )),
+
   regulator_dump_watermark(
     title='Vinyl regulator dump watermark',
     description=|||
@@ -259,7 +319,7 @@ local prometheus = grafana.prometheus;
     format='bytes',
     legend_avg=false,
     legend_max=false,
-    panel_width=12,
+    panel_width=8,
   ).addTarget(common.default_metric_target(
     datasource_type,
     'tnt_vinyl_regulator_dump_watermark',
@@ -288,7 +348,7 @@ local prometheus = grafana.prometheus;
     legend_avg=false,
     legend_max=false,
     labelY1='fibers',
-    panel_width=12,
+    panel_width=8,
   ).addTarget(common.default_metric_target(
     datasource_type,
     'tnt_vinyl_regulator_blocked_writers',
@@ -449,56 +509,6 @@ local prometheus = grafana.prometheus;
     policy,
     measurement,
   )),
-
-  memory_tuple_cache(
-    title='Vinyl tuple cache memory',
-    description=|||
-      The amount of memory that is being used for storing vinyl tuples (data).
-
-      Panel works with `metrics >= 0.8.0`.
-    |||,
-    datasource_type=null,
-    datasource=null,
-    policy=null,
-    measurement=null,
-    job=null,
-  ):: memory(
-    title=title,
-    description=description,
-    datasource_type=datasource_type,
-    datasource=datasource,
-    policy=policy,
-    measurement=measurement,
-    job=job,
-    metric_name='tnt_vinyl_memory_tuple_cache',
-  ),
-
-  memory_level0(
-    title='Vinyl level 0 memory',
-    description=|||
-      The “level 0” (L0) memory area.
-      L0 is the area that vinyl can use for in-memory storage of an LSM tree.
-      By monitoring the metric, you can see when L0 is getting close to its maximum
-      (regulator dump watermark) at which a dump will be taken.
-      You can expect L0 = 0 immediately after the dump operation is completed.
-
-      Panel works with `metrics >= 0.8.0`.
-    |||,
-    datasource_type=null,
-    datasource=null,
-    policy=null,
-    measurement=null,
-    job=null,
-  ):: memory(
-    title=title,
-    description=description,
-    datasource_type=datasource_type,
-    datasource=datasource,
-    policy=policy,
-    measurement=measurement,
-    job=job,
-    metric_name='tnt_vinyl_memory_level0',
-  ),
 
   memory_page_index(
     title='Vinyl index memory',
