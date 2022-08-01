@@ -439,6 +439,14 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       job=job,
     ),
 
+    vinyl.tuples_cache_memory(
+      datasource_type=datasource_type,
+      datasource=datasource,
+      policy=policy,
+      measurement=measurement,
+      job=job,
+    ),
+
     vinyl.index_memory(
       datasource_type=datasource_type,
       datasource=datasource,
@@ -472,6 +480,14 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
     ),
 
     vinyl.regulator_rate_limit(
+      datasource_type=datasource_type,
+      datasource=datasource,
+      policy=policy,
+      measurement=measurement,
+      job=job,
+    ),
+
+    vinyl.memory_level0(
       datasource_type=datasource_type,
       datasource=datasource,
       policy=policy,
