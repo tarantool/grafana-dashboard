@@ -86,6 +86,8 @@ local prometheus = grafana.prometheus;
       Amount of memory in bytes currently used to store indexes.
       If the metric value is close to box.cfg.vinyl_memory, this
       indicates that vinyl_page_size was chosen incorrectly.
+
+      Panel works with `metrics >= 0.8.0`.
     |||,
     datasource_type=null,
     datasource=null,

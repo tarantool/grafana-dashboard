@@ -4665,7 +4665,7 @@
                "dashes": false,
                "datasource": "${DS_INFLUXDB}",
                "decimals": 3,
-               "description": "Amount of memory in bytes currently used to store indexes.\nIf the metric value is close to box.cfg.vinyl_memory, this\nindicates that vinyl_page_size was chosen incorrectly.\n",
+               "description": "Amount of memory in bytes currently used to store indexes.\nIf the metric value is close to box.cfg.vinyl_memory, this\nindicates that vinyl_page_size was chosen incorrectly.\n\nPanel works with `metrics >= 0.8.0`.\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
