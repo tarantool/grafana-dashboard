@@ -4,9 +4,10 @@ local common = import 'dashboard/panels/common.libsonnet';
   row:: common.row('Tarantool runtime overview'),
 
   lua_memory(
-    title='Lua runtime memory',
+    title='Lua memory',
     description=|||
-      Memory used for the Lua runtime.
+      Memory used for objects allocated with Lua
+      by using its internal mechanisms.
       Lua memory is bounded by 2 GB per instance. 
     |||,
     datasource_type=null,
@@ -20,10 +21,42 @@ local common = import 'dashboard/panels/common.libsonnet';
     datasource=datasource,
     format='bytes',
     labelY1='in bytes',
-    panel_width=12,
+    panel_width=8,
   ).addTarget(common.default_metric_target(
     datasource_type,
     'tnt_info_memory_lua',
+    job,
+    policy,
+    measurement
+  )),
+
+  runtime_memory(
+    title='Runtime arena memory',
+    description=|||
+      Memory used by runtime arena.
+      Runtime arena stores network buffers, tuples
+      created with box.tuple.new and other objects
+      allocated by application not covered by basic
+      Lua mechanisms (spaces data and indexes
+      are not included here, see memtx/vinyl arena).
+    |||,
+    datasource_type=null,
+    datasource=null,
+    policy=null,
+    measurement=null,
+    job=null,
+  ):: common.default_graph(
+    title=title,
+    description=description,
+    datasource=datasource,
+    format='bytes',
+    labelY1='in bytes',
+    legend_avg=false,
+    legend_max=false,
+    panel_width=8,
+  ).addTarget(common.default_metric_target(
+    datasource_type,
+    'tnt_runtime_used',
     job,
     policy,
     measurement
@@ -48,7 +81,7 @@ local common = import 'dashboard/panels/common.libsonnet';
     datasource=datasource,
     format='bytes',
     labelY1='in bytes',
-    panel_width=12,
+    panel_width=8,
   ).addTarget(common.default_metric_target(
     datasource_type,
     'tnt_info_memory_tx',
