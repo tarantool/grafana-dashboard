@@ -627,6 +627,14 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       job=job,
     ),
 
+    runtime.runtime_memory(
+      datasource_type=datasource_type,
+      datasource=datasource,
+      policy=policy,
+      measurement=measurement,
+      job=job,
+    ),
+
     runtime.memory_tx(
       datasource_type=datasource_type,
       datasource=datasource,
