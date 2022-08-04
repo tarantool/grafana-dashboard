@@ -32,6 +32,13 @@ with latency quantiles.
         stats_quantiles=true
     }
 
+To support `expirationd <https://github.com/tarantool/expirationd>`_ statistics,
+install ``expirationd`` **1.2.0** or newer. Call ``expirationd.cfg`` on instance
+to enable statistics export.
+
+..  code-block:: lua
+
+    expirationd.cfg{metrics = true}
 
 .. image:: images/Prometheus_dashboard_1.png
    :width: 30%
