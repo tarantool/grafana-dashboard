@@ -258,9 +258,9 @@ tests:
 
   - interval: 15s
     input_series:
-      - series: tnt_replication_1_lag{job="tarantool", instance="app:8081", alias="tnt_storage_master"}
+      - series: tnt_replication_lag{job="tarantool", instance="app:8081", alias="tnt_storage_master", id="1"}
         values: '0+0x10'
-      - series: tnt_replication_2_lag{job="tarantool", instance="app:8082", alias="tnt_storage_replica"}
+      - series: tnt_replication_lag{job="tarantool", instance="app:8082", alias="tnt_storage_replica", id="2"}
         values: '1+15x10'
     alert_rule_test:
       - eval_time: 2m
@@ -271,10 +271,11 @@ tests:
               instance: app:8082
               alias: tnt_storage_replica
               job: tarantool
+              id: "2"
             exp_annotations:
-              summary: "Instance 'tnt_storage_replica' ('tarantool') have high replication lag"
-              description: "Instance 'tnt_storage_replica' of job 'tarantool' have high replication lag,
-                check up your network and cluster state."
+              summary: "Instance 'tnt_storage_replica' ('tarantool') have high replication lag (id 2)"
+              description: "Instance 'tnt_storage_replica' of job 'tarantool' have high replication lag
+                (id 2), check up your network and cluster state."
 
 
   - interval: 15s

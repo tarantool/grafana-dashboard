@@ -109,14 +109,14 @@ groups:
 
   # Alert for Tarantool replication high lag (both for masters and replicas).
   - alert: HighReplicationLag
-    expr: '{__name__=~"tnt_replication_[[:digit:]]{1,2}_lag"} > 1'
+    expr: tnt_replication_lag > 1
     for: 1m
     labels:
       severity: warning
     annotations:
-      summary: "Instance '{{ $labels.alias }}' ('{{ $labels.job }}') have high replication lag"
-      description: "Instance '{{ $labels.alias }}' of job '{{ $labels.job }}' have high replication lag,
-        check up your network and cluster state."
+      summary: "Instance '{{ $labels.alias }}' ('{{ $labels.job }}') have high replication lag (id {{ $labels.id }})"
+      description: "Instance '{{ $labels.alias }}' of job '{{ $labels.job }}' have high replication lag
+        (id {{ $labels.id }}), check up your network and cluster state."
 
   # Alert for Tarantool low vinyl engine regulator rate limit.
   - alert: LowVinylRegulatorRateLimit
