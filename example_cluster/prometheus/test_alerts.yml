@@ -333,9 +333,9 @@ tests:
   - interval: 15s
     input_series:
       - series: tnt_vinyl_scheduler_tasks{job="tarantool", instance="app:8081", alias="tnt_storage_master", status="failed"}
-        values: '2+3x10'
+        values: '2+3x40'
     alert_rule_test:
-      - eval_time: 2m
+      - eval_time: 5m
         alertname: HighVinylSchedulerFailedTasksRate
         exp_alerts:
           - exp_labels:
