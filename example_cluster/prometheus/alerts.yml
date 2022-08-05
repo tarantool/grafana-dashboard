@@ -131,7 +131,7 @@ groups:
 
   # Alert for Tarantool high vinyl transactions conflict rate.
   - alert: HighVinylTxConflictRate
-    expr: rate(tnt_vinyl_tx_conflict[2m]) / rate(tnt_vinyl_tx_commit[2m]) > 0.05
+    expr: rate(tnt_vinyl_tx_conflict[5m]) / rate(tnt_vinyl_tx_commit[5m]) > 0.05
     for: 1m
     labels:
       severity: critical
@@ -142,7 +142,7 @@ groups:
 
   # Alert for Tarantool high vinyl scheduler failed tasks rate.
   - alert: HighVinylSchedulerFailedTasksRate
-    expr: rate(tnt_vinyl_scheduler_tasks{status="failed"}[2m]) > 0.1
+    expr: rate(tnt_vinyl_scheduler_tasks{status="failed"}[5m]) > 0.1
     for: 1m
     labels:
       severity: critical
