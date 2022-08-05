@@ -387,7 +387,7 @@ tests:
             exp_annotations:
               summary: "Instance 'tnt_storage_master' ('tarantool') upstream (id 1) replication is not running"
               description: "Instance 'tnt_storage_master' ('tarantool') upstream (id 1) replication is
-                 not running. Check Cartridge UI for details."
+                not running. Check Cartridge UI for details."
 
 
   - interval: 15s
@@ -453,8 +453,8 @@ tests:
             exp_annotations:
               summary: "Instance 'tnt_router' ('tarantool') too many CRUD select map reduces."
               description: "There are too many select CRUD map reduce requests for 'customers' space on
-              'tnt_router' instance of job 'tarantool'.
-              Check your request conditions or consider changing sharding schema."
+                'tnt_router' instance of job 'tarantool'.
+                Check your request conditions or consider changing sharding schema."
 
 
   - interval: 15s
@@ -617,5 +617,5 @@ tests:
               job: tarantool
             exp_annotations:
               summary: "Router 'tnt_router' ('tarantool') low activity"
-              description: Router 'tnt_router' instance of job 'tarantool' gets too little requests.
+              description: "Router 'tnt_router' instance of job 'tarantool' gets too little requests.
                 Please, check up your balancer middleware."
