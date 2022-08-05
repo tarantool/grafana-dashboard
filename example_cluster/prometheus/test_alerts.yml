@@ -32,7 +32,7 @@ tests:
         values: '209715200+104857600x8' # 200 Mb + 100 Mb each interval
     alert_rule_test:
       - eval_time: 2m
-        alertname: LuaRuntimeWarning
+        alertname: HighLuaMemoryWarning
         exp_alerts:
           - exp_labels:
               severity: warning
@@ -44,7 +44,7 @@ tests:
               description: "'tnt_router' instance of job 'tarantool' uses too much Lua memory
                 and may hit threshold soon."
       - eval_time: 2m
-        alertname: LuaRuntimeAlert
+        alertname: HighLuaMemory
         exp_alerts: # no alert firing
 
 
@@ -54,7 +54,7 @@ tests:
         values: '419430400+209715200x8' # 400 Mb + 200 Mb each interval
     alert_rule_test:
       - eval_time: 2m
-        alertname: LuaRuntimeWarning
+        alertname: HighLuaMemoryWarning
         exp_alerts:
           - exp_labels:
               severity: warning
@@ -66,7 +66,7 @@ tests:
               description: "'tnt_router' instance of job 'tarantool' uses too much Lua memory
                 and may hit threshold soon."
       - eval_time: 2m
-        alertname: LuaRuntimeAlert
+        alertname: HighLuaMemory
         exp_alerts:
           - exp_labels:
               severity: page
@@ -87,10 +87,10 @@ tests:
         values: '92+0x2 76+0x8'
     alert_rule_test:
       - eval_time: 2m
-        alertname: MemtxArenaWarning
+        alertname: LowMemtxArenaRemainingWarning
         exp_alerts: # no alert firing
       - eval_time: 2m
-        alertname: MemtxArenaAlert
+        alertname: LowMemtxArenaRemaining
         exp_alerts: # no alert firing
 
 
@@ -102,7 +102,7 @@ tests:
         values: '92+0x2 82+0x8'
     alert_rule_test:
       - eval_time: 2m
-        alertname: MemtxArenaWarning
+        alertname: LowMemtxArenaRemainingWarning
         exp_alerts:
           - exp_labels:
               severity: warning
@@ -114,7 +114,7 @@ tests:
               description: "Low arena memory (tuples and indexes) remaining for 'tnt_router' instance of job 'tarantool'.
                 Consider increasing memtx_memory or number of storages in case of sharded data."
       - eval_time: 2m
-        alertname: MemtxArenaAlert
+        alertname: LowMemtxArenaRemaining
         exp_alerts: # no alert firing
 
 
@@ -126,7 +126,7 @@ tests:
         values: '92+0x2 91+0x8'
     alert_rule_test:
       - eval_time: 2m
-        alertname: MemtxArenaWarning
+        alertname: LowMemtxArenaRemainingWarning
         exp_alerts:
           - exp_labels:
               severity: warning
@@ -138,7 +138,7 @@ tests:
               description: "Low arena memory (tuples and indexes) remaining for 'tnt_router' instance of job 'tarantool'.
                 Consider increasing memtx_memory or number of storages in case of sharded data."
       - eval_time: 2m
-        alertname: MemtxArenaAlert
+        alertname: LowMemtxArenaRemaining
         exp_alerts:
           - exp_labels:
               severity: page
@@ -160,10 +160,10 @@ tests:
         values: '95+0x2 79+0x8'
     alert_rule_test:
       - eval_time: 2m
-        alertname: MemtxItemsWarning
+        alertname: LowMemtxItemsRemainingWarning
         exp_alerts: # no alert firing
       - eval_time: 2m
-        alertname: MemtxItemsAlert
+        alertname: LowMemtxItemsRemaining
         exp_alerts: # no alert firing
 
 
@@ -175,7 +175,7 @@ tests:
         values: '92+0x2 82+0x8'
     alert_rule_test:
       - eval_time: 2m
-        alertname: MemtxItemsWarning
+        alertname: LowMemtxItemsRemainingWarning
         exp_alerts:
           - exp_labels:
               severity: warning
@@ -187,7 +187,7 @@ tests:
               description: "Low items memory (tuples) remaining for 'tnt_router' instance of job 'tarantool'.
                 Consider increasing memtx_memory or number of storages in case of sharded data."
       - eval_time: 2m
-        alertname: MemtxItemsAlert
+        alertname: LowMemtxItemsRemaining
         exp_alerts: # no alert firing
 
 
@@ -396,7 +396,7 @@ tests:
         values: '0+100x100'
     alert_rule_test:
       - eval_time: 5m
-        alertname: CRUDHighErrorRate
+        alertname: HighCRUDErrorRate
         exp_alerts:
           - exp_labels:
               severity: critical
@@ -418,7 +418,7 @@ tests:
         values: '0.11+0x0'
     alert_rule_test:
       - eval_time: 2m
-        alertname: CRUDHighLatency
+        alertname: HighCRUDLatency
         exp_alerts:
           - exp_labels:
               severity: warning
@@ -441,7 +441,7 @@ tests:
         values: '0+100x100'
     alert_rule_test:
       - eval_time: 5m
-        alertname: CRUDHighMapReduceRate
+        alertname: HighCRUDMapReduceRate
         exp_alerts:
           - exp_labels:
               severity: warning
@@ -471,7 +471,7 @@ tests:
           values: '0.11+0x60'
     alert_rule_test:
       - eval_time: 10m
-        alertname: HTTPHighLatency
+        alertname: HighHTTPLatency
         exp_alerts:
           - exp_labels:
               severity: warning
@@ -502,10 +502,10 @@ tests:
           values: '0.02+0x100'
     alert_rule_test:
       - eval_time: 5m
-        alertname: HTTPHighClientErrorRateInstance
+        alertname: HighInstanceHTTPClientErrorRate
         exp_alerts:
           - exp_labels:
-              severity: warning
+              severity: page
               instance: app:8081
               alias: tnt_router
               job: tarantool
@@ -551,13 +551,13 @@ tests:
           values: '0.02+0x100'
     alert_rule_test:
       - eval_time: 5m
-        alertname: HTTPHighClientErrorRateInstance
+        alertname: HighHTTPClientErrorRateInstance
         exp_alerts: # no alert firing
       - eval_time: 5m
-        alertname: HTTPHighClientErrorRate
+        alertname: HighHTTPClientErrorRate
         exp_alerts:
           - exp_labels:
-              severity: warning
+              severity: page
               job: tarantool
               path: /hell0
               method: GET
@@ -580,10 +580,10 @@ tests:
           values: '0+0x10 0.01+0x100'
     alert_rule_test:
       - eval_time: 5m
-        alertname: HTTPServerErrors
+        alertname: HighHTTPServerErrorRate
         exp_alerts:
           - exp_labels:
-              severity: warning
+              severity: page
               instance: app:8081
               alias: tnt_router
               job: tarantool
@@ -608,7 +608,7 @@ tests:
           values: '0+0x10 0.01+0x100'
     alert_rule_test:
       - eval_time: 15m
-        alertname: HTTPLowRequestRateRouter
+        alertname: LowRouterHTTPRequestRate
         exp_alerts:
           - exp_labels:
               severity: warning
