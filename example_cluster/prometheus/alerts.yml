@@ -16,7 +16,7 @@ groups:
   rules:
   # Warning for any instance that uses too much Lua runtime memory.
   - alert: HighLuaMemoryWarning
-    expr: tnt_info_memory_lua >= (512 * 1024 * 1024) 
+    expr: tnt_info_memory_lua >= (512 * 1024 * 1024)
     for: 1m
     labels:
       severity: warning
@@ -27,7 +27,7 @@ groups:
 
   # Alert for any instance that uses too much Lua runtime memory.
   - alert: HighLuaMemory
-    expr: tnt_info_memory_lua >= (1024 * 1024 * 1024) 
+    expr: tnt_info_memory_lua >= (1024 * 1024 * 1024)
     for: 1m
     labels:
       severity: page
@@ -56,8 +56,8 @@ groups:
     annotations:
       summary: "Instance '{{ $labels.alias }}' ('{{ $labels.job }}') low arena memory remaining"
       description: "Low arena memory (tuples and indexes) remaining for '{{ $labels.alias }}' instance of job '{{ $labels.job }}'.
-      You are likely to hit limit soon.
-      It is strongly recommended to increase memtx_memory or number of storages in case of sharded data."
+        You are likely to hit limit soon.
+        It is strongly recommended to increase memtx_memory or number of storages in case of sharded data."
 
   # Warning for any instance that have low remaining items memory.
   - alert: LowMemtxItemsRemainingWarning
@@ -170,9 +170,9 @@ groups:
       severity: critical
     annotations:
       summary: "Instance '{{ $labels.alias }}' ('{{ $labels.job }}') {{ $labels.stream }} (id {{ $labels.id }})
-         replication is not running"
+        replication is not running"
       description: "Instance '{{ $labels.alias }}' ('{{ $labels.job }}') {{ $labels.stream }} (id {{ $labels.id }})
-         replication is not running. Check Cartridge UI for details."
+        replication is not running. Check Cartridge UI for details."
 
 
 - name: tarantool-crud
@@ -186,7 +186,7 @@ groups:
     annotations:
       summary: "Instance '{{ $labels.alias }}' ('{{ $labels.job }}') too many CRUD {{ $labels.operation }} errors."
       description: "Too many {{ $labels.operation }} CRUD requests for '{{ $labels.name }}' space on
-      '{{ $labels.alias }}' instance of job '{{ $labels.job }}' get module error responses."
+        '{{ $labels.alias }}' instance of job '{{ $labels.job }}' get module error responses."
 
   # Warning for CRUD module requests too long responses.
   - alert: HighCRUDLatency
@@ -197,7 +197,7 @@ groups:
     annotations:
       summary: "Instance '{{ $labels.alias }}' ('{{ $labels.job }}') too high CRUD {{ $labels.operation }} latency."
       description: "Some {{ $labels.operation }} {{ $labels.status }} CRUD requests for '{{ $labels.name }}' space on
-      '{{ $labels.alias }}' instance of job '{{ $labels.job }}' are processed too long."
+        '{{ $labels.alias }}' instance of job '{{ $labels.job }}' are processed too long."
 
   # Warning for too many map reduce CRUD module requests.
   - alert: HighCRUDMapReduceRate
@@ -208,8 +208,8 @@ groups:
     annotations:
       summary: "Instance '{{ $labels.alias }}' ('{{ $labels.job }}') too many CRUD {{ $labels.operation }} map reduces."
       description: "There are too many {{ $labels.operation }} CRUD map reduce requests for '{{ $labels.name }}' space on
-      '{{ $labels.alias }}' instance of job '{{ $labels.job }}'.
-      Check your request conditions or consider changing sharding schema."
+        '{{ $labels.alias }}' instance of job '{{ $labels.job }}'.
+        Check your request conditions or consider changing sharding schema."
 
 
 - name: tarantool-business
@@ -281,5 +281,5 @@ groups:
       severity: warning
     annotations:
       summary: "Router '{{ $labels.alias }}' ('{{ $labels.job }}') low activity"
-      description: Router '{{ $labels.alias }}' instance of job '{{ $labels.job }}' gets too little requests.
+      description: "Router '{{ $labels.alias }}' instance of job '{{ $labels.job }}' gets too little requests.
         Please, check up your balancer middleware."
