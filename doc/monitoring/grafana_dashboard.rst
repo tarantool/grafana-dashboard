@@ -17,7 +17,7 @@ space operations, and HTTP load panels, based on default `metrics <https://githu
 package functionality.
 
 Dashboard requires using ``metrics`` **0.13.0** or newer for complete experience;
-``'alias'`` :ref:`global label <tarantool-metrics>` must be set on each instance
+``'alias'`` :ref:`global label <metrics-api_reference-labels>` must be set on each instance
 to properly display panels (e.g. provided with ``cartridge.roles.metrics`` role).
 
 To support `CRUD <https://github.com/tarantool/crud>`_ statistics, install ``CRUD``
@@ -76,9 +76,9 @@ Collect metrics with server agents
 -------------------------------------------------------------------------------
 
 To collect metrics for Prometheus, first set up metrics output with
-``prometheus`` format. You can use :ref:`cartridge.roles.metrics <cartridge-role>`
-configuration or set up the :ref:`Prometheus output plugin <prometheus>` manually.
-To start collecting metrics,
+``prometheus`` format. You can use :ref:`cartridge.roles.metrics <monitoring-getting_started-cartridge_role>`
+configuration or set up the :ref:`Prometheus output plugin <metrics-plugins-available>`
+manually. To start collecting metrics,
 `add a job <https://prometheus.io/docs/prometheus/latest/getting_started/#configure-prometheus-to-monitor-the-sample-targets>`_
 to Prometheus configuration with each Tarantool instance URI as a target and
 metrics path as it was configured on Tarantool instances:
@@ -97,9 +97,9 @@ metrics path as it was configured on Tarantool instances:
 
 To collect metrics for InfluxDB, use the Telegraf agent.
 First off, configure Tarantool metrics output in ``json`` format
-with :ref:`cartridge.roles.metrics <cartridge-role>` configuration or
-corresponding :ref:`JSON output plugin <json>`. To start collecting metrics,
-add `http input <https://github.com/influxdata/telegraf/blob/release-1.17/plugins/inputs/http/README.md>`_
+with :ref:`cartridge.roles.metrics <monitoring-getting_started-cartridge_role>`
+configuration or corresponding :ref:`JSON output plugin <metrics-plugins-available>`.
+To start collecting metrics, add `http input <https://github.com/influxdata/telegraf/blob/release-1.17/plugins/inputs/http/README.md>`_
 to Telegraf configuration including each Tarantool instance metrics URL:
 
 ..  code-block:: toml
