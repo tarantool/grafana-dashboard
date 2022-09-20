@@ -28,7 +28,7 @@ Based on [tarantool/metrics 0.15.0](https://github.com/tarantool/metrics/release
 - [x] **lj_jit_snap_restore**: see *Tarantool LuaJit statistics/Snap restores* panel ([#75](https://github.com/tarantool/grafana-dashboard/issues/75), will be removed in [#179](https://github.com/tarantool/grafana-dashboard/issues/179))
 - [ ] **lj_jit_snap_restore_total** ([#179](https://github.com/tarantool/grafana-dashboard/issues/179))
 - [x] **lj_jit_trace_num**: see *Tarantool LuaJit statistics/JIT traces written* panel ([#75](https://github.com/tarantool/grafana-dashboard/issues/75))
-- [x] **lj_jit_trace_abort**: see *Tarantool LuaJit statistics/JIT traces aborted* panel ([#75](https://github.com/tarantool/grafana-dashboard/issues/75, will be removed in [#179](https://github.com/tarantool/grafana-dashboard/issues/179)))
+- [x] **lj_jit_trace_abort**: see *Tarantool LuaJit statistics/JIT traces aborted* panel ([#75](https://github.com/tarantool/grafana-dashboard/issues/75), will be removed in [#179](https://github.com/tarantool/grafana-dashboard/issues/179))
 - [ ] **lj_jit_trace_abort_total** ([#179](https://github.com/tarantool/grafana-dashboard/issues/179))
 - [x] **lj_jit_mcode_size**: see *Tarantool LuaJit statistics/Machine code areas* panel ([#75](https://github.com/tarantool/grafana-dashboard/issues/75))
 - [x] **lj_strhash_hit**: see *Tarantool LuaJit statistics/Strings interned* panel ([#75](https://github.com/tarantool/grafana-dashboard/issues/75), will be removed in [#179](https://github.com/tarantool/grafana-dashboard/issues/179))
