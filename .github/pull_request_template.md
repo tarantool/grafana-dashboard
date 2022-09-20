@@ -9,7 +9,7 @@ If this pull request introduces support for new metrics, do not forget to
 - [ ] add alert example, if relevant,
   - [ ] to `alerts.yml`,
   - [ ] to "Alerting" documentation page;
-- [ ] update [Metrics support wiki page](https://github.com/tarantool/grafana-dashboard/wiki/Metrics-support) after merging.
+- [ ] update `supported_metrics.md`.
 
 In any case, do not forget to
 - [ ] link an issue,
