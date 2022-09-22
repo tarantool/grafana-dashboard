@@ -14,6 +14,7 @@ local kafka_utils = import 'dashboard/panels/tdg/kafka/utils.libsonnet';
     policy=null,
     measurement=null,
     job=null,
+    alias=null,
   ):: common_utils.default_graph(
     title=title,
     description=description,
@@ -27,7 +28,8 @@ local kafka_utils = import 'dashboard/panels/tdg/kafka/utils.libsonnet';
     'tdg_kafka_eos_idemp_stateage',
     job,
     policy,
-    measurement
+    measurement,
+    alias,
   )),
 
   txn_stateage(
@@ -40,6 +42,7 @@ local kafka_utils = import 'dashboard/panels/tdg/kafka/utils.libsonnet';
     policy=null,
     measurement=null,
     job=null,
+    alias=null,
   ):: common_utils.default_graph(
     title=title,
     description=description,
@@ -53,6 +56,7 @@ local kafka_utils = import 'dashboard/panels/tdg/kafka/utils.libsonnet';
     'tdg_kafka_eos_txn_stateage',
     job,
     policy,
-    measurement
+    measurement,
+    alias,
   )),
 }

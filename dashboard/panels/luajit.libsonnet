@@ -17,6 +17,7 @@ local common = import 'dashboard/panels/common.libsonnet';
     policy=null,
     measurement=null,
     job=null,
+    alias=null,
   ):: common.default_graph(
     title=title,
     description=version_warning(description),
@@ -28,7 +29,8 @@ local common = import 'dashboard/panels/common.libsonnet';
     'lj_jit_snap_restore',
     job,
     policy,
-    measurement
+    measurement,
+    alias,
   )),
 
   jit_traces(
@@ -41,6 +43,7 @@ local common = import 'dashboard/panels/common.libsonnet';
     policy=null,
     measurement=null,
     job=null,
+    alias=null,
   ):: common.default_graph(
     title=title,
     description=version_warning(description),
@@ -52,7 +55,8 @@ local common = import 'dashboard/panels/common.libsonnet';
     'lj_jit_trace_num',
     job,
     policy,
-    measurement
+    measurement,
+    alias,
   )),
 
   jit_traces_aborts(
@@ -65,6 +69,7 @@ local common = import 'dashboard/panels/common.libsonnet';
     policy=null,
     measurement=null,
     job=null,
+    alias=null,
   ):: common.default_graph(
     title=title,
     description=version_warning(description),
@@ -76,7 +81,8 @@ local common = import 'dashboard/panels/common.libsonnet';
     'lj_jit_trace_abort',
     job,
     policy,
-    measurement
+    measurement,
+    alias,
   )),
 
   machine_code_areas(
@@ -89,6 +95,7 @@ local common = import 'dashboard/panels/common.libsonnet';
     policy=null,
     measurement=null,
     job=null,
+    alias=null,
   ):: common.default_graph(
     title=title,
     description=version_warning(description),
@@ -101,7 +108,8 @@ local common = import 'dashboard/panels/common.libsonnet';
     'lj_jit_mcode_size',
     job,
     policy,
-    measurement
+    measurement,
+    alias,
   )),
 
   strhash_hit(
@@ -114,6 +122,7 @@ local common = import 'dashboard/panels/common.libsonnet';
     policy=null,
     measurement=null,
     job=null,
+    alias=null,
   ):: common.default_graph(
     title=title,
     description=version_warning(description),
@@ -125,7 +134,8 @@ local common = import 'dashboard/panels/common.libsonnet';
     'lj_strhash_hit',
     job,
     policy,
-    measurement
+    measurement,
+    alias,
   )),
 
   strhash_miss(
@@ -138,6 +148,7 @@ local common = import 'dashboard/panels/common.libsonnet';
     policy=null,
     measurement=null,
     job=null,
+    alias=null,
   ):: common.default_graph(
     title=title,
     description=version_warning(description),
@@ -149,7 +160,8 @@ local common = import 'dashboard/panels/common.libsonnet';
     'lj_strhash_miss',
     job,
     policy,
-    measurement
+    measurement,
+    alias,
   )),
 
   local gc_steps(
@@ -160,7 +172,8 @@ local common = import 'dashboard/panels/common.libsonnet';
     job,
     policy,
     measurement,
-    state
+    alias,
+    state,
   ) = common.default_graph(
     title=(if title != null then title else std.format('GC steps (%s)', state)),
     description=(
@@ -178,7 +191,8 @@ local common = import 'dashboard/panels/common.libsonnet';
     std.format('lj_gc_steps_%s', state),
     job,
     policy,
-    measurement
+    measurement,
+    alias,
   )),
 
   gc_steps_atomic(
@@ -189,6 +203,7 @@ local common = import 'dashboard/panels/common.libsonnet';
     policy=null,
     measurement=null,
     job=null,
+    alias=null,
   ):: gc_steps(
     title,
     description,
@@ -197,6 +212,7 @@ local common = import 'dashboard/panels/common.libsonnet';
     job,
     policy,
     measurement,
+    alias,
     'atomic'
   ),
 
@@ -208,6 +224,7 @@ local common = import 'dashboard/panels/common.libsonnet';
     policy=null,
     measurement=null,
     job=null,
+    alias=null,
   ):: gc_steps(
     title,
     description,
@@ -216,6 +233,7 @@ local common = import 'dashboard/panels/common.libsonnet';
     job,
     policy,
     measurement,
+    alias,
     'sweepstring'
   ),
 
@@ -227,6 +245,7 @@ local common = import 'dashboard/panels/common.libsonnet';
     policy=null,
     measurement=null,
     job=null,
+    alias=null,
   ):: gc_steps(
     title,
     description,
@@ -235,6 +254,7 @@ local common = import 'dashboard/panels/common.libsonnet';
     job,
     policy,
     measurement,
+    alias,
     'finalize'
   ),
 
@@ -246,6 +266,7 @@ local common = import 'dashboard/panels/common.libsonnet';
     policy=null,
     measurement=null,
     job=null,
+    alias=null,
   ):: gc_steps(
     title,
     description,
@@ -254,6 +275,7 @@ local common = import 'dashboard/panels/common.libsonnet';
     job,
     policy,
     measurement,
+    alias,
     'sweep'
   ),
 
@@ -265,6 +287,7 @@ local common = import 'dashboard/panels/common.libsonnet';
     policy=null,
     measurement=null,
     job=null,
+    alias=null,
   ):: gc_steps(
     title,
     description,
@@ -273,6 +296,7 @@ local common = import 'dashboard/panels/common.libsonnet';
     job,
     policy,
     measurement,
+    alias,
     'propagate'
   ),
 
@@ -284,6 +308,7 @@ local common = import 'dashboard/panels/common.libsonnet';
     policy=null,
     measurement=null,
     job=null,
+    alias=null,
   ):: gc_steps(
     title,
     description,
@@ -292,6 +317,7 @@ local common = import 'dashboard/panels/common.libsonnet';
     job,
     policy,
     measurement,
+    alias,
     'pause'
   ),
 
@@ -303,6 +329,7 @@ local common = import 'dashboard/panels/common.libsonnet';
     job,
     policy,
     measurement,
+    alias,
     metric_name
   ) = common.default_graph(
     title=title,
@@ -315,7 +342,8 @@ local common = import 'dashboard/panels/common.libsonnet';
     metric_name,
     job,
     policy,
-    measurement
+    measurement,
+    alias,
   )),
 
   strings_allocated(
@@ -328,6 +356,7 @@ local common = import 'dashboard/panels/common.libsonnet';
     policy=null,
     measurement=null,
     job=null,
+    alias=null,
   ):: allocated(
     title,
     description,
@@ -336,6 +365,7 @@ local common = import 'dashboard/panels/common.libsonnet';
     job,
     policy,
     measurement,
+    alias,
     'lj_gc_strnum'
   ),
 
@@ -349,6 +379,7 @@ local common = import 'dashboard/panels/common.libsonnet';
     policy=null,
     measurement=null,
     job=null,
+    alias=null,
   ):: allocated(
     title,
     description,
@@ -357,6 +388,7 @@ local common = import 'dashboard/panels/common.libsonnet';
     job,
     policy,
     measurement,
+    alias,
     'lj_gc_tabnum'
   ),
 
@@ -370,6 +402,7 @@ local common = import 'dashboard/panels/common.libsonnet';
     policy=null,
     measurement=null,
     job=null,
+    alias=null,
   ):: allocated(
     title,
     description,
@@ -378,6 +411,7 @@ local common = import 'dashboard/panels/common.libsonnet';
     job,
     policy,
     measurement,
+    alias,
     'lj_gc_cdatanum'
   ),
 
@@ -391,6 +425,7 @@ local common = import 'dashboard/panels/common.libsonnet';
     policy=null,
     measurement=null,
     job=null,
+    alias=null,
   ):: allocated(
     title,
     description,
@@ -399,6 +434,7 @@ local common = import 'dashboard/panels/common.libsonnet';
     job,
     policy,
     measurement,
+    alias,
     'lj_gc_udatanum'
   ),
 
@@ -412,6 +448,7 @@ local common = import 'dashboard/panels/common.libsonnet';
     policy=null,
     measurement=null,
     job=null,
+    alias=null,
   ):: common.default_graph(
     title=title,
     description=version_warning(description),
@@ -424,7 +461,8 @@ local common = import 'dashboard/panels/common.libsonnet';
     'lj_gc_memory',
     job,
     policy,
-    measurement
+    measurement,
+    alias,
   )),
 
   gc_memory_freed(
@@ -437,6 +475,7 @@ local common = import 'dashboard/panels/common.libsonnet';
     policy=null,
     measurement=null,
     job=null,
+    alias=null,
   ):: common.default_graph(
     title=title,
     description=version_warning(description),
@@ -449,7 +488,8 @@ local common = import 'dashboard/panels/common.libsonnet';
     'lj_gc_freed',
     job,
     policy,
-    measurement
+    measurement,
+    alias,
   )),
 
   gc_memory_allocated(
@@ -462,6 +502,7 @@ local common = import 'dashboard/panels/common.libsonnet';
     policy=null,
     measurement=null,
     job=null,
+    alias=null,
   ):: common.default_graph(
     title=title,
     description=version_warning(description),
@@ -474,6 +515,7 @@ local common = import 'dashboard/panels/common.libsonnet';
     'lj_gc_allocated',
     job,
     policy,
-    measurement
+    measurement,
+    alias,
   )),
 }

@@ -112,10 +112,12 @@ make test-deps
 ```
 to install build dependencies and dependencies that are required to run tests locally.
 
-To build a static dashboard with no input and dynamic variables, run `make` commands.
+To build a static dashboard with no input, run `make` commands.
 ```bash
 make DATASOURCE=Prometheus JOB=tarantool \
-     OUTPUT_STATIC_DASHBOARD=mydashboard.json build-static-prometheus
+     WITH_INSTANCE_VARIABLE=FALSE \
+     OUTPUT_STATIC_DASHBOARD=mydashboard.json \
+     build-static-prometheus
 ```
 Following targets are available:
 - `build-static-prometheus`: Tarantool dashboard for a Prometheus datasource;
@@ -126,13 +128,20 @@ Following targets are available:
 Variables for Prometheus targets:
 - `DATASOURCE`: name of a Prometheus data source;
 - `JOB` (optional, default `tarantool`): name of a Prometheus job collecting your application metrics;
+- `WITH_INSTANCE_VARIABLE` (optional, default `FALSE`): build a dashboard with variable which
+  can be used to select displayed cluster instances;
 - `OUTPUT_STATIC_DASHBOARD` (optional, default `dashboard.json`): compiled dashboard file.
 
 Variables for InfluxDB targets:
 - `DATASOURCE`: name of a InfluxDB data source;
 - `POLICY` (optional, default `autogen`): InfluxDB metrics retention policy;
 - `MEASUREMENT` (optional, default `tarantool_http`): name of a InfluxDB measurement with your application metrics;
+- `WITH_INSTANCE_VARIABLE` (optional, default `FALSE`): build a dashboard with variable which
+  can be used to select displayed cluster instances;
 - `OUTPUT_STATIC_DASHBOARD` (optional, default `dashboard.json`): compiled dashboard file.
+
+With `WITH_INSTANCE_VARIABLE=FALSE`, dashboard will contain no dynamic variables and Grafana alerts can be used.
+With `WITH_INSTANCE_VARIABLE=TRUE`, dashboard will contain instance dynamic variable (but no inputs).
 
 You can also compile configurable Prometheus dashboard template (the same we publish to
 Grafana Official & community built dashboards) with

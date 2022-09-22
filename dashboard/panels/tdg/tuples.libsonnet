@@ -15,6 +15,7 @@ local prometheus = grafana.prometheus;
     job=null,
     policy=null,
     measurement=null,
+    alias=null,
   ) =
     if datasource_type == variable.datasource_type.prometheus then
       prometheus.target(
@@ -63,6 +64,7 @@ local prometheus = grafana.prometheus;
     policy=null,
     measurement=null,
     job=null,
+    alias=null,
   ):: common_utils.default_graph(
     title=title,
     description=description,
@@ -75,6 +77,7 @@ local prometheus = grafana.prometheus;
     job,
     policy,
     measurement,
+    alias,
   )),
 
   tuples_returned_average(
@@ -89,6 +92,7 @@ local prometheus = grafana.prometheus;
     policy=null,
     measurement=null,
     job=null,
+    alias=null,
   ):: common_utils.default_graph(
     title=title,
     description=description,
@@ -101,6 +105,7 @@ local prometheus = grafana.prometheus;
     job,
     policy,
     measurement,
+    alias,
   )),
 
   tuples_scanned_max(
@@ -115,6 +120,7 @@ local prometheus = grafana.prometheus;
     policy=null,
     measurement=null,
     job=null,
+    alias=null,
   ):: common_utils.default_graph(
     title=title,
     description=description,
@@ -128,6 +134,7 @@ local prometheus = grafana.prometheus;
     job,
     policy,
     measurement,
+    alias,
   )),
 
   tuples_returned_max(
@@ -142,6 +149,7 @@ local prometheus = grafana.prometheus;
     policy=null,
     measurement=null,
     job=null,
+    alias=null,
   ):: common_utils.default_graph(
     title=title,
     description=description,
@@ -155,5 +163,6 @@ local prometheus = grafana.prometheus;
     job,
     policy,
     measurement,
+    alias,
   )),
 }

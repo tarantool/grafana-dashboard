@@ -1,21 +1,5 @@
 {
-   "__inputs": [
-      {
-         "description": "Prometheus Tarantool metrics bank",
-         "label": "Prometheus",
-         "name": "DS_PROMETHEUS",
-         "pluginId": "prometheus",
-         "pluginName": "Prometheus",
-         "type": "datasource"
-      },
-      {
-         "description": "Prometheus Tarantool metrics job",
-         "label": "Job",
-         "name": "PROMETHEUS_JOB",
-         "type": "constant",
-         "value": "tarantool"
-      }
-   ],
+   "__inputs": [ ],
    "__requires": [
       {
          "id": "grafana",
@@ -84,7 +68,7 @@
          "panels": [
             {
                "columns": [ ],
-               "datasource": "${DS_PROMETHEUS}",
+               "datasource": "Prometheus",
                "description": "Overview of Tarantool instances observed by Prometheus job.\n\nIf instance row is *red*, it means Prometheus can't reach\nURI specified in targets or ran into error.\nIf instance row is *green*, it means instance is up and running and\nPrometheus is successfully extracting metrics from it.\n\"Uptime\" column shows time since instant start.\n",
                "gridPos": {
                   "h": 8,
@@ -149,7 +133,7 @@
                ],
                "targets": [
                   {
-                     "expr": "up{job=~\"$job\"} * on(instance) group_left(alias) tnt_info_uptime{job=~\"$job\"} or\non(instance) label_replace(up{job=~\"$job\"}, \"alias\", \"Not available\", \"instance\", \".*\")\n",
+                     "expr": "up{job=~\"tarantool\"} * on(instance) group_left(alias) tnt_info_uptime{job=~\"tarantool\"} or\non(instance) label_replace(up{job=~\"tarantool\"}, \"alias\", \"Not available\", \"instance\", \".*\")\n",
                      "format": "table",
                      "instant": true,
                      "intervalFactor": 2,
@@ -164,7 +148,7 @@
                "type": "table"
             },
             {
-               "datasource": "${DS_PROMETHEUS}",
+               "datasource": "Prometheus",
                "description": "Count of running Tarantool instances observed by Prometheus job.\nIf Prometheus can't reach URI specified in targets\nor ran into error, instance is not counted.\n",
                "gridPos": {
                   "h": 3,
@@ -206,7 +190,7 @@
                "pluginVersion": "6.6.0",
                "targets": [
                   {
-                     "expr": "sum(up{job=~\"$job\"})",
+                     "expr": "sum(up{job=~\"tarantool\"})",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "",
@@ -218,7 +202,7 @@
                "type": "stat"
             },
             {
-               "datasource": "${DS_PROMETHEUS}",
+               "datasource": "Prometheus",
                "description": "Overall value of memory used by Tarantool\nitems and indexes (*arena_used* value).\nIf Tarantool instance is not available\nfor Prometheus metrics extraction now,\nits contribution is not counted.\n",
                "gridPos": {
                   "h": 3,
@@ -260,7 +244,7 @@
                "pluginVersion": "6.6.0",
                "targets": [
                   {
-                     "expr": "sum(tnt_slab_arena_used{job=~\"$job\"})",
+                     "expr": "sum(tnt_slab_arena_used{job=~\"tarantool\"})",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "",
@@ -272,7 +256,7 @@
                "type": "stat"
             },
             {
-               "datasource": "${DS_PROMETHEUS}",
+               "datasource": "Prometheus",
                "description": "Overall value of memory available for Tarantool items\nand indexes allocation (*memtx_memory* or *quota_size* values).\nIf Tarantool instance is not available for Prometheus metrics\nextraction now, its contribution is not counted.\n",
                "gridPos": {
                   "h": 3,
@@ -314,7 +298,7 @@
                "pluginVersion": "6.6.0",
                "targets": [
                   {
-                     "expr": "sum(tnt_slab_quota_size{job=~\"$job\"})",
+                     "expr": "sum(tnt_slab_quota_size{job=~\"tarantool\"})",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "",
@@ -326,7 +310,7 @@
                "type": "stat"
             },
             {
-               "datasource": "${DS_PROMETHEUS}",
+               "datasource": "Prometheus",
                "description": "Overall rate of HTTP requests processed\non Tarantool instances (all methods and response codes).\nIf Tarantool instance is not available for Prometheus metrics\nextraction now, its contribution is not counted.\n",
                "gridPos": {
                   "h": 5,
@@ -368,7 +352,7 @@
                "pluginVersion": "6.6.0",
                "targets": [
                   {
-                     "expr": "sum(rate(http_server_request_latency_count{job=~\"$job\"}[$__rate_interval]))",
+                     "expr": "sum(rate(http_server_request_latency_count{job=~\"tarantool\"}[$__rate_interval]))",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "",
@@ -380,7 +364,7 @@
                "type": "stat"
             },
             {
-               "datasource": "${DS_PROMETHEUS}",
+               "datasource": "Prometheus",
                "description": "Overall rate of network requests processed on Tarantool instances.\nIf Tarantool instance is not available for Prometheus metrics\nextraction now, its contribution is not counted.\n",
                "gridPos": {
                   "h": 5,
@@ -422,7 +406,7 @@
                "pluginVersion": "6.6.0",
                "targets": [
                   {
-                     "expr": "sum(rate(tnt_net_requests_total{job=~\"$job\"}[$__rate_interval]))",
+                     "expr": "sum(rate(tnt_net_requests_total{job=~\"tarantool\"}[$__rate_interval]))",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "",
@@ -434,7 +418,7 @@
                "type": "stat"
             },
             {
-               "datasource": "${DS_PROMETHEUS}",
+               "datasource": "Prometheus",
                "description": "Overall rate of operations performed on Tarantool spaces\n(*select*, *insert*, *update* etc.).\nIf Tarantool instance is not available for Prometheus metrics\nextraction now, its contribution is not counted.\n",
                "gridPos": {
                   "h": 5,
@@ -476,7 +460,7 @@
                "pluginVersion": "6.6.0",
                "targets": [
                   {
-                     "expr": "sum(rate(tnt_stats_op_total{job=~\"$job\"}[$__rate_interval]))",
+                     "expr": "sum(rate(tnt_stats_op_total{job=~\"tarantool\"}[$__rate_interval]))",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "",
@@ -492,7 +476,7 @@
                "bars": false,
                "dashLength": 10,
                "dashes": false,
-               "datasource": "${DS_PROMETHEUS}",
+               "datasource": "Prometheus",
                "decimals": 0,
                "description": "Number of \"warning\" issues on each cluster instance.\n\"warning\" issues includes high replication lag, replication long idle,\nfailover and switchover issues, clock issues, memory fragmentation,\nconfiguration issues and alien members warnings.\n\nPanel works with `cartridge >= 2.0.2`, `metrics >= 0.6.0`,\nwhile `metrics >= 0.9.0` is recommended for per instance display.\n",
                "fill": 0,
@@ -532,7 +516,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_cartridge_issues{job=~\"$job\",alias=~\"$alias\",level=\"warning\"}",
+                     "expr": "tnt_cartridge_issues{job=~\"tarantool\",alias=~\"$alias\",level=\"warning\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -582,7 +566,7 @@
                "bars": false,
                "dashLength": 10,
                "dashes": false,
-               "datasource": "${DS_PROMETHEUS}",
+               "datasource": "Prometheus",
                "decimals": 0,
                "description": "Number of \"critical\" issues on each cluster instance.\n\"critical\" issues includes replication process critical fails and\nrunning out of available memory.\n\nPanel works with `cartridge >= 2.0.2`, `metrics >= 0.6.0`,\nwhile `metrics >= 0.9.0` is recommended for per instance display.\n",
                "fill": 0,
@@ -622,7 +606,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_cartridge_issues{job=~\"$job\",alias=~\"$alias\",level=\"critical\"}",
+                     "expr": "tnt_cartridge_issues{job=~\"tarantool\",alias=~\"$alias\",level=\"critical\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -668,7 +652,7 @@
                ]
             },
             {
-               "datasource": "${DS_PROMETHEUS}",
+               "datasource": "Prometheus",
                "description": "`follows` status means replication is running.\nOtherwise, `not running` is displayed.\n\nPanel works with `metrics >= 0.13.0` and Grafana 8.x.\n",
                "fieldConfig": {
                   "defaults": {
@@ -766,7 +750,7 @@
                },
                "targets": [
                   {
-                     "expr": "tnt_replication_status{job=~\"$job\",alias=~\"$alias\"}",
+                     "expr": "tnt_replication_status{job=~\"tarantool\",alias=~\"$alias\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}} {{stream}} ({{id}})",
@@ -777,7 +761,7 @@
                "type": "timeseries"
             },
             {
-               "datasource": "${DS_PROMETHEUS}",
+               "datasource": "Prometheus",
                "description": "`master` status means instance is available for read and\nwrite operations. `replica` status means instance is\navailable only for read operations.\n\nPanel works with `metrics >= 0.11.0` and Grafana 8.x.\n",
                "fieldConfig": {
                   "defaults": {
@@ -875,7 +859,7 @@
                },
                "targets": [
                   {
-                     "expr": "tnt_read_only{job=~\"$job\",alias=~\"$alias\"}",
+                     "expr": "tnt_read_only{job=~\"tarantool\",alias=~\"$alias\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -890,7 +874,7 @@
                "bars": false,
                "dashLength": 10,
                "dashes": false,
-               "datasource": "${DS_PROMETHEUS}",
+               "datasource": "Prometheus",
                "description": "Replication lag value for Tarantool instance.\n\nPanel works with `metrics >= 0.13.0`.\n",
                "fill": 0,
                "gridPos": {
@@ -929,7 +913,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_replication_lag{job=~\"$job\",alias=~\"$alias\"}",
+                     "expr": "tnt_replication_lag{job=~\"tarantool\",alias=~\"$alias\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}} ({{id}})",
@@ -977,7 +961,7 @@
                "bars": false,
                "dashLength": 10,
                "dashes": false,
-               "datasource": "${DS_PROMETHEUS}",
+               "datasource": "Prometheus",
                "description": "Clock drift across the cluster.\nmax shows difference with the fastest clock (always positive),\nmin shows difference with the slowest clock (always negative).\n\nPanel works with `metrics >= 0.10.0`.\n",
                "fill": 1,
                "gridPos": {
@@ -1016,7 +1000,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_clock_delta{job=~\"$job\",alias=~\"$alias\"}",
+                     "expr": "tnt_clock_delta{job=~\"tarantool\",alias=~\"$alias\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}} ({{delta}})",
@@ -1084,7 +1068,7 @@
                "bars": false,
                "dashLength": 10,
                "dashes": false,
-               "datasource": "${DS_PROMETHEUS}",
+               "datasource": "Prometheus",
                "decimals": 3,
                "description": "Requests, processed with success (code 2xx) on Tarantool's side.\nGraph shows mean count per second.\n",
                "fill": 0,
@@ -1124,7 +1108,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(http_server_request_latency_count{job=~\"$job\",alias=~\"$alias\",status=~\"^2\\\\d{2}$\"}[$__rate_interval])",
+                     "expr": "rate(http_server_request_latency_count{job=~\"tarantool\",alias=~\"$alias\",status=~\"^2\\\\d{2}$\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}} — {{method}} {{path}} (code {{status}})",
@@ -1174,7 +1158,7 @@
                "bars": false,
                "dashLength": 10,
                "dashes": false,
-               "datasource": "${DS_PROMETHEUS}",
+               "datasource": "Prometheus",
                "decimals": 3,
                "description": "Requests, processed with 4xx error on Tarantool's side.\nGraph shows mean count per second.\n",
                "fill": 0,
@@ -1214,7 +1198,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(http_server_request_latency_count{job=~\"$job\",alias=~\"$alias\",status=~\"^4\\\\d{2}$\"}[$__rate_interval])",
+                     "expr": "rate(http_server_request_latency_count{job=~\"tarantool\",alias=~\"$alias\",status=~\"^4\\\\d{2}$\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}} — {{method}} {{path}} (code {{status}})",
@@ -1264,7 +1248,7 @@
                "bars": false,
                "dashLength": 10,
                "dashes": false,
-               "datasource": "${DS_PROMETHEUS}",
+               "datasource": "Prometheus",
                "decimals": 3,
                "description": "Requests, processed with 5xx error on Tarantool's side.\nGraph shows mean count per second.\n",
                "fill": 0,
@@ -1304,7 +1288,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(http_server_request_latency_count{job=~\"$job\",alias=~\"$alias\",status=~\"^5\\\\d{2}$\"}[$__rate_interval])",
+                     "expr": "rate(http_server_request_latency_count{job=~\"tarantool\",alias=~\"$alias\",status=~\"^5\\\\d{2}$\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}} — {{method}} {{path}} (code {{status}})",
@@ -1354,7 +1338,7 @@
                "bars": false,
                "dashLength": 10,
                "dashes": false,
-               "datasource": "${DS_PROMETHEUS}",
+               "datasource": "Prometheus",
                "decimals": 3,
                "description": "99th percentile of requests latency.\nIncludes only requests processed with success\n(code 2xx) on Tarantool's side.\n",
                "fill": 0,
@@ -1394,7 +1378,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "http_server_request_latency{job=~\"$job\",alias=~\"$alias\",quantile=\"0.99\",status=~\"^2\\\\d{2}$\"}",
+                     "expr": "http_server_request_latency{job=~\"tarantool\",alias=~\"$alias\",quantile=\"0.99\",status=~\"^2\\\\d{2}$\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}} — {{method}} {{path}} (code {{status}})",
@@ -1444,7 +1428,7 @@
                "bars": false,
                "dashLength": 10,
                "dashes": false,
-               "datasource": "${DS_PROMETHEUS}",
+               "datasource": "Prometheus",
                "decimals": 3,
                "description": "99th percentile of requests latency.\nIncludes only requests processed with\n4xx error on Tarantool's side.\n",
                "fill": 0,
@@ -1484,7 +1468,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "http_server_request_latency{job=~\"$job\",alias=~\"$alias\",quantile=\"0.99\",status=~\"^4\\\\d{2}$\"}",
+                     "expr": "http_server_request_latency{job=~\"tarantool\",alias=~\"$alias\",quantile=\"0.99\",status=~\"^4\\\\d{2}$\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}} — {{method}} {{path}} (code {{status}})",
@@ -1534,7 +1518,7 @@
                "bars": false,
                "dashLength": 10,
                "dashes": false,
-               "datasource": "${DS_PROMETHEUS}",
+               "datasource": "Prometheus",
                "decimals": 3,
                "description": "99th percentile of requests latency.\nIncludes only requests processed with\n5xx error on Tarantool's side.\n",
                "fill": 0,
@@ -1574,7 +1558,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "http_server_request_latency{job=~\"$job\",alias=~\"$alias\",quantile=\"0.99\",status=~\"^5\\\\d{2}$\"}",
+                     "expr": "http_server_request_latency{job=~\"tarantool\",alias=~\"$alias\",quantile=\"0.99\",status=~\"^5\\\\d{2}$\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}} — {{method}} {{path}} (code {{status}})",
@@ -1644,7 +1628,7 @@
                "bars": false,
                "dashLength": 10,
                "dashes": false,
-               "datasource": "${DS_PROMETHEUS}",
+               "datasource": "Prometheus",
                "decimals": 3,
                "description": "Memory used for network input/output buffers.\n",
                "fill": 0,
@@ -1684,7 +1668,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_info_memory_net{job=~\"$job\",alias=~\"$alias\"}",
+                     "expr": "tnt_info_memory_net{job=~\"tarantool\",alias=~\"$alias\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -1734,7 +1718,7 @@
                "bars": false,
                "dashLength": 10,
                "dashes": false,
-               "datasource": "${DS_PROMETHEUS}",
+               "datasource": "Prometheus",
                "decimals": 3,
                "description": "Data received by instance from binary protocol connections.\nGraph shows average bytes per second.\n",
                "fill": 0,
@@ -1774,7 +1758,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_net_received_total{job=~\"$job\",alias=~\"$alias\"}[$__rate_interval])",
+                     "expr": "rate(tnt_net_received_total{job=~\"tarantool\",alias=~\"$alias\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -1824,7 +1808,7 @@
                "bars": false,
                "dashLength": 10,
                "dashes": false,
-               "datasource": "${DS_PROMETHEUS}",
+               "datasource": "Prometheus",
                "decimals": 3,
                "description": "Data sent by instance with binary protocol connections.\nGraph shows average bytes per second.\n",
                "fill": 0,
@@ -1864,7 +1848,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_net_sent_total{job=~\"$job\",alias=~\"$alias\"}[$__rate_interval])",
+                     "expr": "rate(tnt_net_sent_total{job=~\"tarantool\",alias=~\"$alias\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -1914,7 +1898,7 @@
                "bars": false,
                "dashLength": 10,
                "dashes": false,
-               "datasource": "${DS_PROMETHEUS}",
+               "datasource": "Prometheus",
                "decimals": 3,
                "description": "Number of network requests this instance has handled.\nGraph shows mean rps.\n\nPanel will be removed in favor of \"Processed requests\"\nand \"Requests in queue (overall)\" panels.\n",
                "fill": 0,
@@ -1954,7 +1938,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_net_requests_total{job=~\"$job\",alias=~\"$alias\"}[$__rate_interval])",
+                     "expr": "rate(tnt_net_requests_total{job=~\"tarantool\",alias=~\"$alias\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -2004,7 +1988,7 @@
                "bars": false,
                "dashLength": 10,
                "dashes": false,
-               "datasource": "${DS_PROMETHEUS}",
+               "datasource": "Prometheus",
                "decimals": 0,
                "description": "Number of pending network requests.\n\nPanel will be removed in favor of \"Requests in progress\"\nand \"Requests in queue (current)\" panels.\n",
                "fill": 0,
@@ -2044,7 +2028,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_net_requests_current{job=~\"$job\",alias=~\"$alias\"}",
+                     "expr": "tnt_net_requests_current{job=~\"tarantool\",alias=~\"$alias\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -2094,7 +2078,7 @@
                "bars": false,
                "dashLength": 10,
                "dashes": false,
-               "datasource": "${DS_PROMETHEUS}",
+               "datasource": "Prometheus",
                "decimals": 3,
                "description": "Average number of requests processed by tx thread per second.\n\nPanel works with `metrics >= 0.13.0` and `Tarantool >= 2.10-beta2`.\n",
                "fill": 0,
@@ -2134,7 +2118,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_net_requests_in_progress_total{job=~\"$job\",alias=~\"$alias\"}[$__rate_interval])",
+                     "expr": "rate(tnt_net_requests_in_progress_total{job=~\"tarantool\",alias=~\"$alias\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -2184,7 +2168,7 @@
                "bars": false,
                "dashLength": 10,
                "dashes": false,
-               "datasource": "${DS_PROMETHEUS}",
+               "datasource": "Prometheus",
                "decimals": 0,
                "description": "Number of requests currently being processed in the tx thread.\n\nPanel works with `metrics >= 0.13.0` and `Tarantool >= 2.10-beta2`.\n",
                "fill": 0,
@@ -2224,7 +2208,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_net_requests_in_progress_current{job=~\"$job\",alias=~\"$alias\"}",
+                     "expr": "tnt_net_requests_in_progress_current{job=~\"tarantool\",alias=~\"$alias\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -2274,7 +2258,7 @@
                "bars": false,
                "dashLength": 10,
                "dashes": false,
-               "datasource": "${DS_PROMETHEUS}",
+               "datasource": "Prometheus",
                "decimals": 3,
                "description": "Average number of requests which was placed in queues\nof streams per second.\n\nPanel works with `metrics >= 0.13.0` and `Tarantool >= 2.10-beta2`.\n",
                "fill": 0,
@@ -2314,7 +2298,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_net_requests_in_stream_queue_total{job=~\"$job\",alias=~\"$alias\"}[$__rate_interval])",
+                     "expr": "rate(tnt_net_requests_in_stream_queue_total{job=~\"tarantool\",alias=~\"$alias\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -2364,7 +2348,7 @@
                "bars": false,
                "dashLength": 10,
                "dashes": false,
-               "datasource": "${DS_PROMETHEUS}",
+               "datasource": "Prometheus",
                "decimals": 0,
                "description": "Number of requests currently waiting in queues of streams.\n\nPanel works with `metrics >= 0.13.0` and `Tarantool >= 2.10-beta2`.\n",
                "fill": 0,
@@ -2404,7 +2388,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_net_requests_in_stream_queue_current{job=~\"$job\",alias=~\"$alias\"}",
+                     "expr": "tnt_net_requests_in_stream_queue_current{job=~\"tarantool\",alias=~\"$alias\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -2454,7 +2438,7 @@
                "bars": false,
                "dashLength": 10,
                "dashes": false,
-               "datasource": "${DS_PROMETHEUS}",
+               "datasource": "Prometheus",
                "decimals": 3,
                "description": "Average number of new binary protocol connections per second.\n",
                "fill": 0,
@@ -2494,7 +2478,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_net_connections_total{job=~\"$job\",alias=~\"$alias\"}[$__rate_interval])",
+                     "expr": "rate(tnt_net_connections_total{job=~\"tarantool\",alias=~\"$alias\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -2544,7 +2528,7 @@
                "bars": false,
                "dashLength": 10,
                "dashes": false,
-               "datasource": "${DS_PROMETHEUS}",
+               "datasource": "Prometheus",
                "decimals": 0,
                "description": "Number of current active binary protocol connections.\n",
                "fill": 0,
@@ -2584,7 +2568,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_net_connections_current{job=~\"$job\",alias=~\"$alias\"}",
+                     "expr": "tnt_net_connections_current{job=~\"tarantool\",alias=~\"$alias\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -2668,7 +2652,7 @@
                "bars": false,
                "dashLength": 10,
                "dashes": false,
-               "datasource": "${DS_PROMETHEUS}",
+               "datasource": "Prometheus",
                "decimals": 3,
                "description": "`quota_used_ratio` = `quota_used` / `quota_size`.\n\n`quota_used` – used by slab allocator (for both tuple and index slabs).\n\n`quota_size` – memory limit for slab allocator (as configured in the *memtx_memory* parameter).\n",
                "fill": 0,
@@ -2708,7 +2692,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_slab_quota_used_ratio{job=~\"$job\",alias=~\"$alias\"}",
+                     "expr": "tnt_slab_quota_used_ratio{job=~\"tarantool\",alias=~\"$alias\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -2758,7 +2742,7 @@
                "bars": false,
                "dashLength": 10,
                "dashes": false,
-               "datasource": "${DS_PROMETHEUS}",
+               "datasource": "Prometheus",
                "decimals": 3,
                "description": "`arena_used_ratio` = `arena_used` / `arena_size`.\n\n`arena_used` – used for both tuples and indexes.\n\n`arena_size` – allocated for both tuples and indexes.\n",
                "fill": 0,
@@ -2798,7 +2782,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_slab_arena_used_ratio{job=~\"$job\",alias=~\"$alias\"}",
+                     "expr": "tnt_slab_arena_used_ratio{job=~\"tarantool\",alias=~\"$alias\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -2848,7 +2832,7 @@
                "bars": false,
                "dashLength": 10,
                "dashes": false,
-               "datasource": "${DS_PROMETHEUS}",
+               "datasource": "Prometheus",
                "decimals": 3,
                "description": "`items_used_ratio` = `items_used` / `items_size`.\n\n`items_used` – used only for tuples.\n\n`items_size` – allocated only for tuples.\n",
                "fill": 0,
@@ -2888,7 +2872,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_slab_items_used_ratio{job=~\"$job\",alias=~\"$alias\"}",
+                     "expr": "tnt_slab_items_used_ratio{job=~\"tarantool\",alias=~\"$alias\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -2938,7 +2922,7 @@
                "bars": false,
                "dashLength": 10,
                "dashes": false,
-               "datasource": "${DS_PROMETHEUS}",
+               "datasource": "Prometheus",
                "decimals": 3,
                "description": "Memory used by slab allocator (for both tuple and index slabs).\n",
                "fill": 0,
@@ -2978,7 +2962,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_slab_quota_used{job=~\"$job\",alias=~\"$alias\"}",
+                     "expr": "tnt_slab_quota_used{job=~\"tarantool\",alias=~\"$alias\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -3028,7 +3012,7 @@
                "bars": false,
                "dashLength": 10,
                "dashes": false,
-               "datasource": "${DS_PROMETHEUS}",
+               "datasource": "Prometheus",
                "decimals": 3,
                "description": "Memory used for both tuples and indexes.\n",
                "fill": 0,
@@ -3068,7 +3052,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_slab_arena_used{job=~\"$job\",alias=~\"$alias\"}",
+                     "expr": "tnt_slab_arena_used{job=~\"tarantool\",alias=~\"$alias\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -3118,7 +3102,7 @@
                "bars": false,
                "dashLength": 10,
                "dashes": false,
-               "datasource": "${DS_PROMETHEUS}",
+               "datasource": "Prometheus",
                "decimals": 3,
                "description": "Memory used for only tuples.\n",
                "fill": 0,
@@ -3158,7 +3142,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_slab_items_used{job=~\"$job\",alias=~\"$alias\"}",
+                     "expr": "tnt_slab_items_used{job=~\"tarantool\",alias=~\"$alias\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -3208,7 +3192,7 @@
                "bars": false,
                "dashLength": 10,
                "dashes": false,
-               "datasource": "${DS_PROMETHEUS}",
+               "datasource": "Prometheus",
                "decimals": 3,
                "description": "Memory limit for slab allocator (as configured in the *memtx_memory* parameter).\n",
                "fill": 0,
@@ -3248,7 +3232,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_slab_quota_size{job=~\"$job\",alias=~\"$alias\"}",
+                     "expr": "tnt_slab_quota_size{job=~\"tarantool\",alias=~\"$alias\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -3298,7 +3282,7 @@
                "bars": false,
                "dashLength": 10,
                "dashes": false,
-               "datasource": "${DS_PROMETHEUS}",
+               "datasource": "Prometheus",
                "decimals": 3,
                "description": "Memory allocated for both tuples and indexes by slab allocator.\n",
                "fill": 0,
@@ -3338,7 +3322,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_slab_arena_size{job=~\"$job\",alias=~\"$alias\"}",
+                     "expr": "tnt_slab_arena_size{job=~\"tarantool\",alias=~\"$alias\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -3388,7 +3372,7 @@
                "bars": false,
                "dashLength": 10,
                "dashes": false,
-               "datasource": "${DS_PROMETHEUS}",
+               "datasource": "Prometheus",
                "decimals": 3,
                "description": "Memory allocated for only tuples by slab allocator.\n",
                "fill": 0,
@@ -3428,7 +3412,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_slab_items_size{job=~\"$job\",alias=~\"$alias\"}",
+                     "expr": "tnt_slab_items_size{job=~\"tarantool\",alias=~\"$alias\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -3498,7 +3482,7 @@
                "bars": false,
                "dashLength": 10,
                "dashes": false,
-               "datasource": "${DS_PROMETHEUS}",
+               "datasource": "Prometheus",
                "decimals": 0,
                "description": "Number of records in the space (memtx engine).\nName of space is specified after dash.\n",
                "fill": 0,
@@ -3538,7 +3522,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_space_len{job=~\"$job\", alias=~\"$alias\", engine=\"memtx\"}",
+                     "expr": "tnt_space_len{job=~\"tarantool\", alias=~\"$alias\", engine=\"memtx\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}} — {{name}}",
@@ -3588,7 +3572,7 @@
                "bars": false,
                "dashLength": 10,
                "dashes": false,
-               "datasource": "${DS_PROMETHEUS}",
+               "datasource": "Prometheus",
                "decimals": 0,
                "description": "Number of records in the space (vinyl engine).\nName of space is specified after dash.\nBy default this metrics is disabled,\nto enable it you must set global variable\ninclude_vinyl_count to true. Beware that\ncount() operation scans the space and may\nslow down your app. \n\nPanel works with `metrics >= 0.13.0`.\n",
                "fill": 0,
@@ -3628,7 +3612,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_vinyl_tuples{job=~\"$job\", alias=~\"$alias\", engine=\"vinyl\"}",
+                     "expr": "tnt_vinyl_tuples{job=~\"tarantool\", alias=~\"$alias\", engine=\"vinyl\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}} — {{name}}",
@@ -3678,7 +3662,7 @@
                "bars": false,
                "dashLength": 10,
                "dashes": false,
-               "datasource": "${DS_PROMETHEUS}",
+               "datasource": "Prometheus",
                "decimals": 3,
                "description": "Total number of bytes in all tuples of the space (memtx engine).\nName of space is specified after dash.\n",
                "fill": 0,
@@ -3718,7 +3702,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_space_bsize{job=~\"$job\", alias=~\"$alias\", engine=\"memtx\"}",
+                     "expr": "tnt_space_bsize{job=~\"tarantool\", alias=~\"$alias\", engine=\"memtx\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}} — {{name}}",
@@ -3768,7 +3752,7 @@
                "bars": false,
                "dashLength": 10,
                "dashes": false,
-               "datasource": "${DS_PROMETHEUS}",
+               "datasource": "Prometheus",
                "decimals": 3,
                "description": "Total number of bytes taken by the index.\nName of space is specified after dash,\nindex name specified in parentheses.\nIncludes both memtx and vinyl spaces.\n",
                "fill": 0,
@@ -3808,7 +3792,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_space_index_bsize{job=~\"$job\", alias=~\"$alias\"}",
+                     "expr": "tnt_space_index_bsize{job=~\"tarantool\", alias=~\"$alias\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}} — {{name}} ({{index_name}})",
@@ -3858,7 +3842,7 @@
                "bars": false,
                "dashLength": 10,
                "dashes": false,
-               "datasource": "${DS_PROMETHEUS}",
+               "datasource": "Prometheus",
                "decimals": 3,
                "description": "Total size of tuples and all indexes in the space (memtx engine).\nName of space is specified after dash.\n",
                "fill": 0,
@@ -3898,7 +3882,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_space_total_bsize{job=~\"$job\", alias=~\"$alias\", engine=\"memtx\"}",
+                     "expr": "tnt_space_total_bsize{job=~\"tarantool\", alias=~\"$alias\", engine=\"memtx\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}} — {{name}}",
@@ -3968,7 +3952,7 @@
                "bars": false,
                "dashLength": 10,
                "dashes": false,
-               "datasource": "${DS_PROMETHEUS}",
+               "datasource": "Prometheus",
                "decimals": 3,
                "description": "The amount of data stored in the `.run` files located in the `vinyl_dir` directory.\n\nPanel works with `metrics >= 0.8.0`.\n",
                "fill": 0,
@@ -4008,7 +3992,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_vinyl_disk_data_size{job=~\"$job\",alias=~\"$alias\"}",
+                     "expr": "tnt_vinyl_disk_data_size{job=~\"tarantool\",alias=~\"$alias\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -4058,7 +4042,7 @@
                "bars": false,
                "dashLength": 10,
                "dashes": false,
-               "datasource": "${DS_PROMETHEUS}",
+               "datasource": "Prometheus",
                "decimals": 3,
                "description": "The amount of data stored in the `.index` files located in the `vinyl_dir` directory.\n\nPanel works with `metrics >= 0.8.0`.\n",
                "fill": 0,
@@ -4098,7 +4082,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_vinyl_disk_index_size{job=~\"$job\",alias=~\"$alias\"}",
+                     "expr": "tnt_vinyl_disk_index_size{job=~\"tarantool\",alias=~\"$alias\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -4148,7 +4132,7 @@
                "bars": false,
                "dashLength": 10,
                "dashes": false,
-               "datasource": "${DS_PROMETHEUS}",
+               "datasource": "Prometheus",
                "decimals": 3,
                "description": "Amount of memory in bytes currently used to store tuples (data).\n\nPanel works with `metrics >= 0.8.0`.\n",
                "fill": 0,
@@ -4188,7 +4172,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_vinyl_memory_tuple_cache{job=~\"$job\",alias=~\"$alias\"}",
+                     "expr": "tnt_vinyl_memory_tuple_cache{job=~\"tarantool\",alias=~\"$alias\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -4238,7 +4222,7 @@
                "bars": false,
                "dashLength": 10,
                "dashes": false,
-               "datasource": "${DS_PROMETHEUS}",
+               "datasource": "Prometheus",
                "decimals": 3,
                "description": "Amount of memory in bytes currently used to store indexes.\nIf the metric value is close to box.cfg.vinyl_memory, this\nindicates that vinyl_page_size was chosen incorrectly.\n\nPanel works with `metrics >= 0.8.0`.\n",
                "fill": 0,
@@ -4278,7 +4262,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_vinyl_memory_page_index{job=~\"$job\",alias=~\"$alias\"}",
+                     "expr": "tnt_vinyl_memory_page_index{job=~\"tarantool\",alias=~\"$alias\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -4328,7 +4312,7 @@
                "bars": false,
                "dashLength": 10,
                "dashes": false,
-               "datasource": "${DS_PROMETHEUS}",
+               "datasource": "Prometheus",
                "decimals": 3,
                "description": "Amount of memory in bytes used by bloom filters.\n",
                "fill": 0,
@@ -4368,7 +4352,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_vinyl_memory_bloom_filter{job=~\"$job\",alias=~\"$alias\"}",
+                     "expr": "tnt_vinyl_memory_bloom_filter{job=~\"tarantool\",alias=~\"$alias\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -4418,7 +4402,7 @@
                "bars": false,
                "dashLength": 10,
                "dashes": false,
-               "datasource": "${DS_PROMETHEUS}",
+               "datasource": "Prometheus",
                "decimals": 3,
                "description": "The estimated average rate of taking dumps, bytes per second.\nInitially, the rate value is 10 megabytes per second\nand being recalculated depending on the the actual rate.\nOnly significant dumps that are larger than one megabyte\nare used for the estimate.\n\nPanel works with `metrics >= 0.8.0`.\n",
                "fill": 0,
@@ -4458,7 +4442,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_vinyl_regulator_dump_bandwidth{job=~\"$job\",alias=~\"$alias\"}",
+                     "expr": "tnt_vinyl_regulator_dump_bandwidth{job=~\"tarantool\",alias=~\"$alias\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -4508,7 +4492,7 @@
                "bars": false,
                "dashLength": 10,
                "dashes": false,
-               "datasource": "${DS_PROMETHEUS}",
+               "datasource": "Prometheus",
                "decimals": 3,
                "description": "The actual average rate of performing the write operations, bytes per second.\nThe rate is calculated as a 5-second moving average.\nIf the metric value is gradually going down, this can indicate some disk issues.\n\nPanel works with `metrics >= 0.8.0`.\n",
                "fill": 0,
@@ -4548,7 +4532,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_vinyl_regulator_write_rate{job=~\"$job\",alias=~\"$alias\"}",
+                     "expr": "tnt_vinyl_regulator_write_rate{job=~\"tarantool\",alias=~\"$alias\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -4598,7 +4582,7 @@
                "bars": false,
                "dashLength": 10,
                "dashes": false,
-               "datasource": "${DS_PROMETHEUS}",
+               "datasource": "Prometheus",
                "decimals": 3,
                "description": "The write rate limit, bytes per second.\nThe regulator imposes the limit on transactions based on the observed dump/compaction performance.\nIf the metric value is down to approximately 100 Kbps,\nthis indicates issues with the disk or the scheduler.\n\nPanel works with `metrics >= 0.8.0`.\n",
                "fill": 0,
@@ -4638,7 +4622,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_vinyl_regulator_rate_limit{job=~\"$job\",alias=~\"$alias\"}",
+                     "expr": "tnt_vinyl_regulator_rate_limit{job=~\"tarantool\",alias=~\"$alias\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -4688,7 +4672,7 @@
                "bars": false,
                "dashLength": 10,
                "dashes": false,
-               "datasource": "${DS_PROMETHEUS}",
+               "datasource": "Prometheus",
                "decimals": 3,
                "description": "«Level 0» (L0) memory area in bytes. L0 is the area that\nvinyl can use for in-memory storage of an LSM tree.\nBy monitoring this metric, you can see when L0 is getting\nclose to its maximum (tnt_vinyl_regulator_dump_watermark),\nat which time a dump will occur. You can expect L0 = 0\nimmediately after the dump operation is completed.\n\nPanel works with `metrics >= 0.8.0`.\n",
                "fill": 0,
@@ -4728,7 +4712,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_vinyl_memory_level0{job=~\"$job\",alias=~\"$alias\"}",
+                     "expr": "tnt_vinyl_memory_level0{job=~\"tarantool\",alias=~\"$alias\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -4778,7 +4762,7 @@
                "bars": false,
                "dashLength": 10,
                "dashes": false,
-               "datasource": "${DS_PROMETHEUS}",
+               "datasource": "Prometheus",
                "decimals": 3,
                "description": "The maximum amount of memory used for in-memory storing of a vinyl LSM tree.\nWhen accessing this maximum, the dumping must occur.\nFor details, see https://www.tarantool.io/en/doc/latest/book/box/engines/#engines-algorithm-filling-lsm.\nThe value is slightly smaller than the amount of memory allocated for vinyl trees,\nwhich is the `vinyl_memory` parameter.\n\nPanel works with `metrics >= 0.8.0`.\n",
                "fill": 0,
@@ -4818,7 +4802,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_vinyl_regulator_dump_watermark{job=~\"$job\",alias=~\"$alias\"}",
+                     "expr": "tnt_vinyl_regulator_dump_watermark{job=~\"tarantool\",alias=~\"$alias\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -4868,7 +4852,7 @@
                "bars": false,
                "dashLength": 10,
                "dashes": false,
-               "datasource": "${DS_PROMETHEUS}",
+               "datasource": "Prometheus",
                "decimals": 3,
                "description": "The number of fibers that are blocked waiting for Vinyl level0 memory quota.\n\nPanel works with `metrics >= 0.13.0` and `Tarantool >= 2.8.3`.\n",
                "fill": 0,
@@ -4908,7 +4892,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_vinyl_regulator_blocked_writers{job=~\"$job\",alias=~\"$alias\"}",
+                     "expr": "tnt_vinyl_regulator_blocked_writers{job=~\"tarantool\",alias=~\"$alias\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -4958,7 +4942,7 @@
                "bars": false,
                "dashLength": 10,
                "dashes": false,
-               "datasource": "${DS_PROMETHEUS}",
+               "datasource": "Prometheus",
                "decimals": 3,
                "description": "Average per second rate of commits (successful transaction ends).\nIt includes implicit commits: for example, any insert operation causes a commit\nunless it is within a `box.begin()`–`box.commit()` block.\n\nPanel works with `metrics >= 0.8.0`.\n",
                "fill": 0,
@@ -4998,7 +4982,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_vinyl_tx_commit{job=~\"$job\",alias=~\"$alias\"}[$__rate_interval])",
+                     "expr": "rate(tnt_vinyl_tx_commit{job=~\"tarantool\",alias=~\"$alias\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -5048,7 +5032,7 @@
                "bars": false,
                "dashLength": 10,
                "dashes": false,
-               "datasource": "${DS_PROMETHEUS}",
+               "datasource": "Prometheus",
                "decimals": 3,
                "description": "Average per second rate of rollbacks (unsuccessful transaction ends).\nThis is not merely a count of explicit `box.rollback()` requests — it includes requests\nthat ended with errors.\nPanel works with `metrics >= 0.8.0`.\n",
                "fill": 0,
@@ -5088,7 +5072,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_vinyl_tx_rollback{job=~\"$job\",alias=~\"$alias\"}[$__rate_interval])",
+                     "expr": "rate(tnt_vinyl_tx_rollback{job=~\"tarantool\",alias=~\"$alias\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -5138,7 +5122,7 @@
                "bars": false,
                "dashLength": 10,
                "dashes": false,
-               "datasource": "${DS_PROMETHEUS}",
+               "datasource": "Prometheus",
                "decimals": 3,
                "description": "Average per second rate of conflicts that caused transactions to roll back.\nThe ratio `tx conflicts` / `tx commits` above 5% indicates that vinyl is not healthy.\nAt this moment you’ll probably see a lot of other problems with vinyl.\n\nPanel works with `metrics >= 0.8.0`.\n",
                "fill": 0,
@@ -5178,7 +5162,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_vinyl_tx_conflict{job=~\"$job\",alias=~\"$alias\"}[$__rate_interval])",
+                     "expr": "rate(tnt_vinyl_tx_conflict{job=~\"tarantool\",alias=~\"$alias\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -5228,7 +5212,7 @@
                "bars": false,
                "dashLength": 10,
                "dashes": false,
-               "datasource": "${DS_PROMETHEUS}",
+               "datasource": "Prometheus",
                "decimals": 0,
                "description": "Number of current read views, that is, transactions entered a read-only state\nto avoid conflict temporarily.\nIf the value stays non-zero for a long time, it indicates of a memory leak.\n\nPanel works with `metrics >= 0.8.0`.\n",
                "fill": 0,
@@ -5268,7 +5252,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_vinyl_tx_read_views{job=~\"$job\",alias=~\"$alias\"}",
+                     "expr": "tnt_vinyl_tx_read_views{job=~\"tarantool\",alias=~\"$alias\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -5318,7 +5302,7 @@
                "bars": false,
                "dashLength": 10,
                "dashes": false,
-               "datasource": "${DS_PROMETHEUS}",
+               "datasource": "Prometheus",
                "decimals": 3,
                "description": "The number of the scheduler dump/compaction tasks in progress now.\n\nPanel works with `metrics >= 0.8.0`.\n",
                "fill": 0,
@@ -5358,7 +5342,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_vinyl_scheduler_tasks{job=~\"$job\", alias=~\"$alias\", status=\"inprogress\"}",
+                     "expr": "tnt_vinyl_scheduler_tasks{job=~\"tarantool\", alias=~\"$alias\", status=\"inprogress\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -5408,7 +5392,7 @@
                "bars": false,
                "dashLength": 10,
                "dashes": false,
-               "datasource": "${DS_PROMETHEUS}",
+               "datasource": "Prometheus",
                "decimals": 3,
                "description": "Scheduler dump/compaction tasks failed.\nAverage per second rate is shown.\n\nPanel works with `metrics >= 0.8.0`.\n",
                "fill": 0,
@@ -5448,7 +5432,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_vinyl_scheduler_tasks{job=~\"$job\",alias=~\"$alias\",status=\"failed\"}[$__rate_interval])",
+                     "expr": "rate(tnt_vinyl_scheduler_tasks{job=~\"tarantool\",alias=~\"$alias\",status=\"failed\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -5498,7 +5482,7 @@
                "bars": false,
                "dashLength": 10,
                "dashes": false,
-               "datasource": "${DS_PROMETHEUS}",
+               "datasource": "Prometheus",
                "decimals": 3,
                "description": "Time spent by all worker threads performing dumps.\nAverage per second rate is shown.\n\nPanel works with `metrics >= 0.8.0`.\n",
                "fill": 0,
@@ -5538,7 +5522,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_vinyl_scheduler_dump_time{job=~\"$job\",alias=~\"$alias\"}[$__rate_interval])",
+                     "expr": "rate(tnt_vinyl_scheduler_dump_time{job=~\"tarantool\",alias=~\"$alias\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -5588,7 +5572,7 @@
                "bars": false,
                "dashLength": 10,
                "dashes": false,
-               "datasource": "${DS_PROMETHEUS}",
+               "datasource": "Prometheus",
                "decimals": 3,
                "description": "Scheduler dumps completed average per second rate.\n\nPanel works with `metrics >= 0.13.0`.\n",
                "fill": 0,
@@ -5628,7 +5612,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_vinyl_scheduler_dump_total{job=~\"$job\",alias=~\"$alias\"}[$__rate_interval])",
+                     "expr": "rate(tnt_vinyl_scheduler_dump_total{job=~\"tarantool\",alias=~\"$alias\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -5698,7 +5682,7 @@
                "bars": false,
                "dashLength": 10,
                "dashes": false,
-               "datasource": "${DS_PROMETHEUS}",
+               "datasource": "Prometheus",
                "decimals": 3,
                "description": "This is the average share of time\nspent by instance process executing in user mode.\nMetrics obtained using `getrusage()` call.\n\nPanel works with `metrics >= 0.8.0`.\n",
                "fill": 0,
@@ -5738,7 +5722,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_cpu_user_time{job=~\"$job\",alias=~\"$alias\"}[$__rate_interval])",
+                     "expr": "rate(tnt_cpu_user_time{job=~\"tarantool\",alias=~\"$alias\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -5788,7 +5772,7 @@
                "bars": false,
                "dashLength": 10,
                "dashes": false,
-               "datasource": "${DS_PROMETHEUS}",
+               "datasource": "Prometheus",
                "decimals": 3,
                "description": "This is the average share of time\nspent by instance process executing in kernel mode.\nMetrics obtained using `getrusage()` call.\n\nPanel works with `metrics >= 0.8.0`.\n",
                "fill": 0,
@@ -5828,7 +5812,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_cpu_system_time{job=~\"$job\",alias=~\"$alias\"}[$__rate_interval])",
+                     "expr": "rate(tnt_cpu_system_time{job=~\"tarantool\",alias=~\"$alias\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -5898,7 +5882,7 @@
                "bars": false,
                "dashLength": 10,
                "dashes": false,
-               "datasource": "${DS_PROMETHEUS}",
+               "datasource": "Prometheus",
                "decimals": 3,
                "description": "Memory used for objects allocated with Lua\nby using its internal mechanisms.\nLua memory is bounded by 2 GB per instance. \n",
                "fill": 0,
@@ -5938,7 +5922,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_info_memory_lua{job=~\"$job\",alias=~\"$alias\"}",
+                     "expr": "tnt_info_memory_lua{job=~\"tarantool\",alias=~\"$alias\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -5988,7 +5972,7 @@
                "bars": false,
                "dashLength": 10,
                "dashes": false,
-               "datasource": "${DS_PROMETHEUS}",
+               "datasource": "Prometheus",
                "decimals": 3,
                "description": "Memory used by runtime arena.\nRuntime arena stores network buffers, tuples\ncreated with box.tuple.new and other objects\nallocated by application not covered by basic\nLua mechanisms (spaces data and indexes\nare not included here, see memtx/vinyl arena).\n",
                "fill": 0,
@@ -6028,7 +6012,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_runtime_used{job=~\"$job\",alias=~\"$alias\"}",
+                     "expr": "tnt_runtime_used{job=~\"tarantool\",alias=~\"$alias\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -6078,7 +6062,7 @@
                "bars": false,
                "dashLength": 10,
                "dashes": false,
-               "datasource": "${DS_PROMETHEUS}",
+               "datasource": "Prometheus",
                "decimals": 3,
                "description": "Memory in use by active transactions.\nFor the vinyl storage engine, this is the total size of\nall allocated objects (struct txv, struct vy_tx, struct vy_read_interval)\nand tuples pinned for those objects. \n",
                "fill": 0,
@@ -6118,7 +6102,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_info_memory_tx{job=~\"$job\",alias=~\"$alias\"}",
+                     "expr": "tnt_info_memory_tx{job=~\"tarantool\",alias=~\"$alias\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -6168,7 +6152,7 @@
                "bars": false,
                "dashLength": 10,
                "dashes": false,
-               "datasource": "${DS_PROMETHEUS}",
+               "datasource": "Prometheus",
                "decimals": 3,
                "description": "Number of fiber context switches.\nContext switches are counted over all current fibers.\n",
                "fill": 0,
@@ -6208,7 +6192,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_fiber_csw{job=~\"$job\",alias=~\"$alias\"}",
+                     "expr": "tnt_fiber_csw{job=~\"tarantool\",alias=~\"$alias\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -6258,7 +6242,7 @@
                "bars": false,
                "dashLength": 10,
                "dashes": false,
-               "datasource": "${DS_PROMETHEUS}",
+               "datasource": "Prometheus",
                "decimals": 3,
                "description": "Duration of last event loop iteration (tx thread).\nHigh duration results in longer responses,\npossible bad health signals and may be the\nreason of \"Too long WAL write\" errors.\n\nPanel works with `metrics >= 0.13.0`.\n",
                "fill": 0,
@@ -6298,7 +6282,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_ev_loop_time{job=~\"$job\",alias=~\"$alias\"}",
+                     "expr": "tnt_ev_loop_time{job=~\"tarantool\",alias=~\"$alias\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -6348,7 +6332,7 @@
                "bars": false,
                "dashLength": 10,
                "dashes": false,
-               "datasource": "${DS_PROMETHEUS}",
+               "datasource": "Prometheus",
                "decimals": 0,
                "description": "Current number of fibers in tx thread. \n\nPanel works with `metrics >= 0.13.0`.\n",
                "fill": 0,
@@ -6388,7 +6372,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_fiber_amount{job=~\"$job\",alias=~\"$alias\"}",
+                     "expr": "tnt_fiber_amount{job=~\"tarantool\",alias=~\"$alias\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -6438,7 +6422,7 @@
                "bars": false,
                "dashLength": 10,
                "dashes": false,
-               "datasource": "${DS_PROMETHEUS}",
+               "datasource": "Prometheus",
                "decimals": 3,
                "description": "Amount of memory used by current fibers.\n",
                "fill": 0,
@@ -6478,7 +6462,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_fiber_memused{job=~\"$job\",alias=~\"$alias\"}",
+                     "expr": "tnt_fiber_memused{job=~\"tarantool\",alias=~\"$alias\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -6528,7 +6512,7 @@
                "bars": false,
                "dashLength": 10,
                "dashes": false,
-               "datasource": "${DS_PROMETHEUS}",
+               "datasource": "Prometheus",
                "decimals": 3,
                "description": "Amount of memory reserved for current fibers.\n",
                "fill": 0,
@@ -6568,7 +6552,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_fiber_memalloc{job=~\"$job\",alias=~\"$alias\"}",
+                     "expr": "tnt_fiber_memalloc{job=~\"tarantool\",alias=~\"$alias\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -6638,7 +6622,7 @@
                "bars": false,
                "dashLength": 10,
                "dashes": false,
-               "datasource": "${DS_PROMETHEUS}",
+               "datasource": "Prometheus",
                "decimals": 3,
                "description": "Average number of snap restores (guard assertions\nleading to stopping trace executions) per second.\n\n\nPanel works with `metrics >= 0.6.0` and `Tarantool >= 2.6`.",
                "fill": 0,
@@ -6678,7 +6662,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(lj_jit_snap_restore{job=~\"$job\",alias=~\"$alias\"}[$__rate_interval])",
+                     "expr": "rate(lj_jit_snap_restore{job=~\"tarantool\",alias=~\"$alias\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -6728,7 +6712,7 @@
                "bars": false,
                "dashLength": 10,
                "dashes": false,
-               "datasource": "${DS_PROMETHEUS}",
+               "datasource": "Prometheus",
                "decimals": 3,
                "description": "Average number of new JIT traces per second.\n\n\nPanel works with `metrics >= 0.6.0` and `Tarantool >= 2.6`.",
                "fill": 0,
@@ -6768,7 +6752,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(lj_jit_trace_num{job=~\"$job\",alias=~\"$alias\"}[$__rate_interval])",
+                     "expr": "rate(lj_jit_trace_num{job=~\"tarantool\",alias=~\"$alias\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -6818,7 +6802,7 @@
                "bars": false,
                "dashLength": 10,
                "dashes": false,
-               "datasource": "${DS_PROMETHEUS}",
+               "datasource": "Prometheus",
                "decimals": 3,
                "description": "Average number of JIT trace aborts per second.\n\n\nPanel works with `metrics >= 0.6.0` and `Tarantool >= 2.6`.",
                "fill": 0,
@@ -6858,7 +6842,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(lj_jit_trace_abort{job=~\"$job\",alias=~\"$alias\"}[$__rate_interval])",
+                     "expr": "rate(lj_jit_trace_abort{job=~\"tarantool\",alias=~\"$alias\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -6908,7 +6892,7 @@
                "bars": false,
                "dashLength": 10,
                "dashes": false,
-               "datasource": "${DS_PROMETHEUS}",
+               "datasource": "Prometheus",
                "decimals": 3,
                "description": "Total size of allocated machine code areas.\n\n\nPanel works with `metrics >= 0.6.0` and `Tarantool >= 2.6`.",
                "fill": 0,
@@ -6948,7 +6932,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "lj_jit_mcode_size{job=~\"$job\",alias=~\"$alias\"}",
+                     "expr": "lj_jit_mcode_size{job=~\"tarantool\",alias=~\"$alias\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -6998,7 +6982,7 @@
                "bars": false,
                "dashLength": 10,
                "dashes": false,
-               "datasource": "${DS_PROMETHEUS}",
+               "datasource": "Prometheus",
                "decimals": 3,
                "description": "Average number of strings being extracted from hash instead of allocating per second.\n\n\nPanel works with `metrics >= 0.6.0` and `Tarantool >= 2.6`.",
                "fill": 0,
@@ -7038,7 +7022,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(lj_strhash_hit{job=~\"$job\",alias=~\"$alias\"}[$__rate_interval])",
+                     "expr": "rate(lj_strhash_hit{job=~\"tarantool\",alias=~\"$alias\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -7088,7 +7072,7 @@
                "bars": false,
                "dashLength": 10,
                "dashes": false,
-               "datasource": "${DS_PROMETHEUS}",
+               "datasource": "Prometheus",
                "decimals": 3,
                "description": "Average number of strings being allocated due to hash miss per second.\n\n\nPanel works with `metrics >= 0.6.0` and `Tarantool >= 2.6`.",
                "fill": 0,
@@ -7128,7 +7112,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(lj_strhash_miss{job=~\"$job\",alias=~\"$alias\"}[$__rate_interval])",
+                     "expr": "rate(lj_strhash_miss{job=~\"tarantool\",alias=~\"$alias\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -7178,7 +7162,7 @@
                "bars": false,
                "dashLength": 10,
                "dashes": false,
-               "datasource": "${DS_PROMETHEUS}",
+               "datasource": "Prometheus",
                "decimals": 3,
                "description": "Average count of incremental GC steps (atomic state) per second.\n\n\nPanel works with `metrics >= 0.6.0` and `Tarantool >= 2.6`.",
                "fill": 0,
@@ -7218,7 +7202,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(lj_gc_steps_atomic{job=~\"$job\",alias=~\"$alias\"}[$__rate_interval])",
+                     "expr": "rate(lj_gc_steps_atomic{job=~\"tarantool\",alias=~\"$alias\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -7268,7 +7252,7 @@
                "bars": false,
                "dashLength": 10,
                "dashes": false,
-               "datasource": "${DS_PROMETHEUS}",
+               "datasource": "Prometheus",
                "decimals": 3,
                "description": "Average count of incremental GC steps (sweepstring state) per second.\n\n\nPanel works with `metrics >= 0.6.0` and `Tarantool >= 2.6`.",
                "fill": 0,
@@ -7308,7 +7292,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(lj_gc_steps_sweepstring{job=~\"$job\",alias=~\"$alias\"}[$__rate_interval])",
+                     "expr": "rate(lj_gc_steps_sweepstring{job=~\"tarantool\",alias=~\"$alias\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -7358,7 +7342,7 @@
                "bars": false,
                "dashLength": 10,
                "dashes": false,
-               "datasource": "${DS_PROMETHEUS}",
+               "datasource": "Prometheus",
                "decimals": 3,
                "description": "Average count of incremental GC steps (finalize state) per second.\n\n\nPanel works with `metrics >= 0.6.0` and `Tarantool >= 2.6`.",
                "fill": 0,
@@ -7398,7 +7382,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(lj_gc_steps_finalize{job=~\"$job\",alias=~\"$alias\"}[$__rate_interval])",
+                     "expr": "rate(lj_gc_steps_finalize{job=~\"tarantool\",alias=~\"$alias\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -7448,7 +7432,7 @@
                "bars": false,
                "dashLength": 10,
                "dashes": false,
-               "datasource": "${DS_PROMETHEUS}",
+               "datasource": "Prometheus",
                "decimals": 3,
                "description": "Average count of incremental GC steps (sweep state) per second.\n\n\nPanel works with `metrics >= 0.6.0` and `Tarantool >= 2.6`.",
                "fill": 0,
@@ -7488,7 +7472,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(lj_gc_steps_sweep{job=~\"$job\",alias=~\"$alias\"}[$__rate_interval])",
+                     "expr": "rate(lj_gc_steps_sweep{job=~\"tarantool\",alias=~\"$alias\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -7538,7 +7522,7 @@
                "bars": false,
                "dashLength": 10,
                "dashes": false,
-               "datasource": "${DS_PROMETHEUS}",
+               "datasource": "Prometheus",
                "decimals": 3,
                "description": "Average count of incremental GC steps (propagate state) per second.\n\n\nPanel works with `metrics >= 0.6.0` and `Tarantool >= 2.6`.",
                "fill": 0,
@@ -7578,7 +7562,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(lj_gc_steps_propagate{job=~\"$job\",alias=~\"$alias\"}[$__rate_interval])",
+                     "expr": "rate(lj_gc_steps_propagate{job=~\"tarantool\",alias=~\"$alias\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -7628,7 +7612,7 @@
                "bars": false,
                "dashLength": 10,
                "dashes": false,
-               "datasource": "${DS_PROMETHEUS}",
+               "datasource": "Prometheus",
                "decimals": 3,
                "description": "Average count of incremental GC steps (pause state) per second.\n\n\nPanel works with `metrics >= 0.6.0` and `Tarantool >= 2.6`.",
                "fill": 0,
@@ -7668,7 +7652,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(lj_gc_steps_pause{job=~\"$job\",alias=~\"$alias\"}[$__rate_interval])",
+                     "expr": "rate(lj_gc_steps_pause{job=~\"tarantool\",alias=~\"$alias\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -7718,7 +7702,7 @@
                "bars": false,
                "dashLength": 10,
                "dashes": false,
-               "datasource": "${DS_PROMETHEUS}",
+               "datasource": "Prometheus",
                "decimals": 0,
                "description": "Number of allocated string objects.\n\n\nPanel works with `metrics >= 0.6.0` and `Tarantool >= 2.6`.",
                "fill": 0,
@@ -7758,7 +7742,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "lj_gc_strnum{job=~\"$job\",alias=~\"$alias\"}",
+                     "expr": "lj_gc_strnum{job=~\"tarantool\",alias=~\"$alias\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -7808,7 +7792,7 @@
                "bars": false,
                "dashLength": 10,
                "dashes": false,
-               "datasource": "${DS_PROMETHEUS}",
+               "datasource": "Prometheus",
                "decimals": 0,
                "description": "Number of allocated table objects.\n\n\nPanel works with `metrics >= 0.6.0` and `Tarantool >= 2.6`.",
                "fill": 0,
@@ -7848,7 +7832,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "lj_gc_tabnum{job=~\"$job\",alias=~\"$alias\"}",
+                     "expr": "lj_gc_tabnum{job=~\"tarantool\",alias=~\"$alias\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -7898,7 +7882,7 @@
                "bars": false,
                "dashLength": 10,
                "dashes": false,
-               "datasource": "${DS_PROMETHEUS}",
+               "datasource": "Prometheus",
                "decimals": 0,
                "description": "Number of allocated cdata objects.\n\n\nPanel works with `metrics >= 0.6.0` and `Tarantool >= 2.6`.",
                "fill": 0,
@@ -7938,7 +7922,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "lj_gc_cdatanum{job=~\"$job\",alias=~\"$alias\"}",
+                     "expr": "lj_gc_cdatanum{job=~\"tarantool\",alias=~\"$alias\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -7988,7 +7972,7 @@
                "bars": false,
                "dashLength": 10,
                "dashes": false,
-               "datasource": "${DS_PROMETHEUS}",
+               "datasource": "Prometheus",
                "decimals": 0,
                "description": "Number of allocated userdata objects.\n\n\nPanel works with `metrics >= 0.6.0` and `Tarantool >= 2.6`.",
                "fill": 0,
@@ -8028,7 +8012,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "lj_gc_udatanum{job=~\"$job\",alias=~\"$alias\"}",
+                     "expr": "lj_gc_udatanum{job=~\"tarantool\",alias=~\"$alias\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -8078,7 +8062,7 @@
                "bars": false,
                "dashLength": 10,
                "dashes": false,
-               "datasource": "${DS_PROMETHEUS}",
+               "datasource": "Prometheus",
                "decimals": 3,
                "description": "Current allocated Lua memory.\n\n\nPanel works with `metrics >= 0.6.0` and `Tarantool >= 2.6`.",
                "fill": 0,
@@ -8118,7 +8102,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "lj_gc_memory{job=~\"$job\",alias=~\"$alias\"}",
+                     "expr": "lj_gc_memory{job=~\"tarantool\",alias=~\"$alias\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -8168,7 +8152,7 @@
                "bars": false,
                "dashLength": 10,
                "dashes": false,
-               "datasource": "${DS_PROMETHEUS}",
+               "datasource": "Prometheus",
                "decimals": 3,
                "description": "Average amount of freed Lua memory per second.\n\n\nPanel works with `metrics >= 0.6.0` and `Tarantool >= 2.6`.",
                "fill": 0,
@@ -8208,7 +8192,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(lj_gc_freed{job=~\"$job\",alias=~\"$alias\"}[$__rate_interval])",
+                     "expr": "rate(lj_gc_freed{job=~\"tarantool\",alias=~\"$alias\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -8258,7 +8242,7 @@
                "bars": false,
                "dashLength": 10,
                "dashes": false,
-               "datasource": "${DS_PROMETHEUS}",
+               "datasource": "Prometheus",
                "decimals": 3,
                "description": "Average amount of allocated Lua memory per second.\n\n\nPanel works with `metrics >= 0.6.0` and `Tarantool >= 2.6`.",
                "fill": 0,
@@ -8298,7 +8282,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(lj_gc_allocated{job=~\"$job\",alias=~\"$alias\"}[$__rate_interval])",
+                     "expr": "rate(lj_gc_allocated{job=~\"tarantool\",alias=~\"$alias\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -8368,7 +8352,7 @@
                "bars": false,
                "dashLength": 10,
                "dashes": false,
-               "datasource": "${DS_PROMETHEUS}",
+               "datasource": "Prometheus",
                "decimals": 3,
                "description": "Total count of SELECT requests to all instance spaces.\nGraph shows average requests per second.\n",
                "fill": 0,
@@ -8408,7 +8392,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_stats_op_total{job=~\"$job\",alias=~\"$alias\",operation=\"select\"}[$__rate_interval])",
+                     "expr": "rate(tnt_stats_op_total{job=~\"tarantool\",alias=~\"$alias\",operation=\"select\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -8458,7 +8442,7 @@
                "bars": false,
                "dashLength": 10,
                "dashes": false,
-               "datasource": "${DS_PROMETHEUS}",
+               "datasource": "Prometheus",
                "decimals": 3,
                "description": "Total count of INSERT requests to all instance spaces.\nGraph shows average requests per second.\n",
                "fill": 0,
@@ -8498,7 +8482,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_stats_op_total{job=~\"$job\",alias=~\"$alias\",operation=\"insert\"}[$__rate_interval])",
+                     "expr": "rate(tnt_stats_op_total{job=~\"tarantool\",alias=~\"$alias\",operation=\"insert\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -8548,7 +8532,7 @@
                "bars": false,
                "dashLength": 10,
                "dashes": false,
-               "datasource": "${DS_PROMETHEUS}",
+               "datasource": "Prometheus",
                "decimals": 3,
                "description": "Total count of REPLACE requests to all instance spaces.\nGraph shows average requests per second.\n",
                "fill": 0,
@@ -8588,7 +8572,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_stats_op_total{job=~\"$job\",alias=~\"$alias\",operation=\"replace\"}[$__rate_interval])",
+                     "expr": "rate(tnt_stats_op_total{job=~\"tarantool\",alias=~\"$alias\",operation=\"replace\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -8638,7 +8622,7 @@
                "bars": false,
                "dashLength": 10,
                "dashes": false,
-               "datasource": "${DS_PROMETHEUS}",
+               "datasource": "Prometheus",
                "decimals": 3,
                "description": "Total count of UPSERT requests to all instance spaces.\nGraph shows average requests per second.\n",
                "fill": 0,
@@ -8678,7 +8662,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_stats_op_total{job=~\"$job\",alias=~\"$alias\",operation=\"upsert\"}[$__rate_interval])",
+                     "expr": "rate(tnt_stats_op_total{job=~\"tarantool\",alias=~\"$alias\",operation=\"upsert\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -8728,7 +8712,7 @@
                "bars": false,
                "dashLength": 10,
                "dashes": false,
-               "datasource": "${DS_PROMETHEUS}",
+               "datasource": "Prometheus",
                "decimals": 3,
                "description": "Total count of UPDATE requests to all instance spaces.\nGraph shows average requests per second.\n",
                "fill": 0,
@@ -8768,7 +8752,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_stats_op_total{job=~\"$job\",alias=~\"$alias\",operation=\"update\"}[$__rate_interval])",
+                     "expr": "rate(tnt_stats_op_total{job=~\"tarantool\",alias=~\"$alias\",operation=\"update\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -8818,7 +8802,7 @@
                "bars": false,
                "dashLength": 10,
                "dashes": false,
-               "datasource": "${DS_PROMETHEUS}",
+               "datasource": "Prometheus",
                "decimals": 3,
                "description": "Total count of DELETE requests to all instance spaces.\nGraph shows average requests per second.\n",
                "fill": 0,
@@ -8858,7 +8842,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_stats_op_total{job=~\"$job\",alias=~\"$alias\",operation=\"delete\"}[$__rate_interval])",
+                     "expr": "rate(tnt_stats_op_total{job=~\"tarantool\",alias=~\"$alias\",operation=\"delete\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -8908,7 +8892,7 @@
                "bars": false,
                "dashLength": 10,
                "dashes": false,
-               "datasource": "${DS_PROMETHEUS}",
+               "datasource": "Prometheus",
                "decimals": 3,
                "description": "Requests to execute stored procedures.\nGraph shows average requests per second.\n",
                "fill": 0,
@@ -8948,7 +8932,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_stats_op_total{job=~\"$job\",alias=~\"$alias\",operation=\"call\"}[$__rate_interval])",
+                     "expr": "rate(tnt_stats_op_total{job=~\"tarantool\",alias=~\"$alias\",operation=\"call\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -8998,7 +8982,7 @@
                "bars": false,
                "dashLength": 10,
                "dashes": false,
-               "datasource": "${DS_PROMETHEUS}",
+               "datasource": "Prometheus",
                "decimals": 3,
                "description": "Calls to evaluate Lua code.\nGraph shows average requests per second.\n",
                "fill": 0,
@@ -9038,7 +9022,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_stats_op_total{job=~\"$job\",alias=~\"$alias\",operation=\"eval\"}[$__rate_interval])",
+                     "expr": "rate(tnt_stats_op_total{job=~\"tarantool\",alias=~\"$alias\",operation=\"eval\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -9088,7 +9072,7 @@
                "bars": false,
                "dashLength": 10,
                "dashes": false,
-               "datasource": "${DS_PROMETHEUS}",
+               "datasource": "Prometheus",
                "decimals": 3,
                "description": "Requests resulted in error.\nGraph shows average errors per second.\n",
                "fill": 0,
@@ -9128,7 +9112,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_stats_op_total{job=~\"$job\",alias=~\"$alias\",operation=\"error\"}[$__rate_interval])",
+                     "expr": "rate(tnt_stats_op_total{job=~\"tarantool\",alias=~\"$alias\",operation=\"error\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -9178,7 +9162,7 @@
                "bars": false,
                "dashLength": 10,
                "dashes": false,
-               "datasource": "${DS_PROMETHEUS}",
+               "datasource": "Prometheus",
                "decimals": 3,
                "description": "Authentication requests.\nGraph shows average requests per second.\n",
                "fill": 0,
@@ -9218,7 +9202,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_stats_op_total{job=~\"$job\",alias=~\"$alias\",operation=\"auth\"}[$__rate_interval])",
+                     "expr": "rate(tnt_stats_op_total{job=~\"tarantool\",alias=~\"$alias\",operation=\"auth\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -9268,7 +9252,7 @@
                "bars": false,
                "dashLength": 10,
                "dashes": false,
-               "datasource": "${DS_PROMETHEUS}",
+               "datasource": "Prometheus",
                "decimals": 3,
                "description": "SQL prepare calls.\nGraph shows average calls per second.\n\nPanel works with Tarantool 2.x.\n",
                "fill": 0,
@@ -9308,7 +9292,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_stats_op_total{job=~\"$job\",alias=~\"$alias\",operation=\"prepare\"}[$__rate_interval])",
+                     "expr": "rate(tnt_stats_op_total{job=~\"tarantool\",alias=~\"$alias\",operation=\"prepare\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -9358,7 +9342,7 @@
                "bars": false,
                "dashLength": 10,
                "dashes": false,
-               "datasource": "${DS_PROMETHEUS}",
+               "datasource": "Prometheus",
                "decimals": 3,
                "description": "SQL execute calls.\nGraph shows average calls per second.\n\nPanel works with Tarantool 2.x.\n",
                "fill": 0,
@@ -9398,7 +9382,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_stats_op_total{job=~\"$job\",alias=~\"$alias\",operation=\"execute\"}[$__rate_interval])",
+                     "expr": "rate(tnt_stats_op_total{job=~\"tarantool\",alias=~\"$alias\",operation=\"execute\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -9468,7 +9452,7 @@
                "bars": false,
                "dashLength": 10,
                "dashes": false,
-               "datasource": "${DS_PROMETHEUS}",
+               "datasource": "Prometheus",
                "decimals": 2,
                "description": "Total count of success SELECT and PAIRS requests to cluster spaces with CRUD module.\nGraph shows average requests per second.\n\nCRUD 0.11.0 or newer is required to use statistics.\nEnable statistics with `crud.cfg{stats = true, stats_driver = 'metrics'}`\n",
                "fill": 0,
@@ -9508,7 +9492,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_crud_stats_count{job=~\"$job\",alias=~\"$alias\",operation=\"select\",status=\"ok\"}[$__rate_interval])",
+                     "expr": "rate(tnt_crud_stats_count{job=~\"tarantool\",alias=~\"$alias\",operation=\"select\",status=\"ok\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}} — {{name}}",
@@ -9558,7 +9542,7 @@
                "bars": false,
                "dashLength": 10,
                "dashes": false,
-               "datasource": "${DS_PROMETHEUS}",
+               "datasource": "Prometheus",
                "decimals": 2,
                "description": "99th percentile of success SELECT and PAIRS CRUD module requests latency with aging.\n\nCRUD 0.11.0 or newer is required to use statistics.\nEnable quantiles with `crud.cfg{stats = true, stats_driver = 'metrics', stats_quantiles = true}`.\nIf `No data` displayed yet data expected, try to calibrate tolerated error with\n`crud.cfg{stats_quantile_tolerated_error=1e-4}`.\n",
                "fill": 0,
@@ -9598,7 +9582,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_crud_stats{job=~\"$job\",alias=~\"$alias\",operation=\"select\",status=\"ok\",quantile=\"0.99\"}",
+                     "expr": "tnt_crud_stats{job=~\"tarantool\",alias=~\"$alias\",operation=\"select\",status=\"ok\",quantile=\"0.99\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}} — {{name}}",
@@ -9648,7 +9632,7 @@
                "bars": false,
                "dashLength": 10,
                "dashes": false,
-               "datasource": "${DS_PROMETHEUS}",
+               "datasource": "Prometheus",
                "decimals": 2,
                "description": "Total count of error SELECT and PAIRS requests to cluster spaces with CRUD module.\nGraph shows average requests per second.\n\nCRUD 0.11.0 or newer is required to use statistics.\nEnable statistics with `crud.cfg{stats = true, stats_driver = 'metrics'}`\n",
                "fill": 0,
@@ -9688,7 +9672,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_crud_stats_count{job=~\"$job\",alias=~\"$alias\",operation=\"select\",status=\"error\"}[$__rate_interval])",
+                     "expr": "rate(tnt_crud_stats_count{job=~\"tarantool\",alias=~\"$alias\",operation=\"select\",status=\"error\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}} — {{name}}",
@@ -9738,7 +9722,7 @@
                "bars": false,
                "dashLength": 10,
                "dashes": false,
-               "datasource": "${DS_PROMETHEUS}",
+               "datasource": "Prometheus",
                "decimals": 2,
                "description": "99th percentile of error SELECT and PAIRS CRUD module requests latency with aging.\n\nCRUD 0.11.0 or newer is required to use statistics.\nEnable quantiles with `crud.cfg{stats = true, stats_driver = 'metrics', stats_quantiles = true}`.\nIf `No data` displayed yet data expected, try to calibrate tolerated error with\n`crud.cfg{stats_quantile_tolerated_error=1e-4}`.\n",
                "fill": 0,
@@ -9778,7 +9762,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_crud_stats{job=~\"$job\",alias=~\"$alias\",operation=\"select\",status=\"error\",quantile=\"0.99\"}",
+                     "expr": "tnt_crud_stats{job=~\"tarantool\",alias=~\"$alias\",operation=\"select\",status=\"error\",quantile=\"0.99\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}} — {{name}}",
@@ -9828,7 +9812,7 @@
                "bars": false,
                "dashLength": 10,
                "dashes": false,
-               "datasource": "${DS_PROMETHEUS}",
+               "datasource": "Prometheus",
                "decimals": 3,
                "description": "Average number of tuples fetched during SELECT/PAIRS request for a space.\nBoth success and error requests are taken into consideration.\n\nCRUD 0.11.0 or newer is required to use statistics.\nEnable statistics with `crud.cfg{stats = true, stats_driver = 'metrics'}`\n",
                "fill": 0,
@@ -9868,7 +9852,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_crud_tuples_fetched{job=~\"$job\",alias=~\"$alias\", operation=\"select\"}[$__rate_interval]) /\n(sum without (status) (rate(tnt_crud_stats_count{job=~\"$job\",operation=\"select\"}[$__rate_interval])))\n",
+                     "expr": "rate(tnt_crud_tuples_fetched{job=~\"tarantool\",alias=~\"$alias\", operation=\"select\"}[$__rate_interval]) /\n(sum without (status) (rate(tnt_crud_stats_count{job=~\"tarantool\",operation=\"select\"}[$__rate_interval])))\n",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}} — {{name}}",
@@ -9918,7 +9902,7 @@
                "bars": false,
                "dashLength": 10,
                "dashes": false,
-               "datasource": "${DS_PROMETHEUS}",
+               "datasource": "Prometheus",
                "decimals": 3,
                "description": "Average number of tuples looked up on storages while collecting responses\nfor SELECT/PAIRS requests (including scrolls for multibatch requests)\nfor a space. Both success and error requests are taken into consideration.\n\nCRUD 0.11.0 or newer is required to use statistics.\nEnable statistics with `crud.cfg{stats = true, stats_driver = 'metrics'}`\n",
                "fill": 0,
@@ -9958,7 +9942,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_crud_tuples_lookup{job=~\"$job\",alias=~\"$alias\", operation=\"select\"}[$__rate_interval]) /\n(sum without (status) (rate(tnt_crud_stats_count{job=~\"$job\",operation=\"select\"}[$__rate_interval])))\n",
+                     "expr": "rate(tnt_crud_tuples_lookup{job=~\"tarantool\",alias=~\"$alias\", operation=\"select\"}[$__rate_interval]) /\n(sum without (status) (rate(tnt_crud_stats_count{job=~\"tarantool\",operation=\"select\"}[$__rate_interval])))\n",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}} — {{name}}",
@@ -10008,7 +9992,7 @@
                "bars": false,
                "dashLength": 10,
                "dashes": false,
-               "datasource": "${DS_PROMETHEUS}",
+               "datasource": "Prometheus",
                "decimals": 3,
                "description": "Number of SELECT and PAIRS requests that resulted in map reduce.\nGraph shows average requests per second.\nBoth success and error requests are taken into consideration.\n\nCRUD 0.11.0 or newer is required to use statistics.\nEnable statistics with `crud.cfg{stats = true, stats_driver = 'metrics'}`\n",
                "fill": 0,
@@ -10048,7 +10032,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_crud_map_reduces{job=~\"$job\",alias=~\"$alias\",operation=\"select\"}[$__rate_interval])",
+                     "expr": "rate(tnt_crud_map_reduces{job=~\"tarantool\",alias=~\"$alias\",operation=\"select\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}} — {{name}}",
@@ -10098,7 +10082,7 @@
                "bars": false,
                "dashLength": 10,
                "dashes": false,
-               "datasource": "${DS_PROMETHEUS}",
+               "datasource": "Prometheus",
                "decimals": 2,
                "description": "Total count of success insert and insert_object requests to cluster spaces with CRUD module.\nGraph shows average requests per second.\n\nCRUD 0.11.0 or newer is required to use statistics.\nEnable statistics with `crud.cfg{stats = true, stats_driver = 'metrics'}`\n",
                "fill": 0,
@@ -10138,7 +10122,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_crud_stats_count{job=~\"$job\",alias=~\"$alias\",operation=\"insert\",status=\"ok\"}[$__rate_interval])",
+                     "expr": "rate(tnt_crud_stats_count{job=~\"tarantool\",alias=~\"$alias\",operation=\"insert\",status=\"ok\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}} — {{name}}",
@@ -10188,7 +10172,7 @@
                "bars": false,
                "dashLength": 10,
                "dashes": false,
-               "datasource": "${DS_PROMETHEUS}",
+               "datasource": "Prometheus",
                "decimals": 2,
                "description": "99th percentile of success insert and insert_object CRUD module requests latency with aging.\n\nCRUD 0.11.0 or newer is required to use statistics.\nEnable quantiles with `crud.cfg{stats = true, stats_driver = 'metrics', stats_quantiles = true}`.\nIf `No data` displayed yet data expected, try to calibrate tolerated error with\n`crud.cfg{stats_quantile_tolerated_error=1e-4}`.\n",
                "fill": 0,
@@ -10228,7 +10212,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_crud_stats{job=~\"$job\",alias=~\"$alias\",operation=\"insert\",status=\"ok\",quantile=\"0.99\"}",
+                     "expr": "tnt_crud_stats{job=~\"tarantool\",alias=~\"$alias\",operation=\"insert\",status=\"ok\",quantile=\"0.99\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}} — {{name}}",
@@ -10278,7 +10262,7 @@
                "bars": false,
                "dashLength": 10,
                "dashes": false,
-               "datasource": "${DS_PROMETHEUS}",
+               "datasource": "Prometheus",
                "decimals": 2,
                "description": "Total count of error insert and insert_object requests to cluster spaces with CRUD module.\nGraph shows average requests per second.\n\nCRUD 0.11.0 or newer is required to use statistics.\nEnable statistics with `crud.cfg{stats = true, stats_driver = 'metrics'}`\n",
                "fill": 0,
@@ -10318,7 +10302,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_crud_stats_count{job=~\"$job\",alias=~\"$alias\",operation=\"insert\",status=\"error\"}[$__rate_interval])",
+                     "expr": "rate(tnt_crud_stats_count{job=~\"tarantool\",alias=~\"$alias\",operation=\"insert\",status=\"error\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}} — {{name}}",
@@ -10368,7 +10352,7 @@
                "bars": false,
                "dashLength": 10,
                "dashes": false,
-               "datasource": "${DS_PROMETHEUS}",
+               "datasource": "Prometheus",
                "decimals": 2,
                "description": "99th percentile of error insert and insert_object CRUD module requests latency with aging.\n\nCRUD 0.11.0 or newer is required to use statistics.\nEnable quantiles with `crud.cfg{stats = true, stats_driver = 'metrics', stats_quantiles = true}`.\nIf `No data` displayed yet data expected, try to calibrate tolerated error with\n`crud.cfg{stats_quantile_tolerated_error=1e-4}`.\n",
                "fill": 0,
@@ -10408,7 +10392,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_crud_stats{job=~\"$job\",alias=~\"$alias\",operation=\"insert\",status=\"error\",quantile=\"0.99\"}",
+                     "expr": "tnt_crud_stats{job=~\"tarantool\",alias=~\"$alias\",operation=\"insert\",status=\"error\",quantile=\"0.99\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}} — {{name}}",
@@ -10458,7 +10442,7 @@
                "bars": false,
                "dashLength": 10,
                "dashes": false,
-               "datasource": "${DS_PROMETHEUS}",
+               "datasource": "Prometheus",
                "decimals": 2,
                "description": "Total count of success insert_many and insert_object_many requests to cluster spaces with CRUD module.\nGraph shows average requests per second.\n\nCRUD 0.11.0 or newer is required to use statistics.\nEnable statistics with `crud.cfg{stats = true, stats_driver = 'metrics'}`\n",
                "fill": 0,
@@ -10498,7 +10482,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_crud_stats_count{job=~\"$job\",alias=~\"$alias\",operation=\"insert_many\",status=\"ok\"}[$__rate_interval])",
+                     "expr": "rate(tnt_crud_stats_count{job=~\"tarantool\",alias=~\"$alias\",operation=\"insert_many\",status=\"ok\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}} — {{name}}",
@@ -10548,7 +10532,7 @@
                "bars": false,
                "dashLength": 10,
                "dashes": false,
-               "datasource": "${DS_PROMETHEUS}",
+               "datasource": "Prometheus",
                "decimals": 2,
                "description": "99th percentile of success insert_many and insert_object_many CRUD module requests latency with aging.\n\nCRUD 0.11.0 or newer is required to use statistics.\nEnable quantiles with `crud.cfg{stats = true, stats_driver = 'metrics', stats_quantiles = true}`.\nIf `No data` displayed yet data expected, try to calibrate tolerated error with\n`crud.cfg{stats_quantile_tolerated_error=1e-4}`.\n",
                "fill": 0,
@@ -10588,7 +10572,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_crud_stats{job=~\"$job\",alias=~\"$alias\",operation=\"insert_many\",status=\"ok\",quantile=\"0.99\"}",
+                     "expr": "tnt_crud_stats{job=~\"tarantool\",alias=~\"$alias\",operation=\"insert_many\",status=\"ok\",quantile=\"0.99\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}} — {{name}}",
@@ -10638,7 +10622,7 @@
                "bars": false,
                "dashLength": 10,
                "dashes": false,
-               "datasource": "${DS_PROMETHEUS}",
+               "datasource": "Prometheus",
                "decimals": 2,
                "description": "Total count of error insert_many and insert_object_many requests to cluster spaces with CRUD module.\nGraph shows average requests per second.\n\nCRUD 0.11.0 or newer is required to use statistics.\nEnable statistics with `crud.cfg{stats = true, stats_driver = 'metrics'}`\n",
                "fill": 0,
@@ -10678,7 +10662,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_crud_stats_count{job=~\"$job\",alias=~\"$alias\",operation=\"insert_many\",status=\"error\"}[$__rate_interval])",
+                     "expr": "rate(tnt_crud_stats_count{job=~\"tarantool\",alias=~\"$alias\",operation=\"insert_many\",status=\"error\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}} — {{name}}",
@@ -10728,7 +10712,7 @@
                "bars": false,
                "dashLength": 10,
                "dashes": false,
-               "datasource": "${DS_PROMETHEUS}",
+               "datasource": "Prometheus",
                "decimals": 2,
                "description": "99th percentile of error insert_many and insert_object_many CRUD module requests latency with aging.\n\nCRUD 0.11.0 or newer is required to use statistics.\nEnable quantiles with `crud.cfg{stats = true, stats_driver = 'metrics', stats_quantiles = true}`.\nIf `No data` displayed yet data expected, try to calibrate tolerated error with\n`crud.cfg{stats_quantile_tolerated_error=1e-4}`.\n",
                "fill": 0,
@@ -10768,7 +10752,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_crud_stats{job=~\"$job\",alias=~\"$alias\",operation=\"insert_many\",status=\"error\",quantile=\"0.99\"}",
+                     "expr": "tnt_crud_stats{job=~\"tarantool\",alias=~\"$alias\",operation=\"insert_many\",status=\"error\",quantile=\"0.99\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}} — {{name}}",
@@ -10818,7 +10802,7 @@
                "bars": false,
                "dashLength": 10,
                "dashes": false,
-               "datasource": "${DS_PROMETHEUS}",
+               "datasource": "Prometheus",
                "decimals": 2,
                "description": "Total count of success replace and replace_object requests to cluster spaces with CRUD module.\nGraph shows average requests per second.\n\nCRUD 0.11.0 or newer is required to use statistics.\nEnable statistics with `crud.cfg{stats = true, stats_driver = 'metrics'}`\n",
                "fill": 0,
@@ -10858,7 +10842,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_crud_stats_count{job=~\"$job\",alias=~\"$alias\",operation=\"replace\",status=\"ok\"}[$__rate_interval])",
+                     "expr": "rate(tnt_crud_stats_count{job=~\"tarantool\",alias=~\"$alias\",operation=\"replace\",status=\"ok\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}} — {{name}}",
@@ -10908,7 +10892,7 @@
                "bars": false,
                "dashLength": 10,
                "dashes": false,
-               "datasource": "${DS_PROMETHEUS}",
+               "datasource": "Prometheus",
                "decimals": 2,
                "description": "99th percentile of success replace and replace_object CRUD module requests latency with aging.\n\nCRUD 0.11.0 or newer is required to use statistics.\nEnable quantiles with `crud.cfg{stats = true, stats_driver = 'metrics', stats_quantiles = true}`.\nIf `No data` displayed yet data expected, try to calibrate tolerated error with\n`crud.cfg{stats_quantile_tolerated_error=1e-4}`.\n",
                "fill": 0,
@@ -10948,7 +10932,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_crud_stats{job=~\"$job\",alias=~\"$alias\",operation=\"replace\",status=\"ok\",quantile=\"0.99\"}",
+                     "expr": "tnt_crud_stats{job=~\"tarantool\",alias=~\"$alias\",operation=\"replace\",status=\"ok\",quantile=\"0.99\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}} — {{name}}",
@@ -10998,7 +10982,7 @@
                "bars": false,
                "dashLength": 10,
                "dashes": false,
-               "datasource": "${DS_PROMETHEUS}",
+               "datasource": "Prometheus",
                "decimals": 2,
                "description": "Total count of error replace and replace_object requests to cluster spaces with CRUD module.\nGraph shows average requests per second.\n\nCRUD 0.11.0 or newer is required to use statistics.\nEnable statistics with `crud.cfg{stats = true, stats_driver = 'metrics'}`\n",
                "fill": 0,
@@ -11038,7 +11022,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_crud_stats_count{job=~\"$job\",alias=~\"$alias\",operation=\"replace\",status=\"error\"}[$__rate_interval])",
+                     "expr": "rate(tnt_crud_stats_count{job=~\"tarantool\",alias=~\"$alias\",operation=\"replace\",status=\"error\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}} — {{name}}",
@@ -11088,7 +11072,7 @@
                "bars": false,
                "dashLength": 10,
                "dashes": false,
-               "datasource": "${DS_PROMETHEUS}",
+               "datasource": "Prometheus",
                "decimals": 2,
                "description": "99th percentile of error replace and replace_object CRUD module requests latency with aging.\n\nCRUD 0.11.0 or newer is required to use statistics.\nEnable quantiles with `crud.cfg{stats = true, stats_driver = 'metrics', stats_quantiles = true}`.\nIf `No data` displayed yet data expected, try to calibrate tolerated error with\n`crud.cfg{stats_quantile_tolerated_error=1e-4}`.\n",
                "fill": 0,
@@ -11128,7 +11112,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_crud_stats{job=~\"$job\",alias=~\"$alias\",operation=\"replace\",status=\"error\",quantile=\"0.99\"}",
+                     "expr": "tnt_crud_stats{job=~\"tarantool\",alias=~\"$alias\",operation=\"replace\",status=\"error\",quantile=\"0.99\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}} — {{name}}",
@@ -11178,7 +11162,7 @@
                "bars": false,
                "dashLength": 10,
                "dashes": false,
-               "datasource": "${DS_PROMETHEUS}",
+               "datasource": "Prometheus",
                "decimals": 2,
                "description": "Total count of success replace_many and replace_object_many requests to cluster spaces with CRUD module.\nGraph shows average requests per second.\n\nCRUD 0.11.0 or newer is required to use statistics.\nEnable statistics with `crud.cfg{stats = true, stats_driver = 'metrics'}`\n",
                "fill": 0,
@@ -11218,7 +11202,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_crud_stats_count{job=~\"$job\",alias=~\"$alias\",operation=\"replace_many\",status=\"ok\"}[$__rate_interval])",
+                     "expr": "rate(tnt_crud_stats_count{job=~\"tarantool\",alias=~\"$alias\",operation=\"replace_many\",status=\"ok\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}} — {{name}}",
@@ -11268,7 +11252,7 @@
                "bars": false,
                "dashLength": 10,
                "dashes": false,
-               "datasource": "${DS_PROMETHEUS}",
+               "datasource": "Prometheus",
                "decimals": 2,
                "description": "99th percentile of success replace_many and replace_object_many CRUD module requests latency with aging.\n\nCRUD 0.11.0 or newer is required to use statistics.\nEnable quantiles with `crud.cfg{stats = true, stats_driver = 'metrics', stats_quantiles = true}`.\nIf `No data` displayed yet data expected, try to calibrate tolerated error with\n`crud.cfg{stats_quantile_tolerated_error=1e-4}`.\n",
                "fill": 0,
@@ -11308,7 +11292,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_crud_stats{job=~\"$job\",alias=~\"$alias\",operation=\"replace_many\",status=\"ok\",quantile=\"0.99\"}",
+                     "expr": "tnt_crud_stats{job=~\"tarantool\",alias=~\"$alias\",operation=\"replace_many\",status=\"ok\",quantile=\"0.99\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}} — {{name}}",
@@ -11358,7 +11342,7 @@
                "bars": false,
                "dashLength": 10,
                "dashes": false,
-               "datasource": "${DS_PROMETHEUS}",
+               "datasource": "Prometheus",
                "decimals": 2,
                "description": "Total count of error replace_many and replace_object_many requests to cluster spaces with CRUD module.\nGraph shows average requests per second.\n\nCRUD 0.11.0 or newer is required to use statistics.\nEnable statistics with `crud.cfg{stats = true, stats_driver = 'metrics'}`\n",
                "fill": 0,
@@ -11398,7 +11382,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_crud_stats_count{job=~\"$job\",alias=~\"$alias\",operation=\"replace_many\",status=\"error\"}[$__rate_interval])",
+                     "expr": "rate(tnt_crud_stats_count{job=~\"tarantool\",alias=~\"$alias\",operation=\"replace_many\",status=\"error\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}} — {{name}}",
@@ -11448,7 +11432,7 @@
                "bars": false,
                "dashLength": 10,
                "dashes": false,
-               "datasource": "${DS_PROMETHEUS}",
+               "datasource": "Prometheus",
                "decimals": 2,
                "description": "99th percentile of error replace_many and replace_object_many CRUD module requests latency with aging.\n\nCRUD 0.11.0 or newer is required to use statistics.\nEnable quantiles with `crud.cfg{stats = true, stats_driver = 'metrics', stats_quantiles = true}`.\nIf `No data` displayed yet data expected, try to calibrate tolerated error with\n`crud.cfg{stats_quantile_tolerated_error=1e-4}`.\n",
                "fill": 0,
@@ -11488,7 +11472,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_crud_stats{job=~\"$job\",alias=~\"$alias\",operation=\"replace_many\",status=\"error\",quantile=\"0.99\"}",
+                     "expr": "tnt_crud_stats{job=~\"tarantool\",alias=~\"$alias\",operation=\"replace_many\",status=\"error\",quantile=\"0.99\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}} — {{name}}",
@@ -11538,7 +11522,7 @@
                "bars": false,
                "dashLength": 10,
                "dashes": false,
-               "datasource": "${DS_PROMETHEUS}",
+               "datasource": "Prometheus",
                "decimals": 2,
                "description": "Total count of success upsert and upsert_object requests to cluster spaces with CRUD module.\nGraph shows average requests per second.\n\nCRUD 0.11.0 or newer is required to use statistics.\nEnable statistics with `crud.cfg{stats = true, stats_driver = 'metrics'}`\n",
                "fill": 0,
@@ -11578,7 +11562,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_crud_stats_count{job=~\"$job\",alias=~\"$alias\",operation=\"upsert\",status=\"ok\"}[$__rate_interval])",
+                     "expr": "rate(tnt_crud_stats_count{job=~\"tarantool\",alias=~\"$alias\",operation=\"upsert\",status=\"ok\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}} — {{name}}",
@@ -11628,7 +11612,7 @@
                "bars": false,
                "dashLength": 10,
                "dashes": false,
-               "datasource": "${DS_PROMETHEUS}",
+               "datasource": "Prometheus",
                "decimals": 2,
                "description": "99th percentile of success upsert and upsert_object CRUD module requests latency with aging.\n\nCRUD 0.11.0 or newer is required to use statistics.\nEnable quantiles with `crud.cfg{stats = true, stats_driver = 'metrics', stats_quantiles = true}`.\nIf `No data` displayed yet data expected, try to calibrate tolerated error with\n`crud.cfg{stats_quantile_tolerated_error=1e-4}`.\n",
                "fill": 0,
@@ -11668,7 +11652,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_crud_stats{job=~\"$job\",alias=~\"$alias\",operation=\"upsert\",status=\"ok\",quantile=\"0.99\"}",
+                     "expr": "tnt_crud_stats{job=~\"tarantool\",alias=~\"$alias\",operation=\"upsert\",status=\"ok\",quantile=\"0.99\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}} — {{name}}",
@@ -11718,7 +11702,7 @@
                "bars": false,
                "dashLength": 10,
                "dashes": false,
-               "datasource": "${DS_PROMETHEUS}",
+               "datasource": "Prometheus",
                "decimals": 2,
                "description": "Total count of error upsert and upsert_object requests to cluster spaces with CRUD module.\nGraph shows average requests per second.\n\nCRUD 0.11.0 or newer is required to use statistics.\nEnable statistics with `crud.cfg{stats = true, stats_driver = 'metrics'}`\n",
                "fill": 0,
@@ -11758,7 +11742,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_crud_stats_count{job=~\"$job\",alias=~\"$alias\",operation=\"upsert\",status=\"error\"}[$__rate_interval])",
+                     "expr": "rate(tnt_crud_stats_count{job=~\"tarantool\",alias=~\"$alias\",operation=\"upsert\",status=\"error\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}} — {{name}}",
@@ -11808,7 +11792,7 @@
                "bars": false,
                "dashLength": 10,
                "dashes": false,
-               "datasource": "${DS_PROMETHEUS}",
+               "datasource": "Prometheus",
                "decimals": 2,
                "description": "99th percentile of error upsert and upsert_object CRUD module requests latency with aging.\n\nCRUD 0.11.0 or newer is required to use statistics.\nEnable quantiles with `crud.cfg{stats = true, stats_driver = 'metrics', stats_quantiles = true}`.\nIf `No data` displayed yet data expected, try to calibrate tolerated error with\n`crud.cfg{stats_quantile_tolerated_error=1e-4}`.\n",
                "fill": 0,
@@ -11848,7 +11832,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_crud_stats{job=~\"$job\",alias=~\"$alias\",operation=\"upsert\",status=\"error\",quantile=\"0.99\"}",
+                     "expr": "tnt_crud_stats{job=~\"tarantool\",alias=~\"$alias\",operation=\"upsert\",status=\"error\",quantile=\"0.99\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}} — {{name}}",
@@ -11898,7 +11882,7 @@
                "bars": false,
                "dashLength": 10,
                "dashes": false,
-               "datasource": "${DS_PROMETHEUS}",
+               "datasource": "Prometheus",
                "decimals": 2,
                "description": "Total count of success upsert_many and upsert_object_many requests to cluster spaces with CRUD module.\nGraph shows average requests per second.\n\nCRUD 0.11.0 or newer is required to use statistics.\nEnable statistics with `crud.cfg{stats = true, stats_driver = 'metrics'}`\n",
                "fill": 0,
@@ -11938,7 +11922,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_crud_stats_count{job=~\"$job\",alias=~\"$alias\",operation=\"upsert_many\",status=\"ok\"}[$__rate_interval])",
+                     "expr": "rate(tnt_crud_stats_count{job=~\"tarantool\",alias=~\"$alias\",operation=\"upsert_many\",status=\"ok\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}} — {{name}}",
@@ -11988,7 +11972,7 @@
                "bars": false,
                "dashLength": 10,
                "dashes": false,
-               "datasource": "${DS_PROMETHEUS}",
+               "datasource": "Prometheus",
                "decimals": 2,
                "description": "99th percentile of success upsert_many and upsert_object_many CRUD module requests latency with aging.\n\nCRUD 0.11.0 or newer is required to use statistics.\nEnable quantiles with `crud.cfg{stats = true, stats_driver = 'metrics', stats_quantiles = true}`.\nIf `No data` displayed yet data expected, try to calibrate tolerated error with\n`crud.cfg{stats_quantile_tolerated_error=1e-4}`.\n",
                "fill": 0,
@@ -12028,7 +12012,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_crud_stats{job=~\"$job\",alias=~\"$alias\",operation=\"upsert_many\",status=\"ok\",quantile=\"0.99\"}",
+                     "expr": "tnt_crud_stats{job=~\"tarantool\",alias=~\"$alias\",operation=\"upsert_many\",status=\"ok\",quantile=\"0.99\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}} — {{name}}",
@@ -12078,7 +12062,7 @@
                "bars": false,
                "dashLength": 10,
                "dashes": false,
-               "datasource": "${DS_PROMETHEUS}",
+               "datasource": "Prometheus",
                "decimals": 2,
                "description": "Total count of error upsert_many and upsert_object_many requests to cluster spaces with CRUD module.\nGraph shows average requests per second.\n\nCRUD 0.11.0 or newer is required to use statistics.\nEnable statistics with `crud.cfg{stats = true, stats_driver = 'metrics'}`\n",
                "fill": 0,
@@ -12118,7 +12102,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_crud_stats_count{job=~\"$job\",alias=~\"$alias\",operation=\"upsert_many\",status=\"error\"}[$__rate_interval])",
+                     "expr": "rate(tnt_crud_stats_count{job=~\"tarantool\",alias=~\"$alias\",operation=\"upsert_many\",status=\"error\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}} — {{name}}",
@@ -12168,7 +12152,7 @@
                "bars": false,
                "dashLength": 10,
                "dashes": false,
-               "datasource": "${DS_PROMETHEUS}",
+               "datasource": "Prometheus",
                "decimals": 2,
                "description": "99th percentile of error upsert_many and upsert_object_many CRUD module requests latency with aging.\n\nCRUD 0.11.0 or newer is required to use statistics.\nEnable quantiles with `crud.cfg{stats = true, stats_driver = 'metrics', stats_quantiles = true}`.\nIf `No data` displayed yet data expected, try to calibrate tolerated error with\n`crud.cfg{stats_quantile_tolerated_error=1e-4}`.\n",
                "fill": 0,
@@ -12208,7 +12192,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_crud_stats{job=~\"$job\",alias=~\"$alias\",operation=\"upsert_many\",status=\"error\",quantile=\"0.99\"}",
+                     "expr": "tnt_crud_stats{job=~\"tarantool\",alias=~\"$alias\",operation=\"upsert_many\",status=\"error\",quantile=\"0.99\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}} — {{name}}",
@@ -12258,7 +12242,7 @@
                "bars": false,
                "dashLength": 10,
                "dashes": false,
-               "datasource": "${DS_PROMETHEUS}",
+               "datasource": "Prometheus",
                "decimals": 2,
                "description": "Total count of success update requests to cluster spaces with CRUD module.\nGraph shows average requests per second.\n\nCRUD 0.11.0 or newer is required to use statistics.\nEnable statistics with `crud.cfg{stats = true, stats_driver = 'metrics'}`\n",
                "fill": 0,
@@ -12298,7 +12282,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_crud_stats_count{job=~\"$job\",alias=~\"$alias\",operation=\"update\",status=\"ok\"}[$__rate_interval])",
+                     "expr": "rate(tnt_crud_stats_count{job=~\"tarantool\",alias=~\"$alias\",operation=\"update\",status=\"ok\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}} — {{name}}",
@@ -12348,7 +12332,7 @@
                "bars": false,
                "dashLength": 10,
                "dashes": false,
-               "datasource": "${DS_PROMETHEUS}",
+               "datasource": "Prometheus",
                "decimals": 2,
                "description": "99th percentile of success update CRUD module requests latency with aging.\n\nCRUD 0.11.0 or newer is required to use statistics.\nEnable quantiles with `crud.cfg{stats = true, stats_driver = 'metrics', stats_quantiles = true}`.\nIf `No data` displayed yet data expected, try to calibrate tolerated error with\n`crud.cfg{stats_quantile_tolerated_error=1e-4}`.\n",
                "fill": 0,
@@ -12388,7 +12372,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_crud_stats{job=~\"$job\",alias=~\"$alias\",operation=\"update\",status=\"ok\",quantile=\"0.99\"}",
+                     "expr": "tnt_crud_stats{job=~\"tarantool\",alias=~\"$alias\",operation=\"update\",status=\"ok\",quantile=\"0.99\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}} — {{name}}",
@@ -12438,7 +12422,7 @@
                "bars": false,
                "dashLength": 10,
                "dashes": false,
-               "datasource": "${DS_PROMETHEUS}",
+               "datasource": "Prometheus",
                "decimals": 2,
                "description": "Total count of error update requests to cluster spaces with CRUD module.\nGraph shows average requests per second.\n\nCRUD 0.11.0 or newer is required to use statistics.\nEnable statistics with `crud.cfg{stats = true, stats_driver = 'metrics'}`\n",
                "fill": 0,
@@ -12478,7 +12462,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_crud_stats_count{job=~\"$job\",alias=~\"$alias\",operation=\"update\",status=\"error\"}[$__rate_interval])",
+                     "expr": "rate(tnt_crud_stats_count{job=~\"tarantool\",alias=~\"$alias\",operation=\"update\",status=\"error\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}} — {{name}}",
@@ -12528,7 +12512,7 @@
                "bars": false,
                "dashLength": 10,
                "dashes": false,
-               "datasource": "${DS_PROMETHEUS}",
+               "datasource": "Prometheus",
                "decimals": 2,
                "description": "99th percentile of error update CRUD module requests latency with aging.\n\nCRUD 0.11.0 or newer is required to use statistics.\nEnable quantiles with `crud.cfg{stats = true, stats_driver = 'metrics', stats_quantiles = true}`.\nIf `No data` displayed yet data expected, try to calibrate tolerated error with\n`crud.cfg{stats_quantile_tolerated_error=1e-4}`.\n",
                "fill": 0,
@@ -12568,7 +12552,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_crud_stats{job=~\"$job\",alias=~\"$alias\",operation=\"update\",status=\"error\",quantile=\"0.99\"}",
+                     "expr": "tnt_crud_stats{job=~\"tarantool\",alias=~\"$alias\",operation=\"update\",status=\"error\",quantile=\"0.99\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}} — {{name}}",
@@ -12618,7 +12602,7 @@
                "bars": false,
                "dashLength": 10,
                "dashes": false,
-               "datasource": "${DS_PROMETHEUS}",
+               "datasource": "Prometheus",
                "decimals": 2,
                "description": "Total count of success delete requests to cluster spaces with CRUD module.\nGraph shows average requests per second.\n\nCRUD 0.11.0 or newer is required to use statistics.\nEnable statistics with `crud.cfg{stats = true, stats_driver = 'metrics'}`\n",
                "fill": 0,
@@ -12658,7 +12642,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_crud_stats_count{job=~\"$job\",alias=~\"$alias\",operation=\"delete\",status=\"ok\"}[$__rate_interval])",
+                     "expr": "rate(tnt_crud_stats_count{job=~\"tarantool\",alias=~\"$alias\",operation=\"delete\",status=\"ok\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}} — {{name}}",
@@ -12708,7 +12692,7 @@
                "bars": false,
                "dashLength": 10,
                "dashes": false,
-               "datasource": "${DS_PROMETHEUS}",
+               "datasource": "Prometheus",
                "decimals": 2,
                "description": "99th percentile of success delete CRUD module requests latency with aging.\n\nCRUD 0.11.0 or newer is required to use statistics.\nEnable quantiles with `crud.cfg{stats = true, stats_driver = 'metrics', stats_quantiles = true}`.\nIf `No data` displayed yet data expected, try to calibrate tolerated error with\n`crud.cfg{stats_quantile_tolerated_error=1e-4}`.\n",
                "fill": 0,
@@ -12748,7 +12732,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_crud_stats{job=~\"$job\",alias=~\"$alias\",operation=\"delete\",status=\"ok\",quantile=\"0.99\"}",
+                     "expr": "tnt_crud_stats{job=~\"tarantool\",alias=~\"$alias\",operation=\"delete\",status=\"ok\",quantile=\"0.99\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}} — {{name}}",
@@ -12798,7 +12782,7 @@
                "bars": false,
                "dashLength": 10,
                "dashes": false,
-               "datasource": "${DS_PROMETHEUS}",
+               "datasource": "Prometheus",
                "decimals": 2,
                "description": "Total count of error delete requests to cluster spaces with CRUD module.\nGraph shows average requests per second.\n\nCRUD 0.11.0 or newer is required to use statistics.\nEnable statistics with `crud.cfg{stats = true, stats_driver = 'metrics'}`\n",
                "fill": 0,
@@ -12838,7 +12822,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_crud_stats_count{job=~\"$job\",alias=~\"$alias\",operation=\"delete\",status=\"error\"}[$__rate_interval])",
+                     "expr": "rate(tnt_crud_stats_count{job=~\"tarantool\",alias=~\"$alias\",operation=\"delete\",status=\"error\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}} — {{name}}",
@@ -12888,7 +12872,7 @@
                "bars": false,
                "dashLength": 10,
                "dashes": false,
-               "datasource": "${DS_PROMETHEUS}",
+               "datasource": "Prometheus",
                "decimals": 2,
                "description": "99th percentile of error delete CRUD module requests latency with aging.\n\nCRUD 0.11.0 or newer is required to use statistics.\nEnable quantiles with `crud.cfg{stats = true, stats_driver = 'metrics', stats_quantiles = true}`.\nIf `No data` displayed yet data expected, try to calibrate tolerated error with\n`crud.cfg{stats_quantile_tolerated_error=1e-4}`.\n",
                "fill": 0,
@@ -12928,7 +12912,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_crud_stats{job=~\"$job\",alias=~\"$alias\",operation=\"delete\",status=\"error\",quantile=\"0.99\"}",
+                     "expr": "tnt_crud_stats{job=~\"tarantool\",alias=~\"$alias\",operation=\"delete\",status=\"error\",quantile=\"0.99\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}} — {{name}}",
@@ -12978,7 +12962,7 @@
                "bars": false,
                "dashLength": 10,
                "dashes": false,
-               "datasource": "${DS_PROMETHEUS}",
+               "datasource": "Prometheus",
                "decimals": 2,
                "description": "Total count of success count requests to cluster spaces with CRUD module.\nGraph shows average requests per second.\n\nCRUD 0.11.0 or newer is required to use statistics.\nEnable statistics with `crud.cfg{stats = true, stats_driver = 'metrics'}`\n",
                "fill": 0,
@@ -13018,7 +13002,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_crud_stats_count{job=~\"$job\",alias=~\"$alias\",operation=\"count\",status=\"ok\"}[$__rate_interval])",
+                     "expr": "rate(tnt_crud_stats_count{job=~\"tarantool\",alias=~\"$alias\",operation=\"count\",status=\"ok\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}} — {{name}}",
@@ -13068,7 +13052,7 @@
                "bars": false,
                "dashLength": 10,
                "dashes": false,
-               "datasource": "${DS_PROMETHEUS}",
+               "datasource": "Prometheus",
                "decimals": 2,
                "description": "99th percentile of success count CRUD module requests latency with aging.\n\nCRUD 0.11.0 or newer is required to use statistics.\nEnable quantiles with `crud.cfg{stats = true, stats_driver = 'metrics', stats_quantiles = true}`.\nIf `No data` displayed yet data expected, try to calibrate tolerated error with\n`crud.cfg{stats_quantile_tolerated_error=1e-4}`.\n",
                "fill": 0,
@@ -13108,7 +13092,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_crud_stats{job=~\"$job\",alias=~\"$alias\",operation=\"count\",status=\"ok\",quantile=\"0.99\"}",
+                     "expr": "tnt_crud_stats{job=~\"tarantool\",alias=~\"$alias\",operation=\"count\",status=\"ok\",quantile=\"0.99\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}} — {{name}}",
@@ -13158,7 +13142,7 @@
                "bars": false,
                "dashLength": 10,
                "dashes": false,
-               "datasource": "${DS_PROMETHEUS}",
+               "datasource": "Prometheus",
                "decimals": 2,
                "description": "Total count of error count requests to cluster spaces with CRUD module.\nGraph shows average requests per second.\n\nCRUD 0.11.0 or newer is required to use statistics.\nEnable statistics with `crud.cfg{stats = true, stats_driver = 'metrics'}`\n",
                "fill": 0,
@@ -13198,7 +13182,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_crud_stats_count{job=~\"$job\",alias=~\"$alias\",operation=\"count\",status=\"error\"}[$__rate_interval])",
+                     "expr": "rate(tnt_crud_stats_count{job=~\"tarantool\",alias=~\"$alias\",operation=\"count\",status=\"error\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}} — {{name}}",
@@ -13248,7 +13232,7 @@
                "bars": false,
                "dashLength": 10,
                "dashes": false,
-               "datasource": "${DS_PROMETHEUS}",
+               "datasource": "Prometheus",
                "decimals": 2,
                "description": "99th percentile of error count CRUD module requests latency with aging.\n\nCRUD 0.11.0 or newer is required to use statistics.\nEnable quantiles with `crud.cfg{stats = true, stats_driver = 'metrics', stats_quantiles = true}`.\nIf `No data` displayed yet data expected, try to calibrate tolerated error with\n`crud.cfg{stats_quantile_tolerated_error=1e-4}`.\n",
                "fill": 0,
@@ -13288,7 +13272,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_crud_stats{job=~\"$job\",alias=~\"$alias\",operation=\"count\",status=\"error\",quantile=\"0.99\"}",
+                     "expr": "tnt_crud_stats{job=~\"tarantool\",alias=~\"$alias\",operation=\"count\",status=\"error\",quantile=\"0.99\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}} — {{name}}",
@@ -13338,7 +13322,7 @@
                "bars": false,
                "dashLength": 10,
                "dashes": false,
-               "datasource": "${DS_PROMETHEUS}",
+               "datasource": "Prometheus",
                "decimals": 2,
                "description": "Total count of success get requests to cluster spaces with CRUD module.\nGraph shows average requests per second.\n\nCRUD 0.11.0 or newer is required to use statistics.\nEnable statistics with `crud.cfg{stats = true, stats_driver = 'metrics'}`\n",
                "fill": 0,
@@ -13378,7 +13362,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_crud_stats_count{job=~\"$job\",alias=~\"$alias\",operation=\"get\",status=\"ok\"}[$__rate_interval])",
+                     "expr": "rate(tnt_crud_stats_count{job=~\"tarantool\",alias=~\"$alias\",operation=\"get\",status=\"ok\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}} — {{name}}",
@@ -13428,7 +13412,7 @@
                "bars": false,
                "dashLength": 10,
                "dashes": false,
-               "datasource": "${DS_PROMETHEUS}",
+               "datasource": "Prometheus",
                "decimals": 2,
                "description": "99th percentile of success get CRUD module requests latency with aging.\n\nCRUD 0.11.0 or newer is required to use statistics.\nEnable quantiles with `crud.cfg{stats = true, stats_driver = 'metrics', stats_quantiles = true}`.\nIf `No data` displayed yet data expected, try to calibrate tolerated error with\n`crud.cfg{stats_quantile_tolerated_error=1e-4}`.\n",
                "fill": 0,
@@ -13468,7 +13452,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_crud_stats{job=~\"$job\",alias=~\"$alias\",operation=\"get\",status=\"ok\",quantile=\"0.99\"}",
+                     "expr": "tnt_crud_stats{job=~\"tarantool\",alias=~\"$alias\",operation=\"get\",status=\"ok\",quantile=\"0.99\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}} — {{name}}",
@@ -13518,7 +13502,7 @@
                "bars": false,
                "dashLength": 10,
                "dashes": false,
-               "datasource": "${DS_PROMETHEUS}",
+               "datasource": "Prometheus",
                "decimals": 2,
                "description": "Total count of error get requests to cluster spaces with CRUD module.\nGraph shows average requests per second.\n\nCRUD 0.11.0 or newer is required to use statistics.\nEnable statistics with `crud.cfg{stats = true, stats_driver = 'metrics'}`\n",
                "fill": 0,
@@ -13558,7 +13542,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_crud_stats_count{job=~\"$job\",alias=~\"$alias\",operation=\"get\",status=\"error\"}[$__rate_interval])",
+                     "expr": "rate(tnt_crud_stats_count{job=~\"tarantool\",alias=~\"$alias\",operation=\"get\",status=\"error\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}} — {{name}}",
@@ -13608,7 +13592,7 @@
                "bars": false,
                "dashLength": 10,
                "dashes": false,
-               "datasource": "${DS_PROMETHEUS}",
+               "datasource": "Prometheus",
                "decimals": 2,
                "description": "99th percentile of error get CRUD module requests latency with aging.\n\nCRUD 0.11.0 or newer is required to use statistics.\nEnable quantiles with `crud.cfg{stats = true, stats_driver = 'metrics', stats_quantiles = true}`.\nIf `No data` displayed yet data expected, try to calibrate tolerated error with\n`crud.cfg{stats_quantile_tolerated_error=1e-4}`.\n",
                "fill": 0,
@@ -13648,7 +13632,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_crud_stats{job=~\"$job\",alias=~\"$alias\",operation=\"get\",status=\"error\",quantile=\"0.99\"}",
+                     "expr": "tnt_crud_stats{job=~\"tarantool\",alias=~\"$alias\",operation=\"get\",status=\"error\",quantile=\"0.99\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}} — {{name}}",
@@ -13698,7 +13682,7 @@
                "bars": false,
                "dashLength": 10,
                "dashes": false,
-               "datasource": "${DS_PROMETHEUS}",
+               "datasource": "Prometheus",
                "decimals": 2,
                "description": "Total count of success MIN and MAX requests to cluster spaces with CRUD module.\nGraph shows average requests per second.\n\nCRUD 0.11.0 or newer is required to use statistics.\nEnable statistics with `crud.cfg{stats = true, stats_driver = 'metrics'}`\n",
                "fill": 0,
@@ -13738,7 +13722,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_crud_stats_count{job=~\"$job\",alias=~\"$alias\",operation=\"borders\",status=\"ok\"}[$__rate_interval])",
+                     "expr": "rate(tnt_crud_stats_count{job=~\"tarantool\",alias=~\"$alias\",operation=\"borders\",status=\"ok\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}} — {{name}}",
@@ -13788,7 +13772,7 @@
                "bars": false,
                "dashLength": 10,
                "dashes": false,
-               "datasource": "${DS_PROMETHEUS}",
+               "datasource": "Prometheus",
                "decimals": 2,
                "description": "99th percentile of success MIN and MAX CRUD module requests latency with aging.\n\nCRUD 0.11.0 or newer is required to use statistics.\nEnable quantiles with `crud.cfg{stats = true, stats_driver = 'metrics', stats_quantiles = true}`.\nIf `No data` displayed yet data expected, try to calibrate tolerated error with\n`crud.cfg{stats_quantile_tolerated_error=1e-4}`.\n",
                "fill": 0,
@@ -13828,7 +13812,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_crud_stats{job=~\"$job\",alias=~\"$alias\",operation=\"borders\",status=\"ok\",quantile=\"0.99\"}",
+                     "expr": "tnt_crud_stats{job=~\"tarantool\",alias=~\"$alias\",operation=\"borders\",status=\"ok\",quantile=\"0.99\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}} — {{name}}",
@@ -13878,7 +13862,7 @@
                "bars": false,
                "dashLength": 10,
                "dashes": false,
-               "datasource": "${DS_PROMETHEUS}",
+               "datasource": "Prometheus",
                "decimals": 2,
                "description": "Total count of error MIN and MAX requests to cluster spaces with CRUD module.\nGraph shows average requests per second.\n\nCRUD 0.11.0 or newer is required to use statistics.\nEnable statistics with `crud.cfg{stats = true, stats_driver = 'metrics'}`\n",
                "fill": 0,
@@ -13918,7 +13902,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_crud_stats_count{job=~\"$job\",alias=~\"$alias\",operation=\"borders\",status=\"error\"}[$__rate_interval])",
+                     "expr": "rate(tnt_crud_stats_count{job=~\"tarantool\",alias=~\"$alias\",operation=\"borders\",status=\"error\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}} — {{name}}",
@@ -13968,7 +13952,7 @@
                "bars": false,
                "dashLength": 10,
                "dashes": false,
-               "datasource": "${DS_PROMETHEUS}",
+               "datasource": "Prometheus",
                "decimals": 2,
                "description": "99th percentile of error MIN and MAX CRUD module requests latency with aging.\n\nCRUD 0.11.0 or newer is required to use statistics.\nEnable quantiles with `crud.cfg{stats = true, stats_driver = 'metrics', stats_quantiles = true}`.\nIf `No data` displayed yet data expected, try to calibrate tolerated error with\n`crud.cfg{stats_quantile_tolerated_error=1e-4}`.\n",
                "fill": 0,
@@ -14008,7 +13992,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_crud_stats{job=~\"$job\",alias=~\"$alias\",operation=\"borders\",status=\"error\",quantile=\"0.99\"}",
+                     "expr": "tnt_crud_stats{job=~\"tarantool\",alias=~\"$alias\",operation=\"borders\",status=\"error\",quantile=\"0.99\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}} — {{name}}",
@@ -14058,7 +14042,7 @@
                "bars": false,
                "dashLength": 10,
                "dashes": false,
-               "datasource": "${DS_PROMETHEUS}",
+               "datasource": "Prometheus",
                "decimals": 2,
                "description": "Total count of success len requests to cluster spaces with CRUD module.\nGraph shows average requests per second.\n\nCRUD 0.11.0 or newer is required to use statistics.\nEnable statistics with `crud.cfg{stats = true, stats_driver = 'metrics'}`\n",
                "fill": 0,
@@ -14098,7 +14082,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_crud_stats_count{job=~\"$job\",alias=~\"$alias\",operation=\"len\",status=\"ok\"}[$__rate_interval])",
+                     "expr": "rate(tnt_crud_stats_count{job=~\"tarantool\",alias=~\"$alias\",operation=\"len\",status=\"ok\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}} — {{name}}",
@@ -14148,7 +14132,7 @@
                "bars": false,
                "dashLength": 10,
                "dashes": false,
-               "datasource": "${DS_PROMETHEUS}",
+               "datasource": "Prometheus",
                "decimals": 2,
                "description": "99th percentile of success len CRUD module requests latency with aging.\n\nCRUD 0.11.0 or newer is required to use statistics.\nEnable quantiles with `crud.cfg{stats = true, stats_driver = 'metrics', stats_quantiles = true}`.\nIf `No data` displayed yet data expected, try to calibrate tolerated error with\n`crud.cfg{stats_quantile_tolerated_error=1e-4}`.\n",
                "fill": 0,
@@ -14188,7 +14172,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_crud_stats{job=~\"$job\",alias=~\"$alias\",operation=\"len\",status=\"ok\",quantile=\"0.99\"}",
+                     "expr": "tnt_crud_stats{job=~\"tarantool\",alias=~\"$alias\",operation=\"len\",status=\"ok\",quantile=\"0.99\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}} — {{name}}",
@@ -14238,7 +14222,7 @@
                "bars": false,
                "dashLength": 10,
                "dashes": false,
-               "datasource": "${DS_PROMETHEUS}",
+               "datasource": "Prometheus",
                "decimals": 2,
                "description": "Total count of error len requests to cluster spaces with CRUD module.\nGraph shows average requests per second.\n\nCRUD 0.11.0 or newer is required to use statistics.\nEnable statistics with `crud.cfg{stats = true, stats_driver = 'metrics'}`\n",
                "fill": 0,
@@ -14278,7 +14262,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_crud_stats_count{job=~\"$job\",alias=~\"$alias\",operation=\"len\",status=\"error\"}[$__rate_interval])",
+                     "expr": "rate(tnt_crud_stats_count{job=~\"tarantool\",alias=~\"$alias\",operation=\"len\",status=\"error\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}} — {{name}}",
@@ -14328,7 +14312,7 @@
                "bars": false,
                "dashLength": 10,
                "dashes": false,
-               "datasource": "${DS_PROMETHEUS}",
+               "datasource": "Prometheus",
                "decimals": 2,
                "description": "99th percentile of error len CRUD module requests latency with aging.\n\nCRUD 0.11.0 or newer is required to use statistics.\nEnable quantiles with `crud.cfg{stats = true, stats_driver = 'metrics', stats_quantiles = true}`.\nIf `No data` displayed yet data expected, try to calibrate tolerated error with\n`crud.cfg{stats_quantile_tolerated_error=1e-4}`.\n",
                "fill": 0,
@@ -14368,7 +14352,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_crud_stats{job=~\"$job\",alias=~\"$alias\",operation=\"len\",status=\"error\",quantile=\"0.99\"}",
+                     "expr": "tnt_crud_stats{job=~\"tarantool\",alias=~\"$alias\",operation=\"len\",status=\"error\",quantile=\"0.99\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}} — {{name}}",
@@ -14418,7 +14402,7 @@
                "bars": false,
                "dashLength": 10,
                "dashes": false,
-               "datasource": "${DS_PROMETHEUS}",
+               "datasource": "Prometheus",
                "decimals": 2,
                "description": "Total count of success truncate requests to cluster spaces with CRUD module.\nGraph shows average requests per second.\n\nCRUD 0.11.0 or newer is required to use statistics.\nEnable statistics with `crud.cfg{stats = true, stats_driver = 'metrics'}`\n",
                "fill": 0,
@@ -14458,7 +14442,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_crud_stats_count{job=~\"$job\",alias=~\"$alias\",operation=\"truncate\",status=\"ok\"}[$__rate_interval])",
+                     "expr": "rate(tnt_crud_stats_count{job=~\"tarantool\",alias=~\"$alias\",operation=\"truncate\",status=\"ok\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}} — {{name}}",
@@ -14508,7 +14492,7 @@
                "bars": false,
                "dashLength": 10,
                "dashes": false,
-               "datasource": "${DS_PROMETHEUS}",
+               "datasource": "Prometheus",
                "decimals": 2,
                "description": "99th percentile of success truncate CRUD module requests latency with aging.\n\nCRUD 0.11.0 or newer is required to use statistics.\nEnable quantiles with `crud.cfg{stats = true, stats_driver = 'metrics', stats_quantiles = true}`.\nIf `No data` displayed yet data expected, try to calibrate tolerated error with\n`crud.cfg{stats_quantile_tolerated_error=1e-4}`.\n",
                "fill": 0,
@@ -14548,7 +14532,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_crud_stats{job=~\"$job\",alias=~\"$alias\",operation=\"truncate\",status=\"ok\",quantile=\"0.99\"}",
+                     "expr": "tnt_crud_stats{job=~\"tarantool\",alias=~\"$alias\",operation=\"truncate\",status=\"ok\",quantile=\"0.99\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}} — {{name}}",
@@ -14598,7 +14582,7 @@
                "bars": false,
                "dashLength": 10,
                "dashes": false,
-               "datasource": "${DS_PROMETHEUS}",
+               "datasource": "Prometheus",
                "decimals": 2,
                "description": "Total count of error truncate requests to cluster spaces with CRUD module.\nGraph shows average requests per second.\n\nCRUD 0.11.0 or newer is required to use statistics.\nEnable statistics with `crud.cfg{stats = true, stats_driver = 'metrics'}`\n",
                "fill": 0,
@@ -14638,7 +14622,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_crud_stats_count{job=~\"$job\",alias=~\"$alias\",operation=\"truncate\",status=\"error\"}[$__rate_interval])",
+                     "expr": "rate(tnt_crud_stats_count{job=~\"tarantool\",alias=~\"$alias\",operation=\"truncate\",status=\"error\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}} — {{name}}",
@@ -14688,7 +14672,7 @@
                "bars": false,
                "dashLength": 10,
                "dashes": false,
-               "datasource": "${DS_PROMETHEUS}",
+               "datasource": "Prometheus",
                "decimals": 2,
                "description": "99th percentile of error truncate CRUD module requests latency with aging.\n\nCRUD 0.11.0 or newer is required to use statistics.\nEnable quantiles with `crud.cfg{stats = true, stats_driver = 'metrics', stats_quantiles = true}`.\nIf `No data` displayed yet data expected, try to calibrate tolerated error with\n`crud.cfg{stats_quantile_tolerated_error=1e-4}`.\n",
                "fill": 0,
@@ -14728,7 +14712,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_crud_stats{job=~\"$job\",alias=~\"$alias\",operation=\"truncate\",status=\"error\",quantile=\"0.99\"}",
+                     "expr": "tnt_crud_stats{job=~\"tarantool\",alias=~\"$alias\",operation=\"truncate\",status=\"error\",quantile=\"0.99\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}} — {{name}}",
@@ -14798,7 +14782,7 @@
                "bars": false,
                "dashLength": 10,
                "dashes": false,
-               "datasource": "${DS_PROMETHEUS}",
+               "datasource": "Prometheus",
                "decimals": 3,
                "description": "A number of task tuples checked for expiration (expired + skipped).\nGraph shows mean tuples per second.\n",
                "fill": 0,
@@ -14838,7 +14822,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(expirationd_checked_count{job=~\"$job\",alias=~\"$alias\"}[$__rate_interval])",
+                     "expr": "rate(expirationd_checked_count{job=~\"tarantool\",alias=~\"$alias\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{name}} — {{alias}}",
@@ -14888,7 +14872,7 @@
                "bars": false,
                "dashLength": 10,
                "dashes": false,
-               "datasource": "${DS_PROMETHEUS}",
+               "datasource": "Prometheus",
                "decimals": 3,
                "description": "A number of task expired tuples.\nGraph shows mean tuples per second.\n",
                "fill": 0,
@@ -14928,7 +14912,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(expirationd_expired_count{job=~\"$job\",alias=~\"$alias\"}[$__rate_interval])",
+                     "expr": "rate(expirationd_expired_count{job=~\"tarantool\",alias=~\"$alias\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{name}} — {{alias}}",
@@ -14978,7 +14962,7 @@
                "bars": false,
                "dashLength": 10,
                "dashes": false,
-               "datasource": "${DS_PROMETHEUS}",
+               "datasource": "Prometheus",
                "decimals": 0,
                "description": "A number of task restarts since start.\nFrom the start is equal to 1.\n",
                "fill": 0,
@@ -15018,7 +15002,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "expirationd_restarts{job=~\"$job\",alias=~\"$alias\"}",
+                     "expr": "expirationd_restarts{job=~\"tarantool\",alias=~\"$alias\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{name}} — {{alias}}",
@@ -15068,7 +15052,7 @@
                "bars": false,
                "dashLength": 10,
                "dashes": false,
-               "datasource": "${DS_PROMETHEUS}",
+               "datasource": "Prometheus",
                "decimals": 3,
                "description": "A task's operation time.\n",
                "fill": 0,
@@ -15108,7 +15092,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "expirationd_working_time{job=~\"$job\",alias=~\"$alias\"}",
+                     "expr": "expirationd_working_time{job=~\"tarantool\",alias=~\"$alias\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{name}} — {{alias}}",
@@ -15161,296 +15145,6 @@
          "title": "expirationd module statistics",
          "titleSize": "h6",
          "type": "row"
-      },
-      {
-         "collapse": true,
-         "collapsed": true,
-         "gridPos": {
-            "h": 1,
-            "w": 24,
-            "x": 0,
-            "y": 429
-         },
-         "id": 182,
-         "panels": [
-            {
-               "aliasColors": { },
-               "bars": false,
-               "dashLength": 10,
-               "dashes": false,
-               "datasource": "${DS_PROMETHEUS}",
-               "decimals": 3,
-               "description": "My custom component could have 3 statuses:\ncode 2 is OK, code 1 is suspended process, code 0 means issues in component.\n",
-               "fill": 0,
-               "gridPos": {
-                  "h": 6,
-                  "w": 24,
-                  "x": 0,
-                  "y": 430
-               },
-               "id": 183,
-               "legend": {
-                  "alignAsTable": true,
-                  "avg": true,
-                  "current": true,
-                  "max": true,
-                  "min": false,
-                  "rightSide": false,
-                  "show": true,
-                  "sideWidth": null,
-                  "sort": "current",
-                  "sortDesc": true,
-                  "total": false,
-                  "values": true
-               },
-               "lines": true,
-               "linewidth": 1,
-               "links": [ ],
-               "nullPointMode": "null",
-               "percentage": false,
-               "pointradius": 5,
-               "points": false,
-               "renderer": "flot",
-               "repeat": null,
-               "seriesOverrides": [ ],
-               "spaceLength": 10,
-               "stack": false,
-               "steppedLine": false,
-               "targets": [
-                  {
-                     "expr": "my_component_status{job=~\"$job\",alias=~\"$alias\"}",
-                     "format": "time_series",
-                     "intervalFactor": 2,
-                     "legendFormat": "{{alias}}",
-                     "refId": "A"
-                  }
-               ],
-               "thresholds": [ ],
-               "timeFrom": null,
-               "timeShift": null,
-               "title": "My custom component status",
-               "tooltip": {
-                  "shared": true,
-                  "sort": 2,
-                  "value_type": "individual"
-               },
-               "type": "graph",
-               "xaxis": {
-                  "buckets": null,
-                  "mode": "time",
-                  "name": null,
-                  "show": true,
-                  "values": [ ]
-               },
-               "yaxes": [
-                  {
-                     "decimals": 0,
-                     "format": "none",
-                     "label": "requests per second",
-                     "logBase": 1,
-                     "max": null,
-                     "min": null,
-                     "show": true
-                  },
-                  {
-                     "decimals": 3,
-                     "format": "none",
-                     "label": null,
-                     "logBase": 1,
-                     "max": null,
-                     "min": null,
-                     "show": true
-                  }
-               ]
-            },
-            {
-               "aliasColors": { },
-               "bars": false,
-               "dashLength": 10,
-               "dashes": false,
-               "datasource": "${DS_PROMETHEUS}",
-               "decimals": 3,
-               "description": "My custom component processes requests\nand collects info on process to summary collector\n'my_component_load_metric'.\n",
-               "fill": 0,
-               "gridPos": {
-                  "h": 8,
-                  "w": 12,
-                  "x": 0,
-                  "y": 436
-               },
-               "id": 184,
-               "legend": {
-                  "alignAsTable": true,
-                  "avg": true,
-                  "current": true,
-                  "max": true,
-                  "min": false,
-                  "rightSide": false,
-                  "show": true,
-                  "sideWidth": null,
-                  "sort": "current",
-                  "sortDesc": true,
-                  "total": false,
-                  "values": true
-               },
-               "lines": true,
-               "linewidth": 1,
-               "links": [ ],
-               "nullPointMode": "null",
-               "percentage": false,
-               "pointradius": 5,
-               "points": false,
-               "renderer": "flot",
-               "repeat": null,
-               "seriesOverrides": [ ],
-               "spaceLength": 10,
-               "stack": false,
-               "steppedLine": false,
-               "targets": [
-                  {
-                     "expr": "rate(my_component_load_metric_count{job=~\"$job\",alias=~\"$alias\"}[$__rate_interval])",
-                     "format": "time_series",
-                     "intervalFactor": 2,
-                     "legendFormat": "{{alias}}",
-                     "refId": "A"
-                  }
-               ],
-               "thresholds": [ ],
-               "timeFrom": null,
-               "timeShift": null,
-               "title": "My custom component load",
-               "tooltip": {
-                  "shared": true,
-                  "sort": 2,
-                  "value_type": "individual"
-               },
-               "type": "graph",
-               "xaxis": {
-                  "buckets": null,
-                  "mode": "time",
-                  "name": null,
-                  "show": true,
-                  "values": [ ]
-               },
-               "yaxes": [
-                  {
-                     "decimals": 0,
-                     "format": "none",
-                     "label": "requests per second",
-                     "logBase": 1,
-                     "max": null,
-                     "min": null,
-                     "show": true
-                  },
-                  {
-                     "decimals": 3,
-                     "format": "none",
-                     "label": null,
-                     "logBase": 1,
-                     "max": null,
-                     "min": null,
-                     "show": true
-                  }
-               ]
-            },
-            {
-               "aliasColors": { },
-               "bars": false,
-               "dashLength": 10,
-               "dashes": false,
-               "datasource": "${DS_PROMETHEUS}",
-               "decimals": 3,
-               "description": "My custom component processes requests\nand collects info on process to summary collector\n'my_component_load_metric'.\n",
-               "fill": 0,
-               "gridPos": {
-                  "h": 8,
-                  "w": 12,
-                  "x": 12,
-                  "y": 436
-               },
-               "id": 185,
-               "legend": {
-                  "alignAsTable": true,
-                  "avg": true,
-                  "current": true,
-                  "max": true,
-                  "min": false,
-                  "rightSide": false,
-                  "show": true,
-                  "sideWidth": null,
-                  "sort": "current",
-                  "sortDesc": true,
-                  "total": false,
-                  "values": true
-               },
-               "lines": true,
-               "linewidth": 1,
-               "links": [ ],
-               "nullPointMode": "null",
-               "percentage": false,
-               "pointradius": 5,
-               "points": false,
-               "renderer": "flot",
-               "repeat": null,
-               "seriesOverrides": [ ],
-               "spaceLength": 10,
-               "stack": false,
-               "steppedLine": false,
-               "targets": [
-                  {
-                     "expr": "my_component_load_metric{job=~\"$job\",alias=~\"$alias\",quantile=\"0.99\"}",
-                     "format": "time_series",
-                     "intervalFactor": 2,
-                     "legendFormat": "{{alias}}",
-                     "refId": "A"
-                  }
-               ],
-               "thresholds": [ ],
-               "timeFrom": null,
-               "timeShift": null,
-               "title": "My custom component process",
-               "tooltip": {
-                  "shared": true,
-                  "sort": 2,
-                  "value_type": "individual"
-               },
-               "type": "graph",
-               "xaxis": {
-                  "buckets": null,
-                  "mode": "time",
-                  "name": null,
-                  "show": true,
-                  "values": [ ]
-               },
-               "yaxes": [
-                  {
-                     "decimals": 0,
-                     "format": "s",
-                     "label": "process time",
-                     "logBase": 1,
-                     "max": null,
-                     "min": null,
-                     "show": true
-                  },
-                  {
-                     "decimals": 3,
-                     "format": "s",
-                     "label": null,
-                     "logBase": 1,
-                     "max": null,
-                     "min": null,
-                     "show": true
-                  }
-               ]
-            }
-         ],
-         "repeat": null,
-         "repeatIteration": null,
-         "repeatRowId": null,
-         "showTitle": true,
-         "title": "Tarantool network activity",
-         "titleSize": "h6",
-         "type": "row"
       }
    ],
    "refresh": "30s",
@@ -15465,38 +15159,17 @@
          {
             "allValue": null,
             "current": {
-               "text": "${PROMETHEUS_JOB}",
-               "value": "${PROMETHEUS_JOB}"
-            },
-            "hide": 2,
-            "includeAll": false,
-            "label": "Prometheus job",
-            "multi": false,
-            "name": "job",
-            "options": [
-               {
-                  "text": "${PROMETHEUS_JOB}",
-                  "value": "${PROMETHEUS_JOB}"
-               }
-            ],
-            "query": "${PROMETHEUS_JOB}",
-            "refresh": 0,
-            "type": "custom"
-         },
-         {
-            "allValue": null,
-            "current": {
                "text": "all",
                "value": "$__all"
             },
-            "datasource": "${DS_PROMETHEUS}",
+            "datasource": "Prometheus",
             "hide": 0,
             "includeAll": true,
             "label": "Instances",
             "multi": true,
             "name": "alias",
             "options": [ ],
-            "query": "label_values(tnt_info_uptime{job=~\"$job\"},alias)",
+            "query": "label_values(tnt_info_uptime{job=\"tarantool\"},alias)",
             "refresh": 2,
             "regex": "",
             "sort": 0,

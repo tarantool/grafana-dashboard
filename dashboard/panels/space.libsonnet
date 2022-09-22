@@ -17,6 +17,7 @@ local prometheus = grafana.prometheus;
     policy=null,
     measurement=null,
     job=null,
+    alias=null,
     metric_name=null,
     engine=null
   ) = common.default_graph(
@@ -31,7 +32,7 @@ local prometheus = grafana.prometheus;
   ).addTarget(
     if datasource_type == variable.datasource_type.prometheus then
       prometheus.target(
-        expr=std.format('%s{job=~"%s", engine="%s"}', [metric_name, job, engine]),
+        expr=std.format('%s{job=~"%s", alias=~"%s", engine="%s"}', [metric_name, job, alias, engine]),
         legendFormat='{{alias}} — {{name}}',
       )
     else if datasource_type == variable.datasource_type.influxdb then
@@ -41,7 +42,9 @@ local prometheus = grafana.prometheus;
         group_tags=['label_pairs_alias', 'label_pairs_name'],
         alias='$tag_label_pairs_alias — $tag_label_pairs_name',
         fill='null',
-      ).where('metric_name', '=', metric_name).where('label_pairs_engine', '=', engine)
+      ).where('metric_name', '=', metric_name)
+      .where('label_pairs_alias', '=~', alias)
+      .where('label_pairs_engine', '=', engine)
       .selectField('value').addConverter('last')
   ),
 
@@ -56,6 +59,7 @@ local prometheus = grafana.prometheus;
     policy=null,
     measurement=null,
     job=null,
+    alias=null,
   ):: count(
     title=title,
     description=description,
@@ -64,6 +68,7 @@ local prometheus = grafana.prometheus;
     policy=policy,
     measurement=measurement,
     job=job,
+    alias=alias,
     metric_name='tnt_space_len',
     engine='memtx'
   ),
@@ -86,6 +91,7 @@ local prometheus = grafana.prometheus;
     policy=null,
     measurement=null,
     job=null,
+    alias=null,
   ):: count(
     title=title,
     description=description,
@@ -94,6 +100,7 @@ local prometheus = grafana.prometheus;
     policy=policy,
     measurement=measurement,
     job=job,
+    alias=alias,
     metric_name='tnt_vinyl_tuples',
     engine='vinyl'
   ),
@@ -106,6 +113,7 @@ local prometheus = grafana.prometheus;
     policy=null,
     measurement=null,
     job=null,
+    alias=null,
     metric_name=null,
   ) = common.default_graph(
     title=title,
@@ -117,7 +125,7 @@ local prometheus = grafana.prometheus;
   ).addTarget(
     if datasource_type == variable.datasource_type.prometheus then
       prometheus.target(
-        expr=std.format('%s{job=~"%s", engine="memtx"}', [metric_name, job]),
+        expr=std.format('%s{job=~"%s", alias=~"%s", engine="memtx"}', [metric_name, job, alias]),
         legendFormat='{{alias}} — {{name}}',
       )
     else if datasource_type == variable.datasource_type.influxdb then
@@ -127,7 +135,9 @@ local prometheus = grafana.prometheus;
         group_tags=['label_pairs_alias', 'label_pairs_name'],
         alias='$tag_label_pairs_alias — $tag_label_pairs_name',
         fill='null',
-      ).where('metric_name', '=', metric_name).where('label_pairs_engine', '=', 'memtx')
+      ).where('metric_name', '=', metric_name)
+      .where('label_pairs_alias', '=~', alias)
+      .where('label_pairs_engine', '=', 'memtx')
       .selectField('value').addConverter('mean')
   ),
 
@@ -153,6 +163,7 @@ local prometheus = grafana.prometheus;
     policy=null,
     measurement=null,
     job=null,
+    alias=null,
   ):: bsize_memtx(
     title=title,
     description=description,
@@ -161,6 +172,7 @@ local prometheus = grafana.prometheus;
     policy=policy,
     measurement=measurement,
     job=job,
+    alias=alias,
     metric_name='tnt_space_bsize'
   ),
 
@@ -177,6 +189,7 @@ local prometheus = grafana.prometheus;
     policy=null,
     measurement=null,
     job=null,
+    alias=null,
   ):: common.default_graph(
     title=title,
     description=description,
@@ -187,7 +200,7 @@ local prometheus = grafana.prometheus;
   ).addTarget(
     if datasource_type == variable.datasource_type.prometheus then
       prometheus.target(
-        expr=std.format('tnt_space_index_bsize{job=~"%s"}', [job]),
+        expr=std.format('tnt_space_index_bsize{job=~"%s", alias=~"%s"}', [job, alias]),
         legendFormat='{{alias}} — {{name}} ({{index_name}})',
       )
     else if datasource_type == variable.datasource_type.influxdb then
@@ -198,6 +211,7 @@ local prometheus = grafana.prometheus;
         alias='$tag_label_pairs_alias — $tag_label_pairs_name ($tag_label_pairs_index_name)',
         fill='null',
       ).where('metric_name', '=', 'tnt_space_index_bsize')
+      .where('label_pairs_alias', '=~', alias)
       .selectField('value').addConverter('mean')
   ),
 
@@ -223,6 +237,7 @@ local prometheus = grafana.prometheus;
     policy=null,
     measurement=null,
     job=null,
+    alias=null,
   ):: bsize_memtx(
     title=title,
     description=description,
@@ -231,6 +246,7 @@ local prometheus = grafana.prometheus;
     policy=policy,
     measurement=measurement,
     job=job,
+    alias=alias,
     metric_name='tnt_space_total_bsize'
   ),
 }

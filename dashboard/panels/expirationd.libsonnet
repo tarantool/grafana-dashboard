@@ -15,10 +15,11 @@ local prometheus = grafana.prometheus;
     job=null,
     policy=null,
     measurement=null,
+    alias=null,
   ) =
     if datasource_type == variable.datasource_type.prometheus then
       prometheus.target(
-        expr=std.format('%s{job=~"%s"}', [metric_name, job]),
+        expr=std.format('%s{job=~"%s",alias=~"%s"}', [metric_name, job, alias]),
         legendFormat='{{name}} — {{alias}}',
       )
     else if datasource_type == variable.datasource_type.influxdb then
@@ -32,6 +33,7 @@ local prometheus = grafana.prometheus;
         alias='$tag_label_pairs_name — $tag_label_pairs_alias',
         fill='null',
       ).where('metric_name', '=', metric_name)
+      .where('label_pairs_alias', '=~', alias)
       .selectField('value').addConverter('mean'),
 
   local rps_target(
@@ -40,11 +42,12 @@ local prometheus = grafana.prometheus;
     job=null,
     policy=null,
     measurement=null,
+    alias=null,
   ) =
     if datasource_type == variable.datasource_type.prometheus then
       prometheus.target(
-        expr=std.format('rate(%s{job=~"%s"}[$__rate_interval])',
-                        [metric_name, job]),
+        expr=std.format('rate(%s{job=~"%s",alias=~"%s"}[$__rate_interval])',
+                        [metric_name, job, alias]),
         legendFormat='{{name}} — {{alias}}',
       )
     else if datasource_type == variable.datasource_type.influxdb then
@@ -58,6 +61,7 @@ local prometheus = grafana.prometheus;
         alias='$tag_label_pairs_name — $tag_label_pairs_alias',
         fill='null',
       ).where('metric_name', '=', metric_name)
+      .where('label_pairs_alias', '=~', alias)
       .selectField('value').addConverter('mean').addConverter('non_negative_derivative', ['1s']),
 
   tuples_checked(
@@ -71,6 +75,7 @@ local prometheus = grafana.prometheus;
     policy=null,
     measurement=null,
     job=null,
+    alias=null,
   ):: common_utils.default_graph(
     title=title,
     description=description,
@@ -83,6 +88,7 @@ local prometheus = grafana.prometheus;
     job,
     policy,
     measurement,
+    alias,
   )),
 
   tuples_expired(
@@ -96,6 +102,7 @@ local prometheus = grafana.prometheus;
     policy=null,
     measurement=null,
     job=null,
+    alias=null,
   ):: common_utils.default_graph(
     title=title,
     description=description,
@@ -108,6 +115,7 @@ local prometheus = grafana.prometheus;
     job,
     policy,
     measurement,
+    alias,
   )),
 
   restarts(
@@ -121,6 +129,7 @@ local prometheus = grafana.prometheus;
     policy=null,
     measurement=null,
     job=null,
+    alias=null,
   ):: common_utils.default_graph(
     title=title,
     description=description,
@@ -133,6 +142,7 @@ local prometheus = grafana.prometheus;
     job,
     policy,
     measurement,
+    alias,
   )),
 
   operation_time(
@@ -145,6 +155,7 @@ local prometheus = grafana.prometheus;
     policy=null,
     measurement=null,
     job=null,
+    alias=null,
   ):: common_utils.default_graph(
     title=title,
     description=description,
@@ -157,5 +168,6 @@ local prometheus = grafana.prometheus;
     job,
     policy,
     measurement,
+    alias,
   )),
 }

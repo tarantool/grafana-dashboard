@@ -15,6 +15,7 @@ local common = import 'dashboard/panels/common.libsonnet';
     policy=null,
     measurement=null,
     job=null,
+    alias=null,
   ):: common.default_graph(
     title=title,
     description=description,
@@ -27,7 +28,8 @@ local common = import 'dashboard/panels/common.libsonnet';
     'tnt_info_memory_lua',
     job,
     policy,
-    measurement
+    measurement,
+    alias,
   )),
 
   runtime_memory(
@@ -45,6 +47,7 @@ local common = import 'dashboard/panels/common.libsonnet';
     policy=null,
     measurement=null,
     job=null,
+    alias=null,
   ):: common.default_graph(
     title=title,
     description=description,
@@ -59,7 +62,8 @@ local common = import 'dashboard/panels/common.libsonnet';
     'tnt_runtime_used',
     job,
     policy,
-    measurement
+    measurement,
+    alias,
   )),
 
   memory_tx(
@@ -75,6 +79,7 @@ local common = import 'dashboard/panels/common.libsonnet';
     policy=null,
     measurement=null,
     job=null,
+    alias=null,
   ):: common.default_graph(
     title=title,
     description=description,
@@ -87,7 +92,8 @@ local common = import 'dashboard/panels/common.libsonnet';
     'tnt_info_memory_tx',
     job,
     policy,
-    measurement
+    measurement,
+    alias,
   )),
 
   fiber_count(
@@ -102,6 +108,7 @@ local common = import 'dashboard/panels/common.libsonnet';
     policy=null,
     measurement=null,
     job=null,
+    alias=null,
   ):: common.default_graph(
     title=title,
     description=description,
@@ -115,6 +122,7 @@ local common = import 'dashboard/panels/common.libsonnet';
     job,
     policy,
     measurement,
+    alias,
     'last'
   )),
 
@@ -129,6 +137,7 @@ local common = import 'dashboard/panels/common.libsonnet';
     policy=null,
     measurement=null,
     job=null,
+    alias=null,
   ):: common.default_graph(
     title=title,
     description=description,
@@ -140,7 +149,8 @@ local common = import 'dashboard/panels/common.libsonnet';
     'tnt_fiber_csw',
     job,
     policy,
-    measurement
+    measurement,
+    alias,
   )),
 
   local fiber_memory(
@@ -151,6 +161,7 @@ local common = import 'dashboard/panels/common.libsonnet';
     policy,
     measurement,
     job,
+    alias,
     metric_name,
   ) = common.default_graph(
     title=title,
@@ -163,7 +174,8 @@ local common = import 'dashboard/panels/common.libsonnet';
     metric_name,
     job,
     policy,
-    measurement
+    measurement,
+    alias,
   )),
 
   fiber_memused(
@@ -175,7 +187,8 @@ local common = import 'dashboard/panels/common.libsonnet';
     datasource=null,
     policy=null,
     measurement=null,
-    job=null
+    job=null,
+    alias=null,
   ):: fiber_memory(
     title,
     description,
@@ -184,6 +197,7 @@ local common = import 'dashboard/panels/common.libsonnet';
     policy,
     measurement,
     job,
+    alias,
     'tnt_fiber_memused'
   ),
 
@@ -196,7 +210,8 @@ local common = import 'dashboard/panels/common.libsonnet';
     datasource=null,
     policy=null,
     measurement=null,
-    job=null
+    job=null,
+    alias=null,
   ):: fiber_memory(
     title,
     description,
@@ -205,6 +220,7 @@ local common = import 'dashboard/panels/common.libsonnet';
     policy,
     measurement,
     job,
+    alias,
     'tnt_fiber_memalloc'
   ),
 
@@ -223,6 +239,7 @@ local common = import 'dashboard/panels/common.libsonnet';
     policy=null,
     measurement=null,
     job=null,
+    alias=null,
   ):: common.default_graph(
     title=title,
     description=description,
@@ -238,6 +255,7 @@ local common = import 'dashboard/panels/common.libsonnet';
     job,
     policy,
     measurement,
+    alias,
     converter='last'
   )),
 }

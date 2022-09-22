@@ -19,6 +19,7 @@ local prometheus = grafana.prometheus;
     job=null,
     policy=null,
     measurement=null,
+    alias=null,
     panel_width=6,
   ) = common_utils.default_graph(
     title=
@@ -40,8 +41,8 @@ local prometheus = grafana.prometheus;
   ).addTarget(
     if datasource_type == variable.datasource_type.prometheus then
       prometheus.target(
-        expr=std.format('rate(%s{job=~"%s",method="repository.%s"}[$__rate_interval])',
-                        [metric_name, job, method_tail]),
+        expr=std.format('rate(%s{job=~"%s",alias=~"%s",method="repository.%s"}[$__rate_interval])',
+                        [metric_name, job, alias, method_tail]),
         legendFormat='{{type}} — {{alias}}',
       )
     else if datasource_type == variable.datasource_type.influxdb then
@@ -55,6 +56,7 @@ local prometheus = grafana.prometheus;
         alias='$tag_label_pairs_type — $tag_label_pairs_alias',
         fill='null',
       ).where('metric_name', '=', metric_name)
+      .where('label_pairs_alias', '=~', alias)
       .where('label_pairs_method', '=', std.format('repository.%s', method_tail))
       .selectField('value').addConverter('mean').addConverter('non_negative_derivative', ['1s']),
   ),
@@ -69,6 +71,7 @@ local prometheus = grafana.prometheus;
     job=null,
     policy=null,
     measurement=null,
+    alias=null,
     panel_width=6,
   ) = common_utils.default_graph(
     title=
@@ -90,8 +93,8 @@ local prometheus = grafana.prometheus;
   ).addTarget(
     if datasource_type == variable.datasource_type.prometheus then
       prometheus.target(
-        expr=std.format('%s{job=~"%s",method="repository.%s",quantile="0.99"}',
-                        [metric_name, job, method_tail]),
+        expr=std.format('%s{job=~"%s",alias=~"%s",method="repository.%s",quantile="0.99"}',
+                        [metric_name, job, alias, method_tail]),
         legendFormat='{{type}} — {{alias}}',
       )
     else if datasource_type == variable.datasource_type.influxdb then
@@ -105,6 +108,7 @@ local prometheus = grafana.prometheus;
         alias='$tag_label_pairs_type — $tag_label_pairs_alias',
         fill='null',
       ).where('metric_name', '=', metric_name)
+      .where('label_pairs_alias', '=~', alias)
       .where('label_pairs_method', '=', std.format('repository.%s', method_tail))
       .where('label_pairs_quantile', '=', '0.99')
       .selectField('value').addConverter('mean'),
@@ -118,6 +122,7 @@ local prometheus = grafana.prometheus;
     policy=null,
     measurement=null,
     job=null,
+    alias=null,
   ):: rps_panel(
     title=title,
     description=description,
@@ -128,6 +133,7 @@ local prometheus = grafana.prometheus;
     job=job,
     policy=policy,
     measurement=measurement,
+    alias=alias,
   ),
 
   put_latency(
@@ -138,6 +144,7 @@ local prometheus = grafana.prometheus;
     policy=null,
     measurement=null,
     job=null,
+    alias=null,
   ):: latency_panel(
     title=title,
     description=description,
@@ -148,6 +155,7 @@ local prometheus = grafana.prometheus;
     job=job,
     policy=policy,
     measurement=measurement,
+    alias=alias,
   ),
 
   put_batch_rps(
@@ -158,6 +166,7 @@ local prometheus = grafana.prometheus;
     policy=null,
     measurement=null,
     job=null,
+    alias=null,
   ):: rps_panel(
     title=title,
     description=description,
@@ -168,6 +177,7 @@ local prometheus = grafana.prometheus;
     job=job,
     policy=policy,
     measurement=measurement,
+    alias=alias,
   ),
 
   put_batch_latency(
@@ -178,6 +188,7 @@ local prometheus = grafana.prometheus;
     policy=null,
     measurement=null,
     job=null,
+    alias=null,
   ):: latency_panel(
     title=title,
     description=description,
@@ -188,6 +199,7 @@ local prometheus = grafana.prometheus;
     job=job,
     policy=policy,
     measurement=measurement,
+    alias=alias,
   ),
 
   find_rps(
@@ -198,6 +210,7 @@ local prometheus = grafana.prometheus;
     policy=null,
     measurement=null,
     job=null,
+    alias=null,
   ):: rps_panel(
     title=title,
     description=description,
@@ -208,6 +221,7 @@ local prometheus = grafana.prometheus;
     job=job,
     policy=policy,
     measurement=measurement,
+    alias=alias,
     panel_width=12,
   ),
 
@@ -219,6 +233,7 @@ local prometheus = grafana.prometheus;
     policy=null,
     measurement=null,
     job=null,
+    alias=null,
   ):: latency_panel(
     title=title,
     description=description,
@@ -229,6 +244,7 @@ local prometheus = grafana.prometheus;
     job=job,
     policy=policy,
     measurement=measurement,
+    alias=alias,
     panel_width=12,
   ),
 
@@ -240,6 +256,7 @@ local prometheus = grafana.prometheus;
     policy=null,
     measurement=null,
     job=null,
+    alias=null,
   ):: rps_panel(
     title=title,
     description=description,
@@ -250,6 +267,7 @@ local prometheus = grafana.prometheus;
     job=job,
     policy=policy,
     measurement=measurement,
+    alias=alias,
   ),
 
   update_latency(
@@ -260,6 +278,7 @@ local prometheus = grafana.prometheus;
     policy=null,
     measurement=null,
     job=null,
+    alias=null,
   ):: latency_panel(
     title=title,
     description=description,
@@ -270,6 +289,7 @@ local prometheus = grafana.prometheus;
     job=job,
     policy=policy,
     measurement=measurement,
+    alias=alias,
   ),
 
   get_rps(
@@ -280,6 +300,7 @@ local prometheus = grafana.prometheus;
     policy=null,
     measurement=null,
     job=null,
+    alias=null,
   ):: rps_panel(
     title=title,
     description=description,
@@ -290,6 +311,7 @@ local prometheus = grafana.prometheus;
     job=job,
     policy=policy,
     measurement=measurement,
+    alias=alias,
   ),
 
   get_latency(
@@ -300,6 +322,7 @@ local prometheus = grafana.prometheus;
     policy=null,
     measurement=null,
     job=null,
+    alias=null,
   ):: latency_panel(
     title=title,
     description=description,
@@ -310,6 +333,7 @@ local prometheus = grafana.prometheus;
     job=job,
     policy=policy,
     measurement=measurement,
+    alias=alias,
   ),
 
   delete_rps(
@@ -320,6 +344,7 @@ local prometheus = grafana.prometheus;
     policy=null,
     measurement=null,
     job=null,
+    alias=null,
   ):: rps_panel(
     title=title,
     description=description,
@@ -330,6 +355,7 @@ local prometheus = grafana.prometheus;
     job=job,
     policy=policy,
     measurement=measurement,
+    alias=alias,
   ),
 
   delete_latency(
@@ -340,6 +366,7 @@ local prometheus = grafana.prometheus;
     policy=null,
     measurement=null,
     job=null,
+    alias=null,
   ):: latency_panel(
     title=title,
     description=description,
@@ -350,6 +377,7 @@ local prometheus = grafana.prometheus;
     job=job,
     policy=policy,
     measurement=measurement,
+    alias=alias,
   ),
 
   count_rps(
@@ -360,6 +388,7 @@ local prometheus = grafana.prometheus;
     policy=null,
     measurement=null,
     job=null,
+    alias=null,
   ):: rps_panel(
     title=title,
     description=description,
@@ -370,6 +399,7 @@ local prometheus = grafana.prometheus;
     job=job,
     policy=policy,
     measurement=measurement,
+    alias=alias,
   ),
 
   count_latency(
@@ -380,6 +410,7 @@ local prometheus = grafana.prometheus;
     policy=null,
     measurement=null,
     job=null,
+    alias=null,
   ):: latency_panel(
     title=title,
     description=description,
@@ -390,6 +421,7 @@ local prometheus = grafana.prometheus;
     job=job,
     policy=policy,
     measurement=measurement,
+    alias=alias,
   ),
 
   map_reduce_rps(
@@ -400,6 +432,7 @@ local prometheus = grafana.prometheus;
     policy=null,
     measurement=null,
     job=null,
+    alias=null,
   ):: rps_panel(
     title=title,
     description=description,
@@ -410,6 +443,7 @@ local prometheus = grafana.prometheus;
     job=job,
     policy=policy,
     measurement=measurement,
+    alias=alias,
   ),
 
   map_reduce_latency(
@@ -420,6 +454,7 @@ local prometheus = grafana.prometheus;
     policy=null,
     measurement=null,
     job=null,
+    alias=null,
   ):: latency_panel(
     title=title,
     description=description,
@@ -430,6 +465,7 @@ local prometheus = grafana.prometheus;
     job=job,
     policy=policy,
     measurement=measurement,
+    alias=alias,
   ),
 
   call_on_storage_rps(
@@ -440,6 +476,7 @@ local prometheus = grafana.prometheus;
     policy=null,
     measurement=null,
     job=null,
+    alias=null,
   ):: rps_panel(
     title=title,
     description=description,
@@ -450,6 +487,7 @@ local prometheus = grafana.prometheus;
     job=job,
     policy=policy,
     measurement=measurement,
+    alias=alias,
   ),
 
   call_on_storage_latency(
@@ -460,6 +498,7 @@ local prometheus = grafana.prometheus;
     policy=null,
     measurement=null,
     job=null,
+    alias=null,
   ):: latency_panel(
     title=title,
     description=description,
@@ -470,5 +509,6 @@ local prometheus = grafana.prometheus;
     job=job,
     policy=policy,
     measurement=measurement,
+    alias=alias,
   ),
 }

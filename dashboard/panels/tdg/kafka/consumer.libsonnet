@@ -14,6 +14,7 @@ local kafka_utils = import 'dashboard/panels/tdg/kafka/utils.libsonnet';
     policy=null,
     measurement=null,
     job=null,
+    alias=null,
   ):: common_utils.default_graph(
     title=title,
     description=description,
@@ -27,7 +28,8 @@ local kafka_utils = import 'dashboard/panels/tdg/kafka/utils.libsonnet';
     'tdg_kafka_cgrp_stateage',
     job,
     policy,
-    measurement
+    measurement,
+    alias,
   )),
 
   rebalance_age(
@@ -40,6 +42,7 @@ local kafka_utils = import 'dashboard/panels/tdg/kafka/utils.libsonnet';
     policy=null,
     measurement=null,
     job=null,
+    alias=null,
   ):: common_utils.default_graph(
     title=title,
     description=description,
@@ -51,7 +54,8 @@ local kafka_utils = import 'dashboard/panels/tdg/kafka/utils.libsonnet';
     'tdg_kafka_cgrp_rebalance_age',
     job,
     policy,
-    measurement
+    measurement,
+    alias,
   )),
 
   rebalances(
@@ -65,6 +69,7 @@ local kafka_utils = import 'dashboard/panels/tdg/kafka/utils.libsonnet';
     policy=null,
     measurement=null,
     job=null,
+    alias=null,
   ):: common_utils.default_graph(
     title=title,
     description=description,
@@ -77,6 +82,7 @@ local kafka_utils = import 'dashboard/panels/tdg/kafka/utils.libsonnet';
     job,
     policy,
     measurement,
+    alias,
   )),
 
   assignment_size(
@@ -89,6 +95,7 @@ local kafka_utils = import 'dashboard/panels/tdg/kafka/utils.libsonnet';
     policy=null,
     measurement=null,
     job=null,
+    alias=null,
   ):: common_utils.default_graph(
     title=title,
     description=description,
@@ -99,6 +106,7 @@ local kafka_utils = import 'dashboard/panels/tdg/kafka/utils.libsonnet';
     'tdg_kafka_cgrp_assignment_size',
     job,
     policy,
-    measurement
+    measurement,
+    alias,
   )),
 }

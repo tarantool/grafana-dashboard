@@ -17,6 +17,7 @@ local prometheus = grafana.prometheus;
     policy,
     measurement,
     job,
+    alias,
     metric_name,
     status_regex,
   ) = common.default_graph(
@@ -27,8 +28,8 @@ local prometheus = grafana.prometheus;
   ).addTarget(
     if datasource_type == variable.datasource_type.prometheus then
       prometheus.target(
-        expr=std.format('rate(%s{job=~"%s",status=~"%s"}[$__rate_interval])',
-                        [metric_name, job, std.strReplace(status_regex, '\\', '\\\\')]),
+        expr=std.format('rate(%s{job=~"%s",alias=~"%s",status=~"%s"}[$__rate_interval])',
+                        [metric_name, job, alias, std.strReplace(status_regex, '\\', '\\\\')]),
         legendFormat='{{alias}} — {{method}} {{path}} (code {{status}})',
       )
     else if datasource_type == variable.datasource_type.influxdb then
@@ -38,7 +39,9 @@ local prometheus = grafana.prometheus;
         group_tags=['label_pairs_alias', 'label_pairs_path', 'label_pairs_method', 'label_pairs_status'],
         alias='$tag_label_pairs_alias — $tag_label_pairs_method $tag_label_pairs_path (code $tag_label_pairs_status)',
         fill='null',
-      ).where('metric_name', '=', metric_name).where('label_pairs_status', '=~', std.format('/%s/', status_regex))
+      ).where('metric_name', '=', metric_name)
+      .where('label_pairs_alias', '=~', alias)
+      .where('label_pairs_status', '=~', std.format('/%s/', status_regex))
       .selectField('value').addConverter('mean').addConverter('non_negative_derivative', ['1s'])
   ),
 
@@ -53,6 +56,7 @@ local prometheus = grafana.prometheus;
     policy=null,
     measurement=null,
     job=null,
+    alias=null,
     metric_name='http_server_request_latency_count',
   ):: rps_graph(
     title=title,
@@ -62,6 +66,7 @@ local prometheus = grafana.prometheus;
     policy=policy,
     measurement=measurement,
     job=job,
+    alias=alias,
     metric_name=metric_name,
     status_regex='^2\\d{2}$',
   ),
@@ -77,6 +82,7 @@ local prometheus = grafana.prometheus;
     policy=null,
     measurement=null,
     job=null,
+    alias=null,
     metric_name='http_server_request_latency_count',
   ):: rps_graph(
     title=title,
@@ -86,6 +92,7 @@ local prometheus = grafana.prometheus;
     policy=policy,
     measurement=measurement,
     job=job,
+    alias=alias,
     metric_name=metric_name,
     status_regex='^4\\d{2}$',
   ),
@@ -101,6 +108,7 @@ local prometheus = grafana.prometheus;
     policy=null,
     measurement=null,
     job=null,
+    alias=null,
     metric_name='http_server_request_latency_count',
   ):: rps_graph(
     title=title,
@@ -110,6 +118,7 @@ local prometheus = grafana.prometheus;
     policy=policy,
     measurement=measurement,
     job=job,
+    alias=alias,
     metric_name=metric_name,
     status_regex='^5\\d{2}$',
   ),
@@ -122,6 +131,7 @@ local prometheus = grafana.prometheus;
     policy,
     measurement,
     job,
+    alias,
     metric_name,
     quantile,
     label,
@@ -136,7 +146,8 @@ local prometheus = grafana.prometheus;
   ).addTarget(
     if datasource_type == variable.datasource_type.prometheus then
       prometheus.target(
-        expr=std.format('%s{job=~"%s",quantile="%s",status=~"%s"}', [metric_name, job, quantile, std.strReplace(status_regex, '\\', '\\\\')]),
+        expr=std.format('%s{job=~"%s",alias=~"%s",quantile="%s",status=~"%s"}',
+                        [metric_name, job, alias, quantile, std.strReplace(status_regex, '\\', '\\\\')]),
         legendFormat='{{alias}} — {{method}} {{path}} (code {{status}})',
       )
     else if datasource_type == variable.datasource_type.influxdb then
@@ -146,7 +157,9 @@ local prometheus = grafana.prometheus;
         group_tags=['label_pairs_alias', 'label_pairs_path', 'label_pairs_method', 'label_pairs_status'],
         alias='$tag_label_pairs_alias — $tag_label_pairs_method $tag_label_pairs_path (code $tag_label_pairs_status)',
         fill='null',
-      ).where('metric_name', '=', metric_name).where('label_pairs_quantile', '=', quantile)
+      ).where('metric_name', '=', metric_name)
+      .where('label_pairs_alias', '=~', alias)
+      .where('label_pairs_quantile', '=', quantile)
       .where('label_pairs_status', '=~', std.format('/%s/', status_regex)).selectField('value').addConverter('mean')
   ),
 
@@ -162,6 +175,7 @@ local prometheus = grafana.prometheus;
     policy=null,
     measurement=null,
     job=null,
+    alias=null,
     metric_name='http_server_request_latency',
     quantile='0.99',
     label='99th percentile',
@@ -173,6 +187,7 @@ local prometheus = grafana.prometheus;
     policy=policy,
     measurement=measurement,
     job=job,
+    alias=alias,
     metric_name=metric_name,
     quantile=quantile,
     label=label,
@@ -191,6 +206,7 @@ local prometheus = grafana.prometheus;
     policy=null,
     measurement=null,
     job=null,
+    alias=null,
     metric_name='http_server_request_latency',
     quantile='0.99',
     label='99th percentile',
@@ -202,6 +218,7 @@ local prometheus = grafana.prometheus;
     policy=policy,
     measurement=measurement,
     job=job,
+    alias=alias,
     metric_name=metric_name,
     quantile=quantile,
     label=label,
@@ -220,6 +237,7 @@ local prometheus = grafana.prometheus;
     policy=null,
     measurement=null,
     job=null,
+    alias=null,
     metric_name='http_server_request_latency',
     quantile='0.99',
     label='99th percentile',
@@ -231,6 +249,7 @@ local prometheus = grafana.prometheus;
     policy=policy,
     measurement=measurement,
     job=job,
+    alias=alias,
     metric_name=metric_name,
     quantile=quantile,
     label=label,

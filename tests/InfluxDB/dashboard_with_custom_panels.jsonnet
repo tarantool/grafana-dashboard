@@ -22,6 +22,7 @@ dashboard.addPanels([
     metric_name='my_component_status',
     policy=variable.influxdb.policy,
     measurement=variable.influxdb.measurement,
+    alias=variable.influxdb.alias,
     converter='last',
   )),
 
@@ -40,6 +41,7 @@ dashboard.addPanels([
     metric_name='my_component_load_metric_count',
     policy=variable.influxdb.policy,
     measurement=variable.influxdb.measurement,
+    alias=variable.influxdb.alias,
   )),
 
   common.default_graph(
@@ -60,7 +62,9 @@ dashboard.addPanels([
       group_tags=['label_pairs_alias'],
       alias='$tag_label_pairs_alias',
       fill='null',
-    ).where('metric_name', '=', 'my_component_load_metric').where('label_pairs_quantile', '=', '0.99')
+    ).where('metric_name', '=', 'my_component_load_metric')
+    .where('label_pairs_alias', '=~', variable.influxdb.alias)
+    .where('label_pairs_quantile', '=', '0.99')
     .selectField('value').addConverter('mean')
   ),
 ]).build()

@@ -14,6 +14,7 @@ local variable = import 'dashboard/variable.libsonnet';
     policy=null,
     measurement=null,
     job=null,
+    alias=null,
   ):: common.default_graph(
     title=title,
     description=description,
@@ -26,7 +27,8 @@ local variable = import 'dashboard/variable.libsonnet';
     'tnt_info_memory_net',
     job,
     policy,
-    measurement
+    measurement,
+    alias,
   )),
 
   local bytes_per_second_graph(
@@ -37,6 +39,7 @@ local variable = import 'dashboard/variable.libsonnet';
     policy,
     measurement,
     job,
+    alias,
     metric_name,
     labelY1,
   ) = common.default_graph(
@@ -51,7 +54,8 @@ local variable = import 'dashboard/variable.libsonnet';
     metric_name,
     job,
     policy,
-    measurement
+    measurement,
+    alias,
   )),
 
   bytes_received_per_second(
@@ -65,6 +69,7 @@ local variable = import 'dashboard/variable.libsonnet';
     policy=null,
     measurement=null,
     job=null,
+    alias=null,
   ):: bytes_per_second_graph(
     title=title,
     description=description,
@@ -73,6 +78,7 @@ local variable = import 'dashboard/variable.libsonnet';
     policy=policy,
     measurement=measurement,
     job=job,
+    alias=alias,
     metric_name='tnt_net_received_total',
     labelY1='received'
   ),
@@ -88,6 +94,7 @@ local variable = import 'dashboard/variable.libsonnet';
     policy=null,
     measurement=null,
     job=null,
+    alias=null,
   ):: bytes_per_second_graph(
     title=title,
     description=description,
@@ -96,6 +103,7 @@ local variable = import 'dashboard/variable.libsonnet';
     policy=policy,
     measurement=measurement,
     job=job,
+    alias=alias,
     metric_name='tnt_net_sent_total',
     labelY1='sent'
   ),
@@ -114,6 +122,7 @@ local variable = import 'dashboard/variable.libsonnet';
     policy=null,
     measurement=null,
     job=null,
+    alias=null,
   ):: common.default_graph(
     title=title,
     description=description,
@@ -125,7 +134,8 @@ local variable = import 'dashboard/variable.libsonnet';
     'tnt_net_requests_total',
     job,
     policy,
-    measurement
+    measurement,
+    alias,
   )),
 
   net_pending(
@@ -141,6 +151,7 @@ local variable = import 'dashboard/variable.libsonnet';
     policy=null,
     measurement=null,
     job=null,
+    alias=null,
   ):: common.default_graph(
     title=title,
     description=description,
@@ -154,7 +165,8 @@ local variable = import 'dashboard/variable.libsonnet';
     'tnt_net_requests_current',
     job,
     policy,
-    measurement
+    measurement,
+    alias,
   )),
 
   requests_in_progress_per_second(
@@ -169,6 +181,7 @@ local variable = import 'dashboard/variable.libsonnet';
     policy=null,
     measurement=null,
     job=null,
+    alias=null,
   ):: common.default_graph(
     title=title,
     description=description,
@@ -181,6 +194,7 @@ local variable = import 'dashboard/variable.libsonnet';
     job,
     policy,
     measurement,
+    alias,
   )),
 
   requests_in_progress_current(
@@ -195,6 +209,7 @@ local variable = import 'dashboard/variable.libsonnet';
     policy=null,
     measurement=null,
     job=null,
+    alias=null,
   ):: common.default_graph(
     title=title,
     description=description,
@@ -208,6 +223,7 @@ local variable = import 'dashboard/variable.libsonnet';
     job,
     policy,
     measurement,
+    alias,
     'last'
   )),
 
@@ -224,6 +240,7 @@ local variable = import 'dashboard/variable.libsonnet';
     policy=null,
     measurement=null,
     job=null,
+    alias=null,
   ):: common.default_graph(
     title=title,
     description=description,
@@ -236,6 +253,7 @@ local variable = import 'dashboard/variable.libsonnet';
     job,
     policy,
     measurement,
+    alias,
   )),
 
   requests_in_queue_current(
@@ -250,6 +268,7 @@ local variable = import 'dashboard/variable.libsonnet';
     policy=null,
     measurement=null,
     job=null,
+    alias=null,
   ):: common.default_graph(
     title=title,
     description=description,
@@ -263,6 +282,7 @@ local variable = import 'dashboard/variable.libsonnet';
     job,
     policy,
     measurement,
+    alias,
     'last'
   )),
 
@@ -276,6 +296,7 @@ local variable = import 'dashboard/variable.libsonnet';
     policy=null,
     measurement=null,
     job=null,
+    alias=null,
   ):: common.default_graph(
     title=title,
     description=description,
@@ -288,6 +309,7 @@ local variable = import 'dashboard/variable.libsonnet';
     job,
     policy,
     measurement,
+    alias,
   )),
 
   current_connections(
@@ -300,6 +322,7 @@ local variable = import 'dashboard/variable.libsonnet';
     policy=null,
     measurement=null,
     job=null,
+    alias=null,
   ):: common.default_graph(
     title=title,
     description=description,
@@ -313,6 +336,7 @@ local variable = import 'dashboard/variable.libsonnet';
     job,
     policy,
     measurement,
+    alias,
     'last',
   )),
 }

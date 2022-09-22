@@ -16,6 +16,7 @@ local variable = import 'dashboard/variable.libsonnet';
     policy=null,
     measurement=null,
     job=null,
+    alias=null,
   ):: common_utils.default_graph(
     title=title,
     description=description,
@@ -26,7 +27,8 @@ local variable = import 'dashboard/variable.libsonnet';
     'tdg_kafka_replyq',
     job,
     policy,
-    measurement
+    measurement,
+    alias,
   )),
 
   message_current(
@@ -39,6 +41,7 @@ local variable = import 'dashboard/variable.libsonnet';
     policy=null,
     measurement=null,
     job=null,
+    alias=null,
   ):: common_utils.default_graph(
     title=title,
     description=description,
@@ -49,7 +52,8 @@ local variable = import 'dashboard/variable.libsonnet';
     'tdg_kafka_msg_size',
     job,
     policy,
-    measurement
+    measurement,
+    alias,
   )),
 
   message_size(
@@ -62,6 +66,7 @@ local variable = import 'dashboard/variable.libsonnet';
     policy=null,
     measurement=null,
     job=null,
+    alias=null,
   ):: common_utils.default_graph(
     title=title,
     description=description,
@@ -73,7 +78,8 @@ local variable = import 'dashboard/variable.libsonnet';
     'tdg_kafka_msg_cnt',
     job,
     policy,
-    measurement
+    measurement,
+    alias,
   )),
 
   requests(
@@ -87,6 +93,7 @@ local variable = import 'dashboard/variable.libsonnet';
     policy=null,
     measurement=null,
     job=null,
+    alias=null,
   ):: common_utils.default_graph(
     title=title,
     description=description,
@@ -99,6 +106,7 @@ local variable = import 'dashboard/variable.libsonnet';
     job,
     policy,
     measurement,
+    alias,
   )),
 
   request_bytes(
@@ -112,6 +120,7 @@ local variable = import 'dashboard/variable.libsonnet';
     policy=null,
     measurement=null,
     job=null,
+    alias=null,
   ):: common_utils.default_graph(
     title=title,
     description=description,
@@ -124,6 +133,7 @@ local variable = import 'dashboard/variable.libsonnet';
     job,
     policy,
     measurement,
+    alias,
   )),
 
   responses(
@@ -137,6 +147,7 @@ local variable = import 'dashboard/variable.libsonnet';
     policy=null,
     measurement=null,
     job=null,
+    alias=null,
   ):: common_utils.default_graph(
     title=title,
     description=description,
@@ -149,6 +160,7 @@ local variable = import 'dashboard/variable.libsonnet';
     job,
     policy,
     measurement,
+    alias,
   )),
 
   response_bytes(
@@ -162,6 +174,7 @@ local variable = import 'dashboard/variable.libsonnet';
     policy=null,
     measurement=null,
     job=null,
+    alias=null,
   ):: common_utils.default_graph(
     title=title,
     description=description,
@@ -174,6 +187,7 @@ local variable = import 'dashboard/variable.libsonnet';
     job,
     policy,
     measurement,
+    alias,
   )),
 
   messages_sent(
@@ -187,6 +201,7 @@ local variable = import 'dashboard/variable.libsonnet';
     policy=null,
     measurement=null,
     job=null,
+    alias=null,
   ):: common_utils.default_graph(
     title=title,
     description=description,
@@ -199,6 +214,7 @@ local variable = import 'dashboard/variable.libsonnet';
     job,
     policy,
     measurement,
+    alias,
   )),
 
   message_bytes_sent(
@@ -213,6 +229,7 @@ local variable = import 'dashboard/variable.libsonnet';
     policy=null,
     measurement=null,
     job=null,
+    alias=null,
   ):: common_utils.default_graph(
     title=title,
     description=description,
@@ -225,6 +242,7 @@ local variable = import 'dashboard/variable.libsonnet';
     job,
     policy,
     measurement,
+    alias,
   )),
 
   messages_received(
@@ -238,6 +256,7 @@ local variable = import 'dashboard/variable.libsonnet';
     policy=null,
     measurement=null,
     job=null,
+    alias=null,
   ):: common_utils.default_graph(
     title=title,
     description=description,
@@ -250,6 +269,7 @@ local variable = import 'dashboard/variable.libsonnet';
     job,
     policy,
     measurement,
+    alias,
   )),
 
   message_bytes_received(
@@ -264,6 +284,7 @@ local variable = import 'dashboard/variable.libsonnet';
     policy=null,
     measurement=null,
     job=null,
+    alias=null,
   ):: common_utils.default_graph(
     title=title,
     description=description,
@@ -276,5 +297,6 @@ local variable = import 'dashboard/variable.libsonnet';
     job,
     policy,
     measurement,
+    alias,
   )),
 }
