@@ -319,6 +319,7 @@ local prometheus = grafana.prometheus;
     policy,
     measurement,
     job,
+    alias,
     level,
   ) = common.default_graph(
     title=title,
@@ -333,7 +334,7 @@ local prometheus = grafana.prometheus;
   ).addTarget(
     if datasource_type == variable.datasource_type.prometheus then
       prometheus.target(
-        expr=std.format('tnt_cartridge_issues{job=~"%s",level="%s"}', [job, level]),
+        expr=std.format('tnt_cartridge_issues{job=~"%s",alias=~"%s",level="%s"}', [job, alias, level]),
         legendFormat='{{alias}}',
       )
     else if datasource_type == variable.datasource_type.influxdb then
@@ -343,7 +344,8 @@ local prometheus = grafana.prometheus;
         group_tags=['label_pairs_alias'],
         alias='$tag_label_pairs_alias',
         fill='null',
-      ).where('metric_name', '=', 'tnt_cartridge_issues').where('label_pairs_level', '=', level)
+      ).where('metric_name', '=', 'tnt_cartridge_issues').where('label_pairs_alias', '=~', alias)
+      .where('label_pairs_level', '=', level)
       .selectField('value').addConverter('last')
   ),
 
@@ -363,6 +365,7 @@ local prometheus = grafana.prometheus;
     policy=null,
     measurement=null,
     job=null,
+    alias=null,
   ):: cartridge_issues(
     title=title,
     description=description,
@@ -371,6 +374,7 @@ local prometheus = grafana.prometheus;
     policy=policy,
     measurement=measurement,
     job=job,
+    alias=alias,
     level='warning',
   ),
 
@@ -389,6 +393,7 @@ local prometheus = grafana.prometheus;
     policy=null,
     measurement=null,
     job=null,
+    alias=null,
   ):: cartridge_issues(
     title=title,
     description=description,
@@ -397,6 +402,7 @@ local prometheus = grafana.prometheus;
     policy=policy,
     measurement=measurement,
     job=job,
+    alias=alias,
     level='critical',
   ),
 
@@ -413,6 +419,7 @@ local prometheus = grafana.prometheus;
     policy=null,
     measurement=null,
     job=null,
+    alias=null,
   ):: timeseries.new(
     title=title,
     description=description,
@@ -429,7 +436,7 @@ local prometheus = grafana.prometheus;
   ).addTarget(
     if datasource_type == variable.datasource_type.prometheus then
       prometheus.target(
-        expr=std.format('tnt_replication_status{job=~"%s"}', [job]),
+        expr=std.format('tnt_replication_status{job=~"%s",alias=~"%s"}', [job, alias]),
         legendFormat='{{alias}} {{stream}} ({{id}})',
       )
     else if datasource_type == variable.datasource_type.influxdb then
@@ -439,7 +446,7 @@ local prometheus = grafana.prometheus;
         group_tags=['label_pairs_alias', 'label_pairs_stream', 'label_pairs_id'],
         alias='$tag_label_pairs_alias $tag_label_pairs_stream ($tag_label_pairs_id)',
         fill='null',
-      ).where('metric_name', '=', 'tnt_replication_status')
+      ).where('metric_name', '=', 'tnt_replication_status').where('label_pairs_alias', '=~', alias)
       .selectField('value').addConverter('last')
   ),
 
@@ -457,6 +464,7 @@ local prometheus = grafana.prometheus;
     policy=null,
     measurement=null,
     job=null,
+    alias=null,
   ):: timeseries.new(
     title=title,
     description=description,
@@ -477,6 +485,7 @@ local prometheus = grafana.prometheus;
       job,
       policy,
       measurement,
+      alias,
       'last'
     )
   ),
@@ -493,6 +502,7 @@ local prometheus = grafana.prometheus;
     policy=null,
     measurement=null,
     job=null,
+    alias=null,
   ):: common.default_graph(
     title=title,
     description=description,
@@ -506,7 +516,7 @@ local prometheus = grafana.prometheus;
   ).addTarget(
     if datasource_type == variable.datasource_type.prometheus then
       prometheus.target(
-        expr=std.format('tnt_replication_lag{job=~"%s"}', [job]),
+        expr=std.format('tnt_replication_lag{job=~"%s",alias=~"%s"}', [job, alias]),
         legendFormat='{{alias}} ({{id}})',
       )
     else if datasource_type == variable.datasource_type.influxdb then
@@ -516,7 +526,7 @@ local prometheus = grafana.prometheus;
         group_tags=['label_pairs_alias', 'label_pairs_id'],
         alias='$tag_label_pairs_alias ($tag_label_pairs_id)',
         fill='null',
-      ).where('metric_name', '=', 'tnt_replication_lag')
+      ).where('metric_name', '=', 'tnt_replication_lag').where('label_pairs_alias', '=~', alias)
       .selectField('value').addConverter('mean')
   ),
 
@@ -534,6 +544,7 @@ local prometheus = grafana.prometheus;
     policy=null,
     measurement=null,
     job=null,
+    alias=null,
   ):: common.default_graph(
     title=title,
     description=description,
@@ -548,7 +559,7 @@ local prometheus = grafana.prometheus;
   ).addTarget(
     if datasource_type == variable.datasource_type.prometheus then
       prometheus.target(
-        expr=std.format('tnt_clock_delta{job=~"%s"}', [job]),
+        expr=std.format('tnt_clock_delta{job=~"%s",alias=~"%s"}', [job, alias]),
         legendFormat='{{alias}} ({{delta}})',
       )
     else if datasource_type == variable.datasource_type.influxdb then
@@ -558,7 +569,7 @@ local prometheus = grafana.prometheus;
         group_tags=['label_pairs_alias', 'label_pairs_delta'],
         alias='$tag_label_pairs_alias ($tag_label_pairs_delta)',
         fill='null',
-      ).where('metric_name', '=', 'tnt_clock_delta')
+      ).where('metric_name', '=', 'tnt_clock_delta').where('label_pairs_alias', '=~', alias)
       .selectField('value').addConverter('last')
   ),
 }

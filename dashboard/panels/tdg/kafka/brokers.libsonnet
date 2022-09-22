@@ -15,10 +15,11 @@ local prometheus = grafana.prometheus;
     job=null,
     policy=null,
     measurement=null,
+    alias=null,
   ) =
     if datasource_type == variable.datasource_type.prometheus then
       prometheus.target(
-        expr=std.format('%s{job=~"%s"}', [metric_name, job]),
+        expr=std.format('%s{job=~"%s",alias=~"%s"}', [metric_name, job, alias]),
         legendFormat='{{name}} ({{broker_name}}) — {{alias}} ({{type}}, {{connector_name}})',
       )
     else if datasource_type == variable.datasource_type.influxdb then
@@ -35,6 +36,7 @@ local prometheus = grafana.prometheus;
         alias='$tag_label_pairs_name ($tag_label_pairs_broker_name) — $tag_label_pairs_alias ($tag_label_pairs_type, $tag_label_pairs_connector_name)',
         fill='null',
       ).where('metric_name', '=', metric_name)
+      .where('label_pairs_alias', '=~', alias)
       .selectField('value').addConverter('mean'),
 
   local brokers_rps_target(
@@ -43,11 +45,12 @@ local prometheus = grafana.prometheus;
     job=null,
     policy=null,
     measurement=null,
+    alias=null,
   ) =
     if datasource_type == variable.datasource_type.prometheus then
       prometheus.target(
-        expr=std.format('rate(%s{job=~"%s"}[$__rate_interval])',
-                        [metric_name, job]),
+        expr=std.format('rate(%s{job=~"%s",alias=~"%s"}[$__rate_interval])',
+                        [metric_name, job, alias]),
         legendFormat='{{name}} ({{broker_name}}) — {{alias}} ({{type}}, {{connector_name}})',
       )
     else if datasource_type == variable.datasource_type.influxdb then
@@ -64,6 +67,7 @@ local prometheus = grafana.prometheus;
         alias='$tag_label_pairs_name ($tag_label_pairs_broker_name) — $tag_label_pairs_alias ($tag_label_pairs_type, $tag_label_pairs_connector_name)',
         fill='null',
       ).where('metric_name', '=', metric_name)
+      .where('label_pairs_alias', '=~', alias)
       .selectField('value').addConverter('mean').addConverter('non_negative_derivative', ['1s']),
 
   local brokers_quantile_target(
@@ -72,11 +76,12 @@ local prometheus = grafana.prometheus;
     job=null,
     policy=null,
     measurement=null,
+    alias=null,
   ) =
     if datasource_type == variable.datasource_type.prometheus then
       prometheus.target(
-        expr=std.format('%s{job=~"%s",quantile="0.99"}',
-                        [metric_name, job]),
+        expr=std.format('%s{job=~"%s",alias=~"%s",quantile="0.99"}',
+                        [metric_name, job, alias]),
         legendFormat='{{name}} ({{broker_name}}) — {{alias}} ({{type}}, {{connector_name}})',
       )
     else if datasource_type == variable.datasource_type.influxdb then
@@ -92,7 +97,9 @@ local prometheus = grafana.prometheus;
         ],
         alias='$tag_label_pairs_name ($tag_label_pairs_broker_name) — $tag_label_pairs_alias ($tag_label_pairs_type, $tag_label_pairs_connector_name)',
         fill='null',
-      ).where('metric_name', '=', metric_name).where('label_pairs_quantile', '=', '0.99')
+      ).where('metric_name', '=', metric_name)
+      .where('label_pairs_alias', '=~', alias)
+      .where('label_pairs_quantile', '=', '0.99')
       .selectField('value').addConverter('last'),
 
   stateage(
@@ -105,6 +112,7 @@ local prometheus = grafana.prometheus;
     policy=null,
     measurement=null,
     job=null,
+    alias=null,
   ):: common_utils.default_graph(
     title=title,
     description=description,
@@ -118,7 +126,8 @@ local prometheus = grafana.prometheus;
     'tdg_kafka_broker_stateage',
     job,
     policy,
-    measurement
+    measurement,
+    alias,
   )),
 
   connects(
@@ -133,6 +142,7 @@ local prometheus = grafana.prometheus;
     policy=null,
     measurement=null,
     job=null,
+    alias=null,
   ):: common_utils.default_graph(
     title=title,
     description=description,
@@ -144,7 +154,8 @@ local prometheus = grafana.prometheus;
     'tdg_kafka_broker_connects',
     job,
     policy,
-    measurement
+    measurement,
+    alias,
   )),
 
   disconnects(
@@ -158,6 +169,7 @@ local prometheus = grafana.prometheus;
     policy=null,
     measurement=null,
     job=null,
+    alias=null,
   ):: common_utils.default_graph(
     title=title,
     description=description,
@@ -169,7 +181,8 @@ local prometheus = grafana.prometheus;
     'tdg_kafka_broker_disconnects',
     job,
     policy,
-    measurement
+    measurement,
+    alias,
   )),
 
   poll_wakeups(
@@ -183,6 +196,7 @@ local prometheus = grafana.prometheus;
     policy=null,
     measurement=null,
     job=null,
+    alias=null,
   ):: common_utils.default_graph(
     title=title,
     description=description,
@@ -194,7 +208,8 @@ local prometheus = grafana.prometheus;
     'tdg_kafka_broker_wakeups',
     job,
     policy,
-    measurement
+    measurement,
+    alias,
   )),
 
   outbuf(
@@ -207,6 +222,7 @@ local prometheus = grafana.prometheus;
     policy=null,
     measurement=null,
     job=null,
+    alias=null,
   ):: common_utils.default_graph(
     title=title,
     description=description,
@@ -218,7 +234,8 @@ local prometheus = grafana.prometheus;
     'tdg_kafka_broker_outbuf_cnt',
     job,
     policy,
-    measurement
+    measurement,
+    alias,
   )),
 
   outbuf_msg(
@@ -231,6 +248,7 @@ local prometheus = grafana.prometheus;
     policy=null,
     measurement=null,
     job=null,
+    alias=null,
   ):: common_utils.default_graph(
     title=title,
     description=description,
@@ -242,7 +260,8 @@ local prometheus = grafana.prometheus;
     'tdg_kafka_broker_outbuf_msg_cnt',
     job,
     policy,
-    measurement
+    measurement,
+    alias,
   )),
 
   waitresp(
@@ -255,6 +274,7 @@ local prometheus = grafana.prometheus;
     policy=null,
     measurement=null,
     job=null,
+    alias=null,
   ):: common_utils.default_graph(
     title=title,
     description=description,
@@ -266,7 +286,8 @@ local prometheus = grafana.prometheus;
     'tdg_kafka_broker_waitresp_cnt',
     job,
     policy,
-    measurement
+    measurement,
+    alias,
   )),
 
   waitresp_msg(
@@ -279,6 +300,7 @@ local prometheus = grafana.prometheus;
     policy=null,
     measurement=null,
     job=null,
+    alias=null,
   ):: common_utils.default_graph(
     title=title,
     description=description,
@@ -290,7 +312,8 @@ local prometheus = grafana.prometheus;
     'tdg_kafka_broker_waitresp_msg_cnt',
     job,
     policy,
-    measurement
+    measurement,
+    alias,
   )),
 
   requests(
@@ -304,6 +327,7 @@ local prometheus = grafana.prometheus;
     policy=null,
     measurement=null,
     job=null,
+    alias=null,
   ):: common_utils.default_graph(
     title=title,
     description=description,
@@ -314,7 +338,8 @@ local prometheus = grafana.prometheus;
     'tdg_kafka_broker_tx',
     job,
     policy,
-    measurement
+    measurement,
+    alias,
   )),
 
   request_bytes(
@@ -328,6 +353,7 @@ local prometheus = grafana.prometheus;
     policy=null,
     measurement=null,
     job=null,
+    alias=null,
   ):: common_utils.default_graph(
     title=title,
     description=description,
@@ -339,6 +365,7 @@ local prometheus = grafana.prometheus;
     job,
     policy,
     measurement,
+    alias,
   )),
 
   request_errors(
@@ -352,6 +379,7 @@ local prometheus = grafana.prometheus;
     policy=null,
     measurement=null,
     job=null,
+    alias=null,
   ):: common_utils.default_graph(
     title=title,
     description=description,
@@ -363,6 +391,7 @@ local prometheus = grafana.prometheus;
     job,
     policy,
     measurement,
+    alias,
   )),
 
   request_retries(
@@ -376,6 +405,7 @@ local prometheus = grafana.prometheus;
     policy=null,
     measurement=null,
     job=null,
+    alias=null,
   ):: common_utils.default_graph(
     title=title,
     description=description,
@@ -387,6 +417,7 @@ local prometheus = grafana.prometheus;
     job,
     policy,
     measurement,
+    alias,
   )),
 
   request_idle(
@@ -399,6 +430,7 @@ local prometheus = grafana.prometheus;
     policy=null,
     measurement=null,
     job=null,
+    alias=null,
   ):: common_utils.default_graph(
     title=title,
     description=description,
@@ -411,7 +443,8 @@ local prometheus = grafana.prometheus;
     'tdg_kafka_broker_txidle',
     job,
     policy,
-    measurement
+    measurement,
+    alias,
   )),
 
   request_timeout(
@@ -425,6 +458,7 @@ local prometheus = grafana.prometheus;
     policy=null,
     measurement=null,
     job=null,
+    alias=null,
   ):: common_utils.default_graph(
     title=title,
     description=description,
@@ -436,6 +470,7 @@ local prometheus = grafana.prometheus;
     job,
     policy,
     measurement,
+    alias,
   )),
 
   responses(
@@ -449,6 +484,7 @@ local prometheus = grafana.prometheus;
     policy=null,
     measurement=null,
     job=null,
+    alias=null,
   ):: common_utils.default_graph(
     title=title,
     description=description,
@@ -459,7 +495,8 @@ local prometheus = grafana.prometheus;
     'tdg_kafka_broker_rx',
     job,
     policy,
-    measurement
+    measurement,
+    alias,
   )),
 
   response_bytes(
@@ -473,6 +510,7 @@ local prometheus = grafana.prometheus;
     policy=null,
     measurement=null,
     job=null,
+    alias=null,
   ):: common_utils.default_graph(
     title=title,
     description=description,
@@ -484,6 +522,7 @@ local prometheus = grafana.prometheus;
     job,
     policy,
     measurement,
+    alias,
   )),
 
   response_errors(
@@ -497,6 +536,7 @@ local prometheus = grafana.prometheus;
     policy=null,
     measurement=null,
     job=null,
+    alias=null,
   ):: common_utils.default_graph(
     title=title,
     description=description,
@@ -508,6 +548,7 @@ local prometheus = grafana.prometheus;
     job,
     policy,
     measurement,
+    alias,
   )),
 
   response_corriderrs(
@@ -522,6 +563,7 @@ local prometheus = grafana.prometheus;
     policy=null,
     measurement=null,
     job=null,
+    alias=null,
   ):: common_utils.default_graph(
     title=title,
     description=description,
@@ -533,6 +575,7 @@ local prometheus = grafana.prometheus;
     job,
     policy,
     measurement,
+    alias,
   )),
 
   response_idle(
@@ -545,6 +588,7 @@ local prometheus = grafana.prometheus;
     policy=null,
     measurement=null,
     job=null,
+    alias=null,
   ):: common_utils.default_graph(
     title=title,
     description=description,
@@ -557,7 +601,8 @@ local prometheus = grafana.prometheus;
     'tdg_kafka_broker_rxidle',
     job,
     policy,
-    measurement
+    measurement,
+    alias,
   )),
 
   response_partial(
@@ -571,6 +616,7 @@ local prometheus = grafana.prometheus;
     policy=null,
     measurement=null,
     job=null,
+    alias=null,
   ):: common_utils.default_graph(
     title=title,
     description=description,
@@ -582,6 +628,7 @@ local prometheus = grafana.prometheus;
     job,
     policy,
     measurement,
+    alias,
   )),
 
   requests_by_type(
@@ -595,6 +642,7 @@ local prometheus = grafana.prometheus;
     policy=null,
     measurement=null,
     job=null,
+    alias=null,
   ):: common_utils.default_graph(
     title=title,
     description=description,
@@ -606,8 +654,8 @@ local prometheus = grafana.prometheus;
   ).addTarget(
     if datasource_type == variable.datasource_type.prometheus then
       prometheus.target(
-        expr=std.format('rate(tdg_kafka_broker_req{job=~"%s"}[$__rate_interval])',
-                        [job]),
+        expr=std.format('rate(tdg_kafka_broker_req{job=~"%s",alias=~"%s"}[$__rate_interval])',
+                        [job, alias]),
         legendFormat='{{request}} — {{name}} ({{broker_name}}) — {{alias}} ({{type}}, {{connector_name}})',
       )
     else if datasource_type == variable.datasource_type.influxdb then
@@ -625,6 +673,7 @@ local prometheus = grafana.prometheus;
         alias='$tag_label_pairs_request — $tag_label_pairs_name ($tag_label_pairs_broker_name) — $tag_label_pairs_alias ($tag_label_pairs_type, $tag_label_pairs_connector_name)',
         fill='null',
       ).where('metric_name', '=', 'tdg_kafka_broker_req')
+      .where('label_pairs_alias', '=~', alias)
       .selectField('value').addConverter('mean').addConverter('non_negative_derivative', ['1s']),
   ),
 
@@ -638,6 +687,7 @@ local prometheus = grafana.prometheus;
     policy=null,
     measurement=null,
     job=null,
+    alias=null,
   ):: common_utils.default_graph(
     title=title,
     description=description,
@@ -650,7 +700,8 @@ local prometheus = grafana.prometheus;
     'tdg_kafka_broker_int_latency',
     job,
     policy,
-    measurement
+    measurement,
+    alias,
   )),
 
   internal_request_latency(
@@ -663,6 +714,7 @@ local prometheus = grafana.prometheus;
     policy=null,
     measurement=null,
     job=null,
+    alias=null,
   ):: common_utils.default_graph(
     title=title,
     description=description,
@@ -675,7 +727,8 @@ local prometheus = grafana.prometheus;
     'tdg_kafka_broker_outbuf_latency',
     job,
     policy,
-    measurement
+    measurement,
+    alias,
   )),
 
   broker_latency(
@@ -688,6 +741,7 @@ local prometheus = grafana.prometheus;
     policy=null,
     measurement=null,
     job=null,
+    alias=null,
   ):: common_utils.default_graph(
     title=title,
     description=description,
@@ -700,7 +754,8 @@ local prometheus = grafana.prometheus;
     'tdg_kafka_broker_rtt',
     job,
     policy,
-    measurement
+    measurement,
+    alias,
   )),
 
   broker_throttle(
@@ -713,6 +768,7 @@ local prometheus = grafana.prometheus;
     policy=null,
     measurement=null,
     job=null,
+    alias=null,
   ):: common_utils.default_graph(
     title=title,
     description=description,
@@ -725,6 +781,7 @@ local prometheus = grafana.prometheus;
     'tdg_kafka_broker_throttle',
     job,
     policy,
-    measurement
+    measurement,
+    alias,
   )),
 }

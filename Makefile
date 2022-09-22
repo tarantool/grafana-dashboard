@@ -1,6 +1,7 @@
 JOB ?= tarantool
 POLICY ?= autogen
 MEASUREMENT ?= tarantool_http
+WITH_INSTANCE_VARIABLE ?= FALSE
 OUTPUT_STATIC_DASHBOARD ?= dashboard.json
 
 .PHONY: build-deps
@@ -16,9 +17,11 @@ ifndef DATASOURCE
 		false
 endif
 	# JOB is optional, default is "tarantool"
+	# WITH_INSTANCE_VARIABLE is optional, default is "FALSE"
 	jsonnet -J ./vendor -J . \
 		--ext-str DATASOURCE=${DATASOURCE} \
 		--ext-str JOB=${JOB} \
+		--ext-str WITH_INSTANCE_VARIABLE=${WITH_INSTANCE_VARIABLE} \
 		dashboard/build/prometheus/${DASHBOARD_BUILD_SOURCE} -o ${OUTPUT_STATIC_DASHBOARD}
 
 .PHONY: build-static-prometheus
@@ -37,10 +40,12 @@ ifndef DATASOURCE
 endif
 	# POLICY is optional, default is "autogen"
 	# MEASUREMENT is optional, default is "tarantool_http"
+	# WITH_INSTANCE_VARIABLE is optional, default is "FALSE"
 	jsonnet -J ./vendor -J . \
 		--ext-str DATASOURCE=${DATASOURCE} \
 		--ext-str POLICY=${POLICY} \
 		--ext-str MEASUREMENT=${MEASUREMENT} \
+		--ext-str WITH_INSTANCE_VARIABLE=${WITH_INSTANCE_VARIABLE} \
 		dashboard/build/influxdb/${DASHBOARD_BUILD_SOURCE} -o ${OUTPUT_STATIC_DASHBOARD}
 
 .PHONY: build-static-influxdb

@@ -9,9 +9,11 @@
   },
   prometheus: {
     job: '$job',
+    alias: '$alias',
   },
   influxdb: {
     policy: '${INFLUXDB_POLICY}',
     measurement: '${INFLUXDB_MEASUREMENT}',
+    alias: '/^$alias$/',
   },
 }

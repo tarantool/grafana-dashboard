@@ -18,6 +18,7 @@ local prometheus = grafana.prometheus;
     job=null,
     policy=null,
     measurement=null,
+    alias=null,
     panel_width=8,
   ) = common_utils.default_graph(
     title=title,
@@ -28,7 +29,7 @@ local prometheus = grafana.prometheus;
   ).addTarget(
     if datasource_type == variable.datasource_type.prometheus then
       prometheus.target(
-        expr=std.format('rate(%s{job=~"%s"}[$__rate_interval])', [metric_name, job]),
+        expr=std.format('rate(%s{job=~"%s",alias=~"%s"}[$__rate_interval])', [metric_name, job, alias]),
         legendFormat='{{name}} — {{alias}}',
       )
     else if datasource_type == variable.datasource_type.influxdb then
@@ -43,6 +44,7 @@ local prometheus = grafana.prometheus;
         alias='$tag_label_pairs_name — $tag_label_pairs_alias',
         fill='null',
       ).where('metric_name', '=', metric_name)
+      .where('label_pairs_alias', '=~', alias)
       .selectField('value').addConverter('mean').addConverter('non_negative_derivative', ['1s']),
   ),
 
@@ -54,7 +56,8 @@ local prometheus = grafana.prometheus;
     metric_name,
     job=null,
     policy=null,
-    measurement=null
+    measurement=null,
+    alias=null,
   ) = common_utils.default_graph(
     title=title,
     description=description,
@@ -66,7 +69,7 @@ local prometheus = grafana.prometheus;
   ).addTarget(
     if datasource_type == variable.datasource_type.prometheus then
       prometheus.target(
-        expr=std.format('%s{job=~"%s"}', [metric_name, job]),
+        expr=std.format('%s{job=~"%s",alias=~"%s"}', [metric_name, job, alias]),
         legendFormat='{{name}} — {{alias}}',
       )
     else if datasource_type == variable.datasource_type.influxdb then
@@ -81,6 +84,7 @@ local prometheus = grafana.prometheus;
         alias='$tag_label_pairs_name — $tag_label_pairs_alias',
         fill='null',
       ).where('metric_name', '=', metric_name)
+      .where('label_pairs_alias', '=~', alias)
       .selectField('value').addConverter('mean'),
   ),
 
@@ -93,6 +97,7 @@ local prometheus = grafana.prometheus;
     job=null,
     policy=null,
     measurement=null,
+    alias=null,
   ) = common_utils.default_graph(
     title=title,
     description=description,
@@ -105,13 +110,14 @@ local prometheus = grafana.prometheus;
       prometheus.target(
         expr=std.format(
           |||
-            %(metric_name_sum)s{job=~"%(job)s"} /
-            %(metric_name_count)s{job=~"%(job)s"}
+            %(metric_name_sum)s{job=~"%(job)s",alias=~"%(alias)s"} /
+            %(metric_name_count)s{job=~"%(job)s",alias=~"%(alias)s"}
           |||,
           {
             metric_name_sum: std.join('_', [metric_name, 'sum']),
             metric_name_count: std.join('_', [metric_name, 'count']),
             job: job,
+            alias: alias,
           }
         ),
         legendFormat='{{name}} — {{alias}}'
@@ -123,15 +129,18 @@ local prometheus = grafana.prometheus;
           SELECT mean("%(metric_name_sum)s") / mean("%(metric_name_count)s")
           as "average" FROM
           (SELECT "value" as "%(metric_name_sum)s" FROM %(policy_prefix)s"%(measurement)s"
-          WHERE ("metric_name" = '%(metric_name_sum)s') AND $timeFilter),
+          WHERE ("metric_name" = '%(metric_name_sum)s' AND "label_pairs_alias" =~ %(alias)s)
+          AND $timeFilter),
           (SELECT "value" as "%(metric_name_count)s" FROM %(policy_prefix)s"%(measurement)s"
-          WHERE ("metric_name" = '%(metric_name_count)s') AND $timeFilter)
+          WHERE ("metric_name" = '%(metric_name_count)s' AND "label_pairs_alias" =~ %(alias)s)
+          AND $timeFilter)
           GROUP BY time($__interval), "label_pairs_alias", "label_pairs_name" fill(null)
         |||, {
           metric_name_sum: std.join('_', [metric_name, 'sum']),
           metric_name_count: std.join('_', [metric_name, 'count']),
           policy_prefix: if policy == 'default' then '' else std.format('"%(policy)s".', policy),
           measurement: measurement,
+          alias: alias,
         }),
         alias='$tag_label_pairs_name — $tag_label_pairs_alias'
       )
@@ -146,6 +155,7 @@ local prometheus = grafana.prometheus;
     job=null,
     policy=null,
     measurement=null,
+    alias=null,
     panel_width=8,
   ) = common_utils.default_graph(
     title=title,
@@ -156,7 +166,7 @@ local prometheus = grafana.prometheus;
   ).addTarget(
     if datasource_type == variable.datasource_type.prometheus then
       prometheus.target(
-        expr=std.format('rate(%s{job=~"%s"}[$__rate_interval])', [metric_name, job]),
+        expr=std.format('rate(%s{job=~"%s",alias=~"%s"}[$__rate_interval])', [metric_name, job, alias]),
         legendFormat='{{name}} ({{kind}}) — {{alias}}',
       )
     else if datasource_type == variable.datasource_type.influxdb then
@@ -171,6 +181,7 @@ local prometheus = grafana.prometheus;
         alias='$tag_label_pairs_name ($tag_label_pairs_kind) — $tag_label_pairs_alias',
         fill='null',
       ).where('metric_name', '=', metric_name)
+      .where('label_pairs_alias', '=~', alias)
       .selectField('value').addConverter('mean').addConverter('non_negative_derivative', ['1s']),
   ),
 
@@ -182,7 +193,8 @@ local prometheus = grafana.prometheus;
     metric_name,
     job=null,
     policy=null,
-    measurement=null
+    measurement=null,
+    alias=null,
   ) = common_utils.default_graph(
     title=title,
     description=description,
@@ -194,7 +206,7 @@ local prometheus = grafana.prometheus;
   ).addTarget(
     if datasource_type == variable.datasource_type.prometheus then
       prometheus.target(
-        expr=std.format('%s{job=~"%s"}', [metric_name, job]),
+        expr=std.format('%s{job=~"%s",alias=~"%s"}', [metric_name, job, alias]),
         legendFormat='{{name}} ({{kind}}) — {{alias}}',
       )
     else if datasource_type == variable.datasource_type.influxdb then
@@ -209,6 +221,7 @@ local prometheus = grafana.prometheus;
         alias='$tag_label_pairs_name ($tag_label_pairs_kind) — $tag_label_pairs_alias',
         fill='null',
       ).where('metric_name', '=', metric_name)
+      .where('label_pairs_alias', '=~', alias)
       .selectField('value').addConverter('mean'),
   ),
 
@@ -221,6 +234,7 @@ local prometheus = grafana.prometheus;
     job=null,
     policy=null,
     measurement=null,
+    alias=null,
   ) = common_utils.default_graph(
     title=title,
     description=description,
@@ -233,13 +247,14 @@ local prometheus = grafana.prometheus;
       prometheus.target(
         expr=std.format(
           |||
-            %(metric_name_sum)s{job=~"%(job)s"} /
-            %(metric_name_count)s{job=~"%(job)s"}
+            %(metric_name_sum)s{job=~"%(job)s",alias=~"%(alias)s"} /
+            %(metric_name_count)s{job=~"%(job)s",alias=~"%(alias)s"}
           |||,
           {
             metric_name_sum: std.join('_', [metric_name, 'sum']),
             metric_name_count: std.join('_', [metric_name, 'count']),
             job: job,
+            alias: alias,
           }
         ),
         legendFormat='{{name}} ({{kind}}) — {{alias}}'
@@ -251,9 +266,11 @@ local prometheus = grafana.prometheus;
           SELECT mean("%(metric_name_sum)s") / mean("%(metric_name_count)s")
           as "average" FROM
           (SELECT "value" as "%(metric_name_sum)s" FROM %(policy_prefix)s"%(measurement)s"
-          WHERE ("metric_name" = '%(metric_name_sum)s') AND $timeFilter),
+          WHERE ("metric_name" = '%(metric_name_sum)s' AND "label_pairs_alias" =~ %(alias)s)
+          AND $timeFilter),
           (SELECT "value" as "%(metric_name_count)s" FROM %(policy_prefix)s"%(measurement)s"
-          WHERE ("metric_name" = '%(metric_name_count)s') AND $timeFilter)
+          WHERE ("metric_name" = '%(metric_name_count)s' AND "label_pairs_alias" =~ %(alias)s)
+          AND $timeFilter)
           GROUP BY time($__interval), "label_pairs_alias", "label_pairs_name",
           "label_pairs_kind" fill(null)
         |||, {
@@ -261,6 +278,7 @@ local prometheus = grafana.prometheus;
           metric_name_count: std.join('_', [metric_name, 'count']),
           policy_prefix: if policy == 'default' then '' else std.format('"%(policy)s".', policy),
           measurement: measurement,
+          alias: alias,
         }),
         alias='$tag_label_pairs_name ($tag_label_pairs_kind) — $tag_label_pairs_alias'
       )
@@ -277,6 +295,7 @@ local prometheus = grafana.prometheus;
     policy=null,
     measurement=null,
     job=null,
+    alias=null,
   ):: jobs_rps_panel(
     title=title,
     description=description,
@@ -286,6 +305,7 @@ local prometheus = grafana.prometheus;
     job=job,
     policy=policy,
     measurement=measurement,
+    alias=alias,
   ),
 
   jobs_failed(
@@ -299,6 +319,7 @@ local prometheus = grafana.prometheus;
     policy=null,
     measurement=null,
     job=null,
+    alias=null,
   ):: jobs_rps_panel(
     title=title,
     description=description,
@@ -308,6 +329,7 @@ local prometheus = grafana.prometheus;
     job=job,
     policy=policy,
     measurement=measurement,
+    alias=alias,
   ),
 
   jobs_succeeded(
@@ -321,6 +343,7 @@ local prometheus = grafana.prometheus;
     policy=null,
     measurement=null,
     job=null,
+    alias=null,
   ):: jobs_rps_panel(
     title=title,
     description=description,
@@ -330,6 +353,7 @@ local prometheus = grafana.prometheus;
     job=job,
     policy=policy,
     measurement=measurement,
+    alias=alias,
   ),
 
   jobs_running(
@@ -342,6 +366,7 @@ local prometheus = grafana.prometheus;
     policy=null,
     measurement=null,
     job=null,
+    alias=null,
   ):: jobs_metric_panel(
     title=title,
     description=description,
@@ -351,6 +376,7 @@ local prometheus = grafana.prometheus;
     job=job,
     policy=policy,
     measurement=measurement,
+    alias=alias,
   ),
 
   jobs_time(
@@ -363,6 +389,7 @@ local prometheus = grafana.prometheus;
     policy=null,
     measurement=null,
     job=null,
+    alias=null,
   ):: jobs_average_panel(
     title=title,
     description=description,
@@ -372,6 +399,7 @@ local prometheus = grafana.prometheus;
     job=job,
     policy=policy,
     measurement=measurement,
+    alias=alias,
   ),
 
   tasks_started(
@@ -385,6 +413,7 @@ local prometheus = grafana.prometheus;
     policy=null,
     measurement=null,
     job=null,
+    alias=null,
   ):: tasks_rps_panel(
     title=title,
     description=description,
@@ -394,6 +423,7 @@ local prometheus = grafana.prometheus;
     job=job,
     policy=policy,
     measurement=measurement,
+    alias=alias,
     panel_width=6,
   ),
 
@@ -408,6 +438,7 @@ local prometheus = grafana.prometheus;
     policy=null,
     measurement=null,
     job=null,
+    alias=null,
   ):: tasks_rps_panel(
     title=title,
     description=description,
@@ -417,6 +448,7 @@ local prometheus = grafana.prometheus;
     job=job,
     policy=policy,
     measurement=measurement,
+    alias=alias,
     panel_width=6,
   ),
 
@@ -431,6 +463,7 @@ local prometheus = grafana.prometheus;
     policy=null,
     measurement=null,
     job=null,
+    alias=null,
   ):: tasks_rps_panel(
     title=title,
     description=description,
@@ -440,6 +473,7 @@ local prometheus = grafana.prometheus;
     job=job,
     policy=policy,
     measurement=measurement,
+    alias=alias,
     panel_width=6,
   ),
 
@@ -454,6 +488,7 @@ local prometheus = grafana.prometheus;
     policy=null,
     measurement=null,
     job=null,
+    alias=null,
   ):: tasks_rps_panel(
     title=title,
     description=description,
@@ -463,6 +498,7 @@ local prometheus = grafana.prometheus;
     job=job,
     policy=policy,
     measurement=measurement,
+    alias=alias,
     panel_width=6,
   ),
 
@@ -476,6 +512,7 @@ local prometheus = grafana.prometheus;
     policy=null,
     measurement=null,
     job=null,
+    alias=null,
   ):: tasks_metric_panel(
     title=title,
     description=description,
@@ -485,6 +522,7 @@ local prometheus = grafana.prometheus;
     job=job,
     policy=policy,
     measurement=measurement,
+    alias=alias,
   ),
 
   tasks_time(
@@ -497,6 +535,7 @@ local prometheus = grafana.prometheus;
     policy=null,
     measurement=null,
     job=null,
+    alias=null,
   ):: tasks_average_panel(
     title=title,
     description=description,
@@ -506,6 +545,7 @@ local prometheus = grafana.prometheus;
     job=job,
     policy=policy,
     measurement=measurement,
+    alias=alias,
   ),
 
   system_tasks_started(
@@ -519,6 +559,7 @@ local prometheus = grafana.prometheus;
     policy=null,
     measurement=null,
     job=null,
+    alias=null,
   ):: tasks_rps_panel(
     title=title,
     description=description,
@@ -528,6 +569,7 @@ local prometheus = grafana.prometheus;
     job=job,
     policy=policy,
     measurement=measurement,
+    alias=alias,
   ),
 
   system_tasks_failed(
@@ -541,6 +583,7 @@ local prometheus = grafana.prometheus;
     policy=null,
     measurement=null,
     job=null,
+    alias=null,
   ):: tasks_rps_panel(
     title=title,
     description=description,
@@ -550,6 +593,7 @@ local prometheus = grafana.prometheus;
     job=job,
     policy=policy,
     measurement=measurement,
+    alias=alias,
   ),
 
   system_tasks_succeeded(
@@ -563,6 +607,7 @@ local prometheus = grafana.prometheus;
     policy=null,
     measurement=null,
     job=null,
+    alias=null,
   ):: tasks_rps_panel(
     title=title,
     description=description,
@@ -572,6 +617,7 @@ local prometheus = grafana.prometheus;
     job=job,
     policy=policy,
     measurement=measurement,
+    alias=alias,
   ),
 
   system_tasks_running(
@@ -584,6 +630,7 @@ local prometheus = grafana.prometheus;
     policy=null,
     measurement=null,
     job=null,
+    alias=null,
   ):: tasks_metric_panel(
     title=title,
     description=description,
@@ -593,6 +640,7 @@ local prometheus = grafana.prometheus;
     job=job,
     policy=policy,
     measurement=measurement,
+    alias=alias,
   ),
 
   system_tasks_time(
@@ -605,6 +653,7 @@ local prometheus = grafana.prometheus;
     policy=null,
     measurement=null,
     job=null,
+    alias=null,
   ):: tasks_average_panel(
     title=title,
     description=description,
@@ -614,5 +663,6 @@ local prometheus = grafana.prometheus;
     job=job,
     policy=policy,
     measurement=measurement,
+    alias=alias,
   ),
 }

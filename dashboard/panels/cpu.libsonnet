@@ -17,6 +17,7 @@ local prometheus = grafana.prometheus;
     policy,
     measurement,
     job,
+    alias,
     metric_name,
   ) = common.default_graph(
     title=title,
@@ -31,7 +32,8 @@ local prometheus = grafana.prometheus;
     metric_name,
     job,
     policy,
-    measurement
+    measurement,
+    alias
   )),
 
   getrusage_cpu_user_time(
@@ -48,6 +50,7 @@ local prometheus = grafana.prometheus;
     policy=null,
     measurement=null,
     job=null,
+    alias=null,
   ):: getrusage_cpu_percentage_graph(
     title=title,
     description=description,
@@ -56,6 +59,7 @@ local prometheus = grafana.prometheus;
     policy=policy,
     measurement=measurement,
     job=job,
+    alias=alias,
     metric_name='tnt_cpu_user_time',
   ),
 
@@ -73,6 +77,7 @@ local prometheus = grafana.prometheus;
     policy=null,
     measurement=null,
     job=null,
+    alias=null,
   ):: getrusage_cpu_percentage_graph(
     title=title,
     description=description,
@@ -81,6 +86,7 @@ local prometheus = grafana.prometheus;
     policy=policy,
     measurement=measurement,
     job=job,
+    alias=alias,
     metric_name='tnt_cpu_system_time',
   ),
 
@@ -92,6 +98,7 @@ local prometheus = grafana.prometheus;
     policy,
     measurement,
     job,
+    alias,
     kind,
   ) = common.default_graph(
     title=title,
@@ -104,8 +111,8 @@ local prometheus = grafana.prometheus;
   ).addTarget(
     if datasource_type == variable.datasource_type.prometheus then
       prometheus.target(
-        expr=std.format('rate(tnt_cpu_thread{job=~"%s",kind="%s"}[$__rate_interval])',
-                        [job, kind]),
+        expr=std.format('rate(tnt_cpu_thread{job=~"%s",alias=~"%s",kind="%s"}[$__rate_interval])',
+                        [job, alias, kind]),
         legendFormat='{{alias}} — {{thread_name}}',
       )
     else if datasource_type == variable.datasource_type.influxdb then
@@ -114,7 +121,8 @@ local prometheus = grafana.prometheus;
         measurement=measurement,
         group_tags=['label_pairs_alias', 'label_pairs_thread_name'],
         alias='$tag_label_pairs_alias — $tag_label_pairs_thread_name',
-      ).where('metric_name', '=', 'tnt_cpu_thread').where('label_pairs_kind', '=', kind)
+      ).where('metric_name', '=', 'tnt_cpu_thread').where('label_pairs_alias', '=~', alias)
+      .where('label_pairs_kind', '=', kind)
       .selectField('value').addConverter('mean').addConverter('non_negative_derivative', ['1s']),
   ),
 
@@ -136,6 +144,7 @@ local prometheus = grafana.prometheus;
     policy=null,
     measurement=null,
     job=null,
+    alias=null,
   ):: procstat_thread_time_graph(
     title,
     description,
@@ -144,6 +153,7 @@ local prometheus = grafana.prometheus;
     policy,
     measurement,
     job,
+    alias,
     'user',
   ),
 
@@ -161,6 +171,7 @@ local prometheus = grafana.prometheus;
     policy=null,
     measurement=null,
     job=null,
+    alias=null,
   ):: procstat_thread_time_graph(
     title,
     description,
@@ -169,6 +180,7 @@ local prometheus = grafana.prometheus;
     policy,
     measurement,
     job,
+    alias,
     'system',
   ),
 }

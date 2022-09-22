@@ -15,10 +15,11 @@ local prometheus = grafana.prometheus;
     job=null,
     policy=null,
     measurement=null,
+    alias=null,
   ) =
     if datasource_type == variable.datasource_type.prometheus then
       prometheus.target(
-        expr=std.format('%s{job=~"%s"}', [metric_name, job]),
+        expr=std.format('%s{job=~"%s",alias=~"%s"}', [metric_name, job, alias]),
         legendFormat='{{name}} ({{topic}}) — {{alias}} ({{type}}, {{connector_name}})',
       )
     else if datasource_type == variable.datasource_type.influxdb then
@@ -35,6 +36,7 @@ local prometheus = grafana.prometheus;
         alias='$tag_label_pairs_name ($tag_label_pairs_topic) — $tag_label_pairs_alias ($tag_label_pairs_type, $tag_label_pairs_connector_name)',
         fill='null',
       ).where('metric_name', '=', metric_name)
+      .where('label_pairs_alias', '=~', alias)
       .selectField('value').addConverter('mean'),
 
   local partitions_target(
@@ -43,10 +45,11 @@ local prometheus = grafana.prometheus;
     job=null,
     policy=null,
     measurement=null,
+    alias=null,
   ) =
     if datasource_type == variable.datasource_type.prometheus then
       prometheus.target(
-        expr=std.format('%s{job=~"%s"}', [metric_name, job]),
+        expr=std.format('%s{job=~"%s",alias=~"%s"}', [metric_name, job, alias]),
         legendFormat='{{name}} ({{topic}}, {{partition}}) — {{alias}} ({{type}}, {{connector_name}})',
       )
     else if datasource_type == variable.datasource_type.influxdb then
@@ -64,6 +67,7 @@ local prometheus = grafana.prometheus;
         alias='$tag_label_pairs_name ($tag_label_pairs_topic, $tag_label_pairs_partition) — $tag_label_pairs_alias ($tag_label_pairs_type, $tag_label_pairs_connector_name)',
         fill='null',
       ).where('metric_name', '=', metric_name)
+      .where('label_pairs_alias', '=~', alias)
       .selectField('value').addConverter('mean'),
 
   local partitions_rps_target(
@@ -72,11 +76,12 @@ local prometheus = grafana.prometheus;
     job=null,
     policy=null,
     measurement=null,
+    alias=null,
   ) =
     if datasource_type == variable.datasource_type.prometheus then
       prometheus.target(
-        expr=std.format('rate(%s{job=~"%s"}[$__rate_interval])',
-                        [metric_name, job]),
+        expr=std.format('rate(%s{job=~"%s",alias=~"%s"}[$__rate_interval])',
+                        [metric_name, job, alias]),
         legendFormat='{{name}} ({{topic}}, {{partition}}) — {{alias}} ({{type}}, {{connector_name}})',
       )
     else if datasource_type == variable.datasource_type.influxdb then
@@ -94,6 +99,7 @@ local prometheus = grafana.prometheus;
         alias='$tag_label_pairs_name ($tag_label_pairs_topic, $tag_label_pairs_partition) — $tag_label_pairs_alias ($tag_label_pairs_type, $tag_label_pairs_connector_name)',
         fill='null',
       ).where('metric_name', '=', metric_name)
+      .where('label_pairs_alias', '=~', alias)
       .selectField('value').addConverter('mean').addConverter('non_negative_derivative', ['1s']),
 
   local topics_quantile_target(
@@ -102,11 +108,12 @@ local prometheus = grafana.prometheus;
     job=null,
     policy=null,
     measurement=null,
+    alias=null,
   ) =
     if datasource_type == variable.datasource_type.prometheus then
       prometheus.target(
-        expr=std.format('%s{job=~"%s",quantile="0.99"}',
-                        [metric_name, job]),
+        expr=std.format('%s{job=~"%s",alias=~"%s",quantile="0.99"}',
+                        [metric_name, job, alias]),
         legendFormat='{{name}} ({{topic}}) — {{alias}} ({{type}}, {{connector_name}})',
       )
     else if datasource_type == variable.datasource_type.influxdb then
@@ -122,7 +129,9 @@ local prometheus = grafana.prometheus;
         ],
         alias='$tag_label_pairs_name ($tag_label_pairs_topic) — $tag_label_pairs_alias ($tag_label_pairs_type, $tag_label_pairs_connector_name)',
         fill='null',
-      ).where('metric_name', '=', metric_name).where('label_pairs_quantile', '=', '0.99')
+      ).where('metric_name', '=', metric_name)
+      .where('label_pairs_alias', '=~', alias)
+      .where('label_pairs_quantile', '=', '0.99')
       .selectField('value').addConverter('last'),
 
   age(
@@ -135,6 +144,7 @@ local prometheus = grafana.prometheus;
     policy=null,
     measurement=null,
     job=null,
+    alias=null,
   ):: common_utils.default_graph(
     title=title,
     description=description,
@@ -146,7 +156,8 @@ local prometheus = grafana.prometheus;
     'tdg_kafka_topic_age',
     job,
     policy,
-    measurement
+    measurement,
+    alias,
   )),
 
   metadata_age(
@@ -159,6 +170,7 @@ local prometheus = grafana.prometheus;
     policy=null,
     measurement=null,
     job=null,
+    alias=null,
   ):: common_utils.default_graph(
     title=title,
     description=description,
@@ -170,7 +182,8 @@ local prometheus = grafana.prometheus;
     'tdg_kafka_topic_metadata_age',
     job,
     policy,
-    measurement
+    measurement,
+    alias,
   )),
 
   topic_batchsize(
@@ -183,6 +196,7 @@ local prometheus = grafana.prometheus;
     policy=null,
     measurement=null,
     job=null,
+    alias=null,
   ):: common_utils.default_graph(
     title=title,
     description=description,
@@ -195,7 +209,8 @@ local prometheus = grafana.prometheus;
     'tdg_kafka_topic_batchsize',
     job,
     policy,
-    measurement
+    measurement,
+    alias,
   )),
 
   topic_batchcnt(
@@ -208,6 +223,7 @@ local prometheus = grafana.prometheus;
     policy=null,
     measurement=null,
     job=null,
+    alias=null,
   ):: common_utils.default_graph(
     title=title,
     description=description,
@@ -219,7 +235,8 @@ local prometheus = grafana.prometheus;
     'tdg_kafka_topic_batchcnt',
     job,
     policy,
-    measurement
+    measurement,
+    alias,
   )),
 
   partition_msgq(
@@ -233,6 +250,7 @@ local prometheus = grafana.prometheus;
     policy=null,
     measurement=null,
     job=null,
+    alias=null,
   ):: common_utils.default_graph(
     title=title,
     description=description,
@@ -242,7 +260,8 @@ local prometheus = grafana.prometheus;
     'tdg_kafka_topic_partitions_msgq_cnt',
     job,
     policy,
-    measurement
+    measurement,
+    alias,
   )),
 
   partition_xmit_msgq(
@@ -256,6 +275,7 @@ local prometheus = grafana.prometheus;
     policy=null,
     measurement=null,
     job=null,
+    alias=null,
   ):: common_utils.default_graph(
     title=title,
     description=description,
@@ -265,7 +285,8 @@ local prometheus = grafana.prometheus;
     'tdg_kafka_topic_partitions_xmit_msgq_cnt',
     job,
     policy,
-    measurement
+    measurement,
+    alias,
   )),
 
   partition_fetchq_msgq(
@@ -279,6 +300,7 @@ local prometheus = grafana.prometheus;
     policy=null,
     measurement=null,
     job=null,
+    alias=null,
   ):: common_utils.default_graph(
     title=title,
     description=description,
@@ -288,7 +310,8 @@ local prometheus = grafana.prometheus;
     'tdg_kafka_topic_partitions_fetchq_cnt',
     job,
     policy,
-    measurement
+    measurement,
+    alias,
   )),
 
   partition_msgq_bytes(
@@ -302,6 +325,7 @@ local prometheus = grafana.prometheus;
     policy=null,
     measurement=null,
     job=null,
+    alias=null,
   ):: common_utils.default_graph(
     title=title,
     description=description,
@@ -312,7 +336,8 @@ local prometheus = grafana.prometheus;
     'tdg_kafka_topic_partitions_msgq_bytes',
     job,
     policy,
-    measurement
+    measurement,
+    alias,
   )),
 
   partition_xmit_msgq_bytes(
@@ -326,6 +351,7 @@ local prometheus = grafana.prometheus;
     policy=null,
     measurement=null,
     job=null,
+    alias=null,
   ):: common_utils.default_graph(
     title=title,
     description=description,
@@ -336,7 +362,8 @@ local prometheus = grafana.prometheus;
     'tdg_kafka_topic_partitions_xmit_msgq_bytes',
     job,
     policy,
-    measurement
+    measurement,
+    alias,
   )),
 
   partition_fetchq_msgq_bytes(
@@ -350,6 +377,7 @@ local prometheus = grafana.prometheus;
     policy=null,
     measurement=null,
     job=null,
+    alias=null,
   ):: common_utils.default_graph(
     title=title,
     description=description,
@@ -360,7 +388,8 @@ local prometheus = grafana.prometheus;
     'tdg_kafka_topic_partitions_fetchq_size',
     job,
     policy,
-    measurement
+    measurement,
+    alias,
   )),
 
   partition_messages_sent(
@@ -374,6 +403,7 @@ local prometheus = grafana.prometheus;
     policy=null,
     measurement=null,
     job=null,
+    alias=null,
   ):: common_utils.default_graph(
     title=title,
     description=description,
@@ -386,6 +416,7 @@ local prometheus = grafana.prometheus;
     job,
     policy,
     measurement,
+    alias,
   )),
 
   partition_message_bytes_sent(
@@ -399,6 +430,7 @@ local prometheus = grafana.prometheus;
     policy=null,
     measurement=null,
     job=null,
+    alias=null,
   ):: common_utils.default_graph(
     title=title,
     description=description,
@@ -412,6 +444,7 @@ local prometheus = grafana.prometheus;
     job,
     policy,
     measurement,
+    alias,
   )),
 
   partition_messages_consumed(
@@ -426,6 +459,7 @@ local prometheus = grafana.prometheus;
     policy=null,
     measurement=null,
     job=null,
+    alias=null,
   ):: common_utils.default_graph(
     title=title,
     description=description,
@@ -438,6 +472,7 @@ local prometheus = grafana.prometheus;
     job,
     policy,
     measurement,
+    alias,
   )),
 
   partition_message_bytes_consumed(
@@ -452,6 +487,7 @@ local prometheus = grafana.prometheus;
     policy=null,
     measurement=null,
     job=null,
+    alias=null,
   ):: common_utils.default_graph(
     title=title,
     description=description,
@@ -465,6 +501,7 @@ local prometheus = grafana.prometheus;
     job,
     policy,
     measurement,
+    alias,
   )),
 
   partition_messages_dropped(
@@ -478,6 +515,7 @@ local prometheus = grafana.prometheus;
     policy=null,
     measurement=null,
     job=null,
+    alias=null,
   ):: common_utils.default_graph(
     title=title,
     description=description,
@@ -490,6 +528,7 @@ local prometheus = grafana.prometheus;
     job,
     policy,
     measurement,
+    alias,
   )),
 
   partition_messages_in_flight(
@@ -503,6 +542,7 @@ local prometheus = grafana.prometheus;
     policy=null,
     measurement=null,
     job=null,
+    alias=null,
   ):: common_utils.default_graph(
     title=title,
     description=description,
@@ -515,5 +555,6 @@ local prometheus = grafana.prometheus;
     job,
     policy,
     measurement,
+    alias,
   )),
 }

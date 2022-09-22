@@ -21,6 +21,7 @@ dashboard.addPanels([
     datasource_type=variable.datasource_type.prometheus,
     metric_name='my_component_status',
     job=variable.prometheus.job,
+    alias=variable.prometheus.alias,
     converter='last',
   )),
 
@@ -38,6 +39,7 @@ dashboard.addPanels([
     datasource_type=variable.datasource_type.prometheus,
     metric_name='my_component_load_metric_count',
     job=variable.prometheus.job,
+    alias=variable.prometheus.alias,
   )),
 
   common.default_graph(
@@ -52,7 +54,8 @@ dashboard.addPanels([
     labelY1='process time',
     panel_width=12,
   ).addTarget(grafana.prometheus.target(
-    expr=std.format('my_component_load_metric{job=~"%s",quantile="0.99"}', [variable.prometheus.job]),
+    expr=std.format('my_component_load_metric{job=~"%s",alias=~"%s",quantile="0.99"}',
+                    [variable.prometheus.job, variable.prometheus.alias]),
     legendFormat='{{alias}}',
   )),
 ]).build()

@@ -6,6 +6,7 @@ local variable = import 'dashboard/variable.libsonnet';
 dashboard_raw(
   datasource=variable.datasource.prometheus,
   job=variable.prometheus.job,
+  alias=variable.prometheus.alias,
 ).addInput(
   name='DS_PROMETHEUS',
   label='Prometheus',
@@ -26,5 +27,16 @@ dashboard_raw(
     current='${PROMETHEUS_JOB}',
     hide='variable',
     label='Prometheus job',
+  )
+).addTemplate(
+  grafana.template.new(
+    name='alias',
+    datasource=variable.datasource.prometheus,
+    query=std.format('label_values(tnt_info_uptime{job=~"%s"},alias)', variable.prometheus.job),
+    includeAll=true,
+    multi=true,
+    current='all',
+    label='Instances',
+    refresh='time',
   )
 )

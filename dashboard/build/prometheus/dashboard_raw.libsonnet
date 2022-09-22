@@ -4,7 +4,7 @@ local dashboard = import 'dashboard/dashboard.libsonnet';
 local section = import 'dashboard/section.libsonnet';
 local variable = import 'dashboard/variable.libsonnet';
 
-function(datasource, job) dashboard.new(
+function(datasource, job, alias) dashboard.new(
   grafana.dashboard.new(
     title='Tarantool dashboard',
     description='Dashboard for Tarantool application and database server monitoring, based on grafonnet library.',
@@ -55,71 +55,83 @@ function(datasource, job) dashboard.new(
     datasource_type=variable.datasource_type.prometheus,
     datasource=datasource,
     job=job,
+    alias=alias,
   )
 ).addPanels(
   section.http(
     datasource_type=variable.datasource_type.prometheus,
     datasource=datasource,
     job=job,
+    alias=alias,
   )
 ).addPanels(
   section.net(
     datasource_type=variable.datasource_type.prometheus,
     datasource=datasource,
     job=job,
+    alias=alias,
   )
 ).addPanels(
   section.slab(
     datasource_type=variable.datasource_type.prometheus,
     datasource=datasource,
     job=job,
+    alias=alias,
   )
 ).addPanels(
   section.space(
     datasource_type=variable.datasource_type.prometheus,
     datasource=datasource,
     job=job,
+    alias=alias,
   )
 ).addPanels(
   section.vinyl(
     datasource_type=variable.datasource_type.prometheus,
     datasource=datasource,
     job=job,
+    alias=alias,
   )
 ).addPanels(
   section.cpu(
     datasource_type=variable.datasource_type.prometheus,
     datasource=datasource,
     job=job,
+    alias=alias,
   )
 ).addPanels(
   section.runtime(
     datasource_type=variable.datasource_type.prometheus,
     datasource=datasource,
     job=job,
+    alias=alias,
   )
 ).addPanels(
   section.luajit(
     datasource_type=variable.datasource_type.prometheus,
     datasource=datasource,
     job=job,
+    alias=alias,
   )
 ).addPanels(
   section.operations(
     datasource_type=variable.datasource_type.prometheus,
     datasource=datasource,
     job=job,
+    alias=alias,
   )
 ).addPanels(
   section.crud(
     datasource_type=variable.datasource_type.prometheus,
     datasource=datasource,
     job=job,
+    alias=alias,
   )
 ).addPanels(
   section.expirationd(
     datasource_type=variable.datasource_type.prometheus,
     datasource=datasource,
     job=job,
+    alias=alias,
   )
 )

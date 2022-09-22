@@ -53,11 +53,12 @@ local prometheus = grafana.prometheus;
     job=null,
     policy=null,
     measurement=null,
+    alias=null,
     converter='mean'
   )::
     if datasource_type == variable.datasource_type.prometheus then
       prometheus.target(
-        expr=std.format('%s{job=~"%s"}', [metric_name, job]),
+        expr=std.format('%s{job=~"%s",alias=~"%s"}', [metric_name, job, alias]),
         legendFormat='{{alias}}',
       )
     else if datasource_type == variable.datasource_type.influxdb then
@@ -67,7 +68,7 @@ local prometheus = grafana.prometheus;
         group_tags=['label_pairs_alias'],
         alias='$tag_label_pairs_alias',
         fill='null',
-      ).where('metric_name', '=', metric_name)
+      ).where('metric_name', '=', metric_name).where('label_pairs_alias', '=~', alias)
       .selectField('value').addConverter(converter),
 
   default_rps_target(
@@ -76,11 +77,12 @@ local prometheus = grafana.prometheus;
     job=null,
     policy=null,
     measurement=null,
+    alias=null,
   )::
     if datasource_type == variable.datasource_type.prometheus then
       prometheus.target(
-        expr=std.format('rate(%s{job=~"%s"}[$__rate_interval])',
-                        [metric_name, job]),
+        expr=std.format('rate(%s{job=~"%s",alias=~"%s"}[$__rate_interval])',
+                        [metric_name, job, alias]),
         legendFormat='{{alias}}',
       )
     else if datasource_type == variable.datasource_type.influxdb then
@@ -90,7 +92,7 @@ local prometheus = grafana.prometheus;
         group_tags=['label_pairs_alias'],
         alias='$tag_label_pairs_alias',
         fill='null',
-      ).where('metric_name', '=', metric_name)
+      ).where('metric_name', '=', metric_name).where('label_pairs_alias', '=~', alias)
       .selectField('value').addConverter('mean').addConverter('non_negative_derivative', ['1s']),
 
   group_by_fill_0_warning(

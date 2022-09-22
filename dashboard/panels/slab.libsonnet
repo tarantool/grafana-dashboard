@@ -23,6 +23,7 @@ local common = import 'dashboard/panels/common.libsonnet';
     policy=null,
     measurement=null,
     job=null,
+    alias=null,
     metric_name=null,
     format=null,
     labelY1=null,
@@ -43,6 +44,7 @@ local common = import 'dashboard/panels/common.libsonnet';
     job,
     policy,
     measurement,
+    alias,
   )),
 
   local used_ratio(
@@ -53,6 +55,7 @@ local common = import 'dashboard/panels/common.libsonnet';
     policy,
     measurement,
     job,
+    alias,
     metric_name,
   ) = used_panel(
     title,
@@ -62,6 +65,7 @@ local common = import 'dashboard/panels/common.libsonnet';
     policy,
     measurement,
     job,
+    alias,
     metric_name,
     format='percent',
     labelY1='used ratio',
@@ -83,6 +87,7 @@ local common = import 'dashboard/panels/common.libsonnet';
     policy=null,
     measurement=null,
     job=null,
+    alias=null,
   ):: used_ratio(
     title=title,
     description=description,
@@ -91,6 +96,7 @@ local common = import 'dashboard/panels/common.libsonnet';
     policy=policy,
     measurement=measurement,
     job=job,
+    alias=alias,
     metric_name='tnt_slab_quota_used_ratio',
   ),
 
@@ -109,6 +115,7 @@ local common = import 'dashboard/panels/common.libsonnet';
     policy=null,
     measurement=null,
     job=null,
+    alias=null,
   ):: used_ratio(
     title=title,
     description=description,
@@ -117,6 +124,7 @@ local common = import 'dashboard/panels/common.libsonnet';
     policy=policy,
     measurement=measurement,
     job=job,
+    alias=alias,
     metric_name='tnt_slab_arena_used_ratio',
   ),
 
@@ -135,6 +143,7 @@ local common = import 'dashboard/panels/common.libsonnet';
     policy=null,
     measurement=null,
     job=null,
+    alias=null,
   ):: used_ratio(
     title=title,
     description=description,
@@ -143,6 +152,7 @@ local common = import 'dashboard/panels/common.libsonnet';
     policy=policy,
     measurement=measurement,
     job=job,
+    alias=alias,
     metric_name='tnt_slab_items_used_ratio',
   ),
 
@@ -154,6 +164,7 @@ local common = import 'dashboard/panels/common.libsonnet';
     policy,
     measurement,
     job,
+    alias,
     metric_name,
   ) = used_panel(
     title,
@@ -163,6 +174,7 @@ local common = import 'dashboard/panels/common.libsonnet';
     policy,
     measurement,
     job,
+    alias,
     metric_name,
     format='bytes',
     labelY1='in bytes',
@@ -179,6 +191,7 @@ local common = import 'dashboard/panels/common.libsonnet';
     policy=null,
     measurement=null,
     job=null,
+    alias=null,
   ):: used_memory(
     title=title,
     description=description,
@@ -187,6 +200,7 @@ local common = import 'dashboard/panels/common.libsonnet';
     policy=policy,
     measurement=measurement,
     job=job,
+    alias=alias,
     metric_name='tnt_slab_quota_used',
   ),
 
@@ -201,6 +215,7 @@ local common = import 'dashboard/panels/common.libsonnet';
     policy=null,
     measurement=null,
     job=null,
+    alias=null,
   ):: used_memory(
     title=title,
     description=description,
@@ -209,6 +224,7 @@ local common = import 'dashboard/panels/common.libsonnet';
     policy=policy,
     measurement=measurement,
     job=job,
+    alias=alias,
     metric_name='tnt_slab_quota_size',
   ),
 
@@ -223,6 +239,7 @@ local common = import 'dashboard/panels/common.libsonnet';
     policy=null,
     measurement=null,
     job=null,
+    alias=null,
   ):: used_memory(
     title=title,
     description=description,
@@ -231,6 +248,7 @@ local common = import 'dashboard/panels/common.libsonnet';
     policy=policy,
     measurement=measurement,
     job=job,
+    alias=alias,
     metric_name='tnt_slab_arena_used',
   ),
 
@@ -245,6 +263,7 @@ local common = import 'dashboard/panels/common.libsonnet';
     policy=null,
     measurement=null,
     job=null,
+    alias=null,
   ):: used_memory(
     title=title,
     description=description,
@@ -253,6 +272,7 @@ local common = import 'dashboard/panels/common.libsonnet';
     policy=policy,
     measurement=measurement,
     job=job,
+    alias=alias,
     metric_name='tnt_slab_arena_size',
   ),
 
@@ -267,6 +287,7 @@ local common = import 'dashboard/panels/common.libsonnet';
     policy=null,
     measurement=null,
     job=null,
+    alias=null,
   ):: used_memory(
     title=title,
     description=description,
@@ -275,6 +296,7 @@ local common = import 'dashboard/panels/common.libsonnet';
     policy=policy,
     measurement=measurement,
     job=job,
+    alias=alias,
     metric_name='tnt_slab_items_used',
   ),
 
@@ -289,6 +311,7 @@ local common = import 'dashboard/panels/common.libsonnet';
     policy=null,
     measurement=null,
     job=null,
+    alias=null,
   ):: used_memory(
     title=title,
     description=description,
@@ -297,6 +320,7 @@ local common = import 'dashboard/panels/common.libsonnet';
     policy=policy,
     measurement=measurement,
     job=job,
+    alias=alias,
     metric_name='tnt_slab_items_size',
   ),
 }

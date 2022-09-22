@@ -36,6 +36,7 @@ local operation_rps_template(
   policy=null,
   measurement=null,
   job=null,
+  alias=null,
   operation=null,
   status=null,
       ) = common.default_graph(
@@ -57,8 +58,8 @@ local operation_rps_template(
   if datasource_type == variable.datasource_type.prometheus then
     prometheus.target(
       expr=std.format(
-        'rate(tnt_crud_stats_count{job=~"%s",operation="%s",status="%s"}[$__rate_interval])',
-        [job, operation, status]
+        'rate(tnt_crud_stats_count{job=~"%s",alias=~"%s",operation="%s",status="%s"}[$__rate_interval])',
+        [job, alias, operation, status]
       ),
       legendFormat='{{alias}} — {{name}}'
     )
@@ -70,6 +71,7 @@ local operation_rps_template(
       alias='$tag_label_pairs_alias — $tag_label_pairs_name',
       fill='null',
     ).where('metric_name', '=', 'tnt_crud_stats_count')
+    .where('label_pairs_alias', '=~', alias)
     .where('label_pairs_operation', '=', operation)
     .where('label_pairs_status', '=', status)
     .selectField('value').addConverter('mean').addConverter('non_negative_derivative', ['1s'])
@@ -83,6 +85,7 @@ local operation_latency_template(
   policy=null,
   measurement=null,
   job=null,
+  alias=null,
   operation=null,
   status=null,
       ) = common.default_graph(
@@ -105,8 +108,8 @@ local operation_latency_template(
   if datasource_type == variable.datasource_type.prometheus then
     prometheus.target(
       expr=std.format(
-        'tnt_crud_stats{job=~"%s",operation="%s",status="%s",quantile="0.99"}',
-        [job, operation, status]
+        'tnt_crud_stats{job=~"%s",alias=~"%s",operation="%s",status="%s",quantile="0.99"}',
+        [job, alias, operation, status]
       ),
       legendFormat='{{alias}} — {{name}}'
     )
@@ -118,6 +121,7 @@ local operation_latency_template(
       alias='$tag_label_pairs_alias — $tag_label_pairs_name',
       fill='null',
     ).where('metric_name', '=', 'tnt_crud_stats')
+    .where('label_pairs_alias', '=~', alias)
     .where('label_pairs_operation', '=', operation)
     .where('label_pairs_status', '=', status)
     .where('label_pairs_quantile', '=', '0.99')
@@ -132,6 +136,7 @@ local operation_rps(
   policy=null,
   measurement=null,
   job=null,
+  alias=null,
   operation=null,
   status=null,
       ) = operation_rps_template(
@@ -150,6 +155,7 @@ local operation_rps(
   policy=policy,
   measurement=measurement,
   job=job,
+  alias=alias,
   operation=operation,
   status=status,
 );
@@ -162,6 +168,7 @@ local operation_latency(
   policy=null,
   measurement=null,
   job=null,
+  alias=null,
   operation=null,
   status=null,
       ) = operation_latency_template(
@@ -179,6 +186,7 @@ local operation_latency(
   policy=policy,
   measurement=measurement,
   job=job,
+  alias=alias,
   operation=operation,
   status=status,
 );
@@ -191,6 +199,7 @@ local operation_rps_object(
   policy=null,
   measurement=null,
   job=null,
+  alias=null,
   operation=null,
   status=null,
       ) = operation_rps_template(
@@ -209,6 +218,7 @@ local operation_rps_object(
   policy=policy,
   measurement=measurement,
   job=job,
+  alias=alias,
   operation=operation,
   status=status,
 );
@@ -221,6 +231,7 @@ local operation_latency_object(
   policy=null,
   measurement=null,
   job=null,
+  alias=null,
   operation=null,
   status=null,
       ) = operation_latency_template(
@@ -238,6 +249,7 @@ local operation_latency_object(
   policy=policy,
   measurement=measurement,
   job=job,
+  alias=alias,
   operation=operation,
   status=status,
 );
@@ -250,6 +262,7 @@ local operation_rps_object_many(
   policy=null,
   measurement=null,
   job=null,
+  alias=null,
   operation_stripped=null,
   status=null,
       ) = operation_rps_template(
@@ -268,6 +281,7 @@ local operation_rps_object_many(
   policy=policy,
   measurement=measurement,
   job=job,
+  alias=alias,
   operation=std.format('%s_many', operation_stripped),
   status=status,
 );
@@ -280,6 +294,7 @@ local operation_latency_object_many(
   policy=null,
   measurement=null,
   job=null,
+  alias=null,
   operation_stripped=null,
   status=null,
       ) = operation_latency_template(
@@ -297,6 +312,7 @@ local operation_latency_object_many(
   policy=policy,
   measurement=measurement,
   job=job,
+  alias=alias,
   operation=std.format('%s_many', operation_stripped),
   status=status,
 );
@@ -309,6 +325,7 @@ local operation_rps_select(
   policy=null,
   measurement=null,
   job=null,
+  alias=null,
   status=null,
       ) = operation_rps_template(
   title=title,
@@ -326,6 +343,7 @@ local operation_rps_select(
   policy=policy,
   measurement=measurement,
   job=job,
+  alias=alias,
   operation='select',
   status=status,
 );
@@ -338,6 +356,7 @@ local operation_latency_select(
   policy=null,
   measurement=null,
   job=null,
+  alias=null,
   operation=null,
   status=null,
       ) = operation_latency_template(
@@ -355,6 +374,7 @@ local operation_latency_select(
   policy=policy,
   measurement=measurement,
   job=job,
+  alias=alias,
   operation='select',
   status=status,
 );
@@ -367,6 +387,7 @@ local operation_rps_borders(
   policy=null,
   measurement=null,
   job=null,
+  alias=null,
   status=null,
       ) = operation_rps_template(
   title=title,
@@ -384,6 +405,7 @@ local operation_rps_borders(
   policy=policy,
   measurement=measurement,
   job=job,
+  alias=alias,
   operation='borders',
   status=status,
 );
@@ -396,6 +418,7 @@ local operation_latency_borders(
   policy=null,
   measurement=null,
   job=null,
+  alias=null,
   operation=null,
   status=null,
       ) = operation_latency_template(
@@ -413,6 +436,7 @@ local operation_latency_borders(
   policy=policy,
   measurement=measurement,
   job=job,
+  alias=alias,
   operation='borders',
   status=status,
 );
@@ -425,6 +449,7 @@ local tuples_panel(
   policy=null,
   measurement=null,
   job=null,
+  alias=null,
   metric_name=null,
       ) = common.default_graph(
   title=title,
@@ -442,12 +467,13 @@ local tuples_panel(
     prometheus.target(
       expr=std.format(
         |||
-          rate(%(metric_name)s{job=~"%(job)s",operation="select"}[$__rate_interval]) /
+          rate(%(metric_name)s{job=~"%(job)s",alias=~"%(alias)s", operation="select"}[$__rate_interval]) /
           (sum without (status) (rate(tnt_crud_stats_count{job=~"%(job)s",operation="select"}[$__rate_interval])))
         |||,
         {
           metric_name: metric_name,
           job: job,
+          alias: alias,
         }
       ),
       legendFormat='{{alias}} — {{name}}'
@@ -459,18 +485,20 @@ local tuples_panel(
         SELECT mean("%(metric_name)s") / (mean("tnt_crud_stats_count_ok") + mean("tnt_crud_stats_count_error"))
         as "tnt_crud_tuples_per_request" FROM
         (SELECT "value" as "%(metric_name)s" FROM %(policy_prefix)s"%(measurement)s"
-        WHERE ("metric_name" = '%(metric_name)s' AND "label_pairs_operation" = 'select') AND $timeFilter),
+        WHERE ("metric_name" = '%(metric_name)s' AND "label_pairs_alias" =~ %(alias)s
+        AND "label_pairs_operation" = 'select') AND $timeFilter),
         (SELECT "value" as "tnt_crud_stats_count_error" FROM %(policy_prefix)s"%(measurement)s"
-        WHERE ("metric_name" = 'tnt_crud_stats_count' AND "label_pairs_operation" = 'select'
-        AND "label_pairs_status" = 'error') AND $timeFilter),
+        WHERE ("metric_name" = 'tnt_crud_stats_count' AND "label_pairs_alias" =~ %(alias)s
+        AND "label_pairs_operation" = 'select' AND "label_pairs_status" = 'error') AND $timeFilter),
         (SELECT "value" as "tnt_crud_stats_count_ok" FROM %(policy_prefix)s"%(measurement)s"
-        WHERE ("metric_name" = 'tnt_crud_stats_count' AND "label_pairs_operation" = 'select'
-        AND "label_pairs_status" = 'ok') AND $timeFilter)
+        WHERE ("metric_name" = 'tnt_crud_stats_count' AND "label_pairs_alias" =~ %(alias)s
+        AND "label_pairs_operation" = 'select' AND "label_pairs_status" = 'ok') AND $timeFilter)
         GROUP BY time($__interval * 2), "label_pairs_alias", "label_pairs_name" fill(0)
       |||, {
         metric_name: metric_name,
         policy_prefix: if policy == 'default' then '' else std.format('"%(policy)s".', policy),
         measurement: measurement,
+        alias: alias,
       }),
       alias='$tag_label_pairs_alias — $tag_label_pairs_name'
     )
@@ -488,6 +516,7 @@ local module = {
     policy=null,
     measurement=null,
     job=null,
+    alias=null,
   ):: operation_rps_select(
     title=title,
     description=description,
@@ -496,6 +525,7 @@ local module = {
     policy=policy,
     measurement=measurement,
     job=job,
+    alias=alias,
     status='ok',
   ),
 
@@ -507,6 +537,7 @@ local module = {
     policy=null,
     measurement=null,
     job=null,
+    alias=null,
   ):: operation_latency_select(
     title=title,
     description=description,
@@ -515,6 +546,7 @@ local module = {
     policy=policy,
     measurement=measurement,
     job=job,
+    alias=alias,
     status='ok',
   ),
 
@@ -526,6 +558,7 @@ local module = {
     policy=null,
     measurement=null,
     job=null,
+    alias=null,
   ):: operation_rps_select(
     title=title,
     description=description,
@@ -534,6 +567,7 @@ local module = {
     policy=policy,
     measurement=measurement,
     job=job,
+    alias=alias,
     status='error',
   ),
 
@@ -545,6 +579,7 @@ local module = {
     policy=null,
     measurement=null,
     job=null,
+    alias=null,
   ):: operation_latency_select(
     title=title,
     description=description,
@@ -553,6 +588,7 @@ local module = {
     policy=policy,
     measurement=measurement,
     job=job,
+    alias=alias,
     status='error',
   ),
 
@@ -567,6 +603,7 @@ local module = {
     policy=null,
     measurement=null,
     job=null,
+    alias=null,
   ):: tuples_panel(
     title=title,
     description=description,
@@ -575,6 +612,7 @@ local module = {
     policy=policy,
     measurement=measurement,
     job=job,
+    alias=alias,
     metric_name='tnt_crud_tuples_fetched',
   ),
 
@@ -590,6 +628,7 @@ local module = {
     policy=null,
     measurement=null,
     job=null,
+    alias=null,
   ):: tuples_panel(
     title=title,
     description=description,
@@ -598,6 +637,7 @@ local module = {
     policy=policy,
     measurement=measurement,
     job=job,
+    alias=alias,
     metric_name='tnt_crud_tuples_lookup',
   ),
 
@@ -613,6 +653,7 @@ local module = {
     policy=null,
     measurement=null,
     job=null,
+    alias=null,
   ):: common.default_graph(
     title=title,
     description=description,
@@ -625,8 +666,8 @@ local module = {
     if datasource_type == variable.datasource_type.prometheus then
       prometheus.target(
         expr=std.format(
-          'rate(tnt_crud_map_reduces{job=~"%s",operation="select"}[$__rate_interval])',
-          [job],
+          'rate(tnt_crud_map_reduces{job=~"%s",alias=~"%s",operation="select"}[$__rate_interval])',
+          [job, alias],
         ),
         legendFormat='{{alias}} — {{name}}'
       )
@@ -638,6 +679,7 @@ local module = {
         alias='$tag_label_pairs_alias — $tag_label_pairs_name',
         fill='null',
       ).where('metric_name', '=', 'tnt_crud_map_reduces')
+      .where('label_pairs_alias', '=~', alias)
       .where('label_pairs_operation', '=', 'select')
       .selectField('value').addConverter('mean').addConverter('non_negative_derivative', ['1s'])
   ),
@@ -650,6 +692,7 @@ local module = {
     policy=null,
     measurement=null,
     job=null,
+    alias=null,
   ):: operation_rps_borders(
     title=title,
     description=description,
@@ -658,6 +701,7 @@ local module = {
     policy=policy,
     measurement=measurement,
     job=job,
+    alias=alias,
     status='ok',
   ),
 
@@ -669,6 +713,7 @@ local module = {
     policy=null,
     measurement=null,
     job=null,
+    alias=null,
   ):: operation_latency_borders(
     title=title,
     description=description,
@@ -677,6 +722,7 @@ local module = {
     policy=policy,
     measurement=measurement,
     job=job,
+    alias=alias,
     status='ok',
   ),
 
@@ -688,6 +734,7 @@ local module = {
     policy=null,
     measurement=null,
     job=null,
+    alias=null,
   ):: operation_rps_borders(
     title=title,
     description=description,
@@ -696,6 +743,7 @@ local module = {
     policy=policy,
     measurement=measurement,
     job=job,
+    alias=alias,
     status='error',
   ),
 
@@ -707,6 +755,7 @@ local module = {
     policy=null,
     measurement=null,
     job=null,
+    alias=null,
   ):: operation_latency_borders(
     title=title,
     description=description,
@@ -715,6 +764,7 @@ local module = {
     policy=policy,
     measurement=measurement,
     job=job,
+    alias=alias,
     status='error',
   ),
 };
@@ -734,6 +784,7 @@ local module_with_object_panels = std.foldl(function(_module, operation) (
       policy=null,
       measurement=null,
       job=null,
+      alias=null,
     ):: operation_rps_object(
       title=title,
       description=description,
@@ -742,6 +793,7 @@ local module_with_object_panels = std.foldl(function(_module, operation) (
       policy=policy,
       measurement=measurement,
       job=job,
+      alias=alias,
       operation=operation,
       status='ok',
     ),
@@ -754,6 +806,7 @@ local module_with_object_panels = std.foldl(function(_module, operation) (
       policy=null,
       measurement=null,
       job=null,
+      alias=null,
     ):: operation_latency_object(
       title=title,
       description=description,
@@ -762,6 +815,7 @@ local module_with_object_panels = std.foldl(function(_module, operation) (
       policy=policy,
       measurement=measurement,
       job=job,
+      alias=alias,
       operation=operation,
       status='ok',
     ),
@@ -774,6 +828,7 @@ local module_with_object_panels = std.foldl(function(_module, operation) (
       policy=null,
       measurement=null,
       job=null,
+      alias=null,
     ):: operation_rps_object(
       title=title,
       description=description,
@@ -782,6 +837,7 @@ local module_with_object_panels = std.foldl(function(_module, operation) (
       policy=policy,
       measurement=measurement,
       job=job,
+      alias=alias,
       operation=operation,
       status='error',
     ),
@@ -794,6 +850,7 @@ local module_with_object_panels = std.foldl(function(_module, operation) (
       policy=null,
       measurement=null,
       job=null,
+      alias=null,
     ):: operation_latency_object(
       title=title,
       description=description,
@@ -802,6 +859,7 @@ local module_with_object_panels = std.foldl(function(_module, operation) (
       policy=policy,
       measurement=measurement,
       job=job,
+      alias=alias,
       operation=operation,
       status='error',
     ),
@@ -819,6 +877,7 @@ local module_with_object_and_many_panels = std.foldl(function(_module, operation
       policy=null,
       measurement=null,
       job=null,
+      alias=null,
     ):: operation_rps_object_many(
       title=title,
       description=description,
@@ -827,6 +886,7 @@ local module_with_object_and_many_panels = std.foldl(function(_module, operation
       policy=policy,
       measurement=measurement,
       job=job,
+      alias=alias,
       operation_stripped=operation_stripped,
       status='ok',
     ),
@@ -839,6 +899,7 @@ local module_with_object_and_many_panels = std.foldl(function(_module, operation
       policy=null,
       measurement=null,
       job=null,
+      alias=null,
     ):: operation_latency_object_many(
       title=title,
       description=description,
@@ -847,6 +908,7 @@ local module_with_object_and_many_panels = std.foldl(function(_module, operation
       policy=policy,
       measurement=measurement,
       job=job,
+      alias=alias,
       operation_stripped=operation_stripped,
       status='ok',
     ),
@@ -859,6 +921,7 @@ local module_with_object_and_many_panels = std.foldl(function(_module, operation
       policy=null,
       measurement=null,
       job=null,
+      alias=null,
     ):: operation_rps_object_many(
       title=title,
       description=description,
@@ -867,6 +930,7 @@ local module_with_object_and_many_panels = std.foldl(function(_module, operation
       policy=policy,
       measurement=measurement,
       job=job,
+      alias=alias,
       operation_stripped=operation_stripped,
       status='error',
     ),
@@ -879,6 +943,7 @@ local module_with_object_and_many_panels = std.foldl(function(_module, operation
       policy=null,
       measurement=null,
       job=null,
+      alias=null,
     ):: operation_latency_object_many(
       title=title,
       description=description,
@@ -887,6 +952,7 @@ local module_with_object_and_many_panels = std.foldl(function(_module, operation
       policy=policy,
       measurement=measurement,
       job=job,
+      alias=alias,
       operation_stripped=operation_stripped,
       status='error',
     ),
@@ -904,6 +970,7 @@ std.foldl(function(_module, operation) (
       policy=null,
       measurement=null,
       job=null,
+      alias=null,
     ):: operation_rps(
       title=title,
       description=description,
@@ -912,6 +979,7 @@ std.foldl(function(_module, operation) (
       policy=policy,
       measurement=measurement,
       job=job,
+      alias=alias,
       operation=operation,
       status='ok',
     ),
@@ -924,6 +992,7 @@ std.foldl(function(_module, operation) (
       policy=null,
       measurement=null,
       job=null,
+      alias=null,
     ):: operation_latency(
       title=title,
       description=description,
@@ -932,6 +1001,7 @@ std.foldl(function(_module, operation) (
       policy=policy,
       measurement=measurement,
       job=job,
+      alias=alias,
       operation=operation,
       status='ok',
     ),
@@ -944,6 +1014,7 @@ std.foldl(function(_module, operation) (
       policy=null,
       measurement=null,
       job=null,
+      alias=null,
     ):: operation_rps(
       title=title,
       description=description,
@@ -952,6 +1023,7 @@ std.foldl(function(_module, operation) (
       policy=policy,
       measurement=measurement,
       job=job,
+      alias=alias,
       operation=operation,
       status='error',
     ),
@@ -964,6 +1036,7 @@ std.foldl(function(_module, operation) (
       policy=null,
       measurement=null,
       job=null,
+      alias=null,
     ):: operation_latency(
       title=title,
       description=description,
@@ -972,6 +1045,7 @@ std.foldl(function(_module, operation) (
       policy=policy,
       measurement=measurement,
       job=job,
+      alias=alias,
       operation=operation,
       status='error',
     ),

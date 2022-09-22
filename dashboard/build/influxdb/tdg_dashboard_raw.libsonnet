@@ -4,7 +4,7 @@ local dashboard = import 'dashboard/dashboard.libsonnet';
 local section = import 'dashboard/section.libsonnet';
 local variable = import 'dashboard/variable.libsonnet';
 
-function(datasource, policy, measurement) dashboard.new(
+function(datasource, policy, measurement, alias) dashboard.new(
   grafana.dashboard.new(
     title='Tarantool Data Grid dashboard',
     description='Dashboard for Tarantool Data Grid ver. 2 application monitoring, based on grafonnet library.',
@@ -46,6 +46,7 @@ function(datasource, policy, measurement) dashboard.new(
     datasource=datasource,
     policy=policy,
     measurement=measurement,
+    alias=alias,
   )
 ).addPanels(
   section.net(
@@ -53,6 +54,7 @@ function(datasource, policy, measurement) dashboard.new(
     datasource=datasource,
     policy=policy,
     measurement=measurement,
+    alias=alias,
   )
 ).addPanels(
   section.slab(
@@ -60,6 +62,7 @@ function(datasource, policy, measurement) dashboard.new(
     datasource=datasource,
     policy=policy,
     measurement=measurement,
+    alias=alias,
   )
 ).addPanels(
   section.space(
@@ -67,6 +70,7 @@ function(datasource, policy, measurement) dashboard.new(
     datasource=datasource,
     policy=policy,
     measurement=measurement,
+    alias=alias,
   )
 ).addPanels(
   section.vinyl(
@@ -74,6 +78,7 @@ function(datasource, policy, measurement) dashboard.new(
     datasource=datasource,
     policy=policy,
     measurement=measurement,
+    alias=alias,
   )
 ).addPanels(
   section.cpu_extended(
@@ -81,6 +86,7 @@ function(datasource, policy, measurement) dashboard.new(
     datasource=datasource,
     policy=policy,
     measurement=measurement,
+    alias=alias,
   )
 ).addPanels(
   section.runtime(
@@ -88,6 +94,7 @@ function(datasource, policy, measurement) dashboard.new(
     datasource=datasource,
     policy=policy,
     measurement=measurement,
+    alias=alias,
   )
 ).addPanels(
   section.luajit(
@@ -95,6 +102,7 @@ function(datasource, policy, measurement) dashboard.new(
     datasource=datasource,
     policy=policy,
     measurement=measurement,
+    alias=alias,
   )
 ).addPanels(
   section.operations(
@@ -102,6 +110,7 @@ function(datasource, policy, measurement) dashboard.new(
     datasource=datasource,
     policy=policy,
     measurement=measurement,
+    alias=alias,
   )
 ).addPanels(
   section.tdg_kafka_common(
@@ -109,6 +118,7 @@ function(datasource, policy, measurement) dashboard.new(
     datasource=datasource,
     policy=policy,
     measurement=measurement,
+    alias=alias,
   )
 ).addPanels(
   section.tdg_kafka_brokers(
@@ -116,6 +126,7 @@ function(datasource, policy, measurement) dashboard.new(
     datasource=datasource,
     policy=policy,
     measurement=measurement,
+    alias=alias,
   )
 ).addPanels(
   section.tdg_kafka_topics(
@@ -123,6 +134,7 @@ function(datasource, policy, measurement) dashboard.new(
     datasource=datasource,
     policy=policy,
     measurement=measurement,
+    alias=alias,
   )
 ).addPanels(
   section.tdg_kafka_consumer(
@@ -130,6 +142,7 @@ function(datasource, policy, measurement) dashboard.new(
     datasource=datasource,
     policy=policy,
     measurement=measurement,
+    alias=alias,
   )
 ).addPanels(
   section.tdg_kafka_producer(
@@ -137,6 +150,7 @@ function(datasource, policy, measurement) dashboard.new(
     datasource=datasource,
     policy=policy,
     measurement=measurement,
+    alias=alias,
   )
 ).addPanels(
   section.tdg_expirationd(
@@ -144,6 +158,7 @@ function(datasource, policy, measurement) dashboard.new(
     datasource=datasource,
     policy=policy,
     measurement=measurement,
+    alias=alias,
   )
 ).addPanels(
   section.tdg_tuples(
@@ -151,6 +166,7 @@ function(datasource, policy, measurement) dashboard.new(
     datasource=datasource,
     policy=policy,
     measurement=measurement,
+    alias=alias,
   )
 ).addPanels(
   section.tdg_file_connectors(
@@ -158,6 +174,7 @@ function(datasource, policy, measurement) dashboard.new(
     datasource=datasource,
     policy=policy,
     measurement=measurement,
+    alias=alias,
   )
 ).addPanels(
   section.tdg_graphql(
@@ -165,6 +182,7 @@ function(datasource, policy, measurement) dashboard.new(
     datasource=datasource,
     policy=policy,
     measurement=measurement,
+    alias=alias,
   )
 ).addPanels(
   section.tdg_iproto(
@@ -172,6 +190,7 @@ function(datasource, policy, measurement) dashboard.new(
     datasource=datasource,
     policy=policy,
     measurement=measurement,
+    alias=alias,
   )
 ).addPanels(
   section.tdg_rest_api(
@@ -179,6 +198,7 @@ function(datasource, policy, measurement) dashboard.new(
     datasource=datasource,
     policy=policy,
     measurement=measurement,
+    alias=alias,
   )
 ).addPanels(
   section.tdg_tasks(
@@ -186,5 +206,6 @@ function(datasource, policy, measurement) dashboard.new(
     datasource=datasource,
     policy=policy,
     measurement=measurement,
+    alias=alias,
   )
 )

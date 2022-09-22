@@ -4,7 +4,7 @@ local dashboard = import 'dashboard/dashboard.libsonnet';
 local section = import 'dashboard/section.libsonnet';
 local variable = import 'dashboard/variable.libsonnet';
 
-function(datasource, policy, measurement) dashboard.new(
+function(datasource, policy, measurement, alias) dashboard.new(
   grafana.dashboard.new(
     title='Tarantool dashboard',
     description='Dashboard for Tarantool application and database server monitoring, based on grafonnet library.',
@@ -46,6 +46,7 @@ function(datasource, policy, measurement) dashboard.new(
     datasource=datasource,
     policy=policy,
     measurement=measurement,
+    alias=alias,
   )
 ).addPanels(
   section.http(
@@ -53,6 +54,7 @@ function(datasource, policy, measurement) dashboard.new(
     datasource=datasource,
     policy=policy,
     measurement=measurement,
+    alias=alias,
   )
 ).addPanels(
   section.net(
@@ -60,6 +62,7 @@ function(datasource, policy, measurement) dashboard.new(
     datasource=datasource,
     policy=policy,
     measurement=measurement,
+    alias=alias,
   )
 ).addPanels(
   section.slab(
@@ -67,6 +70,7 @@ function(datasource, policy, measurement) dashboard.new(
     datasource=datasource,
     policy=policy,
     measurement=measurement,
+    alias=alias,
   )
 ).addPanels(
   section.space(
@@ -74,6 +78,7 @@ function(datasource, policy, measurement) dashboard.new(
     datasource=datasource,
     policy=policy,
     measurement=measurement,
+    alias=alias,
   )
 ).addPanels(
   section.vinyl(
@@ -81,6 +86,7 @@ function(datasource, policy, measurement) dashboard.new(
     datasource=datasource,
     policy=policy,
     measurement=measurement,
+    alias=alias,
   )
 ).addPanels(
   section.cpu(
@@ -88,6 +94,7 @@ function(datasource, policy, measurement) dashboard.new(
     datasource=datasource,
     policy=policy,
     measurement=measurement,
+    alias=alias,
   )
 ).addPanels(
   section.runtime(
@@ -95,6 +102,7 @@ function(datasource, policy, measurement) dashboard.new(
     datasource=datasource,
     policy=policy,
     measurement=measurement,
+    alias=alias,
   )
 ).addPanels(
   section.luajit(
@@ -102,6 +110,7 @@ function(datasource, policy, measurement) dashboard.new(
     datasource=datasource,
     policy=policy,
     measurement=measurement,
+    alias=alias,
   )
 ).addPanels(
   section.operations(
@@ -109,6 +118,7 @@ function(datasource, policy, measurement) dashboard.new(
     datasource=datasource,
     policy=policy,
     measurement=measurement,
+    alias=alias,
   )
 ).addPanels(
   section.crud(
@@ -116,6 +126,7 @@ function(datasource, policy, measurement) dashboard.new(
     datasource=datasource,
     policy=policy,
     measurement=measurement,
+    alias=alias,
   )
 ).addPanels(
   section.expirationd(
@@ -123,5 +134,6 @@ function(datasource, policy, measurement) dashboard.new(
     datasource=datasource,
     policy=policy,
     measurement=measurement,
+    alias=alias,
   )
 )

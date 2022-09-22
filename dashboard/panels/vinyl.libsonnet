@@ -17,6 +17,7 @@ local prometheus = grafana.prometheus;
     policy=null,
     measurement=null,
     job=null,
+    alias=null,
     metric_name=null,
   ) = common.default_graph(
     title=title,
@@ -32,6 +33,7 @@ local prometheus = grafana.prometheus;
     job,
     policy,
     measurement,
+    alias,
   )),
 
   disk_data(
@@ -46,6 +48,7 @@ local prometheus = grafana.prometheus;
     policy=null,
     measurement=null,
     job=null,
+    alias=null,
   ):: disk_size(
     title=title,
     description=description,
@@ -54,6 +57,7 @@ local prometheus = grafana.prometheus;
     policy=policy,
     measurement=measurement,
     job=job,
+    alias=alias,
     metric_name='tnt_vinyl_disk_data_size',
   ),
 
@@ -69,6 +73,7 @@ local prometheus = grafana.prometheus;
     policy=null,
     measurement=null,
     job=null,
+    alias=null,
   ):: disk_size(
     title=title,
     description=description,
@@ -77,6 +82,7 @@ local prometheus = grafana.prometheus;
     policy=policy,
     measurement=measurement,
     job=job,
+    alias=alias,
     metric_name='tnt_vinyl_disk_index_size',
   ),
 
@@ -92,6 +98,7 @@ local prometheus = grafana.prometheus;
     policy=null,
     measurement=null,
     job=null,
+    alias=null,
   ):: common.default_graph(
     title=title,
     description=description,
@@ -104,7 +111,8 @@ local prometheus = grafana.prometheus;
     'tnt_vinyl_memory_tuple_cache',
     job,
     policy,
-    measurement
+    measurement,
+    alias,
   )),
 
   index_memory(
@@ -121,6 +129,7 @@ local prometheus = grafana.prometheus;
     policy=null,
     measurement=null,
     job=null,
+    alias=null,
   ):: common.default_graph(
     title=title,
     description=description,
@@ -133,7 +142,8 @@ local prometheus = grafana.prometheus;
     'tnt_vinyl_memory_page_index',
     job,
     policy,
-    measurement
+    measurement,
+    alias,
   )),
 
   bloom_filter_memory(
@@ -146,6 +156,7 @@ local prometheus = grafana.prometheus;
     policy=null,
     measurement=null,
     job=null,
+    alias=null,
   ):: common.default_graph(
     title=title,
     description=description,
@@ -158,7 +169,8 @@ local prometheus = grafana.prometheus;
     'tnt_vinyl_memory_bloom_filter',
     job,
     policy,
-    measurement
+    measurement,
+    alias,
   )),
 
   local regulator_bps(
@@ -169,6 +181,7 @@ local prometheus = grafana.prometheus;
     policy=null,
     measurement=null,
     job=null,
+    alias=null,
     metric_name=null,
   ) = common.default_graph(
     title=title,
@@ -182,6 +195,7 @@ local prometheus = grafana.prometheus;
     job,
     policy,
     measurement,
+    alias,
   )),
 
   regulator_dump_bandwidth(
@@ -200,6 +214,7 @@ local prometheus = grafana.prometheus;
     policy=null,
     measurement=null,
     job=null,
+    alias=null,
   ):: regulator_bps(
     title=title,
     description=description,
@@ -208,6 +223,7 @@ local prometheus = grafana.prometheus;
     policy=policy,
     measurement=measurement,
     job=job,
+    alias=alias,
     metric_name='tnt_vinyl_regulator_dump_bandwidth',
   ),
 
@@ -225,6 +241,7 @@ local prometheus = grafana.prometheus;
     policy=null,
     measurement=null,
     job=null,
+    alias=null,
   ):: regulator_bps(
     title=title,
     description=description,
@@ -233,6 +250,7 @@ local prometheus = grafana.prometheus;
     policy=policy,
     measurement=measurement,
     job=job,
+    alias=alias,
     metric_name='tnt_vinyl_regulator_write_rate',
   ),
 
@@ -251,6 +269,7 @@ local prometheus = grafana.prometheus;
     policy=null,
     measurement=null,
     job=null,
+    alias=null,
   ):: regulator_bps(
     title=title,
     description=description,
@@ -259,6 +278,7 @@ local prometheus = grafana.prometheus;
     policy=policy,
     measurement=measurement,
     job=job,
+    alias=alias,
     metric_name='tnt_vinyl_regulator_rate_limit',
   ),
 
@@ -280,6 +300,7 @@ local prometheus = grafana.prometheus;
     policy=null,
     measurement=null,
     job=null,
+    alias=null,
   ):: common.default_graph(
     title=title,
     description=description,
@@ -293,6 +314,7 @@ local prometheus = grafana.prometheus;
     job,
     policy,
     measurement,
+    alias,
   )),
 
   regulator_dump_watermark(
@@ -312,6 +334,7 @@ local prometheus = grafana.prometheus;
     policy=null,
     measurement=null,
     job=null,
+    alias=null,
   ):: common.default_graph(
     title=title,
     description=description,
@@ -326,6 +349,7 @@ local prometheus = grafana.prometheus;
     job,
     policy,
     measurement,
+    alias,
   )),
 
   regulator_blocked_writers(
@@ -341,6 +365,7 @@ local prometheus = grafana.prometheus;
     policy=null,
     measurement=null,
     job=null,
+    alias=null,
   ):: common.default_graph(
     title=title,
     description=description,
@@ -355,6 +380,7 @@ local prometheus = grafana.prometheus;
     job,
     policy,
     measurement,
+    alias,
   )),
 
   local tx_rate(
@@ -365,6 +391,7 @@ local prometheus = grafana.prometheus;
     policy=null,
     measurement=null,
     job=null,
+    alias=null,
     metric_name=null,
   ) = common.default_graph(
     title=title,
@@ -379,6 +406,7 @@ local prometheus = grafana.prometheus;
     job,
     policy,
     measurement,
+    alias,
   )),
 
   tx_commit_rate(
@@ -395,6 +423,7 @@ local prometheus = grafana.prometheus;
     policy=null,
     measurement=null,
     job=null,
+    alias=null,
   ):: tx_rate(
     title=title,
     description=description,
@@ -403,6 +432,7 @@ local prometheus = grafana.prometheus;
     policy=policy,
     measurement=measurement,
     job=job,
+    alias=alias,
     metric_name='tnt_vinyl_tx_commit',
   ),
 
@@ -419,6 +449,7 @@ local prometheus = grafana.prometheus;
     policy=null,
     measurement=null,
     job=null,
+    alias=null,
   ):: tx_rate(
     title=title,
     description=description,
@@ -427,6 +458,7 @@ local prometheus = grafana.prometheus;
     policy=policy,
     measurement=measurement,
     job=job,
+    alias=alias,
     metric_name='tnt_vinyl_tx_rollback',
   ),
 
@@ -444,6 +476,7 @@ local prometheus = grafana.prometheus;
     policy=null,
     measurement=null,
     job=null,
+    alias=null,
   ):: tx_rate(
     title=title,
     description=description,
@@ -452,6 +485,7 @@ local prometheus = grafana.prometheus;
     policy=policy,
     measurement=measurement,
     job=job,
+    alias=alias,
     metric_name='tnt_vinyl_tx_conflict',
   ),
 
@@ -470,6 +504,7 @@ local prometheus = grafana.prometheus;
     policy=null,
     measurement=null,
     job=null,
+    alias=null,
   ):: common.default_graph(
     title=title,
     description=description,
@@ -483,6 +518,7 @@ local prometheus = grafana.prometheus;
     job,
     policy,
     measurement,
+    alias,
     'last',
   )),
 
@@ -494,6 +530,7 @@ local prometheus = grafana.prometheus;
     policy=null,
     measurement=null,
     job=null,
+    alias=null,
     metric_name=null,
   ) = common.default_graph(
     title=title,
@@ -524,6 +561,7 @@ local prometheus = grafana.prometheus;
     policy=null,
     measurement=null,
     job=null,
+    alias=null,
   ):: memory(
     title=title,
     description=description,
@@ -532,6 +570,7 @@ local prometheus = grafana.prometheus;
     policy=policy,
     measurement=measurement,
     job=job,
+    alias=alias,
     metric_name='tnt_vinyl_memory_page_index',
   ),
 
@@ -548,6 +587,7 @@ local prometheus = grafana.prometheus;
     policy=null,
     measurement=null,
     job=null,
+    alias=null,
   ):: memory(
     title=title,
     description=description,
@@ -556,6 +596,7 @@ local prometheus = grafana.prometheus;
     policy=policy,
     measurement=measurement,
     job=job,
+    alias=alias,
     metric_name='tnt_vinyl_memory_bloom_filter',
   ),
 
@@ -571,6 +612,7 @@ local prometheus = grafana.prometheus;
     policy=null,
     measurement=null,
     job=null,
+    alias=null,
   ):: common.default_graph(
     title=title,
     description=description,
@@ -581,7 +623,8 @@ local prometheus = grafana.prometheus;
   ).addTarget(
     if datasource_type == variable.datasource_type.prometheus then
       prometheus.target(
-        expr=std.format('tnt_vinyl_scheduler_tasks{job=~"%s", status="inprogress"}', [job]),
+        expr=std.format('tnt_vinyl_scheduler_tasks{job=~"%s", alias=~"%s", status="inprogress"}',
+                        [job, alias]),
         legendFormat='{{alias}}',
       )
     else if datasource_type == variable.datasource_type.influxdb then
@@ -591,7 +634,9 @@ local prometheus = grafana.prometheus;
         group_tags=['label_pairs_alias'],
         alias='$tag_label_pairs_alias',
         fill='null',
-      ).where('metric_name', '=', 'tnt_vinyl_scheduler_tasks').where('label_pairs_status', '=', 'inprogress')
+      ).where('metric_name', '=', 'tnt_vinyl_scheduler_tasks')
+      .where('label_pairs_alias', '=~', alias)
+      .where('label_pairs_status', '=', 'inprogress')
       .selectField('value').addConverter('last')
   ),
 
@@ -608,6 +653,7 @@ local prometheus = grafana.prometheus;
     policy=null,
     measurement=null,
     job=null,
+    alias=null,
   ):: common.default_graph(
     title=title,
     description=description,
@@ -619,7 +665,8 @@ local prometheus = grafana.prometheus;
   ).addTarget(
     if datasource_type == variable.datasource_type.prometheus then
       prometheus.target(
-        expr=std.format('rate(tnt_vinyl_scheduler_tasks{job=~"%s",status="failed"}[$__rate_interval])', [job]),
+        expr=std.format('rate(tnt_vinyl_scheduler_tasks{job=~"%s",alias=~"%s",status="failed"}[$__rate_interval])',
+                        [job, alias]),
         legendFormat='{{alias}}',
       )
     else if datasource_type == variable.datasource_type.influxdb then
@@ -629,7 +676,9 @@ local prometheus = grafana.prometheus;
         group_tags=['label_pairs_alias'],
         alias='$tag_label_pairs_alias',
         fill='null',
-      ).where('metric_name', '=', 'tnt_vinyl_scheduler_tasks').where('label_pairs_status', '=', 'failed')
+      ).where('metric_name', '=', 'tnt_vinyl_scheduler_tasks')
+      .where('label_pairs_alias', '=~', alias)
+      .where('label_pairs_status', '=', 'failed')
       .selectField('value').addConverter('mean').addConverter('non_negative_derivative', ['1s'])
   ),
 
@@ -646,6 +695,7 @@ local prometheus = grafana.prometheus;
     policy=null,
     measurement=null,
     job=null,
+    alias=null,
   ):: common.default_graph(
     title=title,
     description=description,
@@ -660,6 +710,7 @@ local prometheus = grafana.prometheus;
     job,
     policy,
     measurement,
+    alias,
   )),
 
   scheduler_dump_count_rate(
@@ -674,6 +725,7 @@ local prometheus = grafana.prometheus;
     policy=null,
     measurement=null,
     job=null,
+    alias=null,
   ):: common.default_graph(
     title=title,
     description=description,
@@ -688,5 +740,6 @@ local prometheus = grafana.prometheus;
     job,
     policy,
     measurement,
+    alias,
   )),
 }
