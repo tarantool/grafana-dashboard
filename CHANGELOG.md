@@ -4,7 +4,8 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## Unreleased
+## [1.5.0] - 2022-09-22
+Grafana revisions: [InfluxDB revision 15](https://grafana.com/api/dashboards/12567/revisions/15/download), [Prometheus revision 15](https://grafana.com/api/dashboards/13054/revisions/15/download), [InfluxDB TDG revision 4](https://grafana.com/api/dashboards/16405/revisions/4/download), [Prometheus TDG revision 4](https://grafana.com/api/dashboards/16406/revisions/4/download).
 
 ### Added
 - Variable to select displayed cluster instances
