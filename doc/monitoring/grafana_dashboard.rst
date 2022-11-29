@@ -221,5 +221,9 @@ Troubleshooting
 
 If there's no data on the graphs, make sure that you have set up datasource and job/measurement correctly.
 
-If some Prometheus graphs shows no data because of "parse error: missing unit character in duration",
+If some Prometheus graphs show no data because of ``parse error: missing unit character in duration``,
 ensure that you use Grafana 7.2 or newer.
+
+If some Prometheus graphs display ``parse error: bad duration syntax "1m0"`` or similar error, you need
+to update your Prometheus version. See
+`grafana/grafana#44542 <https://github.com/grafana/grafana/issues/44542>`_ for more details.
