@@ -25,3 +25,4 @@ node_modules
 doc/locale/en/
 doc/output/
 dashboard.json
+promtool
