@@ -7,12 +7,10 @@ source  = {
 dependencies = {
     'tarantool',
     'lua >= 5.1',
-    'checks == 3.1.0-1',
-    'cartridge == 2.7.4-1',
-    'metrics == 0.13.0-1',
-    'cartridge-cli-extensions == 1.1.1-1',
-    'crud == 0.12.0',
-    'expirationd == 1.2.0',
+    'cartridge == 2.7.8-1',
+    'metrics == 0.16.0-1',
+    'crud == 1.0.0-1',
+    'expirationd == 1.3.1-1',
 }
 build = {
     type = 'none';
