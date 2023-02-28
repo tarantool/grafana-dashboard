@@ -8992,7 +8992,7 @@
                "dashes": false,
                "datasource": "${DS_INFLUXDB}",
                "decimals": 3,
-               "description": "Average number of snap restores (guard assertions\nleading to stopping trace executions) per second.\n\n\nPanel works with `metrics >= 0.6.0` and `Tarantool >= 2.6`.",
+               "description": "Average number of snap restores (guard assertions\nleading to stopping trace executions) per second.\n\n\nPanel works with `metrics >= 0.15.0` and `Tarantool >= 2.6`.",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -9079,7 +9079,7 @@
                         {
                            "key": "metric_name",
                            "operator": "=",
-                           "value": "lj_jit_snap_restore"
+                           "value": "lj_jit_snap_restore_total"
                         },
                         {
                            "condition": "AND",
@@ -9278,7 +9278,7 @@
                "dashes": false,
                "datasource": "${DS_INFLUXDB}",
                "decimals": 3,
-               "description": "Average number of JIT trace aborts per second.\n\n\nPanel works with `metrics >= 0.6.0` and `Tarantool >= 2.6`.",
+               "description": "Average number of JIT trace aborts per second.\n\n\nPanel works with `metrics >= 0.15.0` and `Tarantool >= 2.6`.",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -9365,7 +9365,7 @@
                         {
                            "key": "metric_name",
                            "operator": "=",
-                           "value": "lj_jit_trace_abort"
+                           "value": "lj_jit_trace_abort_total"
                         },
                         {
                            "condition": "AND",
@@ -9558,7 +9558,7 @@
                "dashes": false,
                "datasource": "${DS_INFLUXDB}",
                "decimals": 3,
-               "description": "Average number of strings being extracted from hash instead of allocating per second.\n\n\nPanel works with `metrics >= 0.6.0` and `Tarantool >= 2.6`.",
+               "description": "Average number of strings being extracted from hash instead of allocating per second.\n\n\nPanel works with `metrics >= 0.15.0` and `Tarantool >= 2.6`.",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -9645,7 +9645,7 @@
                         {
                            "key": "metric_name",
                            "operator": "=",
-                           "value": "lj_strhash_hit"
+                           "value": "lj_strhash_hit_total"
                         },
                         {
                            "condition": "AND",
@@ -9701,7 +9701,7 @@
                "dashes": false,
                "datasource": "${DS_INFLUXDB}",
                "decimals": 3,
-               "description": "Average number of strings being allocated due to hash miss per second.\n\n\nPanel works with `metrics >= 0.6.0` and `Tarantool >= 2.6`.",
+               "description": "Average number of strings being allocated due to hash miss per second.\n\n\nPanel works with `metrics >= 0.15.0` and `Tarantool >= 2.6`.",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -9788,7 +9788,7 @@
                         {
                            "key": "metric_name",
                            "operator": "=",
-                           "value": "lj_strhash_miss"
+                           "value": "lj_strhash_miss_total"
                         },
                         {
                            "condition": "AND",
@@ -9844,7 +9844,7 @@
                "dashes": false,
                "datasource": "${DS_INFLUXDB}",
                "decimals": 3,
-               "description": "Average count of incremental GC steps (atomic state) per second.\n\n\nPanel works with `metrics >= 0.6.0` and `Tarantool >= 2.6`.",
+               "description": "Average count of incremental GC steps (atomic state) per second.\n\n\nPanel works with `metrics >= 0.15.0` and `Tarantool >= 2.6`.",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -9931,7 +9931,7 @@
                         {
                            "key": "metric_name",
                            "operator": "=",
-                           "value": "lj_gc_steps_atomic"
+                           "value": "lj_gc_steps_atomic_total"
                         },
                         {
                            "condition": "AND",
@@ -9987,7 +9987,7 @@
                "dashes": false,
                "datasource": "${DS_INFLUXDB}",
                "decimals": 3,
-               "description": "Average count of incremental GC steps (sweepstring state) per second.\n\n\nPanel works with `metrics >= 0.6.0` and `Tarantool >= 2.6`.",
+               "description": "Average count of incremental GC steps (sweepstring state) per second.\n\n\nPanel works with `metrics >= 0.15.0` and `Tarantool >= 2.6`.",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -10074,7 +10074,7 @@
                         {
                            "key": "metric_name",
                            "operator": "=",
-                           "value": "lj_gc_steps_sweepstring"
+                           "value": "lj_gc_steps_sweepstring_total"
                         },
                         {
                            "condition": "AND",
@@ -10130,7 +10130,7 @@
                "dashes": false,
                "datasource": "${DS_INFLUXDB}",
                "decimals": 3,
-               "description": "Average count of incremental GC steps (finalize state) per second.\n\n\nPanel works with `metrics >= 0.6.0` and `Tarantool >= 2.6`.",
+               "description": "Average count of incremental GC steps (finalize state) per second.\n\n\nPanel works with `metrics >= 0.15.0` and `Tarantool >= 2.6`.",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -10217,7 +10217,7 @@
                         {
                            "key": "metric_name",
                            "operator": "=",
-                           "value": "lj_gc_steps_finalize"
+                           "value": "lj_gc_steps_finalize_total"
                         },
                         {
                            "condition": "AND",
@@ -10273,7 +10273,7 @@
                "dashes": false,
                "datasource": "${DS_INFLUXDB}",
                "decimals": 3,
-               "description": "Average count of incremental GC steps (sweep state) per second.\n\n\nPanel works with `metrics >= 0.6.0` and `Tarantool >= 2.6`.",
+               "description": "Average count of incremental GC steps (sweep state) per second.\n\n\nPanel works with `metrics >= 0.15.0` and `Tarantool >= 2.6`.",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -10360,7 +10360,7 @@
                         {
                            "key": "metric_name",
                            "operator": "=",
-                           "value": "lj_gc_steps_sweep"
+                           "value": "lj_gc_steps_sweep_total"
                         },
                         {
                            "condition": "AND",
@@ -10416,7 +10416,7 @@
                "dashes": false,
                "datasource": "${DS_INFLUXDB}",
                "decimals": 3,
-               "description": "Average count of incremental GC steps (propagate state) per second.\n\n\nPanel works with `metrics >= 0.6.0` and `Tarantool >= 2.6`.",
+               "description": "Average count of incremental GC steps (propagate state) per second.\n\n\nPanel works with `metrics >= 0.15.0` and `Tarantool >= 2.6`.",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -10503,7 +10503,7 @@
                         {
                            "key": "metric_name",
                            "operator": "=",
-                           "value": "lj_gc_steps_propagate"
+                           "value": "lj_gc_steps_propagate_total"
                         },
                         {
                            "condition": "AND",
@@ -10559,7 +10559,7 @@
                "dashes": false,
                "datasource": "${DS_INFLUXDB}",
                "decimals": 3,
-               "description": "Average count of incremental GC steps (pause state) per second.\n\n\nPanel works with `metrics >= 0.6.0` and `Tarantool >= 2.6`.",
+               "description": "Average count of incremental GC steps (pause state) per second.\n\n\nPanel works with `metrics >= 0.15.0` and `Tarantool >= 2.6`.",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -10646,7 +10646,7 @@
                         {
                            "key": "metric_name",
                            "operator": "=",
-                           "value": "lj_gc_steps_pause"
+                           "value": "lj_gc_steps_pause_total"
                         },
                         {
                            "condition": "AND",
@@ -11387,7 +11387,7 @@
                "dashes": false,
                "datasource": "${DS_INFLUXDB}",
                "decimals": 3,
-               "description": "Average amount of freed Lua memory per second.\n\n\nPanel works with `metrics >= 0.6.0` and `Tarantool >= 2.6`.",
+               "description": "Average amount of freed Lua memory per second.\n\n\nPanel works with `metrics >= 0.15.0` and `Tarantool >= 2.6`.",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -11474,7 +11474,7 @@
                         {
                            "key": "metric_name",
                            "operator": "=",
-                           "value": "lj_gc_freed"
+                           "value": "lj_gc_freed_total"
                         },
                         {
                            "condition": "AND",
@@ -11530,7 +11530,7 @@
                "dashes": false,
                "datasource": "${DS_INFLUXDB}",
                "decimals": 3,
-               "description": "Average amount of allocated Lua memory per second.\n\n\nPanel works with `metrics >= 0.6.0` and `Tarantool >= 2.6`.",
+               "description": "Average amount of allocated Lua memory per second.\n\n\nPanel works with `metrics >= 0.15.0` and `Tarantool >= 2.6`.",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -11617,7 +11617,7 @@
                         {
                            "key": "metric_name",
                            "operator": "=",
-                           "value": "lj_gc_allocated"
+                           "value": "lj_gc_allocated_total"
                         },
                         {
                            "condition": "AND",

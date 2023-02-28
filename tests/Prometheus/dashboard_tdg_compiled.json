@@ -6260,7 +6260,7 @@
                "dashes": false,
                "datasource": "${DS_PROMETHEUS}",
                "decimals": 3,
-               "description": "Average number of snap restores (guard assertions\nleading to stopping trace executions) per second.\n\n\nPanel works with `metrics >= 0.6.0` and `Tarantool >= 2.6`.",
+               "description": "Average number of snap restores (guard assertions\nleading to stopping trace executions) per second.\n\n\nPanel works with `metrics >= 0.15.0` and `Tarantool >= 2.6`.",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -6298,7 +6298,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(lj_jit_snap_restore{job=~\"$job\",alias=~\"$alias\"}[$__rate_interval])",
+                     "expr": "rate(lj_jit_snap_restore_total{job=~\"$job\",alias=~\"$alias\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -6440,7 +6440,7 @@
                "dashes": false,
                "datasource": "${DS_PROMETHEUS}",
                "decimals": 3,
-               "description": "Average number of JIT trace aborts per second.\n\n\nPanel works with `metrics >= 0.6.0` and `Tarantool >= 2.6`.",
+               "description": "Average number of JIT trace aborts per second.\n\n\nPanel works with `metrics >= 0.15.0` and `Tarantool >= 2.6`.",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -6478,7 +6478,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(lj_jit_trace_abort{job=~\"$job\",alias=~\"$alias\"}[$__rate_interval])",
+                     "expr": "rate(lj_jit_trace_abort_total{job=~\"$job\",alias=~\"$alias\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -6620,7 +6620,7 @@
                "dashes": false,
                "datasource": "${DS_PROMETHEUS}",
                "decimals": 3,
-               "description": "Average number of strings being extracted from hash instead of allocating per second.\n\n\nPanel works with `metrics >= 0.6.0` and `Tarantool >= 2.6`.",
+               "description": "Average number of strings being extracted from hash instead of allocating per second.\n\n\nPanel works with `metrics >= 0.15.0` and `Tarantool >= 2.6`.",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -6658,7 +6658,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(lj_strhash_hit{job=~\"$job\",alias=~\"$alias\"}[$__rate_interval])",
+                     "expr": "rate(lj_strhash_hit_total{job=~\"$job\",alias=~\"$alias\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -6710,7 +6710,7 @@
                "dashes": false,
                "datasource": "${DS_PROMETHEUS}",
                "decimals": 3,
-               "description": "Average number of strings being allocated due to hash miss per second.\n\n\nPanel works with `metrics >= 0.6.0` and `Tarantool >= 2.6`.",
+               "description": "Average number of strings being allocated due to hash miss per second.\n\n\nPanel works with `metrics >= 0.15.0` and `Tarantool >= 2.6`.",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -6748,7 +6748,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(lj_strhash_miss{job=~\"$job\",alias=~\"$alias\"}[$__rate_interval])",
+                     "expr": "rate(lj_strhash_miss_total{job=~\"$job\",alias=~\"$alias\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -6800,7 +6800,7 @@
                "dashes": false,
                "datasource": "${DS_PROMETHEUS}",
                "decimals": 3,
-               "description": "Average count of incremental GC steps (atomic state) per second.\n\n\nPanel works with `metrics >= 0.6.0` and `Tarantool >= 2.6`.",
+               "description": "Average count of incremental GC steps (atomic state) per second.\n\n\nPanel works with `metrics >= 0.15.0` and `Tarantool >= 2.6`.",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -6838,7 +6838,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(lj_gc_steps_atomic{job=~\"$job\",alias=~\"$alias\"}[$__rate_interval])",
+                     "expr": "rate(lj_gc_steps_atomic_total{job=~\"$job\",alias=~\"$alias\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -6890,7 +6890,7 @@
                "dashes": false,
                "datasource": "${DS_PROMETHEUS}",
                "decimals": 3,
-               "description": "Average count of incremental GC steps (sweepstring state) per second.\n\n\nPanel works with `metrics >= 0.6.0` and `Tarantool >= 2.6`.",
+               "description": "Average count of incremental GC steps (sweepstring state) per second.\n\n\nPanel works with `metrics >= 0.15.0` and `Tarantool >= 2.6`.",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -6928,7 +6928,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(lj_gc_steps_sweepstring{job=~\"$job\",alias=~\"$alias\"}[$__rate_interval])",
+                     "expr": "rate(lj_gc_steps_sweepstring_total{job=~\"$job\",alias=~\"$alias\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -6980,7 +6980,7 @@
                "dashes": false,
                "datasource": "${DS_PROMETHEUS}",
                "decimals": 3,
-               "description": "Average count of incremental GC steps (finalize state) per second.\n\n\nPanel works with `metrics >= 0.6.0` and `Tarantool >= 2.6`.",
+               "description": "Average count of incremental GC steps (finalize state) per second.\n\n\nPanel works with `metrics >= 0.15.0` and `Tarantool >= 2.6`.",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -7018,7 +7018,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(lj_gc_steps_finalize{job=~\"$job\",alias=~\"$alias\"}[$__rate_interval])",
+                     "expr": "rate(lj_gc_steps_finalize_total{job=~\"$job\",alias=~\"$alias\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -7070,7 +7070,7 @@
                "dashes": false,
                "datasource": "${DS_PROMETHEUS}",
                "decimals": 3,
-               "description": "Average count of incremental GC steps (sweep state) per second.\n\n\nPanel works with `metrics >= 0.6.0` and `Tarantool >= 2.6`.",
+               "description": "Average count of incremental GC steps (sweep state) per second.\n\n\nPanel works with `metrics >= 0.15.0` and `Tarantool >= 2.6`.",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -7108,7 +7108,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(lj_gc_steps_sweep{job=~\"$job\",alias=~\"$alias\"}[$__rate_interval])",
+                     "expr": "rate(lj_gc_steps_sweep_total{job=~\"$job\",alias=~\"$alias\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -7160,7 +7160,7 @@
                "dashes": false,
                "datasource": "${DS_PROMETHEUS}",
                "decimals": 3,
-               "description": "Average count of incremental GC steps (propagate state) per second.\n\n\nPanel works with `metrics >= 0.6.0` and `Tarantool >= 2.6`.",
+               "description": "Average count of incremental GC steps (propagate state) per second.\n\n\nPanel works with `metrics >= 0.15.0` and `Tarantool >= 2.6`.",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -7198,7 +7198,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(lj_gc_steps_propagate{job=~\"$job\",alias=~\"$alias\"}[$__rate_interval])",
+                     "expr": "rate(lj_gc_steps_propagate_total{job=~\"$job\",alias=~\"$alias\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -7250,7 +7250,7 @@
                "dashes": false,
                "datasource": "${DS_PROMETHEUS}",
                "decimals": 3,
-               "description": "Average count of incremental GC steps (pause state) per second.\n\n\nPanel works with `metrics >= 0.6.0` and `Tarantool >= 2.6`.",
+               "description": "Average count of incremental GC steps (pause state) per second.\n\n\nPanel works with `metrics >= 0.15.0` and `Tarantool >= 2.6`.",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -7288,7 +7288,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(lj_gc_steps_pause{job=~\"$job\",alias=~\"$alias\"}[$__rate_interval])",
+                     "expr": "rate(lj_gc_steps_pause_total{job=~\"$job\",alias=~\"$alias\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -7790,7 +7790,7 @@
                "dashes": false,
                "datasource": "${DS_PROMETHEUS}",
                "decimals": 3,
-               "description": "Average amount of freed Lua memory per second.\n\n\nPanel works with `metrics >= 0.6.0` and `Tarantool >= 2.6`.",
+               "description": "Average amount of freed Lua memory per second.\n\n\nPanel works with `metrics >= 0.15.0` and `Tarantool >= 2.6`.",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -7828,7 +7828,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(lj_gc_freed{job=~\"$job\",alias=~\"$alias\"}[$__rate_interval])",
+                     "expr": "rate(lj_gc_freed_total{job=~\"$job\",alias=~\"$alias\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -7880,7 +7880,7 @@
                "dashes": false,
                "datasource": "${DS_PROMETHEUS}",
                "decimals": 3,
-               "description": "Average amount of allocated Lua memory per second.\n\n\nPanel works with `metrics >= 0.6.0` and `Tarantool >= 2.6`.",
+               "description": "Average amount of allocated Lua memory per second.\n\n\nPanel works with `metrics >= 0.15.0` and `Tarantool >= 2.6`.",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -7918,7 +7918,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(lj_gc_allocated{job=~\"$job\",alias=~\"$alias\"}[$__rate_interval])",
+                     "expr": "rate(lj_gc_allocated_total{job=~\"$job\",alias=~\"$alias\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
