@@ -1,17 +1,14 @@
-FROM centos:7
+FROM tarantool/tarantool:2.10-nogc64-ubuntu
 
 WORKDIR /app
 
-RUN yum install -y git \
-                   cmake \
-                   make \
-                   gcc \
-                   gcc-c++ \
-                   unzip
+RUN DEBIAN_FRONTEND=noninteractive apt update
+RUN DEBIAN_FRONTEND=noninteractive apt install -y git \
+                                                  cmake \
+                                                  make \
+                                                  gcc \
+                                                  g++ \
+                                                  unzip
 COPY . .
-
-# Workaround for missing centos image for 2.10
-RUN curl -L https://tarantool.io/OtKysgx/pre-release/2/installer.sh | bash
-RUN yum install -y tarantool tarantool-devel
 
 ENTRYPOINT tarantool ./generate_load.lua
