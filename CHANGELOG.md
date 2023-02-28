@@ -14,12 +14,12 @@ Grafana revisions: [InfluxDB revision 15](https://grafana.com/api/dashboards/125
 ## [1.4.0] - 2022-08-03
 Grafana revisions: [InfluxDB revision 14](https://grafana.com/api/dashboards/12567/revisions/14/download), [Prometheus revision 14](https://grafana.com/api/dashboards/13054/revisions/14/download), [InfluxDB TDG revision 3](https://grafana.com/api/dashboards/16405/revisions/3/download), [Prometheus TDG revision 3](https://grafana.com/api/dashboards/16406/revisions/3/download).
 
-## Added
+### Added
 - Options to build static dashboards
 - Runtime arena memory panel
 - Vinyl tuple cache and level 0 memory panels
 
-## Changed
+### Changed
 - Set default Prometheus job to `tarantool`
 - Set default InfluxDB measurement to `tarantool_http`
 - Use in-built `$__rate_interval` instead of user-defined `$rate_time_range`
@@ -29,7 +29,7 @@ Grafana revisions: [InfluxDB revision 14](https://grafana.com/api/dashboards/125
 ## [1.3.0] - 2022-06-29
 Grafana revisions: [InfluxDB revision 13](https://grafana.com/api/dashboards/12567/revisions/13/download), [Prometheus revision 13](https://grafana.com/api/dashboards/13054/revisions/13/download), [InfluxDB TDG revision 2](https://grafana.com/api/dashboards/16405/revisions/2/download), [Prometheus TDG revision 2](https://grafana.com/api/dashboards/16406/revisions/2/download).
 
-## Added
+### Added
 - Panels for expirationd module statistics
 
 
