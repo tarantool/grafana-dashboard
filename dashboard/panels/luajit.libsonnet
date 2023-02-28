@@ -6,6 +6,9 @@ local common = import 'dashboard/panels/common.libsonnet';
   local version_warning(description) =
     std.join('\n\n', [description, 'Panel works with `metrics >= 0.6.0` and `Tarantool >= 2.6`.']),
 
+  local version_warning_renamed(description) =
+    std.join('\n\n', [description, 'Panel works with `metrics >= 0.15.0` and `Tarantool >= 2.6`.']),
+
   snap_restores(
     title='Snap restores',
     description=|||
@@ -20,13 +23,13 @@ local common = import 'dashboard/panels/common.libsonnet';
     alias=null,
   ):: common.default_graph(
     title=title,
-    description=version_warning(description),
+    description=version_warning_renamed(description),
     datasource=datasource,
     labelY1='restores per second',
     panel_width=6,
   ).addTarget(common.default_rps_target(
     datasource_type,
-    'lj_jit_snap_restore',
+    'lj_jit_snap_restore_total',
     job,
     policy,
     measurement,
@@ -72,13 +75,13 @@ local common = import 'dashboard/panels/common.libsonnet';
     alias=null,
   ):: common.default_graph(
     title=title,
-    description=version_warning(description),
+    description=version_warning_renamed(description),
     datasource=datasource,
     labelY1='aborts per second',
     panel_width=6,
   ).addTarget(common.default_rps_target(
     datasource_type,
-    'lj_jit_trace_abort',
+    'lj_jit_trace_abort_total',
     job,
     policy,
     measurement,
@@ -125,13 +128,13 @@ local common = import 'dashboard/panels/common.libsonnet';
     alias=null,
   ):: common.default_graph(
     title=title,
-    description=version_warning(description),
+    description=version_warning_renamed(description),
     datasource=datasource,
     labelY1='interned per second',
     panel_width=12,
   ).addTarget(common.default_rps_target(
     datasource_type,
-    'lj_strhash_hit',
+    'lj_strhash_hit_total',
     job,
     policy,
     measurement,
@@ -151,13 +154,13 @@ local common = import 'dashboard/panels/common.libsonnet';
     alias=null,
   ):: common.default_graph(
     title=title,
-    description=version_warning(description),
+    description=version_warning_renamed(description),
     datasource=datasource,
     labelY1='allocated per second',
     panel_width=12,
   ).addTarget(common.default_rps_target(
     datasource_type,
-    'lj_strhash_miss',
+    'lj_strhash_miss_total',
     job,
     policy,
     measurement,
@@ -179,7 +182,7 @@ local common = import 'dashboard/panels/common.libsonnet';
     description=(
       if description != null then
         description
-      else version_warning(std.format(|||
+      else version_warning_renamed(std.format(|||
         Average count of incremental GC steps (%s state) per second.
       |||, state))
     ),
@@ -188,7 +191,7 @@ local common = import 'dashboard/panels/common.libsonnet';
     panel_width=8,
   ).addTarget(common.default_rps_target(
     datasource_type,
-    std.format('lj_gc_steps_%s', state),
+    std.format('lj_gc_steps_%s_total', state),
     job,
     policy,
     measurement,
@@ -478,14 +481,14 @@ local common = import 'dashboard/panels/common.libsonnet';
     alias=null,
   ):: common.default_graph(
     title=title,
-    description=version_warning(description),
+    description=version_warning_renamed(description),
     datasource=datasource,
     format='bytes',
     labelY1='bytes per second',
     panel_width=8,
   ).addTarget(common.default_rps_target(
     datasource_type,
-    'lj_gc_freed',
+    'lj_gc_freed_total',
     job,
     policy,
     measurement,
@@ -505,14 +508,14 @@ local common = import 'dashboard/panels/common.libsonnet';
     alias=null,
   ):: common.default_graph(
     title=title,
-    description=version_warning(description),
+    description=version_warning_renamed(description),
     datasource=datasource,
     format='bytes',
     labelY1='bytes per second',
     panel_width=8,
   ).addTarget(common.default_rps_target(
     datasource_type,
-    'lj_gc_allocated',
+    'lj_gc_allocated_total',
     job,
     policy,
     measurement,
