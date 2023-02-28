@@ -16,7 +16,7 @@ Tarantool Grafana dashboard is a ready for import template with basic memory,
 space operations, and HTTP load panels, based on default `metrics <https://github.com/tarantool/metrics>`_
 package functionality.
 
-Dashboard requires using ``metrics`` **0.13.0** or newer for complete experience;
+Dashboard requires using ``metrics`` **0.15.0** or newer for complete experience;
 ``'alias'`` :ref:`global label <metrics-api_reference-labels>` must be set on each instance
 to properly display panels (e.g. provided with ``cartridge.roles.metrics`` role).
 
