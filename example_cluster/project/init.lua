@@ -41,8 +41,6 @@ local ok, err = cartridge.cfg({
 
 assert(ok, tostring(err))
 
--- register admin function to use it with 'cartridge admin' command
-
 local metrics = require('cartridge.roles.metrics')
 metrics.set_export({
     {
