@@ -196,8 +196,8 @@ local function crud_operations_ok(instance, operation, count, space_name)
         for _ = 1, count do
             -- Setup bucket_id to disable map reduce.
             local _, err = instance.net_box:call('crud.select', {
-                space_name, {{ '<=', 'id', crud_index}}
-            }, { bucket_id = 1, first = 10 })
+                space_name, {{ '<=', 'id', crud_index}}, { bucket_id = 1, first = 10 }
+            })
 
             if err ~= nil then
                 log.error(err)
