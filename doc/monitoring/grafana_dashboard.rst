@@ -207,8 +207,7 @@ To import a specific dashboard, choose one of the following options:
 - paste the dashboard JSON file contents, or
 - upload the dashboard JSON file.
 
-Set dashboard name, folder, uid (if needed), and datasource-related query parameters
-(InfluxDB source and policy or Prometheus source).
+Set dashboard name, folder, uid (if needed) and datasource.
 
 ..  image:: images/grafana_import_setup.png
     :align: left

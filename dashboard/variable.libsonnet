@@ -12,7 +12,7 @@
     alias: '$alias',
   },
   influxdb: {
-    policy: '${INFLUXDB_POLICY}',
+    policy: '$policy',
     measurement: '$measurement',
     alias: '/^$alias$/',
   },
