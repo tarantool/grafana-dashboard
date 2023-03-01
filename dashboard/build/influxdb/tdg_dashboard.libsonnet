@@ -16,17 +16,19 @@ tdg_dashboard_raw(
   pluginName='InfluxDB',
   description='InfluxDB Tarantool metrics bank'
 ).addInput(
-  name='INFLUXDB_MEASUREMENT',
-  label='Measurement',
-  type='constant',
-  value='tarantool_http',
-  description='InfluxDB Tarantool metrics measurement'
-).addInput(
   name='INFLUXDB_POLICY',
   label='Policy',
   type='constant',
   value='autogen',
   description='InfluxDB Tarantool metrics policy'
+).addTemplate(
+  grafana.template.new(
+    name='measurement',
+    datasource=variable.datasource.influxdb,
+    query=std.format('SHOW MEASUREMENTS WHERE "metric_name"=\'%s\'', variable.metrics.tarantool_indicator),
+    label='Measurement',
+    refresh='load',
+  )
 ).addTemplate(
   grafana.template.new(
     name='alias',

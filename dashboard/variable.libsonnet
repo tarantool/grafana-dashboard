@@ -13,7 +13,7 @@
   },
   influxdb: {
     policy: '${INFLUXDB_POLICY}',
-    measurement: '${INFLUXDB_MEASUREMENT}',
+    measurement: '$measurement',
     alias: '/^$alias$/',
   },
   metrics: {
