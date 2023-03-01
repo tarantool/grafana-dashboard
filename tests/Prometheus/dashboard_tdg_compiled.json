@@ -7,13 +7,6 @@
          "pluginId": "prometheus",
          "pluginName": "Prometheus",
          "type": "datasource"
-      },
-      {
-         "description": "Prometheus Tarantool metrics job",
-         "label": "Job",
-         "name": "PROMETHEUS_JOB",
-         "type": "constant",
-         "value": "tarantool"
       }
    ],
    "__requires": [
@@ -20485,24 +20478,23 @@
       "list": [
          {
             "allValue": null,
-            "current": {
-               "text": "${PROMETHEUS_JOB}",
-               "value": "${PROMETHEUS_JOB}"
-            },
-            "hide": 2,
+            "current": { },
+            "datasource": "${DS_PROMETHEUS}",
+            "hide": 0,
             "includeAll": false,
             "label": "Prometheus job",
             "multi": false,
             "name": "job",
-            "options": [
-               {
-                  "text": "${PROMETHEUS_JOB}",
-                  "value": "${PROMETHEUS_JOB}"
-               }
-            ],
-            "query": "${PROMETHEUS_JOB}",
-            "refresh": 0,
-            "type": "custom"
+            "options": [ ],
+            "query": "label_values(tnt_info_uptime,job)",
+            "refresh": 1,
+            "regex": "",
+            "sort": 0,
+            "tagValuesQuery": "",
+            "tags": [ ],
+            "tagsQuery": "",
+            "type": "query",
+            "useTags": false
          },
          {
             "allValue": null,

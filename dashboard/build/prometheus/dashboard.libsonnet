@@ -14,25 +14,19 @@ dashboard_raw(
   pluginId='prometheus',
   pluginName='Prometheus',
   description='Prometheus Tarantool metrics bank'
-).addInput(
-  name='PROMETHEUS_JOB',
-  label='Job',
-  type='constant',
-  value='tarantool',
-  description='Prometheus Tarantool metrics job'
 ).addTemplate(
-  grafana.template.custom(
+  grafana.template.new(
     name='job',
-    query='${PROMETHEUS_JOB}',
-    current='${PROMETHEUS_JOB}',
-    hide='variable',
+    datasource=variable.datasource.prometheus,
+    query=std.format('label_values(%s,job)', variable.metrics.tarantool_indicator),
     label='Prometheus job',
+    refresh='load',
   )
 ).addTemplate(
   grafana.template.new(
     name='alias',
     datasource=variable.datasource.prometheus,
-    query=std.format('label_values(tnt_info_uptime{job=~"%s"},alias)', variable.prometheus.job),
+    query=std.format('label_values(%s{job=~"%s"},alias)', [variable.metrics.tarantool_indicator, variable.prometheus.job]),
     includeAll=true,
     multi=true,
     current='all',

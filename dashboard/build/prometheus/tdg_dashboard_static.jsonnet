@@ -16,7 +16,7 @@ if WITH_INSTANCE_VARIABLE then
     grafana.template.new(
       name='alias',
       datasource=DATASOURCE,
-      query=std.format('label_values(tnt_info_uptime{job="%s"},alias)', JOB),
+      query=std.format('label_values(%s{job="%s"},alias)', [variable.metrics.tarantool_indicator, JOB]),
       includeAll=true,
       multi=true,
       current='all',
