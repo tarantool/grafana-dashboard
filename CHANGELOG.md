@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 - Replace LuaJit deprecated metrics with new ones
+- Set Prometheus `job` dynamically
 
 
 ## [1.5.0] - 2022-09-22
