@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Replace LuaJit deprecated metrics with new ones
 - Set Prometheus `job` dynamically
 - Set InfluxDB `measurement` dynamically
+- Set InfluxDB `policy` dynamically
 
 
 ## [1.5.0] - 2022-09-22

@@ -40,18 +40,12 @@ Refer to dashboard [documentation page](https://www.tarantool.io/en/doc/latest/b
     - paste the dashboard JSON file contents, or
     - upload the dashboard JSON file.
 
-3. Set dashboard name, folder, uid, choose corresponding datasource from drop-down list and set datasource-related query parameters.
+3. Set dashboard name, folder, uid and choose corresponding datasource from drop-down list.
 
     ![Dashboard import variables](doc/monitoring/images/grafana_import_setup.png)
 
-    You need to set the following variables for InfluxDB datasource:
-
-    - `Policy` (default valie is `autogen`).
-
-    Datasource variables can be obtained from your datasource configuration.
     You can choose `job` variable value for Prometheus datasource after import.
-    You can choose `measurement` variable value for InfluxDB datasource after import.
-    Variables for example monitoring cluster are described in [Monitoring cluster](#monitoring-cluster) section.
+    You can choose `policy` and `measurement` variable values for InfluxDB datasource after import.
 
 
 ## Monitoring cluster
@@ -69,10 +63,6 @@ will start 6 containers: Tarantool App, Tarantool Load Generator, Telegraf, Infl
 We recommend using the exact versions we use in experimental cluster (e.g. Grafana v8.1.5).
 After start, Grafana UI will be available at [localhost:3000](http://localhost:3000/).
 You can also interact with Prometheus at [localhost:9090](http://localhost:9090/) and InfluxDB at [localhost:8086](http://localhost:8086/).
-
-To set up an InfluxDB dashboard for monitoring example app, use the following variables:
-
-- `Policy`: `default`.
 
 ### Monitoring local app
 

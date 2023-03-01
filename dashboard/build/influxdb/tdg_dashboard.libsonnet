@@ -15,12 +15,14 @@ tdg_dashboard_raw(
   pluginId='influxdb',
   pluginName='InfluxDB',
   description='InfluxDB Tarantool metrics bank'
-).addInput(
-  name='INFLUXDB_POLICY',
-  label='Policy',
-  type='constant',
-  value='autogen',
-  description='InfluxDB Tarantool metrics policy'
+).addTemplate(
+  grafana.template.new(
+    name='policy',
+    datasource=variable.datasource.influxdb,
+    query='SHOW RETENTION POLICIES',
+    label='Retention policy',
+    refresh='load',
+  )
 ).addTemplate(
   grafana.template.new(
     name='measurement',
