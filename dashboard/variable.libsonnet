@@ -4,8 +4,8 @@
     prometheus: 'prometheus',
   },
   datasource: {
-    influxdb: '${DS_INFLUXDB}',
-    prometheus: '${DS_PROMETHEUS}',
+    influxdb: '$influxdb',
+    prometheus: '$prometheus',
   },
   prometheus: {
     job: '$job',
