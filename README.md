@@ -46,11 +46,11 @@ Refer to dashboard [documentation page](https://www.tarantool.io/en/doc/latest/b
 
     You need to set the following variables for InfluxDB datasource:
 
-    - `Measurement`,
     - `Policy` (default valie is `autogen`).
 
     Datasource variables can be obtained from your datasource configuration.
     You can choose `job` variable value for Prometheus datasource after import.
+    You can choose `measurement` variable value for InfluxDB datasource after import.
     Variables for example monitoring cluster are described in [Monitoring cluster](#monitoring-cluster) section.
 
 
@@ -72,7 +72,6 @@ You can also interact with Prometheus at [localhost:9090](http://localhost:9090/
 
 To set up an InfluxDB dashboard for monitoring example app, use the following variables:
 
-- `Measurement`: `tarantool_http`;
 - `Policy`: `default`.
 
 ### Monitoring local app

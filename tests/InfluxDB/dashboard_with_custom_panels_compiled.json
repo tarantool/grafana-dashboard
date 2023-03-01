@@ -9,13 +9,6 @@
          "type": "datasource"
       },
       {
-         "description": "InfluxDB Tarantool metrics measurement",
-         "label": "Measurement",
-         "name": "INFLUXDB_MEASUREMENT",
-         "type": "constant",
-         "value": "tarantool_http"
-      },
-      {
          "description": "InfluxDB Tarantool metrics policy",
          "label": "Policy",
          "name": "INFLUXDB_POLICY",
@@ -143,7 +136,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "${INFLUXDB_MEASUREMENT}",
+                     "measurement": "$measurement",
                      "policy": "${INFLUXDB_POLICY}",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -286,7 +279,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "${INFLUXDB_MEASUREMENT}",
+                     "measurement": "$measurement",
                      "policy": "${INFLUXDB_POLICY}",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -495,7 +488,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "${INFLUXDB_MEASUREMENT}",
+                     "measurement": "$measurement",
                      "policy": "${INFLUXDB_POLICY}",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -651,7 +644,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "${INFLUXDB_MEASUREMENT}",
+                     "measurement": "$measurement",
                      "policy": "${INFLUXDB_POLICY}",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -758,7 +751,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "${INFLUXDB_MEASUREMENT}",
+                     "measurement": "$measurement",
                      "policy": "${INFLUXDB_POLICY}",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -898,7 +891,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "${INFLUXDB_MEASUREMENT}",
+                     "measurement": "$measurement",
                      "policy": "${INFLUXDB_POLICY}",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -1071,7 +1064,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "${INFLUXDB_MEASUREMENT}",
+                     "measurement": "$measurement",
                      "policy": "${INFLUXDB_POLICY}",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -1238,7 +1231,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "${INFLUXDB_MEASUREMENT}",
+                     "measurement": "$measurement",
                      "policy": "${INFLUXDB_POLICY}",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -1405,7 +1398,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "${INFLUXDB_MEASUREMENT}",
+                     "measurement": "$measurement",
                      "policy": "${INFLUXDB_POLICY}",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -1572,7 +1565,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "${INFLUXDB_MEASUREMENT}",
+                     "measurement": "$measurement",
                      "policy": "${INFLUXDB_POLICY}",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -1739,7 +1732,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "${INFLUXDB_MEASUREMENT}",
+                     "measurement": "$measurement",
                      "policy": "${INFLUXDB_POLICY}",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -1906,7 +1899,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "${INFLUXDB_MEASUREMENT}",
+                     "measurement": "$measurement",
                      "policy": "${INFLUXDB_POLICY}",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -2075,7 +2068,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "${INFLUXDB_MEASUREMENT}",
+                     "measurement": "$measurement",
                      "policy": "${INFLUXDB_POLICY}",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -2212,7 +2205,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "${INFLUXDB_MEASUREMENT}",
+                     "measurement": "$measurement",
                      "policy": "${INFLUXDB_POLICY}",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -2355,7 +2348,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "${INFLUXDB_MEASUREMENT}",
+                     "measurement": "$measurement",
                      "policy": "${INFLUXDB_POLICY}",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -2498,7 +2491,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "${INFLUXDB_MEASUREMENT}",
+                     "measurement": "$measurement",
                      "policy": "${INFLUXDB_POLICY}",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -2641,7 +2634,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "${INFLUXDB_MEASUREMENT}",
+                     "measurement": "$measurement",
                      "policy": "${INFLUXDB_POLICY}",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -2778,7 +2771,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "${INFLUXDB_MEASUREMENT}",
+                     "measurement": "$measurement",
                      "policy": "${INFLUXDB_POLICY}",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -2921,7 +2914,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "${INFLUXDB_MEASUREMENT}",
+                     "measurement": "$measurement",
                      "policy": "${INFLUXDB_POLICY}",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -3058,7 +3051,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "${INFLUXDB_MEASUREMENT}",
+                     "measurement": "$measurement",
                      "policy": "${INFLUXDB_POLICY}",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -3201,7 +3194,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "${INFLUXDB_MEASUREMENT}",
+                     "measurement": "$measurement",
                      "policy": "${INFLUXDB_POLICY}",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -3338,7 +3331,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "${INFLUXDB_MEASUREMENT}",
+                     "measurement": "$measurement",
                      "policy": "${INFLUXDB_POLICY}",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -3481,7 +3474,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "${INFLUXDB_MEASUREMENT}",
+                     "measurement": "$measurement",
                      "policy": "${INFLUXDB_POLICY}",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -3652,7 +3645,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "${INFLUXDB_MEASUREMENT}",
+                     "measurement": "$measurement",
                      "policy": "${INFLUXDB_POLICY}",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -3789,7 +3782,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "${INFLUXDB_MEASUREMENT}",
+                     "measurement": "$measurement",
                      "policy": "${INFLUXDB_POLICY}",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -3926,7 +3919,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "${INFLUXDB_MEASUREMENT}",
+                     "measurement": "$measurement",
                      "policy": "${INFLUXDB_POLICY}",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -4063,7 +4056,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "${INFLUXDB_MEASUREMENT}",
+                     "measurement": "$measurement",
                      "policy": "${INFLUXDB_POLICY}",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -4200,7 +4193,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "${INFLUXDB_MEASUREMENT}",
+                     "measurement": "$measurement",
                      "policy": "${INFLUXDB_POLICY}",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -4337,7 +4330,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "${INFLUXDB_MEASUREMENT}",
+                     "measurement": "$measurement",
                      "policy": "${INFLUXDB_POLICY}",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -4474,7 +4467,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "${INFLUXDB_MEASUREMENT}",
+                     "measurement": "$measurement",
                      "policy": "${INFLUXDB_POLICY}",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -4611,7 +4604,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "${INFLUXDB_MEASUREMENT}",
+                     "measurement": "$measurement",
                      "policy": "${INFLUXDB_POLICY}",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -4748,7 +4741,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "${INFLUXDB_MEASUREMENT}",
+                     "measurement": "$measurement",
                      "policy": "${INFLUXDB_POLICY}",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -4911,7 +4904,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "${INFLUXDB_MEASUREMENT}",
+                     "measurement": "$measurement",
                      "policy": "${INFLUXDB_POLICY}",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -5060,7 +5053,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "${INFLUXDB_MEASUREMENT}",
+                     "measurement": "$measurement",
                      "policy": "${INFLUXDB_POLICY}",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -5209,7 +5202,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "${INFLUXDB_MEASUREMENT}",
+                     "measurement": "$measurement",
                      "policy": "${INFLUXDB_POLICY}",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -5364,7 +5357,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "${INFLUXDB_MEASUREMENT}",
+                     "measurement": "$measurement",
                      "policy": "${INFLUXDB_POLICY}",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -5507,7 +5500,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "${INFLUXDB_MEASUREMENT}",
+                     "measurement": "$measurement",
                      "policy": "${INFLUXDB_POLICY}",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -5670,7 +5663,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "${INFLUXDB_MEASUREMENT}",
+                     "measurement": "$measurement",
                      "policy": "${INFLUXDB_POLICY}",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -5807,7 +5800,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "${INFLUXDB_MEASUREMENT}",
+                     "measurement": "$measurement",
                      "policy": "${INFLUXDB_POLICY}",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -5944,7 +5937,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "${INFLUXDB_MEASUREMENT}",
+                     "measurement": "$measurement",
                      "policy": "${INFLUXDB_POLICY}",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -6081,7 +6074,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "${INFLUXDB_MEASUREMENT}",
+                     "measurement": "$measurement",
                      "policy": "${INFLUXDB_POLICY}",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -6218,7 +6211,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "${INFLUXDB_MEASUREMENT}",
+                     "measurement": "$measurement",
                      "policy": "${INFLUXDB_POLICY}",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -6355,7 +6348,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "${INFLUXDB_MEASUREMENT}",
+                     "measurement": "$measurement",
                      "policy": "${INFLUXDB_POLICY}",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -6492,7 +6485,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "${INFLUXDB_MEASUREMENT}",
+                     "measurement": "$measurement",
                      "policy": "${INFLUXDB_POLICY}",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -6629,7 +6622,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "${INFLUXDB_MEASUREMENT}",
+                     "measurement": "$measurement",
                      "policy": "${INFLUXDB_POLICY}",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -6766,7 +6759,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "${INFLUXDB_MEASUREMENT}",
+                     "measurement": "$measurement",
                      "policy": "${INFLUXDB_POLICY}",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -6903,7 +6896,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "${INFLUXDB_MEASUREMENT}",
+                     "measurement": "$measurement",
                      "policy": "${INFLUXDB_POLICY}",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -7040,7 +7033,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "${INFLUXDB_MEASUREMENT}",
+                     "measurement": "$measurement",
                      "policy": "${INFLUXDB_POLICY}",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -7177,7 +7170,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "${INFLUXDB_MEASUREMENT}",
+                     "measurement": "$measurement",
                      "policy": "${INFLUXDB_POLICY}",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -7320,7 +7313,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "${INFLUXDB_MEASUREMENT}",
+                     "measurement": "$measurement",
                      "policy": "${INFLUXDB_POLICY}",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -7463,7 +7456,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "${INFLUXDB_MEASUREMENT}",
+                     "measurement": "$measurement",
                      "policy": "${INFLUXDB_POLICY}",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -7606,7 +7599,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "${INFLUXDB_MEASUREMENT}",
+                     "measurement": "$measurement",
                      "policy": "${INFLUXDB_POLICY}",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -7743,7 +7736,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "${INFLUXDB_MEASUREMENT}",
+                     "measurement": "$measurement",
                      "policy": "${INFLUXDB_POLICY}",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -7886,7 +7879,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "${INFLUXDB_MEASUREMENT}",
+                     "measurement": "$measurement",
                      "policy": "${INFLUXDB_POLICY}",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -8035,7 +8028,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "${INFLUXDB_MEASUREMENT}",
+                     "measurement": "$measurement",
                      "policy": "${INFLUXDB_POLICY}",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -8178,7 +8171,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "${INFLUXDB_MEASUREMENT}",
+                     "measurement": "$measurement",
                      "policy": "${INFLUXDB_POLICY}",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -8341,7 +8334,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "${INFLUXDB_MEASUREMENT}",
+                     "measurement": "$measurement",
                      "policy": "${INFLUXDB_POLICY}",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -8484,7 +8477,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "${INFLUXDB_MEASUREMENT}",
+                     "measurement": "$measurement",
                      "policy": "${INFLUXDB_POLICY}",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -8647,7 +8640,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "${INFLUXDB_MEASUREMENT}",
+                     "measurement": "$measurement",
                      "policy": "${INFLUXDB_POLICY}",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -8784,7 +8777,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "${INFLUXDB_MEASUREMENT}",
+                     "measurement": "$measurement",
                      "policy": "${INFLUXDB_POLICY}",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -8921,7 +8914,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "${INFLUXDB_MEASUREMENT}",
+                     "measurement": "$measurement",
                      "policy": "${INFLUXDB_POLICY}",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -9058,7 +9051,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "${INFLUXDB_MEASUREMENT}",
+                     "measurement": "$measurement",
                      "policy": "${INFLUXDB_POLICY}",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -9195,7 +9188,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "${INFLUXDB_MEASUREMENT}",
+                     "measurement": "$measurement",
                      "policy": "${INFLUXDB_POLICY}",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -9332,7 +9325,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "${INFLUXDB_MEASUREMENT}",
+                     "measurement": "$measurement",
                      "policy": "${INFLUXDB_POLICY}",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -9469,7 +9462,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "${INFLUXDB_MEASUREMENT}",
+                     "measurement": "$measurement",
                      "policy": "${INFLUXDB_POLICY}",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -9606,7 +9599,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "${INFLUXDB_MEASUREMENT}",
+                     "measurement": "$measurement",
                      "policy": "${INFLUXDB_POLICY}",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -9763,7 +9756,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "${INFLUXDB_MEASUREMENT}",
+                     "measurement": "$measurement",
                      "policy": "${INFLUXDB_POLICY}",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -9906,7 +9899,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "${INFLUXDB_MEASUREMENT}",
+                     "measurement": "$measurement",
                      "policy": "${INFLUXDB_POLICY}",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -10049,7 +10042,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "${INFLUXDB_MEASUREMENT}",
+                     "measurement": "$measurement",
                      "policy": "${INFLUXDB_POLICY}",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -10192,7 +10185,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "${INFLUXDB_MEASUREMENT}",
+                     "measurement": "$measurement",
                      "policy": "${INFLUXDB_POLICY}",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -10329,7 +10322,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "${INFLUXDB_MEASUREMENT}",
+                     "measurement": "$measurement",
                      "policy": "${INFLUXDB_POLICY}",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -10472,7 +10465,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "${INFLUXDB_MEASUREMENT}",
+                     "measurement": "$measurement",
                      "policy": "${INFLUXDB_POLICY}",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -10615,7 +10608,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "${INFLUXDB_MEASUREMENT}",
+                     "measurement": "$measurement",
                      "policy": "${INFLUXDB_POLICY}",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -10758,7 +10751,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "${INFLUXDB_MEASUREMENT}",
+                     "measurement": "$measurement",
                      "policy": "${INFLUXDB_POLICY}",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -10901,7 +10894,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "${INFLUXDB_MEASUREMENT}",
+                     "measurement": "$measurement",
                      "policy": "${INFLUXDB_POLICY}",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -11044,7 +11037,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "${INFLUXDB_MEASUREMENT}",
+                     "measurement": "$measurement",
                      "policy": "${INFLUXDB_POLICY}",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -11187,7 +11180,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "${INFLUXDB_MEASUREMENT}",
+                     "measurement": "$measurement",
                      "policy": "${INFLUXDB_POLICY}",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -11330,7 +11323,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "${INFLUXDB_MEASUREMENT}",
+                     "measurement": "$measurement",
                      "policy": "${INFLUXDB_POLICY}",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -11473,7 +11466,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "${INFLUXDB_MEASUREMENT}",
+                     "measurement": "$measurement",
                      "policy": "${INFLUXDB_POLICY}",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -11610,7 +11603,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "${INFLUXDB_MEASUREMENT}",
+                     "measurement": "$measurement",
                      "policy": "${INFLUXDB_POLICY}",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -11747,7 +11740,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "${INFLUXDB_MEASUREMENT}",
+                     "measurement": "$measurement",
                      "policy": "${INFLUXDB_POLICY}",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -11884,7 +11877,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "${INFLUXDB_MEASUREMENT}",
+                     "measurement": "$measurement",
                      "policy": "${INFLUXDB_POLICY}",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -12021,7 +12014,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "${INFLUXDB_MEASUREMENT}",
+                     "measurement": "$measurement",
                      "policy": "${INFLUXDB_POLICY}",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -12158,7 +12151,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "${INFLUXDB_MEASUREMENT}",
+                     "measurement": "$measurement",
                      "policy": "${INFLUXDB_POLICY}",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -12301,7 +12294,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "${INFLUXDB_MEASUREMENT}",
+                     "measurement": "$measurement",
                      "policy": "${INFLUXDB_POLICY}",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -12464,7 +12457,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "${INFLUXDB_MEASUREMENT}",
+                     "measurement": "$measurement",
                      "policy": "${INFLUXDB_POLICY}",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -12613,7 +12606,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "${INFLUXDB_MEASUREMENT}",
+                     "measurement": "$measurement",
                      "policy": "${INFLUXDB_POLICY}",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -12762,7 +12755,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "${INFLUXDB_MEASUREMENT}",
+                     "measurement": "$measurement",
                      "policy": "${INFLUXDB_POLICY}",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -12911,7 +12904,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "${INFLUXDB_MEASUREMENT}",
+                     "measurement": "$measurement",
                      "policy": "${INFLUXDB_POLICY}",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -13060,7 +13053,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "${INFLUXDB_MEASUREMENT}",
+                     "measurement": "$measurement",
                      "policy": "${INFLUXDB_POLICY}",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -13209,7 +13202,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "${INFLUXDB_MEASUREMENT}",
+                     "measurement": "$measurement",
                      "policy": "${INFLUXDB_POLICY}",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -13358,7 +13351,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "${INFLUXDB_MEASUREMENT}",
+                     "measurement": "$measurement",
                      "policy": "${INFLUXDB_POLICY}",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -13507,7 +13500,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "${INFLUXDB_MEASUREMENT}",
+                     "measurement": "$measurement",
                      "policy": "${INFLUXDB_POLICY}",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -13656,7 +13649,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "${INFLUXDB_MEASUREMENT}",
+                     "measurement": "$measurement",
                      "policy": "${INFLUXDB_POLICY}",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -13805,7 +13798,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "${INFLUXDB_MEASUREMENT}",
+                     "measurement": "$measurement",
                      "policy": "${INFLUXDB_POLICY}",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -13954,7 +13947,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "${INFLUXDB_MEASUREMENT}",
+                     "measurement": "$measurement",
                      "policy": "${INFLUXDB_POLICY}",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -14103,7 +14096,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "${INFLUXDB_MEASUREMENT}",
+                     "measurement": "$measurement",
                      "policy": "${INFLUXDB_POLICY}",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -14278,7 +14271,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "${INFLUXDB_MEASUREMENT}",
+                     "measurement": "$measurement",
                      "policy": "${INFLUXDB_POLICY}",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -14439,7 +14432,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "${INFLUXDB_MEASUREMENT}",
+                     "measurement": "$measurement",
                      "policy": "${INFLUXDB_POLICY}",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -14600,7 +14593,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "${INFLUXDB_MEASUREMENT}",
+                     "measurement": "$measurement",
                      "policy": "${INFLUXDB_POLICY}",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -14761,7 +14754,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "${INFLUXDB_MEASUREMENT}",
+                     "measurement": "$measurement",
                      "policy": "${INFLUXDB_POLICY}",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -14911,7 +14904,7 @@
                         }
                      ],
                      "policy": "default",
-                     "query": "SELECT mean(\"tnt_crud_tuples_fetched\") / (mean(\"tnt_crud_stats_count_ok\") + mean(\"tnt_crud_stats_count_error\"))\nas \"tnt_crud_tuples_per_request\" FROM\n(SELECT \"value\" as \"tnt_crud_tuples_fetched\" FROM \"${INFLUXDB_POLICY}\".\"${INFLUXDB_MEASUREMENT}\"\nWHERE (\"metric_name\" = 'tnt_crud_tuples_fetched' AND \"label_pairs_alias\" =~ /^$alias$/\nAND \"label_pairs_operation\" = 'select') AND $timeFilter),\n(SELECT \"value\" as \"tnt_crud_stats_count_error\" FROM \"${INFLUXDB_POLICY}\".\"${INFLUXDB_MEASUREMENT}\"\nWHERE (\"metric_name\" = 'tnt_crud_stats_count' AND \"label_pairs_alias\" =~ /^$alias$/\nAND \"label_pairs_operation\" = 'select' AND \"label_pairs_status\" = 'error') AND $timeFilter),\n(SELECT \"value\" as \"tnt_crud_stats_count_ok\" FROM \"${INFLUXDB_POLICY}\".\"${INFLUXDB_MEASUREMENT}\"\nWHERE (\"metric_name\" = 'tnt_crud_stats_count' AND \"label_pairs_alias\" =~ /^$alias$/\nAND \"label_pairs_operation\" = 'select' AND \"label_pairs_status\" = 'ok') AND $timeFilter)\nGROUP BY time($__interval * 2), \"label_pairs_alias\", \"label_pairs_name\" fill(0)\n",
+                     "query": "SELECT mean(\"tnt_crud_tuples_fetched\") / (mean(\"tnt_crud_stats_count_ok\") + mean(\"tnt_crud_stats_count_error\"))\nas \"tnt_crud_tuples_per_request\" FROM\n(SELECT \"value\" as \"tnt_crud_tuples_fetched\" FROM \"${INFLUXDB_POLICY}\".\"$measurement\"\nWHERE (\"metric_name\" = 'tnt_crud_tuples_fetched' AND \"label_pairs_alias\" =~ /^$alias$/\nAND \"label_pairs_operation\" = 'select') AND $timeFilter),\n(SELECT \"value\" as \"tnt_crud_stats_count_error\" FROM \"${INFLUXDB_POLICY}\".\"$measurement\"\nWHERE (\"metric_name\" = 'tnt_crud_stats_count' AND \"label_pairs_alias\" =~ /^$alias$/\nAND \"label_pairs_operation\" = 'select' AND \"label_pairs_status\" = 'error') AND $timeFilter),\n(SELECT \"value\" as \"tnt_crud_stats_count_ok\" FROM \"${INFLUXDB_POLICY}\".\"$measurement\"\nWHERE (\"metric_name\" = 'tnt_crud_stats_count' AND \"label_pairs_alias\" =~ /^$alias$/\nAND \"label_pairs_operation\" = 'select' AND \"label_pairs_status\" = 'ok') AND $timeFilter)\nGROUP BY time($__interval * 2), \"label_pairs_alias\", \"label_pairs_name\" fill(0)\n",
                      "rawQuery": true,
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -15018,7 +15011,7 @@
                         }
                      ],
                      "policy": "default",
-                     "query": "SELECT mean(\"tnt_crud_tuples_lookup\") / (mean(\"tnt_crud_stats_count_ok\") + mean(\"tnt_crud_stats_count_error\"))\nas \"tnt_crud_tuples_per_request\" FROM\n(SELECT \"value\" as \"tnt_crud_tuples_lookup\" FROM \"${INFLUXDB_POLICY}\".\"${INFLUXDB_MEASUREMENT}\"\nWHERE (\"metric_name\" = 'tnt_crud_tuples_lookup' AND \"label_pairs_alias\" =~ /^$alias$/\nAND \"label_pairs_operation\" = 'select') AND $timeFilter),\n(SELECT \"value\" as \"tnt_crud_stats_count_error\" FROM \"${INFLUXDB_POLICY}\".\"${INFLUXDB_MEASUREMENT}\"\nWHERE (\"metric_name\" = 'tnt_crud_stats_count' AND \"label_pairs_alias\" =~ /^$alias$/\nAND \"label_pairs_operation\" = 'select' AND \"label_pairs_status\" = 'error') AND $timeFilter),\n(SELECT \"value\" as \"tnt_crud_stats_count_ok\" FROM \"${INFLUXDB_POLICY}\".\"${INFLUXDB_MEASUREMENT}\"\nWHERE (\"metric_name\" = 'tnt_crud_stats_count' AND \"label_pairs_alias\" =~ /^$alias$/\nAND \"label_pairs_operation\" = 'select' AND \"label_pairs_status\" = 'ok') AND $timeFilter)\nGROUP BY time($__interval * 2), \"label_pairs_alias\", \"label_pairs_name\" fill(0)\n",
+                     "query": "SELECT mean(\"tnt_crud_tuples_lookup\") / (mean(\"tnt_crud_stats_count_ok\") + mean(\"tnt_crud_stats_count_error\"))\nas \"tnt_crud_tuples_per_request\" FROM\n(SELECT \"value\" as \"tnt_crud_tuples_lookup\" FROM \"${INFLUXDB_POLICY}\".\"$measurement\"\nWHERE (\"metric_name\" = 'tnt_crud_tuples_lookup' AND \"label_pairs_alias\" =~ /^$alias$/\nAND \"label_pairs_operation\" = 'select') AND $timeFilter),\n(SELECT \"value\" as \"tnt_crud_stats_count_error\" FROM \"${INFLUXDB_POLICY}\".\"$measurement\"\nWHERE (\"metric_name\" = 'tnt_crud_stats_count' AND \"label_pairs_alias\" =~ /^$alias$/\nAND \"label_pairs_operation\" = 'select' AND \"label_pairs_status\" = 'error') AND $timeFilter),\n(SELECT \"value\" as \"tnt_crud_stats_count_ok\" FROM \"${INFLUXDB_POLICY}\".\"$measurement\"\nWHERE (\"metric_name\" = 'tnt_crud_stats_count' AND \"label_pairs_alias\" =~ /^$alias$/\nAND \"label_pairs_operation\" = 'select' AND \"label_pairs_status\" = 'ok') AND $timeFilter)\nGROUP BY time($__interval * 2), \"label_pairs_alias\", \"label_pairs_name\" fill(0)\n",
                      "rawQuery": true,
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -15136,7 +15129,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "${INFLUXDB_MEASUREMENT}",
+                     "measurement": "$measurement",
                      "policy": "${INFLUXDB_POLICY}",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -15291,7 +15284,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "${INFLUXDB_MEASUREMENT}",
+                     "measurement": "$measurement",
                      "policy": "${INFLUXDB_POLICY}",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -15452,7 +15445,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "${INFLUXDB_MEASUREMENT}",
+                     "measurement": "$measurement",
                      "policy": "${INFLUXDB_POLICY}",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -15613,7 +15606,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "${INFLUXDB_MEASUREMENT}",
+                     "measurement": "$measurement",
                      "policy": "${INFLUXDB_POLICY}",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -15774,7 +15767,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "${INFLUXDB_MEASUREMENT}",
+                     "measurement": "$measurement",
                      "policy": "${INFLUXDB_POLICY}",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -15935,7 +15928,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "${INFLUXDB_MEASUREMENT}",
+                     "measurement": "$measurement",
                      "policy": "${INFLUXDB_POLICY}",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -16096,7 +16089,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "${INFLUXDB_MEASUREMENT}",
+                     "measurement": "$measurement",
                      "policy": "${INFLUXDB_POLICY}",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -16257,7 +16250,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "${INFLUXDB_MEASUREMENT}",
+                     "measurement": "$measurement",
                      "policy": "${INFLUXDB_POLICY}",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -16418,7 +16411,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "${INFLUXDB_MEASUREMENT}",
+                     "measurement": "$measurement",
                      "policy": "${INFLUXDB_POLICY}",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -16579,7 +16572,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "${INFLUXDB_MEASUREMENT}",
+                     "measurement": "$measurement",
                      "policy": "${INFLUXDB_POLICY}",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -16740,7 +16733,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "${INFLUXDB_MEASUREMENT}",
+                     "measurement": "$measurement",
                      "policy": "${INFLUXDB_POLICY}",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -16901,7 +16894,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "${INFLUXDB_MEASUREMENT}",
+                     "measurement": "$measurement",
                      "policy": "${INFLUXDB_POLICY}",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -17062,7 +17055,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "${INFLUXDB_MEASUREMENT}",
+                     "measurement": "$measurement",
                      "policy": "${INFLUXDB_POLICY}",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -17223,7 +17216,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "${INFLUXDB_MEASUREMENT}",
+                     "measurement": "$measurement",
                      "policy": "${INFLUXDB_POLICY}",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -17384,7 +17377,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "${INFLUXDB_MEASUREMENT}",
+                     "measurement": "$measurement",
                      "policy": "${INFLUXDB_POLICY}",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -17545,7 +17538,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "${INFLUXDB_MEASUREMENT}",
+                     "measurement": "$measurement",
                      "policy": "${INFLUXDB_POLICY}",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -17706,7 +17699,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "${INFLUXDB_MEASUREMENT}",
+                     "measurement": "$measurement",
                      "policy": "${INFLUXDB_POLICY}",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -17867,7 +17860,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "${INFLUXDB_MEASUREMENT}",
+                     "measurement": "$measurement",
                      "policy": "${INFLUXDB_POLICY}",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -18028,7 +18021,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "${INFLUXDB_MEASUREMENT}",
+                     "measurement": "$measurement",
                      "policy": "${INFLUXDB_POLICY}",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -18189,7 +18182,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "${INFLUXDB_MEASUREMENT}",
+                     "measurement": "$measurement",
                      "policy": "${INFLUXDB_POLICY}",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -18350,7 +18343,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "${INFLUXDB_MEASUREMENT}",
+                     "measurement": "$measurement",
                      "policy": "${INFLUXDB_POLICY}",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -18511,7 +18504,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "${INFLUXDB_MEASUREMENT}",
+                     "measurement": "$measurement",
                      "policy": "${INFLUXDB_POLICY}",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -18672,7 +18665,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "${INFLUXDB_MEASUREMENT}",
+                     "measurement": "$measurement",
                      "policy": "${INFLUXDB_POLICY}",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -18833,7 +18826,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "${INFLUXDB_MEASUREMENT}",
+                     "measurement": "$measurement",
                      "policy": "${INFLUXDB_POLICY}",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -18994,7 +18987,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "${INFLUXDB_MEASUREMENT}",
+                     "measurement": "$measurement",
                      "policy": "${INFLUXDB_POLICY}",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -19155,7 +19148,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "${INFLUXDB_MEASUREMENT}",
+                     "measurement": "$measurement",
                      "policy": "${INFLUXDB_POLICY}",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -19316,7 +19309,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "${INFLUXDB_MEASUREMENT}",
+                     "measurement": "$measurement",
                      "policy": "${INFLUXDB_POLICY}",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -19477,7 +19470,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "${INFLUXDB_MEASUREMENT}",
+                     "measurement": "$measurement",
                      "policy": "${INFLUXDB_POLICY}",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -19638,7 +19631,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "${INFLUXDB_MEASUREMENT}",
+                     "measurement": "$measurement",
                      "policy": "${INFLUXDB_POLICY}",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -19799,7 +19792,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "${INFLUXDB_MEASUREMENT}",
+                     "measurement": "$measurement",
                      "policy": "${INFLUXDB_POLICY}",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -19960,7 +19953,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "${INFLUXDB_MEASUREMENT}",
+                     "measurement": "$measurement",
                      "policy": "${INFLUXDB_POLICY}",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -20121,7 +20114,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "${INFLUXDB_MEASUREMENT}",
+                     "measurement": "$measurement",
                      "policy": "${INFLUXDB_POLICY}",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -20282,7 +20275,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "${INFLUXDB_MEASUREMENT}",
+                     "measurement": "$measurement",
                      "policy": "${INFLUXDB_POLICY}",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -20443,7 +20436,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "${INFLUXDB_MEASUREMENT}",
+                     "measurement": "$measurement",
                      "policy": "${INFLUXDB_POLICY}",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -20604,7 +20597,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "${INFLUXDB_MEASUREMENT}",
+                     "measurement": "$measurement",
                      "policy": "${INFLUXDB_POLICY}",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -20765,7 +20758,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "${INFLUXDB_MEASUREMENT}",
+                     "measurement": "$measurement",
                      "policy": "${INFLUXDB_POLICY}",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -20926,7 +20919,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "${INFLUXDB_MEASUREMENT}",
+                     "measurement": "$measurement",
                      "policy": "${INFLUXDB_POLICY}",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -21087,7 +21080,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "${INFLUXDB_MEASUREMENT}",
+                     "measurement": "$measurement",
                      "policy": "${INFLUXDB_POLICY}",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -21248,7 +21241,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "${INFLUXDB_MEASUREMENT}",
+                     "measurement": "$measurement",
                      "policy": "${INFLUXDB_POLICY}",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -21409,7 +21402,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "${INFLUXDB_MEASUREMENT}",
+                     "measurement": "$measurement",
                      "policy": "${INFLUXDB_POLICY}",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -21570,7 +21563,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "${INFLUXDB_MEASUREMENT}",
+                     "measurement": "$measurement",
                      "policy": "${INFLUXDB_POLICY}",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -21731,7 +21724,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "${INFLUXDB_MEASUREMENT}",
+                     "measurement": "$measurement",
                      "policy": "${INFLUXDB_POLICY}",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -21892,7 +21885,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "${INFLUXDB_MEASUREMENT}",
+                     "measurement": "$measurement",
                      "policy": "${INFLUXDB_POLICY}",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -22053,7 +22046,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "${INFLUXDB_MEASUREMENT}",
+                     "measurement": "$measurement",
                      "policy": "${INFLUXDB_POLICY}",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -22214,7 +22207,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "${INFLUXDB_MEASUREMENT}",
+                     "measurement": "$measurement",
                      "policy": "${INFLUXDB_POLICY}",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -22375,7 +22368,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "${INFLUXDB_MEASUREMENT}",
+                     "measurement": "$measurement",
                      "policy": "${INFLUXDB_POLICY}",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -22536,7 +22529,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "${INFLUXDB_MEASUREMENT}",
+                     "measurement": "$measurement",
                      "policy": "${INFLUXDB_POLICY}",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -22697,7 +22690,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "${INFLUXDB_MEASUREMENT}",
+                     "measurement": "$measurement",
                      "policy": "${INFLUXDB_POLICY}",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -22858,7 +22851,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "${INFLUXDB_MEASUREMENT}",
+                     "measurement": "$measurement",
                      "policy": "${INFLUXDB_POLICY}",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -23019,7 +23012,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "${INFLUXDB_MEASUREMENT}",
+                     "measurement": "$measurement",
                      "policy": "${INFLUXDB_POLICY}",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -23180,7 +23173,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "${INFLUXDB_MEASUREMENT}",
+                     "measurement": "$measurement",
                      "policy": "${INFLUXDB_POLICY}",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -23341,7 +23334,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "${INFLUXDB_MEASUREMENT}",
+                     "measurement": "$measurement",
                      "policy": "${INFLUXDB_POLICY}",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -23502,7 +23495,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "${INFLUXDB_MEASUREMENT}",
+                     "measurement": "$measurement",
                      "policy": "${INFLUXDB_POLICY}",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -23683,7 +23676,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "${INFLUXDB_MEASUREMENT}",
+                     "measurement": "$measurement",
                      "policy": "${INFLUXDB_POLICY}",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -23832,7 +23825,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "${INFLUXDB_MEASUREMENT}",
+                     "measurement": "$measurement",
                      "policy": "${INFLUXDB_POLICY}",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -23981,7 +23974,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "${INFLUXDB_MEASUREMENT}",
+                     "measurement": "$measurement",
                      "policy": "${INFLUXDB_POLICY}",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -24124,7 +24117,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "${INFLUXDB_MEASUREMENT}",
+                     "measurement": "$measurement",
                      "policy": "${INFLUXDB_POLICY}",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -24281,7 +24274,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "${INFLUXDB_MEASUREMENT}",
+                     "measurement": "$measurement",
                      "policy": "${INFLUXDB_POLICY}",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -24418,7 +24411,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "${INFLUXDB_MEASUREMENT}",
+                     "measurement": "$measurement",
                      "policy": "${INFLUXDB_POLICY}",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -24561,7 +24554,7 @@
                            "type": "fill"
                         }
                      ],
-                     "measurement": "${INFLUXDB_MEASUREMENT}",
+                     "measurement": "$measurement",
                      "policy": "${INFLUXDB_POLICY}",
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -24659,6 +24652,26 @@
       "list": [
          {
             "allValue": null,
+            "current": { },
+            "datasource": "${DS_INFLUXDB}",
+            "hide": 0,
+            "includeAll": false,
+            "label": "Measurement",
+            "multi": false,
+            "name": "measurement",
+            "options": [ ],
+            "query": "SHOW MEASUREMENTS WHERE \"metric_name\"='tnt_info_uptime'",
+            "refresh": 1,
+            "regex": "",
+            "sort": 0,
+            "tagValuesQuery": "",
+            "tags": [ ],
+            "tagsQuery": "",
+            "type": "query",
+            "useTags": false
+         },
+         {
+            "allValue": null,
             "current": {
                "text": "all",
                "value": "$__all"
@@ -24670,7 +24683,7 @@
             "multi": true,
             "name": "alias",
             "options": [ ],
-            "query": "SHOW TAG VALUES FROM \"${INFLUXDB_MEASUREMENT}\" WITH KEY=\"label_pairs_alias\"",
+            "query": "SHOW TAG VALUES FROM \"$measurement\" WITH KEY=\"label_pairs_alias\"",
             "refresh": 2,
             "regex": "",
             "sort": 0,
