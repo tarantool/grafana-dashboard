@@ -40,12 +40,13 @@ Refer to dashboard [documentation page](https://www.tarantool.io/en/doc/latest/b
     - paste the dashboard JSON file contents, or
     - upload the dashboard JSON file.
 
-3. Set dashboard name, folder, uid and choose corresponding datasource from drop-down list.
+3. Set dashboard name, folder and uid (if needed).
 
     ![Dashboard import variables](doc/monitoring/images/grafana_import_setup.png)
 
-    You can choose `job` variable value for Prometheus datasource after import.
-    You can choose `policy` and `measurement` variable values for InfluxDB datasource after import.
+4. Choose datasource and datasource variables on the dashboard.
+
+    ![Dashboard datasource variables](doc/monitoring/images/grafana_variables_setup.png)
 
 
 ## Monitoring cluster

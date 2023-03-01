@@ -207,9 +207,14 @@ To import a specific dashboard, choose one of the following options:
 - paste the dashboard JSON file contents, or
 - upload the dashboard JSON file.
 
-Set dashboard name, folder, uid (if needed) and datasource.
+Set dashboard name, folder and uid (if needed).
 
 ..  image:: images/grafana_import_setup.png
+    :align: left
+
+You can choose datasource and datasource variables after import.
+
+..  image:: images/grafana_variables_setup.png
     :align: left
 
 .. _monitoring-grafana_dashboard-troubleshooting:
@@ -218,7 +223,10 @@ Set dashboard name, folder, uid (if needed) and datasource.
 Troubleshooting
 -------------------------------------------------------------------------------
 
-If there are no data on the graphs, make sure that you have set up datasource and picked job/measurement correctly.
+If there are no data on the graphs, make sure that you picked datasource and job/measurement correctly.
+
+If there are no data on the graphs, make sure that you have ``info`` group of Tarantool metrics
+(in particular, ``tnt_info_uptime``).
 
 If some Prometheus graphs show no data because of ``parse error: missing unit character in duration``,
 ensure that you use Grafana 7.2 or newer.

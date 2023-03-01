@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Set Prometheus `job` dynamically
 - Set InfluxDB `measurement` dynamically
 - Set InfluxDB `policy` dynamically
+- Set datasource dynamically
 
 
 ## [1.5.0] - 2022-09-22

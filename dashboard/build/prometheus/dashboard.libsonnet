@@ -7,13 +7,13 @@ dashboard_raw(
   datasource=variable.datasource.prometheus,
   job=variable.prometheus.job,
   alias=variable.prometheus.alias,
-).addInput(
-  name='DS_PROMETHEUS',
-  label='Prometheus',
-  type='datasource',
-  pluginId='prometheus',
-  pluginName='Prometheus',
-  description='Prometheus Tarantool metrics bank'
+).addTemplate(
+  grafana.template.datasource(
+    name='prometheus',
+    query='prometheus',
+    current=null,
+    label='Datasource',
+  )
 ).addTemplate(
   grafana.template.new(
     name='job',

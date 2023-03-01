@@ -8,13 +8,13 @@ tdg_dashboard_raw(
   policy=variable.influxdb.policy,
   measurement=variable.influxdb.measurement,
   alias=variable.influxdb.alias,
-).addInput(
-  name='DS_INFLUXDB',
-  label='InfluxDB bank',
-  type='datasource',
-  pluginId='influxdb',
-  pluginName='InfluxDB',
-  description='InfluxDB Tarantool metrics bank'
+).addTemplate(
+  grafana.template.datasource(
+    name='influxdb',
+    query='influxdb',
+    current=null,
+    label='Datasource',
+  )
 ).addTemplate(
   grafana.template.new(
     name='policy',
