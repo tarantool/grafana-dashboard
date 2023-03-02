@@ -129,7 +129,7 @@ local prometheus = grafana.prometheus;
     description=description,
     datasource=datasource,
     labelY1='average',
-    format='µs',
+    format='ms',
   ).addTarget(average_target(
     datasource_type,
     'tdg_graphql_query_time',
@@ -208,7 +208,7 @@ local prometheus = grafana.prometheus;
     description=description,
     datasource=datasource,
     labelY1='average',
-    format='µs',
+    format='ms',
   ).addTarget(average_target(
     datasource_type,
     'tdg_graphql_mutation_time',

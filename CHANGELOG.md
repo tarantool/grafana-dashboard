@@ -16,6 +16,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Set InfluxDB `policy` dynamically
 - Set datasource dynamically
 
+### Fixed
+- TDG dashboard latency units (graphql, iproto, rest requests)
 
 ## [1.5.0] - 2022-09-22
 Grafana revisions: [InfluxDB revision 15](https://grafana.com/api/dashboards/12567/revisions/15/download), [Prometheus revision 15](https://grafana.com/api/dashboards/13054/revisions/15/download), [InfluxDB TDG revision 4](https://grafana.com/api/dashboards/16405/revisions/4/download), [Prometheus TDG revision 4](https://grafana.com/api/dashboards/16406/revisions/4/download).

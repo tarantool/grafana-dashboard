@@ -88,7 +88,7 @@ local prometheus = grafana.prometheus;
       |||, method_tail),
     datasource=datasource,
     labelY1='99th percentile',
-    format='µs',
+    format='ms',
     panel_width=panel_width,
   ).addTarget(
     if datasource_type == variable.datasource_type.prometheus then
