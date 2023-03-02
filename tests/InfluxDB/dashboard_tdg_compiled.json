@@ -25323,7 +25323,7 @@
                "yaxes": [
                   {
                      "decimals": 0,
-                     "format": "µs",
+                     "format": "ms",
                      "label": "average",
                      "logBase": 1,
                      "max": null,
@@ -25332,7 +25332,7 @@
                   },
                   {
                      "decimals": 3,
-                     "format": "µs",
+                     "format": "ms",
                      "label": null,
                      "logBase": 1,
                      "max": null,
@@ -25740,7 +25740,7 @@
                "yaxes": [
                   {
                      "decimals": 0,
-                     "format": "µs",
+                     "format": "ms",
                      "label": "average",
                      "logBase": 1,
                      "max": null,
@@ -25749,7 +25749,7 @@
                   },
                   {
                      "decimals": 3,
-                     "format": "µs",
+                     "format": "ms",
                      "label": null,
                      "logBase": 1,
                      "max": null,
@@ -26225,7 +26225,7 @@
                "yaxes": [
                   {
                      "decimals": 0,
-                     "format": "µs",
+                     "format": "ms",
                      "label": "99th percentile",
                      "logBase": 1,
                      "max": null,
@@ -26234,7 +26234,7 @@
                   },
                   {
                      "decimals": 3,
-                     "format": "µs",
+                     "format": "ms",
                      "label": null,
                      "logBase": 1,
                      "max": null,
@@ -26535,7 +26535,7 @@
                "yaxes": [
                   {
                      "decimals": 0,
-                     "format": "µs",
+                     "format": "ms",
                      "label": "99th percentile",
                      "logBase": 1,
                      "max": null,
@@ -26544,7 +26544,7 @@
                   },
                   {
                      "decimals": 3,
-                     "format": "µs",
+                     "format": "ms",
                      "label": null,
                      "logBase": 1,
                      "max": null,
@@ -26845,7 +26845,7 @@
                "yaxes": [
                   {
                      "decimals": 0,
-                     "format": "µs",
+                     "format": "ms",
                      "label": "99th percentile",
                      "logBase": 1,
                      "max": null,
@@ -26854,7 +26854,7 @@
                   },
                   {
                      "decimals": 3,
-                     "format": "µs",
+                     "format": "ms",
                      "label": null,
                      "logBase": 1,
                      "max": null,
@@ -27155,7 +27155,7 @@
                "yaxes": [
                   {
                      "decimals": 0,
-                     "format": "µs",
+                     "format": "ms",
                      "label": "99th percentile",
                      "logBase": 1,
                      "max": null,
@@ -27164,7 +27164,7 @@
                   },
                   {
                      "decimals": 3,
-                     "format": "µs",
+                     "format": "ms",
                      "label": null,
                      "logBase": 1,
                      "max": null,
@@ -27465,7 +27465,7 @@
                "yaxes": [
                   {
                      "decimals": 0,
-                     "format": "µs",
+                     "format": "ms",
                      "label": "99th percentile",
                      "logBase": 1,
                      "max": null,
@@ -27474,7 +27474,7 @@
                   },
                   {
                      "decimals": 3,
-                     "format": "µs",
+                     "format": "ms",
                      "label": null,
                      "logBase": 1,
                      "max": null,
@@ -27775,7 +27775,7 @@
                "yaxes": [
                   {
                      "decimals": 0,
-                     "format": "µs",
+                     "format": "ms",
                      "label": "99th percentile",
                      "logBase": 1,
                      "max": null,
@@ -27784,7 +27784,7 @@
                   },
                   {
                      "decimals": 3,
-                     "format": "µs",
+                     "format": "ms",
                      "label": null,
                      "logBase": 1,
                      "max": null,
@@ -28085,7 +28085,7 @@
                "yaxes": [
                   {
                      "decimals": 0,
-                     "format": "µs",
+                     "format": "ms",
                      "label": "99th percentile",
                      "logBase": 1,
                      "max": null,
@@ -28094,7 +28094,7 @@
                   },
                   {
                      "decimals": 3,
-                     "format": "µs",
+                     "format": "ms",
                      "label": null,
                      "logBase": 1,
                      "max": null,
@@ -28395,7 +28395,7 @@
                "yaxes": [
                   {
                      "decimals": 0,
-                     "format": "µs",
+                     "format": "ms",
                      "label": "99th percentile",
                      "logBase": 1,
                      "max": null,
@@ -28404,7 +28404,7 @@
                   },
                   {
                      "decimals": 3,
-                     "format": "µs",
+                     "format": "ms",
                      "label": null,
                      "logBase": 1,
                      "max": null,
@@ -28705,7 +28705,7 @@
                "yaxes": [
                   {
                      "decimals": 0,
-                     "format": "µs",
+                     "format": "ms",
                      "label": "99th percentile",
                      "logBase": 1,
                      "max": null,
@@ -28714,7 +28714,7 @@
                   },
                   {
                      "decimals": 3,
-                     "format": "µs",
+                     "format": "ms",
                      "label": null,
                      "logBase": 1,
                      "max": null,
@@ -29417,7 +29417,7 @@
                "yaxes": [
                   {
                      "decimals": 0,
-                     "format": "µs",
+                     "format": "ms",
                      "label": "99th percentile",
                      "logBase": 1,
                      "max": null,
@@ -29426,7 +29426,7 @@
                   },
                   {
                      "decimals": 3,
-                     "format": "µs",
+                     "format": "ms",
                      "label": null,
                      "logBase": 1,
                      "max": null,
@@ -29590,7 +29590,7 @@
                "yaxes": [
                   {
                      "decimals": 0,
-                     "format": "µs",
+                     "format": "ms",
                      "label": "99th percentile",
                      "logBase": 1,
                      "max": null,
@@ -29599,7 +29599,7 @@
                   },
                   {
                      "decimals": 3,
-                     "format": "µs",
+                     "format": "ms",
                      "label": null,
                      "logBase": 1,
                      "max": null,
@@ -29763,7 +29763,7 @@
                "yaxes": [
                   {
                      "decimals": 0,
-                     "format": "µs",
+                     "format": "ms",
                      "label": "99th percentile",
                      "logBase": 1,
                      "max": null,
@@ -29772,7 +29772,7 @@
                   },
                   {
                      "decimals": 3,
-                     "format": "µs",
+                     "format": "ms",
                      "label": null,
                      "logBase": 1,
                      "max": null,
@@ -30455,7 +30455,7 @@
                "yaxes": [
                   {
                      "decimals": 0,
-                     "format": "µs",
+                     "format": "ms",
                      "label": "99th percentile",
                      "logBase": 1,
                      "max": null,
@@ -30464,7 +30464,7 @@
                   },
                   {
                      "decimals": 3,
-                     "format": "µs",
+                     "format": "ms",
                      "label": null,
                      "logBase": 1,
                      "max": null,
@@ -30628,7 +30628,7 @@
                "yaxes": [
                   {
                      "decimals": 0,
-                     "format": "µs",
+                     "format": "ms",
                      "label": "99th percentile",
                      "logBase": 1,
                      "max": null,
@@ -30637,7 +30637,7 @@
                   },
                   {
                      "decimals": 3,
-                     "format": "µs",
+                     "format": "ms",
                      "label": null,
                      "logBase": 1,
                      "max": null,
@@ -30801,7 +30801,7 @@
                "yaxes": [
                   {
                      "decimals": 0,
-                     "format": "µs",
+                     "format": "ms",
                      "label": "99th percentile",
                      "logBase": 1,
                      "max": null,
@@ -30810,7 +30810,7 @@
                   },
                   {
                      "decimals": 3,
-                     "format": "µs",
+                     "format": "ms",
                      "label": null,
                      "logBase": 1,
                      "max": null,
