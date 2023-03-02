@@ -9426,6 +9426,276 @@
                      "show": true
                   }
                ]
+            },
+            {
+               "aliasColors": { },
+               "bars": false,
+               "dashLength": 10,
+               "dashes": false,
+               "datasource": "Prometheus",
+               "decimals": 3,
+               "description": "Panel displays the count of IPROTO_CALL and\nIPROTO_EVAL operations with `box.begin()`, IPROTO_EXECUTE\noperations with `TRANSACTION START` and IPROTO_BEGIN operations.\nGraph shows average calls per second.\n\nPanel works with Tarantool 2.10 or newer.\n",
+               "fill": 0,
+               "gridPos": {
+                  "h": 8,
+                  "w": 8,
+                  "x": 0,
+                  "y": 291
+               },
+               "id": 117,
+               "legend": {
+                  "alignAsTable": true,
+                  "avg": true,
+                  "current": true,
+                  "max": true,
+                  "min": false,
+                  "rightSide": false,
+                  "show": true,
+                  "sideWidth": null,
+                  "sort": "current",
+                  "sortDesc": true,
+                  "total": false,
+                  "values": true
+               },
+               "lines": true,
+               "linewidth": 1,
+               "links": [ ],
+               "nullPointMode": "null",
+               "percentage": false,
+               "pointradius": 5,
+               "points": false,
+               "renderer": "flot",
+               "repeat": null,
+               "seriesOverrides": [ ],
+               "spaceLength": 10,
+               "stack": false,
+               "steppedLine": false,
+               "targets": [
+                  {
+                     "expr": "rate(tnt_stats_op_total{job=~\"tarantool\",alias=~\"$alias\",operation=\"begin\"}[$__rate_interval])",
+                     "format": "time_series",
+                     "intervalFactor": 2,
+                     "legendFormat": "{{alias}}",
+                     "refId": "A"
+                  }
+               ],
+               "thresholds": [ ],
+               "timeFrom": null,
+               "timeShift": null,
+               "title": "Transaction begins",
+               "tooltip": {
+                  "shared": true,
+                  "sort": 2,
+                  "value_type": "individual"
+               },
+               "type": "graph",
+               "xaxis": {
+                  "buckets": null,
+                  "mode": "time",
+                  "name": null,
+                  "show": true,
+                  "values": [ ]
+               },
+               "yaxes": [
+                  {
+                     "decimals": 0,
+                     "format": "none",
+                     "label": "begins per second",
+                     "logBase": 1,
+                     "max": null,
+                     "min": 0,
+                     "show": true
+                  },
+                  {
+                     "decimals": 3,
+                     "format": "none",
+                     "label": null,
+                     "logBase": 1,
+                     "max": null,
+                     "min": 0,
+                     "show": true
+                  }
+               ]
+            },
+            {
+               "aliasColors": { },
+               "bars": false,
+               "dashLength": 10,
+               "dashes": false,
+               "datasource": "Prometheus",
+               "decimals": 3,
+               "description": "Panel displays the count of IPROTO_CALL and\nIPROTO_EVAL operations with `box.commit()`, IPROTO_EXECUTE\noperations with `COMMIT` and IPROTO_COMMIT operations.\nGraph shows average calls per second.\n\nPanel works with Tarantool 2.10 or newer.\n",
+               "fill": 0,
+               "gridPos": {
+                  "h": 8,
+                  "w": 8,
+                  "x": 8,
+                  "y": 291
+               },
+               "id": 118,
+               "legend": {
+                  "alignAsTable": true,
+                  "avg": true,
+                  "current": true,
+                  "max": true,
+                  "min": false,
+                  "rightSide": false,
+                  "show": true,
+                  "sideWidth": null,
+                  "sort": "current",
+                  "sortDesc": true,
+                  "total": false,
+                  "values": true
+               },
+               "lines": true,
+               "linewidth": 1,
+               "links": [ ],
+               "nullPointMode": "null",
+               "percentage": false,
+               "pointradius": 5,
+               "points": false,
+               "renderer": "flot",
+               "repeat": null,
+               "seriesOverrides": [ ],
+               "spaceLength": 10,
+               "stack": false,
+               "steppedLine": false,
+               "targets": [
+                  {
+                     "expr": "rate(tnt_stats_op_total{job=~\"tarantool\",alias=~\"$alias\",operation=\"commit\"}[$__rate_interval])",
+                     "format": "time_series",
+                     "intervalFactor": 2,
+                     "legendFormat": "{{alias}}",
+                     "refId": "A"
+                  }
+               ],
+               "thresholds": [ ],
+               "timeFrom": null,
+               "timeShift": null,
+               "title": "Transaction commits",
+               "tooltip": {
+                  "shared": true,
+                  "sort": 2,
+                  "value_type": "individual"
+               },
+               "type": "graph",
+               "xaxis": {
+                  "buckets": null,
+                  "mode": "time",
+                  "name": null,
+                  "show": true,
+                  "values": [ ]
+               },
+               "yaxes": [
+                  {
+                     "decimals": 0,
+                     "format": "none",
+                     "label": "commits per second",
+                     "logBase": 1,
+                     "max": null,
+                     "min": 0,
+                     "show": true
+                  },
+                  {
+                     "decimals": 3,
+                     "format": "none",
+                     "label": null,
+                     "logBase": 1,
+                     "max": null,
+                     "min": 0,
+                     "show": true
+                  }
+               ]
+            },
+            {
+               "aliasColors": { },
+               "bars": false,
+               "dashLength": 10,
+               "dashes": false,
+               "datasource": "Prometheus",
+               "decimals": 3,
+               "description": "Panel displays the count of IPROTO_CALL and\nIPROTO_EVAL operations with `box.rollback()`, IPROTO_EXECUTE\noperations with `ROLLBACK` and IPROTO_ROLLBACK operations.\nGraph shows average calls per second.\n\nPanel works with Tarantool 2.10 or newer.\n",
+               "fill": 0,
+               "gridPos": {
+                  "h": 8,
+                  "w": 8,
+                  "x": 16,
+                  "y": 291
+               },
+               "id": 119,
+               "legend": {
+                  "alignAsTable": true,
+                  "avg": true,
+                  "current": true,
+                  "max": true,
+                  "min": false,
+                  "rightSide": false,
+                  "show": true,
+                  "sideWidth": null,
+                  "sort": "current",
+                  "sortDesc": true,
+                  "total": false,
+                  "values": true
+               },
+               "lines": true,
+               "linewidth": 1,
+               "links": [ ],
+               "nullPointMode": "null",
+               "percentage": false,
+               "pointradius": 5,
+               "points": false,
+               "renderer": "flot",
+               "repeat": null,
+               "seriesOverrides": [ ],
+               "spaceLength": 10,
+               "stack": false,
+               "steppedLine": false,
+               "targets": [
+                  {
+                     "expr": "rate(tnt_stats_op_total{job=~\"tarantool\",alias=~\"$alias\",operation=\"rollback\"}[$__rate_interval])",
+                     "format": "time_series",
+                     "intervalFactor": 2,
+                     "legendFormat": "{{alias}}",
+                     "refId": "A"
+                  }
+               ],
+               "thresholds": [ ],
+               "timeFrom": null,
+               "timeShift": null,
+               "title": "Transaction rollbacks",
+               "tooltip": {
+                  "shared": true,
+                  "sort": 2,
+                  "value_type": "individual"
+               },
+               "type": "graph",
+               "xaxis": {
+                  "buckets": null,
+                  "mode": "time",
+                  "name": null,
+                  "show": true,
+                  "values": [ ]
+               },
+               "yaxes": [
+                  {
+                     "decimals": 0,
+                     "format": "none",
+                     "label": "rollbacks per second",
+                     "logBase": 1,
+                     "max": null,
+                     "min": 0,
+                     "show": true
+                  },
+                  {
+                     "decimals": 3,
+                     "format": "none",
+                     "label": null,
+                     "logBase": 1,
+                     "max": null,
+                     "min": 0,
+                     "show": true
+                  }
+               ]
             }
          ],
          "repeat": null,
@@ -9443,9 +9713,9 @@
             "h": 1,
             "w": 24,
             "x": 0,
-            "y": 291
+            "y": 299
          },
-         "id": 117,
+         "id": 120,
          "panels": [
             {
                "aliasColors": { },
@@ -9460,9 +9730,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 0,
-                  "y": 292
+                  "y": 300
                },
-               "id": 118,
+               "id": 121,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -9550,9 +9820,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 6,
-                  "y": 292
+                  "y": 300
                },
-               "id": 119,
+               "id": 122,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -9640,9 +9910,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 12,
-                  "y": 292
+                  "y": 300
                },
-               "id": 120,
+               "id": 123,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -9730,9 +10000,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 18,
-                  "y": 292
+                  "y": 300
                },
-               "id": 121,
+               "id": 124,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -9820,9 +10090,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 0,
-                  "y": 300
+                  "y": 308
                },
-               "id": 122,
+               "id": 125,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -9910,9 +10180,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 8,
-                  "y": 300
+                  "y": 308
                },
-               "id": 123,
+               "id": 126,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -10000,9 +10270,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 16,
-                  "y": 300
+                  "y": 308
                },
-               "id": 124,
+               "id": 127,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -10090,9 +10360,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 0,
-                  "y": 308
+                  "y": 316
                },
-               "id": 125,
+               "id": 128,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -10180,9 +10450,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 6,
-                  "y": 308
+                  "y": 316
                },
-               "id": 126,
+               "id": 129,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -10270,9 +10540,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 12,
-                  "y": 308
+                  "y": 316
                },
-               "id": 127,
+               "id": 130,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -10360,9 +10630,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 18,
-                  "y": 308
+                  "y": 316
                },
-               "id": 128,
+               "id": 131,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -10450,9 +10720,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 0,
-                  "y": 316
+                  "y": 324
                },
-               "id": 129,
+               "id": 132,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -10540,9 +10810,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 6,
-                  "y": 316
+                  "y": 324
                },
-               "id": 130,
+               "id": 133,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -10630,9 +10900,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 12,
-                  "y": 316
+                  "y": 324
                },
-               "id": 131,
+               "id": 134,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -10720,9 +10990,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 18,
-                  "y": 316
+                  "y": 324
                },
-               "id": 132,
+               "id": 135,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -10810,9 +11080,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 0,
-                  "y": 324
+                  "y": 332
                },
-               "id": 133,
+               "id": 136,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -10900,9 +11170,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 6,
-                  "y": 324
+                  "y": 332
                },
-               "id": 134,
+               "id": 137,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -10990,9 +11260,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 12,
-                  "y": 324
+                  "y": 332
                },
-               "id": 135,
+               "id": 138,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -11080,9 +11350,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 18,
-                  "y": 324
+                  "y": 332
                },
-               "id": 136,
+               "id": 139,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -11170,9 +11440,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 0,
-                  "y": 332
+                  "y": 340
                },
-               "id": 137,
+               "id": 140,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -11260,9 +11530,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 6,
-                  "y": 332
+                  "y": 340
                },
-               "id": 138,
+               "id": 141,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -11350,9 +11620,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 12,
-                  "y": 332
+                  "y": 340
                },
-               "id": 139,
+               "id": 142,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -11440,9 +11710,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 18,
-                  "y": 332
+                  "y": 340
                },
-               "id": 140,
+               "id": 143,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -11530,9 +11800,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 0,
-                  "y": 340
+                  "y": 348
                },
-               "id": 141,
+               "id": 144,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -11620,9 +11890,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 6,
-                  "y": 340
+                  "y": 348
                },
-               "id": 142,
+               "id": 145,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -11710,9 +11980,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 12,
-                  "y": 340
+                  "y": 348
                },
-               "id": 143,
+               "id": 146,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -11800,9 +12070,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 18,
-                  "y": 340
+                  "y": 348
                },
-               "id": 144,
+               "id": 147,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -11890,9 +12160,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 0,
-                  "y": 348
+                  "y": 356
                },
-               "id": 145,
+               "id": 148,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -11980,9 +12250,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 6,
-                  "y": 348
+                  "y": 356
                },
-               "id": 146,
+               "id": 149,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -12070,9 +12340,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 12,
-                  "y": 348
+                  "y": 356
                },
-               "id": 147,
+               "id": 150,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -12160,9 +12430,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 18,
-                  "y": 348
+                  "y": 356
                },
-               "id": 148,
+               "id": 151,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -12250,9 +12520,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 0,
-                  "y": 356
+                  "y": 364
                },
-               "id": 149,
+               "id": 152,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -12340,9 +12610,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 6,
-                  "y": 356
+                  "y": 364
                },
-               "id": 150,
+               "id": 153,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -12430,9 +12700,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 12,
-                  "y": 356
+                  "y": 364
                },
-               "id": 151,
+               "id": 154,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -12520,9 +12790,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 18,
-                  "y": 356
+                  "y": 364
                },
-               "id": 152,
+               "id": 155,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -12610,9 +12880,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 0,
-                  "y": 364
+                  "y": 372
                },
-               "id": 153,
+               "id": 156,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -12700,9 +12970,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 6,
-                  "y": 364
+                  "y": 372
                },
-               "id": 154,
+               "id": 157,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -12790,9 +13060,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 12,
-                  "y": 364
+                  "y": 372
                },
-               "id": 155,
+               "id": 158,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -12880,9 +13150,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 18,
-                  "y": 364
+                  "y": 372
                },
-               "id": 156,
+               "id": 159,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -12970,9 +13240,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 0,
-                  "y": 372
+                  "y": 380
                },
-               "id": 157,
+               "id": 160,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -13060,9 +13330,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 6,
-                  "y": 372
+                  "y": 380
                },
-               "id": 158,
+               "id": 161,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -13150,9 +13420,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 12,
-                  "y": 372
+                  "y": 380
                },
-               "id": 159,
+               "id": 162,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -13240,9 +13510,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 18,
-                  "y": 372
+                  "y": 380
                },
-               "id": 160,
+               "id": 163,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -13330,9 +13600,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 0,
-                  "y": 380
+                  "y": 388
                },
-               "id": 161,
+               "id": 164,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -13420,9 +13690,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 6,
-                  "y": 380
+                  "y": 388
                },
-               "id": 162,
+               "id": 165,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -13510,9 +13780,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 12,
-                  "y": 380
+                  "y": 388
                },
-               "id": 163,
+               "id": 166,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -13600,9 +13870,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 18,
-                  "y": 380
+                  "y": 388
                },
-               "id": 164,
+               "id": 167,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -13690,9 +13960,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 0,
-                  "y": 388
+                  "y": 396
                },
-               "id": 165,
+               "id": 168,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -13780,9 +14050,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 6,
-                  "y": 388
+                  "y": 396
                },
-               "id": 166,
+               "id": 169,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -13870,9 +14140,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 12,
-                  "y": 388
+                  "y": 396
                },
-               "id": 167,
+               "id": 170,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -13960,9 +14230,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 18,
-                  "y": 388
+                  "y": 396
                },
-               "id": 168,
+               "id": 171,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -14050,9 +14320,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 0,
-                  "y": 396
+                  "y": 404
                },
-               "id": 169,
+               "id": 172,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -14140,9 +14410,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 6,
-                  "y": 396
+                  "y": 404
                },
-               "id": 170,
+               "id": 173,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -14230,9 +14500,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 12,
-                  "y": 396
+                  "y": 404
                },
-               "id": 171,
+               "id": 174,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -14320,9 +14590,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 18,
-                  "y": 396
+                  "y": 404
                },
-               "id": 172,
+               "id": 175,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -14410,9 +14680,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 0,
-                  "y": 404
+                  "y": 412
                },
-               "id": 173,
+               "id": 176,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -14500,9 +14770,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 6,
-                  "y": 404
+                  "y": 412
                },
-               "id": 174,
+               "id": 177,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -14590,9 +14860,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 12,
-                  "y": 404
+                  "y": 412
                },
-               "id": 175,
+               "id": 178,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -14680,9 +14950,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 18,
-                  "y": 404
+                  "y": 412
                },
-               "id": 176,
+               "id": 179,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -14773,9 +15043,9 @@
             "h": 1,
             "w": 24,
             "x": 0,
-            "y": 412
+            "y": 420
          },
-         "id": 177,
+         "id": 180,
          "panels": [
             {
                "aliasColors": { },
@@ -14790,9 +15060,9 @@
                   "h": 8,
                   "w": 12,
                   "x": 0,
-                  "y": 413
+                  "y": 421
                },
-               "id": 178,
+               "id": 181,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -14880,9 +15150,9 @@
                   "h": 8,
                   "w": 12,
                   "x": 12,
-                  "y": 413
+                  "y": 421
                },
-               "id": 179,
+               "id": 182,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -14970,9 +15240,9 @@
                   "h": 8,
                   "w": 12,
                   "x": 0,
-                  "y": 421
+                  "y": 429
                },
-               "id": 180,
+               "id": 183,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -15060,9 +15330,9 @@
                   "h": 8,
                   "w": 12,
                   "x": 12,
-                  "y": 421
+                  "y": 429
                },
-               "id": 181,
+               "id": 184,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
