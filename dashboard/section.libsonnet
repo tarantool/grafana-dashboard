@@ -11,7 +11,6 @@ local slab = import 'dashboard/panels/slab.libsonnet';
 local space = import 'dashboard/panels/space.libsonnet';
 local vinyl = import 'dashboard/panels/vinyl.libsonnet';
 
-local tdg_expirationd = import 'dashboard/panels/tdg/expirationd.libsonnet';
 local tdg_file_connectors = import 'dashboard/panels/tdg/file_connectors.libsonnet';
 local tdg_graphql = import 'dashboard/panels/tdg/graphql.libsonnet';
 local tdg_iproto = import 'dashboard/panels/tdg/iproto.libsonnet';
@@ -2171,46 +2170,6 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
     ),
 
     tdg_kafka_producer.txn_stateage(
-      datasource_type=datasource_type,
-      datasource=datasource,
-      policy=policy,
-      measurement=measurement,
-      job=job,
-      alias=alias,
-    ),
-  ],
-
-  tdg_expirationd(datasource_type, datasource, policy=null, measurement=null, job=null, alias=null):: [
-    tdg_expirationd.row,
-
-    tdg_expirationd.tuples_checked(
-      datasource_type=datasource_type,
-      datasource=datasource,
-      policy=policy,
-      measurement=measurement,
-      job=job,
-      alias=alias,
-    ),
-
-    tdg_expirationd.tuples_expired(
-      datasource_type=datasource_type,
-      datasource=datasource,
-      policy=policy,
-      measurement=measurement,
-      job=job,
-      alias=alias,
-    ),
-
-    tdg_expirationd.restarts(
-      datasource_type=datasource_type,
-      datasource=datasource,
-      policy=policy,
-      measurement=measurement,
-      job=job,
-      alias=alias,
-    ),
-
-    tdg_expirationd.operation_time(
       datasource_type=datasource_type,
       datasource=datasource,
       policy=policy,

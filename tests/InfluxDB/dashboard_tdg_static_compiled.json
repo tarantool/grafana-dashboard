@@ -23189,7 +23189,7 @@
                         {
                            "key": "metric_name",
                            "operator": "=",
-                           "value": "tdg_expiration_checked_count"
+                           "value": "expirationd_checked_count"
                         },
                         {
                            "condition": "AND",
@@ -23338,7 +23338,7 @@
                         {
                            "key": "metric_name",
                            "operator": "=",
-                           "value": "tdg_expiration_expired_count"
+                           "value": "expirationd_expired_count"
                         },
                         {
                            "condition": "AND",
@@ -23481,7 +23481,7 @@
                         {
                            "key": "metric_name",
                            "operator": "=",
-                           "value": "tdg_expiration_restarts"
+                           "value": "expirationd_restarts"
                         },
                         {
                            "condition": "AND",
@@ -23624,7 +23624,7 @@
                         {
                            "key": "metric_name",
                            "operator": "=",
-                           "value": "tdg_expiration_working_time"
+                           "value": "expirationd_working_time"
                         },
                         {
                            "condition": "AND",
@@ -23678,7 +23678,7 @@
          "repeatIteration": null,
          "repeatRowId": null,
          "showTitle": true,
-         "title": "TDG expirationd statistics",
+         "title": "expirationd module statistics",
          "titleSize": "h6",
          "type": "row"
       },

@@ -155,7 +155,7 @@ function(
     alias=alias,
   )
 ).addPanels(
-  section.tdg_expirationd(
+  section.expirationd(
     datasource_type=variable.datasource_type.prometheus,
     datasource=datasource,
     job=job,
