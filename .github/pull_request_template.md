@@ -12,5 +12,7 @@ If this pull request introduces support for new metrics, do not forget to
 - [ ] update `supported_metrics.md`.
 
 In any case, do not forget to
-- [ ] link an issue,
-- [ ] add a CHANGELOG entry.
+- [ ] link an issue;
+- [ ] add a CHANGELOG entry;
+- [ ] update documentation guidelines;
+- [ ] update README guidelines.
