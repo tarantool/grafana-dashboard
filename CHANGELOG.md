@@ -6,6 +6,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Unreleased
 
+### Added
+- Dashboard title customization
+
 ### Changed
 - Replace LuaJit deprecated metrics with new ones
 - Set Prometheus `job` dynamically

@@ -7,6 +7,7 @@ local DATASOURCE = std.extVar('DATASOURCE');
 local POLICY = std.extVar('POLICY');
 local MEASUREMENT = std.extVar('MEASUREMENT');
 local WITH_INSTANCE_VARIABLE = (std.asciiUpper(std.extVar('WITH_INSTANCE_VARIABLE')) == 'TRUE');
+local TITLE = std.extVar('TITLE');
 
 if WITH_INSTANCE_VARIABLE then
   tdg_dashboard_raw(
@@ -14,6 +15,7 @@ if WITH_INSTANCE_VARIABLE then
     policy=POLICY,
     measurement=MEASUREMENT,
     alias=variable.influxdb.alias,
+    title=TITLE,
   ).addTemplate(
     grafana.template.new(
       name='alias',
@@ -38,4 +40,5 @@ else
     policy=std.extVar('POLICY'),
     measurement=std.extVar('MEASUREMENT'),
     alias='/^.*$/',
+    title=TITLE,
   ).build()

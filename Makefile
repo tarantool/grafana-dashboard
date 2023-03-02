@@ -3,6 +3,7 @@ POLICY ?= autogen
 MEASUREMENT ?= tarantool_http
 WITH_INSTANCE_VARIABLE ?= FALSE
 OUTPUT_STATIC_DASHBOARD ?= dashboard.json
+TITLE ?= 
 
 .PHONY: build-deps
 build-deps:
@@ -18,10 +19,13 @@ ifndef DATASOURCE
 endif
 	# JOB is optional, default is "tarantool"
 	# WITH_INSTANCE_VARIABLE is optional, default is "FALSE"
+	# TITLE is optional, default is "Tarantool dashboard" for plain dashboard
+	#                    and "Tarantool Data Grid dashboard" for TDG one
 	jsonnet -J ./vendor -J . \
 		--ext-str DATASOURCE=${DATASOURCE} \
 		--ext-str JOB=${JOB} \
 		--ext-str WITH_INSTANCE_VARIABLE=${WITH_INSTANCE_VARIABLE} \
+		--ext-str TITLE='${TITLE}' \
 		dashboard/build/prometheus/${DASHBOARD_BUILD_SOURCE} -o ${OUTPUT_STATIC_DASHBOARD}
 
 .PHONY: build-static-prometheus
@@ -41,11 +45,14 @@ endif
 	# POLICY is optional, default is "autogen"
 	# MEASUREMENT is optional, default is "tarantool_http"
 	# WITH_INSTANCE_VARIABLE is optional, default is "FALSE"
+	# TITLE is optional, default is "Tarantool dashboard" for plain dashboard
+	#                    and "Tarantool Data Grid dashboard" for TDG one
 	jsonnet -J ./vendor -J . \
 		--ext-str DATASOURCE=${DATASOURCE} \
 		--ext-str POLICY=${POLICY} \
 		--ext-str MEASUREMENT=${MEASUREMENT} \
 		--ext-str WITH_INSTANCE_VARIABLE=${WITH_INSTANCE_VARIABLE} \
+		--ext-str TITLE='${TITLE}' \
 		dashboard/build/influxdb/${DASHBOARD_BUILD_SOURCE} -o ${OUTPUT_STATIC_DASHBOARD}
 
 .PHONY: build-static-influxdb
