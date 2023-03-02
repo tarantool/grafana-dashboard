@@ -5,7 +5,7 @@ Format is as follows.
 
 # tarantool/metrics
 
-Based on [tarantool/metrics 0.15.0](https://github.com/tarantool/metrics/releases/tag/0.15.0).
+Based on [tarantool/metrics 0.16.0](https://github.com/tarantool/metrics/releases/tag/0.16.0).
 
 - [x] **tnt_clock_delta**: see *Cluster overview/Instances clock delta* panel ([#133](https://github.com/tarantool/grafana-dashboard/issues/133))
 - [x] **tnt_cpu_user_time**: see *Tarantool CPU statistics/CPU user time* panel ([#71](https://github.com/tarantool/grafana-dashboard/issues/71))
@@ -76,7 +76,7 @@ Based on [tarantool/metrics 0.15.0](https://github.com/tarantool/metrics/release
 - [x] **tnt_net_requests_in_progress_current**: see *Tarantool network activity/Requests in progress* panel ([#133](https://github.com/tarantool/grafana-dashboard/issues/133))
 - [x] **tnt_net_requests_in_stream_queue_total**: see *Tarantool network activity/Requests in queue (overall)* panel ([#133](https://github.com/tarantool/grafana-dashboard/issues/133))
 - [x] **tnt_net_requests_in_stream_queue_current**: see *Tarantool network activity/Requests in queue (current)* panel ([#133](https://github.com/tarantool/grafana-dashboard/issues/133))
-- [x] **tnt_stats_op_total**: see *Cluster overview/Overall space load* panel (Prometheus only), *Tarantool operations statistics/SELECT space requests*, *Tarantool operations statistics/INSERT space requests*, *Tarantool operations statistics/REPLACE space requests*, *Tarantool operations statistics/UPSERT space requests*, *Tarantool operations statistics/UPDATE space requests*, *Tarantool operations statistics/DELETE space requests*, *Tarantool operations statistics/Call requests*, *Tarantool operations statistics/Eval calls*, *Tarantool operations statistics/Request errors*, *Tarantool operations statistics/Authentication requests*, *Tarantool operations statistics/SQL prepare calls*, *Tarantool operations statistics/SQL execute calls* panels ([386be0a6](https://github.com/tarantool/grafana-dashboard/commit/386be0a6bc0848c0f23a19a09dd983dc42df0b9b), [#66](https://github.com/tarantool/grafana-dashboard/issues/66))
+- [ ] **tnt_stats_op_total**: see *Cluster overview/Overall space load* panel (Prometheus only), *Tarantool operations statistics/SELECT space requests*, *Tarantool operations statistics/INSERT space requests*, *Tarantool operations statistics/REPLACE space requests*, *Tarantool operations statistics/UPSERT space requests*, *Tarantool operations statistics/UPDATE space requests*, *Tarantool operations statistics/DELETE space requests*, *Tarantool operations statistics/Call requests*, *Tarantool operations statistics/Eval calls*, *Tarantool operations statistics/Request errors*, *Tarantool operations statistics/Authentication requests*, *Tarantool operations statistics/SQL prepare calls*, *Tarantool operations statistics/SQL execute calls* panels ([386be0a6](https://github.com/tarantool/grafana-dashboard/commit/386be0a6bc0848c0f23a19a09dd983dc42df0b9b), [#66](https://github.com/tarantool/grafana-dashboard/issues/66), [#176](https://github.com/tarantool/grafana-dashboard/issues/176))
 - **tnt_stats_op_rps**: unsupported (deprecated, superseded by **tnt_stats_op_total**)
 - **tnt_replication_lsn**: unsupported (decided not to support: doesn't seem useful for visualization)
 - **tnt_replication_replica_\*_lsn**: unsupported (deprecated, superseded by **tnt_replication_lsn**)
@@ -128,12 +128,35 @@ Based on [tarantool/metrics 0.15.0](https://github.com/tarantool/metrics/release
 - [ ] **tnt_election_state**: ([#178](https://github.com/tarantool/grafana-dashboard/issues/178))
 - [ ] **tnt_election_vote**: ([#178](https://github.com/tarantool/grafana-dashboard/issues/178))
 - [ ] **tnt_election_leader**: ([#178](https://github.com/tarantool/grafana-dashboard/issues/178))
+- [ ] **tnt_election_term**: ([#178](https://github.com/tarantool/grafana-dashboard/issues/178))
 - [ ] **tnt_synchro_queue_owner**: ([#178](https://github.com/tarantool/grafana-dashboard/issues/178))
+- [ ] **tnt_net_per_thread_sent_total**: ([#178](https://github.com/tarantool/grafana-dashboard/issues/178))
+- [ ] **tnt_net_per_thread_received_total**: ([#178](https://github.com/tarantool/grafana-dashboard/issues/178))
+- [ ] **tnt_net_per_thread_connections_total**: ([#178](https://github.com/tarantool/grafana-dashboard/issues/178))
+- [ ] **tnt_net_per_thread_connections_current**: ([#178](https://github.com/tarantool/grafana-dashboard/issues/178))
+- [ ] **tnt_net_per_thread_connections_current**: ([#178](https://github.com/tarantool/grafana-dashboard/issues/178))
+- [ ] **tnt_net_per_thread_requests_total**: ([#178](https://github.com/tarantool/grafana-dashboard/issues/178))
+- [ ] **tnt_net_per_thread_requests_current**: ([#178](https://github.com/tarantool/grafana-dashboard/issues/178))
+- [ ] **tnt_net_per_thread_requests_in_progress_total**: ([#178](https://github.com/tarantool/grafana-dashboard/issues/178))
+- [ ] **tnt_net_per_thread_requests_in_progress_current**: ([#178](https://github.com/tarantool/grafana-dashboard/issues/178))
+- [ ] **tnt_net_per_thread_requests_in_stream_queue_total**: ([#178](https://github.com/tarantool/grafana-dashboard/issues/178))
+- [ ] **tnt_net_per_thread_requests_in_stream_queue_current**: ([#178](https://github.com/tarantool/grafana-dashboard/issues/178))
+- [ ] **tnt_memtx_tnx_statements**: ([#197](https://github.com/tarantool/grafana-dashboard/issues/197))
+- [ ] **tnt_memtx_tnx_user**: ([#197](https://github.com/tarantool/grafana-dashboard/issues/197))
+- [ ] **tnt_memtx_tnx_system**: ([#197](https://github.com/tarantool/grafana-dashboard/issues/197))
+- [ ] **tnt_memtx_mvcc_trackers**: ([#197](https://github.com/tarantool/grafana-dashboard/issues/197))
+- [ ] **tnt_memtx_mvcc_conflicts**: ([#197](https://github.com/tarantool/grafana-dashboard/issues/197))
+- [ ] **tnt_memtx_mvcc_tuples_used_stories**: ([#197](https://github.com/tarantool/grafana-dashboard/issues/197))
+- [ ] **tnt_memtx_mvcc_tuples_used_retained**: ([#197](https://github.com/tarantool/grafana-dashboard/issues/197))
+- [ ] **tnt_memtx_mvcc_tuples_read_view_stories**: ([#197](https://github.com/tarantool/grafana-dashboard/issues/197))
+- [ ] **tnt_memtx_mvcc_tuples_read_view_retained**: ([#197](https://github.com/tarantool/grafana-dashboard/issues/197))
+- [ ] **tnt_memtx_mvcc_tuples_tracking_stories**: ([#197](https://github.com/tarantool/grafana-dashboard/issues/197))
+- [ ] **tnt_memtx_mvcc_tuples_tracking_retained**: ([#197](https://github.com/tarantool/grafana-dashboard/issues/197))
 - [x] **http_server_request_latency**, **http_server_request_latency_sum**, **http_server_request_latency_count**: see *Tarantool HTTP statistics/Success requests (code 2xx)*, *Tarantool HTTP statistics/Error requests (code 4xx)* *Tarantool HTTP statistics/Error requests (code 5xx)* *Tarantool HTTP statistics/Success requests latency (code 2xx)* *Tarantool HTTP statistics/Error requests latency (code 4xx)* *Tarantool HTTP statistics/Error requests latency (code 5xx)* ([dbb3374f](https://github.com/tarantool/grafana-dashboard/commit/dbb3374f214aaa069e5574960afd65f44f5ae0cd))
 
 # tarantool/crud
 
-Based on [tarantool/crud 0.14.0](https://github.com/tarantool/crud/releases/tag/0.14.0).
+Based on [tarantool/crud 1.0.0](https://github.com/tarantool/crud/releases/tag/1.0.0).
 
 - [x] **tnt_crud_stats**, **tnt_crud_stats_sum**, **tnt_crud_stats_count**: see *CRUD module statistics/SELECT success requests*, *CRUD module statistics/SELECT success requests latency*, *CRUD module statistics/SELECT error requests*, *CRUD module statistics/SELECT error requests latency*, *CRUD module statistics/SELECT tuples fetched*, *CRUD module statistics/SELECT tuples lookup*, *CRUD module statistics/INSERT success requests*, *CRUD module statistics/INSERT success requests latency*, *CRUD module statistics/INSERT error requests*, *CRUD module statistics/INSERT error requests latency*, *CRUD module statistics/INSERT MANY success requests*, *CRUD module statistics/INSERT MANY success requests latency*, *CRUD module statistics/INSERT MANY error requests*, *CRUD module statistics/INSERT MANY error requests latency*, *CRUD module statistics/REPLACE success requests*, *CRUD module statistics/REPLACE success requests latency*, *CRUD module statistics/REPLACE error requests*, *CRUD module statistics/REPLACE error requests latency*, *CRUD module statistics/REPLACE MANY success requests*, *CRUD module statistics/REPLACE MANY success requests latency*, *CRUD module statistics/REPLACE MANY error requests*, *CRUD module statistics/REPLACE MANY error requests latency*, *CRUD module statistics/UPSERT success requests*, *CRUD module statistics/UPSERT success requests latency*, *CRUD module statistics/UPSERT error requests*, *CRUD module statistics/UPSERT error requests latency*, *CRUD module statistics/UPSERT MANY success requests*, *CRUD module statistics/UPSERT MANY success requests latency*, *CRUD module statistics/UPSERT MANY error requests*, *CRUD module statistics/UPSERT MANY error requests latency*, *CRUD module statistics/UPDATE success requests*, *CRUD module statistics/UPDATE success requests latency*, *CRUD module statistics/UPDATE error requests*, *CRUD module statistics/UPDATE error requests latency*, *CRUD module statistics/DELETE success requests*, *CRUD module statistics/DELETE success requests latency*, *CRUD module statistics/DELETE error requests*, *CRUD module statistics/DELETE error requests latency*, *CRUD module statistics/COUNT success requests*, *CRUD module statistics/COUNT success requests latency*, *CRUD module statistics/COUNT error requests*, *CRUD module statistics/COUNT error requests latency*, *CRUD module statistics/GET success requests*, *CRUD module statistics/GET success requests latency*, *CRUD module statistics/GET error requests*, *CRUD module statistics/GET error requests latency*, *CRUD module statistics/BORDERS success requests*, *CRUD module statistics/BORDERS success requests latency*, *CRUD module statistics/BORDERS error requests*, *CRUD module statistics/BORDERS error requests latency*, *CRUD module statistics/LEN success requests*, *CRUD module statistics/LEN success requests latency*, *CRUD module statistics/LEN error requests*, *CRUD module statistics/LEN error requests latency*, *CRUD module statistics/TRUNCATE success requests*, *CRUD module statistics/TRUNCATE success requests latency*, *CRUD module statistics/TRUNCATE error requests*, *CRUD module statistics/TRUNCATE error requests latency* panels ([#143](https://github.com/tarantool/grafana-dashboard/pull/143))
 - [x] **tnt_crud_map_reduces**: see *CRUD module statistics/Map reduce SELECT requests* panel ([#143](https://github.com/tarantool/grafana-dashboard/pull/143))
@@ -142,7 +165,7 @@ Based on [tarantool/crud 0.14.0](https://github.com/tarantool/crud/releases/tag/
 
 # tarantool/expirationd
 
-Based on [tarantool/expirationd 1.2.0](https://github.com/tarantool/expirationd/releases/tag/1.2.0).
+Based on [tarantool/expirationd 1.3.1](https://github.com/tarantool/expirationd/releases/tag/1.3.1).
 
 - [x] **expirationd_checked_count**: see *expirationd module statistics/Tuples checked* panel ([#162](https://github.com/tarantool/grafana-dashboard/pull/162))
 - [x] **expirationd_expired_count**: see *expirationd module statistics/Tuples expired* panel ([#162](https://github.com/tarantool/grafana-dashboard/pull/162))
@@ -153,7 +176,7 @@ Based on [tarantool/expirationd 1.2.0](https://github.com/tarantool/expirationd/
 
 See Tarantool Data Grid dashboard for related panels.
 
-Based on [tarantool/tdg2 2.5.0](https://github.com/tarantool/tdg2/releases/tag/2.5.0) (private repo).
+Based on [tarantool/tdg2 2.6.7](https://github.com/tarantool/tdg2/releases/tag/2.6.7) (private repo).
 
 - **tdg_kafka_ts**: unsupported ([#134](https://github.com/tarantool/grafana-dashboard/issues/134), decided not to support: doesn't seem useful for visualization)
 - **tdg_kafka_time**: unsupported ([#134](https://github.com/tarantool/grafana-dashboard/issues/134), decided not to support: doesn't seem useful for visualization)
@@ -226,10 +249,10 @@ Based on [tarantool/tdg2 2.5.0](https://github.com/tarantool/tdg2/releases/tag/2
 - **tdg_kafka_eos_producer_id**: unsupported ([#134](https://github.com/tarantool/grafana-dashboard/issues/134), decided not to support: doesn't seem useful for visualization)
 - **tdg_kafka_eos_producer_epoch**: unsupported ([#134](https://github.com/tarantool/grafana-dashboard/issues/134), decided not to support: doesn't seem useful for visualization)
 - **tdg_kafka_eos_epoch_cnt**: unsupported ([#134](https://github.com/tarantool/grafana-dashboard/issues/134), decided not to support: doesn't seem useful for visualization)
-- [x] **tdg_expiration_checked_count**: see *TDG expirationd statistics/Tuples checked* panel ([#134](https://github.com/tarantool/grafana-dashboard/issues/134))
-- [x] **tdg_expiration_expired_count**: see *TDG expirationd statistics/Tuples expired* panel ([#134](https://github.com/tarantool/grafana-dashboard/issues/134))
-- [x] **tdg_expiration_restarts**: see *TDG expirationd statistics/Restart count* panel ([#134](https://github.com/tarantool/grafana-dashboard/issues/134))
-- [x] **tdg_expiration_working_time**: see *TDG expirationd statistics/Operation time* panel ([#134](https://github.com/tarantool/grafana-dashboard/issues/134))
+- [x] **tdg_expiration_checked_count**: see *TDG expirationd statistics/Tuples checked* panel ([#134](https://github.com/tarantool/grafana-dashboard/issues/134), [#164](https://github.com/tarantool/grafana-dashboard/issues/164))
+- [x] **tdg_expiration_expired_count**: see *TDG expirationd statistics/Tuples expired* panel ([#134](https://github.com/tarantool/grafana-dashboard/issues/134), [#164](https://github.com/tarantool/grafana-dashboard/issues/164))
+- [x] **tdg_expiration_restarts**: see *TDG expirationd statistics/Restart count* panel ([#134](https://github.com/tarantool/grafana-dashboard/issues/134), [#164](https://github.com/tarantool/grafana-dashboard/issues/164))
+- [x] **tdg_expiration_working_time**: see *TDG expirationd statistics/Operation time* panel ([#134](https://github.com/tarantool/grafana-dashboard/issues/134), [#164](https://github.com/tarantool/grafana-dashboard/issues/164))
 - [x] **tnt_cpu_thread**: see *Tarantool CPU statistics/Thread system time*, *Tarantool CPU statistics/Thread user time* panels ([#134](https://github.com/tarantool/grafana-dashboard/issues/134))
 - [x] **tdg_scanned_tuples_count**, **tdg_scanned_tuples_sum**: see *TDG tuples statistics/Tuples scanned (average)* panels ([#134](https://github.com/tarantool/grafana-dashboard/issues/134))
 - **tdg_scanned_tuples_le**: unsupported ([#134](https://github.com/tarantool/grafana-dashboard/issues/134), decided not to support:  **tdg_scanned_tuples_count**, **tdg_scanned_tuples_sum** should be enough)
