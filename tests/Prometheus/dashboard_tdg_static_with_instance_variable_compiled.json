@@ -14432,7 +14432,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tdg_expiration_checked_count{job=~\"tarantool\",alias=~\"$alias\"}[$__rate_interval])",
+                     "expr": "rate(expirationd_checked_count{job=~\"tarantool\",alias=~\"$alias\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{name}} — {{alias}}",
@@ -14522,7 +14522,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tdg_expiration_expired_count{job=~\"tarantool\",alias=~\"$alias\"}[$__rate_interval])",
+                     "expr": "rate(expirationd_expired_count{job=~\"tarantool\",alias=~\"$alias\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{name}} — {{alias}}",
@@ -14612,7 +14612,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tdg_expiration_restarts{job=~\"tarantool\",alias=~\"$alias\"}",
+                     "expr": "expirationd_restarts{job=~\"tarantool\",alias=~\"$alias\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{name}} — {{alias}}",
@@ -14702,7 +14702,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tdg_expiration_working_time{job=~\"tarantool\",alias=~\"$alias\"}",
+                     "expr": "expirationd_working_time{job=~\"tarantool\",alias=~\"$alias\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{name}} — {{alias}}",
@@ -14752,7 +14752,7 @@
          "repeatIteration": null,
          "repeatRowId": null,
          "showTitle": true,
-         "title": "TDG expirationd statistics",
+         "title": "expirationd module statistics",
          "titleSize": "h6",
          "type": "row"
       },
