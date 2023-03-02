@@ -351,4 +351,91 @@ local prometheus = grafana.prometheus;
     labelY1='requests per second',
     operation='execute'
   ),
+
+  txn_begin_rps(
+    title='Transaction begins',
+    description=|||
+      Panel displays the count of IPROTO_CALL and
+      IPROTO_EVAL operations with `box.begin()`, IPROTO_EXECUTE
+      operations with `TRANSACTION START` and IPROTO_BEGIN operations.
+      Graph shows average calls per second.
+
+      Panel works with Tarantool 2.10 or newer.
+    |||,
+    datasource_type=null,
+    datasource=null,
+    policy=null,
+    measurement=null,
+    job=null,
+    alias=null,
+  ):: operation_rps(
+    title=title,
+    description=description,
+    datasource_type=datasource_type,
+    datasource=datasource,
+    policy=policy,
+    measurement=measurement,
+    job=job,
+    alias=alias,
+    labelY1='begins per second',
+    operation='begin'
+  ),
+
+  txn_commit_rps(
+    title='Transaction commits',
+    description=|||
+      Panel displays the count of IPROTO_CALL and
+      IPROTO_EVAL operations with `box.commit()`, IPROTO_EXECUTE
+      operations with `COMMIT` and IPROTO_COMMIT operations.
+      Graph shows average calls per second.
+
+      Panel works with Tarantool 2.10 or newer.
+    |||,
+    datasource_type=null,
+    datasource=null,
+    policy=null,
+    measurement=null,
+    job=null,
+    alias=null,
+  ):: operation_rps(
+    title=title,
+    description=description,
+    datasource_type=datasource_type,
+    datasource=datasource,
+    policy=policy,
+    measurement=measurement,
+    job=job,
+    alias=alias,
+    labelY1='commits per second',
+    operation='commit'
+  ),
+
+  txn_rollback_rps(
+    title='Transaction rollbacks',
+    description=|||
+      Panel displays the count of IPROTO_CALL and
+      IPROTO_EVAL operations with `box.rollback()`, IPROTO_EXECUTE
+      operations with `ROLLBACK` and IPROTO_ROLLBACK operations.
+      Graph shows average calls per second.
+
+      Panel works with Tarantool 2.10 or newer.
+    |||,
+    datasource_type=null,
+    datasource=null,
+    policy=null,
+    measurement=null,
+    job=null,
+    alias=null,
+  ):: operation_rps(
+    title=title,
+    description=description,
+    datasource_type=datasource_type,
+    datasource=datasource,
+    policy=policy,
+    measurement=measurement,
+    job=job,
+    alias=alias,
+    labelY1='rollbacks per second',
+    operation='rollback'
+  ),
 }

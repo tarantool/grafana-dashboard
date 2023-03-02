@@ -1060,6 +1060,33 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       job=job,
       alias=alias,
     ),
+
+    operations.txn_begin_rps(
+      datasource_type=datasource_type,
+      datasource=datasource,
+      policy=policy,
+      measurement=measurement,
+      job=job,
+      alias=alias,
+    ),
+
+    operations.txn_commit_rps(
+      datasource_type=datasource_type,
+      datasource=datasource,
+      policy=policy,
+      measurement=measurement,
+      job=job,
+      alias=alias,
+    ),
+
+    operations.txn_rollback_rps(
+      datasource_type=datasource_type,
+      datasource=datasource,
+      policy=policy,
+      measurement=measurement,
+      job=job,
+      alias=alias,
+    ),
   ],
 
   crud(datasource_type, datasource, policy=null, measurement=null, job=null, alias=null):: [

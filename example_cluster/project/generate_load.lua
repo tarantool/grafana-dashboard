@@ -54,6 +54,8 @@ local UPDATE = 'update'
 local UPSERT = 'upsert'
 local REPLACE = 'replace'
 local DELETE = 'delete'
+local COMMIT = 'commit'
+local ROLLBACK = 'rollback'
 
 local last_key = 1
 
@@ -117,6 +119,20 @@ local function space_operations(instance, operation, count)
                 if tuple == nil then return end
                 space:delete{ tuple[1] }
             end
+
+        elseif operation == COMMIT then
+            for _ = 1, count do
+                local s = instance.net_box:new_stream()
+                s:begin()
+                s:commit()
+            end
+
+        elseif operation == ROLLBACK then
+            for _ = 1, count do
+                local s = instance.net_box:new_stream()
+                s:begin()
+                s:rollback()
+            end
         end
     end
 end
@@ -134,6 +150,8 @@ local function generate_space_load(name, instance)
             space_load[UPSERT] = math.random(5, 10)
             space_load[REPLACE] = math.random(5, 10)
             space_load[DELETE] = math.random(1, 2)
+            space_load[COMMIT] = math.random(1, 5)
+            space_load[ROLLBACK] = math.random(0, 2)
         end
     else
         space_load[INSERT] = math.random(1, 3)
