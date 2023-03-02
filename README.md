@@ -113,6 +113,8 @@ Variables for Prometheus targets:
 - `JOB` (optional, default `tarantool`): name of a Prometheus job collecting your application metrics;
 - `WITH_INSTANCE_VARIABLE` (optional, default `FALSE`): build a dashboard with variable which
   can be used to select displayed cluster instances;
+- `TITLE` (optional, default `"Tarantool dashboard"` for plain dashboard
+  and `"Tarantool Data Grid dashobard"` for TDG dashboard): dashboard title;
 - `OUTPUT_STATIC_DASHBOARD` (optional, default `dashboard.json`): compiled dashboard file.
 
 Variables for InfluxDB targets:
@@ -121,6 +123,8 @@ Variables for InfluxDB targets:
 - `MEASUREMENT` (optional, default `tarantool_http`): name of a InfluxDB measurement with your application metrics;
 - `WITH_INSTANCE_VARIABLE` (optional, default `FALSE`): build a dashboard with variable which
   can be used to select displayed cluster instances;
+- `TITLE` (optional, default `"Tarantool dashboard"` for plain dashboard
+  and `"Tarantool Data Grid dashobard"` for TDG dashboard): dashboard title;
 - `OUTPUT_STATIC_DASHBOARD` (optional, default `dashboard.json`): compiled dashboard file.
 
 With `WITH_INSTANCE_VARIABLE=FALSE`, dashboard will contain no dynamic variables and Grafana alerts can be used.

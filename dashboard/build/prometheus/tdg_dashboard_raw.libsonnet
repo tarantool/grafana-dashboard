@@ -4,9 +4,15 @@ local dashboard = import 'dashboard/dashboard.libsonnet';
 local section = import 'dashboard/section.libsonnet';
 local variable = import 'dashboard/variable.libsonnet';
 
-function(datasource, job, alias) dashboard.new(
+function(
+  datasource,
+  job,
+  alias,
+  title='',
+) dashboard.new(
   grafana.dashboard.new(
-    title='Tarantool Data Grid dashboard',
+    // Cannot use in-built means to work with defaults due to possible ext vars.
+    title=(if title != '' then title else 'Tarantool Data Grid dashboard'),
     description='Dashboard for Tarantool Data Grid ver. 2 application monitoring, based on grafonnet library.',
     editable=true,
     schemaVersion=21,

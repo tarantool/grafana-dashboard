@@ -6,12 +6,14 @@ local variable = import 'dashboard/variable.libsonnet';
 local DATASOURCE = std.extVar('DATASOURCE');
 local JOB = std.extVar('JOB');
 local WITH_INSTANCE_VARIABLE = (std.asciiUpper(std.extVar('WITH_INSTANCE_VARIABLE')) == 'TRUE');
+local TITLE = std.extVar('TITLE');
 
 if WITH_INSTANCE_VARIABLE then
   dashboard_raw(
     datasource=DATASOURCE,
     job=JOB,
     alias=variable.prometheus.alias,
+    title=TITLE,
   ).addTemplate(
     grafana.template.new(
       name='alias',
@@ -29,4 +31,5 @@ else
     datasource=DATASOURCE,
     job=JOB,
     alias='.*',
+    title=TITLE,
   ).build()
