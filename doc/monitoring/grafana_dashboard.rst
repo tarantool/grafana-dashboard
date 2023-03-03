@@ -164,6 +164,7 @@ For TDG dashboard, please use
             "label_pairs_index_name",
             "label_pairs_delta",
             "label_pairs_stream",
+            "label_pairs_thread",
             "label_pairs_type",
             "label_pairs_connector_name",
             "label_pairs_broker_name",
