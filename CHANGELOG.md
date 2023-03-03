@@ -12,6 +12,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Panels with net statistics per thread
 - Panel with failover trigger count
 - Panels with syncro replication queue statistics
+- Panels with leader election statistics
 
 ### Changed
 - Replace LuaJit deprecated metrics with new ones
