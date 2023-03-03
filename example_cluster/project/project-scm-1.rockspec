@@ -7,7 +7,7 @@ source  = {
 dependencies = {
     'tarantool',
     'lua >= 5.1',
-    'cartridge == 2.7.8-1',
+    'cartridge == 2.7.6-1',
     'metrics == 0.16.0-1',
     'crud == 1.0.0-1',
     'expirationd == 1.3.1-1',
