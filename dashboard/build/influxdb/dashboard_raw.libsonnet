@@ -56,6 +56,14 @@ function(
     alias=alias,
   )
 ).addPanels(
+  section.replication(
+    datasource_type=variable.datasource_type.influxdb,
+    datasource=datasource,
+    policy=policy,
+    measurement=measurement,
+    alias=alias,
+  )
+).addPanels(
   section.http(
     datasource_type=variable.datasource_type.influxdb,
     datasource=datasource,
