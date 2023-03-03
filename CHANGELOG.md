@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Panels for transaction operations
 - Panels with net statistics per thread
 - Panel with failover trigger count
+- Panels with syncro replication queue statistics
 
 ### Changed
 - Replace LuaJit deprecated metrics with new ones
