@@ -4712,6 +4712,2456 @@
                "dashLength": 10,
                "dashes": false,
                "datasource": "$prometheus",
+               "decimals": 3,
+               "description": "Each operation like `space:replace{}` turns into ``statement``\nfor the current transaction.\n\nGraph shows the number of bytes that are allocated\nfor the statements of all current transactions.\n\nPanel works with metrics 0.15.1 or newer, Tarantool 2.10 or newer.\n",
+               "fill": 0,
+               "gridPos": {
+                  "h": 8,
+                  "w": 8,
+                  "x": 0,
+                  "y": 142
+               },
+               "id": 60,
+               "legend": {
+                  "alignAsTable": true,
+                  "avg": true,
+                  "current": true,
+                  "max": true,
+                  "min": false,
+                  "rightSide": false,
+                  "show": true,
+                  "sideWidth": null,
+                  "sort": "current",
+                  "sortDesc": true,
+                  "total": false,
+                  "values": true
+               },
+               "lines": true,
+               "linewidth": 1,
+               "links": [ ],
+               "nullPointMode": "null",
+               "percentage": false,
+               "pointradius": 5,
+               "points": false,
+               "renderer": "flot",
+               "repeat": null,
+               "seriesOverrides": [ ],
+               "spaceLength": 10,
+               "stack": false,
+               "steppedLine": false,
+               "targets": [
+                  {
+                     "expr": "tnt_memtx_tnx_statements{job=~\"$job\",alias=~\"$alias\",kind=\"total\"}",
+                     "format": "time_series",
+                     "intervalFactor": 2,
+                     "legendFormat": "{{alias}}",
+                     "refId": "A"
+                  }
+               ],
+               "thresholds": [ ],
+               "timeFrom": null,
+               "timeShift": null,
+               "title": "Transaction statements size (total)",
+               "tooltip": {
+                  "shared": true,
+                  "sort": 2,
+                  "value_type": "individual"
+               },
+               "type": "graph",
+               "xaxis": {
+                  "buckets": null,
+                  "mode": "time",
+                  "name": null,
+                  "show": true,
+                  "values": [ ]
+               },
+               "yaxes": [
+                  {
+                     "decimals": 0,
+                     "format": "bytes",
+                     "label": "in bytes",
+                     "logBase": 1,
+                     "max": null,
+                     "min": null,
+                     "show": true
+                  },
+                  {
+                     "decimals": 3,
+                     "format": "bytes",
+                     "label": null,
+                     "logBase": 1,
+                     "max": null,
+                     "min": null,
+                     "show": true
+                  }
+               ]
+            },
+            {
+               "aliasColors": { },
+               "bars": false,
+               "dashLength": 10,
+               "dashes": false,
+               "datasource": "$prometheus",
+               "decimals": 3,
+               "description": "Each operation like `space:replace{}` turns into ``statement``\nfor the current transaction.\n\nGraph shows average bytes used by transactions for statements\n(`txn.statements.total` bytes / number of open transactions).\n\nPanel works with metrics 0.15.1 or newer, Tarantool 2.10 or newer.\n",
+               "fill": 0,
+               "gridPos": {
+                  "h": 8,
+                  "w": 8,
+                  "x": 8,
+                  "y": 142
+               },
+               "id": 61,
+               "legend": {
+                  "alignAsTable": true,
+                  "avg": true,
+                  "current": true,
+                  "max": true,
+                  "min": false,
+                  "rightSide": false,
+                  "show": true,
+                  "sideWidth": null,
+                  "sort": "current",
+                  "sortDesc": true,
+                  "total": false,
+                  "values": true
+               },
+               "lines": true,
+               "linewidth": 1,
+               "links": [ ],
+               "nullPointMode": "null",
+               "percentage": false,
+               "pointradius": 5,
+               "points": false,
+               "renderer": "flot",
+               "repeat": null,
+               "seriesOverrides": [ ],
+               "spaceLength": 10,
+               "stack": false,
+               "steppedLine": false,
+               "targets": [
+                  {
+                     "expr": "tnt_memtx_tnx_statements{job=~\"$job\",alias=~\"$alias\",kind=\"average\"}",
+                     "format": "time_series",
+                     "intervalFactor": 2,
+                     "legendFormat": "{{alias}}",
+                     "refId": "A"
+                  }
+               ],
+               "thresholds": [ ],
+               "timeFrom": null,
+               "timeShift": null,
+               "title": "Transaction statements size (average)",
+               "tooltip": {
+                  "shared": true,
+                  "sort": 2,
+                  "value_type": "individual"
+               },
+               "type": "graph",
+               "xaxis": {
+                  "buckets": null,
+                  "mode": "time",
+                  "name": null,
+                  "show": true,
+                  "values": [ ]
+               },
+               "yaxes": [
+                  {
+                     "decimals": 0,
+                     "format": "bytes",
+                     "label": "in bytes",
+                     "logBase": 1,
+                     "max": null,
+                     "min": null,
+                     "show": true
+                  },
+                  {
+                     "decimals": 3,
+                     "format": "bytes",
+                     "label": null,
+                     "logBase": 1,
+                     "max": null,
+                     "min": null,
+                     "show": true
+                  }
+               ]
+            },
+            {
+               "aliasColors": { },
+               "bars": false,
+               "dashLength": 10,
+               "dashes": false,
+               "datasource": "$prometheus",
+               "decimals": 3,
+               "description": "Each operation like `space:replace{}` turns into ``statement``\nfor the current transaction.\n\nGraph shows the maximum number of bytes used by one\nthe current transaction for statements.\n\nPanel works with metrics 0.15.1 or newer, Tarantool 2.10 or newer.\n",
+               "fill": 0,
+               "gridPos": {
+                  "h": 8,
+                  "w": 8,
+                  "x": 16,
+                  "y": 142
+               },
+               "id": 62,
+               "legend": {
+                  "alignAsTable": true,
+                  "avg": true,
+                  "current": true,
+                  "max": true,
+                  "min": false,
+                  "rightSide": false,
+                  "show": true,
+                  "sideWidth": null,
+                  "sort": "current",
+                  "sortDesc": true,
+                  "total": false,
+                  "values": true
+               },
+               "lines": true,
+               "linewidth": 1,
+               "links": [ ],
+               "nullPointMode": "null",
+               "percentage": false,
+               "pointradius": 5,
+               "points": false,
+               "renderer": "flot",
+               "repeat": null,
+               "seriesOverrides": [ ],
+               "spaceLength": 10,
+               "stack": false,
+               "steppedLine": false,
+               "targets": [
+                  {
+                     "expr": "tnt_memtx_tnx_statements{job=~\"$job\",alias=~\"$alias\",kind=\"max\"}",
+                     "format": "time_series",
+                     "intervalFactor": 2,
+                     "legendFormat": "{{alias}}",
+                     "refId": "A"
+                  }
+               ],
+               "thresholds": [ ],
+               "timeFrom": null,
+               "timeShift": null,
+               "title": "Transaction statements size (max)",
+               "tooltip": {
+                  "shared": true,
+                  "sort": 2,
+                  "value_type": "individual"
+               },
+               "type": "graph",
+               "xaxis": {
+                  "buckets": null,
+                  "mode": "time",
+                  "name": null,
+                  "show": true,
+                  "values": [ ]
+               },
+               "yaxes": [
+                  {
+                     "decimals": 0,
+                     "format": "bytes",
+                     "label": "in bytes",
+                     "logBase": 1,
+                     "max": null,
+                     "min": null,
+                     "show": true
+                  },
+                  {
+                     "decimals": 3,
+                     "format": "bytes",
+                     "label": null,
+                     "logBase": 1,
+                     "max": null,
+                     "min": null,
+                     "show": true
+                  }
+               ]
+            },
+            {
+               "aliasColors": { },
+               "bars": false,
+               "dashLength": 10,
+               "dashes": false,
+               "datasource": "$prometheus",
+               "decimals": 3,
+               "description": "User may allocate memory for the current transaction with\nTarantool C APIfunction `box_txn_alloc()`.\n\nGraph shows memory allocated for all current transactions.\n\nPanel works with metrics 0.15.1 or newer, Tarantool 2.10 or newer.\n",
+               "fill": 0,
+               "gridPos": {
+                  "h": 8,
+                  "w": 8,
+                  "x": 0,
+                  "y": 150
+               },
+               "id": 63,
+               "legend": {
+                  "alignAsTable": true,
+                  "avg": true,
+                  "current": true,
+                  "max": true,
+                  "min": false,
+                  "rightSide": false,
+                  "show": true,
+                  "sideWidth": null,
+                  "sort": "current",
+                  "sortDesc": true,
+                  "total": false,
+                  "values": true
+               },
+               "lines": true,
+               "linewidth": 1,
+               "links": [ ],
+               "nullPointMode": "null",
+               "percentage": false,
+               "pointradius": 5,
+               "points": false,
+               "renderer": "flot",
+               "repeat": null,
+               "seriesOverrides": [ ],
+               "spaceLength": 10,
+               "stack": false,
+               "steppedLine": false,
+               "targets": [
+                  {
+                     "expr": "tnt_memtx_tnx_user{job=~\"$job\",alias=~\"$alias\",kind=\"total\"}",
+                     "format": "time_series",
+                     "intervalFactor": 2,
+                     "legendFormat": "{{alias}}",
+                     "refId": "A"
+                  }
+               ],
+               "thresholds": [ ],
+               "timeFrom": null,
+               "timeShift": null,
+               "title": "Transaction user size (total)",
+               "tooltip": {
+                  "shared": true,
+                  "sort": 2,
+                  "value_type": "individual"
+               },
+               "type": "graph",
+               "xaxis": {
+                  "buckets": null,
+                  "mode": "time",
+                  "name": null,
+                  "show": true,
+                  "values": [ ]
+               },
+               "yaxes": [
+                  {
+                     "decimals": 0,
+                     "format": "bytes",
+                     "label": "in bytes",
+                     "logBase": 1,
+                     "max": null,
+                     "min": null,
+                     "show": true
+                  },
+                  {
+                     "decimals": 3,
+                     "format": "bytes",
+                     "label": null,
+                     "logBase": 1,
+                     "max": null,
+                     "min": null,
+                     "show": true
+                  }
+               ]
+            },
+            {
+               "aliasColors": { },
+               "bars": false,
+               "dashLength": 10,
+               "dashes": false,
+               "datasource": "$prometheus",
+               "decimals": 3,
+               "description": "User may allocate memory for the current transaction with\nTarantool C APIfunction `box_txn_alloc()`.\n\nGraph shows transaction average\n(total allocated bytes / number of all current transactions).\n\nPanel works with metrics 0.15.1 or newer, Tarantool 2.10 or newer.\n",
+               "fill": 0,
+               "gridPos": {
+                  "h": 8,
+                  "w": 8,
+                  "x": 8,
+                  "y": 150
+               },
+               "id": 64,
+               "legend": {
+                  "alignAsTable": true,
+                  "avg": true,
+                  "current": true,
+                  "max": true,
+                  "min": false,
+                  "rightSide": false,
+                  "show": true,
+                  "sideWidth": null,
+                  "sort": "current",
+                  "sortDesc": true,
+                  "total": false,
+                  "values": true
+               },
+               "lines": true,
+               "linewidth": 1,
+               "links": [ ],
+               "nullPointMode": "null",
+               "percentage": false,
+               "pointradius": 5,
+               "points": false,
+               "renderer": "flot",
+               "repeat": null,
+               "seriesOverrides": [ ],
+               "spaceLength": 10,
+               "stack": false,
+               "steppedLine": false,
+               "targets": [
+                  {
+                     "expr": "tnt_memtx_tnx_user{job=~\"$job\",alias=~\"$alias\",kind=\"average\"}",
+                     "format": "time_series",
+                     "intervalFactor": 2,
+                     "legendFormat": "{{alias}}",
+                     "refId": "A"
+                  }
+               ],
+               "thresholds": [ ],
+               "timeFrom": null,
+               "timeShift": null,
+               "title": "Transaction user size (average)",
+               "tooltip": {
+                  "shared": true,
+                  "sort": 2,
+                  "value_type": "individual"
+               },
+               "type": "graph",
+               "xaxis": {
+                  "buckets": null,
+                  "mode": "time",
+                  "name": null,
+                  "show": true,
+                  "values": [ ]
+               },
+               "yaxes": [
+                  {
+                     "decimals": 0,
+                     "format": "bytes",
+                     "label": "in bytes",
+                     "logBase": 1,
+                     "max": null,
+                     "min": null,
+                     "show": true
+                  },
+                  {
+                     "decimals": 3,
+                     "format": "bytes",
+                     "label": null,
+                     "logBase": 1,
+                     "max": null,
+                     "min": null,
+                     "show": true
+                  }
+               ]
+            },
+            {
+               "aliasColors": { },
+               "bars": false,
+               "dashLength": 10,
+               "dashes": false,
+               "datasource": "$prometheus",
+               "decimals": 3,
+               "description": "User may allocate memory for the current transaction with\nTarantool C APIfunction `box_txn_alloc()`.\n\nGraph shows the maximum number of bytes allocated over all current transactions.\n\nPanel works with metrics 0.15.1 or newer, Tarantool 2.10 or newer.\n",
+               "fill": 0,
+               "gridPos": {
+                  "h": 8,
+                  "w": 8,
+                  "x": 16,
+                  "y": 150
+               },
+               "id": 65,
+               "legend": {
+                  "alignAsTable": true,
+                  "avg": true,
+                  "current": true,
+                  "max": true,
+                  "min": false,
+                  "rightSide": false,
+                  "show": true,
+                  "sideWidth": null,
+                  "sort": "current",
+                  "sortDesc": true,
+                  "total": false,
+                  "values": true
+               },
+               "lines": true,
+               "linewidth": 1,
+               "links": [ ],
+               "nullPointMode": "null",
+               "percentage": false,
+               "pointradius": 5,
+               "points": false,
+               "renderer": "flot",
+               "repeat": null,
+               "seriesOverrides": [ ],
+               "spaceLength": 10,
+               "stack": false,
+               "steppedLine": false,
+               "targets": [
+                  {
+                     "expr": "tnt_memtx_tnx_user{job=~\"$job\",alias=~\"$alias\",kind=\"max\"}",
+                     "format": "time_series",
+                     "intervalFactor": 2,
+                     "legendFormat": "{{alias}}",
+                     "refId": "A"
+                  }
+               ],
+               "thresholds": [ ],
+               "timeFrom": null,
+               "timeShift": null,
+               "title": "Transaction user size (max)",
+               "tooltip": {
+                  "shared": true,
+                  "sort": 2,
+                  "value_type": "individual"
+               },
+               "type": "graph",
+               "xaxis": {
+                  "buckets": null,
+                  "mode": "time",
+                  "name": null,
+                  "show": true,
+                  "values": [ ]
+               },
+               "yaxes": [
+                  {
+                     "decimals": 0,
+                     "format": "bytes",
+                     "label": "in bytes",
+                     "logBase": 1,
+                     "max": null,
+                     "min": null,
+                     "show": true
+                  },
+                  {
+                     "decimals": 3,
+                     "format": "bytes",
+                     "label": null,
+                     "logBase": 1,
+                     "max": null,
+                     "min": null,
+                     "show": true
+                  }
+               ]
+            },
+            {
+               "aliasColors": { },
+               "bars": false,
+               "dashLength": 10,
+               "dashes": false,
+               "datasource": "$prometheus",
+               "decimals": 3,
+               "description": "System may store utility things like logs and savepoints\nfor each transaction.\n\nGraph shows memory allocated for all current transactions.\n\nPanel works with metrics 0.15.1 or newer, Tarantool 2.10 or newer.\n",
+               "fill": 0,
+               "gridPos": {
+                  "h": 8,
+                  "w": 8,
+                  "x": 0,
+                  "y": 158
+               },
+               "id": 66,
+               "legend": {
+                  "alignAsTable": true,
+                  "avg": true,
+                  "current": true,
+                  "max": true,
+                  "min": false,
+                  "rightSide": false,
+                  "show": true,
+                  "sideWidth": null,
+                  "sort": "current",
+                  "sortDesc": true,
+                  "total": false,
+                  "values": true
+               },
+               "lines": true,
+               "linewidth": 1,
+               "links": [ ],
+               "nullPointMode": "null",
+               "percentage": false,
+               "pointradius": 5,
+               "points": false,
+               "renderer": "flot",
+               "repeat": null,
+               "seriesOverrides": [ ],
+               "spaceLength": 10,
+               "stack": false,
+               "steppedLine": false,
+               "targets": [
+                  {
+                     "expr": "tnt_memtx_tnx_system{job=~\"$job\",alias=~\"$alias\",kind=\"total\"}",
+                     "format": "time_series",
+                     "intervalFactor": 2,
+                     "legendFormat": "{{alias}}",
+                     "refId": "A"
+                  }
+               ],
+               "thresholds": [ ],
+               "timeFrom": null,
+               "timeShift": null,
+               "title": "Transaction system size (total)",
+               "tooltip": {
+                  "shared": true,
+                  "sort": 2,
+                  "value_type": "individual"
+               },
+               "type": "graph",
+               "xaxis": {
+                  "buckets": null,
+                  "mode": "time",
+                  "name": null,
+                  "show": true,
+                  "values": [ ]
+               },
+               "yaxes": [
+                  {
+                     "decimals": 0,
+                     "format": "bytes",
+                     "label": "in bytes",
+                     "logBase": 1,
+                     "max": null,
+                     "min": null,
+                     "show": true
+                  },
+                  {
+                     "decimals": 3,
+                     "format": "bytes",
+                     "label": null,
+                     "logBase": 1,
+                     "max": null,
+                     "min": null,
+                     "show": true
+                  }
+               ]
+            },
+            {
+               "aliasColors": { },
+               "bars": false,
+               "dashLength": 10,
+               "dashes": false,
+               "datasource": "$prometheus",
+               "decimals": 3,
+               "description": "System may store utility things like logs and savepoints\nfor each transaction.\n\nGraph shows transaction average\n(total allocated bytes / number of all current transactions).\n\nPanel works with metrics 0.15.1 or newer, Tarantool 2.10 or newer.\n",
+               "fill": 0,
+               "gridPos": {
+                  "h": 8,
+                  "w": 8,
+                  "x": 8,
+                  "y": 158
+               },
+               "id": 67,
+               "legend": {
+                  "alignAsTable": true,
+                  "avg": true,
+                  "current": true,
+                  "max": true,
+                  "min": false,
+                  "rightSide": false,
+                  "show": true,
+                  "sideWidth": null,
+                  "sort": "current",
+                  "sortDesc": true,
+                  "total": false,
+                  "values": true
+               },
+               "lines": true,
+               "linewidth": 1,
+               "links": [ ],
+               "nullPointMode": "null",
+               "percentage": false,
+               "pointradius": 5,
+               "points": false,
+               "renderer": "flot",
+               "repeat": null,
+               "seriesOverrides": [ ],
+               "spaceLength": 10,
+               "stack": false,
+               "steppedLine": false,
+               "targets": [
+                  {
+                     "expr": "tnt_memtx_tnx_system{job=~\"$job\",alias=~\"$alias\",kind=\"average\"}",
+                     "format": "time_series",
+                     "intervalFactor": 2,
+                     "legendFormat": "{{alias}}",
+                     "refId": "A"
+                  }
+               ],
+               "thresholds": [ ],
+               "timeFrom": null,
+               "timeShift": null,
+               "title": "Transaction system size (average)",
+               "tooltip": {
+                  "shared": true,
+                  "sort": 2,
+                  "value_type": "individual"
+               },
+               "type": "graph",
+               "xaxis": {
+                  "buckets": null,
+                  "mode": "time",
+                  "name": null,
+                  "show": true,
+                  "values": [ ]
+               },
+               "yaxes": [
+                  {
+                     "decimals": 0,
+                     "format": "bytes",
+                     "label": "in bytes",
+                     "logBase": 1,
+                     "max": null,
+                     "min": null,
+                     "show": true
+                  },
+                  {
+                     "decimals": 3,
+                     "format": "bytes",
+                     "label": null,
+                     "logBase": 1,
+                     "max": null,
+                     "min": null,
+                     "show": true
+                  }
+               ]
+            },
+            {
+               "aliasColors": { },
+               "bars": false,
+               "dashLength": 10,
+               "dashes": false,
+               "datasource": "$prometheus",
+               "decimals": 3,
+               "description": "System may store utility things like logs and savepoints\nfor each transaction.\n\nGraph shows the maximum number of bytes allocated over all current transactions.\n\nPanel works with metrics 0.15.1 or newer, Tarantool 2.10 or newer.\n",
+               "fill": 0,
+               "gridPos": {
+                  "h": 8,
+                  "w": 8,
+                  "x": 16,
+                  "y": 158
+               },
+               "id": 68,
+               "legend": {
+                  "alignAsTable": true,
+                  "avg": true,
+                  "current": true,
+                  "max": true,
+                  "min": false,
+                  "rightSide": false,
+                  "show": true,
+                  "sideWidth": null,
+                  "sort": "current",
+                  "sortDesc": true,
+                  "total": false,
+                  "values": true
+               },
+               "lines": true,
+               "linewidth": 1,
+               "links": [ ],
+               "nullPointMode": "null",
+               "percentage": false,
+               "pointradius": 5,
+               "points": false,
+               "renderer": "flot",
+               "repeat": null,
+               "seriesOverrides": [ ],
+               "spaceLength": 10,
+               "stack": false,
+               "steppedLine": false,
+               "targets": [
+                  {
+                     "expr": "tnt_memtx_tnx_system{job=~\"$job\",alias=~\"$alias\",kind=\"max\"}",
+                     "format": "time_series",
+                     "intervalFactor": 2,
+                     "legendFormat": "{{alias}}",
+                     "refId": "A"
+                  }
+               ],
+               "thresholds": [ ],
+               "timeFrom": null,
+               "timeShift": null,
+               "title": "Transaction system size (max)",
+               "tooltip": {
+                  "shared": true,
+                  "sort": 2,
+                  "value_type": "individual"
+               },
+               "type": "graph",
+               "xaxis": {
+                  "buckets": null,
+                  "mode": "time",
+                  "name": null,
+                  "show": true,
+                  "values": [ ]
+               },
+               "yaxes": [
+                  {
+                     "decimals": 0,
+                     "format": "bytes",
+                     "label": "in bytes",
+                     "logBase": 1,
+                     "max": null,
+                     "min": null,
+                     "show": true
+                  },
+                  {
+                     "decimals": 3,
+                     "format": "bytes",
+                     "label": null,
+                     "logBase": 1,
+                     "max": null,
+                     "min": null,
+                     "show": true
+                  }
+               ]
+            },
+            {
+               "aliasColors": { },
+               "bars": false,
+               "dashLength": 10,
+               "dashes": false,
+               "datasource": "$prometheus",
+               "decimals": 3,
+               "description": "Tarantool allocates memory for trackers\nthat keep track of transaction reads.\n\nGraph shows memory allocated for trackers of all current transactions.\n\nPanel works with metrics 0.15.1 or newer, Tarantool 2.10 or newer.\n",
+               "fill": 0,
+               "gridPos": {
+                  "h": 8,
+                  "w": 8,
+                  "x": 0,
+                  "y": 166
+               },
+               "id": 69,
+               "legend": {
+                  "alignAsTable": true,
+                  "avg": true,
+                  "current": true,
+                  "max": true,
+                  "min": false,
+                  "rightSide": false,
+                  "show": true,
+                  "sideWidth": null,
+                  "sort": "current",
+                  "sortDesc": true,
+                  "total": false,
+                  "values": true
+               },
+               "lines": true,
+               "linewidth": 1,
+               "links": [ ],
+               "nullPointMode": "null",
+               "percentage": false,
+               "pointradius": 5,
+               "points": false,
+               "renderer": "flot",
+               "repeat": null,
+               "seriesOverrides": [ ],
+               "spaceLength": 10,
+               "stack": false,
+               "steppedLine": false,
+               "targets": [
+                  {
+                     "expr": "tnt_memtx_mvcc_trackers{job=~\"$job\",alias=~\"$alias\",kind=\"total\"}",
+                     "format": "time_series",
+                     "intervalFactor": 2,
+                     "legendFormat": "{{alias}}",
+                     "refId": "A"
+                  }
+               ],
+               "thresholds": [ ],
+               "timeFrom": null,
+               "timeShift": null,
+               "title": "Trackers size (total)",
+               "tooltip": {
+                  "shared": true,
+                  "sort": 2,
+                  "value_type": "individual"
+               },
+               "type": "graph",
+               "xaxis": {
+                  "buckets": null,
+                  "mode": "time",
+                  "name": null,
+                  "show": true,
+                  "values": [ ]
+               },
+               "yaxes": [
+                  {
+                     "decimals": 0,
+                     "format": "bytes",
+                     "label": "in bytes",
+                     "logBase": 1,
+                     "max": null,
+                     "min": null,
+                     "show": true
+                  },
+                  {
+                     "decimals": 3,
+                     "format": "bytes",
+                     "label": null,
+                     "logBase": 1,
+                     "max": null,
+                     "min": null,
+                     "show": true
+                  }
+               ]
+            },
+            {
+               "aliasColors": { },
+               "bars": false,
+               "dashLength": 10,
+               "dashes": false,
+               "datasource": "$prometheus",
+               "decimals": 3,
+               "description": "Tarantool allocates memory for trackers\nthat keep track of transaction reads.\n\nGraph shows transaction tracker average\n(total allocated bytes / number of all current transactions).\n\nPanel works with metrics 0.15.1 or newer, Tarantool 2.10 or newer.\n",
+               "fill": 0,
+               "gridPos": {
+                  "h": 8,
+                  "w": 8,
+                  "x": 8,
+                  "y": 166
+               },
+               "id": 70,
+               "legend": {
+                  "alignAsTable": true,
+                  "avg": true,
+                  "current": true,
+                  "max": true,
+                  "min": false,
+                  "rightSide": false,
+                  "show": true,
+                  "sideWidth": null,
+                  "sort": "current",
+                  "sortDesc": true,
+                  "total": false,
+                  "values": true
+               },
+               "lines": true,
+               "linewidth": 1,
+               "links": [ ],
+               "nullPointMode": "null",
+               "percentage": false,
+               "pointradius": 5,
+               "points": false,
+               "renderer": "flot",
+               "repeat": null,
+               "seriesOverrides": [ ],
+               "spaceLength": 10,
+               "stack": false,
+               "steppedLine": false,
+               "targets": [
+                  {
+                     "expr": "tnt_memtx_mvcc_trackers{job=~\"$job\",alias=~\"$alias\",kind=\"average\"}",
+                     "format": "time_series",
+                     "intervalFactor": 2,
+                     "legendFormat": "{{alias}}",
+                     "refId": "A"
+                  }
+               ],
+               "thresholds": [ ],
+               "timeFrom": null,
+               "timeShift": null,
+               "title": "Trackers size (average)",
+               "tooltip": {
+                  "shared": true,
+                  "sort": 2,
+                  "value_type": "individual"
+               },
+               "type": "graph",
+               "xaxis": {
+                  "buckets": null,
+                  "mode": "time",
+                  "name": null,
+                  "show": true,
+                  "values": [ ]
+               },
+               "yaxes": [
+                  {
+                     "decimals": 0,
+                     "format": "bytes",
+                     "label": "in bytes",
+                     "logBase": 1,
+                     "max": null,
+                     "min": null,
+                     "show": true
+                  },
+                  {
+                     "decimals": 3,
+                     "format": "bytes",
+                     "label": null,
+                     "logBase": 1,
+                     "max": null,
+                     "min": null,
+                     "show": true
+                  }
+               ]
+            },
+            {
+               "aliasColors": { },
+               "bars": false,
+               "dashLength": 10,
+               "dashes": false,
+               "datasource": "$prometheus",
+               "decimals": 3,
+               "description": "Tarantool allocates memory for trackers\nthat keep track of transaction reads.\n\nGraph shows the maximum number of bytes allocated for a tracker\nover all current transactions.\n\nPanel works with metrics 0.15.1 or newer, Tarantool 2.10 or newer.\n",
+               "fill": 0,
+               "gridPos": {
+                  "h": 8,
+                  "w": 8,
+                  "x": 16,
+                  "y": 166
+               },
+               "id": 71,
+               "legend": {
+                  "alignAsTable": true,
+                  "avg": true,
+                  "current": true,
+                  "max": true,
+                  "min": false,
+                  "rightSide": false,
+                  "show": true,
+                  "sideWidth": null,
+                  "sort": "current",
+                  "sortDesc": true,
+                  "total": false,
+                  "values": true
+               },
+               "lines": true,
+               "linewidth": 1,
+               "links": [ ],
+               "nullPointMode": "null",
+               "percentage": false,
+               "pointradius": 5,
+               "points": false,
+               "renderer": "flot",
+               "repeat": null,
+               "seriesOverrides": [ ],
+               "spaceLength": 10,
+               "stack": false,
+               "steppedLine": false,
+               "targets": [
+                  {
+                     "expr": "tnt_memtx_mvcc_trackers{job=~\"$job\",alias=~\"$alias\",kind=\"max\"}",
+                     "format": "time_series",
+                     "intervalFactor": 2,
+                     "legendFormat": "{{alias}}",
+                     "refId": "A"
+                  }
+               ],
+               "thresholds": [ ],
+               "timeFrom": null,
+               "timeShift": null,
+               "title": "Trackers size (max)",
+               "tooltip": {
+                  "shared": true,
+                  "sort": 2,
+                  "value_type": "individual"
+               },
+               "type": "graph",
+               "xaxis": {
+                  "buckets": null,
+                  "mode": "time",
+                  "name": null,
+                  "show": true,
+                  "values": [ ]
+               },
+               "yaxes": [
+                  {
+                     "decimals": 0,
+                     "format": "bytes",
+                     "label": "in bytes",
+                     "logBase": 1,
+                     "max": null,
+                     "min": null,
+                     "show": true
+                  },
+                  {
+                     "decimals": 3,
+                     "format": "bytes",
+                     "label": null,
+                     "logBase": 1,
+                     "max": null,
+                     "min": null,
+                     "show": true
+                  }
+               ]
+            },
+            {
+               "aliasColors": { },
+               "bars": false,
+               "dashLength": 10,
+               "dashes": false,
+               "datasource": "$prometheus",
+               "decimals": 3,
+               "description": "Tarantool allocates memory in case of conflicts.\n\nGraph shows memory allocated for all current conflicts.\n\nPanel works with metrics 0.15.1 or newer, Tarantool 2.10 or newer.\n",
+               "fill": 0,
+               "gridPos": {
+                  "h": 8,
+                  "w": 8,
+                  "x": 0,
+                  "y": 174
+               },
+               "id": 72,
+               "legend": {
+                  "alignAsTable": true,
+                  "avg": true,
+                  "current": true,
+                  "max": true,
+                  "min": false,
+                  "rightSide": false,
+                  "show": true,
+                  "sideWidth": null,
+                  "sort": "current",
+                  "sortDesc": true,
+                  "total": false,
+                  "values": true
+               },
+               "lines": true,
+               "linewidth": 1,
+               "links": [ ],
+               "nullPointMode": "null",
+               "percentage": false,
+               "pointradius": 5,
+               "points": false,
+               "renderer": "flot",
+               "repeat": null,
+               "seriesOverrides": [ ],
+               "spaceLength": 10,
+               "stack": false,
+               "steppedLine": false,
+               "targets": [
+                  {
+                     "expr": "tnt_memtx_mvcc_conflicts{job=~\"$job\",alias=~\"$alias\",kind=\"total\"}",
+                     "format": "time_series",
+                     "intervalFactor": 2,
+                     "legendFormat": "{{alias}}",
+                     "refId": "A"
+                  }
+               ],
+               "thresholds": [ ],
+               "timeFrom": null,
+               "timeShift": null,
+               "title": "Conflicts size (total)",
+               "tooltip": {
+                  "shared": true,
+                  "sort": 2,
+                  "value_type": "individual"
+               },
+               "type": "graph",
+               "xaxis": {
+                  "buckets": null,
+                  "mode": "time",
+                  "name": null,
+                  "show": true,
+                  "values": [ ]
+               },
+               "yaxes": [
+                  {
+                     "decimals": 0,
+                     "format": "bytes",
+                     "label": "in bytes",
+                     "logBase": 1,
+                     "max": null,
+                     "min": null,
+                     "show": true
+                  },
+                  {
+                     "decimals": 3,
+                     "format": "bytes",
+                     "label": null,
+                     "logBase": 1,
+                     "max": null,
+                     "min": null,
+                     "show": true
+                  }
+               ]
+            },
+            {
+               "aliasColors": { },
+               "bars": false,
+               "dashLength": 10,
+               "dashes": false,
+               "datasource": "$prometheus",
+               "decimals": 3,
+               "description": "Tarantool allocates memory in case of conflicts.\n\nGraph shows transaction conflict average\n(total allocated bytes / number of all current conflict).\n\nPanel works with metrics 0.15.1 or newer, Tarantool 2.10 or newer.\n",
+               "fill": 0,
+               "gridPos": {
+                  "h": 8,
+                  "w": 8,
+                  "x": 8,
+                  "y": 174
+               },
+               "id": 73,
+               "legend": {
+                  "alignAsTable": true,
+                  "avg": true,
+                  "current": true,
+                  "max": true,
+                  "min": false,
+                  "rightSide": false,
+                  "show": true,
+                  "sideWidth": null,
+                  "sort": "current",
+                  "sortDesc": true,
+                  "total": false,
+                  "values": true
+               },
+               "lines": true,
+               "linewidth": 1,
+               "links": [ ],
+               "nullPointMode": "null",
+               "percentage": false,
+               "pointradius": 5,
+               "points": false,
+               "renderer": "flot",
+               "repeat": null,
+               "seriesOverrides": [ ],
+               "spaceLength": 10,
+               "stack": false,
+               "steppedLine": false,
+               "targets": [
+                  {
+                     "expr": "tnt_memtx_mvcc_conflicts{job=~\"$job\",alias=~\"$alias\",kind=\"average\"}",
+                     "format": "time_series",
+                     "intervalFactor": 2,
+                     "legendFormat": "{{alias}}",
+                     "refId": "A"
+                  }
+               ],
+               "thresholds": [ ],
+               "timeFrom": null,
+               "timeShift": null,
+               "title": "Conflicts size (average)",
+               "tooltip": {
+                  "shared": true,
+                  "sort": 2,
+                  "value_type": "individual"
+               },
+               "type": "graph",
+               "xaxis": {
+                  "buckets": null,
+                  "mode": "time",
+                  "name": null,
+                  "show": true,
+                  "values": [ ]
+               },
+               "yaxes": [
+                  {
+                     "decimals": 0,
+                     "format": "bytes",
+                     "label": "in bytes",
+                     "logBase": 1,
+                     "max": null,
+                     "min": null,
+                     "show": true
+                  },
+                  {
+                     "decimals": 3,
+                     "format": "bytes",
+                     "label": null,
+                     "logBase": 1,
+                     "max": null,
+                     "min": null,
+                     "show": true
+                  }
+               ]
+            },
+            {
+               "aliasColors": { },
+               "bars": false,
+               "dashLength": 10,
+               "dashes": false,
+               "datasource": "$prometheus",
+               "decimals": 3,
+               "description": "Tarantool allocates memory in case of conflicts.\n\nGraph shows the maximum number of bytes allocated for a transaction conflict.\n\nPanel works with metrics 0.15.1 or newer, Tarantool 2.10 or newer.\n",
+               "fill": 0,
+               "gridPos": {
+                  "h": 8,
+                  "w": 8,
+                  "x": 16,
+                  "y": 174
+               },
+               "id": 74,
+               "legend": {
+                  "alignAsTable": true,
+                  "avg": true,
+                  "current": true,
+                  "max": true,
+                  "min": false,
+                  "rightSide": false,
+                  "show": true,
+                  "sideWidth": null,
+                  "sort": "current",
+                  "sortDesc": true,
+                  "total": false,
+                  "values": true
+               },
+               "lines": true,
+               "linewidth": 1,
+               "links": [ ],
+               "nullPointMode": "null",
+               "percentage": false,
+               "pointradius": 5,
+               "points": false,
+               "renderer": "flot",
+               "repeat": null,
+               "seriesOverrides": [ ],
+               "spaceLength": 10,
+               "stack": false,
+               "steppedLine": false,
+               "targets": [
+                  {
+                     "expr": "tnt_memtx_mvcc_conflicts{job=~\"$job\",alias=~\"$alias\",kind=\"max\"}",
+                     "format": "time_series",
+                     "intervalFactor": 2,
+                     "legendFormat": "{{alias}}",
+                     "refId": "A"
+                  }
+               ],
+               "thresholds": [ ],
+               "timeFrom": null,
+               "timeShift": null,
+               "title": "Conflicts size (max)",
+               "tooltip": {
+                  "shared": true,
+                  "sort": 2,
+                  "value_type": "individual"
+               },
+               "type": "graph",
+               "xaxis": {
+                  "buckets": null,
+                  "mode": "time",
+                  "name": null,
+                  "show": true,
+                  "values": [ ]
+               },
+               "yaxes": [
+                  {
+                     "decimals": 0,
+                     "format": "bytes",
+                     "label": "in bytes",
+                     "logBase": 1,
+                     "max": null,
+                     "min": null,
+                     "show": true
+                  },
+                  {
+                     "decimals": 3,
+                     "format": "bytes",
+                     "label": null,
+                     "logBase": 1,
+                     "max": null,
+                     "min": null,
+                     "show": true
+                  }
+               ]
+            },
+            {
+               "aliasColors": { },
+               "bars": false,
+               "dashLength": 10,
+               "dashes": false,
+               "datasource": "$prometheus",
+               "decimals": 3,
+               "description": "MVCC is based on the tuple story mechanism.\n\nThis graph shows tuples that are used by active read-write transactions.\n\nGraph shows the number of tuples.\nPanel works with metrics 0.15.1 or newer, Tarantool 2.10 or newer.\n",
+               "fill": 0,
+               "gridPos": {
+                  "h": 8,
+                  "w": 6,
+                  "x": 0,
+                  "y": 182
+               },
+               "id": 75,
+               "legend": {
+                  "alignAsTable": true,
+                  "avg": true,
+                  "current": true,
+                  "max": true,
+                  "min": false,
+                  "rightSide": false,
+                  "show": true,
+                  "sideWidth": null,
+                  "sort": "current",
+                  "sortDesc": true,
+                  "total": false,
+                  "values": true
+               },
+               "lines": true,
+               "linewidth": 1,
+               "links": [ ],
+               "nullPointMode": "null",
+               "percentage": false,
+               "pointradius": 5,
+               "points": false,
+               "renderer": "flot",
+               "repeat": null,
+               "seriesOverrides": [ ],
+               "spaceLength": 10,
+               "stack": false,
+               "steppedLine": false,
+               "targets": [
+                  {
+                     "expr": "tnt_memtx_mvcc_tuples_used_stories{job=~\"$job\",alias=~\"$alias\",kind=\"count\"}",
+                     "format": "time_series",
+                     "intervalFactor": 2,
+                     "legendFormat": "{{alias}}",
+                     "refId": "A"
+                  }
+               ],
+               "thresholds": [ ],
+               "timeFrom": null,
+               "timeShift": null,
+               "title": "Stories tuples used",
+               "tooltip": {
+                  "shared": true,
+                  "sort": 2,
+                  "value_type": "individual"
+               },
+               "type": "graph",
+               "xaxis": {
+                  "buckets": null,
+                  "mode": "time",
+                  "name": null,
+                  "show": true,
+                  "values": [ ]
+               },
+               "yaxes": [
+                  {
+                     "decimals": 0,
+                     "format": "none",
+                     "label": "tuples",
+                     "logBase": 1,
+                     "max": null,
+                     "min": null,
+                     "show": true
+                  },
+                  {
+                     "decimals": 3,
+                     "format": "none",
+                     "label": null,
+                     "logBase": 1,
+                     "max": null,
+                     "min": null,
+                     "show": true
+                  }
+               ]
+            },
+            {
+               "aliasColors": { },
+               "bars": false,
+               "dashLength": 10,
+               "dashes": false,
+               "datasource": "$prometheus",
+               "decimals": 3,
+               "description": "MVCC is based on the tuple story mechanism.\n\nThis graph shows tuples that are used by active read-write transactions.\n\nGraph shows total size of tuples.\nPanel works with metrics 0.15.1 or newer, Tarantool 2.10 or newer.\n",
+               "fill": 0,
+               "gridPos": {
+                  "h": 8,
+                  "w": 6,
+                  "x": 6,
+                  "y": 182
+               },
+               "id": 76,
+               "legend": {
+                  "alignAsTable": true,
+                  "avg": true,
+                  "current": true,
+                  "max": true,
+                  "min": false,
+                  "rightSide": false,
+                  "show": true,
+                  "sideWidth": null,
+                  "sort": "current",
+                  "sortDesc": true,
+                  "total": false,
+                  "values": true
+               },
+               "lines": true,
+               "linewidth": 1,
+               "links": [ ],
+               "nullPointMode": "null",
+               "percentage": false,
+               "pointradius": 5,
+               "points": false,
+               "renderer": "flot",
+               "repeat": null,
+               "seriesOverrides": [ ],
+               "spaceLength": 10,
+               "stack": false,
+               "steppedLine": false,
+               "targets": [
+                  {
+                     "expr": "tnt_memtx_mvcc_tuples_used_stories{job=~\"$job\",alias=~\"$alias\",kind=\"total\"}",
+                     "format": "time_series",
+                     "intervalFactor": 2,
+                     "legendFormat": "{{alias}}",
+                     "refId": "A"
+                  }
+               ],
+               "thresholds": [ ],
+               "timeFrom": null,
+               "timeShift": null,
+               "title": "Stories tuples used size",
+               "tooltip": {
+                  "shared": true,
+                  "sort": 2,
+                  "value_type": "individual"
+               },
+               "type": "graph",
+               "xaxis": {
+                  "buckets": null,
+                  "mode": "time",
+                  "name": null,
+                  "show": true,
+                  "values": [ ]
+               },
+               "yaxes": [
+                  {
+                     "decimals": 0,
+                     "format": "bytes",
+                     "label": "in bytes",
+                     "logBase": 1,
+                     "max": null,
+                     "min": null,
+                     "show": true
+                  },
+                  {
+                     "decimals": 3,
+                     "format": "bytes",
+                     "label": null,
+                     "logBase": 1,
+                     "max": null,
+                     "min": null,
+                     "show": true
+                  }
+               ]
+            },
+            {
+               "aliasColors": { },
+               "bars": false,
+               "dashLength": 10,
+               "dashes": false,
+               "datasource": "$prometheus",
+               "decimals": 3,
+               "description": "Retained tuples are no longer in the index,\nbut MVCC does not allow them to be removed.\n\nThis graph shows tuples that are used by active read-write transactions.\n\nGraph shows the number of tuples.\nPanel works with metrics 0.15.1 or newer, Tarantool 2.10 or newer.\n",
+               "fill": 0,
+               "gridPos": {
+                  "h": 8,
+                  "w": 6,
+                  "x": 12,
+                  "y": 182
+               },
+               "id": 77,
+               "legend": {
+                  "alignAsTable": true,
+                  "avg": true,
+                  "current": true,
+                  "max": true,
+                  "min": false,
+                  "rightSide": false,
+                  "show": true,
+                  "sideWidth": null,
+                  "sort": "current",
+                  "sortDesc": true,
+                  "total": false,
+                  "values": true
+               },
+               "lines": true,
+               "linewidth": 1,
+               "links": [ ],
+               "nullPointMode": "null",
+               "percentage": false,
+               "pointradius": 5,
+               "points": false,
+               "renderer": "flot",
+               "repeat": null,
+               "seriesOverrides": [ ],
+               "spaceLength": 10,
+               "stack": false,
+               "steppedLine": false,
+               "targets": [
+                  {
+                     "expr": "tnt_memtx_mvcc_tuples_used_retained{job=~\"$job\",alias=~\"$alias\",kind=\"count\"}",
+                     "format": "time_series",
+                     "intervalFactor": 2,
+                     "legendFormat": "{{alias}}",
+                     "refId": "A"
+                  }
+               ],
+               "thresholds": [ ],
+               "timeFrom": null,
+               "timeShift": null,
+               "title": "Retained tuples used",
+               "tooltip": {
+                  "shared": true,
+                  "sort": 2,
+                  "value_type": "individual"
+               },
+               "type": "graph",
+               "xaxis": {
+                  "buckets": null,
+                  "mode": "time",
+                  "name": null,
+                  "show": true,
+                  "values": [ ]
+               },
+               "yaxes": [
+                  {
+                     "decimals": 0,
+                     "format": "none",
+                     "label": "tuples",
+                     "logBase": 1,
+                     "max": null,
+                     "min": null,
+                     "show": true
+                  },
+                  {
+                     "decimals": 3,
+                     "format": "none",
+                     "label": null,
+                     "logBase": 1,
+                     "max": null,
+                     "min": null,
+                     "show": true
+                  }
+               ]
+            },
+            {
+               "aliasColors": { },
+               "bars": false,
+               "dashLength": 10,
+               "dashes": false,
+               "datasource": "$prometheus",
+               "decimals": 3,
+               "description": "Retained tuples are no longer in the index,\nbut MVCC does not allow them to be removed.\n\nThis graph shows tuples that are used by active read-write transactions.\n\nGraph shows total size of tuples.\nPanel works with metrics 0.15.1 or newer, Tarantool 2.10 or newer.\n",
+               "fill": 0,
+               "gridPos": {
+                  "h": 8,
+                  "w": 6,
+                  "x": 18,
+                  "y": 182
+               },
+               "id": 78,
+               "legend": {
+                  "alignAsTable": true,
+                  "avg": true,
+                  "current": true,
+                  "max": true,
+                  "min": false,
+                  "rightSide": false,
+                  "show": true,
+                  "sideWidth": null,
+                  "sort": "current",
+                  "sortDesc": true,
+                  "total": false,
+                  "values": true
+               },
+               "lines": true,
+               "linewidth": 1,
+               "links": [ ],
+               "nullPointMode": "null",
+               "percentage": false,
+               "pointradius": 5,
+               "points": false,
+               "renderer": "flot",
+               "repeat": null,
+               "seriesOverrides": [ ],
+               "spaceLength": 10,
+               "stack": false,
+               "steppedLine": false,
+               "targets": [
+                  {
+                     "expr": "tnt_memtx_mvcc_tuples_used_retained{job=~\"$job\",alias=~\"$alias\",kind=\"total\"}",
+                     "format": "time_series",
+                     "intervalFactor": 2,
+                     "legendFormat": "{{alias}}",
+                     "refId": "A"
+                  }
+               ],
+               "thresholds": [ ],
+               "timeFrom": null,
+               "timeShift": null,
+               "title": "Retained tuples used size",
+               "tooltip": {
+                  "shared": true,
+                  "sort": 2,
+                  "value_type": "individual"
+               },
+               "type": "graph",
+               "xaxis": {
+                  "buckets": null,
+                  "mode": "time",
+                  "name": null,
+                  "show": true,
+                  "values": [ ]
+               },
+               "yaxes": [
+                  {
+                     "decimals": 0,
+                     "format": "bytes",
+                     "label": "in bytes",
+                     "logBase": 1,
+                     "max": null,
+                     "min": null,
+                     "show": true
+                  },
+                  {
+                     "decimals": 3,
+                     "format": "bytes",
+                     "label": null,
+                     "logBase": 1,
+                     "max": null,
+                     "min": null,
+                     "show": true
+                  }
+               ]
+            },
+            {
+               "aliasColors": { },
+               "bars": false,
+               "dashLength": 10,
+               "dashes": false,
+               "datasource": "$prometheus",
+               "decimals": 3,
+               "description": "MVCC is based on the tuple story mechanism.\n\nThis graph shows tuples that are used by read-only transactions (i.e. in read view).\n\nGraph shows the number of tuples.\nPanel works with metrics 0.15.1 or newer, Tarantool 2.10 or newer.\n",
+               "fill": 0,
+               "gridPos": {
+                  "h": 8,
+                  "w": 6,
+                  "x": 0,
+                  "y": 190
+               },
+               "id": 79,
+               "legend": {
+                  "alignAsTable": true,
+                  "avg": true,
+                  "current": true,
+                  "max": true,
+                  "min": false,
+                  "rightSide": false,
+                  "show": true,
+                  "sideWidth": null,
+                  "sort": "current",
+                  "sortDesc": true,
+                  "total": false,
+                  "values": true
+               },
+               "lines": true,
+               "linewidth": 1,
+               "links": [ ],
+               "nullPointMode": "null",
+               "percentage": false,
+               "pointradius": 5,
+               "points": false,
+               "renderer": "flot",
+               "repeat": null,
+               "seriesOverrides": [ ],
+               "spaceLength": 10,
+               "stack": false,
+               "steppedLine": false,
+               "targets": [
+                  {
+                     "expr": "tnt_memtx_mvcc_tuples_read_view_stories{job=~\"$job\",alias=~\"$alias\",kind=\"count\"}",
+                     "format": "time_series",
+                     "intervalFactor": 2,
+                     "legendFormat": "{{alias}}",
+                     "refId": "A"
+                  }
+               ],
+               "thresholds": [ ],
+               "timeFrom": null,
+               "timeShift": null,
+               "title": "Stories tuples in read views",
+               "tooltip": {
+                  "shared": true,
+                  "sort": 2,
+                  "value_type": "individual"
+               },
+               "type": "graph",
+               "xaxis": {
+                  "buckets": null,
+                  "mode": "time",
+                  "name": null,
+                  "show": true,
+                  "values": [ ]
+               },
+               "yaxes": [
+                  {
+                     "decimals": 0,
+                     "format": "none",
+                     "label": "tuples",
+                     "logBase": 1,
+                     "max": null,
+                     "min": null,
+                     "show": true
+                  },
+                  {
+                     "decimals": 3,
+                     "format": "none",
+                     "label": null,
+                     "logBase": 1,
+                     "max": null,
+                     "min": null,
+                     "show": true
+                  }
+               ]
+            },
+            {
+               "aliasColors": { },
+               "bars": false,
+               "dashLength": 10,
+               "dashes": false,
+               "datasource": "$prometheus",
+               "decimals": 3,
+               "description": "MVCC is based on the tuple story mechanism.\n\nThis graph shows tuples that are used by read-only transactions (i.e. in read view).\n\nGraph shows total size of tuples.\nPanel works with metrics 0.15.1 or newer, Tarantool 2.10 or newer.\n",
+               "fill": 0,
+               "gridPos": {
+                  "h": 8,
+                  "w": 6,
+                  "x": 6,
+                  "y": 190
+               },
+               "id": 80,
+               "legend": {
+                  "alignAsTable": true,
+                  "avg": true,
+                  "current": true,
+                  "max": true,
+                  "min": false,
+                  "rightSide": false,
+                  "show": true,
+                  "sideWidth": null,
+                  "sort": "current",
+                  "sortDesc": true,
+                  "total": false,
+                  "values": true
+               },
+               "lines": true,
+               "linewidth": 1,
+               "links": [ ],
+               "nullPointMode": "null",
+               "percentage": false,
+               "pointradius": 5,
+               "points": false,
+               "renderer": "flot",
+               "repeat": null,
+               "seriesOverrides": [ ],
+               "spaceLength": 10,
+               "stack": false,
+               "steppedLine": false,
+               "targets": [
+                  {
+                     "expr": "tnt_memtx_mvcc_tuples_read_view_stories{job=~\"$job\",alias=~\"$alias\",kind=\"total\"}",
+                     "format": "time_series",
+                     "intervalFactor": 2,
+                     "legendFormat": "{{alias}}",
+                     "refId": "A"
+                  }
+               ],
+               "thresholds": [ ],
+               "timeFrom": null,
+               "timeShift": null,
+               "title": "Stories tuples in read views size",
+               "tooltip": {
+                  "shared": true,
+                  "sort": 2,
+                  "value_type": "individual"
+               },
+               "type": "graph",
+               "xaxis": {
+                  "buckets": null,
+                  "mode": "time",
+                  "name": null,
+                  "show": true,
+                  "values": [ ]
+               },
+               "yaxes": [
+                  {
+                     "decimals": 0,
+                     "format": "bytes",
+                     "label": "in bytes",
+                     "logBase": 1,
+                     "max": null,
+                     "min": null,
+                     "show": true
+                  },
+                  {
+                     "decimals": 3,
+                     "format": "bytes",
+                     "label": null,
+                     "logBase": 1,
+                     "max": null,
+                     "min": null,
+                     "show": true
+                  }
+               ]
+            },
+            {
+               "aliasColors": { },
+               "bars": false,
+               "dashLength": 10,
+               "dashes": false,
+               "datasource": "$prometheus",
+               "decimals": 3,
+               "description": "Retained tuples are no longer in the index,\nbut MVCC does not allow them to be removed.\n\nThis graph shows tuples that are used by read-only transactions (i.e. in read view).\n\nGraph shows the number of tuples.\nPanel works with metrics 0.15.1 or newer, Tarantool 2.10 or newer.\n",
+               "fill": 0,
+               "gridPos": {
+                  "h": 8,
+                  "w": 6,
+                  "x": 12,
+                  "y": 190
+               },
+               "id": 81,
+               "legend": {
+                  "alignAsTable": true,
+                  "avg": true,
+                  "current": true,
+                  "max": true,
+                  "min": false,
+                  "rightSide": false,
+                  "show": true,
+                  "sideWidth": null,
+                  "sort": "current",
+                  "sortDesc": true,
+                  "total": false,
+                  "values": true
+               },
+               "lines": true,
+               "linewidth": 1,
+               "links": [ ],
+               "nullPointMode": "null",
+               "percentage": false,
+               "pointradius": 5,
+               "points": false,
+               "renderer": "flot",
+               "repeat": null,
+               "seriesOverrides": [ ],
+               "spaceLength": 10,
+               "stack": false,
+               "steppedLine": false,
+               "targets": [
+                  {
+                     "expr": "tnt_memtx_mvcc_tuples_read_view_retained{job=~\"$job\",alias=~\"$alias\",kind=\"count\"}",
+                     "format": "time_series",
+                     "intervalFactor": 2,
+                     "legendFormat": "{{alias}}",
+                     "refId": "A"
+                  }
+               ],
+               "thresholds": [ ],
+               "timeFrom": null,
+               "timeShift": null,
+               "title": "Retained tuples in read views",
+               "tooltip": {
+                  "shared": true,
+                  "sort": 2,
+                  "value_type": "individual"
+               },
+               "type": "graph",
+               "xaxis": {
+                  "buckets": null,
+                  "mode": "time",
+                  "name": null,
+                  "show": true,
+                  "values": [ ]
+               },
+               "yaxes": [
+                  {
+                     "decimals": 0,
+                     "format": "none",
+                     "label": "tuples",
+                     "logBase": 1,
+                     "max": null,
+                     "min": null,
+                     "show": true
+                  },
+                  {
+                     "decimals": 3,
+                     "format": "none",
+                     "label": null,
+                     "logBase": 1,
+                     "max": null,
+                     "min": null,
+                     "show": true
+                  }
+               ]
+            },
+            {
+               "aliasColors": { },
+               "bars": false,
+               "dashLength": 10,
+               "dashes": false,
+               "datasource": "$prometheus",
+               "decimals": 3,
+               "description": "Retained tuples are no longer in the index,\nbut MVCC does not allow them to be removed.\n\nThis graph shows tuples that are used by read-only transactions (i.e. in read view).\n\nGraph shows total size of tuples.\nPanel works with metrics 0.15.1 or newer, Tarantool 2.10 or newer.\n",
+               "fill": 0,
+               "gridPos": {
+                  "h": 8,
+                  "w": 6,
+                  "x": 18,
+                  "y": 190
+               },
+               "id": 82,
+               "legend": {
+                  "alignAsTable": true,
+                  "avg": true,
+                  "current": true,
+                  "max": true,
+                  "min": false,
+                  "rightSide": false,
+                  "show": true,
+                  "sideWidth": null,
+                  "sort": "current",
+                  "sortDesc": true,
+                  "total": false,
+                  "values": true
+               },
+               "lines": true,
+               "linewidth": 1,
+               "links": [ ],
+               "nullPointMode": "null",
+               "percentage": false,
+               "pointradius": 5,
+               "points": false,
+               "renderer": "flot",
+               "repeat": null,
+               "seriesOverrides": [ ],
+               "spaceLength": 10,
+               "stack": false,
+               "steppedLine": false,
+               "targets": [
+                  {
+                     "expr": "tnt_memtx_mvcc_tuples_read_view_retained{job=~\"$job\",alias=~\"$alias\",kind=\"total\"}",
+                     "format": "time_series",
+                     "intervalFactor": 2,
+                     "legendFormat": "{{alias}}",
+                     "refId": "A"
+                  }
+               ],
+               "thresholds": [ ],
+               "timeFrom": null,
+               "timeShift": null,
+               "title": "Retained tuples in read views size",
+               "tooltip": {
+                  "shared": true,
+                  "sort": 2,
+                  "value_type": "individual"
+               },
+               "type": "graph",
+               "xaxis": {
+                  "buckets": null,
+                  "mode": "time",
+                  "name": null,
+                  "show": true,
+                  "values": [ ]
+               },
+               "yaxes": [
+                  {
+                     "decimals": 0,
+                     "format": "bytes",
+                     "label": "in bytes",
+                     "logBase": 1,
+                     "max": null,
+                     "min": null,
+                     "show": true
+                  },
+                  {
+                     "decimals": 3,
+                     "format": "bytes",
+                     "label": null,
+                     "logBase": 1,
+                     "max": null,
+                     "min": null,
+                     "show": true
+                  }
+               ]
+            },
+            {
+               "aliasColors": { },
+               "bars": false,
+               "dashLength": 10,
+               "dashes": false,
+               "datasource": "$prometheus",
+               "decimals": 3,
+               "description": "MVCC is based on the tuple story mechanism.\n\nThis graph shows tuples that are not used by current transactions,\nbut are used by MVCC to track reads.\n\nGraph shows the number of tuples.\nPanel works with metrics 0.15.1 or newer, Tarantool 2.10 or newer.\n",
+               "fill": 0,
+               "gridPos": {
+                  "h": 8,
+                  "w": 6,
+                  "x": 0,
+                  "y": 198
+               },
+               "id": 83,
+               "legend": {
+                  "alignAsTable": true,
+                  "avg": true,
+                  "current": true,
+                  "max": true,
+                  "min": false,
+                  "rightSide": false,
+                  "show": true,
+                  "sideWidth": null,
+                  "sort": "current",
+                  "sortDesc": true,
+                  "total": false,
+                  "values": true
+               },
+               "lines": true,
+               "linewidth": 1,
+               "links": [ ],
+               "nullPointMode": "null",
+               "percentage": false,
+               "pointradius": 5,
+               "points": false,
+               "renderer": "flot",
+               "repeat": null,
+               "seriesOverrides": [ ],
+               "spaceLength": 10,
+               "stack": false,
+               "steppedLine": false,
+               "targets": [
+                  {
+                     "expr": "tnt_memtx_mvcc_tuples_tracking_stories{job=~\"$job\",alias=~\"$alias\",kind=\"count\"}",
+                     "format": "time_series",
+                     "intervalFactor": 2,
+                     "legendFormat": "{{alias}}",
+                     "refId": "A"
+                  }
+               ],
+               "thresholds": [ ],
+               "timeFrom": null,
+               "timeShift": null,
+               "title": "Stories tuples tracked",
+               "tooltip": {
+                  "shared": true,
+                  "sort": 2,
+                  "value_type": "individual"
+               },
+               "type": "graph",
+               "xaxis": {
+                  "buckets": null,
+                  "mode": "time",
+                  "name": null,
+                  "show": true,
+                  "values": [ ]
+               },
+               "yaxes": [
+                  {
+                     "decimals": 0,
+                     "format": "none",
+                     "label": "tuples",
+                     "logBase": 1,
+                     "max": null,
+                     "min": null,
+                     "show": true
+                  },
+                  {
+                     "decimals": 3,
+                     "format": "none",
+                     "label": null,
+                     "logBase": 1,
+                     "max": null,
+                     "min": null,
+                     "show": true
+                  }
+               ]
+            },
+            {
+               "aliasColors": { },
+               "bars": false,
+               "dashLength": 10,
+               "dashes": false,
+               "datasource": "$prometheus",
+               "decimals": 3,
+               "description": "MVCC is based on the tuple story mechanism.\n\nThis graph shows tuples that are not used by current transactions,\nbut are used by MVCC to track reads.\n\nGraph shows total size of tuples.\nPanel works with metrics 0.15.1 or newer, Tarantool 2.10 or newer.\n",
+               "fill": 0,
+               "gridPos": {
+                  "h": 8,
+                  "w": 6,
+                  "x": 6,
+                  "y": 198
+               },
+               "id": 84,
+               "legend": {
+                  "alignAsTable": true,
+                  "avg": true,
+                  "current": true,
+                  "max": true,
+                  "min": false,
+                  "rightSide": false,
+                  "show": true,
+                  "sideWidth": null,
+                  "sort": "current",
+                  "sortDesc": true,
+                  "total": false,
+                  "values": true
+               },
+               "lines": true,
+               "linewidth": 1,
+               "links": [ ],
+               "nullPointMode": "null",
+               "percentage": false,
+               "pointradius": 5,
+               "points": false,
+               "renderer": "flot",
+               "repeat": null,
+               "seriesOverrides": [ ],
+               "spaceLength": 10,
+               "stack": false,
+               "steppedLine": false,
+               "targets": [
+                  {
+                     "expr": "tnt_memtx_mvcc_tuples_tracking_stories{job=~\"$job\",alias=~\"$alias\",kind=\"total\"}",
+                     "format": "time_series",
+                     "intervalFactor": 2,
+                     "legendFormat": "{{alias}}",
+                     "refId": "A"
+                  }
+               ],
+               "thresholds": [ ],
+               "timeFrom": null,
+               "timeShift": null,
+               "title": "Stories tuples tracked size",
+               "tooltip": {
+                  "shared": true,
+                  "sort": 2,
+                  "value_type": "individual"
+               },
+               "type": "graph",
+               "xaxis": {
+                  "buckets": null,
+                  "mode": "time",
+                  "name": null,
+                  "show": true,
+                  "values": [ ]
+               },
+               "yaxes": [
+                  {
+                     "decimals": 0,
+                     "format": "bytes",
+                     "label": "in bytes",
+                     "logBase": 1,
+                     "max": null,
+                     "min": null,
+                     "show": true
+                  },
+                  {
+                     "decimals": 3,
+                     "format": "bytes",
+                     "label": null,
+                     "logBase": 1,
+                     "max": null,
+                     "min": null,
+                     "show": true
+                  }
+               ]
+            },
+            {
+               "aliasColors": { },
+               "bars": false,
+               "dashLength": 10,
+               "dashes": false,
+               "datasource": "$prometheus",
+               "decimals": 3,
+               "description": "Retained tuples are no longer in the index,\nbut MVCC does not allow them to be removed.\n\nThis graph shows tuples that are not used by current transactions,\nbut are used by MVCC to track reads.\n\nGraph shows the number of tuples.\nPanel works with metrics 0.15.1 or newer, Tarantool 2.10 or newer.\n",
+               "fill": 0,
+               "gridPos": {
+                  "h": 8,
+                  "w": 6,
+                  "x": 12,
+                  "y": 198
+               },
+               "id": 85,
+               "legend": {
+                  "alignAsTable": true,
+                  "avg": true,
+                  "current": true,
+                  "max": true,
+                  "min": false,
+                  "rightSide": false,
+                  "show": true,
+                  "sideWidth": null,
+                  "sort": "current",
+                  "sortDesc": true,
+                  "total": false,
+                  "values": true
+               },
+               "lines": true,
+               "linewidth": 1,
+               "links": [ ],
+               "nullPointMode": "null",
+               "percentage": false,
+               "pointradius": 5,
+               "points": false,
+               "renderer": "flot",
+               "repeat": null,
+               "seriesOverrides": [ ],
+               "spaceLength": 10,
+               "stack": false,
+               "steppedLine": false,
+               "targets": [
+                  {
+                     "expr": "tnt_memtx_mvcc_tuples_tracking_retained{job=~\"$job\",alias=~\"$alias\",kind=\"count\"}",
+                     "format": "time_series",
+                     "intervalFactor": 2,
+                     "legendFormat": "{{alias}}",
+                     "refId": "A"
+                  }
+               ],
+               "thresholds": [ ],
+               "timeFrom": null,
+               "timeShift": null,
+               "title": "Retained tuples tracked",
+               "tooltip": {
+                  "shared": true,
+                  "sort": 2,
+                  "value_type": "individual"
+               },
+               "type": "graph",
+               "xaxis": {
+                  "buckets": null,
+                  "mode": "time",
+                  "name": null,
+                  "show": true,
+                  "values": [ ]
+               },
+               "yaxes": [
+                  {
+                     "decimals": 0,
+                     "format": "none",
+                     "label": "tuples",
+                     "logBase": 1,
+                     "max": null,
+                     "min": null,
+                     "show": true
+                  },
+                  {
+                     "decimals": 3,
+                     "format": "none",
+                     "label": null,
+                     "logBase": 1,
+                     "max": null,
+                     "min": null,
+                     "show": true
+                  }
+               ]
+            },
+            {
+               "aliasColors": { },
+               "bars": false,
+               "dashLength": 10,
+               "dashes": false,
+               "datasource": "$prometheus",
+               "decimals": 3,
+               "description": "Retained tuples are no longer in the index,\nbut MVCC does not allow them to be removed.\n\nThis graph shows tuples that are not used by current transactions,\nbut are used by MVCC to track reads.\n\nGraph shows total size of tuples.\nPanel works with metrics 0.15.1 or newer, Tarantool 2.10 or newer.\n",
+               "fill": 0,
+               "gridPos": {
+                  "h": 8,
+                  "w": 6,
+                  "x": 18,
+                  "y": 198
+               },
+               "id": 86,
+               "legend": {
+                  "alignAsTable": true,
+                  "avg": true,
+                  "current": true,
+                  "max": true,
+                  "min": false,
+                  "rightSide": false,
+                  "show": true,
+                  "sideWidth": null,
+                  "sort": "current",
+                  "sortDesc": true,
+                  "total": false,
+                  "values": true
+               },
+               "lines": true,
+               "linewidth": 1,
+               "links": [ ],
+               "nullPointMode": "null",
+               "percentage": false,
+               "pointradius": 5,
+               "points": false,
+               "renderer": "flot",
+               "repeat": null,
+               "seriesOverrides": [ ],
+               "spaceLength": 10,
+               "stack": false,
+               "steppedLine": false,
+               "targets": [
+                  {
+                     "expr": "tnt_memtx_mvcc_tuples_tracking_retained{job=~\"$job\",alias=~\"$alias\",kind=\"total\"}",
+                     "format": "time_series",
+                     "intervalFactor": 2,
+                     "legendFormat": "{{alias}}",
+                     "refId": "A"
+                  }
+               ],
+               "thresholds": [ ],
+               "timeFrom": null,
+               "timeShift": null,
+               "title": "Retained tuples tracked size",
+               "tooltip": {
+                  "shared": true,
+                  "sort": 2,
+                  "value_type": "individual"
+               },
+               "type": "graph",
+               "xaxis": {
+                  "buckets": null,
+                  "mode": "time",
+                  "name": null,
+                  "show": true,
+                  "values": [ ]
+               },
+               "yaxes": [
+                  {
+                     "decimals": 0,
+                     "format": "bytes",
+                     "label": "in bytes",
+                     "logBase": 1,
+                     "max": null,
+                     "min": null,
+                     "show": true
+                  },
+                  {
+                     "decimals": 3,
+                     "format": "bytes",
+                     "label": null,
+                     "logBase": 1,
+                     "max": null,
+                     "min": null,
+                     "show": true
+                  }
+               ]
+            }
+         ],
+         "repeat": null,
+         "repeatIteration": null,
+         "repeatRowId": null,
+         "showTitle": true,
+         "title": "Tarantool MVCC overview",
+         "titleSize": "h6",
+         "type": "row"
+      },
+      {
+         "collapse": true,
+         "collapsed": true,
+         "gridPos": {
+            "h": 1,
+            "w": 24,
+            "x": 0,
+            "y": 206
+         },
+         "id": 87,
+         "panels": [
+            {
+               "aliasColors": { },
+               "bars": false,
+               "dashLength": 10,
+               "dashes": false,
+               "datasource": "$prometheus",
                "decimals": 0,
                "description": "Number of records in the space (memtx engine).\nName of space is specified after dash.\n",
                "fill": 0,
@@ -4719,9 +7169,9 @@
                   "h": 8,
                   "w": 12,
                   "x": 0,
-                  "y": 142
+                  "y": 207
                },
-               "id": 60,
+               "id": 88,
                "legend": {
                   "alignAsTable": true,
                   "avg": false,
@@ -4809,9 +7259,9 @@
                   "h": 8,
                   "w": 12,
                   "x": 12,
-                  "y": 142
+                  "y": 207
                },
-               "id": 61,
+               "id": 89,
                "legend": {
                   "alignAsTable": true,
                   "avg": false,
@@ -4899,9 +7349,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 0,
-                  "y": 150
+                  "y": 215
                },
-               "id": 62,
+               "id": 90,
                "legend": {
                   "alignAsTable": true,
                   "avg": false,
@@ -4989,9 +7439,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 8,
-                  "y": 150
+                  "y": 215
                },
-               "id": 63,
+               "id": 91,
                "legend": {
                   "alignAsTable": true,
                   "avg": false,
@@ -5079,9 +7529,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 16,
-                  "y": 150
+                  "y": 215
                },
-               "id": 64,
+               "id": 92,
                "legend": {
                   "alignAsTable": true,
                   "avg": false,
@@ -5172,9 +7622,9 @@
             "h": 1,
             "w": 24,
             "x": 0,
-            "y": 158
+            "y": 223
          },
-         "id": 65,
+         "id": 93,
          "panels": [
             {
                "aliasColors": { },
@@ -5189,9 +7639,9 @@
                   "h": 8,
                   "w": 12,
                   "x": 0,
-                  "y": 159
+                  "y": 224
                },
-               "id": 66,
+               "id": 94,
                "legend": {
                   "alignAsTable": true,
                   "avg": false,
@@ -5279,9 +7729,9 @@
                   "h": 8,
                   "w": 12,
                   "x": 12,
-                  "y": 159
+                  "y": 224
                },
-               "id": 67,
+               "id": 95,
                "legend": {
                   "alignAsTable": true,
                   "avg": false,
@@ -5369,9 +7819,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 0,
-                  "y": 167
+                  "y": 232
                },
-               "id": 68,
+               "id": 96,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -5459,9 +7909,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 8,
-                  "y": 167
+                  "y": 232
                },
-               "id": 69,
+               "id": 97,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -5549,9 +7999,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 16,
-                  "y": 167
+                  "y": 232
                },
-               "id": 70,
+               "id": 98,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -5639,9 +8089,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 0,
-                  "y": 175
+                  "y": 240
                },
-               "id": 71,
+               "id": 99,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -5729,9 +8179,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 8,
-                  "y": 175
+                  "y": 240
                },
-               "id": 72,
+               "id": 100,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -5819,9 +8269,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 16,
-                  "y": 175
+                  "y": 240
                },
-               "id": 73,
+               "id": 101,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -5909,9 +8359,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 0,
-                  "y": 183
+                  "y": 248
                },
-               "id": 74,
+               "id": 102,
                "legend": {
                   "alignAsTable": true,
                   "avg": false,
@@ -5999,9 +8449,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 8,
-                  "y": 183
+                  "y": 248
                },
-               "id": 75,
+               "id": 103,
                "legend": {
                   "alignAsTable": true,
                   "avg": false,
@@ -6089,9 +8539,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 16,
-                  "y": 183
+                  "y": 248
                },
-               "id": 76,
+               "id": 104,
                "legend": {
                   "alignAsTable": true,
                   "avg": false,
@@ -6179,9 +8629,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 0,
-                  "y": 191
+                  "y": 256
                },
-               "id": 77,
+               "id": 105,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -6269,9 +8719,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 6,
-                  "y": 191
+                  "y": 256
                },
-               "id": 78,
+               "id": 106,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -6359,9 +8809,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 12,
-                  "y": 191
+                  "y": 256
                },
-               "id": 79,
+               "id": 107,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -6449,9 +8899,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 18,
-                  "y": 191
+                  "y": 256
                },
-               "id": 80,
+               "id": 108,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -6539,9 +8989,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 0,
-                  "y": 199
+                  "y": 264
                },
-               "id": 81,
+               "id": 109,
                "legend": {
                   "alignAsTable": true,
                   "avg": false,
@@ -6629,9 +9079,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 6,
-                  "y": 199
+                  "y": 264
                },
-               "id": 82,
+               "id": 110,
                "legend": {
                   "alignAsTable": true,
                   "avg": false,
@@ -6719,9 +9169,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 12,
-                  "y": 199
+                  "y": 264
                },
-               "id": 83,
+               "id": 111,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -6809,9 +9259,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 18,
-                  "y": 199
+                  "y": 264
                },
-               "id": 84,
+               "id": 112,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -6902,9 +9352,9 @@
             "h": 1,
             "w": 24,
             "x": 0,
-            "y": 207
+            "y": 272
          },
-         "id": 85,
+         "id": 113,
          "panels": [
             {
                "aliasColors": { },
@@ -6919,9 +9369,9 @@
                   "h": 8,
                   "w": 12,
                   "x": 0,
-                  "y": 208
+                  "y": 273
                },
-               "id": 86,
+               "id": 114,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -7009,9 +9459,9 @@
                   "h": 8,
                   "w": 12,
                   "x": 12,
-                  "y": 208
+                  "y": 273
                },
-               "id": 87,
+               "id": 115,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -7099,9 +9549,9 @@
                   "h": 8,
                   "w": 12,
                   "x": 0,
-                  "y": 216
+                  "y": 281
                },
-               "id": 88,
+               "id": 116,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -7189,9 +9639,9 @@
                   "h": 8,
                   "w": 12,
                   "x": 12,
-                  "y": 216
+                  "y": 281
                },
-               "id": 89,
+               "id": 117,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -7282,9 +9732,9 @@
             "h": 1,
             "w": 24,
             "x": 0,
-            "y": 224
+            "y": 289
          },
-         "id": 90,
+         "id": 118,
          "panels": [
             {
                "aliasColors": { },
@@ -7299,9 +9749,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 0,
-                  "y": 225
+                  "y": 290
                },
-               "id": 91,
+               "id": 119,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -7389,9 +9839,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 8,
-                  "y": 225
+                  "y": 290
                },
-               "id": 92,
+               "id": 120,
                "legend": {
                   "alignAsTable": true,
                   "avg": false,
@@ -7479,9 +9929,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 16,
-                  "y": 225
+                  "y": 290
                },
-               "id": 93,
+               "id": 121,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -7569,9 +10019,9 @@
                   "h": 8,
                   "w": 12,
                   "x": 0,
-                  "y": 233
+                  "y": 298
                },
-               "id": 94,
+               "id": 122,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -7659,9 +10109,9 @@
                   "h": 8,
                   "w": 12,
                   "x": 12,
-                  "y": 233
+                  "y": 298
                },
-               "id": 95,
+               "id": 123,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -7749,9 +10199,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 0,
-                  "y": 241
+                  "y": 306
                },
-               "id": 96,
+               "id": 124,
                "legend": {
                   "alignAsTable": true,
                   "avg": false,
@@ -7839,9 +10289,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 8,
-                  "y": 241
+                  "y": 306
                },
-               "id": 97,
+               "id": 125,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -7929,9 +10379,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 16,
-                  "y": 241
+                  "y": 306
                },
-               "id": 98,
+               "id": 126,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -8022,9 +10472,9 @@
             "h": 1,
             "w": 24,
             "x": 0,
-            "y": 249
+            "y": 314
          },
-         "id": 99,
+         "id": 127,
          "panels": [
             {
                "aliasColors": { },
@@ -8039,9 +10489,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 0,
-                  "y": 250
+                  "y": 315
                },
-               "id": 100,
+               "id": 128,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -8129,9 +10579,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 6,
-                  "y": 250
+                  "y": 315
                },
-               "id": 101,
+               "id": 129,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -8219,9 +10669,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 12,
-                  "y": 250
+                  "y": 315
                },
-               "id": 102,
+               "id": 130,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -8309,9 +10759,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 18,
-                  "y": 250
+                  "y": 315
                },
-               "id": 103,
+               "id": 131,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -8399,9 +10849,9 @@
                   "h": 8,
                   "w": 12,
                   "x": 0,
-                  "y": 258
+                  "y": 323
                },
-               "id": 104,
+               "id": 132,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -8489,9 +10939,9 @@
                   "h": 8,
                   "w": 12,
                   "x": 12,
-                  "y": 258
+                  "y": 323
                },
-               "id": 105,
+               "id": 133,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -8579,9 +11029,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 0,
-                  "y": 266
+                  "y": 331
                },
-               "id": 106,
+               "id": 134,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -8669,9 +11119,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 8,
-                  "y": 266
+                  "y": 331
                },
-               "id": 107,
+               "id": 135,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -8759,9 +11209,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 16,
-                  "y": 266
+                  "y": 331
                },
-               "id": 108,
+               "id": 136,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -8849,9 +11299,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 0,
-                  "y": 274
+                  "y": 339
                },
-               "id": 109,
+               "id": 137,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -8939,9 +11389,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 8,
-                  "y": 274
+                  "y": 339
                },
-               "id": 110,
+               "id": 138,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -9029,9 +11479,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 16,
-                  "y": 274
+                  "y": 339
                },
-               "id": 111,
+               "id": 139,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -9119,9 +11569,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 0,
-                  "y": 282
+                  "y": 347
                },
-               "id": 112,
+               "id": 140,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -9209,9 +11659,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 6,
-                  "y": 282
+                  "y": 347
                },
-               "id": 113,
+               "id": 141,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -9299,9 +11749,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 12,
-                  "y": 282
+                  "y": 347
                },
-               "id": 114,
+               "id": 142,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -9389,9 +11839,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 18,
-                  "y": 282
+                  "y": 347
                },
-               "id": 115,
+               "id": 143,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -9479,9 +11929,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 0,
-                  "y": 290
+                  "y": 355
                },
-               "id": 116,
+               "id": 144,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -9569,9 +12019,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 8,
-                  "y": 290
+                  "y": 355
                },
-               "id": 117,
+               "id": 145,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -9659,9 +12109,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 16,
-                  "y": 290
+                  "y": 355
                },
-               "id": 118,
+               "id": 146,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -9752,9 +12202,9 @@
             "h": 1,
             "w": 24,
             "x": 0,
-            "y": 298
+            "y": 363
          },
-         "id": 119,
+         "id": 147,
          "panels": [
             {
                "aliasColors": { },
@@ -9769,9 +12219,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 0,
-                  "y": 299
+                  "y": 364
                },
-               "id": 120,
+               "id": 148,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -9859,9 +12309,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 8,
-                  "y": 299
+                  "y": 364
                },
-               "id": 121,
+               "id": 149,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -9949,9 +12399,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 16,
-                  "y": 299
+                  "y": 364
                },
-               "id": 122,
+               "id": 150,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -10039,9 +12489,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 0,
-                  "y": 307
+                  "y": 372
                },
-               "id": 123,
+               "id": 151,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -10129,9 +12579,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 8,
-                  "y": 307
+                  "y": 372
                },
-               "id": 124,
+               "id": 152,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -10219,9 +12669,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 16,
-                  "y": 307
+                  "y": 372
                },
-               "id": 125,
+               "id": 153,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -10309,9 +12759,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 0,
-                  "y": 315
+                  "y": 380
                },
-               "id": 126,
+               "id": 154,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -10399,9 +12849,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 8,
-                  "y": 315
+                  "y": 380
                },
-               "id": 127,
+               "id": 155,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -10489,9 +12939,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 16,
-                  "y": 315
+                  "y": 380
                },
-               "id": 128,
+               "id": 156,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -10579,9 +13029,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 0,
-                  "y": 323
+                  "y": 388
                },
-               "id": 129,
+               "id": 157,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -10669,9 +13119,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 8,
-                  "y": 323
+                  "y": 388
                },
-               "id": 130,
+               "id": 158,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -10759,9 +13209,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 16,
-                  "y": 323
+                  "y": 388
                },
-               "id": 131,
+               "id": 159,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -10849,9 +13299,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 0,
-                  "y": 331
+                  "y": 396
                },
-               "id": 132,
+               "id": 160,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -10939,9 +13389,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 8,
-                  "y": 331
+                  "y": 396
                },
-               "id": 133,
+               "id": 161,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -11029,9 +13479,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 16,
-                  "y": 331
+                  "y": 396
                },
-               "id": 134,
+               "id": 162,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -11122,9 +13572,9 @@
             "h": 1,
             "w": 24,
             "x": 0,
-            "y": 339
+            "y": 404
          },
-         "id": 135,
+         "id": 163,
          "panels": [
             {
                "aliasColors": { },
@@ -11139,9 +13589,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 0,
-                  "y": 340
+                  "y": 405
                },
-               "id": 136,
+               "id": 164,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -11229,9 +13679,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 8,
-                  "y": 340
+                  "y": 405
                },
-               "id": 137,
+               "id": 165,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -11319,9 +13769,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 16,
-                  "y": 340
+                  "y": 405
                },
-               "id": 138,
+               "id": 166,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -11409,9 +13859,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 0,
-                  "y": 348
+                  "y": 413
                },
-               "id": 139,
+               "id": 167,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -11499,9 +13949,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 6,
-                  "y": 348
+                  "y": 413
                },
-               "id": 140,
+               "id": 168,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -11589,9 +14039,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 12,
-                  "y": 348
+                  "y": 413
                },
-               "id": 141,
+               "id": 169,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -11679,9 +14129,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 18,
-                  "y": 348
+                  "y": 413
                },
-               "id": 142,
+               "id": 170,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -11769,9 +14219,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 0,
-                  "y": 356
+                  "y": 421
                },
-               "id": 143,
+               "id": 171,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -11859,9 +14309,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 6,
-                  "y": 356
+                  "y": 421
                },
-               "id": 144,
+               "id": 172,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -11949,9 +14399,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 12,
-                  "y": 356
+                  "y": 421
                },
-               "id": 145,
+               "id": 173,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -12039,9 +14489,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 18,
-                  "y": 356
+                  "y": 421
                },
-               "id": 146,
+               "id": 174,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -12132,9 +14582,9 @@
             "h": 1,
             "w": 24,
             "x": 0,
-            "y": 364
+            "y": 429
          },
-         "id": 147,
+         "id": 175,
          "panels": [
             {
                "aliasColors": { },
@@ -12149,9 +14599,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 0,
-                  "y": 365
+                  "y": 430
                },
-               "id": 148,
+               "id": 176,
                "legend": {
                   "alignAsTable": true,
                   "avg": false,
@@ -12239,9 +14689,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 6,
-                  "y": 365
+                  "y": 430
                },
-               "id": 149,
+               "id": 177,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -12329,9 +14779,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 12,
-                  "y": 365
+                  "y": 430
                },
-               "id": 150,
+               "id": 178,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -12419,9 +14869,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 18,
-                  "y": 365
+                  "y": 430
                },
-               "id": 151,
+               "id": 179,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -12509,9 +14959,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 0,
-                  "y": 373
+                  "y": 438
                },
-               "id": 152,
+               "id": 180,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -12599,9 +15049,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 6,
-                  "y": 373
+                  "y": 438
                },
-               "id": 153,
+               "id": 181,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -12689,9 +15139,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 12,
-                  "y": 373
+                  "y": 438
                },
-               "id": 154,
+               "id": 182,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -12779,9 +15229,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 18,
-                  "y": 373
+                  "y": 438
                },
-               "id": 155,
+               "id": 183,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -12869,9 +15319,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 0,
-                  "y": 381
+                  "y": 446
                },
-               "id": 156,
+               "id": 184,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -12959,9 +15409,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 8,
-                  "y": 381
+                  "y": 446
                },
-               "id": 157,
+               "id": 185,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -13049,9 +15499,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 16,
-                  "y": 381
+                  "y": 446
                },
-               "id": 158,
+               "id": 186,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -13139,9 +15589,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 0,
-                  "y": 389
+                  "y": 454
                },
-               "id": 159,
+               "id": 187,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -13229,9 +15679,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 8,
-                  "y": 389
+                  "y": 454
                },
-               "id": 160,
+               "id": 188,
                "legend": {
                   "alignAsTable": true,
                   "avg": false,
@@ -13319,9 +15769,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 16,
-                  "y": 389
+                  "y": 454
                },
-               "id": 161,
+               "id": 189,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -13409,9 +15859,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 0,
-                  "y": 397
+                  "y": 462
                },
-               "id": 162,
+               "id": 190,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -13499,9 +15949,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 8,
-                  "y": 397
+                  "y": 462
                },
-               "id": 163,
+               "id": 191,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -13589,9 +16039,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 16,
-                  "y": 397
+                  "y": 462
                },
-               "id": 164,
+               "id": 192,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -13679,9 +16129,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 0,
-                  "y": 405
+                  "y": 470
                },
-               "id": 165,
+               "id": 193,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -13769,9 +16219,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 8,
-                  "y": 405
+                  "y": 470
                },
-               "id": 166,
+               "id": 194,
                "legend": {
                   "alignAsTable": true,
                   "avg": false,
@@ -13859,9 +16309,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 16,
-                  "y": 405
+                  "y": 470
                },
-               "id": 167,
+               "id": 195,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -13949,9 +16399,9 @@
                   "h": 10,
                   "w": 24,
                   "x": 0,
-                  "y": 413
+                  "y": 478
                },
-               "id": 168,
+               "id": 196,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -14039,9 +16489,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 0,
-                  "y": 423
+                  "y": 488
                },
-               "id": 169,
+               "id": 197,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -14129,9 +16579,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 6,
-                  "y": 423
+                  "y": 488
                },
-               "id": 170,
+               "id": 198,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -14219,9 +16669,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 12,
-                  "y": 423
+                  "y": 488
                },
-               "id": 171,
+               "id": 199,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -14309,9 +16759,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 18,
-                  "y": 423
+                  "y": 488
                },
-               "id": 172,
+               "id": 200,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -14402,9 +16852,9 @@
             "h": 1,
             "w": 24,
             "x": 0,
-            "y": 431
+            "y": 496
          },
-         "id": 173,
+         "id": 201,
          "panels": [
             {
                "aliasColors": { },
@@ -14419,9 +16869,9 @@
                   "h": 8,
                   "w": 12,
                   "x": 0,
-                  "y": 432
+                  "y": 497
                },
-               "id": 174,
+               "id": 202,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -14509,9 +16959,9 @@
                   "h": 8,
                   "w": 12,
                   "x": 12,
-                  "y": 432
+                  "y": 497
                },
-               "id": 175,
+               "id": 203,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -14599,9 +17049,9 @@
                   "h": 8,
                   "w": 12,
                   "x": 0,
-                  "y": 440
+                  "y": 505
                },
-               "id": 176,
+               "id": 204,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -14689,9 +17139,9 @@
                   "h": 8,
                   "w": 12,
                   "x": 12,
-                  "y": 440
+                  "y": 505
                },
-               "id": 177,
+               "id": 205,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -14779,9 +17229,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 0,
-                  "y": 448
+                  "y": 513
                },
-               "id": 178,
+               "id": 206,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -14869,9 +17319,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 8,
-                  "y": 448
+                  "y": 513
                },
-               "id": 179,
+               "id": 207,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -14959,9 +17409,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 16,
-                  "y": 448
+                  "y": 513
                },
-               "id": 180,
+               "id": 208,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -15049,9 +17499,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 0,
-                  "y": 456
+                  "y": 521
                },
-               "id": 181,
+               "id": 209,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -15139,9 +17589,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 8,
-                  "y": 456
+                  "y": 521
                },
-               "id": 182,
+               "id": 210,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -15229,9 +17679,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 16,
-                  "y": 456
+                  "y": 521
                },
-               "id": 183,
+               "id": 211,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -15319,9 +17769,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 0,
-                  "y": 464
+                  "y": 529
                },
-               "id": 184,
+               "id": 212,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -15409,9 +17859,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 6,
-                  "y": 464
+                  "y": 529
                },
-               "id": 185,
+               "id": 213,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -15499,9 +17949,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 12,
-                  "y": 464
+                  "y": 529
                },
-               "id": 186,
+               "id": 214,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -15589,9 +18039,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 18,
-                  "y": 464
+                  "y": 529
                },
-               "id": 187,
+               "id": 215,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -15679,9 +18129,9 @@
                   "h": 8,
                   "w": 12,
                   "x": 0,
-                  "y": 472
+                  "y": 537
                },
-               "id": 188,
+               "id": 216,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -15769,9 +18219,9 @@
                   "h": 8,
                   "w": 12,
                   "x": 12,
-                  "y": 472
+                  "y": 537
                },
-               "id": 189,
+               "id": 217,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -15862,9 +18312,9 @@
             "h": 1,
             "w": 24,
             "x": 0,
-            "y": 480
+            "y": 545
          },
-         "id": 190,
+         "id": 218,
          "panels": [
             {
                "aliasColors": { },
@@ -15879,9 +18329,9 @@
                   "h": 8,
                   "w": 12,
                   "x": 0,
-                  "y": 481
+                  "y": 546
                },
-               "id": 191,
+               "id": 219,
                "legend": {
                   "alignAsTable": true,
                   "avg": false,
@@ -15969,9 +18419,9 @@
                   "h": 8,
                   "w": 12,
                   "x": 12,
-                  "y": 481
+                  "y": 546
                },
-               "id": 192,
+               "id": 220,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -16059,9 +18509,9 @@
                   "h": 8,
                   "w": 12,
                   "x": 0,
-                  "y": 489
+                  "y": 554
                },
-               "id": 193,
+               "id": 221,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -16149,9 +18599,9 @@
                   "h": 8,
                   "w": 12,
                   "x": 12,
-                  "y": 489
+                  "y": 554
                },
-               "id": 194,
+               "id": 222,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -16242,9 +18692,9 @@
             "h": 1,
             "w": 24,
             "x": 0,
-            "y": 497
+            "y": 562
          },
-         "id": 195,
+         "id": 223,
          "panels": [
             {
                "aliasColors": { },
@@ -16259,9 +18709,9 @@
                   "h": 8,
                   "w": 12,
                   "x": 0,
-                  "y": 498
+                  "y": 563
                },
-               "id": 196,
+               "id": 224,
                "legend": {
                   "alignAsTable": true,
                   "avg": false,
@@ -16349,9 +18799,9 @@
                   "h": 8,
                   "w": 12,
                   "x": 12,
-                  "y": 498
+                  "y": 563
                },
-               "id": 197,
+               "id": 225,
                "legend": {
                   "alignAsTable": true,
                   "avg": false,
@@ -16442,9 +18892,9 @@
             "h": 1,
             "w": 24,
             "x": 0,
-            "y": 506
+            "y": 571
          },
-         "id": 198,
+         "id": 226,
          "panels": [
             {
                "aliasColors": { },
@@ -16459,9 +18909,9 @@
                   "h": 8,
                   "w": 12,
                   "x": 0,
-                  "y": 507
+                  "y": 572
                },
-               "id": 199,
+               "id": 227,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -16549,9 +18999,9 @@
                   "h": 8,
                   "w": 12,
                   "x": 12,
-                  "y": 507
+                  "y": 572
                },
-               "id": 200,
+               "id": 228,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -16639,9 +19089,9 @@
                   "h": 8,
                   "w": 12,
                   "x": 0,
-                  "y": 515
+                  "y": 580
                },
-               "id": 201,
+               "id": 229,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -16729,9 +19179,9 @@
                   "h": 8,
                   "w": 12,
                   "x": 12,
-                  "y": 515
+                  "y": 580
                },
-               "id": 202,
+               "id": 230,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -16822,9 +19272,9 @@
             "h": 1,
             "w": 24,
             "x": 0,
-            "y": 523
+            "y": 588
          },
-         "id": 203,
+         "id": 231,
          "panels": [
             {
                "aliasColors": { },
@@ -16839,9 +19289,9 @@
                   "h": 8,
                   "w": 12,
                   "x": 0,
-                  "y": 524
+                  "y": 589
                },
-               "id": 204,
+               "id": 232,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -16929,9 +19379,9 @@
                   "h": 8,
                   "w": 12,
                   "x": 12,
-                  "y": 524
+                  "y": 589
                },
-               "id": 205,
+               "id": 233,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -17019,9 +19469,9 @@
                   "h": 8,
                   "w": 12,
                   "x": 0,
-                  "y": 532
+                  "y": 597
                },
-               "id": 206,
+               "id": 234,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -17109,9 +19559,9 @@
                   "h": 8,
                   "w": 12,
                   "x": 12,
-                  "y": 532
+                  "y": 597
                },
-               "id": 207,
+               "id": 235,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -17202,9 +19652,9 @@
             "h": 1,
             "w": 24,
             "x": 0,
-            "y": 540
+            "y": 605
          },
-         "id": 208,
+         "id": 236,
          "panels": [
             {
                "aliasColors": { },
@@ -17219,9 +19669,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 0,
-                  "y": 541
+                  "y": 606
                },
-               "id": 209,
+               "id": 237,
                "legend": {
                   "alignAsTable": true,
                   "avg": false,
@@ -17309,9 +19759,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 8,
-                  "y": 541
+                  "y": 606
                },
-               "id": 210,
+               "id": 238,
                "legend": {
                   "alignAsTable": true,
                   "avg": false,
@@ -17399,9 +19849,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 16,
-                  "y": 541
+                  "y": 606
                },
-               "id": 211,
+               "id": 239,
                "legend": {
                   "alignAsTable": true,
                   "avg": false,
@@ -17489,9 +19939,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 0,
-                  "y": 549
+                  "y": 614
                },
-               "id": 212,
+               "id": 240,
                "legend": {
                   "alignAsTable": true,
                   "avg": false,
@@ -17579,9 +20029,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 8,
-                  "y": 549
+                  "y": 614
                },
-               "id": 213,
+               "id": 241,
                "legend": {
                   "alignAsTable": true,
                   "avg": false,
@@ -17669,9 +20119,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 16,
-                  "y": 549
+                  "y": 614
                },
-               "id": 214,
+               "id": 242,
                "legend": {
                   "alignAsTable": true,
                   "avg": false,
@@ -17762,9 +20212,9 @@
             "h": 1,
             "w": 24,
             "x": 0,
-            "y": 557
+            "y": 622
          },
-         "id": 215,
+         "id": 243,
          "panels": [
             {
                "aliasColors": { },
@@ -17779,9 +20229,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 0,
-                  "y": 558
+                  "y": 623
                },
-               "id": 216,
+               "id": 244,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -17869,9 +20319,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 8,
-                  "y": 558
+                  "y": 623
                },
-               "id": 217,
+               "id": 245,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -17959,9 +20409,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 16,
-                  "y": 558
+                  "y": 623
                },
-               "id": 218,
+               "id": 246,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -18049,9 +20499,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 0,
-                  "y": 566
+                  "y": 631
                },
-               "id": 219,
+               "id": 247,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -18139,9 +20589,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 8,
-                  "y": 566
+                  "y": 631
                },
-               "id": 220,
+               "id": 248,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -18229,9 +20679,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 16,
-                  "y": 566
+                  "y": 631
                },
-               "id": 221,
+               "id": 249,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -18322,9 +20772,9 @@
             "h": 1,
             "w": 24,
             "x": 0,
-            "y": 574
+            "y": 639
          },
-         "id": 222,
+         "id": 250,
          "panels": [
             {
                "aliasColors": { },
@@ -18339,9 +20789,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 0,
-                  "y": 575
+                  "y": 640
                },
-               "id": 223,
+               "id": 251,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -18429,9 +20879,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 6,
-                  "y": 575
+                  "y": 640
                },
-               "id": 224,
+               "id": 252,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -18519,9 +20969,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 12,
-                  "y": 575
+                  "y": 640
                },
-               "id": 225,
+               "id": 253,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -18609,9 +21059,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 18,
-                  "y": 575
+                  "y": 640
                },
-               "id": 226,
+               "id": 254,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -18699,9 +21149,9 @@
                   "h": 8,
                   "w": 12,
                   "x": 0,
-                  "y": 583
+                  "y": 648
                },
-               "id": 227,
+               "id": 255,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -18789,9 +21239,9 @@
                   "h": 8,
                   "w": 12,
                   "x": 12,
-                  "y": 583
+                  "y": 648
                },
-               "id": 228,
+               "id": 256,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -18879,9 +21329,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 0,
-                  "y": 591
+                  "y": 656
                },
-               "id": 229,
+               "id": 257,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -18969,9 +21419,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 6,
-                  "y": 591
+                  "y": 656
                },
-               "id": 230,
+               "id": 258,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -19059,9 +21509,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 12,
-                  "y": 591
+                  "y": 656
                },
-               "id": 231,
+               "id": 259,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -19149,9 +21599,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 18,
-                  "y": 591
+                  "y": 656
                },
-               "id": 232,
+               "id": 260,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -19239,9 +21689,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 0,
-                  "y": 599
+                  "y": 664
                },
-               "id": 233,
+               "id": 261,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -19329,9 +21779,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 6,
-                  "y": 599
+                  "y": 664
                },
-               "id": 234,
+               "id": 262,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -19419,9 +21869,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 12,
-                  "y": 599
+                  "y": 664
                },
-               "id": 235,
+               "id": 263,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -19509,9 +21959,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 18,
-                  "y": 599
+                  "y": 664
                },
-               "id": 236,
+               "id": 264,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -19599,9 +22049,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 0,
-                  "y": 607
+                  "y": 672
                },
-               "id": 237,
+               "id": 265,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -19689,9 +22139,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 6,
-                  "y": 607
+                  "y": 672
                },
-               "id": 238,
+               "id": 266,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -19779,9 +22229,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 12,
-                  "y": 607
+                  "y": 672
                },
-               "id": 239,
+               "id": 267,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -19869,9 +22319,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 18,
-                  "y": 607
+                  "y": 672
                },
-               "id": 240,
+               "id": 268,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -19962,9 +22412,9 @@
             "h": 1,
             "w": 24,
             "x": 0,
-            "y": 615
+            "y": 680
          },
-         "id": 241,
+         "id": 269,
          "panels": [
             {
                "aliasColors": { },
@@ -19979,9 +22429,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 0,
-                  "y": 616
+                  "y": 681
                },
-               "id": 242,
+               "id": 270,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -20069,9 +22519,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 8,
-                  "y": 616
+                  "y": 681
                },
-               "id": 243,
+               "id": 271,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -20159,9 +22609,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 16,
-                  "y": 616
+                  "y": 681
                },
-               "id": 244,
+               "id": 272,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -20249,9 +22699,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 0,
-                  "y": 624
+                  "y": 689
                },
-               "id": 245,
+               "id": 273,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -20339,9 +22789,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 8,
-                  "y": 624
+                  "y": 689
                },
-               "id": 246,
+               "id": 274,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -20429,9 +22879,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 16,
-                  "y": 624
+                  "y": 689
                },
-               "id": 247,
+               "id": 275,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -20519,9 +22969,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 0,
-                  "y": 632
+                  "y": 697
                },
-               "id": 248,
+               "id": 276,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -20609,9 +23059,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 8,
-                  "y": 632
+                  "y": 697
                },
-               "id": 249,
+               "id": 277,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -20699,9 +23149,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 16,
-                  "y": 632
+                  "y": 697
                },
-               "id": 250,
+               "id": 278,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -20789,9 +23239,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 0,
-                  "y": 640
+                  "y": 705
                },
-               "id": 251,
+               "id": 279,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -20879,9 +23329,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 8,
-                  "y": 640
+                  "y": 705
                },
-               "id": 252,
+               "id": 280,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -20969,9 +23419,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 16,
-                  "y": 640
+                  "y": 705
                },
-               "id": 253,
+               "id": 281,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -21062,9 +23512,9 @@
             "h": 1,
             "w": 24,
             "x": 0,
-            "y": 648
+            "y": 713
          },
-         "id": 254,
+         "id": 282,
          "panels": [
             {
                "aliasColors": { },
@@ -21079,9 +23529,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 0,
-                  "y": 649
+                  "y": 714
                },
-               "id": 255,
+               "id": 283,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -21169,9 +23619,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 8,
-                  "y": 649
+                  "y": 714
                },
-               "id": 256,
+               "id": 284,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -21259,9 +23709,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 16,
-                  "y": 649
+                  "y": 714
                },
-               "id": 257,
+               "id": 285,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -21349,9 +23799,9 @@
                   "h": 8,
                   "w": 12,
                   "x": 0,
-                  "y": 657
+                  "y": 722
                },
-               "id": 258,
+               "id": 286,
                "legend": {
                   "alignAsTable": true,
                   "avg": false,
@@ -21439,9 +23889,9 @@
                   "h": 8,
                   "w": 12,
                   "x": 12,
-                  "y": 657
+                  "y": 722
                },
-               "id": 259,
+               "id": 287,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -21529,9 +23979,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 0,
-                  "y": 665
+                  "y": 730
                },
-               "id": 260,
+               "id": 288,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -21619,9 +24069,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 6,
-                  "y": 665
+                  "y": 730
                },
-               "id": 261,
+               "id": 289,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -21709,9 +24159,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 12,
-                  "y": 665
+                  "y": 730
                },
-               "id": 262,
+               "id": 290,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -21799,9 +24249,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 18,
-                  "y": 665
+                  "y": 730
                },
-               "id": 263,
+               "id": 291,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -21889,9 +24339,9 @@
                   "h": 8,
                   "w": 12,
                   "x": 0,
-                  "y": 673
+                  "y": 738
                },
-               "id": 264,
+               "id": 292,
                "legend": {
                   "alignAsTable": true,
                   "avg": false,
@@ -21979,9 +24429,9 @@
                   "h": 8,
                   "w": 12,
                   "x": 12,
-                  "y": 673
+                  "y": 738
                },
-               "id": 265,
+               "id": 293,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -22069,9 +24519,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 0,
-                  "y": 681
+                  "y": 746
                },
-               "id": 266,
+               "id": 294,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -22159,9 +24609,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 8,
-                  "y": 681
+                  "y": 746
                },
-               "id": 267,
+               "id": 295,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -22249,9 +24699,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 16,
-                  "y": 681
+                  "y": 746
                },
-               "id": 268,
+               "id": 296,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -22339,9 +24789,9 @@
                   "h": 8,
                   "w": 12,
                   "x": 0,
-                  "y": 689
+                  "y": 754
                },
-               "id": 269,
+               "id": 297,
                "legend": {
                   "alignAsTable": true,
                   "avg": false,
@@ -22429,9 +24879,9 @@
                   "h": 8,
                   "w": 12,
                   "x": 12,
-                  "y": 689
+                  "y": 754
                },
-               "id": 270,
+               "id": 298,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,

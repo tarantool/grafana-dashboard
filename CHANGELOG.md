@@ -13,6 +13,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Panel with failover trigger count
 - Panels with syncro replication queue statistics
 - Panels with leader election statistics
+- Panels with MVCC statistics
 
 ### Changed
 - Replace LuaJit deprecated metrics with new ones

@@ -80,6 +80,14 @@ function(
     alias=alias,
   )
 ).addPanels(
+  section.mvcc(
+    datasource_type=variable.datasource_type.influxdb,
+    datasource=datasource,
+    policy=policy,
+    measurement=measurement,
+    alias=alias,
+  )
+).addPanels(
   section.space(
     datasource_type=variable.datasource_type.influxdb,
     datasource=datasource,
