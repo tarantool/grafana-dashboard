@@ -731,7 +731,7 @@
                },
                "gridPos": {
                   "h": 8,
-                  "w": 12,
+                  "w": 8,
                   "x": 0,
                   "y": 15
                },
@@ -759,6 +759,96 @@
                ],
                "title": "Tarantool replication status",
                "type": "timeseries"
+            },
+            {
+               "aliasColors": { },
+               "bars": false,
+               "dashLength": 10,
+               "dashes": false,
+               "datasource": "$prometheus",
+               "decimals": 3,
+               "description": "Displays the count of failover triggers in a replicaset.\nGraph shows average per second.\n\nPanel works with `metrics >= 0.15.0`.\n",
+               "fill": 0,
+               "gridPos": {
+                  "h": 8,
+                  "w": 8,
+                  "x": 8,
+                  "y": 15
+               },
+               "id": 13,
+               "legend": {
+                  "alignAsTable": true,
+                  "avg": true,
+                  "current": true,
+                  "max": true,
+                  "min": false,
+                  "rightSide": false,
+                  "show": true,
+                  "sideWidth": null,
+                  "sort": "current",
+                  "sortDesc": true,
+                  "total": false,
+                  "values": true
+               },
+               "lines": true,
+               "linewidth": 1,
+               "links": [ ],
+               "nullPointMode": "null",
+               "percentage": false,
+               "pointradius": 5,
+               "points": false,
+               "renderer": "flot",
+               "repeat": null,
+               "seriesOverrides": [ ],
+               "spaceLength": 10,
+               "stack": false,
+               "steppedLine": false,
+               "targets": [
+                  {
+                     "expr": "rate(tnt_cartridge_failover_trigger_total{job=~\"$job\",alias=~\"$alias\"}[$__rate_interval])",
+                     "format": "time_series",
+                     "intervalFactor": 2,
+                     "legendFormat": "{{alias}}",
+                     "refId": "A"
+                  }
+               ],
+               "thresholds": [ ],
+               "timeFrom": null,
+               "timeShift": null,
+               "title": "Failovers triggered",
+               "tooltip": {
+                  "shared": true,
+                  "sort": 2,
+                  "value_type": "individual"
+               },
+               "type": "graph",
+               "xaxis": {
+                  "buckets": null,
+                  "mode": "time",
+                  "name": null,
+                  "show": true,
+                  "values": [ ]
+               },
+               "yaxes": [
+                  {
+                     "decimals": 0,
+                     "format": "none",
+                     "label": "failovers per second",
+                     "logBase": 1,
+                     "max": null,
+                     "min": null,
+                     "show": true
+                  },
+                  {
+                     "decimals": 3,
+                     "format": "none",
+                     "label": null,
+                     "logBase": 1,
+                     "max": null,
+                     "min": null,
+                     "show": true
+                  }
+               ]
             },
             {
                "datasource": "$prometheus",
@@ -840,11 +930,11 @@
                },
                "gridPos": {
                   "h": 8,
-                  "w": 12,
-                  "x": 12,
+                  "w": 8,
+                  "x": 16,
                   "y": 15
                },
-               "id": 13,
+               "id": 14,
                "options": {
                   "legend": {
                      "calcs": [
@@ -883,7 +973,7 @@
                   "x": 0,
                   "y": 23
                },
-               "id": 14,
+               "id": 15,
                "legend": {
                   "alignAsTable": true,
                   "avg": false,
@@ -970,7 +1060,7 @@
                   "x": 12,
                   "y": 23
                },
-               "id": 15,
+               "id": 16,
                "legend": {
                   "alignAsTable": true,
                   "avg": false,
@@ -1061,7 +1151,7 @@
             "x": 0,
             "y": 31
          },
-         "id": 16,
+         "id": 17,
          "panels": [
             {
                "aliasColors": { },
@@ -1078,7 +1168,7 @@
                   "x": 0,
                   "y": 32
                },
-               "id": 17,
+               "id": 18,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -1168,7 +1258,7 @@
                   "x": 8,
                   "y": 32
                },
-               "id": 18,
+               "id": 19,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -1258,7 +1348,7 @@
                   "x": 16,
                   "y": 32
                },
-               "id": 19,
+               "id": 20,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -1348,7 +1438,7 @@
                   "x": 0,
                   "y": 40
                },
-               "id": 20,
+               "id": 21,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -1438,7 +1528,7 @@
                   "x": 8,
                   "y": 40
                },
-               "id": 21,
+               "id": 22,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -1528,7 +1618,7 @@
                   "x": 16,
                   "y": 40
                },
-               "id": 22,
+               "id": 23,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -1621,7 +1711,7 @@
             "x": 0,
             "y": 48
          },
-         "id": 23,
+         "id": 24,
          "panels": [
             {
                "aliasColors": { },
@@ -1638,7 +1728,7 @@
                   "x": 0,
                   "y": 49
                },
-               "id": 24,
+               "id": 25,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -1728,7 +1818,7 @@
                   "x": 8,
                   "y": 49
                },
-               "id": 25,
+               "id": 26,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -1818,7 +1908,7 @@
                   "x": 16,
                   "y": 49
                },
-               "id": 26,
+               "id": 27,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -1908,7 +1998,7 @@
                   "x": 0,
                   "y": 57
                },
-               "id": 27,
+               "id": 28,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -1998,7 +2088,7 @@
                   "x": 12,
                   "y": 57
                },
-               "id": 28,
+               "id": 29,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -2088,7 +2178,7 @@
                   "x": 0,
                   "y": 65
                },
-               "id": 29,
+               "id": 30,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -2178,7 +2268,7 @@
                   "x": 6,
                   "y": 65
                },
-               "id": 30,
+               "id": 31,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -2268,7 +2358,7 @@
                   "x": 12,
                   "y": 65
                },
-               "id": 31,
+               "id": 32,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -2358,7 +2448,7 @@
                   "x": 18,
                   "y": 65
                },
-               "id": 32,
+               "id": 33,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -2448,7 +2538,7 @@
                   "x": 0,
                   "y": 73
                },
-               "id": 33,
+               "id": 34,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -2538,7 +2628,7 @@
                   "x": 12,
                   "y": 73
                },
-               "id": 34,
+               "id": 35,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -2628,7 +2718,7 @@
                   "x": 0,
                   "y": 81
                },
-               "id": 35,
+               "id": 36,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -2718,7 +2808,7 @@
                   "x": 12,
                   "y": 81
                },
-               "id": 36,
+               "id": 37,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -2808,7 +2898,7 @@
                   "x": 0,
                   "y": 89
                },
-               "id": 37,
+               "id": 38,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -2898,7 +2988,7 @@
                   "x": 12,
                   "y": 89
                },
-               "id": 38,
+               "id": 39,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -2988,7 +3078,7 @@
                   "x": 0,
                   "y": 97
                },
-               "id": 39,
+               "id": 40,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -3078,7 +3168,7 @@
                   "x": 8,
                   "y": 97
                },
-               "id": 40,
+               "id": 41,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -3168,7 +3258,7 @@
                   "x": 16,
                   "y": 97
                },
-               "id": 41,
+               "id": 42,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -3258,7 +3348,7 @@
                   "x": 0,
                   "y": 105
                },
-               "id": 42,
+               "id": 43,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -3348,7 +3438,7 @@
                   "x": 8,
                   "y": 105
                },
-               "id": 43,
+               "id": 44,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -3438,7 +3528,7 @@
                   "x": 16,
                   "y": 105
                },
-               "id": 44,
+               "id": 45,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -3531,7 +3621,7 @@
             "x": 0,
             "y": 113
          },
-         "id": 45,
+         "id": 46,
          "panels": [
             {
                "content": "`quota_used_ratio` > 90%, `arena_used_ratio` > 90%, 50% < `items_used_ratio` < 90% – your memory is highly fragmented. See [docs](https://www.tarantool.io/en/doc/1.10/reference/reference_lua/box_slab/#lua-function.box.slab.info) for more info.\n\n`quota_used_ratio` > 90%, `arena_used_ratio` > 90%, `items_used_ratio` > 90% – you are running out of memory. You should consider increasing Tarantool’s memory limit (*box.cfg.memtx_memory*).\n",
@@ -3542,7 +3632,7 @@
                   "x": 0,
                   "y": 114
                },
-               "id": 46,
+               "id": 47,
                "mode": "markdown",
                "title": "Slab allocator monitoring information",
                "type": "text"
@@ -3562,7 +3652,7 @@
                   "x": 0,
                   "y": 117
                },
-               "id": 47,
+               "id": 48,
                "legend": {
                   "alignAsTable": true,
                   "avg": false,
@@ -3652,7 +3742,7 @@
                   "x": 8,
                   "y": 117
                },
-               "id": 48,
+               "id": 49,
                "legend": {
                   "alignAsTable": true,
                   "avg": false,
@@ -3742,7 +3832,7 @@
                   "x": 16,
                   "y": 117
                },
-               "id": 49,
+               "id": 50,
                "legend": {
                   "alignAsTable": true,
                   "avg": false,
@@ -3832,7 +3922,7 @@
                   "x": 0,
                   "y": 125
                },
-               "id": 50,
+               "id": 51,
                "legend": {
                   "alignAsTable": true,
                   "avg": false,
@@ -3922,7 +4012,7 @@
                   "x": 8,
                   "y": 125
                },
-               "id": 51,
+               "id": 52,
                "legend": {
                   "alignAsTable": true,
                   "avg": false,
@@ -4012,7 +4102,7 @@
                   "x": 16,
                   "y": 125
                },
-               "id": 52,
+               "id": 53,
                "legend": {
                   "alignAsTable": true,
                   "avg": false,
@@ -4102,7 +4192,7 @@
                   "x": 0,
                   "y": 133
                },
-               "id": 53,
+               "id": 54,
                "legend": {
                   "alignAsTable": true,
                   "avg": false,
@@ -4192,7 +4282,7 @@
                   "x": 8,
                   "y": 133
                },
-               "id": 54,
+               "id": 55,
                "legend": {
                   "alignAsTable": true,
                   "avg": false,
@@ -4282,7 +4372,7 @@
                   "x": 16,
                   "y": 133
                },
-               "id": 55,
+               "id": 56,
                "legend": {
                   "alignAsTable": true,
                   "avg": false,
@@ -4375,7 +4465,7 @@
             "x": 0,
             "y": 141
          },
-         "id": 56,
+         "id": 57,
          "panels": [
             {
                "aliasColors": { },
@@ -4392,7 +4482,7 @@
                   "x": 0,
                   "y": 142
                },
-               "id": 57,
+               "id": 58,
                "legend": {
                   "alignAsTable": true,
                   "avg": false,
@@ -4482,7 +4572,7 @@
                   "x": 12,
                   "y": 142
                },
-               "id": 58,
+               "id": 59,
                "legend": {
                   "alignAsTable": true,
                   "avg": false,
@@ -4572,7 +4662,7 @@
                   "x": 0,
                   "y": 150
                },
-               "id": 59,
+               "id": 60,
                "legend": {
                   "alignAsTable": true,
                   "avg": false,
@@ -4662,7 +4752,7 @@
                   "x": 8,
                   "y": 150
                },
-               "id": 60,
+               "id": 61,
                "legend": {
                   "alignAsTable": true,
                   "avg": false,
@@ -4752,7 +4842,7 @@
                   "x": 16,
                   "y": 150
                },
-               "id": 61,
+               "id": 62,
                "legend": {
                   "alignAsTable": true,
                   "avg": false,
@@ -4845,7 +4935,7 @@
             "x": 0,
             "y": 158
          },
-         "id": 62,
+         "id": 63,
          "panels": [
             {
                "aliasColors": { },
@@ -4862,7 +4952,7 @@
                   "x": 0,
                   "y": 159
                },
-               "id": 63,
+               "id": 64,
                "legend": {
                   "alignAsTable": true,
                   "avg": false,
@@ -4952,7 +5042,7 @@
                   "x": 12,
                   "y": 159
                },
-               "id": 64,
+               "id": 65,
                "legend": {
                   "alignAsTable": true,
                   "avg": false,
@@ -5042,7 +5132,7 @@
                   "x": 0,
                   "y": 167
                },
-               "id": 65,
+               "id": 66,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -5132,7 +5222,7 @@
                   "x": 8,
                   "y": 167
                },
-               "id": 66,
+               "id": 67,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -5222,7 +5312,7 @@
                   "x": 16,
                   "y": 167
                },
-               "id": 67,
+               "id": 68,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -5312,7 +5402,7 @@
                   "x": 0,
                   "y": 175
                },
-               "id": 68,
+               "id": 69,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -5402,7 +5492,7 @@
                   "x": 8,
                   "y": 175
                },
-               "id": 69,
+               "id": 70,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -5492,7 +5582,7 @@
                   "x": 16,
                   "y": 175
                },
-               "id": 70,
+               "id": 71,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -5582,7 +5672,7 @@
                   "x": 0,
                   "y": 183
                },
-               "id": 71,
+               "id": 72,
                "legend": {
                   "alignAsTable": true,
                   "avg": false,
@@ -5672,7 +5762,7 @@
                   "x": 8,
                   "y": 183
                },
-               "id": 72,
+               "id": 73,
                "legend": {
                   "alignAsTable": true,
                   "avg": false,
@@ -5762,7 +5852,7 @@
                   "x": 16,
                   "y": 183
                },
-               "id": 73,
+               "id": 74,
                "legend": {
                   "alignAsTable": true,
                   "avg": false,
@@ -5852,7 +5942,7 @@
                   "x": 0,
                   "y": 191
                },
-               "id": 74,
+               "id": 75,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -5942,7 +6032,7 @@
                   "x": 6,
                   "y": 191
                },
-               "id": 75,
+               "id": 76,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -6032,7 +6122,7 @@
                   "x": 12,
                   "y": 191
                },
-               "id": 76,
+               "id": 77,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -6122,7 +6212,7 @@
                   "x": 18,
                   "y": 191
                },
-               "id": 77,
+               "id": 78,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -6212,7 +6302,7 @@
                   "x": 0,
                   "y": 199
                },
-               "id": 78,
+               "id": 79,
                "legend": {
                   "alignAsTable": true,
                   "avg": false,
@@ -6302,7 +6392,7 @@
                   "x": 6,
                   "y": 199
                },
-               "id": 79,
+               "id": 80,
                "legend": {
                   "alignAsTable": true,
                   "avg": false,
@@ -6392,7 +6482,7 @@
                   "x": 12,
                   "y": 199
                },
-               "id": 80,
+               "id": 81,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -6482,7 +6572,7 @@
                   "x": 18,
                   "y": 199
                },
-               "id": 81,
+               "id": 82,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -6575,7 +6665,7 @@
             "x": 0,
             "y": 207
          },
-         "id": 82,
+         "id": 83,
          "panels": [
             {
                "aliasColors": { },
@@ -6592,7 +6682,7 @@
                   "x": 0,
                   "y": 208
                },
-               "id": 83,
+               "id": 84,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -6682,7 +6772,7 @@
                   "x": 12,
                   "y": 208
                },
-               "id": 84,
+               "id": 85,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -6775,7 +6865,7 @@
             "x": 0,
             "y": 216
          },
-         "id": 85,
+         "id": 86,
          "panels": [
             {
                "aliasColors": { },
@@ -6792,7 +6882,7 @@
                   "x": 0,
                   "y": 217
                },
-               "id": 86,
+               "id": 87,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -6882,7 +6972,7 @@
                   "x": 8,
                   "y": 217
                },
-               "id": 87,
+               "id": 88,
                "legend": {
                   "alignAsTable": true,
                   "avg": false,
@@ -6972,7 +7062,7 @@
                   "x": 16,
                   "y": 217
                },
-               "id": 88,
+               "id": 89,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -7062,7 +7152,7 @@
                   "x": 0,
                   "y": 225
                },
-               "id": 89,
+               "id": 90,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -7152,7 +7242,7 @@
                   "x": 12,
                   "y": 225
                },
-               "id": 90,
+               "id": 91,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -7242,7 +7332,7 @@
                   "x": 0,
                   "y": 233
                },
-               "id": 91,
+               "id": 92,
                "legend": {
                   "alignAsTable": true,
                   "avg": false,
@@ -7332,7 +7422,7 @@
                   "x": 8,
                   "y": 233
                },
-               "id": 92,
+               "id": 93,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -7422,7 +7512,7 @@
                   "x": 16,
                   "y": 233
                },
-               "id": 93,
+               "id": 94,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -7515,7 +7605,7 @@
             "x": 0,
             "y": 241
          },
-         "id": 94,
+         "id": 95,
          "panels": [
             {
                "aliasColors": { },
@@ -7532,7 +7622,7 @@
                   "x": 0,
                   "y": 242
                },
-               "id": 95,
+               "id": 96,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -7622,7 +7712,7 @@
                   "x": 6,
                   "y": 242
                },
-               "id": 96,
+               "id": 97,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -7712,7 +7802,7 @@
                   "x": 12,
                   "y": 242
                },
-               "id": 97,
+               "id": 98,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -7802,7 +7892,7 @@
                   "x": 18,
                   "y": 242
                },
-               "id": 98,
+               "id": 99,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -7892,7 +7982,7 @@
                   "x": 0,
                   "y": 250
                },
-               "id": 99,
+               "id": 100,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -7982,7 +8072,7 @@
                   "x": 12,
                   "y": 250
                },
-               "id": 100,
+               "id": 101,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -8072,7 +8162,7 @@
                   "x": 0,
                   "y": 258
                },
-               "id": 101,
+               "id": 102,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -8162,7 +8252,7 @@
                   "x": 8,
                   "y": 258
                },
-               "id": 102,
+               "id": 103,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -8252,7 +8342,7 @@
                   "x": 16,
                   "y": 258
                },
-               "id": 103,
+               "id": 104,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -8342,7 +8432,7 @@
                   "x": 0,
                   "y": 266
                },
-               "id": 104,
+               "id": 105,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -8432,7 +8522,7 @@
                   "x": 8,
                   "y": 266
                },
-               "id": 105,
+               "id": 106,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -8522,7 +8612,7 @@
                   "x": 16,
                   "y": 266
                },
-               "id": 106,
+               "id": 107,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -8612,7 +8702,7 @@
                   "x": 0,
                   "y": 274
                },
-               "id": 107,
+               "id": 108,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -8702,7 +8792,7 @@
                   "x": 6,
                   "y": 274
                },
-               "id": 108,
+               "id": 109,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -8792,7 +8882,7 @@
                   "x": 12,
                   "y": 274
                },
-               "id": 109,
+               "id": 110,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -8882,7 +8972,7 @@
                   "x": 18,
                   "y": 274
                },
-               "id": 110,
+               "id": 111,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -8972,7 +9062,7 @@
                   "x": 0,
                   "y": 282
                },
-               "id": 111,
+               "id": 112,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -9062,7 +9152,7 @@
                   "x": 8,
                   "y": 282
                },
-               "id": 112,
+               "id": 113,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -9152,7 +9242,7 @@
                   "x": 16,
                   "y": 282
                },
-               "id": 113,
+               "id": 114,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -9245,7 +9335,7 @@
             "x": 0,
             "y": 290
          },
-         "id": 114,
+         "id": 115,
          "panels": [
             {
                "aliasColors": { },
@@ -9262,7 +9352,7 @@
                   "x": 0,
                   "y": 291
                },
-               "id": 115,
+               "id": 116,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -9352,7 +9442,7 @@
                   "x": 8,
                   "y": 291
                },
-               "id": 116,
+               "id": 117,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -9442,7 +9532,7 @@
                   "x": 16,
                   "y": 291
                },
-               "id": 117,
+               "id": 118,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -9532,7 +9622,7 @@
                   "x": 0,
                   "y": 299
                },
-               "id": 118,
+               "id": 119,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -9622,7 +9712,7 @@
                   "x": 8,
                   "y": 299
                },
-               "id": 119,
+               "id": 120,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -9712,7 +9802,7 @@
                   "x": 16,
                   "y": 299
                },
-               "id": 120,
+               "id": 121,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -9802,7 +9892,7 @@
                   "x": 0,
                   "y": 307
                },
-               "id": 121,
+               "id": 122,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -9892,7 +9982,7 @@
                   "x": 8,
                   "y": 307
                },
-               "id": 122,
+               "id": 123,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -9982,7 +10072,7 @@
                   "x": 16,
                   "y": 307
                },
-               "id": 123,
+               "id": 124,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -10072,7 +10162,7 @@
                   "x": 0,
                   "y": 315
                },
-               "id": 124,
+               "id": 125,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -10162,7 +10252,7 @@
                   "x": 8,
                   "y": 315
                },
-               "id": 125,
+               "id": 126,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -10252,7 +10342,7 @@
                   "x": 16,
                   "y": 315
                },
-               "id": 126,
+               "id": 127,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -10342,7 +10432,7 @@
                   "x": 0,
                   "y": 323
                },
-               "id": 127,
+               "id": 128,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -10432,7 +10522,7 @@
                   "x": 8,
                   "y": 323
                },
-               "id": 128,
+               "id": 129,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -10522,7 +10612,7 @@
                   "x": 16,
                   "y": 323
                },
-               "id": 129,
+               "id": 130,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -10615,7 +10705,7 @@
             "x": 0,
             "y": 331
          },
-         "id": 130,
+         "id": 131,
          "panels": [
             {
                "aliasColors": { },
@@ -10632,7 +10722,7 @@
                   "x": 0,
                   "y": 332
                },
-               "id": 131,
+               "id": 132,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -10722,7 +10812,7 @@
                   "x": 6,
                   "y": 332
                },
-               "id": 132,
+               "id": 133,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -10812,7 +10902,7 @@
                   "x": 12,
                   "y": 332
                },
-               "id": 133,
+               "id": 134,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -10902,7 +10992,7 @@
                   "x": 18,
                   "y": 332
                },
-               "id": 134,
+               "id": 135,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -10992,7 +11082,7 @@
                   "x": 0,
                   "y": 340
                },
-               "id": 135,
+               "id": 136,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -11082,7 +11172,7 @@
                   "x": 8,
                   "y": 340
                },
-               "id": 136,
+               "id": 137,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -11172,7 +11262,7 @@
                   "x": 16,
                   "y": 340
                },
-               "id": 137,
+               "id": 138,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -11262,7 +11352,7 @@
                   "x": 0,
                   "y": 348
                },
-               "id": 138,
+               "id": 139,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -11352,7 +11442,7 @@
                   "x": 6,
                   "y": 348
                },
-               "id": 139,
+               "id": 140,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -11442,7 +11532,7 @@
                   "x": 12,
                   "y": 348
                },
-               "id": 140,
+               "id": 141,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -11532,7 +11622,7 @@
                   "x": 18,
                   "y": 348
                },
-               "id": 141,
+               "id": 142,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -11622,7 +11712,7 @@
                   "x": 0,
                   "y": 356
                },
-               "id": 142,
+               "id": 143,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -11712,7 +11802,7 @@
                   "x": 6,
                   "y": 356
                },
-               "id": 143,
+               "id": 144,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -11802,7 +11892,7 @@
                   "x": 12,
                   "y": 356
                },
-               "id": 144,
+               "id": 145,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -11892,7 +11982,7 @@
                   "x": 18,
                   "y": 356
                },
-               "id": 145,
+               "id": 146,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -11982,7 +12072,7 @@
                   "x": 0,
                   "y": 364
                },
-               "id": 146,
+               "id": 147,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -12072,7 +12162,7 @@
                   "x": 6,
                   "y": 364
                },
-               "id": 147,
+               "id": 148,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -12162,7 +12252,7 @@
                   "x": 12,
                   "y": 364
                },
-               "id": 148,
+               "id": 149,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -12252,7 +12342,7 @@
                   "x": 18,
                   "y": 364
                },
-               "id": 149,
+               "id": 150,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -12342,7 +12432,7 @@
                   "x": 0,
                   "y": 372
                },
-               "id": 150,
+               "id": 151,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -12432,7 +12522,7 @@
                   "x": 6,
                   "y": 372
                },
-               "id": 151,
+               "id": 152,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -12522,7 +12612,7 @@
                   "x": 12,
                   "y": 372
                },
-               "id": 152,
+               "id": 153,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -12612,7 +12702,7 @@
                   "x": 18,
                   "y": 372
                },
-               "id": 153,
+               "id": 154,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -12702,7 +12792,7 @@
                   "x": 0,
                   "y": 380
                },
-               "id": 154,
+               "id": 155,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -12792,7 +12882,7 @@
                   "x": 6,
                   "y": 380
                },
-               "id": 155,
+               "id": 156,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -12882,7 +12972,7 @@
                   "x": 12,
                   "y": 380
                },
-               "id": 156,
+               "id": 157,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -12972,7 +13062,7 @@
                   "x": 18,
                   "y": 380
                },
-               "id": 157,
+               "id": 158,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -13062,7 +13152,7 @@
                   "x": 0,
                   "y": 388
                },
-               "id": 158,
+               "id": 159,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -13152,7 +13242,7 @@
                   "x": 6,
                   "y": 388
                },
-               "id": 159,
+               "id": 160,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -13242,7 +13332,7 @@
                   "x": 12,
                   "y": 388
                },
-               "id": 160,
+               "id": 161,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -13332,7 +13422,7 @@
                   "x": 18,
                   "y": 388
                },
-               "id": 161,
+               "id": 162,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -13422,7 +13512,7 @@
                   "x": 0,
                   "y": 396
                },
-               "id": 162,
+               "id": 163,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -13512,7 +13602,7 @@
                   "x": 6,
                   "y": 396
                },
-               "id": 163,
+               "id": 164,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -13602,7 +13692,7 @@
                   "x": 12,
                   "y": 396
                },
-               "id": 164,
+               "id": 165,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -13692,7 +13782,7 @@
                   "x": 18,
                   "y": 396
                },
-               "id": 165,
+               "id": 166,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -13782,7 +13872,7 @@
                   "x": 0,
                   "y": 404
                },
-               "id": 166,
+               "id": 167,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -13872,7 +13962,7 @@
                   "x": 6,
                   "y": 404
                },
-               "id": 167,
+               "id": 168,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -13962,7 +14052,7 @@
                   "x": 12,
                   "y": 404
                },
-               "id": 168,
+               "id": 169,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -14052,7 +14142,7 @@
                   "x": 18,
                   "y": 404
                },
-               "id": 169,
+               "id": 170,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -14142,7 +14232,7 @@
                   "x": 0,
                   "y": 412
                },
-               "id": 170,
+               "id": 171,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -14232,7 +14322,7 @@
                   "x": 6,
                   "y": 412
                },
-               "id": 171,
+               "id": 172,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -14322,7 +14412,7 @@
                   "x": 12,
                   "y": 412
                },
-               "id": 172,
+               "id": 173,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -14412,7 +14502,7 @@
                   "x": 18,
                   "y": 412
                },
-               "id": 173,
+               "id": 174,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -14502,7 +14592,7 @@
                   "x": 0,
                   "y": 420
                },
-               "id": 174,
+               "id": 175,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -14592,7 +14682,7 @@
                   "x": 6,
                   "y": 420
                },
-               "id": 175,
+               "id": 176,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -14682,7 +14772,7 @@
                   "x": 12,
                   "y": 420
                },
-               "id": 176,
+               "id": 177,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -14772,7 +14862,7 @@
                   "x": 18,
                   "y": 420
                },
-               "id": 177,
+               "id": 178,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -14862,7 +14952,7 @@
                   "x": 0,
                   "y": 428
                },
-               "id": 178,
+               "id": 179,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -14952,7 +15042,7 @@
                   "x": 6,
                   "y": 428
                },
-               "id": 179,
+               "id": 180,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -15042,7 +15132,7 @@
                   "x": 12,
                   "y": 428
                },
-               "id": 180,
+               "id": 181,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -15132,7 +15222,7 @@
                   "x": 18,
                   "y": 428
                },
-               "id": 181,
+               "id": 182,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -15222,7 +15312,7 @@
                   "x": 0,
                   "y": 436
                },
-               "id": 182,
+               "id": 183,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -15312,7 +15402,7 @@
                   "x": 6,
                   "y": 436
                },
-               "id": 183,
+               "id": 184,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -15402,7 +15492,7 @@
                   "x": 12,
                   "y": 436
                },
-               "id": 184,
+               "id": 185,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -15492,7 +15582,7 @@
                   "x": 18,
                   "y": 436
                },
-               "id": 185,
+               "id": 186,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -15582,7 +15672,7 @@
                   "x": 0,
                   "y": 444
                },
-               "id": 186,
+               "id": 187,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -15672,7 +15762,7 @@
                   "x": 6,
                   "y": 444
                },
-               "id": 187,
+               "id": 188,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -15762,7 +15852,7 @@
                   "x": 12,
                   "y": 444
                },
-               "id": 188,
+               "id": 189,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -15852,7 +15942,7 @@
                   "x": 18,
                   "y": 444
                },
-               "id": 189,
+               "id": 190,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -15945,7 +16035,7 @@
             "x": 0,
             "y": 452
          },
-         "id": 190,
+         "id": 191,
          "panels": [
             {
                "aliasColors": { },
@@ -15962,7 +16052,7 @@
                   "x": 0,
                   "y": 453
                },
-               "id": 191,
+               "id": 192,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -16052,7 +16142,7 @@
                   "x": 12,
                   "y": 453
                },
-               "id": 192,
+               "id": 193,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -16142,7 +16232,7 @@
                   "x": 0,
                   "y": 461
                },
-               "id": 193,
+               "id": 194,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -16232,7 +16322,7 @@
                   "x": 12,
                   "y": 461
                },
-               "id": 194,
+               "id": 195,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -16325,7 +16415,7 @@
             "x": 0,
             "y": 469
          },
-         "id": 195,
+         "id": 196,
          "panels": [
             {
                "aliasColors": { },
@@ -16342,7 +16432,7 @@
                   "x": 0,
                   "y": 470
                },
-               "id": 196,
+               "id": 197,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -16432,7 +16522,7 @@
                   "x": 0,
                   "y": 476
                },
-               "id": 197,
+               "id": 198,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -16522,7 +16612,7 @@
                   "x": 12,
                   "y": 476
                },
-               "id": 198,
+               "id": 199,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,

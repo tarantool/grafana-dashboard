@@ -120,7 +120,7 @@ Based on [tarantool/metrics 0.16.0](https://github.com/tarantool/metrics/release
 - [x] **tnt_vinyl_scheduler_dump_total**: see *Tarantool vinyl statistics/Vinyl scheduler dump count rate* panel ([#133](https://github.com/tarantool/grafana-dashboard/issues/133))
 - [x] **tnt_cartridge_issues**: see *Cluster overview/Cartridge warning issues*, *Cluster overview/Cartridge critical issues* panels ([#55](https://github.com/tarantool/grafana-dashboard/pull/55))
 - **tnt_cartridge_cluster_issues**: unsupported (decided not to support: superseded by **tnt_cartridge_issues**)
-- [ ] **tnt_cartridge_failover_trigger_total**: ([#178](https://github.com/tarantool/grafana-dashboard/issues/178))
+- [x] **tnt_cartridge_failover_trigger_total**: see *Cluster overview/Failovers triggered* panel ([#178](https://github.com/tarantool/grafana-dashboard/issues/178))
 - [ ] **tnt_synchro_queue_owner**: ([#178](https://github.com/tarantool/grafana-dashboard/issues/178))
 - [ ] **tnt_synchro_queue_term**: ([#178](https://github.com/tarantool/grafana-dashboard/issues/178))
 - [ ] **tnt_synchro_queue_len**: ([#178](https://github.com/tarantool/grafana-dashboard/issues/178))
