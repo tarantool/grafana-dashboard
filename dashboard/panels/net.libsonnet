@@ -1,5 +1,10 @@
+local grafana = import 'grafonnet/grafana.libsonnet';
+
 local common = import 'dashboard/panels/common.libsonnet';
 local variable = import 'dashboard/variable.libsonnet';
+
+local influxdb = grafana.influxdb;
+local prometheus = grafana.prometheus;
 
 {
   row:: common.row('Tarantool network activity'),
@@ -333,4 +338,361 @@ local variable = import 'dashboard/variable.libsonnet';
     alias,
     'last',
   )),
+
+  local per_thread_warning(description) = std.join(
+    '\n',
+    [description, |||
+      Panel works with metrics 0.15.0 or newer, Tarantool 2.10 or newer.
+    |||]
+  ),
+
+  local per_thread_rate_graph(
+    title,
+    description,
+    datasource_type,
+    datasource,
+    policy,
+    measurement,
+    job,
+    alias,
+    metric_name,
+    format,
+    labelY1,
+    panel_width,
+  ) = common.default_graph(
+    title=title,
+    description=description,
+    datasource=datasource,
+    format=format,
+    labelY1=labelY1,
+    panel_width=panel_width,
+  ).addTarget(
+    if datasource_type == variable.datasource_type.prometheus then
+      prometheus.target(
+        expr=std.format('rate(%s{job=~"%s",alias=~"%s"}[$__rate_interval])',
+                        [metric_name, job, alias]),
+        legendFormat='{{alias}} (thread {{thread}})',
+      )
+    else if datasource_type == variable.datasource_type.influxdb then
+      influxdb.target(
+        policy=policy,
+        measurement=measurement,
+        group_tags=['label_pairs_alias', 'label_pairs_thread'],
+        alias='$tag_label_pairs_alias (thread $tag_label_pairs_thread)',
+        fill='null',
+      ).where('metric_name', '=', metric_name).where('label_pairs_alias', '=~', alias)
+      .selectField('value').addConverter('mean').addConverter('non_negative_derivative', ['1s']),
+  ),
+
+  local per_thread_current_graph(
+    title,
+    description,
+    datasource_type,
+    datasource,
+    policy,
+    measurement,
+    job,
+    alias,
+    metric_name,
+    format,
+    labelY1,
+    panel_width,
+  ) = common.default_graph(
+    title=title,
+    description=description,
+    datasource=datasource,
+    format=format,
+    labelY1=labelY1,
+    decimals=0,
+    panel_width=panel_width,
+  ).addTarget(
+    if datasource_type == variable.datasource_type.prometheus then
+      prometheus.target(
+        expr=std.format('%s{job=~"%s",alias=~"%s"}',
+                        [metric_name, job, alias]),
+        legendFormat='{{alias}} (thread {{thread}})',
+      )
+    else if datasource_type == variable.datasource_type.influxdb then
+      influxdb.target(
+        policy=policy,
+        measurement=measurement,
+        group_tags=['label_pairs_alias', 'label_pairs_thread'],
+        alias='$tag_label_pairs_alias (thread $tag_label_pairs_thread)',
+        fill='null',
+      ).where('metric_name', '=', metric_name).where('label_pairs_alias', '=~', alias)
+      .selectField('value').addConverter('last'),
+  ),
+
+  bytes_sent_per_thread_per_second(
+    title='Data sent (per thread)',
+    description=per_thread_warning(|||
+      Data sent by instance with binary protocol connections,
+      separated per thread.
+      Graph shows average bytes per second.
+    |||),
+    datasource_type=null,
+    datasource=null,
+    policy=null,
+    measurement=null,
+    job=null,
+    alias=null,
+  ):: per_thread_rate_graph(
+    title=title,
+    description=description,
+    datasource_type=datasource_type,
+    datasource=datasource,
+    policy=policy,
+    measurement=measurement,
+    job=job,
+    alias=alias,
+    metric_name='tnt_net_per_thread_sent_total',
+    format='Bps',
+    labelY1='sent',
+    panel_width=12,
+  ),
+
+  bytes_received_per_thread_per_second(
+    title='Data received (per thread)',
+    description=per_thread_warning(|||
+      Data received by instance from binary protocol connections,
+      separated per thread.
+      Graph shows average bytes per second.
+    |||),
+    datasource_type=null,
+    datasource=null,
+    policy=null,
+    measurement=null,
+    job=null,
+    alias=null,
+  ):: per_thread_rate_graph(
+    title=title,
+    description=description,
+    datasource_type=datasource_type,
+    datasource=datasource,
+    policy=policy,
+    measurement=measurement,
+    job=job,
+    alias=alias,
+    metric_name='tnt_net_per_thread_received_total',
+    format='Bps',
+    labelY1='received',
+    panel_width=12,
+  ),
+
+  connections_per_thread_per_second(
+    title='New binary connections (per thread)',
+    description=per_thread_warning(|||
+      Average number of new binary protocol connections per second,
+      separated per thread.
+    |||),
+    datasource_type=null,
+    datasource=null,
+    policy=null,
+    measurement=null,
+    job=null,
+    alias=null,
+  ):: per_thread_rate_graph(
+    title=title,
+    description=description,
+    datasource_type=datasource_type,
+    datasource=datasource,
+    policy=policy,
+    measurement=measurement,
+    job=job,
+    alias=alias,
+    metric_name='tnt_net_per_thread_connections_total',
+    format='none',
+    labelY1='new per second',
+    panel_width=12,
+  ),
+
+  current_connections_per_thread(
+    title='Current binary connections (per thread)',
+    description=per_thread_warning(|||
+      Number of current active binary protocol connections,
+      separated per thread.
+    |||),
+    datasource_type=null,
+    datasource=null,
+    policy=null,
+    measurement=null,
+    job=null,
+    alias=null,
+  ):: per_thread_current_graph(
+    title=title,
+    description=description,
+    datasource_type=datasource_type,
+    datasource=datasource,
+    policy=policy,
+    measurement=measurement,
+    job=job,
+    alias=alias,
+    metric_name='tnt_net_per_thread_connections_current',
+    format='none',
+    labelY1='current',
+    panel_width=12,
+  ),
+
+  net_rps_per_thread(
+    title='Network requests handled (per thread)',
+    description=per_thread_warning(|||
+      Number of network requests this instance has handled,
+      separated per thread.
+      Graph shows mean rps.
+    |||),
+    datasource_type=null,
+    datasource=null,
+    policy=null,
+    measurement=null,
+    job=null,
+    alias=null,
+  ):: per_thread_rate_graph(
+    title=title,
+    description=description,
+    datasource_type=datasource_type,
+    datasource=datasource,
+    policy=policy,
+    measurement=measurement,
+    job=job,
+    alias=alias,
+    metric_name='tnt_net_per_thread_requests_total',
+    format='none',
+    labelY1='requests per second',
+    panel_width=8,
+  ),
+
+  requests_in_progress_per_thread_per_second(
+    title='Processed requests (per thread)',
+    description=per_thread_warning(|||
+      Average number of requests processed per second,
+      separated per thread.
+    |||),
+    datasource_type=null,
+    datasource=null,
+    policy=null,
+    measurement=null,
+    job=null,
+    alias=null,
+  ):: per_thread_rate_graph(
+    title=title,
+    description=description,
+    datasource_type=datasource_type,
+    datasource=datasource,
+    policy=policy,
+    measurement=measurement,
+    job=job,
+    alias=alias,
+    metric_name='tnt_net_per_thread_requests_in_progress_total',
+    format='none',
+    labelY1='requests per second',
+    panel_width=8,
+  ),
+
+  requests_in_queue_per_thread_per_second(
+    title='Requests in queue (overall per thread)',
+    description=per_thread_warning(|||
+      Average number of requests which was placed in queues
+      of streams per second, separated per thread.
+    |||),
+    datasource_type=null,
+    datasource=null,
+    policy=null,
+    measurement=null,
+    job=null,
+    alias=null,
+  ):: per_thread_rate_graph(
+    title=title,
+    description=description,
+    datasource_type=datasource_type,
+    datasource=datasource,
+    policy=policy,
+    measurement=measurement,
+    job=job,
+    alias=alias,
+    metric_name='tnt_net_per_thread_requests_in_stream_queue_total',
+    format='none',
+    labelY1='requests per second',
+    panel_width=8,
+  ),
+
+  net_pending_per_thread(
+    title='Network requests pending (per thread)',
+    description=per_thread_warning(|||
+      Number of pending network requests,
+      separated per thread.
+    |||),
+    datasource_type=null,
+    datasource=null,
+    policy=null,
+    measurement=null,
+    job=null,
+    alias=null,
+  ):: per_thread_current_graph(
+    title=title,
+    description=description,
+    datasource_type=datasource_type,
+    datasource=datasource,
+    policy=policy,
+    measurement=measurement,
+    job=job,
+    alias=alias,
+    metric_name='tnt_net_per_thread_requests_current',
+    format='none',
+    labelY1='pending',
+    panel_width=8,
+  ),
+
+  requests_in_progress_current_per_thread(
+    title='Requests in progress (per thread)',
+    description=per_thread_warning(|||
+      Number of requests currently being processed,
+      separated per thread.
+    |||),
+    datasource_type=null,
+    datasource=null,
+    policy=null,
+    measurement=null,
+    job=null,
+    alias=null,
+  ):: per_thread_current_graph(
+    title=title,
+    description=description,
+    datasource_type=datasource_type,
+    datasource=datasource,
+    policy=policy,
+    measurement=measurement,
+    job=job,
+    alias=alias,
+    metric_name='tnt_net_per_thread_requests_in_progress_current',
+    format='none',
+    labelY1='pending',
+    panel_width=8,
+  ),
+
+  requests_in_queue_current_per_thread(
+    title='Requests in queue (current per thread)',
+    description=per_thread_warning(|||
+      Number of requests currently waiting in queues of streams,
+      separated per thread.
+    |||),
+    datasource_type=null,
+    datasource=null,
+    policy=null,
+    measurement=null,
+    job=null,
+    alias=null,
+  ):: per_thread_current_graph(
+    title=title,
+    description=description,
+    datasource_type=datasource_type,
+    datasource=datasource,
+    policy=policy,
+    measurement=measurement,
+    job=job,
+    alias=alias,
+    metric_name='tnt_net_per_thread_requests_in_stream_queue_current',
+    format='none',
+    labelY1='pending',
+    panel_width=8,
+  ),
 }

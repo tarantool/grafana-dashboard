@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - Dashboard title customization
 - Panels for transaction operations
+- Panels with net statistics per thread
 
 ### Changed
 - Replace LuaJit deprecated metrics with new ones
