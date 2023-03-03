@@ -4,6 +4,7 @@ local crud = import 'dashboard/panels/crud.libsonnet';
 local expirationd = import 'dashboard/panels/expirationd.libsonnet';
 local http = import 'dashboard/panels/http.libsonnet';
 local luajit = import 'dashboard/panels/luajit.libsonnet';
+local mvcc = import 'dashboard/panels/mvcc.libsonnet';
 local net = import 'dashboard/panels/net.libsonnet';
 local operations = import 'dashboard/panels/operations.libsonnet';
 local replication = import 'dashboard/panels/replication.libsonnet';
@@ -592,6 +593,253 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
     ),
 
     slab.items_size(
+      datasource_type=datasource_type,
+      datasource=datasource,
+      policy=policy,
+      measurement=measurement,
+      job=job,
+      alias=alias,
+    ),
+  ],
+
+  mvcc(datasource_type, datasource, policy=null, measurement=null, job=null, alias=null):: [
+    mvcc.row,
+
+    mvcc.memtx_tnx_statements_total(
+      datasource_type=datasource_type,
+      datasource=datasource,
+      policy=policy,
+      measurement=measurement,
+      job=job,
+      alias=alias,
+    ),
+
+    mvcc.memtx_tnx_statements_average(
+      datasource_type=datasource_type,
+      datasource=datasource,
+      policy=policy,
+      measurement=measurement,
+      job=job,
+      alias=alias,
+    ),
+
+    mvcc.memtx_tnx_statements_max(
+      datasource_type=datasource_type,
+      datasource=datasource,
+      policy=policy,
+      measurement=measurement,
+      job=job,
+      alias=alias,
+    ),
+
+    mvcc.memtx_tnx_user_total(
+      datasource_type=datasource_type,
+      datasource=datasource,
+      policy=policy,
+      measurement=measurement,
+      job=job,
+      alias=alias,
+    ),
+
+    mvcc.memtx_tnx_user_average(
+      datasource_type=datasource_type,
+      datasource=datasource,
+      policy=policy,
+      measurement=measurement,
+      job=job,
+      alias=alias,
+    ),
+
+    mvcc.memtx_tnx_user_max(
+      datasource_type=datasource_type,
+      datasource=datasource,
+      policy=policy,
+      measurement=measurement,
+      job=job,
+      alias=alias,
+    ),
+
+    mvcc.memtx_tnx_system_total(
+      datasource_type=datasource_type,
+      datasource=datasource,
+      policy=policy,
+      measurement=measurement,
+      job=job,
+      alias=alias,
+    ),
+
+    mvcc.memtx_tnx_system_average(
+      datasource_type=datasource_type,
+      datasource=datasource,
+      policy=policy,
+      measurement=measurement,
+      job=job,
+      alias=alias,
+    ),
+
+    mvcc.memtx_tnx_system_max(
+      datasource_type=datasource_type,
+      datasource=datasource,
+      policy=policy,
+      measurement=measurement,
+      job=job,
+      alias=alias,
+    ),
+
+    mvcc.memtx_mvcc_trackers_total(
+      datasource_type=datasource_type,
+      datasource=datasource,
+      policy=policy,
+      measurement=measurement,
+      job=job,
+      alias=alias,
+    ),
+
+    mvcc.memtx_mvcc_trackers_average(
+      datasource_type=datasource_type,
+      datasource=datasource,
+      policy=policy,
+      measurement=measurement,
+      job=job,
+      alias=alias,
+    ),
+
+    mvcc.memtx_mvcc_trackers_max(
+      datasource_type=datasource_type,
+      datasource=datasource,
+      policy=policy,
+      measurement=measurement,
+      job=job,
+      alias=alias,
+    ),
+
+    mvcc.memtx_mvcc_conflicts_total(
+      datasource_type=datasource_type,
+      datasource=datasource,
+      policy=policy,
+      measurement=measurement,
+      job=job,
+      alias=alias,
+    ),
+
+    mvcc.memtx_mvcc_conflicts_average(
+      datasource_type=datasource_type,
+      datasource=datasource,
+      policy=policy,
+      measurement=measurement,
+      job=job,
+      alias=alias,
+    ),
+
+    mvcc.memtx_mvcc_conflicts_max(
+      datasource_type=datasource_type,
+      datasource=datasource,
+      policy=policy,
+      measurement=measurement,
+      job=job,
+      alias=alias,
+    ),
+
+    mvcc.memtx_mvcc_tuples_used_stories_count(
+      datasource_type=datasource_type,
+      datasource=datasource,
+      policy=policy,
+      measurement=measurement,
+      job=job,
+      alias=alias,
+    ),
+
+    mvcc.memtx_mvcc_tuples_used_stories_total(
+      datasource_type=datasource_type,
+      datasource=datasource,
+      policy=policy,
+      measurement=measurement,
+      job=job,
+      alias=alias,
+    ),
+
+    mvcc.memtx_mvcc_tuples_used_retained_count(
+      datasource_type=datasource_type,
+      datasource=datasource,
+      policy=policy,
+      measurement=measurement,
+      job=job,
+      alias=alias,
+    ),
+
+    mvcc.memtx_mvcc_tuples_used_retained_total(
+      datasource_type=datasource_type,
+      datasource=datasource,
+      policy=policy,
+      measurement=measurement,
+      job=job,
+      alias=alias,
+    ),
+
+    mvcc.memtx_mvcc_tuples_read_view_stories_count(
+      datasource_type=datasource_type,
+      datasource=datasource,
+      policy=policy,
+      measurement=measurement,
+      job=job,
+      alias=alias,
+    ),
+
+    mvcc.memtx_mvcc_tuples_read_view_stories_total(
+      datasource_type=datasource_type,
+      datasource=datasource,
+      policy=policy,
+      measurement=measurement,
+      job=job,
+      alias=alias,
+    ),
+
+    mvcc.memtx_mvcc_tuples_read_view_retained_count(
+      datasource_type=datasource_type,
+      datasource=datasource,
+      policy=policy,
+      measurement=measurement,
+      job=job,
+      alias=alias,
+    ),
+
+    mvcc.memtx_mvcc_tuples_read_view_retained_total(
+      datasource_type=datasource_type,
+      datasource=datasource,
+      policy=policy,
+      measurement=measurement,
+      job=job,
+      alias=alias,
+    ),
+
+    mvcc.memtx_mvcc_tuples_tracking_stories_count(
+      datasource_type=datasource_type,
+      datasource=datasource,
+      policy=policy,
+      measurement=measurement,
+      job=job,
+      alias=alias,
+    ),
+
+    mvcc.memtx_mvcc_tuples_tracking_stories_total(
+      datasource_type=datasource_type,
+      datasource=datasource,
+      policy=policy,
+      measurement=measurement,
+      job=job,
+      alias=alias,
+    ),
+
+    mvcc.memtx_mvcc_tuples_tracking_retained_count(
+      datasource_type=datasource_type,
+      datasource=datasource,
+      policy=policy,
+      measurement=measurement,
+      job=job,
+      alias=alias,
+    ),
+
+    mvcc.memtx_mvcc_tuples_tracking_retained_total(
       datasource_type=datasource_type,
       datasource=datasource,
       policy=policy,
