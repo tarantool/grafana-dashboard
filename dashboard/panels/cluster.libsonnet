@@ -473,4 +473,143 @@ local prometheus = grafana.prometheus;
       'last'
     )
   ),
+
+  local election_warning(description) = std.join(
+    '\n',
+    [description, |||
+      Panel works with metrics 0.15.0 or newer, Tarantool 2.6.1 or newer.
+    |||]
+  ),
+
+  election_state(
+    title='Instance election state',
+    description=election_warning(|||
+      Election state (mode) of the node.
+      When election is enabled, the node is writable only in the leader state.
+
+      All the non-leader nodes are called `follower`s.
+      `candidate`s are nodes that start a new election round.
+      `leader` is a node that collected a quorum of votes.
+
+      Panel works with Grafana 8.x.
+    |||),
+    datasource_type=null,
+    datasource=null,
+    policy=null,
+    measurement=null,
+    job=null,
+    alias=null,
+  ):: timeseries.new(
+    title=title,
+    description=description,
+    datasource=datasource,
+    panel_width=6,
+    max=2,
+    min=0,
+  ).addValueMapping(
+    0, 'green', 'follower'
+  ).addValueMapping(
+    1, 'yellow', 'candidate'
+  ).addValueMapping(
+    2, 'green', 'leader'
+  ).addRangeMapping(
+    0.001, 0.999, '-'
+  ).addRangeMapping(
+    1.001, 1.999, '-'
+  ).addTarget(
+    common.default_metric_target(
+      datasource_type,
+      'tnt_election_state',
+      job,
+      policy,
+      measurement,
+      alias,
+      'last'
+    )
+  ),
+
+  election_vote(
+    title='Instance election vote',
+    description=election_warning(|||
+      ID of a node the current node votes for.
+      If the value is 0, it means the node hasn’t
+      voted in the current term yet.
+    |||),
+    datasource_type=null,
+    datasource=null,
+    policy=null,
+    measurement=null,
+    job=null,
+    alias=null,
+  ):: common.default_graph(
+    title=title,
+    description=description,
+    datasource=datasource,
+    labelY1='id',
+    decimals=0,
+    panel_width=6,
+  ).addTarget(common.default_metric_target(
+    datasource_type,
+    'tnt_election_vote',
+    job,
+    policy,
+    measurement,
+    alias,
+  )),
+
+  election_leader(
+    title='Instance election leader',
+    description=election_warning(|||
+      Leader node ID in the current term.
+      If the value is 0, it means the node doesn’t know which
+      node is the leader in the current term.
+    |||),
+    datasource_type=null,
+    datasource=null,
+    policy=null,
+    measurement=null,
+    job=null,
+    alias=null,
+  ):: common.default_graph(
+    title=title,
+    description=description,
+    datasource=datasource,
+    labelY1='id',
+    decimals=0,
+    panel_width=6,
+  ).addTarget(common.default_metric_target(
+    datasource_type,
+    'tnt_election_leader',
+    job,
+    policy,
+    measurement,
+    alias,
+  )),
+
+  election_term(
+    title='Election term',
+    description=election_warning(|||
+      Current election term.
+    |||),
+    datasource_type=null,
+    datasource=null,
+    policy=null,
+    measurement=null,
+    job=null,
+    alias=null,
+  ):: common.default_graph(
+    title=title,
+    description=description,
+    datasource=datasource,
+    labelY1='term',
+    decimals=0,
+    panel_width=6,
+  ).addTarget(common.default_metric_target(
+    datasource_type,
+    'tnt_election_term',
+    job,
+    policy,
+    measurement,
+    alias,
+  )),
 }

@@ -59,6 +59,38 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       measurement=measurement,
       alias=alias,
     ),
+
+    cluster.election_state(
+      datasource_type=datasource_type,
+      datasource=datasource,
+      policy=policy,
+      measurement=measurement,
+      alias=alias,
+    ),
+
+    cluster.election_vote(
+      datasource_type=datasource_type,
+      datasource=datasource,
+      policy=policy,
+      measurement=measurement,
+      alias=alias,
+    ),
+
+    cluster.election_leader(
+      datasource_type=datasource_type,
+      datasource=datasource,
+      policy=policy,
+      measurement=measurement,
+      alias=alias,
+    ),
+
+    cluster.election_term(
+      datasource_type=datasource_type,
+      datasource=datasource,
+      policy=policy,
+      measurement=measurement,
+      alias=alias,
+    ),
   ],
 
   // Must be used only in the top of a dashboard, overall stat panels use complicated layout
@@ -129,6 +161,34 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
     ),
 
     cluster.read_only_status(
+      datasource_type=datasource_type,
+      datasource=datasource,
+      job=job,
+      alias=alias,
+    ),
+
+    cluster.election_state(
+      datasource_type=datasource_type,
+      datasource=datasource,
+      job=job,
+      alias=alias,
+    ),
+
+    cluster.election_vote(
+      datasource_type=datasource_type,
+      datasource=datasource,
+      job=job,
+      alias=alias,
+    ),
+
+    cluster.election_leader(
+      datasource_type=datasource_type,
+      datasource=datasource,
+      job=job,
+      alias=alias,
+    ),
+
+    cluster.election_term(
       datasource_type=datasource_type,
       datasource=datasource,
       job=job,
