@@ -1152,6 +1152,385 @@
                      "show": true
                   }
                ]
+            },
+            {
+               "aliasColors": { },
+               "bars": false,
+               "dashLength": 10,
+               "dashes": false,
+               "datasource": "Prometheus",
+               "decimals": 0,
+               "description": "Instance ID of the current synchronous replication master.\n\nPanel works with metrics 0.15.0 or newer, Tarantool 2.8.1 or newer.\n",
+               "fill": 0,
+               "gridPos": {
+                  "h": 8,
+                  "w": 6,
+                  "x": 0,
+                  "y": 32
+               },
+               "id": 18,
+               "legend": {
+                  "alignAsTable": true,
+                  "avg": false,
+                  "current": true,
+                  "max": false,
+                  "min": false,
+                  "rightSide": false,
+                  "show": true,
+                  "sideWidth": null,
+                  "sort": "current",
+                  "sortDesc": true,
+                  "total": false,
+                  "values": true
+               },
+               "lines": true,
+               "linewidth": 1,
+               "links": [ ],
+               "nullPointMode": "null",
+               "percentage": false,
+               "pointradius": 5,
+               "points": false,
+               "renderer": "flot",
+               "repeat": null,
+               "seriesOverrides": [ ],
+               "spaceLength": 10,
+               "stack": false,
+               "steppedLine": false,
+               "targets": [
+                  {
+                     "expr": "tnt_synchro_queue_owner{job=~\"tarantool\",alias=~\".*\"}",
+                     "format": "time_series",
+                     "intervalFactor": 2,
+                     "legendFormat": "{{alias}}",
+                     "refId": "A"
+                  }
+               ],
+               "thresholds": [ ],
+               "timeFrom": null,
+               "timeShift": null,
+               "title": "Synchronous queue owner",
+               "tooltip": {
+                  "shared": true,
+                  "sort": 2,
+                  "value_type": "individual"
+               },
+               "type": "graph",
+               "xaxis": {
+                  "buckets": null,
+                  "mode": "time",
+                  "name": null,
+                  "show": true,
+                  "values": [ ]
+               },
+               "yaxes": [
+                  {
+                     "decimals": 0,
+                     "format": "none",
+                     "label": "owner id",
+                     "logBase": 1,
+                     "max": null,
+                     "min": null,
+                     "show": true
+                  },
+                  {
+                     "decimals": 0,
+                     "format": "none",
+                     "label": null,
+                     "logBase": 1,
+                     "max": null,
+                     "min": null,
+                     "show": true
+                  }
+               ]
+            },
+            {
+               "aliasColors": { },
+               "bars": false,
+               "dashLength": 10,
+               "dashes": false,
+               "datasource": "Prometheus",
+               "decimals": 0,
+               "description": "Current queue term.\n\nPanel works with metrics 0.15.0 or newer, Tarantool 2.8.1 or newer.\n",
+               "fill": 0,
+               "gridPos": {
+                  "h": 8,
+                  "w": 6,
+                  "x": 6,
+                  "y": 32
+               },
+               "id": 19,
+               "legend": {
+                  "alignAsTable": true,
+                  "avg": false,
+                  "current": true,
+                  "max": false,
+                  "min": false,
+                  "rightSide": false,
+                  "show": true,
+                  "sideWidth": null,
+                  "sort": "current",
+                  "sortDesc": true,
+                  "total": false,
+                  "values": true
+               },
+               "lines": true,
+               "linewidth": 1,
+               "links": [ ],
+               "nullPointMode": "null",
+               "percentage": false,
+               "pointradius": 5,
+               "points": false,
+               "renderer": "flot",
+               "repeat": null,
+               "seriesOverrides": [ ],
+               "spaceLength": 10,
+               "stack": false,
+               "steppedLine": false,
+               "targets": [
+                  {
+                     "expr": "tnt_synchro_queue_term{job=~\"tarantool\",alias=~\".*\"}",
+                     "format": "time_series",
+                     "intervalFactor": 2,
+                     "legendFormat": "{{alias}}",
+                     "refId": "A"
+                  }
+               ],
+               "thresholds": [ ],
+               "timeFrom": null,
+               "timeShift": null,
+               "title": "Synchronous queue term",
+               "tooltip": {
+                  "shared": true,
+                  "sort": 2,
+                  "value_type": "individual"
+               },
+               "type": "graph",
+               "xaxis": {
+                  "buckets": null,
+                  "mode": "time",
+                  "name": null,
+                  "show": true,
+                  "values": [ ]
+               },
+               "yaxes": [
+                  {
+                     "decimals": 0,
+                     "format": "none",
+                     "label": "term",
+                     "logBase": 1,
+                     "max": null,
+                     "min": null,
+                     "show": true
+                  },
+                  {
+                     "decimals": 0,
+                     "format": "none",
+                     "label": null,
+                     "logBase": 1,
+                     "max": null,
+                     "min": null,
+                     "show": true
+                  }
+               ]
+            },
+            {
+               "aliasColors": { },
+               "bars": false,
+               "dashLength": 10,
+               "dashes": false,
+               "datasource": "Prometheus",
+               "decimals": 3,
+               "description": "Count of transactions collecting confirmations now.\n\nPanel works with metrics 0.15.0 or newer, Tarantool 2.8.1 or newer.\n",
+               "fill": 0,
+               "gridPos": {
+                  "h": 8,
+                  "w": 6,
+                  "x": 12,
+                  "y": 32
+               },
+               "id": 20,
+               "legend": {
+                  "alignAsTable": true,
+                  "avg": true,
+                  "current": true,
+                  "max": true,
+                  "min": false,
+                  "rightSide": false,
+                  "show": true,
+                  "sideWidth": null,
+                  "sort": "current",
+                  "sortDesc": true,
+                  "total": false,
+                  "values": true
+               },
+               "lines": true,
+               "linewidth": 1,
+               "links": [ ],
+               "nullPointMode": "null",
+               "percentage": false,
+               "pointradius": 5,
+               "points": false,
+               "renderer": "flot",
+               "repeat": null,
+               "seriesOverrides": [ ],
+               "spaceLength": 10,
+               "stack": false,
+               "steppedLine": false,
+               "targets": [
+                  {
+                     "expr": "tnt_synchro_queue_len{job=~\"tarantool\",alias=~\".*\"}",
+                     "format": "time_series",
+                     "intervalFactor": 2,
+                     "legendFormat": "{{alias}}",
+                     "refId": "A"
+                  }
+               ],
+               "thresholds": [ ],
+               "timeFrom": null,
+               "timeShift": null,
+               "title": "Synchronous queue transactions",
+               "tooltip": {
+                  "shared": true,
+                  "sort": 2,
+                  "value_type": "individual"
+               },
+               "type": "graph",
+               "xaxis": {
+                  "buckets": null,
+                  "mode": "time",
+                  "name": null,
+                  "show": true,
+                  "values": [ ]
+               },
+               "yaxes": [
+                  {
+                     "decimals": 0,
+                     "format": "none",
+                     "label": "current",
+                     "logBase": 1,
+                     "max": null,
+                     "min": null,
+                     "show": true
+                  },
+                  {
+                     "decimals": 3,
+                     "format": "none",
+                     "label": null,
+                     "logBase": 1,
+                     "max": null,
+                     "min": null,
+                     "show": true
+                  }
+               ]
+            },
+            {
+               "datasource": "Prometheus",
+               "description": "Whether the queue is processing any system entry (CONFIRM/ROLLBACK/PROMOTE/DEMOTE).\n\nPanel works with Grafana 8.x.\n\nPanel works with metrics 0.15.0 or newer, Tarantool 2.8.1 or newer.\n",
+               "fieldConfig": {
+                  "defaults": {
+                     "color": {
+                        "mode": "palette-classic"
+                     },
+                     "custom": {
+                        "axisLabel": "",
+                        "axisPlacement": "auto",
+                        "barAlignment": 0,
+                        "drawStyle": "line",
+                        "fillOpacity": 0,
+                        "gradientMode": "none",
+                        "hideFrom": {
+                           "legend": false,
+                           "tooltip": false,
+                           "viz": false
+                        },
+                        "lineInterpolation": "linear",
+                        "lineWidth": 1,
+                        "pointSize": 5,
+                        "scaleDistribution": {
+                           "type": "linear"
+                        },
+                        "showPoints": "never",
+                        "spanNulls": false,
+                        "stacking": {
+                           "group": "A",
+                           "mode": "none"
+                        },
+                        "thresholdsStyle": {
+                           "mode": "off"
+                        }
+                     },
+                     "mappings": [
+                        {
+                           "options": {
+                              "1": {
+                                 "color": "yellow",
+                                 "index": 0,
+                                 "text": "busy"
+                              }
+                           },
+                           "type": "value"
+                        },
+                        {
+                           "options": {
+                              "0": {
+                                 "color": "green",
+                                 "index": 0,
+                                 "text": "not busy"
+                              }
+                           },
+                           "type": "value"
+                        },
+                        {
+                           "options": {
+                              "from": 0.001,
+                              "result": {
+                                 "index": 0,
+                                 "text": "-"
+                              },
+                              "to": 0.999
+                           },
+                           "type": "range"
+                        }
+                     ],
+                     "max": 1,
+                     "min": 0,
+                     "thresholds": {
+                        "mode": "absolute",
+                        "steps": [ ]
+                     }
+                  },
+                  "overrides": [ ]
+               },
+               "gridPos": {
+                  "h": 8,
+                  "w": 6,
+                  "x": 18,
+                  "y": 32
+               },
+               "id": 21,
+               "options": {
+                  "legend": {
+                     "calcs": [
+                        "last"
+                     ],
+                     "displayMode": "table",
+                     "placement": "right"
+                  },
+                  "tooltip": {
+                     "mode": "multi"
+                  }
+               },
+               "targets": [
+                  {
+                     "expr": "tnt_synchro_queue_busy{job=~\"tarantool\",alias=~\".*\"}",
+                     "format": "time_series",
+                     "intervalFactor": 2,
+                     "legendFormat": "{{alias}}",
+                     "refId": "A"
+                  }
+               ],
+               "title": "Synchronous queue busy",
+               "type": "timeseries"
             }
          ],
          "repeat": null,
@@ -1169,9 +1548,9 @@
             "h": 1,
             "w": 24,
             "x": 0,
-            "y": 32
+            "y": 40
          },
-         "id": 18,
+         "id": 22,
          "panels": [
             {
                "aliasColors": { },
@@ -1186,9 +1565,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 0,
-                  "y": 33
+                  "y": 41
                },
-               "id": 19,
+               "id": 23,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -1276,9 +1655,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 8,
-                  "y": 33
+                  "y": 41
                },
-               "id": 20,
+               "id": 24,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -1366,9 +1745,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 16,
-                  "y": 33
+                  "y": 41
                },
-               "id": 21,
+               "id": 25,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -1456,9 +1835,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 0,
-                  "y": 41
+                  "y": 49
                },
-               "id": 22,
+               "id": 26,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -1546,9 +1925,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 8,
-                  "y": 41
+                  "y": 49
                },
-               "id": 23,
+               "id": 27,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -1636,9 +2015,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 16,
-                  "y": 41
+                  "y": 49
                },
-               "id": 24,
+               "id": 28,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -1729,9 +2108,9 @@
             "h": 1,
             "w": 24,
             "x": 0,
-            "y": 49
+            "y": 57
          },
-         "id": 25,
+         "id": 29,
          "panels": [
             {
                "aliasColors": { },
@@ -1746,9 +2125,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 0,
-                  "y": 50
+                  "y": 58
                },
-               "id": 26,
+               "id": 30,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -1836,9 +2215,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 8,
-                  "y": 50
+                  "y": 58
                },
-               "id": 27,
+               "id": 31,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -1926,9 +2305,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 16,
-                  "y": 50
+                  "y": 58
                },
-               "id": 28,
+               "id": 32,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -2016,9 +2395,9 @@
                   "h": 8,
                   "w": 12,
                   "x": 0,
-                  "y": 58
+                  "y": 66
                },
-               "id": 29,
+               "id": 33,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -2106,9 +2485,9 @@
                   "h": 8,
                   "w": 12,
                   "x": 12,
-                  "y": 58
+                  "y": 66
                },
-               "id": 30,
+               "id": 34,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -2196,9 +2575,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 0,
-                  "y": 66
+                  "y": 74
                },
-               "id": 31,
+               "id": 35,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -2286,9 +2665,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 6,
-                  "y": 66
+                  "y": 74
                },
-               "id": 32,
+               "id": 36,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -2376,9 +2755,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 12,
-                  "y": 66
+                  "y": 74
                },
-               "id": 33,
+               "id": 37,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -2466,9 +2845,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 18,
-                  "y": 66
+                  "y": 74
                },
-               "id": 34,
+               "id": 38,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -2556,9 +2935,9 @@
                   "h": 8,
                   "w": 12,
                   "x": 0,
-                  "y": 74
+                  "y": 82
                },
-               "id": 35,
+               "id": 39,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -2646,9 +3025,9 @@
                   "h": 8,
                   "w": 12,
                   "x": 12,
-                  "y": 74
+                  "y": 82
                },
-               "id": 36,
+               "id": 40,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -2736,9 +3115,9 @@
                   "h": 8,
                   "w": 12,
                   "x": 0,
-                  "y": 82
+                  "y": 90
                },
-               "id": 37,
+               "id": 41,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -2826,9 +3205,9 @@
                   "h": 8,
                   "w": 12,
                   "x": 12,
-                  "y": 82
+                  "y": 90
                },
-               "id": 38,
+               "id": 42,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -2916,9 +3295,9 @@
                   "h": 8,
                   "w": 12,
                   "x": 0,
-                  "y": 90
+                  "y": 98
                },
-               "id": 39,
+               "id": 43,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -3006,9 +3385,9 @@
                   "h": 8,
                   "w": 12,
                   "x": 12,
-                  "y": 90
+                  "y": 98
                },
-               "id": 40,
+               "id": 44,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -3096,9 +3475,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 0,
-                  "y": 98
+                  "y": 106
                },
-               "id": 41,
+               "id": 45,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -3186,9 +3565,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 8,
-                  "y": 98
+                  "y": 106
                },
-               "id": 42,
+               "id": 46,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -3276,9 +3655,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 16,
-                  "y": 98
+                  "y": 106
                },
-               "id": 43,
+               "id": 47,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -3366,9 +3745,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 0,
-                  "y": 106
+                  "y": 114
                },
-               "id": 44,
+               "id": 48,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -3456,9 +3835,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 8,
-                  "y": 106
+                  "y": 114
                },
-               "id": 45,
+               "id": 49,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -3546,9 +3925,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 16,
-                  "y": 106
+                  "y": 114
                },
-               "id": 46,
+               "id": 50,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -3639,9 +4018,9 @@
             "h": 1,
             "w": 24,
             "x": 0,
-            "y": 114
+            "y": 122
          },
-         "id": 47,
+         "id": 51,
          "panels": [
             {
                "content": "`quota_used_ratio` > 90%, `arena_used_ratio` > 90%, 50% < `items_used_ratio` < 90% – your memory is highly fragmented. See [docs](https://www.tarantool.io/en/doc/1.10/reference/reference_lua/box_slab/#lua-function.box.slab.info) for more info.\n\n`quota_used_ratio` > 90%, `arena_used_ratio` > 90%, `items_used_ratio` > 90% – you are running out of memory. You should consider increasing Tarantool’s memory limit (*box.cfg.memtx_memory*).\n",
@@ -3650,9 +4029,9 @@
                   "h": 3,
                   "w": 24,
                   "x": 0,
-                  "y": 115
+                  "y": 123
                },
-               "id": 48,
+               "id": 52,
                "mode": "markdown",
                "title": "Slab allocator monitoring information",
                "type": "text"
@@ -3670,9 +4049,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 0,
-                  "y": 118
+                  "y": 126
                },
-               "id": 49,
+               "id": 53,
                "legend": {
                   "alignAsTable": true,
                   "avg": false,
@@ -3760,9 +4139,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 8,
-                  "y": 118
+                  "y": 126
                },
-               "id": 50,
+               "id": 54,
                "legend": {
                   "alignAsTable": true,
                   "avg": false,
@@ -3850,9 +4229,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 16,
-                  "y": 118
+                  "y": 126
                },
-               "id": 51,
+               "id": 55,
                "legend": {
                   "alignAsTable": true,
                   "avg": false,
@@ -3940,9 +4319,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 0,
-                  "y": 126
+                  "y": 134
                },
-               "id": 52,
+               "id": 56,
                "legend": {
                   "alignAsTable": true,
                   "avg": false,
@@ -4030,9 +4409,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 8,
-                  "y": 126
+                  "y": 134
                },
-               "id": 53,
+               "id": 57,
                "legend": {
                   "alignAsTable": true,
                   "avg": false,
@@ -4120,9 +4499,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 16,
-                  "y": 126
+                  "y": 134
                },
-               "id": 54,
+               "id": 58,
                "legend": {
                   "alignAsTable": true,
                   "avg": false,
@@ -4210,9 +4589,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 0,
-                  "y": 134
+                  "y": 142
                },
-               "id": 55,
+               "id": 59,
                "legend": {
                   "alignAsTable": true,
                   "avg": false,
@@ -4300,9 +4679,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 8,
-                  "y": 134
+                  "y": 142
                },
-               "id": 56,
+               "id": 60,
                "legend": {
                   "alignAsTable": true,
                   "avg": false,
@@ -4390,9 +4769,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 16,
-                  "y": 134
+                  "y": 142
                },
-               "id": 57,
+               "id": 61,
                "legend": {
                   "alignAsTable": true,
                   "avg": false,
@@ -4483,9 +4862,9 @@
             "h": 1,
             "w": 24,
             "x": 0,
-            "y": 142
+            "y": 150
          },
-         "id": 58,
+         "id": 62,
          "panels": [
             {
                "aliasColors": { },
@@ -4500,9 +4879,9 @@
                   "h": 8,
                   "w": 12,
                   "x": 0,
-                  "y": 143
+                  "y": 151
                },
-               "id": 59,
+               "id": 63,
                "legend": {
                   "alignAsTable": true,
                   "avg": false,
@@ -4590,9 +4969,9 @@
                   "h": 8,
                   "w": 12,
                   "x": 12,
-                  "y": 143
+                  "y": 151
                },
-               "id": 60,
+               "id": 64,
                "legend": {
                   "alignAsTable": true,
                   "avg": false,
@@ -4680,9 +5059,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 0,
-                  "y": 151
+                  "y": 159
                },
-               "id": 61,
+               "id": 65,
                "legend": {
                   "alignAsTable": true,
                   "avg": false,
@@ -4770,9 +5149,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 8,
-                  "y": 151
+                  "y": 159
                },
-               "id": 62,
+               "id": 66,
                "legend": {
                   "alignAsTable": true,
                   "avg": false,
@@ -4860,9 +5239,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 16,
-                  "y": 151
+                  "y": 159
                },
-               "id": 63,
+               "id": 67,
                "legend": {
                   "alignAsTable": true,
                   "avg": false,
@@ -4953,9 +5332,9 @@
             "h": 1,
             "w": 24,
             "x": 0,
-            "y": 159
+            "y": 167
          },
-         "id": 64,
+         "id": 68,
          "panels": [
             {
                "aliasColors": { },
@@ -4970,9 +5349,9 @@
                   "h": 8,
                   "w": 12,
                   "x": 0,
-                  "y": 160
+                  "y": 168
                },
-               "id": 65,
+               "id": 69,
                "legend": {
                   "alignAsTable": true,
                   "avg": false,
@@ -5060,9 +5439,9 @@
                   "h": 8,
                   "w": 12,
                   "x": 12,
-                  "y": 160
+                  "y": 168
                },
-               "id": 66,
+               "id": 70,
                "legend": {
                   "alignAsTable": true,
                   "avg": false,
@@ -5150,9 +5529,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 0,
-                  "y": 168
+                  "y": 176
                },
-               "id": 67,
+               "id": 71,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -5240,9 +5619,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 8,
-                  "y": 168
+                  "y": 176
                },
-               "id": 68,
+               "id": 72,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -5330,9 +5709,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 16,
-                  "y": 168
+                  "y": 176
                },
-               "id": 69,
+               "id": 73,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -5420,9 +5799,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 0,
-                  "y": 176
+                  "y": 184
                },
-               "id": 70,
+               "id": 74,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -5510,9 +5889,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 8,
-                  "y": 176
+                  "y": 184
                },
-               "id": 71,
+               "id": 75,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -5600,9 +5979,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 16,
-                  "y": 176
+                  "y": 184
                },
-               "id": 72,
+               "id": 76,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -5690,9 +6069,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 0,
-                  "y": 184
+                  "y": 192
                },
-               "id": 73,
+               "id": 77,
                "legend": {
                   "alignAsTable": true,
                   "avg": false,
@@ -5780,9 +6159,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 8,
-                  "y": 184
+                  "y": 192
                },
-               "id": 74,
+               "id": 78,
                "legend": {
                   "alignAsTable": true,
                   "avg": false,
@@ -5870,9 +6249,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 16,
-                  "y": 184
+                  "y": 192
                },
-               "id": 75,
+               "id": 79,
                "legend": {
                   "alignAsTable": true,
                   "avg": false,
@@ -5960,9 +6339,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 0,
-                  "y": 192
+                  "y": 200
                },
-               "id": 76,
+               "id": 80,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -6050,9 +6429,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 6,
-                  "y": 192
+                  "y": 200
                },
-               "id": 77,
+               "id": 81,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -6140,9 +6519,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 12,
-                  "y": 192
+                  "y": 200
                },
-               "id": 78,
+               "id": 82,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -6230,9 +6609,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 18,
-                  "y": 192
+                  "y": 200
                },
-               "id": 79,
+               "id": 83,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -6320,9 +6699,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 0,
-                  "y": 200
+                  "y": 208
                },
-               "id": 80,
+               "id": 84,
                "legend": {
                   "alignAsTable": true,
                   "avg": false,
@@ -6410,9 +6789,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 6,
-                  "y": 200
+                  "y": 208
                },
-               "id": 81,
+               "id": 85,
                "legend": {
                   "alignAsTable": true,
                   "avg": false,
@@ -6500,9 +6879,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 12,
-                  "y": 200
+                  "y": 208
                },
-               "id": 82,
+               "id": 86,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -6590,9 +6969,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 18,
-                  "y": 200
+                  "y": 208
                },
-               "id": 83,
+               "id": 87,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -6683,9 +7062,9 @@
             "h": 1,
             "w": 24,
             "x": 0,
-            "y": 208
+            "y": 216
          },
-         "id": 84,
+         "id": 88,
          "panels": [
             {
                "aliasColors": { },
@@ -6700,9 +7079,9 @@
                   "h": 8,
                   "w": 12,
                   "x": 0,
-                  "y": 209
+                  "y": 217
                },
-               "id": 85,
+               "id": 89,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -6790,9 +7169,9 @@
                   "h": 8,
                   "w": 12,
                   "x": 12,
-                  "y": 209
+                  "y": 217
                },
-               "id": 86,
+               "id": 90,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -6883,9 +7262,9 @@
             "h": 1,
             "w": 24,
             "x": 0,
-            "y": 217
+            "y": 225
          },
-         "id": 87,
+         "id": 91,
          "panels": [
             {
                "aliasColors": { },
@@ -6900,9 +7279,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 0,
-                  "y": 218
+                  "y": 226
                },
-               "id": 88,
+               "id": 92,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -6990,9 +7369,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 8,
-                  "y": 218
+                  "y": 226
                },
-               "id": 89,
+               "id": 93,
                "legend": {
                   "alignAsTable": true,
                   "avg": false,
@@ -7080,9 +7459,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 16,
-                  "y": 218
+                  "y": 226
                },
-               "id": 90,
+               "id": 94,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -7170,9 +7549,9 @@
                   "h": 8,
                   "w": 12,
                   "x": 0,
-                  "y": 226
+                  "y": 234
                },
-               "id": 91,
+               "id": 95,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -7260,9 +7639,9 @@
                   "h": 8,
                   "w": 12,
                   "x": 12,
-                  "y": 226
+                  "y": 234
                },
-               "id": 92,
+               "id": 96,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -7350,9 +7729,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 0,
-                  "y": 234
+                  "y": 242
                },
-               "id": 93,
+               "id": 97,
                "legend": {
                   "alignAsTable": true,
                   "avg": false,
@@ -7440,9 +7819,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 8,
-                  "y": 234
+                  "y": 242
                },
-               "id": 94,
+               "id": 98,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -7530,9 +7909,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 16,
-                  "y": 234
+                  "y": 242
                },
-               "id": 95,
+               "id": 99,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -7623,9 +8002,9 @@
             "h": 1,
             "w": 24,
             "x": 0,
-            "y": 242
+            "y": 250
          },
-         "id": 96,
+         "id": 100,
          "panels": [
             {
                "aliasColors": { },
@@ -7640,9 +8019,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 0,
-                  "y": 243
+                  "y": 251
                },
-               "id": 97,
+               "id": 101,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -7730,9 +8109,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 6,
-                  "y": 243
+                  "y": 251
                },
-               "id": 98,
+               "id": 102,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -7820,9 +8199,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 12,
-                  "y": 243
+                  "y": 251
                },
-               "id": 99,
+               "id": 103,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -7910,9 +8289,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 18,
-                  "y": 243
+                  "y": 251
                },
-               "id": 100,
+               "id": 104,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -8000,9 +8379,9 @@
                   "h": 8,
                   "w": 12,
                   "x": 0,
-                  "y": 251
+                  "y": 259
                },
-               "id": 101,
+               "id": 105,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -8090,9 +8469,9 @@
                   "h": 8,
                   "w": 12,
                   "x": 12,
-                  "y": 251
+                  "y": 259
                },
-               "id": 102,
+               "id": 106,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -8180,9 +8559,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 0,
-                  "y": 259
+                  "y": 267
                },
-               "id": 103,
+               "id": 107,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -8270,9 +8649,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 8,
-                  "y": 259
+                  "y": 267
                },
-               "id": 104,
+               "id": 108,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -8360,9 +8739,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 16,
-                  "y": 259
+                  "y": 267
                },
-               "id": 105,
+               "id": 109,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -8450,9 +8829,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 0,
-                  "y": 267
+                  "y": 275
                },
-               "id": 106,
+               "id": 110,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -8540,9 +8919,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 8,
-                  "y": 267
+                  "y": 275
                },
-               "id": 107,
+               "id": 111,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -8630,9 +9009,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 16,
-                  "y": 267
+                  "y": 275
                },
-               "id": 108,
+               "id": 112,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -8720,9 +9099,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 0,
-                  "y": 275
+                  "y": 283
                },
-               "id": 109,
+               "id": 113,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -8810,9 +9189,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 6,
-                  "y": 275
+                  "y": 283
                },
-               "id": 110,
+               "id": 114,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -8900,9 +9279,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 12,
-                  "y": 275
+                  "y": 283
                },
-               "id": 111,
+               "id": 115,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -8990,9 +9369,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 18,
-                  "y": 275
+                  "y": 283
                },
-               "id": 112,
+               "id": 116,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -9080,9 +9459,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 0,
-                  "y": 283
+                  "y": 291
                },
-               "id": 113,
+               "id": 117,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -9170,9 +9549,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 8,
-                  "y": 283
+                  "y": 291
                },
-               "id": 114,
+               "id": 118,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -9260,9 +9639,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 16,
-                  "y": 283
+                  "y": 291
                },
-               "id": 115,
+               "id": 119,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -9353,9 +9732,9 @@
             "h": 1,
             "w": 24,
             "x": 0,
-            "y": 291
+            "y": 299
          },
-         "id": 116,
+         "id": 120,
          "panels": [
             {
                "aliasColors": { },
@@ -9370,9 +9749,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 0,
-                  "y": 292
+                  "y": 300
                },
-               "id": 117,
+               "id": 121,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -9460,9 +9839,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 8,
-                  "y": 292
+                  "y": 300
                },
-               "id": 118,
+               "id": 122,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -9550,9 +9929,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 16,
-                  "y": 292
+                  "y": 300
                },
-               "id": 119,
+               "id": 123,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -9640,9 +10019,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 0,
-                  "y": 300
+                  "y": 308
                },
-               "id": 120,
+               "id": 124,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -9730,9 +10109,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 8,
-                  "y": 300
+                  "y": 308
                },
-               "id": 121,
+               "id": 125,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -9820,9 +10199,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 16,
-                  "y": 300
+                  "y": 308
                },
-               "id": 122,
+               "id": 126,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -9910,9 +10289,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 0,
-                  "y": 308
+                  "y": 316
                },
-               "id": 123,
+               "id": 127,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -10000,9 +10379,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 8,
-                  "y": 308
+                  "y": 316
                },
-               "id": 124,
+               "id": 128,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -10090,9 +10469,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 16,
-                  "y": 308
+                  "y": 316
                },
-               "id": 125,
+               "id": 129,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -10180,9 +10559,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 0,
-                  "y": 316
+                  "y": 324
                },
-               "id": 126,
+               "id": 130,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -10270,9 +10649,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 8,
-                  "y": 316
+                  "y": 324
                },
-               "id": 127,
+               "id": 131,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -10360,9 +10739,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 16,
-                  "y": 316
+                  "y": 324
                },
-               "id": 128,
+               "id": 132,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -10450,9 +10829,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 0,
-                  "y": 324
+                  "y": 332
                },
-               "id": 129,
+               "id": 133,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -10540,9 +10919,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 8,
-                  "y": 324
+                  "y": 332
                },
-               "id": 130,
+               "id": 134,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -10630,9 +11009,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 16,
-                  "y": 324
+                  "y": 332
                },
-               "id": 131,
+               "id": 135,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -10723,9 +11102,9 @@
             "h": 1,
             "w": 24,
             "x": 0,
-            "y": 332
+            "y": 340
          },
-         "id": 132,
+         "id": 136,
          "panels": [
             {
                "aliasColors": { },
@@ -10740,9 +11119,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 0,
-                  "y": 333
+                  "y": 341
                },
-               "id": 133,
+               "id": 137,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -10830,9 +11209,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 6,
-                  "y": 333
+                  "y": 341
                },
-               "id": 134,
+               "id": 138,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -10920,9 +11299,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 12,
-                  "y": 333
+                  "y": 341
                },
-               "id": 135,
+               "id": 139,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -11010,9 +11389,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 18,
-                  "y": 333
+                  "y": 341
                },
-               "id": 136,
+               "id": 140,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -11100,9 +11479,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 0,
-                  "y": 341
+                  "y": 349
                },
-               "id": 137,
+               "id": 141,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -11190,9 +11569,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 8,
-                  "y": 341
+                  "y": 349
                },
-               "id": 138,
+               "id": 142,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -11280,9 +11659,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 16,
-                  "y": 341
+                  "y": 349
                },
-               "id": 139,
+               "id": 143,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -11370,9 +11749,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 0,
-                  "y": 349
+                  "y": 357
                },
-               "id": 140,
+               "id": 144,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -11460,9 +11839,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 6,
-                  "y": 349
+                  "y": 357
                },
-               "id": 141,
+               "id": 145,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -11550,9 +11929,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 12,
-                  "y": 349
+                  "y": 357
                },
-               "id": 142,
+               "id": 146,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -11640,9 +12019,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 18,
-                  "y": 349
+                  "y": 357
                },
-               "id": 143,
+               "id": 147,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -11730,9 +12109,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 0,
-                  "y": 357
+                  "y": 365
                },
-               "id": 144,
+               "id": 148,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -11820,9 +12199,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 6,
-                  "y": 357
+                  "y": 365
                },
-               "id": 145,
+               "id": 149,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -11910,9 +12289,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 12,
-                  "y": 357
+                  "y": 365
                },
-               "id": 146,
+               "id": 150,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -12000,9 +12379,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 18,
-                  "y": 357
+                  "y": 365
                },
-               "id": 147,
+               "id": 151,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -12090,9 +12469,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 0,
-                  "y": 365
+                  "y": 373
                },
-               "id": 148,
+               "id": 152,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -12180,9 +12559,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 6,
-                  "y": 365
+                  "y": 373
                },
-               "id": 149,
+               "id": 153,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -12270,9 +12649,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 12,
-                  "y": 365
+                  "y": 373
                },
-               "id": 150,
+               "id": 154,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -12360,9 +12739,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 18,
-                  "y": 365
+                  "y": 373
                },
-               "id": 151,
+               "id": 155,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -12450,9 +12829,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 0,
-                  "y": 373
+                  "y": 381
                },
-               "id": 152,
+               "id": 156,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -12540,9 +12919,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 6,
-                  "y": 373
+                  "y": 381
                },
-               "id": 153,
+               "id": 157,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -12630,9 +13009,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 12,
-                  "y": 373
+                  "y": 381
                },
-               "id": 154,
+               "id": 158,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -12720,9 +13099,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 18,
-                  "y": 373
+                  "y": 381
                },
-               "id": 155,
+               "id": 159,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -12810,9 +13189,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 0,
-                  "y": 381
+                  "y": 389
                },
-               "id": 156,
+               "id": 160,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -12900,9 +13279,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 6,
-                  "y": 381
+                  "y": 389
                },
-               "id": 157,
+               "id": 161,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -12990,9 +13369,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 12,
-                  "y": 381
+                  "y": 389
                },
-               "id": 158,
+               "id": 162,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -13080,9 +13459,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 18,
-                  "y": 381
+                  "y": 389
                },
-               "id": 159,
+               "id": 163,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -13170,9 +13549,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 0,
-                  "y": 389
+                  "y": 397
                },
-               "id": 160,
+               "id": 164,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -13260,9 +13639,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 6,
-                  "y": 389
+                  "y": 397
                },
-               "id": 161,
+               "id": 165,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -13350,9 +13729,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 12,
-                  "y": 389
+                  "y": 397
                },
-               "id": 162,
+               "id": 166,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -13440,9 +13819,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 18,
-                  "y": 389
+                  "y": 397
                },
-               "id": 163,
+               "id": 167,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -13530,9 +13909,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 0,
-                  "y": 397
+                  "y": 405
                },
-               "id": 164,
+               "id": 168,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -13620,9 +13999,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 6,
-                  "y": 397
+                  "y": 405
                },
-               "id": 165,
+               "id": 169,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -13710,9 +14089,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 12,
-                  "y": 397
+                  "y": 405
                },
-               "id": 166,
+               "id": 170,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -13800,9 +14179,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 18,
-                  "y": 397
+                  "y": 405
                },
-               "id": 167,
+               "id": 171,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -13890,9 +14269,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 0,
-                  "y": 405
+                  "y": 413
                },
-               "id": 168,
+               "id": 172,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -13980,9 +14359,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 6,
-                  "y": 405
+                  "y": 413
                },
-               "id": 169,
+               "id": 173,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -14070,9 +14449,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 12,
-                  "y": 405
+                  "y": 413
                },
-               "id": 170,
+               "id": 174,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -14160,9 +14539,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 18,
-                  "y": 405
+                  "y": 413
                },
-               "id": 171,
+               "id": 175,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -14250,9 +14629,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 0,
-                  "y": 413
+                  "y": 421
                },
-               "id": 172,
+               "id": 176,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -14340,9 +14719,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 6,
-                  "y": 413
+                  "y": 421
                },
-               "id": 173,
+               "id": 177,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -14430,9 +14809,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 12,
-                  "y": 413
+                  "y": 421
                },
-               "id": 174,
+               "id": 178,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -14520,9 +14899,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 18,
-                  "y": 413
+                  "y": 421
                },
-               "id": 175,
+               "id": 179,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -14610,9 +14989,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 0,
-                  "y": 421
+                  "y": 429
                },
-               "id": 176,
+               "id": 180,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -14700,9 +15079,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 6,
-                  "y": 421
+                  "y": 429
                },
-               "id": 177,
+               "id": 181,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -14790,9 +15169,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 12,
-                  "y": 421
+                  "y": 429
                },
-               "id": 178,
+               "id": 182,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -14880,9 +15259,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 18,
-                  "y": 421
+                  "y": 429
                },
-               "id": 179,
+               "id": 183,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -14970,9 +15349,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 0,
-                  "y": 429
+                  "y": 437
                },
-               "id": 180,
+               "id": 184,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -15060,9 +15439,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 6,
-                  "y": 429
+                  "y": 437
                },
-               "id": 181,
+               "id": 185,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -15150,9 +15529,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 12,
-                  "y": 429
+                  "y": 437
                },
-               "id": 182,
+               "id": 186,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -15240,9 +15619,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 18,
-                  "y": 429
+                  "y": 437
                },
-               "id": 183,
+               "id": 187,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -15330,9 +15709,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 0,
-                  "y": 437
+                  "y": 445
                },
-               "id": 184,
+               "id": 188,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -15420,9 +15799,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 6,
-                  "y": 437
+                  "y": 445
                },
-               "id": 185,
+               "id": 189,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -15510,9 +15889,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 12,
-                  "y": 437
+                  "y": 445
                },
-               "id": 186,
+               "id": 190,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -15600,9 +15979,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 18,
-                  "y": 437
+                  "y": 445
                },
-               "id": 187,
+               "id": 191,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -15690,9 +16069,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 0,
-                  "y": 445
+                  "y": 453
                },
-               "id": 188,
+               "id": 192,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -15780,9 +16159,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 6,
-                  "y": 445
+                  "y": 453
                },
-               "id": 189,
+               "id": 193,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -15870,9 +16249,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 12,
-                  "y": 445
+                  "y": 453
                },
-               "id": 190,
+               "id": 194,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -15960,9 +16339,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 18,
-                  "y": 445
+                  "y": 453
                },
-               "id": 191,
+               "id": 195,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -16053,9 +16432,9 @@
             "h": 1,
             "w": 24,
             "x": 0,
-            "y": 453
+            "y": 461
          },
-         "id": 192,
+         "id": 196,
          "panels": [
             {
                "aliasColors": { },
@@ -16070,9 +16449,9 @@
                   "h": 8,
                   "w": 12,
                   "x": 0,
-                  "y": 454
+                  "y": 462
                },
-               "id": 193,
+               "id": 197,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -16160,9 +16539,9 @@
                   "h": 8,
                   "w": 12,
                   "x": 12,
-                  "y": 454
+                  "y": 462
                },
-               "id": 194,
+               "id": 198,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -16250,9 +16629,9 @@
                   "h": 8,
                   "w": 12,
                   "x": 0,
-                  "y": 462
+                  "y": 470
                },
-               "id": 195,
+               "id": 199,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -16340,9 +16719,9 @@
                   "h": 8,
                   "w": 12,
                   "x": 12,
-                  "y": 462
+                  "y": 470
                },
-               "id": 196,
+               "id": 200,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,

@@ -165,6 +165,42 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       job=job,
       alias=alias,
     ),
+
+    replication.synchro_queue_owner(
+      datasource_type=datasource_type,
+      datasource=datasource,
+      policy=policy,
+      measurement=measurement,
+      job=job,
+      alias=alias,
+    ),
+
+    replication.synchro_queue_term(
+      datasource_type=datasource_type,
+      datasource=datasource,
+      policy=policy,
+      measurement=measurement,
+      job=job,
+      alias=alias,
+    ),
+
+    replication.synchro_queue_length(
+      datasource_type=datasource_type,
+      datasource=datasource,
+      policy=policy,
+      measurement=measurement,
+      job=job,
+      alias=alias,
+    ),
+
+    replication.synchro_queue_busy(
+      datasource_type=datasource_type,
+      datasource=datasource,
+      policy=policy,
+      measurement=measurement,
+      job=job,
+      alias=alias,
+    ),
   ],
 
   http(datasource_type, datasource, policy=null, measurement=null, job=null, alias=null):: [

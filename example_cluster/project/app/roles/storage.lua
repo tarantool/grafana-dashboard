@@ -1,5 +1,7 @@
 local function init(opts)
     if opts.is_master then
+        box.ctl.promote()
+
         for _, space_name in ipairs({'customers', 'clients'}) do
             local space = box.schema.space.create(space_name, {
                 format = {
@@ -10,6 +12,7 @@ local function init(opts)
                 },
                 if_not_exists = true,
                 engine = 'memtx',
+                is_sync = true,
             })
             -- primary index
             space:create_index('id_index', {

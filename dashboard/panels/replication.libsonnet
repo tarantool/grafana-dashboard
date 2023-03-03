@@ -137,4 +137,130 @@ local prometheus = grafana.prometheus;
       ).where('metric_name', '=', 'tnt_clock_delta').where('label_pairs_alias', '=~', alias)
       .selectField('value').addConverter('last')
   ),
+
+  local syncro_warning(description) = std.join(
+    '\n',
+    [description, |||
+      Panel works with metrics 0.15.0 or newer, Tarantool 2.8.1 or newer.
+    |||]
+  ),
+
+  synchro_queue_owner(
+    title='Synchronous queue owner',
+    description=syncro_warning(|||
+      Instance ID of the current synchronous replication master.
+    |||),
+    datasource_type=null,
+    datasource=null,
+    policy=null,
+    measurement=null,
+    job=null,
+    alias=null,
+  ):: common.default_graph(
+    title=title,
+    description=description,
+    datasource=datasource,
+    labelY1='owner id',
+    decimals=0,
+    panel_width=6,
+    legend_avg=false,
+    legend_max=false,
+  ).addTarget(common.default_metric_target(
+    datasource_type,
+    'tnt_synchro_queue_owner',
+    job,
+    policy,
+    measurement,
+    alias,
+  )),
+
+  synchro_queue_term(
+    title='Synchronous queue term',
+    description=syncro_warning(|||
+      Current queue term.
+    |||),
+    datasource_type=null,
+    datasource=null,
+    policy=null,
+    measurement=null,
+    job=null,
+    alias=null,
+  ):: common.default_graph(
+    title=title,
+    description=description,
+    datasource=datasource,
+    labelY1='term',
+    decimals=0,
+    panel_width=6,
+    legend_avg=false,
+    legend_max=false,
+  ).addTarget(common.default_metric_target(
+    datasource_type,
+    'tnt_synchro_queue_term',
+    job,
+    policy,
+    measurement,
+    alias,
+  )),
+
+  synchro_queue_length(
+    title='Synchronous queue transactions',
+    description=syncro_warning(|||
+      Count of transactions collecting confirmations now.
+    |||),
+    datasource_type=null,
+    datasource=null,
+    policy=null,
+    measurement=null,
+    job=null,
+    alias=null,
+  ):: common.default_graph(
+    title=title,
+    description=description,
+    datasource=datasource,
+    labelY1='current',
+    panel_width=6,
+  ).addTarget(common.default_metric_target(
+    datasource_type,
+    'tnt_synchro_queue_len',
+    job,
+    policy,
+    measurement,
+    alias,
+  )),
+
+  synchro_queue_busy(
+    title='Synchronous queue busy',
+    description=syncro_warning(|||
+      Whether the queue is processing any system entry (CONFIRM/ROLLBACK/PROMOTE/DEMOTE).
+
+      Panel works with Grafana 8.x.
+    |||),
+    datasource_type=null,
+    datasource=null,
+    policy=null,
+    measurement=null,
+    job=null,
+    alias=null,
+  ):: timeseries.new(
+    title=title,
+    description=description,
+    datasource=datasource,
+    panel_width=6,
+    max=1,
+    min=0,
+  ).addValueMapping(
+    1, 'yellow', 'busy'
+  ).addValueMapping(
+    0, 'green', 'not busy'
+  ).addRangeMapping(
+    0.001, 0.999, '-'
+  ).addTarget(common.default_metric_target(
+    datasource_type,
+    'tnt_synchro_queue_busy',
+    job,
+    policy,
+    measurement,
+    alias,
+  )),
 }
