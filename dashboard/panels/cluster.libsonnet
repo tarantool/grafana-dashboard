@@ -424,7 +424,7 @@ local prometheus = grafana.prometheus;
     title=title,
     description=description,
     datasource=datasource,
-    panel_width=12,
+    panel_width=8,
     max=1,
     min=0,
   ).addValueMapping(
@@ -450,6 +450,35 @@ local prometheus = grafana.prometheus;
       .selectField('value').addConverter('last')
   ),
 
+  failovers_per_second(
+    title='Failovers triggered',
+    description=|||
+      Displays the count of failover triggers in a replicaset.
+      Graph shows average per second.
+
+      Panel works with `metrics >= 0.15.0`.
+    |||,
+    datasource_type=null,
+    datasource=null,
+    policy=null,
+    measurement=null,
+    job=null,
+    alias=null,
+  ):: common.default_graph(
+    title=title,
+    description=description,
+    datasource=datasource,
+    labelY1='failovers per second',
+    panel_width=8,
+  ).addTarget(common.default_rps_target(
+    datasource_type,
+    'tnt_cartridge_failover_trigger_total',
+    job,
+    policy,
+    measurement,
+    alias,
+  )),
+
   read_only_status(
     title='Tarantool instance status',
     description=|||
@@ -469,7 +498,7 @@ local prometheus = grafana.prometheus;
     title=title,
     description=description,
     datasource=datasource,
-    panel_width=12,
+    panel_width=8,
     max=1,
     min=0,
   ).addValueMapping(

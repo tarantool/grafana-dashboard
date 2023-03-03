@@ -51,6 +51,14 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       alias=alias,
     ),
 
+    cluster.failovers_per_second(
+      datasource_type=datasource_type,
+      datasource=datasource,
+      policy=policy,
+      measurement=measurement,
+      alias=alias,
+    ),
+
     cluster.read_only_status(
       datasource_type=datasource_type,
       datasource=datasource,
@@ -137,6 +145,13 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
     ),
 
     cluster.replication_status(
+      datasource_type=datasource_type,
+      datasource=datasource,
+      job=job,
+      alias=alias,
+    ),
+
+    cluster.failovers_per_second(
       datasource_type=datasource_type,
       datasource=datasource,
       job=job,
