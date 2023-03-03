@@ -2052,6 +2052,906 @@
                      "show": true
                   }
                ]
+            },
+            {
+               "aliasColors": { },
+               "bars": false,
+               "dashLength": 10,
+               "dashes": false,
+               "datasource": "$prometheus",
+               "decimals": 3,
+               "description": "Data sent by instance with binary protocol connections,\nseparated per thread.\nGraph shows average bytes per second.\n\nPanel works with metrics 0.15.0 or newer, Tarantool 2.10 or newer.\n",
+               "fill": 0,
+               "gridPos": {
+                  "h": 8,
+                  "w": 12,
+                  "x": 0,
+                  "y": 64
+               },
+               "id": 28,
+               "legend": {
+                  "alignAsTable": true,
+                  "avg": true,
+                  "current": true,
+                  "max": true,
+                  "min": false,
+                  "rightSide": false,
+                  "show": true,
+                  "sideWidth": null,
+                  "sort": "current",
+                  "sortDesc": true,
+                  "total": false,
+                  "values": true
+               },
+               "lines": true,
+               "linewidth": 1,
+               "links": [ ],
+               "nullPointMode": "null",
+               "percentage": false,
+               "pointradius": 5,
+               "points": false,
+               "renderer": "flot",
+               "repeat": null,
+               "seriesOverrides": [ ],
+               "spaceLength": 10,
+               "stack": false,
+               "steppedLine": false,
+               "targets": [
+                  {
+                     "expr": "rate(tnt_net_per_thread_sent_total{job=~\"$job\",alias=~\"$alias\"}[$__rate_interval])",
+                     "format": "time_series",
+                     "intervalFactor": 2,
+                     "legendFormat": "{{alias}} (thread {{thread}})",
+                     "refId": "A"
+                  }
+               ],
+               "thresholds": [ ],
+               "timeFrom": null,
+               "timeShift": null,
+               "title": "Data sent (per thread)",
+               "tooltip": {
+                  "shared": true,
+                  "sort": 2,
+                  "value_type": "individual"
+               },
+               "type": "graph",
+               "xaxis": {
+                  "buckets": null,
+                  "mode": "time",
+                  "name": null,
+                  "show": true,
+                  "values": [ ]
+               },
+               "yaxes": [
+                  {
+                     "decimals": 0,
+                     "format": "Bps",
+                     "label": "sent",
+                     "logBase": 1,
+                     "max": null,
+                     "min": null,
+                     "show": true
+                  },
+                  {
+                     "decimals": 3,
+                     "format": "Bps",
+                     "label": null,
+                     "logBase": 1,
+                     "max": null,
+                     "min": null,
+                     "show": true
+                  }
+               ]
+            },
+            {
+               "aliasColors": { },
+               "bars": false,
+               "dashLength": 10,
+               "dashes": false,
+               "datasource": "$prometheus",
+               "decimals": 3,
+               "description": "Data received by instance from binary protocol connections,\nseparated per thread.\nGraph shows average bytes per second.\n\nPanel works with metrics 0.15.0 or newer, Tarantool 2.10 or newer.\n",
+               "fill": 0,
+               "gridPos": {
+                  "h": 8,
+                  "w": 12,
+                  "x": 12,
+                  "y": 64
+               },
+               "id": 29,
+               "legend": {
+                  "alignAsTable": true,
+                  "avg": true,
+                  "current": true,
+                  "max": true,
+                  "min": false,
+                  "rightSide": false,
+                  "show": true,
+                  "sideWidth": null,
+                  "sort": "current",
+                  "sortDesc": true,
+                  "total": false,
+                  "values": true
+               },
+               "lines": true,
+               "linewidth": 1,
+               "links": [ ],
+               "nullPointMode": "null",
+               "percentage": false,
+               "pointradius": 5,
+               "points": false,
+               "renderer": "flot",
+               "repeat": null,
+               "seriesOverrides": [ ],
+               "spaceLength": 10,
+               "stack": false,
+               "steppedLine": false,
+               "targets": [
+                  {
+                     "expr": "rate(tnt_net_per_thread_received_total{job=~\"$job\",alias=~\"$alias\"}[$__rate_interval])",
+                     "format": "time_series",
+                     "intervalFactor": 2,
+                     "legendFormat": "{{alias}} (thread {{thread}})",
+                     "refId": "A"
+                  }
+               ],
+               "thresholds": [ ],
+               "timeFrom": null,
+               "timeShift": null,
+               "title": "Data received (per thread)",
+               "tooltip": {
+                  "shared": true,
+                  "sort": 2,
+                  "value_type": "individual"
+               },
+               "type": "graph",
+               "xaxis": {
+                  "buckets": null,
+                  "mode": "time",
+                  "name": null,
+                  "show": true,
+                  "values": [ ]
+               },
+               "yaxes": [
+                  {
+                     "decimals": 0,
+                     "format": "Bps",
+                     "label": "received",
+                     "logBase": 1,
+                     "max": null,
+                     "min": null,
+                     "show": true
+                  },
+                  {
+                     "decimals": 3,
+                     "format": "Bps",
+                     "label": null,
+                     "logBase": 1,
+                     "max": null,
+                     "min": null,
+                     "show": true
+                  }
+               ]
+            },
+            {
+               "aliasColors": { },
+               "bars": false,
+               "dashLength": 10,
+               "dashes": false,
+               "datasource": "$prometheus",
+               "decimals": 3,
+               "description": "Average number of new binary protocol connections per second,\nseparated per thread.\n\nPanel works with metrics 0.15.0 or newer, Tarantool 2.10 or newer.\n",
+               "fill": 0,
+               "gridPos": {
+                  "h": 8,
+                  "w": 12,
+                  "x": 0,
+                  "y": 72
+               },
+               "id": 30,
+               "legend": {
+                  "alignAsTable": true,
+                  "avg": true,
+                  "current": true,
+                  "max": true,
+                  "min": false,
+                  "rightSide": false,
+                  "show": true,
+                  "sideWidth": null,
+                  "sort": "current",
+                  "sortDesc": true,
+                  "total": false,
+                  "values": true
+               },
+               "lines": true,
+               "linewidth": 1,
+               "links": [ ],
+               "nullPointMode": "null",
+               "percentage": false,
+               "pointradius": 5,
+               "points": false,
+               "renderer": "flot",
+               "repeat": null,
+               "seriesOverrides": [ ],
+               "spaceLength": 10,
+               "stack": false,
+               "steppedLine": false,
+               "targets": [
+                  {
+                     "expr": "rate(tnt_net_per_thread_connections_total{job=~\"$job\",alias=~\"$alias\"}[$__rate_interval])",
+                     "format": "time_series",
+                     "intervalFactor": 2,
+                     "legendFormat": "{{alias}} (thread {{thread}})",
+                     "refId": "A"
+                  }
+               ],
+               "thresholds": [ ],
+               "timeFrom": null,
+               "timeShift": null,
+               "title": "New binary connections (per thread)",
+               "tooltip": {
+                  "shared": true,
+                  "sort": 2,
+                  "value_type": "individual"
+               },
+               "type": "graph",
+               "xaxis": {
+                  "buckets": null,
+                  "mode": "time",
+                  "name": null,
+                  "show": true,
+                  "values": [ ]
+               },
+               "yaxes": [
+                  {
+                     "decimals": 0,
+                     "format": "none",
+                     "label": "new per second",
+                     "logBase": 1,
+                     "max": null,
+                     "min": null,
+                     "show": true
+                  },
+                  {
+                     "decimals": 3,
+                     "format": "none",
+                     "label": null,
+                     "logBase": 1,
+                     "max": null,
+                     "min": null,
+                     "show": true
+                  }
+               ]
+            },
+            {
+               "aliasColors": { },
+               "bars": false,
+               "dashLength": 10,
+               "dashes": false,
+               "datasource": "$prometheus",
+               "decimals": 0,
+               "description": "Number of current active binary protocol connections,\nseparated per thread.\n\nPanel works with metrics 0.15.0 or newer, Tarantool 2.10 or newer.\n",
+               "fill": 0,
+               "gridPos": {
+                  "h": 8,
+                  "w": 12,
+                  "x": 12,
+                  "y": 72
+               },
+               "id": 31,
+               "legend": {
+                  "alignAsTable": true,
+                  "avg": true,
+                  "current": true,
+                  "max": true,
+                  "min": false,
+                  "rightSide": false,
+                  "show": true,
+                  "sideWidth": null,
+                  "sort": "current",
+                  "sortDesc": true,
+                  "total": false,
+                  "values": true
+               },
+               "lines": true,
+               "linewidth": 1,
+               "links": [ ],
+               "nullPointMode": "null",
+               "percentage": false,
+               "pointradius": 5,
+               "points": false,
+               "renderer": "flot",
+               "repeat": null,
+               "seriesOverrides": [ ],
+               "spaceLength": 10,
+               "stack": false,
+               "steppedLine": false,
+               "targets": [
+                  {
+                     "expr": "tnt_net_per_thread_connections_current{job=~\"$job\",alias=~\"$alias\"}",
+                     "format": "time_series",
+                     "intervalFactor": 2,
+                     "legendFormat": "{{alias}} (thread {{thread}})",
+                     "refId": "A"
+                  }
+               ],
+               "thresholds": [ ],
+               "timeFrom": null,
+               "timeShift": null,
+               "title": "Current binary connections (per thread)",
+               "tooltip": {
+                  "shared": true,
+                  "sort": 2,
+                  "value_type": "individual"
+               },
+               "type": "graph",
+               "xaxis": {
+                  "buckets": null,
+                  "mode": "time",
+                  "name": null,
+                  "show": true,
+                  "values": [ ]
+               },
+               "yaxes": [
+                  {
+                     "decimals": 0,
+                     "format": "none",
+                     "label": "current",
+                     "logBase": 1,
+                     "max": null,
+                     "min": null,
+                     "show": true
+                  },
+                  {
+                     "decimals": 0,
+                     "format": "none",
+                     "label": null,
+                     "logBase": 1,
+                     "max": null,
+                     "min": null,
+                     "show": true
+                  }
+               ]
+            },
+            {
+               "aliasColors": { },
+               "bars": false,
+               "dashLength": 10,
+               "dashes": false,
+               "datasource": "$prometheus",
+               "decimals": 3,
+               "description": "Number of network requests this instance has handled,\nseparated per thread.\nGraph shows mean rps.\n\nPanel works with metrics 0.15.0 or newer, Tarantool 2.10 or newer.\n",
+               "fill": 0,
+               "gridPos": {
+                  "h": 8,
+                  "w": 8,
+                  "x": 0,
+                  "y": 80
+               },
+               "id": 32,
+               "legend": {
+                  "alignAsTable": true,
+                  "avg": true,
+                  "current": true,
+                  "max": true,
+                  "min": false,
+                  "rightSide": false,
+                  "show": true,
+                  "sideWidth": null,
+                  "sort": "current",
+                  "sortDesc": true,
+                  "total": false,
+                  "values": true
+               },
+               "lines": true,
+               "linewidth": 1,
+               "links": [ ],
+               "nullPointMode": "null",
+               "percentage": false,
+               "pointradius": 5,
+               "points": false,
+               "renderer": "flot",
+               "repeat": null,
+               "seriesOverrides": [ ],
+               "spaceLength": 10,
+               "stack": false,
+               "steppedLine": false,
+               "targets": [
+                  {
+                     "expr": "rate(tnt_net_per_thread_requests_total{job=~\"$job\",alias=~\"$alias\"}[$__rate_interval])",
+                     "format": "time_series",
+                     "intervalFactor": 2,
+                     "legendFormat": "{{alias}} (thread {{thread}})",
+                     "refId": "A"
+                  }
+               ],
+               "thresholds": [ ],
+               "timeFrom": null,
+               "timeShift": null,
+               "title": "Network requests handled (per thread)",
+               "tooltip": {
+                  "shared": true,
+                  "sort": 2,
+                  "value_type": "individual"
+               },
+               "type": "graph",
+               "xaxis": {
+                  "buckets": null,
+                  "mode": "time",
+                  "name": null,
+                  "show": true,
+                  "values": [ ]
+               },
+               "yaxes": [
+                  {
+                     "decimals": 0,
+                     "format": "none",
+                     "label": "requests per second",
+                     "logBase": 1,
+                     "max": null,
+                     "min": null,
+                     "show": true
+                  },
+                  {
+                     "decimals": 3,
+                     "format": "none",
+                     "label": null,
+                     "logBase": 1,
+                     "max": null,
+                     "min": null,
+                     "show": true
+                  }
+               ]
+            },
+            {
+               "aliasColors": { },
+               "bars": false,
+               "dashLength": 10,
+               "dashes": false,
+               "datasource": "$prometheus",
+               "decimals": 3,
+               "description": "Average number of requests processed per second,\nseparated per thread.\n\nPanel works with metrics 0.15.0 or newer, Tarantool 2.10 or newer.\n",
+               "fill": 0,
+               "gridPos": {
+                  "h": 8,
+                  "w": 8,
+                  "x": 8,
+                  "y": 80
+               },
+               "id": 33,
+               "legend": {
+                  "alignAsTable": true,
+                  "avg": true,
+                  "current": true,
+                  "max": true,
+                  "min": false,
+                  "rightSide": false,
+                  "show": true,
+                  "sideWidth": null,
+                  "sort": "current",
+                  "sortDesc": true,
+                  "total": false,
+                  "values": true
+               },
+               "lines": true,
+               "linewidth": 1,
+               "links": [ ],
+               "nullPointMode": "null",
+               "percentage": false,
+               "pointradius": 5,
+               "points": false,
+               "renderer": "flot",
+               "repeat": null,
+               "seriesOverrides": [ ],
+               "spaceLength": 10,
+               "stack": false,
+               "steppedLine": false,
+               "targets": [
+                  {
+                     "expr": "rate(tnt_net_per_thread_requests_in_progress_total{job=~\"$job\",alias=~\"$alias\"}[$__rate_interval])",
+                     "format": "time_series",
+                     "intervalFactor": 2,
+                     "legendFormat": "{{alias}} (thread {{thread}})",
+                     "refId": "A"
+                  }
+               ],
+               "thresholds": [ ],
+               "timeFrom": null,
+               "timeShift": null,
+               "title": "Processed requests (per thread)",
+               "tooltip": {
+                  "shared": true,
+                  "sort": 2,
+                  "value_type": "individual"
+               },
+               "type": "graph",
+               "xaxis": {
+                  "buckets": null,
+                  "mode": "time",
+                  "name": null,
+                  "show": true,
+                  "values": [ ]
+               },
+               "yaxes": [
+                  {
+                     "decimals": 0,
+                     "format": "none",
+                     "label": "requests per second",
+                     "logBase": 1,
+                     "max": null,
+                     "min": null,
+                     "show": true
+                  },
+                  {
+                     "decimals": 3,
+                     "format": "none",
+                     "label": null,
+                     "logBase": 1,
+                     "max": null,
+                     "min": null,
+                     "show": true
+                  }
+               ]
+            },
+            {
+               "aliasColors": { },
+               "bars": false,
+               "dashLength": 10,
+               "dashes": false,
+               "datasource": "$prometheus",
+               "decimals": 3,
+               "description": "Average number of requests which was placed in queues\nof streams per second, separated per thread.\n\nPanel works with metrics 0.15.0 or newer, Tarantool 2.10 or newer.\n",
+               "fill": 0,
+               "gridPos": {
+                  "h": 8,
+                  "w": 8,
+                  "x": 16,
+                  "y": 80
+               },
+               "id": 34,
+               "legend": {
+                  "alignAsTable": true,
+                  "avg": true,
+                  "current": true,
+                  "max": true,
+                  "min": false,
+                  "rightSide": false,
+                  "show": true,
+                  "sideWidth": null,
+                  "sort": "current",
+                  "sortDesc": true,
+                  "total": false,
+                  "values": true
+               },
+               "lines": true,
+               "linewidth": 1,
+               "links": [ ],
+               "nullPointMode": "null",
+               "percentage": false,
+               "pointradius": 5,
+               "points": false,
+               "renderer": "flot",
+               "repeat": null,
+               "seriesOverrides": [ ],
+               "spaceLength": 10,
+               "stack": false,
+               "steppedLine": false,
+               "targets": [
+                  {
+                     "expr": "rate(tnt_net_per_thread_requests_in_stream_queue_total{job=~\"$job\",alias=~\"$alias\"}[$__rate_interval])",
+                     "format": "time_series",
+                     "intervalFactor": 2,
+                     "legendFormat": "{{alias}} (thread {{thread}})",
+                     "refId": "A"
+                  }
+               ],
+               "thresholds": [ ],
+               "timeFrom": null,
+               "timeShift": null,
+               "title": "Requests in queue (overall per thread)",
+               "tooltip": {
+                  "shared": true,
+                  "sort": 2,
+                  "value_type": "individual"
+               },
+               "type": "graph",
+               "xaxis": {
+                  "buckets": null,
+                  "mode": "time",
+                  "name": null,
+                  "show": true,
+                  "values": [ ]
+               },
+               "yaxes": [
+                  {
+                     "decimals": 0,
+                     "format": "none",
+                     "label": "requests per second",
+                     "logBase": 1,
+                     "max": null,
+                     "min": null,
+                     "show": true
+                  },
+                  {
+                     "decimals": 3,
+                     "format": "none",
+                     "label": null,
+                     "logBase": 1,
+                     "max": null,
+                     "min": null,
+                     "show": true
+                  }
+               ]
+            },
+            {
+               "aliasColors": { },
+               "bars": false,
+               "dashLength": 10,
+               "dashes": false,
+               "datasource": "$prometheus",
+               "decimals": 0,
+               "description": "Number of pending network requests,\nseparated per thread.\n\nPanel works with metrics 0.15.0 or newer, Tarantool 2.10 or newer.\n",
+               "fill": 0,
+               "gridPos": {
+                  "h": 8,
+                  "w": 8,
+                  "x": 0,
+                  "y": 88
+               },
+               "id": 35,
+               "legend": {
+                  "alignAsTable": true,
+                  "avg": true,
+                  "current": true,
+                  "max": true,
+                  "min": false,
+                  "rightSide": false,
+                  "show": true,
+                  "sideWidth": null,
+                  "sort": "current",
+                  "sortDesc": true,
+                  "total": false,
+                  "values": true
+               },
+               "lines": true,
+               "linewidth": 1,
+               "links": [ ],
+               "nullPointMode": "null",
+               "percentage": false,
+               "pointradius": 5,
+               "points": false,
+               "renderer": "flot",
+               "repeat": null,
+               "seriesOverrides": [ ],
+               "spaceLength": 10,
+               "stack": false,
+               "steppedLine": false,
+               "targets": [
+                  {
+                     "expr": "tnt_net_per_thread_requests_current{job=~\"$job\",alias=~\"$alias\"}",
+                     "format": "time_series",
+                     "intervalFactor": 2,
+                     "legendFormat": "{{alias}} (thread {{thread}})",
+                     "refId": "A"
+                  }
+               ],
+               "thresholds": [ ],
+               "timeFrom": null,
+               "timeShift": null,
+               "title": "Network requests pending (per thread)",
+               "tooltip": {
+                  "shared": true,
+                  "sort": 2,
+                  "value_type": "individual"
+               },
+               "type": "graph",
+               "xaxis": {
+                  "buckets": null,
+                  "mode": "time",
+                  "name": null,
+                  "show": true,
+                  "values": [ ]
+               },
+               "yaxes": [
+                  {
+                     "decimals": 0,
+                     "format": "none",
+                     "label": "pending",
+                     "logBase": 1,
+                     "max": null,
+                     "min": null,
+                     "show": true
+                  },
+                  {
+                     "decimals": 0,
+                     "format": "none",
+                     "label": null,
+                     "logBase": 1,
+                     "max": null,
+                     "min": null,
+                     "show": true
+                  }
+               ]
+            },
+            {
+               "aliasColors": { },
+               "bars": false,
+               "dashLength": 10,
+               "dashes": false,
+               "datasource": "$prometheus",
+               "decimals": 0,
+               "description": "Number of requests currently being processed,\nseparated per thread.\n\nPanel works with metrics 0.15.0 or newer, Tarantool 2.10 or newer.\n",
+               "fill": 0,
+               "gridPos": {
+                  "h": 8,
+                  "w": 8,
+                  "x": 8,
+                  "y": 88
+               },
+               "id": 36,
+               "legend": {
+                  "alignAsTable": true,
+                  "avg": true,
+                  "current": true,
+                  "max": true,
+                  "min": false,
+                  "rightSide": false,
+                  "show": true,
+                  "sideWidth": null,
+                  "sort": "current",
+                  "sortDesc": true,
+                  "total": false,
+                  "values": true
+               },
+               "lines": true,
+               "linewidth": 1,
+               "links": [ ],
+               "nullPointMode": "null",
+               "percentage": false,
+               "pointradius": 5,
+               "points": false,
+               "renderer": "flot",
+               "repeat": null,
+               "seriesOverrides": [ ],
+               "spaceLength": 10,
+               "stack": false,
+               "steppedLine": false,
+               "targets": [
+                  {
+                     "expr": "tnt_net_per_thread_requests_in_progress_current{job=~\"$job\",alias=~\"$alias\"}",
+                     "format": "time_series",
+                     "intervalFactor": 2,
+                     "legendFormat": "{{alias}} (thread {{thread}})",
+                     "refId": "A"
+                  }
+               ],
+               "thresholds": [ ],
+               "timeFrom": null,
+               "timeShift": null,
+               "title": "Requests in progress (per thread)",
+               "tooltip": {
+                  "shared": true,
+                  "sort": 2,
+                  "value_type": "individual"
+               },
+               "type": "graph",
+               "xaxis": {
+                  "buckets": null,
+                  "mode": "time",
+                  "name": null,
+                  "show": true,
+                  "values": [ ]
+               },
+               "yaxes": [
+                  {
+                     "decimals": 0,
+                     "format": "none",
+                     "label": "pending",
+                     "logBase": 1,
+                     "max": null,
+                     "min": null,
+                     "show": true
+                  },
+                  {
+                     "decimals": 0,
+                     "format": "none",
+                     "label": null,
+                     "logBase": 1,
+                     "max": null,
+                     "min": null,
+                     "show": true
+                  }
+               ]
+            },
+            {
+               "aliasColors": { },
+               "bars": false,
+               "dashLength": 10,
+               "dashes": false,
+               "datasource": "$prometheus",
+               "decimals": 0,
+               "description": "Number of requests currently waiting in queues of streams,\nseparated per thread.\n\nPanel works with metrics 0.15.0 or newer, Tarantool 2.10 or newer.\n",
+               "fill": 0,
+               "gridPos": {
+                  "h": 8,
+                  "w": 8,
+                  "x": 16,
+                  "y": 88
+               },
+               "id": 37,
+               "legend": {
+                  "alignAsTable": true,
+                  "avg": true,
+                  "current": true,
+                  "max": true,
+                  "min": false,
+                  "rightSide": false,
+                  "show": true,
+                  "sideWidth": null,
+                  "sort": "current",
+                  "sortDesc": true,
+                  "total": false,
+                  "values": true
+               },
+               "lines": true,
+               "linewidth": 1,
+               "links": [ ],
+               "nullPointMode": "null",
+               "percentage": false,
+               "pointradius": 5,
+               "points": false,
+               "renderer": "flot",
+               "repeat": null,
+               "seriesOverrides": [ ],
+               "spaceLength": 10,
+               "stack": false,
+               "steppedLine": false,
+               "targets": [
+                  {
+                     "expr": "tnt_net_per_thread_requests_in_stream_queue_current{job=~\"$job\",alias=~\"$alias\"}",
+                     "format": "time_series",
+                     "intervalFactor": 2,
+                     "legendFormat": "{{alias}} (thread {{thread}})",
+                     "refId": "A"
+                  }
+               ],
+               "thresholds": [ ],
+               "timeFrom": null,
+               "timeShift": null,
+               "title": "Requests in queue (current per thread)",
+               "tooltip": {
+                  "shared": true,
+                  "sort": 2,
+                  "value_type": "individual"
+               },
+               "type": "graph",
+               "xaxis": {
+                  "buckets": null,
+                  "mode": "time",
+                  "name": null,
+                  "show": true,
+                  "values": [ ]
+               },
+               "yaxes": [
+                  {
+                     "decimals": 0,
+                     "format": "none",
+                     "label": "pending",
+                     "logBase": 1,
+                     "max": null,
+                     "min": null,
+                     "show": true
+                  },
+                  {
+                     "decimals": 0,
+                     "format": "none",
+                     "label": null,
+                     "logBase": 1,
+                     "max": null,
+                     "min": null,
+                     "show": true
+                  }
+               ]
             }
          ],
          "repeat": null,
@@ -2069,9 +2969,9 @@
             "h": 1,
             "w": 24,
             "x": 0,
-            "y": 64
+            "y": 96
          },
-         "id": 28,
+         "id": 38,
          "panels": [
             {
                "content": "`quota_used_ratio` > 90%, `arena_used_ratio` > 90%, 50% < `items_used_ratio` < 90% – your memory is highly fragmented. See [docs](https://www.tarantool.io/en/doc/1.10/reference/reference_lua/box_slab/#lua-function.box.slab.info) for more info.\n\n`quota_used_ratio` > 90%, `arena_used_ratio` > 90%, `items_used_ratio` > 90% – you are running out of memory. You should consider increasing Tarantool’s memory limit (*box.cfg.memtx_memory*).\n",
@@ -2080,9 +2980,9 @@
                   "h": 3,
                   "w": 24,
                   "x": 0,
-                  "y": 65
+                  "y": 97
                },
-               "id": 29,
+               "id": 39,
                "mode": "markdown",
                "title": "Slab allocator monitoring information",
                "type": "text"
@@ -2100,9 +3000,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 0,
-                  "y": 68
+                  "y": 100
                },
-               "id": 30,
+               "id": 40,
                "legend": {
                   "alignAsTable": true,
                   "avg": false,
@@ -2190,9 +3090,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 8,
-                  "y": 68
+                  "y": 100
                },
-               "id": 31,
+               "id": 41,
                "legend": {
                   "alignAsTable": true,
                   "avg": false,
@@ -2280,9 +3180,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 16,
-                  "y": 68
+                  "y": 100
                },
-               "id": 32,
+               "id": 42,
                "legend": {
                   "alignAsTable": true,
                   "avg": false,
@@ -2370,9 +3270,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 0,
-                  "y": 76
+                  "y": 108
                },
-               "id": 33,
+               "id": 43,
                "legend": {
                   "alignAsTable": true,
                   "avg": false,
@@ -2460,9 +3360,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 8,
-                  "y": 76
+                  "y": 108
                },
-               "id": 34,
+               "id": 44,
                "legend": {
                   "alignAsTable": true,
                   "avg": false,
@@ -2550,9 +3450,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 16,
-                  "y": 76
+                  "y": 108
                },
-               "id": 35,
+               "id": 45,
                "legend": {
                   "alignAsTable": true,
                   "avg": false,
@@ -2640,9 +3540,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 0,
-                  "y": 84
+                  "y": 116
                },
-               "id": 36,
+               "id": 46,
                "legend": {
                   "alignAsTable": true,
                   "avg": false,
@@ -2730,9 +3630,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 8,
-                  "y": 84
+                  "y": 116
                },
-               "id": 37,
+               "id": 47,
                "legend": {
                   "alignAsTable": true,
                   "avg": false,
@@ -2820,9 +3720,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 16,
-                  "y": 84
+                  "y": 116
                },
-               "id": 38,
+               "id": 48,
                "legend": {
                   "alignAsTable": true,
                   "avg": false,
@@ -2913,9 +3813,9 @@
             "h": 1,
             "w": 24,
             "x": 0,
-            "y": 92
+            "y": 124
          },
-         "id": 39,
+         "id": 49,
          "panels": [
             {
                "aliasColors": { },
@@ -2930,9 +3830,9 @@
                   "h": 8,
                   "w": 12,
                   "x": 0,
-                  "y": 93
+                  "y": 125
                },
-               "id": 40,
+               "id": 50,
                "legend": {
                   "alignAsTable": true,
                   "avg": false,
@@ -3020,9 +3920,9 @@
                   "h": 8,
                   "w": 12,
                   "x": 12,
-                  "y": 93
+                  "y": 125
                },
-               "id": 41,
+               "id": 51,
                "legend": {
                   "alignAsTable": true,
                   "avg": false,
@@ -3110,9 +4010,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 0,
-                  "y": 101
+                  "y": 133
                },
-               "id": 42,
+               "id": 52,
                "legend": {
                   "alignAsTable": true,
                   "avg": false,
@@ -3200,9 +4100,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 8,
-                  "y": 101
+                  "y": 133
                },
-               "id": 43,
+               "id": 53,
                "legend": {
                   "alignAsTable": true,
                   "avg": false,
@@ -3290,9 +4190,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 16,
-                  "y": 101
+                  "y": 133
                },
-               "id": 44,
+               "id": 54,
                "legend": {
                   "alignAsTable": true,
                   "avg": false,
@@ -3383,9 +4283,9 @@
             "h": 1,
             "w": 24,
             "x": 0,
-            "y": 109
+            "y": 141
          },
-         "id": 45,
+         "id": 55,
          "panels": [
             {
                "aliasColors": { },
@@ -3400,9 +4300,9 @@
                   "h": 8,
                   "w": 12,
                   "x": 0,
-                  "y": 110
+                  "y": 142
                },
-               "id": 46,
+               "id": 56,
                "legend": {
                   "alignAsTable": true,
                   "avg": false,
@@ -3490,9 +4390,9 @@
                   "h": 8,
                   "w": 12,
                   "x": 12,
-                  "y": 110
+                  "y": 142
                },
-               "id": 47,
+               "id": 57,
                "legend": {
                   "alignAsTable": true,
                   "avg": false,
@@ -3580,9 +4480,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 0,
-                  "y": 118
+                  "y": 150
                },
-               "id": 48,
+               "id": 58,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -3670,9 +4570,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 8,
-                  "y": 118
+                  "y": 150
                },
-               "id": 49,
+               "id": 59,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -3760,9 +4660,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 16,
-                  "y": 118
+                  "y": 150
                },
-               "id": 50,
+               "id": 60,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -3850,9 +4750,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 0,
-                  "y": 126
+                  "y": 158
                },
-               "id": 51,
+               "id": 61,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -3940,9 +4840,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 8,
-                  "y": 126
+                  "y": 158
                },
-               "id": 52,
+               "id": 62,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -4030,9 +4930,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 16,
-                  "y": 126
+                  "y": 158
                },
-               "id": 53,
+               "id": 63,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -4120,9 +5020,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 0,
-                  "y": 134
+                  "y": 166
                },
-               "id": 54,
+               "id": 64,
                "legend": {
                   "alignAsTable": true,
                   "avg": false,
@@ -4210,9 +5110,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 8,
-                  "y": 134
+                  "y": 166
                },
-               "id": 55,
+               "id": 65,
                "legend": {
                   "alignAsTable": true,
                   "avg": false,
@@ -4300,9 +5200,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 16,
-                  "y": 134
+                  "y": 166
                },
-               "id": 56,
+               "id": 66,
                "legend": {
                   "alignAsTable": true,
                   "avg": false,
@@ -4390,9 +5290,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 0,
-                  "y": 142
+                  "y": 174
                },
-               "id": 57,
+               "id": 67,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -4480,9 +5380,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 6,
-                  "y": 142
+                  "y": 174
                },
-               "id": 58,
+               "id": 68,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -4570,9 +5470,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 12,
-                  "y": 142
+                  "y": 174
                },
-               "id": 59,
+               "id": 69,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -4660,9 +5560,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 18,
-                  "y": 142
+                  "y": 174
                },
-               "id": 60,
+               "id": 70,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -4750,9 +5650,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 0,
-                  "y": 150
+                  "y": 182
                },
-               "id": 61,
+               "id": 71,
                "legend": {
                   "alignAsTable": true,
                   "avg": false,
@@ -4840,9 +5740,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 6,
-                  "y": 150
+                  "y": 182
                },
-               "id": 62,
+               "id": 72,
                "legend": {
                   "alignAsTable": true,
                   "avg": false,
@@ -4930,9 +5830,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 12,
-                  "y": 150
+                  "y": 182
                },
-               "id": 63,
+               "id": 73,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -5020,9 +5920,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 18,
-                  "y": 150
+                  "y": 182
                },
-               "id": 64,
+               "id": 74,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -5113,9 +6013,9 @@
             "h": 1,
             "w": 24,
             "x": 0,
-            "y": 158
+            "y": 190
          },
-         "id": 65,
+         "id": 75,
          "panels": [
             {
                "aliasColors": { },
@@ -5130,9 +6030,9 @@
                   "h": 8,
                   "w": 12,
                   "x": 0,
-                  "y": 159
+                  "y": 191
                },
-               "id": 66,
+               "id": 76,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -5220,9 +6120,9 @@
                   "h": 8,
                   "w": 12,
                   "x": 12,
-                  "y": 159
+                  "y": 191
                },
-               "id": 67,
+               "id": 77,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -5310,9 +6210,9 @@
                   "h": 8,
                   "w": 12,
                   "x": 0,
-                  "y": 167
+                  "y": 199
                },
-               "id": 68,
+               "id": 78,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -5400,9 +6300,9 @@
                   "h": 8,
                   "w": 12,
                   "x": 12,
-                  "y": 167
+                  "y": 199
                },
-               "id": 69,
+               "id": 79,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -5493,9 +6393,9 @@
             "h": 1,
             "w": 24,
             "x": 0,
-            "y": 175
+            "y": 207
          },
-         "id": 70,
+         "id": 80,
          "panels": [
             {
                "aliasColors": { },
@@ -5510,9 +6410,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 0,
-                  "y": 176
+                  "y": 208
                },
-               "id": 71,
+               "id": 81,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -5600,9 +6500,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 8,
-                  "y": 176
+                  "y": 208
                },
-               "id": 72,
+               "id": 82,
                "legend": {
                   "alignAsTable": true,
                   "avg": false,
@@ -5690,9 +6590,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 16,
-                  "y": 176
+                  "y": 208
                },
-               "id": 73,
+               "id": 83,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -5780,9 +6680,9 @@
                   "h": 8,
                   "w": 12,
                   "x": 0,
-                  "y": 184
+                  "y": 216
                },
-               "id": 74,
+               "id": 84,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -5870,9 +6770,9 @@
                   "h": 8,
                   "w": 12,
                   "x": 12,
-                  "y": 184
+                  "y": 216
                },
-               "id": 75,
+               "id": 85,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -5960,9 +6860,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 0,
-                  "y": 192
+                  "y": 224
                },
-               "id": 76,
+               "id": 86,
                "legend": {
                   "alignAsTable": true,
                   "avg": false,
@@ -6050,9 +6950,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 8,
-                  "y": 192
+                  "y": 224
                },
-               "id": 77,
+               "id": 87,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -6140,9 +7040,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 16,
-                  "y": 192
+                  "y": 224
                },
-               "id": 78,
+               "id": 88,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -6233,9 +7133,9 @@
             "h": 1,
             "w": 24,
             "x": 0,
-            "y": 200
+            "y": 232
          },
-         "id": 79,
+         "id": 89,
          "panels": [
             {
                "aliasColors": { },
@@ -6250,9 +7150,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 0,
-                  "y": 201
+                  "y": 233
                },
-               "id": 80,
+               "id": 90,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -6340,9 +7240,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 6,
-                  "y": 201
+                  "y": 233
                },
-               "id": 81,
+               "id": 91,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -6430,9 +7330,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 12,
-                  "y": 201
+                  "y": 233
                },
-               "id": 82,
+               "id": 92,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -6520,9 +7420,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 18,
-                  "y": 201
+                  "y": 233
                },
-               "id": 83,
+               "id": 93,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -6610,9 +7510,9 @@
                   "h": 8,
                   "w": 12,
                   "x": 0,
-                  "y": 209
+                  "y": 241
                },
-               "id": 84,
+               "id": 94,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -6700,9 +7600,9 @@
                   "h": 8,
                   "w": 12,
                   "x": 12,
-                  "y": 209
+                  "y": 241
                },
-               "id": 85,
+               "id": 95,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -6790,9 +7690,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 0,
-                  "y": 217
+                  "y": 249
                },
-               "id": 86,
+               "id": 96,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -6880,9 +7780,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 8,
-                  "y": 217
+                  "y": 249
                },
-               "id": 87,
+               "id": 97,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -6970,9 +7870,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 16,
-                  "y": 217
+                  "y": 249
                },
-               "id": 88,
+               "id": 98,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -7060,9 +7960,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 0,
-                  "y": 225
+                  "y": 257
                },
-               "id": 89,
+               "id": 99,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -7150,9 +8050,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 8,
-                  "y": 225
+                  "y": 257
                },
-               "id": 90,
+               "id": 100,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -7240,9 +8140,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 16,
-                  "y": 225
+                  "y": 257
                },
-               "id": 91,
+               "id": 101,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -7330,9 +8230,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 0,
-                  "y": 233
+                  "y": 265
                },
-               "id": 92,
+               "id": 102,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -7420,9 +8320,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 6,
-                  "y": 233
+                  "y": 265
                },
-               "id": 93,
+               "id": 103,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -7510,9 +8410,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 12,
-                  "y": 233
+                  "y": 265
                },
-               "id": 94,
+               "id": 104,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -7600,9 +8500,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 18,
-                  "y": 233
+                  "y": 265
                },
-               "id": 95,
+               "id": 105,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -7690,9 +8590,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 0,
-                  "y": 241
+                  "y": 273
                },
-               "id": 96,
+               "id": 106,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -7780,9 +8680,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 8,
-                  "y": 241
+                  "y": 273
                },
-               "id": 97,
+               "id": 107,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -7870,9 +8770,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 16,
-                  "y": 241
+                  "y": 273
                },
-               "id": 98,
+               "id": 108,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -7963,9 +8863,9 @@
             "h": 1,
             "w": 24,
             "x": 0,
-            "y": 249
+            "y": 281
          },
-         "id": 99,
+         "id": 109,
          "panels": [
             {
                "aliasColors": { },
@@ -7980,9 +8880,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 0,
-                  "y": 250
+                  "y": 282
                },
-               "id": 100,
+               "id": 110,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -8070,9 +8970,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 8,
-                  "y": 250
+                  "y": 282
                },
-               "id": 101,
+               "id": 111,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -8160,9 +9060,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 16,
-                  "y": 250
+                  "y": 282
                },
-               "id": 102,
+               "id": 112,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -8250,9 +9150,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 0,
-                  "y": 258
+                  "y": 290
                },
-               "id": 103,
+               "id": 113,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -8340,9 +9240,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 8,
-                  "y": 258
+                  "y": 290
                },
-               "id": 104,
+               "id": 114,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -8430,9 +9330,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 16,
-                  "y": 258
+                  "y": 290
                },
-               "id": 105,
+               "id": 115,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -8520,9 +9420,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 0,
-                  "y": 266
+                  "y": 298
                },
-               "id": 106,
+               "id": 116,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -8610,9 +9510,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 8,
-                  "y": 266
+                  "y": 298
                },
-               "id": 107,
+               "id": 117,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -8700,9 +9600,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 16,
-                  "y": 266
+                  "y": 298
                },
-               "id": 108,
+               "id": 118,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -8790,9 +9690,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 0,
-                  "y": 274
+                  "y": 306
                },
-               "id": 109,
+               "id": 119,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -8880,9 +9780,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 8,
-                  "y": 274
+                  "y": 306
                },
-               "id": 110,
+               "id": 120,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -8970,9 +9870,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 16,
-                  "y": 274
+                  "y": 306
                },
-               "id": 111,
+               "id": 121,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -9060,9 +9960,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 0,
-                  "y": 282
+                  "y": 314
                },
-               "id": 112,
+               "id": 122,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -9150,9 +10050,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 8,
-                  "y": 282
+                  "y": 314
                },
-               "id": 113,
+               "id": 123,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -9240,9 +10140,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 16,
-                  "y": 282
+                  "y": 314
                },
-               "id": 114,
+               "id": 124,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -9333,9 +10233,9 @@
             "h": 1,
             "w": 24,
             "x": 0,
-            "y": 290
+            "y": 322
          },
-         "id": 115,
+         "id": 125,
          "panels": [
             {
                "aliasColors": { },
@@ -9350,9 +10250,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 0,
-                  "y": 291
+                  "y": 323
                },
-               "id": 116,
+               "id": 126,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -9440,9 +10340,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 8,
-                  "y": 291
+                  "y": 323
                },
-               "id": 117,
+               "id": 127,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -9530,9 +10430,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 16,
-                  "y": 291
+                  "y": 323
                },
-               "id": 118,
+               "id": 128,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -9620,9 +10520,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 0,
-                  "y": 299
+                  "y": 331
                },
-               "id": 119,
+               "id": 129,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -9710,9 +10610,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 6,
-                  "y": 299
+                  "y": 331
                },
-               "id": 120,
+               "id": 130,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -9800,9 +10700,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 12,
-                  "y": 299
+                  "y": 331
                },
-               "id": 121,
+               "id": 131,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -9890,9 +10790,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 18,
-                  "y": 299
+                  "y": 331
                },
-               "id": 122,
+               "id": 132,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -9980,9 +10880,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 0,
-                  "y": 307
+                  "y": 339
                },
-               "id": 123,
+               "id": 133,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -10070,9 +10970,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 6,
-                  "y": 307
+                  "y": 339
                },
-               "id": 124,
+               "id": 134,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -10160,9 +11060,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 12,
-                  "y": 307
+                  "y": 339
                },
-               "id": 125,
+               "id": 135,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -10250,9 +11150,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 18,
-                  "y": 307
+                  "y": 339
                },
-               "id": 126,
+               "id": 136,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -10343,9 +11243,9 @@
             "h": 1,
             "w": 24,
             "x": 0,
-            "y": 315
+            "y": 347
          },
-         "id": 127,
+         "id": 137,
          "panels": [
             {
                "aliasColors": { },
@@ -10360,9 +11260,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 0,
-                  "y": 316
+                  "y": 348
                },
-               "id": 128,
+               "id": 138,
                "legend": {
                   "alignAsTable": true,
                   "avg": false,
@@ -10450,9 +11350,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 6,
-                  "y": 316
+                  "y": 348
                },
-               "id": 129,
+               "id": 139,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -10540,9 +11440,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 12,
-                  "y": 316
+                  "y": 348
                },
-               "id": 130,
+               "id": 140,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -10630,9 +11530,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 18,
-                  "y": 316
+                  "y": 348
                },
-               "id": 131,
+               "id": 141,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -10720,9 +11620,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 0,
-                  "y": 324
+                  "y": 356
                },
-               "id": 132,
+               "id": 142,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -10810,9 +11710,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 6,
-                  "y": 324
+                  "y": 356
                },
-               "id": 133,
+               "id": 143,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -10900,9 +11800,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 12,
-                  "y": 324
+                  "y": 356
                },
-               "id": 134,
+               "id": 144,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -10990,9 +11890,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 18,
-                  "y": 324
+                  "y": 356
                },
-               "id": 135,
+               "id": 145,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -11080,9 +11980,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 0,
-                  "y": 332
+                  "y": 364
                },
-               "id": 136,
+               "id": 146,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -11170,9 +12070,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 8,
-                  "y": 332
+                  "y": 364
                },
-               "id": 137,
+               "id": 147,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -11260,9 +12160,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 16,
-                  "y": 332
+                  "y": 364
                },
-               "id": 138,
+               "id": 148,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -11350,9 +12250,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 0,
-                  "y": 340
+                  "y": 372
                },
-               "id": 139,
+               "id": 149,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -11440,9 +12340,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 8,
-                  "y": 340
+                  "y": 372
                },
-               "id": 140,
+               "id": 150,
                "legend": {
                   "alignAsTable": true,
                   "avg": false,
@@ -11530,9 +12430,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 16,
-                  "y": 340
+                  "y": 372
                },
-               "id": 141,
+               "id": 151,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -11620,9 +12520,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 0,
-                  "y": 348
+                  "y": 380
                },
-               "id": 142,
+               "id": 152,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -11710,9 +12610,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 8,
-                  "y": 348
+                  "y": 380
                },
-               "id": 143,
+               "id": 153,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -11800,9 +12700,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 16,
-                  "y": 348
+                  "y": 380
                },
-               "id": 144,
+               "id": 154,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -11890,9 +12790,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 0,
-                  "y": 356
+                  "y": 388
                },
-               "id": 145,
+               "id": 155,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -11980,9 +12880,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 8,
-                  "y": 356
+                  "y": 388
                },
-               "id": 146,
+               "id": 156,
                "legend": {
                   "alignAsTable": true,
                   "avg": false,
@@ -12070,9 +12970,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 16,
-                  "y": 356
+                  "y": 388
                },
-               "id": 147,
+               "id": 157,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -12160,9 +13060,9 @@
                   "h": 10,
                   "w": 24,
                   "x": 0,
-                  "y": 364
+                  "y": 396
                },
-               "id": 148,
+               "id": 158,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -12250,9 +13150,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 0,
-                  "y": 374
+                  "y": 406
                },
-               "id": 149,
+               "id": 159,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -12340,9 +13240,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 6,
-                  "y": 374
+                  "y": 406
                },
-               "id": 150,
+               "id": 160,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -12430,9 +13330,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 12,
-                  "y": 374
+                  "y": 406
                },
-               "id": 151,
+               "id": 161,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -12520,9 +13420,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 18,
-                  "y": 374
+                  "y": 406
                },
-               "id": 152,
+               "id": 162,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -12613,9 +13513,9 @@
             "h": 1,
             "w": 24,
             "x": 0,
-            "y": 382
+            "y": 414
          },
-         "id": 153,
+         "id": 163,
          "panels": [
             {
                "aliasColors": { },
@@ -12630,9 +13530,9 @@
                   "h": 8,
                   "w": 12,
                   "x": 0,
-                  "y": 383
+                  "y": 415
                },
-               "id": 154,
+               "id": 164,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -12720,9 +13620,9 @@
                   "h": 8,
                   "w": 12,
                   "x": 12,
-                  "y": 383
+                  "y": 415
                },
-               "id": 155,
+               "id": 165,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -12810,9 +13710,9 @@
                   "h": 8,
                   "w": 12,
                   "x": 0,
-                  "y": 391
+                  "y": 423
                },
-               "id": 156,
+               "id": 166,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -12900,9 +13800,9 @@
                   "h": 8,
                   "w": 12,
                   "x": 12,
-                  "y": 391
+                  "y": 423
                },
-               "id": 157,
+               "id": 167,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -12990,9 +13890,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 0,
-                  "y": 399
+                  "y": 431
                },
-               "id": 158,
+               "id": 168,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -13080,9 +13980,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 8,
-                  "y": 399
+                  "y": 431
                },
-               "id": 159,
+               "id": 169,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -13170,9 +14070,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 16,
-                  "y": 399
+                  "y": 431
                },
-               "id": 160,
+               "id": 170,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -13260,9 +14160,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 0,
-                  "y": 407
+                  "y": 439
                },
-               "id": 161,
+               "id": 171,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -13350,9 +14250,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 8,
-                  "y": 407
+                  "y": 439
                },
-               "id": 162,
+               "id": 172,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -13440,9 +14340,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 16,
-                  "y": 407
+                  "y": 439
                },
-               "id": 163,
+               "id": 173,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -13530,9 +14430,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 0,
-                  "y": 415
+                  "y": 447
                },
-               "id": 164,
+               "id": 174,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -13620,9 +14520,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 6,
-                  "y": 415
+                  "y": 447
                },
-               "id": 165,
+               "id": 175,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -13710,9 +14610,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 12,
-                  "y": 415
+                  "y": 447
                },
-               "id": 166,
+               "id": 176,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -13800,9 +14700,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 18,
-                  "y": 415
+                  "y": 447
                },
-               "id": 167,
+               "id": 177,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -13890,9 +14790,9 @@
                   "h": 8,
                   "w": 12,
                   "x": 0,
-                  "y": 423
+                  "y": 455
                },
-               "id": 168,
+               "id": 178,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -13980,9 +14880,9 @@
                   "h": 8,
                   "w": 12,
                   "x": 12,
-                  "y": 423
+                  "y": 455
                },
-               "id": 169,
+               "id": 179,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -14073,9 +14973,9 @@
             "h": 1,
             "w": 24,
             "x": 0,
-            "y": 431
+            "y": 463
          },
-         "id": 170,
+         "id": 180,
          "panels": [
             {
                "aliasColors": { },
@@ -14090,9 +14990,9 @@
                   "h": 8,
                   "w": 12,
                   "x": 0,
-                  "y": 432
+                  "y": 464
                },
-               "id": 171,
+               "id": 181,
                "legend": {
                   "alignAsTable": true,
                   "avg": false,
@@ -14180,9 +15080,9 @@
                   "h": 8,
                   "w": 12,
                   "x": 12,
-                  "y": 432
+                  "y": 464
                },
-               "id": 172,
+               "id": 182,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -14270,9 +15170,9 @@
                   "h": 8,
                   "w": 12,
                   "x": 0,
-                  "y": 440
+                  "y": 472
                },
-               "id": 173,
+               "id": 183,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -14360,9 +15260,9 @@
                   "h": 8,
                   "w": 12,
                   "x": 12,
-                  "y": 440
+                  "y": 472
                },
-               "id": 174,
+               "id": 184,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -14453,9 +15353,9 @@
             "h": 1,
             "w": 24,
             "x": 0,
-            "y": 448
+            "y": 480
          },
-         "id": 175,
+         "id": 185,
          "panels": [
             {
                "aliasColors": { },
@@ -14470,9 +15370,9 @@
                   "h": 8,
                   "w": 12,
                   "x": 0,
-                  "y": 449
+                  "y": 481
                },
-               "id": 176,
+               "id": 186,
                "legend": {
                   "alignAsTable": true,
                   "avg": false,
@@ -14560,9 +15460,9 @@
                   "h": 8,
                   "w": 12,
                   "x": 12,
-                  "y": 449
+                  "y": 481
                },
-               "id": 177,
+               "id": 187,
                "legend": {
                   "alignAsTable": true,
                   "avg": false,
@@ -14653,9 +15553,9 @@
             "h": 1,
             "w": 24,
             "x": 0,
-            "y": 457
+            "y": 489
          },
-         "id": 178,
+         "id": 188,
          "panels": [
             {
                "aliasColors": { },
@@ -14670,9 +15570,9 @@
                   "h": 8,
                   "w": 12,
                   "x": 0,
-                  "y": 458
+                  "y": 490
                },
-               "id": 179,
+               "id": 189,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -14760,9 +15660,9 @@
                   "h": 8,
                   "w": 12,
                   "x": 12,
-                  "y": 458
+                  "y": 490
                },
-               "id": 180,
+               "id": 190,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -14850,9 +15750,9 @@
                   "h": 8,
                   "w": 12,
                   "x": 0,
-                  "y": 466
+                  "y": 498
                },
-               "id": 181,
+               "id": 191,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -14940,9 +15840,9 @@
                   "h": 8,
                   "w": 12,
                   "x": 12,
-                  "y": 466
+                  "y": 498
                },
-               "id": 182,
+               "id": 192,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -15033,9 +15933,9 @@
             "h": 1,
             "w": 24,
             "x": 0,
-            "y": 474
+            "y": 506
          },
-         "id": 183,
+         "id": 193,
          "panels": [
             {
                "aliasColors": { },
@@ -15050,9 +15950,9 @@
                   "h": 8,
                   "w": 12,
                   "x": 0,
-                  "y": 475
+                  "y": 507
                },
-               "id": 184,
+               "id": 194,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -15140,9 +16040,9 @@
                   "h": 8,
                   "w": 12,
                   "x": 12,
-                  "y": 475
+                  "y": 507
                },
-               "id": 185,
+               "id": 195,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -15230,9 +16130,9 @@
                   "h": 8,
                   "w": 12,
                   "x": 0,
-                  "y": 483
+                  "y": 515
                },
-               "id": 186,
+               "id": 196,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -15320,9 +16220,9 @@
                   "h": 8,
                   "w": 12,
                   "x": 12,
-                  "y": 483
+                  "y": 515
                },
-               "id": 187,
+               "id": 197,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -15413,9 +16313,9 @@
             "h": 1,
             "w": 24,
             "x": 0,
-            "y": 491
+            "y": 523
          },
-         "id": 188,
+         "id": 198,
          "panels": [
             {
                "aliasColors": { },
@@ -15430,9 +16330,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 0,
-                  "y": 492
+                  "y": 524
                },
-               "id": 189,
+               "id": 199,
                "legend": {
                   "alignAsTable": true,
                   "avg": false,
@@ -15520,9 +16420,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 8,
-                  "y": 492
+                  "y": 524
                },
-               "id": 190,
+               "id": 200,
                "legend": {
                   "alignAsTable": true,
                   "avg": false,
@@ -15610,9 +16510,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 16,
-                  "y": 492
+                  "y": 524
                },
-               "id": 191,
+               "id": 201,
                "legend": {
                   "alignAsTable": true,
                   "avg": false,
@@ -15700,9 +16600,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 0,
-                  "y": 500
+                  "y": 532
                },
-               "id": 192,
+               "id": 202,
                "legend": {
                   "alignAsTable": true,
                   "avg": false,
@@ -15790,9 +16690,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 8,
-                  "y": 500
+                  "y": 532
                },
-               "id": 193,
+               "id": 203,
                "legend": {
                   "alignAsTable": true,
                   "avg": false,
@@ -15880,9 +16780,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 16,
-                  "y": 500
+                  "y": 532
                },
-               "id": 194,
+               "id": 204,
                "legend": {
                   "alignAsTable": true,
                   "avg": false,
@@ -15973,9 +16873,9 @@
             "h": 1,
             "w": 24,
             "x": 0,
-            "y": 508
+            "y": 540
          },
-         "id": 195,
+         "id": 205,
          "panels": [
             {
                "aliasColors": { },
@@ -15990,9 +16890,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 0,
-                  "y": 509
+                  "y": 541
                },
-               "id": 196,
+               "id": 206,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -16080,9 +16980,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 8,
-                  "y": 509
+                  "y": 541
                },
-               "id": 197,
+               "id": 207,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -16170,9 +17070,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 16,
-                  "y": 509
+                  "y": 541
                },
-               "id": 198,
+               "id": 208,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -16260,9 +17160,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 0,
-                  "y": 517
+                  "y": 549
                },
-               "id": 199,
+               "id": 209,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -16350,9 +17250,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 8,
-                  "y": 517
+                  "y": 549
                },
-               "id": 200,
+               "id": 210,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -16440,9 +17340,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 16,
-                  "y": 517
+                  "y": 549
                },
-               "id": 201,
+               "id": 211,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -16533,9 +17433,9 @@
             "h": 1,
             "w": 24,
             "x": 0,
-            "y": 525
+            "y": 557
          },
-         "id": 202,
+         "id": 212,
          "panels": [
             {
                "aliasColors": { },
@@ -16550,9 +17450,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 0,
-                  "y": 526
+                  "y": 558
                },
-               "id": 203,
+               "id": 213,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -16640,9 +17540,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 6,
-                  "y": 526
+                  "y": 558
                },
-               "id": 204,
+               "id": 214,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -16730,9 +17630,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 12,
-                  "y": 526
+                  "y": 558
                },
-               "id": 205,
+               "id": 215,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -16820,9 +17720,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 18,
-                  "y": 526
+                  "y": 558
                },
-               "id": 206,
+               "id": 216,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -16910,9 +17810,9 @@
                   "h": 8,
                   "w": 12,
                   "x": 0,
-                  "y": 534
+                  "y": 566
                },
-               "id": 207,
+               "id": 217,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -17000,9 +17900,9 @@
                   "h": 8,
                   "w": 12,
                   "x": 12,
-                  "y": 534
+                  "y": 566
                },
-               "id": 208,
+               "id": 218,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -17090,9 +17990,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 0,
-                  "y": 542
+                  "y": 574
                },
-               "id": 209,
+               "id": 219,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -17180,9 +18080,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 6,
-                  "y": 542
+                  "y": 574
                },
-               "id": 210,
+               "id": 220,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -17270,9 +18170,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 12,
-                  "y": 542
+                  "y": 574
                },
-               "id": 211,
+               "id": 221,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -17360,9 +18260,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 18,
-                  "y": 542
+                  "y": 574
                },
-               "id": 212,
+               "id": 222,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -17450,9 +18350,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 0,
-                  "y": 550
+                  "y": 582
                },
-               "id": 213,
+               "id": 223,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -17540,9 +18440,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 6,
-                  "y": 550
+                  "y": 582
                },
-               "id": 214,
+               "id": 224,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -17630,9 +18530,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 12,
-                  "y": 550
+                  "y": 582
                },
-               "id": 215,
+               "id": 225,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -17720,9 +18620,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 18,
-                  "y": 550
+                  "y": 582
                },
-               "id": 216,
+               "id": 226,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -17810,9 +18710,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 0,
-                  "y": 558
+                  "y": 590
                },
-               "id": 217,
+               "id": 227,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -17900,9 +18800,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 6,
-                  "y": 558
+                  "y": 590
                },
-               "id": 218,
+               "id": 228,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -17990,9 +18890,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 12,
-                  "y": 558
+                  "y": 590
                },
-               "id": 219,
+               "id": 229,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -18080,9 +18980,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 18,
-                  "y": 558
+                  "y": 590
                },
-               "id": 220,
+               "id": 230,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -18173,9 +19073,9 @@
             "h": 1,
             "w": 24,
             "x": 0,
-            "y": 566
+            "y": 598
          },
-         "id": 221,
+         "id": 231,
          "panels": [
             {
                "aliasColors": { },
@@ -18190,9 +19090,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 0,
-                  "y": 567
+                  "y": 599
                },
-               "id": 222,
+               "id": 232,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -18280,9 +19180,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 8,
-                  "y": 567
+                  "y": 599
                },
-               "id": 223,
+               "id": 233,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -18370,9 +19270,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 16,
-                  "y": 567
+                  "y": 599
                },
-               "id": 224,
+               "id": 234,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -18460,9 +19360,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 0,
-                  "y": 575
+                  "y": 607
                },
-               "id": 225,
+               "id": 235,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -18550,9 +19450,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 8,
-                  "y": 575
+                  "y": 607
                },
-               "id": 226,
+               "id": 236,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -18640,9 +19540,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 16,
-                  "y": 575
+                  "y": 607
                },
-               "id": 227,
+               "id": 237,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -18730,9 +19630,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 0,
-                  "y": 583
+                  "y": 615
                },
-               "id": 228,
+               "id": 238,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -18820,9 +19720,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 8,
-                  "y": 583
+                  "y": 615
                },
-               "id": 229,
+               "id": 239,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -18910,9 +19810,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 16,
-                  "y": 583
+                  "y": 615
                },
-               "id": 230,
+               "id": 240,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -19000,9 +19900,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 0,
-                  "y": 591
+                  "y": 623
                },
-               "id": 231,
+               "id": 241,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -19090,9 +19990,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 8,
-                  "y": 591
+                  "y": 623
                },
-               "id": 232,
+               "id": 242,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -19180,9 +20080,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 16,
-                  "y": 591
+                  "y": 623
                },
-               "id": 233,
+               "id": 243,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -19273,9 +20173,9 @@
             "h": 1,
             "w": 24,
             "x": 0,
-            "y": 599
+            "y": 631
          },
-         "id": 234,
+         "id": 244,
          "panels": [
             {
                "aliasColors": { },
@@ -19290,9 +20190,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 0,
-                  "y": 600
+                  "y": 632
                },
-               "id": 235,
+               "id": 245,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -19380,9 +20280,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 8,
-                  "y": 600
+                  "y": 632
                },
-               "id": 236,
+               "id": 246,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -19470,9 +20370,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 16,
-                  "y": 600
+                  "y": 632
                },
-               "id": 237,
+               "id": 247,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -19560,9 +20460,9 @@
                   "h": 8,
                   "w": 12,
                   "x": 0,
-                  "y": 608
+                  "y": 640
                },
-               "id": 238,
+               "id": 248,
                "legend": {
                   "alignAsTable": true,
                   "avg": false,
@@ -19650,9 +20550,9 @@
                   "h": 8,
                   "w": 12,
                   "x": 12,
-                  "y": 608
+                  "y": 640
                },
-               "id": 239,
+               "id": 249,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -19740,9 +20640,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 0,
-                  "y": 616
+                  "y": 648
                },
-               "id": 240,
+               "id": 250,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -19830,9 +20730,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 6,
-                  "y": 616
+                  "y": 648
                },
-               "id": 241,
+               "id": 251,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -19920,9 +20820,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 12,
-                  "y": 616
+                  "y": 648
                },
-               "id": 242,
+               "id": 252,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -20010,9 +20910,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 18,
-                  "y": 616
+                  "y": 648
                },
-               "id": 243,
+               "id": 253,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -20100,9 +21000,9 @@
                   "h": 8,
                   "w": 12,
                   "x": 0,
-                  "y": 624
+                  "y": 656
                },
-               "id": 244,
+               "id": 254,
                "legend": {
                   "alignAsTable": true,
                   "avg": false,
@@ -20190,9 +21090,9 @@
                   "h": 8,
                   "w": 12,
                   "x": 12,
-                  "y": 624
+                  "y": 656
                },
-               "id": 245,
+               "id": 255,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -20280,9 +21180,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 0,
-                  "y": 632
+                  "y": 664
                },
-               "id": 246,
+               "id": 256,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -20370,9 +21270,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 8,
-                  "y": 632
+                  "y": 664
                },
-               "id": 247,
+               "id": 257,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -20460,9 +21360,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 16,
-                  "y": 632
+                  "y": 664
                },
-               "id": 248,
+               "id": 258,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -20550,9 +21450,9 @@
                   "h": 8,
                   "w": 12,
                   "x": 0,
-                  "y": 640
+                  "y": 672
                },
-               "id": 249,
+               "id": 259,
                "legend": {
                   "alignAsTable": true,
                   "avg": false,
@@ -20640,9 +21540,9 @@
                   "h": 8,
                   "w": 12,
                   "x": 12,
-                  "y": 640
+                  "y": 672
                },
-               "id": 250,
+               "id": 260,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,

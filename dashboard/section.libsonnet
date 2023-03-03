@@ -324,6 +324,96 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       job=job,
       alias=alias,
     ),
+
+    net.bytes_sent_per_thread_per_second(
+      datasource_type=datasource_type,
+      datasource=datasource,
+      policy=policy,
+      measurement=measurement,
+      job=job,
+      alias=alias,
+    ),
+
+    net.bytes_received_per_thread_per_second(
+      datasource_type=datasource_type,
+      datasource=datasource,
+      policy=policy,
+      measurement=measurement,
+      job=job,
+      alias=alias,
+    ),
+
+    net.connections_per_thread_per_second(
+      datasource_type=datasource_type,
+      datasource=datasource,
+      policy=policy,
+      measurement=measurement,
+      job=job,
+      alias=alias,
+    ),
+
+    net.current_connections_per_thread(
+      datasource_type=datasource_type,
+      datasource=datasource,
+      policy=policy,
+      measurement=measurement,
+      job=job,
+      alias=alias,
+    ),
+
+    net.net_rps_per_thread(
+      datasource_type=datasource_type,
+      datasource=datasource,
+      policy=policy,
+      measurement=measurement,
+      job=job,
+      alias=alias,
+    ),
+
+    net.requests_in_progress_per_thread_per_second(
+      datasource_type=datasource_type,
+      datasource=datasource,
+      policy=policy,
+      measurement=measurement,
+      job=job,
+      alias=alias,
+    ),
+
+    net.requests_in_queue_per_thread_per_second(
+      datasource_type=datasource_type,
+      datasource=datasource,
+      policy=policy,
+      measurement=measurement,
+      job=job,
+      alias=alias,
+    ),
+
+    net.net_pending_per_thread(
+      datasource_type=datasource_type,
+      datasource=datasource,
+      policy=policy,
+      measurement=measurement,
+      job=job,
+      alias=alias,
+    ),
+
+    net.requests_in_progress_current_per_thread(
+      datasource_type=datasource_type,
+      datasource=datasource,
+      policy=policy,
+      measurement=measurement,
+      job=job,
+      alias=alias,
+    ),
+
+    net.requests_in_queue_current_per_thread(
+      datasource_type=datasource_type,
+      datasource=datasource,
+      policy=policy,
+      measurement=measurement,
+      job=job,
+      alias=alias,
+    ),
   ],
 
   slab(datasource_type, datasource, policy=null, measurement=null, job=null, alias=null):: [
