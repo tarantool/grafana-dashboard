@@ -64,6 +64,13 @@ function(
     alias=alias,
   )
 ).addPanels(
+  section.replication(
+    datasource_type=variable.datasource_type.prometheus,
+    datasource=datasource,
+    job=job,
+    alias=alias,
+  )
+).addPanels(
   section.http(
     datasource_type=variable.datasource_type.prometheus,
     datasource=datasource,

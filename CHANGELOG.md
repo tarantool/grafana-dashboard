@@ -19,6 +19,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Set InfluxDB `policy` dynamically
 - Set datasource dynamically
 - Use expirationd module metrics in TDG dashboard
+- Move replication panels to a separate row
 
 ### Fixed
 - TDG dashboard latency units (graphql, iproto, rest requests)

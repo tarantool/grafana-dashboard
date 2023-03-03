@@ -7,7 +7,7 @@ Format is as follows.
 
 Based on [tarantool/metrics 0.16.0](https://github.com/tarantool/metrics/releases/tag/0.16.0).
 
-- [x] **tnt_clock_delta**: see *Cluster overview/Instances clock delta* panel ([#133](https://github.com/tarantool/grafana-dashboard/issues/133))
+- [x] **tnt_clock_delta**: see *Replication overview/Instances clock delta* panel ([#133](https://github.com/tarantool/grafana-dashboard/issues/133))
 - [x] **tnt_cpu_user_time**: see *Tarantool CPU statistics/CPU user time* panel ([#71](https://github.com/tarantool/grafana-dashboard/issues/71))
 - [x] **tnt_cpu_system_time**: see *Tarantool CPU statistics/CPU system time* panel ([#71](https://github.com/tarantool/grafana-dashboard/issues/71))
 - [x] **tnt_ev_loop_time**: see *Tarantool runtime overview/Event loop time* panel ([#73](https://github.com/tarantool/grafana-dashboard/issues/73))
@@ -22,8 +22,8 @@ Based on [tarantool/metrics 0.16.0](https://github.com/tarantool/metrics/release
 - [ ] **tnt_info_uptime**: see *Cluster overview/Cluster status overview* panel (supported for Prometheus [#19](https://github.com/tarantool/grafana-dashboard/issues/19), not supported for InfluxDB yet [#39](https://github.com/tarantool/grafana-dashboard/issues/39))
 - **tnt_info_vclock**: unsupported (decided not to support: doesn't seem useful for visualization)
 - **tnt_replication_\*_lag**: unsupported ([#133](https://github.com/tarantool/grafana-dashboard/issues/133), deprecated, replaced with **tnt_replication_lag**)
-- [x] **tnt_replication_lag**: see *Cluster overview/Tarantool replication lag* panel ([#133](https://github.com/tarantool/grafana-dashboard/issues/133))
-- [x] **tnt_replication_status**: see *Cluster overview/Tarantool replication status* panel ([#133](https://github.com/tarantool/grafana-dashboard/issues/133))
+- [x] **tnt_replication_lag**: see *Replication overview/Tarantool replication lag* panel ([#133](https://github.com/tarantool/grafana-dashboard/issues/133))
+- [x] **tnt_replication_status**: see *Replication overview/Tarantool replication status* panel ([#133](https://github.com/tarantool/grafana-dashboard/issues/133))
 - [x] **tnt_read_only**: see *Cluster overview/Tarantool instance status* panel ([#133](https://github.com/tarantool/grafana-dashboard/issues/133))
 - **lj_jit_snap_restore**: unsupported ([#179](https://github.com/tarantool/grafana-dashboard/issues/179), deprecated, replaced by **lj_jit_snap_restore_total**)
 - [x] **lj_jit_snap_restore_total**: see *Tarantool LuaJit statistics/Snap restores* panel ([#179](https://github.com/tarantool/grafana-dashboard/issues/179))
@@ -129,7 +129,6 @@ Based on [tarantool/metrics 0.16.0](https://github.com/tarantool/metrics/release
 - [ ] **tnt_election_vote**: ([#178](https://github.com/tarantool/grafana-dashboard/issues/178))
 - [ ] **tnt_election_leader**: ([#178](https://github.com/tarantool/grafana-dashboard/issues/178))
 - [ ] **tnt_election_term**: ([#178](https://github.com/tarantool/grafana-dashboard/issues/178))
-- [ ] **tnt_synchro_queue_owner**: ([#178](https://github.com/tarantool/grafana-dashboard/issues/178))
 - [x] **tnt_net_per_thread_sent_total**: see *Tarantool network activity/Data sent (per thread)* panel ([#178](https://github.com/tarantool/grafana-dashboard/issues/178))
 - [x] **tnt_net_per_thread_received_total**: see *Tarantool network activity/Data received (per thread)* panel ([#178](https://github.com/tarantool/grafana-dashboard/issues/178))
 - [x] **tnt_net_per_thread_connections_total**: see *Tarantool network activity/New binary connections (per thread)* panel ([#178](https://github.com/tarantool/grafana-dashboard/issues/178))

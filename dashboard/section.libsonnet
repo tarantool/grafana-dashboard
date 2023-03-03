@@ -6,6 +6,7 @@ local http = import 'dashboard/panels/http.libsonnet';
 local luajit = import 'dashboard/panels/luajit.libsonnet';
 local net = import 'dashboard/panels/net.libsonnet';
 local operations = import 'dashboard/panels/operations.libsonnet';
+local replication = import 'dashboard/panels/replication.libsonnet';
 local runtime = import 'dashboard/panels/runtime.libsonnet';
 local slab = import 'dashboard/panels/slab.libsonnet';
 local space = import 'dashboard/panels/space.libsonnet';
@@ -43,14 +44,6 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       alias=alias,
     ),
 
-    cluster.replication_status(
-      datasource_type=datasource_type,
-      datasource=datasource,
-      policy=policy,
-      measurement=measurement,
-      alias=alias,
-    ),
-
     cluster.failovers_per_second(
       datasource_type=datasource_type,
       datasource=datasource,
@@ -60,22 +53,6 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
     ),
 
     cluster.read_only_status(
-      datasource_type=datasource_type,
-      datasource=datasource,
-      policy=policy,
-      measurement=measurement,
-      alias=alias,
-    ),
-
-    cluster.replication_lag(
-      datasource_type=datasource_type,
-      datasource=datasource,
-      policy=policy,
-      measurement=measurement,
-      alias=alias,
-    ),
-
-    cluster.clock_delta(
       datasource_type=datasource_type,
       datasource=datasource,
       policy=policy,
@@ -144,13 +121,6 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       alias=alias,
     ),
 
-    cluster.replication_status(
-      datasource_type=datasource_type,
-      datasource=datasource,
-      job=job,
-      alias=alias,
-    ),
-
     cluster.failovers_per_second(
       datasource_type=datasource_type,
       datasource=datasource,
@@ -164,17 +134,34 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       job=job,
       alias=alias,
     ),
+  ],
 
-    cluster.replication_lag(
+  replication(datasource_type, datasource, policy=null, measurement=null, job=null, alias=null):: [
+    replication.row,
+
+    replication.replication_status(
       datasource_type=datasource_type,
       datasource=datasource,
+      policy=policy,
+      measurement=measurement,
       job=job,
       alias=alias,
     ),
 
-    cluster.clock_delta(
+    replication.replication_lag(
       datasource_type=datasource_type,
       datasource=datasource,
+      policy=policy,
+      measurement=measurement,
+      job=job,
+      alias=alias,
+    ),
+
+    replication.clock_delta(
+      datasource_type=datasource_type,
+      datasource=datasource,
+      policy=policy,
+      measurement=measurement,
       job=job,
       alias=alias,
     ),
