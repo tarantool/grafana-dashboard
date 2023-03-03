@@ -2416,7 +2416,7 @@
                "dashes": false,
                "datasource": "$influxdb",
                "decimals": 3,
-               "description": "Number of network requests this instance has handled.\nGraph shows mean rps.\n\nPanel will be removed in favor of \"Processed requests\"\nand \"Requests in queue (overall)\" panels.\n",
+               "description": "Number of network requests this instance has handled.\nGraph shows mean rps.\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -2559,7 +2559,7 @@
                "dashes": false,
                "datasource": "$influxdb",
                "decimals": 0,
-               "description": "Number of pending network requests.\n\nPanel will be removed in favor of \"Requests in progress\"\nand \"Requests in queue (current)\" panels.\n",
+               "description": "Number of pending network requests.\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,

@@ -113,9 +113,6 @@ local variable = import 'dashboard/variable.libsonnet';
     description=|||
       Number of network requests this instance has handled.
       Graph shows mean rps.
-
-      Panel will be removed in favor of "Processed requests"
-      and "Requests in queue (overall)" panels.
     |||,
     datasource_type=null,
     datasource=null,
@@ -142,9 +139,6 @@ local variable = import 'dashboard/variable.libsonnet';
     title='Network requests pending',
     description=|||
       Number of pending network requests.
-
-      Panel will be removed in favor of "Requests in progress"
-      and "Requests in queue (current)" panels.
     |||,
     datasource_type=null,
     datasource=null,
