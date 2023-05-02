@@ -16,6 +16,7 @@ local common = import 'dashboard/panels/common.libsonnet';
     measurement=null,
     job=null,
     alias=null,
+    labels=null,
   ):: common.default_graph(
     title=title,
     description=description,
@@ -30,6 +31,7 @@ local common = import 'dashboard/panels/common.libsonnet';
     policy,
     measurement,
     alias,
+    labels=labels,
   )),
 
   runtime_memory(
@@ -48,6 +50,7 @@ local common = import 'dashboard/panels/common.libsonnet';
     measurement=null,
     job=null,
     alias=null,
+    labels=null,
   ):: common.default_graph(
     title=title,
     description=description,
@@ -64,6 +67,7 @@ local common = import 'dashboard/panels/common.libsonnet';
     policy,
     measurement,
     alias,
+    labels=labels,
   )),
 
   memory_tx(
@@ -72,7 +76,7 @@ local common = import 'dashboard/panels/common.libsonnet';
       Memory in use by active transactions.
       For the vinyl storage engine, this is the total size of
       all allocated objects (struct txv, struct vy_tx, struct vy_read_interval)
-      and tuples pinned for those objects. 
+      and tuples pinned for those objects.
     |||,
     datasource_type=null,
     datasource=null,
@@ -80,6 +84,7 @@ local common = import 'dashboard/panels/common.libsonnet';
     measurement=null,
     job=null,
     alias=null,
+    labels=null,
   ):: common.default_graph(
     title=title,
     description=description,
@@ -94,12 +99,13 @@ local common = import 'dashboard/panels/common.libsonnet';
     policy,
     measurement,
     alias,
+    labels=labels,
   )),
 
   fiber_count(
     title='Number of fibers',
     description=|||
-      Current number of fibers in tx thread. 
+      Current number of fibers in tx thread.
 
       Panel works with `metrics >= 0.13.0`.
     |||,
@@ -109,6 +115,7 @@ local common = import 'dashboard/panels/common.libsonnet';
     measurement=null,
     job=null,
     alias=null,
+    labels=null,
   ):: common.default_graph(
     title=title,
     description=description,
@@ -123,7 +130,8 @@ local common = import 'dashboard/panels/common.libsonnet';
     policy,
     measurement,
     alias,
-    'last'
+    'last',
+    labels=labels,
   )),
 
   fiber_csw(
@@ -138,6 +146,7 @@ local common = import 'dashboard/panels/common.libsonnet';
     measurement=null,
     job=null,
     alias=null,
+    labels=null,
   ):: common.default_graph(
     title=title,
     description=description,
@@ -151,6 +160,7 @@ local common = import 'dashboard/panels/common.libsonnet';
     policy,
     measurement,
     alias,
+    labels=labels,
   )),
 
   local fiber_memory(
@@ -163,6 +173,7 @@ local common = import 'dashboard/panels/common.libsonnet';
     job,
     alias,
     metric_name,
+    labels,
   ) = common.default_graph(
     title=title,
     description=description,
@@ -176,6 +187,7 @@ local common = import 'dashboard/panels/common.libsonnet';
     policy,
     measurement,
     alias,
+    labels=labels,
   )),
 
   fiber_memused(
@@ -189,6 +201,7 @@ local common = import 'dashboard/panels/common.libsonnet';
     measurement=null,
     job=null,
     alias=null,
+    labels=null,
   ):: fiber_memory(
     title,
     description,
@@ -198,7 +211,8 @@ local common = import 'dashboard/panels/common.libsonnet';
     measurement,
     job,
     alias,
-    'tnt_fiber_memused'
+    'tnt_fiber_memused',
+    labels,
   ),
 
   fiber_memalloc(
@@ -212,6 +226,7 @@ local common = import 'dashboard/panels/common.libsonnet';
     measurement=null,
     job=null,
     alias=null,
+    labels=null,
   ):: fiber_memory(
     title,
     description,
@@ -221,7 +236,8 @@ local common = import 'dashboard/panels/common.libsonnet';
     measurement,
     job,
     alias,
-    'tnt_fiber_memalloc'
+    'tnt_fiber_memalloc',
+    labels,
   ),
 
   event_loop_time(
@@ -240,6 +256,7 @@ local common = import 'dashboard/panels/common.libsonnet';
     measurement=null,
     job=null,
     alias=null,
+    labels=null,
   ):: common.default_graph(
     title=title,
     description=description,
@@ -256,6 +273,7 @@ local common = import 'dashboard/panels/common.libsonnet';
     policy,
     measurement,
     alias,
-    converter='last'
+    converter='last',
+    labels=labels,
   )),
 }

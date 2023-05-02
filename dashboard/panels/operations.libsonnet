@@ -2,6 +2,7 @@ local grafana = import 'grafonnet/grafana.libsonnet';
 
 local common = import 'dashboard/panels/common.libsonnet';
 local variable = import 'dashboard/variable.libsonnet';
+local utils = import 'dashboard/utils.libsonnet';
 
 local influxdb = grafana.influxdb;
 local prometheus = grafana.prometheus;
@@ -20,6 +21,7 @@ local prometheus = grafana.prometheus;
     alias=null,
     labelY1=null,
     operation=null,
+    labels=null,
   ) = common.default_graph(
     title=title,
     description=description,
@@ -29,8 +31,8 @@ local prometheus = grafana.prometheus;
   ).addTarget(
     if datasource_type == variable.datasource_type.prometheus then
       prometheus.target(
-        expr=std.format('rate(tnt_stats_op_total{job=~"%s",alias=~"%s",operation="%s"}[$__rate_interval])',
-                        [job, alias, operation]),
+        expr=std.format('rate(tnt_stats_op_total{job=~"%s",alias=~"%s",operation="%s",%s}[$__rate_interval])',
+                        [job, alias, operation, utils.generate_labels_string(labels)]),
         legendFormat='{{alias}}'
       )
     else if datasource_type == variable.datasource_type.influxdb then
@@ -56,6 +58,7 @@ local prometheus = grafana.prometheus;
     job=null,
     alias=null,
     operation=null,
+    labels=null,
   ) = operation_rps(
     title=(if title != null then title else std.format('%s space requests', std.asciiUpper(operation))),
     description=std.format(|||
@@ -70,6 +73,7 @@ local prometheus = grafana.prometheus;
     alias=alias,
     labelY1='requests per second',
     operation=operation,
+    labels=labels,
   ),
 
   space_select_rps(
@@ -81,6 +85,7 @@ local prometheus = grafana.prometheus;
     measurement=null,
     job=null,
     alias=null,
+    labels=null,
   ):: space_operation_rps(
     title=title,
     description=description,
@@ -90,7 +95,8 @@ local prometheus = grafana.prometheus;
     measurement=measurement,
     job=job,
     alias=alias,
-    operation='select'
+    operation='select',
+    labels=labels,
   ),
 
   space_insert_rps(
@@ -102,6 +108,7 @@ local prometheus = grafana.prometheus;
     measurement=null,
     job=null,
     alias=null,
+    labels=null,
   ):: space_operation_rps(
     title=title,
     description=description,
@@ -111,7 +118,8 @@ local prometheus = grafana.prometheus;
     measurement=measurement,
     job=job,
     alias=alias,
-    operation='insert'
+    operation='insert',
+    labels=labels,
   ),
 
   space_replace_rps(
@@ -123,6 +131,7 @@ local prometheus = grafana.prometheus;
     measurement=null,
     job=null,
     alias=null,
+    labels=null,
   ):: space_operation_rps(
     title=title,
     description=description,
@@ -132,7 +141,8 @@ local prometheus = grafana.prometheus;
     measurement=measurement,
     job=job,
     alias=alias,
-    operation='replace'
+    operation='replace',
+    labels=labels,
   ),
 
   space_upsert_rps(
@@ -144,6 +154,7 @@ local prometheus = grafana.prometheus;
     measurement=null,
     job=null,
     alias=null,
+    labels=null,
   ):: space_operation_rps(
     title=title,
     description=description,
@@ -153,7 +164,8 @@ local prometheus = grafana.prometheus;
     measurement=measurement,
     job=job,
     alias=alias,
-    operation='upsert'
+    operation='upsert',
+    labels=labels,
   ),
 
   space_update_rps(
@@ -165,6 +177,7 @@ local prometheus = grafana.prometheus;
     measurement=null,
     job=null,
     alias=null,
+    labels=null,
   ):: space_operation_rps(
     title=title,
     description=description,
@@ -174,7 +187,8 @@ local prometheus = grafana.prometheus;
     measurement=measurement,
     job=job,
     alias=alias,
-    operation='update'
+    operation='update',
+    labels=labels,
   ),
 
   space_delete_rps(
@@ -186,6 +200,7 @@ local prometheus = grafana.prometheus;
     measurement=null,
     job=null,
     alias=null,
+    labels=null,
   ):: space_operation_rps(
     title=title,
     description=description,
@@ -195,7 +210,8 @@ local prometheus = grafana.prometheus;
     measurement=measurement,
     job=job,
     alias=alias,
-    operation='delete'
+    operation='delete',
+    labels=labels,
   ),
 
   call_rps(
@@ -210,6 +226,7 @@ local prometheus = grafana.prometheus;
     measurement=null,
     job=null,
     alias=null,
+    labels=null,
   ):: operation_rps(
     title=title,
     description=description,
@@ -220,7 +237,8 @@ local prometheus = grafana.prometheus;
     job=job,
     alias=alias,
     labelY1='requests per second',
-    operation='call'
+    operation='call',
+    labels=labels,
   ),
 
   eval_rps(
@@ -235,6 +253,7 @@ local prometheus = grafana.prometheus;
     measurement=null,
     job=null,
     alias=null,
+    labels=null,
   ):: operation_rps(
     title=title,
     description=description,
@@ -245,7 +264,8 @@ local prometheus = grafana.prometheus;
     job=job,
     alias=alias,
     labelY1='requests per second',
-    operation='eval'
+    operation='eval',
+    labels=labels,
   ),
 
   error_rps(
@@ -260,6 +280,7 @@ local prometheus = grafana.prometheus;
     measurement=null,
     job=null,
     alias=null,
+    labels=null,
   ):: operation_rps(
     title=title,
     description=description,
@@ -270,7 +291,8 @@ local prometheus = grafana.prometheus;
     job=job,
     alias=alias,
     labelY1='errors per second',
-    operation='error'
+    operation='error',
+    labels=labels,
   ),
 
   auth_rps(
@@ -285,6 +307,7 @@ local prometheus = grafana.prometheus;
     measurement=null,
     job=null,
     alias=null,
+    labels=null,
   ):: operation_rps(
     title=title,
     description=description,
@@ -295,7 +318,8 @@ local prometheus = grafana.prometheus;
     job=job,
     alias=alias,
     labelY1='requests per second',
-    operation='auth'
+    operation='auth',
+    labels=labels,
   ),
 
   SQL_prepare_rps(
@@ -312,6 +336,7 @@ local prometheus = grafana.prometheus;
     measurement=null,
     job=null,
     alias=null,
+    labels=null,
   ):: operation_rps(
     title=title,
     description=description,
@@ -322,7 +347,8 @@ local prometheus = grafana.prometheus;
     job=job,
     alias=alias,
     labelY1='requests per second',
-    operation='prepare'
+    operation='prepare',
+    labels=labels,
   ),
 
   SQL_execute_rps(
@@ -339,6 +365,7 @@ local prometheus = grafana.prometheus;
     measurement=null,
     job=null,
     alias=null,
+    labels=null,
   ):: operation_rps(
     title=title,
     description=description,
@@ -349,7 +376,8 @@ local prometheus = grafana.prometheus;
     job=job,
     alias=alias,
     labelY1='requests per second',
-    operation='execute'
+    operation='execute',
+    labels=labels,
   ),
 
   txn_begin_rps(
@@ -368,6 +396,7 @@ local prometheus = grafana.prometheus;
     measurement=null,
     job=null,
     alias=null,
+    labels=null,
   ):: operation_rps(
     title=title,
     description=description,
@@ -378,7 +407,8 @@ local prometheus = grafana.prometheus;
     job=job,
     alias=alias,
     labelY1='begins per second',
-    operation='begin'
+    operation='begin',
+    labels=labels,
   ),
 
   txn_commit_rps(
@@ -397,6 +427,7 @@ local prometheus = grafana.prometheus;
     measurement=null,
     job=null,
     alias=null,
+    labels=null,
   ):: operation_rps(
     title=title,
     description=description,
@@ -407,7 +438,8 @@ local prometheus = grafana.prometheus;
     job=job,
     alias=alias,
     labelY1='commits per second',
-    operation='commit'
+    operation='commit',
+    labels=labels,
   ),
 
   txn_rollback_rps(
@@ -426,6 +458,7 @@ local prometheus = grafana.prometheus;
     measurement=null,
     job=null,
     alias=null,
+    labels=null,
   ):: operation_rps(
     title=title,
     description=description,
@@ -436,6 +469,7 @@ local prometheus = grafana.prometheus;
     job=job,
     alias=alias,
     labelY1='rollbacks per second',
-    operation='rollback'
+    operation='rollback',
+    labels=labels,
   ),
 }

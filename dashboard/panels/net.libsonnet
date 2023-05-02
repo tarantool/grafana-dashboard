@@ -2,6 +2,7 @@ local grafana = import 'grafonnet/grafana.libsonnet';
 
 local common = import 'dashboard/panels/common.libsonnet';
 local variable = import 'dashboard/variable.libsonnet';
+local utils = import 'dashboard/utils.libsonnet';
 
 local influxdb = grafana.influxdb;
 local prometheus = grafana.prometheus;
@@ -20,6 +21,7 @@ local prometheus = grafana.prometheus;
     measurement=null,
     job=null,
     alias=null,
+    labels=null,
   ):: common.default_graph(
     title=title,
     description=description,
@@ -34,6 +36,7 @@ local prometheus = grafana.prometheus;
     policy,
     measurement,
     alias,
+    labels=labels,
   )),
 
   local bytes_per_second_graph(
@@ -47,6 +50,7 @@ local prometheus = grafana.prometheus;
     alias,
     metric_name,
     labelY1,
+    labels,
   ) = common.default_graph(
     title=title,
     description=description,
@@ -61,6 +65,7 @@ local prometheus = grafana.prometheus;
     policy,
     measurement,
     alias,
+    labels,
   )),
 
   bytes_received_per_second(
@@ -75,6 +80,7 @@ local prometheus = grafana.prometheus;
     measurement=null,
     job=null,
     alias=null,
+    labels=null,
   ):: bytes_per_second_graph(
     title=title,
     description=description,
@@ -85,7 +91,8 @@ local prometheus = grafana.prometheus;
     job=job,
     alias=alias,
     metric_name='tnt_net_received_total',
-    labelY1='received'
+    labelY1='received',
+    labels=labels,
   ),
 
   bytes_sent_per_second(
@@ -100,6 +107,7 @@ local prometheus = grafana.prometheus;
     measurement=null,
     job=null,
     alias=null,
+    labels=null,
   ):: bytes_per_second_graph(
     title=title,
     description=description,
@@ -110,7 +118,8 @@ local prometheus = grafana.prometheus;
     job=job,
     alias=alias,
     metric_name='tnt_net_sent_total',
-    labelY1='sent'
+    labelY1='sent',
+    labels=labels,
   ),
 
   net_rps(
@@ -125,6 +134,7 @@ local prometheus = grafana.prometheus;
     measurement=null,
     job=null,
     alias=null,
+    labels=null,
   ):: common.default_graph(
     title=title,
     description=description,
@@ -138,6 +148,7 @@ local prometheus = grafana.prometheus;
     policy,
     measurement,
     alias,
+    labels
   )),
 
   net_pending(
@@ -151,6 +162,7 @@ local prometheus = grafana.prometheus;
     measurement=null,
     job=null,
     alias=null,
+    labels=null,
   ):: common.default_graph(
     title=title,
     description=description,
@@ -166,6 +178,7 @@ local prometheus = grafana.prometheus;
     policy,
     measurement,
     alias,
+    labels=labels,
   )),
 
   requests_in_progress_per_second(
@@ -181,6 +194,7 @@ local prometheus = grafana.prometheus;
     measurement=null,
     job=null,
     alias=null,
+    labels=null,
   ):: common.default_graph(
     title=title,
     description=description,
@@ -194,6 +208,7 @@ local prometheus = grafana.prometheus;
     policy,
     measurement,
     alias,
+    labels,
   )),
 
   requests_in_progress_current(
@@ -209,6 +224,7 @@ local prometheus = grafana.prometheus;
     measurement=null,
     job=null,
     alias=null,
+    labels=null,
   ):: common.default_graph(
     title=title,
     description=description,
@@ -223,7 +239,8 @@ local prometheus = grafana.prometheus;
     policy,
     measurement,
     alias,
-    'last'
+    'last',
+    labels=labels,
   )),
 
   requests_in_queue_per_second(
@@ -240,6 +257,7 @@ local prometheus = grafana.prometheus;
     measurement=null,
     job=null,
     alias=null,
+    labels=null,
   ):: common.default_graph(
     title=title,
     description=description,
@@ -253,6 +271,7 @@ local prometheus = grafana.prometheus;
     policy,
     measurement,
     alias,
+    labels,
   )),
 
   requests_in_queue_current(
@@ -268,6 +287,7 @@ local prometheus = grafana.prometheus;
     measurement=null,
     job=null,
     alias=null,
+    labels=null,
   ):: common.default_graph(
     title=title,
     description=description,
@@ -282,7 +302,8 @@ local prometheus = grafana.prometheus;
     policy,
     measurement,
     alias,
-    'last'
+    'last',
+    labels=labels,
   )),
 
   connections_per_second(
@@ -296,6 +317,7 @@ local prometheus = grafana.prometheus;
     measurement=null,
     job=null,
     alias=null,
+    labels=null,
   ):: common.default_graph(
     title=title,
     description=description,
@@ -309,6 +331,7 @@ local prometheus = grafana.prometheus;
     policy,
     measurement,
     alias,
+    labels,
   )),
 
   current_connections(
@@ -322,6 +345,7 @@ local prometheus = grafana.prometheus;
     measurement=null,
     job=null,
     alias=null,
+    labels=null,
   ):: common.default_graph(
     title=title,
     description=description,
@@ -337,6 +361,7 @@ local prometheus = grafana.prometheus;
     measurement,
     alias,
     'last',
+    labels=labels,
   )),
 
   local per_thread_warning(description) = std.join(
@@ -359,6 +384,7 @@ local prometheus = grafana.prometheus;
     format,
     labelY1,
     panel_width,
+    labels,
   ) = common.default_graph(
     title=title,
     description=description,
@@ -369,8 +395,8 @@ local prometheus = grafana.prometheus;
   ).addTarget(
     if datasource_type == variable.datasource_type.prometheus then
       prometheus.target(
-        expr=std.format('rate(%s{job=~"%s",alias=~"%s"}[$__rate_interval])',
-                        [metric_name, job, alias]),
+        expr=std.format('rate(%s{job=~"%s",alias=~"%s",%s}[$__rate_interval])',
+                        [metric_name, job, alias, utils.generate_labels_string(labels)]),
         legendFormat='{{alias}} (thread {{thread}})',
       )
     else if datasource_type == variable.datasource_type.influxdb then
@@ -397,6 +423,7 @@ local prometheus = grafana.prometheus;
     format,
     labelY1,
     panel_width,
+    labels,
   ) = common.default_graph(
     title=title,
     description=description,
@@ -408,8 +435,8 @@ local prometheus = grafana.prometheus;
   ).addTarget(
     if datasource_type == variable.datasource_type.prometheus then
       prometheus.target(
-        expr=std.format('%s{job=~"%s",alias=~"%s"}',
-                        [metric_name, job, alias]),
+        expr=std.format('%s{job=~"%s",alias=~"%s",%s}',
+                        [metric_name, job, alias, utils.generate_labels_string(labels)]),
         legendFormat='{{alias}} (thread {{thread}})',
       )
     else if datasource_type == variable.datasource_type.influxdb then
@@ -436,6 +463,7 @@ local prometheus = grafana.prometheus;
     measurement=null,
     job=null,
     alias=null,
+    labels=null,
   ):: per_thread_rate_graph(
     title=title,
     description=description,
@@ -449,6 +477,7 @@ local prometheus = grafana.prometheus;
     format='Bps',
     labelY1='sent',
     panel_width=12,
+    labels=labels,
   ),
 
   bytes_received_per_thread_per_second(
@@ -464,6 +493,7 @@ local prometheus = grafana.prometheus;
     measurement=null,
     job=null,
     alias=null,
+    labels=null,
   ):: per_thread_rate_graph(
     title=title,
     description=description,
@@ -477,6 +507,7 @@ local prometheus = grafana.prometheus;
     format='Bps',
     labelY1='received',
     panel_width=12,
+    labels=labels,
   ),
 
   connections_per_thread_per_second(
@@ -491,6 +522,7 @@ local prometheus = grafana.prometheus;
     measurement=null,
     job=null,
     alias=null,
+    labels=null,
   ):: per_thread_rate_graph(
     title=title,
     description=description,
@@ -504,6 +536,7 @@ local prometheus = grafana.prometheus;
     format='none',
     labelY1='new per second',
     panel_width=12,
+    labels=labels,
   ),
 
   current_connections_per_thread(
@@ -518,6 +551,7 @@ local prometheus = grafana.prometheus;
     measurement=null,
     job=null,
     alias=null,
+    labels=null,
   ):: per_thread_current_graph(
     title=title,
     description=description,
@@ -531,6 +565,7 @@ local prometheus = grafana.prometheus;
     format='none',
     labelY1='current',
     panel_width=12,
+    labels=labels,
   ),
 
   net_rps_per_thread(
@@ -546,6 +581,7 @@ local prometheus = grafana.prometheus;
     measurement=null,
     job=null,
     alias=null,
+    labels=null,
   ):: per_thread_rate_graph(
     title=title,
     description=description,
@@ -559,6 +595,7 @@ local prometheus = grafana.prometheus;
     format='none',
     labelY1='requests per second',
     panel_width=8,
+    labels=labels,
   ),
 
   requests_in_progress_per_thread_per_second(
@@ -573,6 +610,7 @@ local prometheus = grafana.prometheus;
     measurement=null,
     job=null,
     alias=null,
+    labels=null,
   ):: per_thread_rate_graph(
     title=title,
     description=description,
@@ -586,6 +624,7 @@ local prometheus = grafana.prometheus;
     format='none',
     labelY1='requests per second',
     panel_width=8,
+    labels=labels,
   ),
 
   requests_in_queue_per_thread_per_second(
@@ -600,6 +639,7 @@ local prometheus = grafana.prometheus;
     measurement=null,
     job=null,
     alias=null,
+    labels=null,
   ):: per_thread_rate_graph(
     title=title,
     description=description,
@@ -613,6 +653,7 @@ local prometheus = grafana.prometheus;
     format='none',
     labelY1='requests per second',
     panel_width=8,
+    labels=labels,
   ),
 
   net_pending_per_thread(
@@ -627,6 +668,7 @@ local prometheus = grafana.prometheus;
     measurement=null,
     job=null,
     alias=null,
+    labels=null,
   ):: per_thread_current_graph(
     title=title,
     description=description,
@@ -640,6 +682,7 @@ local prometheus = grafana.prometheus;
     format='none',
     labelY1='pending',
     panel_width=8,
+    labels=labels,
   ),
 
   requests_in_progress_current_per_thread(
@@ -654,6 +697,7 @@ local prometheus = grafana.prometheus;
     measurement=null,
     job=null,
     alias=null,
+    labels=null,
   ):: per_thread_current_graph(
     title=title,
     description=description,
@@ -667,6 +711,7 @@ local prometheus = grafana.prometheus;
     format='none',
     labelY1='pending',
     panel_width=8,
+    labels=labels,
   ),
 
   requests_in_queue_current_per_thread(
@@ -681,6 +726,7 @@ local prometheus = grafana.prometheus;
     measurement=null,
     job=null,
     alias=null,
+    labels=null,
   ):: per_thread_current_graph(
     title=title,
     description=description,
@@ -694,5 +740,6 @@ local prometheus = grafana.prometheus;
     format='none',
     labelY1='pending',
     panel_width=8,
+    labels=labels,
   ),
 }

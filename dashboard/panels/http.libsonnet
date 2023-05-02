@@ -2,6 +2,7 @@ local grafana = import 'grafonnet/grafana.libsonnet';
 
 local common = import 'dashboard/panels/common.libsonnet';
 local variable = import 'dashboard/variable.libsonnet';
+local utils = import 'dashboard/utils.libsonnet';
 
 local influxdb = grafana.influxdb;
 local prometheus = grafana.prometheus;
@@ -20,6 +21,7 @@ local prometheus = grafana.prometheus;
     alias,
     metric_name,
     status_regex,
+    labels,
   ) = common.default_graph(
     title=title,
     description=description,
@@ -28,8 +30,8 @@ local prometheus = grafana.prometheus;
   ).addTarget(
     if datasource_type == variable.datasource_type.prometheus then
       prometheus.target(
-        expr=std.format('rate(%s{job=~"%s",alias=~"%s",status=~"%s"}[$__rate_interval])',
-                        [metric_name, job, alias, std.strReplace(status_regex, '\\', '\\\\')]),
+        expr=std.format('rate(%s{job=~"%s",alias=~"%s",status=~"%s",%s}[$__rate_interval])',
+                        [metric_name, job, alias, std.strReplace(status_regex, '\\', '\\\\'), utils.generate_labels_string(labels)]),
         legendFormat='{{alias}} — {{method}} {{path}} (code {{status}})',
       )
     else if datasource_type == variable.datasource_type.influxdb then
@@ -58,6 +60,7 @@ local prometheus = grafana.prometheus;
     job=null,
     alias=null,
     metric_name='http_server_request_latency_count',
+    labels=null
   ):: rps_graph(
     title=title,
     description=description,
@@ -69,6 +72,7 @@ local prometheus = grafana.prometheus;
     alias=alias,
     metric_name=metric_name,
     status_regex='^2\\d{2}$',
+    labels=labels,
   ),
 
   rps_error_4xx(
@@ -84,6 +88,7 @@ local prometheus = grafana.prometheus;
     job=null,
     alias=null,
     metric_name='http_server_request_latency_count',
+    labels=null,
   ):: rps_graph(
     title=title,
     description=description,
@@ -95,6 +100,7 @@ local prometheus = grafana.prometheus;
     alias=alias,
     metric_name=metric_name,
     status_regex='^4\\d{2}$',
+    labels=labels,
   ),
 
   rps_error_5xx(
@@ -110,6 +116,7 @@ local prometheus = grafana.prometheus;
     job=null,
     alias=null,
     metric_name='http_server_request_latency_count',
+    labels=null,
   ):: rps_graph(
     title=title,
     description=description,
@@ -121,6 +128,7 @@ local prometheus = grafana.prometheus;
     alias=alias,
     metric_name=metric_name,
     status_regex='^5\\d{2}$',
+    labels=labels,
   ),
 
   local latency_graph(
@@ -136,6 +144,7 @@ local prometheus = grafana.prometheus;
     quantile,
     label,
     status_regex,
+    labels=null
   ) = common.default_graph(
     title=title,
     description=description,
@@ -146,8 +155,8 @@ local prometheus = grafana.prometheus;
   ).addTarget(
     if datasource_type == variable.datasource_type.prometheus then
       prometheus.target(
-        expr=std.format('%s{job=~"%s",alias=~"%s",quantile="%s",status=~"%s"}',
-                        [metric_name, job, alias, quantile, std.strReplace(status_regex, '\\', '\\\\')]),
+        expr=std.format('%s{job=~"%s",alias=~"%s",quantile="%s",status=~"%s",%s}',
+                        [metric_name, job, alias, quantile, std.strReplace(status_regex, '\\', '\\\\'), utils.generate_labels_string(labels)]),
         legendFormat='{{alias}} — {{method}} {{path}} (code {{status}})',
       )
     else if datasource_type == variable.datasource_type.influxdb then
@@ -179,6 +188,7 @@ local prometheus = grafana.prometheus;
     metric_name='http_server_request_latency',
     quantile='0.99',
     label='99th percentile',
+    labels=null,
   ):: latency_graph(
     title=title,
     description=description,
@@ -192,6 +202,7 @@ local prometheus = grafana.prometheus;
     quantile=quantile,
     label=label,
     status_regex='^2\\d{2}$',
+    labels=labels,
   ),
 
   latency_error_4xx(
@@ -210,6 +221,7 @@ local prometheus = grafana.prometheus;
     metric_name='http_server_request_latency',
     quantile='0.99',
     label='99th percentile',
+    labels=null,
   ):: latency_graph(
     title=title,
     description=description,
@@ -223,6 +235,7 @@ local prometheus = grafana.prometheus;
     quantile=quantile,
     label=label,
     status_regex='^4\\d{2}$',
+    labels=labels,
   ),
 
   latency_error_5xx(
@@ -241,6 +254,7 @@ local prometheus = grafana.prometheus;
     metric_name='http_server_request_latency',
     quantile='0.99',
     label='99th percentile',
+    labels=null,
   ):: latency_graph(
     title=title,
     description=description,
@@ -254,5 +268,6 @@ local prometheus = grafana.prometheus;
     quantile=quantile,
     label=label,
     status_regex='^5\\d{2}$',
+    labels=labels
   ),
 }

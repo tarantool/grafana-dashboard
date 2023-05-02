@@ -9,6 +9,7 @@ function(
   job,
   alias,
   title='',
+  labels=null,
 ) dashboard.new(
   grafana.dashboard.new(
     // Cannot use in-built means to work with defaults due to possible ext vars.
@@ -62,6 +63,7 @@ function(
     datasource=datasource,
     job=job,
     alias=alias,
+    labels=labels,
   )
 ).addPanels(
   section.replication(
@@ -69,6 +71,7 @@ function(
     datasource=datasource,
     job=job,
     alias=alias,
+    labels=labels,
   )
 ).addPanels(
   section.http(
@@ -76,6 +79,7 @@ function(
     datasource=datasource,
     job=job,
     alias=alias,
+    labels=labels,
   )
 ).addPanels(
   section.net(
@@ -83,6 +87,7 @@ function(
     datasource=datasource,
     job=job,
     alias=alias,
+    labels=labels,
   )
 ).addPanels(
   section.slab(
@@ -90,6 +95,7 @@ function(
     datasource=datasource,
     job=job,
     alias=alias,
+    labels=labels,
   )
 ).addPanels(
   section.mvcc(
@@ -97,6 +103,7 @@ function(
     datasource=datasource,
     job=job,
     alias=alias,
+    labels=labels,
   )
 ).addPanels(
   section.space(
@@ -104,6 +111,7 @@ function(
     datasource=datasource,
     job=job,
     alias=alias,
+    labels=labels,
   )
 ).addPanels(
   section.vinyl(
@@ -111,6 +119,7 @@ function(
     datasource=datasource,
     job=job,
     alias=alias,
+    labels=labels,
   )
 ).addPanels(
   section.cpu(
@@ -118,6 +127,7 @@ function(
     datasource=datasource,
     job=job,
     alias=alias,
+    labels=labels,
   )
 ).addPanels(
   section.runtime(
@@ -125,6 +135,7 @@ function(
     datasource=datasource,
     job=job,
     alias=alias,
+    labels=labels,
   )
 ).addPanels(
   section.luajit(
@@ -132,6 +143,7 @@ function(
     datasource=datasource,
     job=job,
     alias=alias,
+    labels=labels,
   )
 ).addPanels(
   section.operations(
@@ -139,6 +151,7 @@ function(
     datasource=datasource,
     job=job,
     alias=alias,
+    labels=labels,
   )
 ).addPanels(
   section.crud(
@@ -146,6 +159,7 @@ function(
     datasource=datasource,
     job=job,
     alias=alias,
+    labels=labels,
   )
 ).addPanels(
   section.expirationd(
@@ -153,5 +167,6 @@ function(
     datasource=datasource,
     job=job,
     alias=alias,
+    labels=labels,
   )
 )

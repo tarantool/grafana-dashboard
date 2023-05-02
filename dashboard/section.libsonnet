@@ -95,55 +95,63 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
   ],
 
   // Must be used only in the top of a dashboard, overall stat panels use complicated layout
-  cluster_prometheus(datasource_type, datasource, job, alias):: [
+  cluster_prometheus(datasource_type, datasource, job, alias, labels):: [
     cluster.row,
 
     cluster.health_overview_table(
       datasource_type=datasource_type,
       datasource=datasource,
       job=job,
+      labels=labels,
     ) { gridPos: { w: 12, h: 8, x: 0, y: 1 } },
 
     cluster.health_overview_stat(
       datasource_type=datasource_type,
       datasource=datasource,
       job=job,
+      labels=labels,
     ) { gridPos: { w: 6, h: 3, x: 12, y: 1 } },
 
     cluster.memory_used_stat(
       datasource_type=datasource_type,
       datasource=datasource,
       job=job,
+      labels=labels,
     ) { gridPos: { w: 3, h: 3, x: 18, y: 1 } },
 
     cluster.memory_reserved_stat(
       datasource_type=datasource_type,
       datasource=datasource,
       job=job,
+      labels=labels,
     ) { gridPos: { w: 3, h: 3, x: 21, y: 1 } },
 
     cluster.http_rps_stat(
       datasource_type=datasource_type,
       datasource=datasource,
       job=job,
+      labels=labels,
     ) { gridPos: { w: 4, h: 5, x: 12, y: 4 } },
 
     cluster.net_rps_stat(
       datasource_type=datasource_type,
       datasource=datasource,
       job=job,
+      labels=labels,
     ) { gridPos: { w: 4, h: 5, x: 16, y: 4 } },
 
     cluster.space_ops_stat(
       datasource_type=datasource_type,
       datasource=datasource,
       job=job,
+      labels=labels,
     ) { gridPos: { w: 4, h: 5, x: 20, y: 4 } },
 
     cluster.cartridge_warning_issues(
       datasource_type=datasource_type,
       datasource=datasource,
       job=job,
+      labels=labels,
       alias=alias,
     ),
 
@@ -151,6 +159,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       datasource_type=datasource_type,
       datasource=datasource,
       job=job,
+      labels=labels,
       alias=alias,
     ),
 
@@ -158,6 +167,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       datasource_type=datasource_type,
       datasource=datasource,
       job=job,
+      labels=labels,
       alias=alias,
     ),
 
@@ -165,6 +175,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       datasource_type=datasource_type,
       datasource=datasource,
       job=job,
+      labels=labels,
       alias=alias,
     ),
 
@@ -172,6 +183,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       datasource_type=datasource_type,
       datasource=datasource,
       job=job,
+      labels=labels,
       alias=alias,
     ),
 
@@ -179,6 +191,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       datasource_type=datasource_type,
       datasource=datasource,
       job=job,
+      labels=labels,
       alias=alias,
     ),
 
@@ -186,6 +199,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       datasource_type=datasource_type,
       datasource=datasource,
       job=job,
+      labels=labels,
       alias=alias,
     ),
 
@@ -193,11 +207,12 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       datasource_type=datasource_type,
       datasource=datasource,
       job=job,
+      labels=labels,
       alias=alias,
     ),
   ],
 
-  replication(datasource_type, datasource, policy=null, measurement=null, job=null, alias=null):: [
+  replication(datasource_type, datasource, policy=null, measurement=null, job=null, alias=null, labels=null):: [
     replication.row,
 
     replication.replication_status(
@@ -206,6 +221,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
+      labels=labels,
       alias=alias,
     ),
 
@@ -215,6 +231,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
+      labels=labels,
       alias=alias,
     ),
 
@@ -224,6 +241,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
+      labels=labels,
       alias=alias,
     ),
 
@@ -233,6 +251,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
+      labels=labels,
       alias=alias,
     ),
 
@@ -242,6 +261,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
+      labels=labels,
       alias=alias,
     ),
 
@@ -251,6 +271,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
+      labels=labels,
       alias=alias,
     ),
 
@@ -260,11 +281,12 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
+      labels=labels,
       alias=alias,
     ),
   ],
 
-  http(datasource_type, datasource, policy=null, measurement=null, job=null, alias=null):: [
+  http(datasource_type, datasource, policy=null, measurement=null, job=null, alias=null, labels=null):: [
     http.row,
 
     http.rps_success(
@@ -273,6 +295,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
+      labels=labels,
       alias=alias,
     ),
 
@@ -282,6 +305,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
+      labels=labels,
       alias=alias,
     ),
 
@@ -291,6 +315,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
+      labels=labels,
       alias=alias,
     ),
 
@@ -300,6 +325,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
+      labels=labels,
       alias=alias,
     ),
 
@@ -309,6 +335,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
+      labels=labels,
       alias=alias,
     ),
 
@@ -318,11 +345,12 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
+      labels=labels,
       alias=alias,
     ),
   ],
 
-  net(datasource_type, datasource, policy=null, measurement=null, job=null, alias=null):: [
+  net(datasource_type, datasource, policy=null, measurement=null, job=null, alias=null, labels=null):: [
     net.row,
 
     net.net_memory(
@@ -331,6 +359,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
+      labels=labels,
       alias=alias,
     ),
 
@@ -340,6 +369,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
+      labels=labels,
       alias=alias,
     ),
 
@@ -349,6 +379,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
+      labels=labels,
       alias=alias,
     ),
 
@@ -358,6 +389,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
+      labels=labels,
       alias=alias,
     ),
 
@@ -367,6 +399,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
+      labels=labels,
       alias=alias,
     ),
 
@@ -376,6 +409,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
+      labels=labels,
       alias=alias,
     ),
 
@@ -385,6 +419,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
+      labels=labels,
       alias=alias,
     ),
 
@@ -394,6 +429,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
+      labels=labels,
       alias=alias,
     ),
 
@@ -403,6 +439,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
+      labels=labels,
       alias=alias,
     ),
 
@@ -412,6 +449,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
+      labels=labels,
       alias=alias,
     ),
 
@@ -421,6 +459,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
+      labels=labels,
       alias=alias,
     ),
 
@@ -430,6 +469,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
+      labels=labels,
       alias=alias,
     ),
 
@@ -439,6 +479,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
+      labels=labels,
       alias=alias,
     ),
 
@@ -448,6 +489,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
+      labels=labels,
       alias=alias,
     ),
 
@@ -457,6 +499,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
+      labels=labels,
       alias=alias,
     ),
 
@@ -466,6 +509,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
+      labels=labels,
       alias=alias,
     ),
 
@@ -475,6 +519,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
+      labels=labels,
       alias=alias,
     ),
 
@@ -484,6 +529,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
+      labels=labels,
       alias=alias,
     ),
 
@@ -493,6 +539,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
+      labels=labels,
       alias=alias,
     ),
 
@@ -502,6 +549,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
+      labels=labels,
       alias=alias,
     ),
 
@@ -511,11 +559,12 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
+      labels=labels,
       alias=alias,
     ),
   ],
 
-  slab(datasource_type, datasource, policy=null, measurement=null, job=null, alias=null):: [
+  slab(datasource_type, datasource, policy=null, measurement=null, job=null, alias=null, labels=null):: [
     slab.row,
 
     slab.monitor_info(),
@@ -526,6 +575,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
+      labels=labels,
       alias=alias,
     ),
 
@@ -535,6 +585,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
+      labels=labels,
       alias=alias,
     ),
 
@@ -544,6 +595,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
+      labels=labels,
       alias=alias,
     ),
 
@@ -553,6 +605,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
+      labels=labels,
       alias=alias,
     ),
 
@@ -562,6 +615,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
+      labels=labels,
       alias=alias,
     ),
 
@@ -571,6 +625,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
+      labels=labels,
       alias=alias,
     ),
 
@@ -580,6 +635,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
+      labels=labels,
       alias=alias,
     ),
 
@@ -589,6 +645,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
+      labels=labels,
       alias=alias,
     ),
 
@@ -598,11 +655,12 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
+      labels=labels,
       alias=alias,
     ),
   ],
 
-  mvcc(datasource_type, datasource, policy=null, measurement=null, job=null, alias=null):: [
+  mvcc(datasource_type, datasource, policy=null, measurement=null, job=null, alias=null, labels=null):: [
     mvcc.row,
 
     mvcc.memtx_tnx_statements_total(
@@ -611,6 +669,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
+      labels=labels,
       alias=alias,
     ),
 
@@ -620,6 +679,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
+      labels=labels,
       alias=alias,
     ),
 
@@ -629,6 +689,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
+      labels=labels,
       alias=alias,
     ),
 
@@ -638,6 +699,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
+      labels=labels,
       alias=alias,
     ),
 
@@ -647,6 +709,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
+      labels=labels,
       alias=alias,
     ),
 
@@ -656,6 +719,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
+      labels=labels,
       alias=alias,
     ),
 
@@ -665,6 +729,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
+      labels=labels,
       alias=alias,
     ),
 
@@ -674,6 +739,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
+      labels=labels,
       alias=alias,
     ),
 
@@ -683,6 +749,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
+      labels=labels,
       alias=alias,
     ),
 
@@ -692,6 +759,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
+      labels=labels,
       alias=alias,
     ),
 
@@ -701,6 +769,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
+      labels=labels,
       alias=alias,
     ),
 
@@ -710,6 +779,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
+      labels=labels,
       alias=alias,
     ),
 
@@ -719,6 +789,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
+      labels=labels,
       alias=alias,
     ),
 
@@ -728,6 +799,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
+      labels=labels,
       alias=alias,
     ),
 
@@ -737,6 +809,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
+      labels=labels,
       alias=alias,
     ),
 
@@ -746,6 +819,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
+      labels=labels,
       alias=alias,
     ),
 
@@ -755,6 +829,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
+      labels=labels,
       alias=alias,
     ),
 
@@ -764,6 +839,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
+      labels=labels,
       alias=alias,
     ),
 
@@ -773,6 +849,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
+      labels=labels,
       alias=alias,
     ),
 
@@ -782,6 +859,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
+      labels=labels,
       alias=alias,
     ),
 
@@ -791,6 +869,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
+      labels=labels,
       alias=alias,
     ),
 
@@ -800,6 +879,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
+      labels=labels,
       alias=alias,
     ),
 
@@ -809,6 +889,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
+      labels=labels,
       alias=alias,
     ),
 
@@ -818,6 +899,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
+      labels=labels,
       alias=alias,
     ),
 
@@ -827,6 +909,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
+      labels=labels,
       alias=alias,
     ),
 
@@ -836,6 +919,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
+      labels=labels,
       alias=alias,
     ),
 
@@ -845,11 +929,12 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
+      labels=labels,
       alias=alias,
     ),
   ],
 
-  space(datasource_type, datasource, policy=null, measurement=null, job=null, alias=null):: [
+  space(datasource_type, datasource, policy=null, measurement=null, job=null, alias=null, labels=null):: [
     space.row,
 
     space.memtx_len(
@@ -858,6 +943,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
+      labels=labels,
       alias=alias,
     ),
 
@@ -867,6 +953,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
+      labels=labels,
       alias=alias,
     ),
 
@@ -876,6 +963,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
+      labels=labels,
       alias=alias,
     ),
 
@@ -885,6 +973,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
+      labels=labels,
       alias=alias,
     ),
 
@@ -894,11 +983,12 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
+      labels=labels,
       alias=alias,
     ),
   ],
 
-  vinyl(datasource_type, datasource, policy=null, measurement=null, job=null, alias=null):: [
+  vinyl(datasource_type, datasource, policy=null, measurement=null, job=null, alias=null, labels=null):: [
     vinyl.row,
 
     vinyl.disk_data(
@@ -1073,7 +1163,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
     ),
   ],
 
-  cpu(datasource_type, datasource, policy=null, measurement=null, job=null, alias=null):: [
+  cpu(datasource_type, datasource, policy=null, measurement=null, job=null, alias=null, labels=null):: [
     cpu.row,
 
     cpu.getrusage_cpu_user_time(
@@ -1082,6 +1172,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
+      labels=labels,
       alias=alias,
     ),
 
@@ -1091,11 +1182,12 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
+      labels=labels,
       alias=alias,
     ),
   ],
 
-  cpu_extended(datasource_type, datasource, policy=null, measurement=null, job=null, alias=null):: [
+  cpu_extended(datasource_type, datasource, policy=null, measurement=null, job=null, alias=null, labels=null):: [
     cpu.row,
 
     cpu.getrusage_cpu_user_time(
@@ -1104,6 +1196,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
+      labels=labels,
       alias=alias,
     ),
 
@@ -1113,6 +1206,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
+      labels=labels,
       alias=alias,
     ),
 
@@ -1122,6 +1216,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
+      labels=labels,
       alias=alias,
     ),
 
@@ -1131,11 +1226,12 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
+      labels=labels,
       alias=alias,
     ),
   ],
 
-  runtime(datasource_type, datasource, policy=null, measurement=null, job=null, alias=null):: [
+  runtime(datasource_type, datasource, policy=null, measurement=null, job=null, alias=null, labels=null):: [
     runtime.row,
 
     runtime.lua_memory(
@@ -1144,6 +1240,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
+      labels=labels,
       alias=alias,
     ),
 
@@ -1153,6 +1250,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
+      labels=labels,
       alias=alias,
     ),
 
@@ -1162,6 +1260,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
+      labels=labels,
       alias=alias,
     ),
 
@@ -1171,6 +1270,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
+      labels=labels,
       alias=alias,
     ),
 
@@ -1180,6 +1280,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
+      labels=labels,
       alias=alias,
     ),
 
@@ -1189,6 +1290,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
+      labels=labels,
       alias=alias,
     ),
 
@@ -1198,6 +1300,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
+      labels=labels,
       alias=alias,
     ),
 
@@ -1207,11 +1310,12 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
+      labels=labels,
       alias=alias,
     ),
   ],
 
-  luajit(datasource_type, datasource, policy=null, measurement=null, job=null, alias=null):: [
+  luajit(datasource_type, datasource, policy=null, measurement=null, job=null, alias=null, labels=null):: [
     luajit.row,
 
     luajit.snap_restores(
@@ -1220,6 +1324,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
+      labels=labels,
       alias=alias,
     ),
 
@@ -1229,6 +1334,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
+      labels=labels,
       alias=alias,
     ),
 
@@ -1238,6 +1344,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
+      labels=labels,
       alias=alias,
     ),
 
@@ -1247,6 +1354,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
+      labels=labels,
       alias=alias,
     ),
 
@@ -1256,6 +1364,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
+      labels=labels,
       alias=alias,
     ),
 
@@ -1265,6 +1374,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
+      labels=labels,
       alias=alias,
     ),
 
@@ -1274,6 +1384,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
+      labels=labels,
       alias=alias,
     ),
 
@@ -1283,6 +1394,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
+      labels=labels,
       alias=alias,
     ),
 
@@ -1292,6 +1404,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
+      labels=labels,
       alias=alias,
     ),
 
@@ -1301,6 +1414,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
+      labels=labels,
       alias=alias,
     ),
 
@@ -1310,6 +1424,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
+      labels=labels,
       alias=alias,
     ),
 
@@ -1319,6 +1434,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
+      labels=labels,
       alias=alias,
     ),
 
@@ -1328,6 +1444,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
+      labels=labels,
       alias=alias,
     ),
 
@@ -1337,6 +1454,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
+      labels=labels,
       alias=alias,
     ),
 
@@ -1346,6 +1464,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
+      labels=labels,
       alias=alias,
     ),
 
@@ -1355,6 +1474,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
+      labels=labels,
       alias=alias,
     ),
 
@@ -1364,6 +1484,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
+      labels=labels,
       alias=alias,
     ),
 
@@ -1373,6 +1494,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
+      labels=labels,
       alias=alias,
     ),
 
@@ -1382,11 +1504,12 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
+      labels=labels,
       alias=alias,
     ),
   ],
 
-  operations(datasource_type, datasource, policy=null, measurement=null, job=null, alias=null):: [
+  operations(datasource_type, datasource, policy=null, measurement=null, job=null, alias=null, labels=null):: [
     operations.row,
 
     operations.space_select_rps(
@@ -1395,6 +1518,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
+      labels=labels,
       alias=alias,
     ),
 
@@ -1404,6 +1528,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
+      labels=labels,
       alias=alias,
     ),
 
@@ -1413,6 +1538,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
+      labels=labels,
       alias=alias,
     ),
 
@@ -1422,6 +1548,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
+      labels=labels,
       alias=alias,
     ),
 
@@ -1431,6 +1558,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
+      labels=labels,
       alias=alias,
     ),
 
@@ -1440,6 +1568,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
+      labels=labels,
       alias=alias,
     ),
 
@@ -1449,6 +1578,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
+      labels=labels,
       alias=alias,
     ),
 
@@ -1458,6 +1588,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
+      labels=labels,
       alias=alias,
     ),
 
@@ -1467,6 +1598,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
+      labels=labels,
       alias=alias,
     ),
 
@@ -1476,6 +1608,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
+      labels=labels,
       alias=alias,
     ),
 
@@ -1485,6 +1618,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
+      labels=labels,
       alias=alias,
     ),
 
@@ -1494,6 +1628,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
+      labels=labels,
       alias=alias,
     ),
 
@@ -1503,6 +1638,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
+      labels=labels,
       alias=alias,
     ),
 
@@ -1512,6 +1648,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
+      labels=labels,
       alias=alias,
     ),
 
@@ -1521,11 +1658,12 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
+      labels=labels,
       alias=alias,
     ),
   ],
 
-  crud(datasource_type, datasource, policy=null, measurement=null, job=null, alias=null):: [
+  crud(datasource_type, datasource, policy=null, measurement=null, job=null, alias=null, labels=null):: [
     crud.row,
 
     crud.select_success_rps(
@@ -2060,7 +2198,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
     ),
   ],
 
-  expirationd(datasource_type, datasource, policy=null, measurement=null, job=null, alias=null):: [
+  expirationd(datasource_type, datasource, policy=null, measurement=null, job=null, alias=null, labels=null):: [
     expirationd.row,
 
     expirationd.tuples_checked(
@@ -2100,7 +2238,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
     ),
   ],
 
-  tdg_kafka_common(datasource_type, datasource, policy=null, measurement=null, job=null, alias=null):: [
+  tdg_kafka_common(datasource_type, datasource, policy=null, measurement=null, job=null, alias=null, labels=null):: [
     tdg_kafka_common.row,
 
     tdg_kafka_common.queue_operations(
@@ -2203,7 +2341,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
     ),
   ],
 
-  tdg_kafka_brokers(datasource_type, datasource, policy=null, measurement=null, job=null, alias=null):: [
+  tdg_kafka_brokers(datasource_type, datasource, policy=null, measurement=null, job=null, alias=null, labels=null):: [
     tdg_kafka_brokers.row,
 
     tdg_kafka_brokers.stateage(
@@ -2432,7 +2570,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
     ),
   ],
 
-  tdg_kafka_topics(datasource_type, datasource, policy=null, measurement=null, job=null, alias=null):: [
+  tdg_kafka_topics(datasource_type, datasource, policy=null, measurement=null, job=null, alias=null, labels=null):: [
     tdg_kafka_topics.row,
 
     tdg_kafka_topics.age(
@@ -2580,7 +2718,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
     ),
   ],
 
-  tdg_kafka_consumer(datasource_type, datasource, policy=null, measurement=null, job=null, alias=null):: [
+  tdg_kafka_consumer(datasource_type, datasource, policy=null, measurement=null, job=null, alias=null, labels=null):: [
     tdg_kafka_consumer.row,
 
     tdg_kafka_consumer.stateage(
@@ -2620,7 +2758,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
     ),
   ],
 
-  tdg_kafka_producer(datasource_type, datasource, policy=null, measurement=null, job=null, alias=null):: [
+  tdg_kafka_producer(datasource_type, datasource, policy=null, measurement=null, job=null, alias=null, labels=null):: [
     tdg_kafka_producer.row,
 
     tdg_kafka_producer.idemp_stateage(
@@ -2629,6 +2767,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
+      labels=labels,
       alias=alias,
     ),
 
@@ -2638,11 +2777,12 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
+      labels=labels,
       alias=alias,
     ),
   ],
 
-  tdg_tuples(datasource_type, datasource, policy=null, measurement=null, job=null, alias=null):: [
+  tdg_tuples(datasource_type, datasource, policy=null, measurement=null, job=null, alias=null, labels=null):: [
     tdg_tuples.row,
 
     tdg_tuples.tuples_scanned_average(
@@ -2651,6 +2791,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
+      labels=labels,
       alias=alias,
     ),
 
@@ -2660,6 +2801,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
+      labels=labels,
       alias=alias,
     ),
 
@@ -2669,6 +2811,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
+      labels=labels,
       alias=alias,
     ),
 
@@ -2678,11 +2821,12 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
+      labels=labels,
       alias=alias,
     ),
   ],
 
-  tdg_file_connectors(datasource_type, datasource, policy=null, measurement=null, job=null, alias=null):: [
+  tdg_file_connectors(datasource_type, datasource, policy=null, measurement=null, job=null, alias=null, labels=null):: [
     tdg_file_connectors.row,
 
     tdg_file_connectors.files_processed(
@@ -2691,6 +2835,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
+      labels=labels,
       alias=alias,
     ),
 
@@ -2700,6 +2845,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
+      labels=labels,
       alias=alias,
     ),
 
@@ -2709,6 +2855,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
+      labels=labels,
       alias=alias,
     ),
 
@@ -2718,6 +2865,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
+      labels=labels,
       alias=alias,
     ),
 
@@ -2727,6 +2875,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
+      labels=labels,
       alias=alias,
     ),
 
@@ -2736,11 +2885,12 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
+      labels=labels,
       alias=alias,
     ),
   ],
 
-  tdg_graphql(datasource_type, datasource, policy=null, measurement=null, job=null, alias=null):: [
+  tdg_graphql(datasource_type, datasource, policy=null, measurement=null, job=null, alias=null, labels=null):: [
     tdg_graphql.row,
 
     tdg_graphql.query_success_rps(
@@ -2749,6 +2899,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
+      labels=labels,
       alias=alias,
     ),
 
@@ -2758,6 +2909,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
+      labels=labels,
       alias=alias,
     ),
 
@@ -2767,6 +2919,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
+      labels=labels,
       alias=alias,
     ),
 
@@ -2776,6 +2929,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
+      labels=labels,
       alias=alias,
     ),
 
@@ -2785,6 +2939,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
+      labels=labels,
       alias=alias,
     ),
 
@@ -2794,11 +2949,12 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
+      labels=labels,
       alias=alias,
     ),
   ],
 
-  tdg_iproto(datasource_type, datasource, policy=null, measurement=null, job=null, alias=null):: [
+  tdg_iproto(datasource_type, datasource, policy=null, measurement=null, job=null, alias=null, labels=null):: [
     tdg_iproto.row,
 
     tdg_iproto.put_rps(
@@ -2807,6 +2963,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
+      labels=labels,
       alias=alias,
     ),
 
@@ -2816,6 +2973,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
+      labels=labels,
       alias=alias,
     ),
 
@@ -2825,6 +2983,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
+      labels=labels,
       alias=alias,
     ),
 
@@ -2834,6 +2993,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
+      labels=labels,
       alias=alias,
     ),
 
@@ -2843,6 +3003,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
+      labels=labels,
       alias=alias,
     ),
 
@@ -2852,6 +3013,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
+      labels=labels,
       alias=alias,
     ),
 
@@ -2861,6 +3023,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
+      labels=labels,
       alias=alias,
     ),
 
@@ -2870,6 +3033,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
+      labels=labels,
       alias=alias,
     ),
 
@@ -2879,6 +3043,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
+      labels=labels,
       alias=alias,
     ),
 
@@ -2888,6 +3053,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
+      labels=labels,
       alias=alias,
     ),
 
@@ -2897,6 +3063,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
+      labels=labels,
       alias=alias,
     ),
 
@@ -2906,6 +3073,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
+      labels=labels,
       alias=alias,
     ),
 
@@ -2915,6 +3083,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
+      labels=labels,
       alias=alias,
     ),
 
@@ -2924,6 +3093,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
+      labels=labels,
       alias=alias,
     ),
 
@@ -2933,6 +3103,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
+      labels=labels,
       alias=alias,
     ),
 
@@ -2942,6 +3113,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
+      labels=labels,
       alias=alias,
     ),
 
@@ -2951,6 +3123,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
+      labels=labels,
       alias=alias,
     ),
 
@@ -2960,11 +3133,12 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
+      labels=labels,
       alias=alias,
     ),
   ],
 
-  tdg_rest_api(datasource_type, datasource, policy=null, measurement=null, job=null, alias=null):: [
+  tdg_rest_api(datasource_type, datasource, policy=null, measurement=null, job=null, alias=null, labels=null):: [
     tdg_rest_api.row,
 
     tdg_rest_api.read_success_rps(
@@ -2973,6 +3147,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
+      labels=labels,
       alias=alias,
     ),
 
@@ -2982,6 +3157,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
+      labels=labels,
       alias=alias,
     ),
 
@@ -2991,6 +3167,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
+      labels=labels,
       alias=alias,
     ),
 
@@ -3000,6 +3177,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
+      labels=labels,
       alias=alias,
     ),
 
@@ -3009,6 +3187,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
+      labels=labels,
       alias=alias,
     ),
 
@@ -3018,6 +3197,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
+      labels=labels,
       alias=alias,
     ),
 
@@ -3027,6 +3207,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
+      labels=labels,
       alias=alias,
     ),
 
@@ -3036,6 +3217,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
+      labels=labels,
       alias=alias,
     ),
 
@@ -3045,6 +3227,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
+      labels=labels,
       alias=alias,
     ),
 
@@ -3054,6 +3237,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
+      labels=labels,
       alias=alias,
     ),
 
@@ -3063,6 +3247,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
+      labels=labels,
       alias=alias,
     ),
 
@@ -3072,11 +3257,12 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
+      labels=labels,
       alias=alias,
     ),
   ],
 
-  tdg_tasks(datasource_type, datasource, policy=null, measurement=null, job=null, alias=null):: [
+  tdg_tasks(datasource_type, datasource, policy=null, measurement=null, job=null, alias=null, labels=null):: [
     tdg_tasks.row,
 
     tdg_tasks.jobs_started(
@@ -3085,6 +3271,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
+      labels=labels,
       alias=alias,
     ),
 
@@ -3094,6 +3281,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
+      labels=labels,
       alias=alias,
     ),
 
@@ -3103,6 +3291,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
+      labels=labels,
       alias=alias,
     ),
 
@@ -3112,6 +3301,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
+      labels=labels,
       alias=alias,
     ),
 
@@ -3121,6 +3311,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
+      labels=labels,
       alias=alias,
     ),
 
@@ -3130,6 +3321,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
+      labels=labels,
       alias=alias,
     ),
 
@@ -3139,6 +3331,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
+      labels=labels,
       alias=alias,
     ),
 
@@ -3148,6 +3341,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
+      labels=labels,
       alias=alias,
     ),
 
@@ -3157,6 +3351,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
+      labels=labels,
       alias=alias,
     ),
 
@@ -3166,6 +3361,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
+      labels=labels,
       alias=alias,
     ),
 
@@ -3175,6 +3371,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
+      labels=labels,
       alias=alias,
     ),
 
@@ -3184,6 +3381,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
+      labels=labels,
       alias=alias,
     ),
 
@@ -3193,6 +3391,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
+      labels=labels,
       alias=alias,
     ),
 
@@ -3202,6 +3401,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
+      labels=labels,
       alias=alias,
     ),
 
@@ -3211,6 +3411,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
+      labels=labels,
       alias=alias,
     ),
 
@@ -3220,6 +3421,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       policy=policy,
       measurement=measurement,
       job=job,
+      labels=labels,
       alias=alias,
     ),
   ],

@@ -1,6 +1,7 @@
 local grafana = import 'grafonnet/grafana.libsonnet';
 
 local common = import 'dashboard/panels/common.libsonnet';
+local utils = import 'dashboard/utils.libsonnet';
 local variable = import 'dashboard/variable.libsonnet';
 
 local influxdb = grafana.influxdb;
@@ -24,10 +25,11 @@ local prometheus = grafana.prometheus;
     measurement,
     alias,
     kind,
+    labels,
   ) = (
     if datasource_type == variable.datasource_type.prometheus then
       prometheus.target(
-        expr=std.format('%s{job=~"%s",alias=~"%s",kind="%s"}', [metric_name, job, alias, kind]),
+        expr=std.format('%s{job=~"%s",alias=~"%s",kind="%s",%s}', [metric_name, job, alias, kind, utils.generate_labels_string(labels)]),
         legendFormat='{{alias}}',
       )
     else if datasource_type == variable.datasource_type.influxdb then
@@ -61,6 +63,7 @@ local prometheus = grafana.prometheus;
     measurement=null,
     job=null,
     alias=null,
+    labels=null,
   ):: common.default_graph(
     title=title,
     description=description,
@@ -75,7 +78,8 @@ local prometheus = grafana.prometheus;
     policy,
     measurement,
     alias,
-    'total'
+    'total',
+    labels,
   )),
 
   memtx_tnx_statements_average(
@@ -90,6 +94,7 @@ local prometheus = grafana.prometheus;
     measurement=null,
     job=null,
     alias=null,
+    labels=null,
   ):: common.default_graph(
     title=title,
     description=description,
@@ -104,7 +109,8 @@ local prometheus = grafana.prometheus;
     policy,
     measurement,
     alias,
-    'average'
+    'average',
+    labels,
   )),
 
   memtx_tnx_statements_max(
@@ -119,6 +125,7 @@ local prometheus = grafana.prometheus;
     measurement=null,
     job=null,
     alias=null,
+    labels=null,
   ):: common.default_graph(
     title=title,
     description=description,
@@ -133,7 +140,8 @@ local prometheus = grafana.prometheus;
     policy,
     measurement,
     alias,
-    'max'
+    'max',
+    labels,
   )),
 
   local txn_user_desc(description) = std.join(
@@ -155,6 +163,7 @@ local prometheus = grafana.prometheus;
     measurement=null,
     job=null,
     alias=null,
+    labels=null,
   ):: common.default_graph(
     title=title,
     description=description,
@@ -169,7 +178,8 @@ local prometheus = grafana.prometheus;
     policy,
     measurement,
     alias,
-    'total'
+    'total',
+    labels,
   )),
 
   memtx_tnx_user_average(
@@ -184,6 +194,7 @@ local prometheus = grafana.prometheus;
     measurement=null,
     job=null,
     alias=null,
+    labels=null,
   ):: common.default_graph(
     title=title,
     description=description,
@@ -198,7 +209,8 @@ local prometheus = grafana.prometheus;
     policy,
     measurement,
     alias,
-    'average'
+    'average',
+    labels,
   )),
 
   memtx_tnx_user_max(
@@ -212,6 +224,7 @@ local prometheus = grafana.prometheus;
     measurement=null,
     job=null,
     alias=null,
+    labels=null,
   ):: common.default_graph(
     title=title,
     description=description,
@@ -226,7 +239,8 @@ local prometheus = grafana.prometheus;
     policy,
     measurement,
     alias,
-    'max'
+    'max',
+    labels,
   )),
 
   local txn_system_desc(description) = std.join(
@@ -248,6 +262,7 @@ local prometheus = grafana.prometheus;
     measurement=null,
     job=null,
     alias=null,
+    labels=null,
   ):: common.default_graph(
     title=title,
     description=description,
@@ -262,7 +277,8 @@ local prometheus = grafana.prometheus;
     policy,
     measurement,
     alias,
-    'total'
+    'total',
+    labels,
   )),
 
   memtx_tnx_system_average(
@@ -277,6 +293,7 @@ local prometheus = grafana.prometheus;
     measurement=null,
     job=null,
     alias=null,
+    labels=null,
   ):: common.default_graph(
     title=title,
     description=description,
@@ -291,7 +308,8 @@ local prometheus = grafana.prometheus;
     policy,
     measurement,
     alias,
-    'average'
+    'average',
+    labels,
   )),
 
   memtx_tnx_system_max(
@@ -305,6 +323,7 @@ local prometheus = grafana.prometheus;
     measurement=null,
     job=null,
     alias=null,
+    labels=null,
   ):: common.default_graph(
     title=title,
     description=description,
@@ -319,7 +338,8 @@ local prometheus = grafana.prometheus;
     policy,
     measurement,
     alias,
-    'max'
+    'max',
+    labels,
   )),
 
   local mvcc_trackers_desc(description) = std.join(
@@ -341,6 +361,7 @@ local prometheus = grafana.prometheus;
     measurement=null,
     job=null,
     alias=null,
+    labels=null,
   ):: common.default_graph(
     title=title,
     description=description,
@@ -355,7 +376,8 @@ local prometheus = grafana.prometheus;
     policy,
     measurement,
     alias,
-    'total'
+    'total',
+    labels,
   )),
 
   memtx_mvcc_trackers_average(
@@ -370,6 +392,7 @@ local prometheus = grafana.prometheus;
     measurement=null,
     job=null,
     alias=null,
+    labels=null,
   ):: common.default_graph(
     title=title,
     description=description,
@@ -384,7 +407,8 @@ local prometheus = grafana.prometheus;
     policy,
     measurement,
     alias,
-    'average'
+    'average',
+    labels,
   )),
 
   memtx_mvcc_trackers_max(
@@ -399,6 +423,7 @@ local prometheus = grafana.prometheus;
     measurement=null,
     job=null,
     alias=null,
+    labels=null,
   ):: common.default_graph(
     title=title,
     description=description,
@@ -413,7 +438,8 @@ local prometheus = grafana.prometheus;
     policy,
     measurement,
     alias,
-    'max'
+    'max',
+    labels,
   )),
 
   local mvcc_conflicts_desc(description) = std.join(
@@ -434,6 +460,7 @@ local prometheus = grafana.prometheus;
     measurement=null,
     job=null,
     alias=null,
+    labels=null,
   ):: common.default_graph(
     title=title,
     description=description,
@@ -448,7 +475,8 @@ local prometheus = grafana.prometheus;
     policy,
     measurement,
     alias,
-    'total'
+    'total',
+    labels,
   )),
 
   memtx_mvcc_conflicts_average(
@@ -463,6 +491,7 @@ local prometheus = grafana.prometheus;
     measurement=null,
     job=null,
     alias=null,
+    labels=null,
   ):: common.default_graph(
     title=title,
     description=description,
@@ -477,7 +506,8 @@ local prometheus = grafana.prometheus;
     policy,
     measurement,
     alias,
-    'average'
+    'average',
+    labels,
   )),
 
   memtx_mvcc_conflicts_max(
@@ -491,6 +521,7 @@ local prometheus = grafana.prometheus;
     measurement=null,
     job=null,
     alias=null,
+    labels=null,
   ):: common.default_graph(
     title=title,
     description=description,
@@ -505,7 +536,8 @@ local prometheus = grafana.prometheus;
     policy,
     measurement,
     alias,
-    'max'
+    'max',
+    labels,
   )),
 
   local mvcc_retained_desc(description) = std.join(
@@ -558,6 +590,7 @@ local prometheus = grafana.prometheus;
     measurement=null,
     job=null,
     alias=null,
+    labels=null,
   ):: common.default_graph(
     title=title,
     description=description,
@@ -572,7 +605,8 @@ local prometheus = grafana.prometheus;
     policy,
     measurement,
     alias,
-    'count'
+    'count',
+    labels,
   )),
 
   memtx_mvcc_tuples_used_stories_total(
@@ -584,6 +618,7 @@ local prometheus = grafana.prometheus;
     measurement=null,
     job=null,
     alias=null,
+    labels=null,
   ):: common.default_graph(
     title=title,
     description=description,
@@ -598,7 +633,8 @@ local prometheus = grafana.prometheus;
     policy,
     measurement,
     alias,
-    'total'
+    'total',
+    labels,
   )),
 
   memtx_mvcc_tuples_used_retained_count(
@@ -610,6 +646,7 @@ local prometheus = grafana.prometheus;
     measurement=null,
     job=null,
     alias=null,
+    labels=null,
   ):: common.default_graph(
     title=title,
     description=description,
@@ -624,7 +661,8 @@ local prometheus = grafana.prometheus;
     policy,
     measurement,
     alias,
-    'count'
+    'count',
+    labels,
   )),
 
   memtx_mvcc_tuples_used_retained_total(
@@ -636,6 +674,7 @@ local prometheus = grafana.prometheus;
     measurement=null,
     job=null,
     alias=null,
+    labels=null,
   ):: common.default_graph(
     title=title,
     description=description,
@@ -650,7 +689,8 @@ local prometheus = grafana.prometheus;
     policy,
     measurement,
     alias,
-    'total'
+    'total',
+    labels,
   )),
 
   memtx_mvcc_tuples_read_view_stories_count(
@@ -662,6 +702,7 @@ local prometheus = grafana.prometheus;
     measurement=null,
     job=null,
     alias=null,
+    labels=null,
   ):: common.default_graph(
     title=title,
     description=description,
@@ -676,7 +717,8 @@ local prometheus = grafana.prometheus;
     policy,
     measurement,
     alias,
-    'count'
+    'count',
+    labels,
   )),
 
   memtx_mvcc_tuples_read_view_stories_total(
@@ -688,6 +730,7 @@ local prometheus = grafana.prometheus;
     measurement=null,
     job=null,
     alias=null,
+    labels=null,
   ):: common.default_graph(
     title=title,
     description=description,
@@ -702,7 +745,8 @@ local prometheus = grafana.prometheus;
     policy,
     measurement,
     alias,
-    'total'
+    'total',
+    labels,
   )),
 
   memtx_mvcc_tuples_read_view_retained_count(
@@ -714,6 +758,7 @@ local prometheus = grafana.prometheus;
     measurement=null,
     job=null,
     alias=null,
+    labels=null,
   ):: common.default_graph(
     title=title,
     description=description,
@@ -728,7 +773,8 @@ local prometheus = grafana.prometheus;
     policy,
     measurement,
     alias,
-    'count'
+    'count',
+    labels,
   )),
 
   memtx_mvcc_tuples_read_view_retained_total(
@@ -740,6 +786,7 @@ local prometheus = grafana.prometheus;
     measurement=null,
     job=null,
     alias=null,
+    labels=null,
   ):: common.default_graph(
     title=title,
     description=description,
@@ -754,7 +801,8 @@ local prometheus = grafana.prometheus;
     policy,
     measurement,
     alias,
-    'total'
+    'total',
+    labels,
   )),
 
   memtx_mvcc_tuples_tracking_stories_count(
@@ -766,6 +814,7 @@ local prometheus = grafana.prometheus;
     measurement=null,
     job=null,
     alias=null,
+    labels=null,
   ):: common.default_graph(
     title=title,
     description=description,
@@ -780,7 +829,8 @@ local prometheus = grafana.prometheus;
     policy,
     measurement,
     alias,
-    'count'
+    'count',
+    labels,
   )),
 
   memtx_mvcc_tuples_tracking_stories_total(
@@ -792,6 +842,7 @@ local prometheus = grafana.prometheus;
     measurement=null,
     job=null,
     alias=null,
+    labels=null,
   ):: common.default_graph(
     title=title,
     description=description,
@@ -806,7 +857,8 @@ local prometheus = grafana.prometheus;
     policy,
     measurement,
     alias,
-    'total'
+    'total',
+    labels,
   )),
 
   memtx_mvcc_tuples_tracking_retained_count(
@@ -818,6 +870,7 @@ local prometheus = grafana.prometheus;
     measurement=null,
     job=null,
     alias=null,
+    labels=null,
   ):: common.default_graph(
     title=title,
     description=description,
@@ -832,7 +885,8 @@ local prometheus = grafana.prometheus;
     policy,
     measurement,
     alias,
-    'count'
+    'count',
+    labels,
   )),
 
   memtx_mvcc_tuples_tracking_retained_total(
@@ -844,6 +898,7 @@ local prometheus = grafana.prometheus;
     measurement=null,
     job=null,
     alias=null,
+    labels=null,
   ):: common.default_graph(
     title=title,
     description=description,
@@ -858,6 +913,7 @@ local prometheus = grafana.prometheus;
     policy,
     measurement,
     alias,
-    'total'
+    'total',
+    labels,
   )),
 }

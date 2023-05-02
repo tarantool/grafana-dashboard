@@ -2,6 +2,7 @@ local grafana = import 'grafonnet/grafana.libsonnet';
 
 local common = import 'dashboard/panels/common.libsonnet';
 local variable = import 'dashboard/variable.libsonnet';
+local utils = import 'dashboard/utils.libsonnet';
 
 local influxdb = grafana.influxdb;
 local prometheus = grafana.prometheus;
@@ -19,6 +20,7 @@ local prometheus = grafana.prometheus;
     job,
     alias,
     metric_name,
+    labels,
   ) = common.default_graph(
     title=title,
     description=description,
@@ -33,7 +35,8 @@ local prometheus = grafana.prometheus;
     job,
     policy,
     measurement,
-    alias
+    alias,
+    labels
   )),
 
   getrusage_cpu_user_time(
@@ -51,6 +54,7 @@ local prometheus = grafana.prometheus;
     measurement=null,
     job=null,
     alias=null,
+    labels=null,
   ):: getrusage_cpu_percentage_graph(
     title=title,
     description=description,
@@ -61,6 +65,7 @@ local prometheus = grafana.prometheus;
     job=job,
     alias=alias,
     metric_name='tnt_cpu_user_time',
+    labels=labels,
   ),
 
   getrusage_cpu_system_time(
@@ -78,6 +83,7 @@ local prometheus = grafana.prometheus;
     measurement=null,
     job=null,
     alias=null,
+    labels=null,
   ):: getrusage_cpu_percentage_graph(
     title=title,
     description=description,
@@ -88,6 +94,7 @@ local prometheus = grafana.prometheus;
     job=job,
     alias=alias,
     metric_name='tnt_cpu_system_time',
+    labels=labels,
   ),
 
   local procstat_thread_time_graph(
@@ -100,6 +107,7 @@ local prometheus = grafana.prometheus;
     job,
     alias,
     kind,
+    labels=null,
   ) = common.default_graph(
     title=title,
     description=description,
@@ -111,8 +119,8 @@ local prometheus = grafana.prometheus;
   ).addTarget(
     if datasource_type == variable.datasource_type.prometheus then
       prometheus.target(
-        expr=std.format('rate(tnt_cpu_thread{job=~"%s",alias=~"%s",kind="%s"}[$__rate_interval])',
-                        [job, alias, kind]),
+        expr=std.format('rate(tnt_cpu_thread{job=~"%s",alias=~"%s",kind="%s",%s}[$__rate_interval])',
+                        [job, alias, kind, utils.generate_labels_string(labels)]),
         legendFormat='{{alias}} — {{thread_name}}',
       )
     else if datasource_type == variable.datasource_type.influxdb then
@@ -145,6 +153,7 @@ local prometheus = grafana.prometheus;
     measurement=null,
     job=null,
     alias=null,
+    labels=null
   ):: procstat_thread_time_graph(
     title,
     description,
@@ -155,6 +164,7 @@ local prometheus = grafana.prometheus;
     job,
     alias,
     'user',
+    labels,
   ),
 
   procstat_thread_system_time(
@@ -172,6 +182,7 @@ local prometheus = grafana.prometheus;
     measurement=null,
     job=null,
     alias=null,
+    labels=null,
   ):: procstat_thread_time_graph(
     title,
     description,
@@ -182,5 +193,6 @@ local prometheus = grafana.prometheus;
     job,
     alias,
     'system',
+    labels
   ),
 }

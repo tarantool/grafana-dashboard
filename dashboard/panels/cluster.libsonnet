@@ -2,6 +2,7 @@ local grafana = import 'grafonnet/grafana.libsonnet';
 
 local timeseries = import 'dashboard/grafana/timeseries.libsonnet';
 local common = import 'dashboard/panels/common.libsonnet';
+local utils = import 'dashboard/utils.libsonnet';
 local variable = import 'dashboard/variable.libsonnet';
 
 local statPanel = grafana.statPanel;
@@ -31,6 +32,7 @@ local prometheus = grafana.prometheus;
     datasource=null,
     measurement=null,
     job=null,
+    labels=null,
   ):: tablePanel.new(
     title=title,
     description=description,
@@ -77,10 +79,10 @@ local prometheus = grafana.prometheus;
       prometheus.target(
         expr=std.format(
           |||
-            up{job=~"%s"} * on(instance) group_left(alias) tnt_info_uptime{job=~"%s"} or
-            on(instance) label_replace(up{job=~"%s"}, "alias", "Not available", "instance", ".*")
+            up{job=~"%s", %s} * on(instance) group_left(alias) tnt_info_uptime{job=~"%s", %s} or
+            on(instance) label_replace(up{job=~"%s", %s}, "alias", "Not available", "instance", ".*")
           |||,
-          [job, job, job]
+          [job, utils.generate_labels_string(labels), job, utils.generate_labels_string(labels), job, utils.generate_labels_string(labels)]
         ),
         format='table',
         instant=true,
@@ -119,7 +121,6 @@ local prometheus = grafana.prometheus;
     statPanel.new(
       title=(if title != null then title else ''),
       description=description,
-
       datasource=datasource,
       colorMode='value',
       decimals=decimals,
@@ -152,6 +153,7 @@ local prometheus = grafana.prometheus;
     datasource=null,
     measurement=null,
     job=null,
+    labels=null,
   ):: overview_stat(
     title=title,
     description=description,
@@ -162,7 +164,7 @@ local prometheus = grafana.prometheus;
     stat_title='Total instances running:',
     decimals=0,
     unit='none',
-    expr=std.format('sum(up{job=~"%s"})', job),
+    expr=std.format('sum(up{job=~"%s", %s})', [job, utils.generate_labels_string(labels)]),
   ) { gridPos: { w: 6, h: 3 } },
 
   memory_used_stat(
@@ -182,6 +184,7 @@ local prometheus = grafana.prometheus;
     datasource=null,
     measurement=null,
     job=null,
+    labels=null,
   ):: overview_stat(
     title=title,
     description=description,
@@ -192,7 +195,7 @@ local prometheus = grafana.prometheus;
     stat_title='Overall memory used:',
     decimals=2,
     unit='bytes',
-    expr=std.format('sum(tnt_slab_arena_used{job=~"%s"})', job),
+    expr=std.format('sum(tnt_slab_arena_used{job=~"%s", %s})', [job, utils.generate_labels_string(labels)]),
   ) { gridPos: { w: 3, h: 3 } },
 
   memory_reserved_stat(
@@ -211,6 +214,7 @@ local prometheus = grafana.prometheus;
     datasource=null,
     measurement=null,
     job=null,
+    labels=null,
   ):: overview_stat(
     title=title,
     description=description,
@@ -221,7 +225,7 @@ local prometheus = grafana.prometheus;
     stat_title='Overall memory reserved:',
     decimals=2,
     unit='bytes',
-    expr=std.format('sum(tnt_slab_quota_size{job=~"%s"})', job),
+    expr=std.format('sum(tnt_slab_quota_size{job=~"%s", %s})',[job, utils.generate_labels_string(labels)]),
   ) { gridPos: { w: 3, h: 3 } },
 
   space_ops_stat(
@@ -240,6 +244,7 @@ local prometheus = grafana.prometheus;
     datasource=null,
     measurement=null,
     job=null,
+    labels=null,
   ):: overview_stat(
     title=title,
     description=description,
@@ -250,7 +255,7 @@ local prometheus = grafana.prometheus;
     stat_title='Overall space load:',
     decimals=3,
     unit='ops',
-    expr=std.format('sum(rate(tnt_stats_op_total{job=~"%s"}[$__rate_interval]))', [job]),
+    expr=std.format('sum(rate(tnt_stats_op_total{job=~"%s", %s}[$__rate_interval]))', [job, utils.generate_labels_string(labels)]),
   ) { gridPos: { w: 4, h: 5 } },
 
   http_rps_stat(
@@ -269,6 +274,7 @@ local prometheus = grafana.prometheus;
     datasource=null,
     measurement=null,
     job=null,
+    labels=null,
   ):: overview_stat(
     title=title,
     description=description,
@@ -279,7 +285,7 @@ local prometheus = grafana.prometheus;
     stat_title='Overall HTTP load:',
     decimals=3,
     unit='reqps',
-    expr=std.format('sum(rate(http_server_request_latency_count{job=~"%s"}[$__rate_interval]))', [job]),
+    expr=std.format('sum(rate(http_server_request_latency_count{job=~"%s",%s}[$__rate_interval]))', [job, utils.generate_labels_string(labels)]),
   ) { gridPos: { w: 4, h: 5 } },
 
   net_rps_stat(
@@ -297,6 +303,7 @@ local prometheus = grafana.prometheus;
     datasource=null,
     measurement=null,
     job=null,
+    labels=null,
   ):: overview_stat(
     title=title,
     description=description,
@@ -307,7 +314,7 @@ local prometheus = grafana.prometheus;
     stat_title='Overall net load:',
     decimals=3,
     unit='reqps',
-    expr=std.format('sum(rate(tnt_net_requests_total{job=~"%s"}[$__rate_interval]))', [job]),
+    expr=std.format('sum(rate(tnt_net_requests_total{job=~"%s", %s}[$__rate_interval]))', [job, utils.generate_labels_string(labels)]),
   ) { gridPos: { w: 4, h: 5 } },
 
   local cartridge_issues(
@@ -320,6 +327,7 @@ local prometheus = grafana.prometheus;
     job,
     alias,
     level,
+    labels,
   ) = common.default_graph(
     title=title,
     description=description,
@@ -333,7 +341,7 @@ local prometheus = grafana.prometheus;
   ).addTarget(
     if datasource_type == variable.datasource_type.prometheus then
       prometheus.target(
-        expr=std.format('tnt_cartridge_issues{job=~"%s",alias=~"%s",level="%s"}', [job, alias, level]),
+        expr=std.format('tnt_cartridge_issues{job=~"%s",alias=~"%s",level="%s",%s}', [job, alias, level, utils.generate_labels_string(labels)]),
         legendFormat='{{alias}}',
       )
     else if datasource_type == variable.datasource_type.influxdb then
@@ -365,6 +373,7 @@ local prometheus = grafana.prometheus;
     measurement=null,
     job=null,
     alias=null,
+    labels=null,
   ):: cartridge_issues(
     title=title,
     description=description,
@@ -375,6 +384,7 @@ local prometheus = grafana.prometheus;
     job=job,
     alias=alias,
     level='warning',
+    labels=labels,
   ),
 
   cartridge_critical_issues(
@@ -393,6 +403,7 @@ local prometheus = grafana.prometheus;
     measurement=null,
     job=null,
     alias=null,
+    labels=null,
   ):: cartridge_issues(
     title=title,
     description=description,
@@ -403,6 +414,7 @@ local prometheus = grafana.prometheus;
     job=job,
     alias=alias,
     level='critical',
+    labels=labels,
   ),
 
   failovers_per_second(
@@ -419,6 +431,7 @@ local prometheus = grafana.prometheus;
     measurement=null,
     job=null,
     alias=null,
+    labels=null,
   ):: common.default_graph(
     title=title,
     description=description,
@@ -432,6 +445,7 @@ local prometheus = grafana.prometheus;
     policy,
     measurement,
     alias,
+    labels,
   )),
 
   read_only_status(
@@ -449,6 +463,7 @@ local prometheus = grafana.prometheus;
     measurement=null,
     job=null,
     alias=null,
+    labels=null,
   ):: timeseries.new(
     title=title,
     description=description,
@@ -470,7 +485,8 @@ local prometheus = grafana.prometheus;
       policy,
       measurement,
       alias,
-      'last'
+      'last',
+      labels,
     )
   ),
 
@@ -499,6 +515,7 @@ local prometheus = grafana.prometheus;
     measurement=null,
     job=null,
     alias=null,
+    labels=null,
   ):: timeseries.new(
     title=title,
     description=description,
@@ -524,7 +541,8 @@ local prometheus = grafana.prometheus;
       policy,
       measurement,
       alias,
-      'last'
+      'last',
+      labels
     )
   ),
 
@@ -541,6 +559,7 @@ local prometheus = grafana.prometheus;
     measurement=null,
     job=null,
     alias=null,
+    labels=null,
   ):: common.default_graph(
     title=title,
     description=description,
@@ -555,6 +574,7 @@ local prometheus = grafana.prometheus;
     policy,
     measurement,
     alias,
+    labels=labels,
   )),
 
   election_leader(
@@ -570,6 +590,7 @@ local prometheus = grafana.prometheus;
     measurement=null,
     job=null,
     alias=null,
+    labels=null,
   ):: common.default_graph(
     title=title,
     description=description,
@@ -584,6 +605,7 @@ local prometheus = grafana.prometheus;
     policy,
     measurement,
     alias,
+    labels=labels,
   )),
 
   election_term(
@@ -597,6 +619,7 @@ local prometheus = grafana.prometheus;
     measurement=null,
     job=null,
     alias=null,
+    labels=null,
   ):: common.default_graph(
     title=title,
     description=description,
@@ -611,5 +634,6 @@ local prometheus = grafana.prometheus;
     policy,
     measurement,
     alias,
+    labels=labels,
   )),
 }

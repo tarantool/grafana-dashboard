@@ -2,6 +2,7 @@ local grafana = import 'grafonnet/grafana.libsonnet';
 
 local common = import 'dashboard/panels/common.libsonnet';
 local variable = import 'dashboard/variable.libsonnet';
+local utils = import 'dashboard/utils.libsonnet';
 
 local influxdb = grafana.influxdb;
 local prometheus = grafana.prometheus;
@@ -19,7 +20,8 @@ local prometheus = grafana.prometheus;
     job=null,
     alias=null,
     metric_name=null,
-    engine=null
+    engine=null,
+    labels=null,
   ) = common.default_graph(
     title=title,
     description=description,
@@ -32,7 +34,7 @@ local prometheus = grafana.prometheus;
   ).addTarget(
     if datasource_type == variable.datasource_type.prometheus then
       prometheus.target(
-        expr=std.format('%s{job=~"%s", alias=~"%s", engine="%s"}', [metric_name, job, alias, engine]),
+        expr=std.format('%s{job=~"%s",alias=~"%s", engine="%s", %s}', [metric_name,alias, job, engine, utils.generate_labels_string(labels)]),
         legendFormat='{{alias}} — {{name}}',
       )
     else if datasource_type == variable.datasource_type.influxdb then
@@ -60,6 +62,7 @@ local prometheus = grafana.prometheus;
     measurement=null,
     job=null,
     alias=null,
+    labels=null,
   ):: count(
     title=title,
     description=description,
@@ -70,7 +73,8 @@ local prometheus = grafana.prometheus;
     job=job,
     alias=alias,
     metric_name='tnt_space_len',
-    engine='memtx'
+    engine='memtx',
+    labels=labels,
   ),
 
   vinyl_count(
@@ -82,7 +86,7 @@ local prometheus = grafana.prometheus;
       to enable it you must set global variable
       include_vinyl_count to true. Beware that
       count() operation scans the space and may
-      slow down your app. 
+      slow down your app.
 
       Panel works with `metrics >= 0.13.0`.
     |||,
@@ -92,6 +96,7 @@ local prometheus = grafana.prometheus;
     measurement=null,
     job=null,
     alias=null,
+    labels=null,
   ):: count(
     title=title,
     description=description,
@@ -102,7 +107,8 @@ local prometheus = grafana.prometheus;
     job=job,
     alias=alias,
     metric_name='tnt_vinyl_tuples',
-    engine='vinyl'
+    engine='vinyl',
+    labels=labels,
   ),
 
   local bsize_memtx(
@@ -115,6 +121,7 @@ local prometheus = grafana.prometheus;
     job=null,
     alias=null,
     metric_name=null,
+    labels=null,
   ) = common.default_graph(
     title=title,
     description=description,
@@ -125,7 +132,7 @@ local prometheus = grafana.prometheus;
   ).addTarget(
     if datasource_type == variable.datasource_type.prometheus then
       prometheus.target(
-        expr=std.format('%s{job=~"%s", alias=~"%s", engine="memtx"}', [metric_name, job, alias]),
+        expr=std.format('%s{job=~"%s",alias=~"%s", engine="memtx",%s}', [metric_name, job, alias, utils.generate_labels_string(labels)]),
         legendFormat='{{alias}} — {{name}}',
       )
     else if datasource_type == variable.datasource_type.influxdb then
@@ -164,6 +171,7 @@ local prometheus = grafana.prometheus;
     measurement=null,
     job=null,
     alias=null,
+    labels=null,
   ):: bsize_memtx(
     title=title,
     description=description,
@@ -173,7 +181,8 @@ local prometheus = grafana.prometheus;
     measurement=measurement,
     job=job,
     alias=alias,
-    metric_name='tnt_space_bsize'
+    metric_name='tnt_space_bsize',
+    labels=labels,
   ),
 
   space_index_bsize(
@@ -190,6 +199,7 @@ local prometheus = grafana.prometheus;
     measurement=null,
     job=null,
     alias=null,
+    labels=null,
   ):: common.default_graph(
     title=title,
     description=description,
@@ -200,7 +210,7 @@ local prometheus = grafana.prometheus;
   ).addTarget(
     if datasource_type == variable.datasource_type.prometheus then
       prometheus.target(
-        expr=std.format('tnt_space_index_bsize{job=~"%s", alias=~"%s"}', [job, alias]),
+        expr=std.format('tnt_space_index_bsize{job=~"%s",alias=~"%s", %s}', [job, alias, utils.generate_labels_string(labels)]),
         legendFormat='{{alias}} — {{name}} ({{index_name}})',
       )
     else if datasource_type == variable.datasource_type.influxdb then
@@ -238,6 +248,7 @@ local prometheus = grafana.prometheus;
     measurement=null,
     job=null,
     alias=null,
+    labels=null,
   ):: bsize_memtx(
     title=title,
     description=description,
@@ -247,6 +258,7 @@ local prometheus = grafana.prometheus;
     measurement=measurement,
     job=job,
     alias=alias,
-    metric_name='tnt_space_total_bsize'
+    metric_name='tnt_space_total_bsize',
+    labels=labels,
   ),
 }

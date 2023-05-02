@@ -3,11 +3,12 @@ POLICY ?= autogen
 MEASUREMENT ?= tarantool_http
 WITH_INSTANCE_VARIABLE ?= FALSE
 OUTPUT_STATIC_DASHBOARD ?= dashboard.json
-TITLE ?= 
+TITLE ?=
+LABELS ?=
 
 .PHONY: build-deps
 build-deps:
-	go install github.com/google/go-jsonnet/cmd/jsonnet@v0.19.1
+	go install github.com/google/go-jsonnet/cmd/jsonnet@v0.20.0
 	go install github.com/jsonnet-bundler/jsonnet-bundler/cmd/jb@v0.5.1
 	jb install
 
@@ -18,6 +19,7 @@ ifndef DATASOURCE
 		false
 endif
 	# JOB is optional, default is "tarantool"
+	# LABELS is optional, default is ""
 	# WITH_INSTANCE_VARIABLE is optional, default is "FALSE"
 	# TITLE is optional, default is "Tarantool dashboard" for plain dashboard
 	#                    and "Tarantool Data Grid dashboard" for TDG one
@@ -25,7 +27,8 @@ endif
 		--ext-str DATASOURCE=${DATASOURCE} \
 		--ext-str JOB=${JOB} \
 		--ext-str WITH_INSTANCE_VARIABLE=${WITH_INSTANCE_VARIABLE} \
-		--ext-str TITLE='${TITLE}' \
+		--ext-str TITLE="${TITLE}" \
+		--ext-str LABELS='${LABELS}' \
 		dashboard/build/prometheus/${DASHBOARD_BUILD_SOURCE} -o ${OUTPUT_STATIC_DASHBOARD}
 
 .PHONY: build-static-prometheus
