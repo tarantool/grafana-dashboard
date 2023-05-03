@@ -998,6 +998,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       measurement=measurement,
       job=job,
       alias=alias,
+      labels=labels,
     ),
 
     vinyl.index_data(
@@ -1007,6 +1008,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       measurement=measurement,
       job=job,
       alias=alias,
+      labels=labels,
     ),
 
     vinyl.tuples_cache_memory(
@@ -1016,6 +1018,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       measurement=measurement,
       job=job,
       alias=alias,
+      labels=labels,
     ),
 
     vinyl.index_memory(
@@ -1025,6 +1028,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       measurement=measurement,
       job=job,
       alias=alias,
+      labels=labels,
     ),
 
     vinyl.bloom_filter_memory(
@@ -1034,6 +1038,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       measurement=measurement,
       job=job,
       alias=alias,
+      labels=labels,
     ),
 
     vinyl.regulator_dump_bandwidth(
@@ -1043,6 +1048,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       measurement=measurement,
       job=job,
       alias=alias,
+      labels=labels,
     ),
 
     vinyl.regulator_write_rate(
@@ -1052,6 +1058,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       measurement=measurement,
       job=job,
       alias=alias,
+      labels=labels,
     ),
 
     vinyl.regulator_rate_limit(
@@ -1061,6 +1068,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       measurement=measurement,
       job=job,
       alias=alias,
+      labels=labels,
     ),
 
     vinyl.memory_level0(
@@ -1070,6 +1078,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       measurement=measurement,
       job=job,
       alias=alias,
+      labels=labels,
     ),
 
     vinyl.regulator_dump_watermark(
@@ -1079,6 +1088,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       measurement=measurement,
       job=job,
       alias=alias,
+      labels=labels,
     ),
 
     vinyl.regulator_blocked_writers(
@@ -1088,6 +1098,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       measurement=measurement,
       job=job,
       alias=alias,
+      labels=labels,
     ),
 
     vinyl.tx_commit_rate(
@@ -1097,6 +1108,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       measurement=measurement,
       job=job,
       alias=alias,
+      labels=labels,
     ),
 
     vinyl.tx_rollback_rate(
@@ -1106,6 +1118,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       measurement=measurement,
       job=job,
       alias=alias,
+      labels=labels,
     ),
 
     vinyl.tx_conflicts_rate(
@@ -1115,6 +1128,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       measurement=measurement,
       job=job,
       alias=alias,
+      labels=labels,
     ),
 
     vinyl.tx_read_views(
@@ -1124,6 +1138,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       measurement=measurement,
       job=job,
       alias=alias,
+      labels=labels,
     ),
 
     vinyl.scheduler_tasks_inprogress(
@@ -1133,6 +1148,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       measurement=measurement,
       job=job,
       alias=alias,
+      labels=labels,
     ),
 
     vinyl.scheduler_tasks_failed_rate(
@@ -1142,6 +1158,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       measurement=measurement,
       job=job,
       alias=alias,
+      labels=labels,
     ),
 
     vinyl.scheduler_dump_time_rate(
@@ -1151,6 +1168,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       measurement=measurement,
       job=job,
       alias=alias,
+      labels=labels,
     ),
 
     vinyl.scheduler_dump_count_rate(
@@ -1160,6 +1178,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       measurement=measurement,
       job=job,
       alias=alias,
+      labels=labels,
     ),
   ],
 
@@ -1673,6 +1692,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       measurement=measurement,
       job=job,
       alias=alias,
+      labels=labels,
     ),
 
     crud.select_success_latency(
@@ -1682,6 +1702,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       measurement=measurement,
       job=job,
       alias=alias,
+      labels=labels,
     ),
 
     crud.select_error_rps(
@@ -1691,6 +1712,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       measurement=measurement,
       job=job,
       alias=alias,
+      labels=labels,
     ),
 
     crud.select_error_latency(
@@ -1700,6 +1722,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       measurement=measurement,
       job=job,
       alias=alias,
+      labels=labels,
     ),
 
     crud.tuples_fetched_panel(
@@ -1709,6 +1732,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       measurement=measurement,
       job=job,
       alias=alias,
+      labels=labels,
     ),
 
     crud.tuples_lookup_panel(
@@ -1718,6 +1742,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       measurement=measurement,
       job=job,
       alias=alias,
+      labels=labels,
     ),
 
     crud.map_reduces(
@@ -1727,6 +1752,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       measurement=measurement,
       job=job,
       alias=alias,
+      labels=labels,
     ),
 
     crud.insert_success_rps(
@@ -1736,6 +1762,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       measurement=measurement,
       job=job,
       alias=alias,
+      labels=labels,
     ),
 
     crud.insert_success_latency(
@@ -1745,6 +1772,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       measurement=measurement,
       job=job,
       alias=alias,
+      labels=labels,
     ),
 
     crud.insert_error_rps(
@@ -1754,6 +1782,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       measurement=measurement,
       job=job,
       alias=alias,
+      labels=labels,
     ),
 
     crud.insert_error_latency(
@@ -1763,6 +1792,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       measurement=measurement,
       job=job,
       alias=alias,
+      labels=labels,
     ),
 
     crud.insert_many_success_rps(
@@ -1772,6 +1802,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       measurement=measurement,
       job=job,
       alias=alias,
+      labels=labels,
     ),
 
     crud.insert_many_success_latency(
@@ -1781,6 +1812,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       measurement=measurement,
       job=job,
       alias=alias,
+      labels=labels,
     ),
 
     crud.insert_many_error_rps(
@@ -1790,6 +1822,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       measurement=measurement,
       job=job,
       alias=alias,
+      labels=labels,
     ),
 
     crud.insert_many_error_latency(
@@ -1799,6 +1832,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       measurement=measurement,
       job=job,
       alias=alias,
+      labels=labels,
     ),
 
     crud.replace_success_rps(
@@ -1808,6 +1842,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       measurement=measurement,
       job=job,
       alias=alias,
+      labels=labels,
     ),
 
     crud.replace_success_latency(
@@ -1817,6 +1852,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       measurement=measurement,
       job=job,
       alias=alias,
+      labels=labels,
     ),
 
     crud.replace_error_rps(
@@ -1826,6 +1862,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       measurement=measurement,
       job=job,
       alias=alias,
+      labels=labels,
     ),
 
     crud.replace_error_latency(
@@ -1835,6 +1872,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       measurement=measurement,
       job=job,
       alias=alias,
+      labels=labels,
     ),
 
     crud.replace_many_success_rps(
@@ -1844,6 +1882,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       measurement=measurement,
       job=job,
       alias=alias,
+      labels=labels,
     ),
 
     crud.replace_many_success_latency(
@@ -1853,6 +1892,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       measurement=measurement,
       job=job,
       alias=alias,
+      labels=labels,
     ),
 
     crud.replace_many_error_rps(
@@ -1862,6 +1902,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       measurement=measurement,
       job=job,
       alias=alias,
+      labels=labels,
     ),
 
     crud.replace_many_error_latency(
@@ -1871,6 +1912,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       measurement=measurement,
       job=job,
       alias=alias,
+      labels=labels,
     ),
 
     crud.upsert_success_rps(
@@ -1880,6 +1922,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       measurement=measurement,
       job=job,
       alias=alias,
+      labels=labels,
     ),
 
     crud.upsert_success_latency(
@@ -1889,6 +1932,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       measurement=measurement,
       job=job,
       alias=alias,
+      labels=labels,
     ),
 
     crud.upsert_error_rps(
@@ -1898,6 +1942,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       measurement=measurement,
       job=job,
       alias=alias,
+      labels=labels,
     ),
 
     crud.upsert_error_latency(
@@ -1907,6 +1952,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       measurement=measurement,
       job=job,
       alias=alias,
+      labels=labels,
     ),
 
     crud.upsert_many_success_rps(
@@ -1916,6 +1962,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       measurement=measurement,
       job=job,
       alias=alias,
+      labels=labels,
     ),
 
     crud.upsert_many_success_latency(
@@ -1925,6 +1972,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       measurement=measurement,
       job=job,
       alias=alias,
+      labels=labels,
     ),
 
     crud.upsert_many_error_rps(
@@ -1934,6 +1982,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       measurement=measurement,
       job=job,
       alias=alias,
+      labels=labels,
     ),
 
     crud.upsert_many_error_latency(
@@ -1943,6 +1992,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       measurement=measurement,
       job=job,
       alias=alias,
+      labels=labels,
     ),
 
     crud.update_success_rps(
@@ -1952,6 +2002,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       measurement=measurement,
       job=job,
       alias=alias,
+      labels=labels,
     ),
 
     crud.update_success_latency(
@@ -1961,6 +2012,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       measurement=measurement,
       job=job,
       alias=alias,
+      labels=labels,
     ),
 
     crud.update_error_rps(
@@ -1970,6 +2022,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       measurement=measurement,
       job=job,
       alias=alias,
+      labels=labels,
     ),
 
     crud.update_error_latency(
@@ -1979,6 +2032,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       measurement=measurement,
       job=job,
       alias=alias,
+      labels=labels,
     ),
 
     crud.delete_success_rps(
@@ -1988,6 +2042,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       measurement=measurement,
       job=job,
       alias=alias,
+      labels=labels,
     ),
 
     crud.delete_success_latency(
@@ -1997,6 +2052,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       measurement=measurement,
       job=job,
       alias=alias,
+      labels=labels,
     ),
 
     crud.delete_error_rps(
@@ -2006,6 +2062,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       measurement=measurement,
       job=job,
       alias=alias,
+      labels=labels,
     ),
 
     crud.delete_error_latency(
@@ -2015,6 +2072,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       measurement=measurement,
       job=job,
       alias=alias,
+      labels=labels,
     ),
 
     crud.count_success_rps(
@@ -2024,6 +2082,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       measurement=measurement,
       job=job,
       alias=alias,
+      labels=labels,
     ),
 
     crud.count_success_latency(
@@ -2033,6 +2092,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       measurement=measurement,
       job=job,
       alias=alias,
+      labels=labels,
     ),
 
     crud.count_error_rps(
@@ -2042,6 +2102,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       measurement=measurement,
       job=job,
       alias=alias,
+      labels=labels,
     ),
 
     crud.count_error_latency(
@@ -2051,6 +2112,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       measurement=measurement,
       job=job,
       alias=alias,
+      labels=labels,
     ),
 
     crud.get_success_rps(
@@ -2060,6 +2122,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       measurement=measurement,
       job=job,
       alias=alias,
+      labels=labels,
     ),
 
     crud.get_success_latency(
@@ -2069,6 +2132,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       measurement=measurement,
       job=job,
       alias=alias,
+      labels=labels,
     ),
 
     crud.get_error_rps(
@@ -2078,6 +2142,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       measurement=measurement,
       job=job,
       alias=alias,
+      labels=labels,
     ),
 
     crud.get_error_latency(
@@ -2087,6 +2152,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       measurement=measurement,
       job=job,
       alias=alias,
+      labels=labels,
     ),
 
     crud.borders_success_rps(
@@ -2096,6 +2162,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       measurement=measurement,
       job=job,
       alias=alias,
+      labels=labels,
     ),
 
     crud.borders_success_latency(
@@ -2105,6 +2172,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       measurement=measurement,
       job=job,
       alias=alias,
+      labels=labels,
     ),
 
     crud.borders_error_rps(
@@ -2114,6 +2182,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       measurement=measurement,
       job=job,
       alias=alias,
+      labels=labels,
     ),
 
     crud.borders_error_latency(
@@ -2123,6 +2192,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       measurement=measurement,
       job=job,
       alias=alias,
+      labels=labels,
     ),
 
     crud.len_success_rps(
@@ -2132,6 +2202,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       measurement=measurement,
       job=job,
       alias=alias,
+      labels=labels,
     ),
 
     crud.len_success_latency(
@@ -2141,6 +2212,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       measurement=measurement,
       job=job,
       alias=alias,
+      labels=labels,
     ),
 
     crud.len_error_rps(
@@ -2150,6 +2222,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       measurement=measurement,
       job=job,
       alias=alias,
+      labels=labels,
     ),
 
     crud.len_error_latency(
@@ -2159,6 +2232,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       measurement=measurement,
       job=job,
       alias=alias,
+      labels=labels,
     ),
 
     crud.truncate_success_rps(
@@ -2168,6 +2242,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       measurement=measurement,
       job=job,
       alias=alias,
+      labels=labels,
     ),
 
     crud.truncate_success_latency(
@@ -2177,6 +2252,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       measurement=measurement,
       job=job,
       alias=alias,
+      labels=labels,
     ),
 
     crud.truncate_error_rps(
@@ -2186,6 +2262,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       measurement=measurement,
       job=job,
       alias=alias,
+      labels=labels,
     ),
 
     crud.truncate_error_latency(
@@ -2195,6 +2272,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       measurement=measurement,
       job=job,
       alias=alias,
+      labels=labels,
     ),
   ],
 
@@ -2208,6 +2286,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       measurement=measurement,
       job=job,
       alias=alias,
+      labels=labels,
     ),
 
     expirationd.tuples_expired(
@@ -2217,6 +2296,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       measurement=measurement,
       job=job,
       alias=alias,
+      labels=labels,
     ),
 
     expirationd.restarts(
@@ -2226,6 +2306,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       measurement=measurement,
       job=job,
       alias=alias,
+      labels=labels,
     ),
 
     expirationd.operation_time(
@@ -2235,6 +2316,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
       measurement=measurement,
       job=job,
       alias=alias,
+      labels=labels,
     ),
   ],
 

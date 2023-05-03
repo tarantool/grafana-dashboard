@@ -1,6 +1,7 @@
 local grafana = import 'grafonnet/grafana.libsonnet';
 
 local common_utils = import 'dashboard/panels/common.libsonnet';
+local utils = import 'dashboard/utils.libsonnet';
 local variable = import 'dashboard/variable.libsonnet';
 
 local influxdb = grafana.influxdb;
@@ -16,10 +17,11 @@ local prometheus = grafana.prometheus;
     policy=null,
     measurement=null,
     alias=null,
+    labels=null,
   ) =
     if datasource_type == variable.datasource_type.prometheus then
       prometheus.target(
-        expr=std.format('%s{job=~"%s",alias=~"%s"}', [metric_name, job, alias]),
+        expr=std.format('%s{job=~"%s",alias=~"%s"%s}', [metric_name, job, alias, utils.labels_suffix(labels)]),
         legendFormat='{{name}} — {{alias}}',
       )
     else if datasource_type == variable.datasource_type.influxdb then
@@ -43,11 +45,12 @@ local prometheus = grafana.prometheus;
     policy=null,
     measurement=null,
     alias=null,
+    labels=null,
   ) =
     if datasource_type == variable.datasource_type.prometheus then
       prometheus.target(
-        expr=std.format('rate(%s{job=~"%s",alias=~"%s"}[$__rate_interval])',
-                        [metric_name, job, alias]),
+        expr=std.format('rate(%s{job=~"%s",alias=~"%s"%s}[$__rate_interval])',
+                        [metric_name, job, alias, utils.labels_suffix(labels)]),
         legendFormat='{{name}} — {{alias}}',
       )
     else if datasource_type == variable.datasource_type.influxdb then
@@ -76,6 +79,7 @@ local prometheus = grafana.prometheus;
     measurement=null,
     job=null,
     alias=null,
+    labels=null,
   ):: common_utils.default_graph(
     title=title,
     description=description,
@@ -89,6 +93,7 @@ local prometheus = grafana.prometheus;
     policy,
     measurement,
     alias,
+    labels,
   )),
 
   tuples_expired(
@@ -103,6 +108,7 @@ local prometheus = grafana.prometheus;
     measurement=null,
     job=null,
     alias=null,
+    labels=null,
   ):: common_utils.default_graph(
     title=title,
     description=description,
@@ -116,6 +122,7 @@ local prometheus = grafana.prometheus;
     policy,
     measurement,
     alias,
+    labels,
   )),
 
   restarts(
@@ -130,6 +137,7 @@ local prometheus = grafana.prometheus;
     measurement=null,
     job=null,
     alias=null,
+    labels=null,
   ):: common_utils.default_graph(
     title=title,
     description=description,
@@ -143,6 +151,7 @@ local prometheus = grafana.prometheus;
     policy,
     measurement,
     alias,
+    labels,
   )),
 
   operation_time(
@@ -156,6 +165,7 @@ local prometheus = grafana.prometheus;
     measurement=null,
     job=null,
     alias=null,
+    labels=null,
   ):: common_utils.default_graph(
     title=title,
     description=description,
@@ -169,5 +179,6 @@ local prometheus = grafana.prometheus;
     policy,
     measurement,
     alias,
+    labels,
   )),
 }

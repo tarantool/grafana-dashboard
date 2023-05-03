@@ -1,6 +1,7 @@
 local grafana = import 'grafonnet/grafana.libsonnet';
 
 local common = import 'dashboard/panels/common.libsonnet';
+local utils = import 'dashboard/utils.libsonnet';
 local variable = import 'dashboard/variable.libsonnet';
 
 local influxdb = grafana.influxdb;
@@ -39,6 +40,7 @@ local operation_rps_template(
   alias=null,
   operation=null,
   status=null,
+  labels=null
       ) = common.default_graph(
   title=(
     if title != null then
@@ -58,8 +60,8 @@ local operation_rps_template(
   if datasource_type == variable.datasource_type.prometheus then
     prometheus.target(
       expr=std.format(
-        'rate(tnt_crud_stats_count{job=~"%s",alias=~"%s",operation="%s",status="%s"}[$__rate_interval])',
-        [job, alias, operation, status]
+        'rate(tnt_crud_stats_count{job=~"%s",alias=~"%s",operation="%s",status="%s"%s}[$__rate_interval])',
+        [job, alias, operation, status, utils.labels_suffix(labels)]
       ),
       legendFormat='{{alias}} — {{name}}'
     )
@@ -88,6 +90,7 @@ local operation_latency_template(
   alias=null,
   operation=null,
   status=null,
+  labels=null,
       ) = common.default_graph(
   title=(
     if title != null then
@@ -108,8 +111,8 @@ local operation_latency_template(
   if datasource_type == variable.datasource_type.prometheus then
     prometheus.target(
       expr=std.format(
-        'tnt_crud_stats{job=~"%s",alias=~"%s",operation="%s",status="%s",quantile="0.99"}',
-        [job, alias, operation, status]
+        'tnt_crud_stats{job=~"%s",alias=~"%s",operation="%s",status="%s",quantile="0.99"%s}',
+        [job, alias, operation, status, utils.labels_suffix(labels)]
       ),
       legendFormat='{{alias}} — {{name}}'
     )
@@ -139,6 +142,7 @@ local operation_rps(
   alias=null,
   operation=null,
   status=null,
+  labels=null,
       ) = operation_rps_template(
   title=title,
   description=(
@@ -158,6 +162,7 @@ local operation_rps(
   alias=alias,
   operation=operation,
   status=status,
+  labels=labels,
 );
 
 local operation_latency(
@@ -171,6 +176,7 @@ local operation_latency(
   alias=null,
   operation=null,
   status=null,
+  labels=null,
       ) = operation_latency_template(
   title=title,
   description=(
@@ -189,6 +195,7 @@ local operation_latency(
   alias=alias,
   operation=operation,
   status=status,
+  labels=labels,
 );
 
 local operation_rps_object(
@@ -202,6 +209,7 @@ local operation_rps_object(
   alias=null,
   operation=null,
   status=null,
+  labels=null,
       ) = operation_rps_template(
   title=title,
   description=(
@@ -221,6 +229,7 @@ local operation_rps_object(
   alias=alias,
   operation=operation,
   status=status,
+  labels=labels,
 );
 
 local operation_latency_object(
@@ -234,6 +243,7 @@ local operation_latency_object(
   alias=null,
   operation=null,
   status=null,
+  labels=labels,
       ) = operation_latency_template(
   title=title,
   description=(
@@ -252,6 +262,7 @@ local operation_latency_object(
   alias=alias,
   operation=operation,
   status=status,
+  labels=labels,
 );
 
 local operation_rps_object_many(
@@ -265,6 +276,7 @@ local operation_rps_object_many(
   alias=null,
   operation_stripped=null,
   status=null,
+  labels=null,
       ) = operation_rps_template(
   title=title,
   description=(
@@ -284,6 +296,7 @@ local operation_rps_object_many(
   alias=alias,
   operation=std.format('%s_many', operation_stripped),
   status=status,
+  labels=labels,
 );
 
 local operation_latency_object_many(
@@ -297,6 +310,7 @@ local operation_latency_object_many(
   alias=null,
   operation_stripped=null,
   status=null,
+  labels=null,
       ) = operation_latency_template(
   title=title,
   description=(
@@ -315,6 +329,7 @@ local operation_latency_object_many(
   alias=alias,
   operation=std.format('%s_many', operation_stripped),
   status=status,
+  labels=labels,
 );
 
 local operation_rps_select(
@@ -327,6 +342,7 @@ local operation_rps_select(
   job=null,
   alias=null,
   status=null,
+  labels=null,
       ) = operation_rps_template(
   title=title,
   description=(
@@ -346,6 +362,7 @@ local operation_rps_select(
   alias=alias,
   operation='select',
   status=status,
+  labels=labels,
 );
 
 local operation_latency_select(
@@ -359,6 +376,7 @@ local operation_latency_select(
   alias=null,
   operation=null,
   status=null,
+  labels=null,
       ) = operation_latency_template(
   title=title,
   description=(
@@ -377,6 +395,7 @@ local operation_latency_select(
   alias=alias,
   operation='select',
   status=status,
+  labels=labels,
 );
 
 local operation_rps_borders(
@@ -389,6 +408,7 @@ local operation_rps_borders(
   job=null,
   alias=null,
   status=null,
+  labels=null,
       ) = operation_rps_template(
   title=title,
   description=(
@@ -408,6 +428,7 @@ local operation_rps_borders(
   alias=alias,
   operation='borders',
   status=status,
+  labels=labels,
 );
 
 local operation_latency_borders(
@@ -421,6 +442,7 @@ local operation_latency_borders(
   alias=null,
   operation=null,
   status=null,
+  labels=null,
       ) = operation_latency_template(
   title=title,
   description=(
@@ -439,6 +461,7 @@ local operation_latency_borders(
   alias=alias,
   operation='borders',
   status=status,
+  labels=labels,
 );
 
 local tuples_panel(
@@ -451,6 +474,7 @@ local tuples_panel(
   job=null,
   alias=null,
   metric_name=null,
+  labels=null,
       ) = common.default_graph(
   title=title,
   description=common.group_by_fill_0_warning(
@@ -467,13 +491,14 @@ local tuples_panel(
     prometheus.target(
       expr=std.format(
         |||
-          rate(%(metric_name)s{job=~"%(job)s",alias=~"%(alias)s", operation="select"}[$__rate_interval]) /
-          (sum without (status) (rate(tnt_crud_stats_count{job=~"%(job)s",operation="select"}[$__rate_interval])))
+          rate(%(metric_name)s{job=~"%(job)s",alias=~"%(alias)s", operation="select"%(labels)s}[$__rate_interval]) /
+          (sum without (status) (rate(tnt_crud_stats_count{job=~"%(job)s",operation="select"%(labels)s}[$__rate_interval])))
         |||,
         {
           metric_name: metric_name,
           job: job,
           alias: alias,
+          labels: labels,
         }
       ),
       legendFormat='{{alias}} — {{name}}'
@@ -517,6 +542,7 @@ local module = {
     measurement=null,
     job=null,
     alias=null,
+    labels=null,
   ):: operation_rps_select(
     title=title,
     description=description,
@@ -527,6 +553,7 @@ local module = {
     job=job,
     alias=alias,
     status='ok',
+    labels=labels,
   ),
 
   select_success_latency(
@@ -538,6 +565,7 @@ local module = {
     measurement=null,
     job=null,
     alias=null,
+    labels=null,
   ):: operation_latency_select(
     title=title,
     description=description,
@@ -548,6 +576,7 @@ local module = {
     job=job,
     alias=alias,
     status='ok',
+    labels=labels,
   ),
 
   select_error_rps(
@@ -559,6 +588,7 @@ local module = {
     measurement=null,
     job=null,
     alias=null,
+    labels=null,
   ):: operation_rps_select(
     title=title,
     description=description,
@@ -569,6 +599,7 @@ local module = {
     job=job,
     alias=alias,
     status='error',
+    labels=labels,
   ),
 
   select_error_latency(
@@ -580,6 +611,7 @@ local module = {
     measurement=null,
     job=null,
     alias=null,
+    labels=null,
   ):: operation_latency_select(
     title=title,
     description=description,
@@ -590,6 +622,7 @@ local module = {
     job=job,
     alias=alias,
     status='error',
+    labels=labels,
   ),
 
   tuples_fetched_panel(
@@ -604,6 +637,7 @@ local module = {
     measurement=null,
     job=null,
     alias=null,
+    labels=null,
   ):: tuples_panel(
     title=title,
     description=description,
@@ -614,6 +648,7 @@ local module = {
     job=job,
     alias=alias,
     metric_name='tnt_crud_tuples_fetched',
+    labels=labels,
   ),
 
   tuples_lookup_panel(
@@ -629,6 +664,7 @@ local module = {
     measurement=null,
     job=null,
     alias=null,
+    labels=null,
   ):: tuples_panel(
     title=title,
     description=description,
@@ -639,6 +675,7 @@ local module = {
     job=job,
     alias=alias,
     metric_name='tnt_crud_tuples_lookup',
+    labels=labels,
   ),
 
   map_reduces(
@@ -654,6 +691,7 @@ local module = {
     measurement=null,
     job=null,
     alias=null,
+    labels=null,
   ):: common.default_graph(
     title=title,
     description=description,
@@ -666,8 +704,8 @@ local module = {
     if datasource_type == variable.datasource_type.prometheus then
       prometheus.target(
         expr=std.format(
-          'rate(tnt_crud_map_reduces{job=~"%s",alias=~"%s",operation="select"}[$__rate_interval])',
-          [job, alias],
+          'rate(tnt_crud_map_reduces{job=~"%s",alias=~"%s",operation="select"%s}[$__rate_interval])',
+          [job, alias, labels],
         ),
         legendFormat='{{alias}} — {{name}}'
       )
@@ -693,6 +731,7 @@ local module = {
     measurement=null,
     job=null,
     alias=null,
+    labels=null,
   ):: operation_rps_borders(
     title=title,
     description=description,
@@ -703,6 +742,7 @@ local module = {
     job=job,
     alias=alias,
     status='ok',
+    labels=labels,
   ),
 
   borders_success_latency(
@@ -714,6 +754,7 @@ local module = {
     measurement=null,
     job=null,
     alias=null,
+    labels=null,
   ):: operation_latency_borders(
     title=title,
     description=description,
@@ -724,6 +765,7 @@ local module = {
     job=job,
     alias=alias,
     status='ok',
+    labels=labels,
   ),
 
   borders_error_rps(
@@ -735,6 +777,7 @@ local module = {
     measurement=null,
     job=null,
     alias=null,
+    labels=null,
   ):: operation_rps_borders(
     title=title,
     description=description,
@@ -745,6 +788,7 @@ local module = {
     job=job,
     alias=alias,
     status='error',
+    labels=labels,
   ),
 
   borders_error_latency(
@@ -756,6 +800,7 @@ local module = {
     measurement=null,
     job=null,
     alias=null,
+    labels=null,
   ):: operation_latency_borders(
     title=title,
     description=description,
@@ -766,6 +811,7 @@ local module = {
     job=job,
     alias=alias,
     status='error',
+    labels=labels,
   ),
 };
 
@@ -785,6 +831,7 @@ local module_with_object_panels = std.foldl(function(_module, operation) (
       measurement=null,
       job=null,
       alias=null,
+      labels=null,
     ):: operation_rps_object(
       title=title,
       description=description,
@@ -796,6 +843,7 @@ local module_with_object_panels = std.foldl(function(_module, operation) (
       alias=alias,
       operation=operation,
       status='ok',
+      labels=labels,
     ),
 
     [std.format('%s_success_latency', operation)](
@@ -807,6 +855,7 @@ local module_with_object_panels = std.foldl(function(_module, operation) (
       measurement=null,
       job=null,
       alias=null,
+      labels=null,
     ):: operation_latency_object(
       title=title,
       description=description,
@@ -818,6 +867,7 @@ local module_with_object_panels = std.foldl(function(_module, operation) (
       alias=alias,
       operation=operation,
       status='ok',
+      labels=labels,
     ),
 
     [std.format('%s_error_rps', operation)](
@@ -829,6 +879,7 @@ local module_with_object_panels = std.foldl(function(_module, operation) (
       measurement=null,
       job=null,
       alias=null,
+      labels=null,
     ):: operation_rps_object(
       title=title,
       description=description,
@@ -840,6 +891,7 @@ local module_with_object_panels = std.foldl(function(_module, operation) (
       alias=alias,
       operation=operation,
       status='error',
+      labels=labels,
     ),
 
     [std.format('%s_error_latency', operation)](
@@ -851,6 +903,7 @@ local module_with_object_panels = std.foldl(function(_module, operation) (
       measurement=null,
       job=null,
       alias=null,
+      labels=null,
     ):: operation_latency_object(
       title=title,
       description=description,
@@ -862,6 +915,7 @@ local module_with_object_panels = std.foldl(function(_module, operation) (
       alias=alias,
       operation=operation,
       status='error',
+      labels=labels,
     ),
   }
 ), operations_with_object, module);
@@ -878,6 +932,7 @@ local module_with_object_and_many_panels = std.foldl(function(_module, operation
       measurement=null,
       job=null,
       alias=null,
+      labels=null,
     ):: operation_rps_object_many(
       title=title,
       description=description,
@@ -889,6 +944,7 @@ local module_with_object_and_many_panels = std.foldl(function(_module, operation
       alias=alias,
       operation_stripped=operation_stripped,
       status='ok',
+      labels=labels,
     ),
 
     [std.format('%s_many_success_latency', operation_stripped)](
@@ -900,6 +956,7 @@ local module_with_object_and_many_panels = std.foldl(function(_module, operation
       measurement=null,
       job=null,
       alias=null,
+      labels=null,
     ):: operation_latency_object_many(
       title=title,
       description=description,
@@ -911,6 +968,7 @@ local module_with_object_and_many_panels = std.foldl(function(_module, operation
       alias=alias,
       operation_stripped=operation_stripped,
       status='ok',
+      labels=labels,
     ),
 
     [std.format('%s_many_error_rps', operation_stripped)](
@@ -922,6 +980,7 @@ local module_with_object_and_many_panels = std.foldl(function(_module, operation
       measurement=null,
       job=null,
       alias=null,
+      labels=null,
     ):: operation_rps_object_many(
       title=title,
       description=description,
@@ -933,6 +992,7 @@ local module_with_object_and_many_panels = std.foldl(function(_module, operation
       alias=alias,
       operation_stripped=operation_stripped,
       status='error',
+      labels=labels,
     ),
 
     [std.format('%s_many_error_latency', operation_stripped)](
@@ -944,6 +1004,7 @@ local module_with_object_and_many_panels = std.foldl(function(_module, operation
       measurement=null,
       job=null,
       alias=null,
+      labels=null,
     ):: operation_latency_object_many(
       title=title,
       description=description,
@@ -955,6 +1016,7 @@ local module_with_object_and_many_panels = std.foldl(function(_module, operation
       alias=alias,
       operation_stripped=operation_stripped,
       status='error',
+      labels=labels,
     ),
   }
 ), operations_stripped_with_object_many, module_with_object_panels);
@@ -971,6 +1033,7 @@ std.foldl(function(_module, operation) (
       measurement=null,
       job=null,
       alias=null,
+      labels=null,
     ):: operation_rps(
       title=title,
       description=description,
@@ -982,6 +1045,7 @@ std.foldl(function(_module, operation) (
       alias=alias,
       operation=operation,
       status='ok',
+      labels=labels,
     ),
 
     [std.format('%s_success_latency', operation)](
@@ -993,6 +1057,7 @@ std.foldl(function(_module, operation) (
       measurement=null,
       job=null,
       alias=null,
+      labels=null,
     ):: operation_latency(
       title=title,
       description=description,
@@ -1004,6 +1069,7 @@ std.foldl(function(_module, operation) (
       alias=alias,
       operation=operation,
       status='ok',
+      labels=labels,
     ),
 
     [std.format('%s_error_rps', operation)](
@@ -1015,6 +1081,7 @@ std.foldl(function(_module, operation) (
       measurement=null,
       job=null,
       alias=null,
+      labels=null,
     ):: operation_rps(
       title=title,
       description=description,
@@ -1026,6 +1093,7 @@ std.foldl(function(_module, operation) (
       alias=alias,
       operation=operation,
       status='error',
+      labels=labels,
     ),
 
     [std.format('%s_error_latency', operation)](
@@ -1037,6 +1105,7 @@ std.foldl(function(_module, operation) (
       measurement=null,
       job=null,
       alias=null,
+      labels=null,
     ):: operation_latency(
       title=title,
       description=description,
@@ -1048,6 +1117,7 @@ std.foldl(function(_module, operation) (
       alias=alias,
       operation=operation,
       status='error',
+      labels=labels,
     ),
   }
 ), operations_without_object, module_with_object_and_many_panels)
