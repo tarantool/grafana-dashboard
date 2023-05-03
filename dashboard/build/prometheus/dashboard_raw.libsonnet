@@ -9,149 +9,63 @@ function(
   job,
   alias,
   title='',
-) dashboard.new(
-  grafana.dashboard.new(
-    // Cannot use in-built means to work with defaults due to possible ext vars.
-    title=(if title != '' then title else 'Tarantool dashboard'),
-    description='Dashboard for Tarantool application and database server monitoring, based on grafonnet library.',
-    editable=true,
-    schemaVersion=21,
-    time_from='now-3h',
-    time_to='now',
-    refresh='30s',
-    tags=['tarantool'],
-  ).addRequired(
-    type='grafana',
-    id='grafana',
-    name='Grafana',
-    version='8.0.0'
-  ).addRequired(
-    type='panel',
-    id='graph',
-    name='Graph',
-    version=''
-  ).addRequired(
-    type='panel',
-    id='timeseries',
-    name='Timeseries',
-    version=''
-  ).addRequired(
-    type='panel',
-    id='text',
-    name='Text',
-    version=''
-  ).addRequired(
-    type='panel',
-    id='stat',
-    name='Stat',
-    version='',
-  ).addRequired(
-    type='panel',
-    id='table',
-    name='Table',
-    version='',
-  ).addRequired(
-    type='datasource',
-    id='prometheus',
-    name='Prometheus',
-    version='1.0.0'
-  )
-).addPanels(
-  section.cluster_prometheus(
-    datasource_type=variable.datasource_type.prometheus,
-    datasource=datasource,
-    job=job,
-    alias=alias,
-  )
-).addPanels(
-  section.replication(
-    datasource_type=variable.datasource_type.prometheus,
-    datasource=datasource,
-    job=job,
-    alias=alias,
-  )
-).addPanels(
-  section.http(
-    datasource_type=variable.datasource_type.prometheus,
-    datasource=datasource,
-    job=job,
-    alias=alias,
-  )
-).addPanels(
-  section.net(
-    datasource_type=variable.datasource_type.prometheus,
-    datasource=datasource,
-    job=job,
-    alias=alias,
-  )
-).addPanels(
-  section.slab(
-    datasource_type=variable.datasource_type.prometheus,
-    datasource=datasource,
-    job=job,
-    alias=alias,
-  )
-).addPanels(
-  section.mvcc(
-    datasource_type=variable.datasource_type.prometheus,
-    datasource=datasource,
-    job=job,
-    alias=alias,
-  )
-).addPanels(
-  section.space(
-    datasource_type=variable.datasource_type.prometheus,
-    datasource=datasource,
-    job=job,
-    alias=alias,
-  )
-).addPanels(
-  section.vinyl(
-    datasource_type=variable.datasource_type.prometheus,
-    datasource=datasource,
-    job=job,
-    alias=alias,
-  )
-).addPanels(
-  section.cpu(
-    datasource_type=variable.datasource_type.prometheus,
-    datasource=datasource,
-    job=job,
-    alias=alias,
-  )
-).addPanels(
-  section.runtime(
-    datasource_type=variable.datasource_type.prometheus,
-    datasource=datasource,
-    job=job,
-    alias=alias,
-  )
-).addPanels(
-  section.luajit(
-    datasource_type=variable.datasource_type.prometheus,
-    datasource=datasource,
-    job=job,
-    alias=alias,
-  )
-).addPanels(
-  section.operations(
-    datasource_type=variable.datasource_type.prometheus,
-    datasource=datasource,
-    job=job,
-    alias=alias,
-  )
-).addPanels(
-  section.crud(
-    datasource_type=variable.datasource_type.prometheus,
-    datasource=datasource,
-    job=job,
-    alias=alias,
-  )
-).addPanels(
-  section.expirationd(
-    datasource_type=variable.datasource_type.prometheus,
-    datasource=datasource,
-    job=job,
-    alias=alias,
+  sections=[],
+) std.foldl(
+  function(_dashboard, _s) (
+    _dashboard.addPanels(section[_s](
+      datasource_type=variable.datasource_type.prometheus,
+      datasource=datasource,
+      job=job,
+      alias=alias,
+    ))
+  ),
+  sections,
+  dashboard.new(
+    grafana.dashboard.new(
+      // Cannot use in-built means to work with defaults due to possible ext vars.
+      title=(if title != '' then title else 'Tarantool dashboard'),
+      description='Dashboard for Tarantool application and database server monitoring, based on grafonnet library.',
+      editable=true,
+      schemaVersion=21,
+      time_from='now-3h',
+      time_to='now',
+      refresh='30s',
+      tags=['tarantool'],
+    ).addRequired(
+      type='grafana',
+      id='grafana',
+      name='Grafana',
+      version='8.0.0'
+    ).addRequired(
+      type='panel',
+      id='graph',
+      name='Graph',
+      version=''
+    ).addRequired(
+      type='panel',
+      id='timeseries',
+      name='Timeseries',
+      version=''
+    ).addRequired(
+      type='panel',
+      id='text',
+      name='Text',
+      version=''
+    ).addRequired(
+      type='panel',
+      id='stat',
+      name='Stat',
+      version='',
+    ).addRequired(
+      type='panel',
+      id='table',
+      name='Table',
+      version='',
+    ).addRequired(
+      type='datasource',
+      id='prometheus',
+      name='Prometheus',
+      version='1.0.0'
+    )
   )
 )

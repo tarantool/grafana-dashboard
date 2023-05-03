@@ -3,7 +3,8 @@ POLICY ?= autogen
 MEASUREMENT ?= tarantool_http
 WITH_INSTANCE_VARIABLE ?= FALSE
 OUTPUT_STATIC_DASHBOARD ?= dashboard.json
-TITLE ?= 
+TITLE ?=
+SECTIONS ?=
 
 .PHONY: build-deps
 build-deps:
@@ -21,11 +22,13 @@ endif
 	# WITH_INSTANCE_VARIABLE is optional, default is "FALSE"
 	# TITLE is optional, default is "Tarantool dashboard" for plain dashboard
 	#                    and "Tarantool Data Grid dashboard" for TDG one
+	# SECTIONS is optional, e.g. "http,replication,cpu". Default dashboard will generated with cluster_prometheus, replication, http, net, slab, mvcc, space, vinyl, cpu, luajit, operations, crud, expirationd sections
 	jsonnet -J ./vendor -J . \
 		--ext-str DATASOURCE=${DATASOURCE} \
 		--ext-str JOB=${JOB} \
 		--ext-str WITH_INSTANCE_VARIABLE=${WITH_INSTANCE_VARIABLE} \
 		--ext-str TITLE='${TITLE}' \
+		--ext-str SECTIONS='${SECTIONS}' \
 		dashboard/build/prometheus/${DASHBOARD_BUILD_SOURCE} -o ${OUTPUT_STATIC_DASHBOARD}
 
 .PHONY: build-static-prometheus
