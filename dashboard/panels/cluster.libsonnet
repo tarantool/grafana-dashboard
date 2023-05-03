@@ -79,10 +79,10 @@ local prometheus = grafana.prometheus;
       prometheus.target(
         expr=std.format(
           |||
-            up{job=~"%s", %s} * on(instance) group_left(alias) tnt_info_uptime{job=~"%s", %s} or
-            on(instance) label_replace(up{job=~"%s", %s}, "alias", "Not available", "instance", ".*")
-          |||,
-          [job, utils.generate_labels_string(labels), job, utils.generate_labels_string(labels), job, utils.generate_labels_string(labels)]
+            up{job=~"%s"%s} * on(instance) group_left(alias) tnt_info_uptime{job=~"%s"%s} or
+            on(instance) label_replace(up{job=~"%s"%s}, "alias", "Not available", "instance", ".*")
+          |||,  // WARN: custom labels don't work with `up` since it is Prometheus's metric, not application metric
+          [job, utils.labels_suffix(labels), job, utils.labels_suffix(labels), job, utils.labels_suffix(labels)]
         ),
         format='table',
         instant=true,
@@ -164,7 +164,7 @@ local prometheus = grafana.prometheus;
     stat_title='Total instances running:',
     decimals=0,
     unit='none',
-    expr=std.format('sum(up{job=~"%s", %s})', [job, utils.generate_labels_string(labels)]),
+    expr=std.format('sum(up{job=~"%s"%s})', [job, utils.labels_suffix(labels)]),
   ) { gridPos: { w: 6, h: 3 } },
 
   memory_used_stat(
@@ -195,7 +195,7 @@ local prometheus = grafana.prometheus;
     stat_title='Overall memory used:',
     decimals=2,
     unit='bytes',
-    expr=std.format('sum(tnt_slab_arena_used{job=~"%s", %s})', [job, utils.generate_labels_string(labels)]),
+    expr=std.format('sum(tnt_slab_arena_used{job=~"%s"%s})', [job, utils.labels_suffix(labels)]),
   ) { gridPos: { w: 3, h: 3 } },
 
   memory_reserved_stat(
@@ -225,7 +225,7 @@ local prometheus = grafana.prometheus;
     stat_title='Overall memory reserved:',
     decimals=2,
     unit='bytes',
-    expr=std.format('sum(tnt_slab_quota_size{job=~"%s", %s})',[job, utils.generate_labels_string(labels)]),
+    expr=std.format('sum(tnt_slab_quota_size{job=~"%s"%s})', [job, utils.labels_suffix(labels)]),
   ) { gridPos: { w: 3, h: 3 } },
 
   space_ops_stat(
@@ -255,7 +255,7 @@ local prometheus = grafana.prometheus;
     stat_title='Overall space load:',
     decimals=3,
     unit='ops',
-    expr=std.format('sum(rate(tnt_stats_op_total{job=~"%s", %s}[$__rate_interval]))', [job, utils.generate_labels_string(labels)]),
+    expr=std.format('sum(rate(tnt_stats_op_total{job=~"%s"%s}[$__rate_interval]))', [job, utils.labels_suffix(labels)]),
   ) { gridPos: { w: 4, h: 5 } },
 
   http_rps_stat(
@@ -285,7 +285,7 @@ local prometheus = grafana.prometheus;
     stat_title='Overall HTTP load:',
     decimals=3,
     unit='reqps',
-    expr=std.format('sum(rate(http_server_request_latency_count{job=~"%s",%s}[$__rate_interval]))', [job, utils.generate_labels_string(labels)]),
+    expr=std.format('sum(rate(http_server_request_latency_count{job=~"%s"%s}[$__rate_interval]))', [job, utils.labels_suffix(labels)]),
   ) { gridPos: { w: 4, h: 5 } },
 
   net_rps_stat(
@@ -314,7 +314,7 @@ local prometheus = grafana.prometheus;
     stat_title='Overall net load:',
     decimals=3,
     unit='reqps',
-    expr=std.format('sum(rate(tnt_net_requests_total{job=~"%s", %s}[$__rate_interval]))', [job, utils.generate_labels_string(labels)]),
+    expr=std.format('sum(rate(tnt_net_requests_total{job=~"%s"%s}[$__rate_interval]))', [job, utils.labels_suffix(labels)]),
   ) { gridPos: { w: 4, h: 5 } },
 
   local cartridge_issues(
@@ -341,7 +341,7 @@ local prometheus = grafana.prometheus;
   ).addTarget(
     if datasource_type == variable.datasource_type.prometheus then
       prometheus.target(
-        expr=std.format('tnt_cartridge_issues{job=~"%s",alias=~"%s",level="%s",%s}', [job, alias, level, utils.generate_labels_string(labels)]),
+        expr=std.format('tnt_cartridge_issues{job=~"%s",alias=~"%s",level="%s"%s}', [job, alias, level, utils.labels_suffix(labels)]),
         legendFormat='{{alias}}',
       )
     else if datasource_type == variable.datasource_type.influxdb then

@@ -29,7 +29,7 @@ local prometheus = grafana.prometheus;
   ) = (
     if datasource_type == variable.datasource_type.prometheus then
       prometheus.target(
-        expr=std.format('%s{job=~"%s",alias=~"%s",kind="%s",%s}', [metric_name, job, alias, kind, utils.generate_labels_string(labels)]),
+        expr=std.format('%s{job=~"%s",alias=~"%s",kind="%s"%s}', [metric_name, job, alias, kind, utils.labels_suffix(labels)]),
         legendFormat='{{alias}}',
       )
     else if datasource_type == variable.datasource_type.influxdb then

@@ -1,8 +1,8 @@
 local grafana = import 'grafonnet/grafana.libsonnet';
 
 local common = import 'dashboard/panels/common.libsonnet';
-local variable = import 'dashboard/variable.libsonnet';
 local utils = import 'dashboard/utils.libsonnet';
+local variable = import 'dashboard/variable.libsonnet';
 
 local influxdb = grafana.influxdb;
 local prometheus = grafana.prometheus;
@@ -119,8 +119,8 @@ local prometheus = grafana.prometheus;
   ).addTarget(
     if datasource_type == variable.datasource_type.prometheus then
       prometheus.target(
-        expr=std.format('rate(tnt_cpu_thread{job=~"%s",alias=~"%s",kind="%s",%s}[$__rate_interval])',
-                        [job, alias, kind, utils.generate_labels_string(labels)]),
+        expr=std.format('rate(tnt_cpu_thread{job=~"%s",alias=~"%s",kind="%s"%s}[$__rate_interval])',
+                        [job, alias, kind, utils.labels_suffix(labels)]),
         legendFormat='{{alias}} — {{thread_name}}',
       )
     else if datasource_type == variable.datasource_type.influxdb then

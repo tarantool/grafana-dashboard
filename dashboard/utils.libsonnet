@@ -110,11 +110,10 @@ local grid_width = 24;
       _panels[0:(len - 1):1] + [_panels[len - 1].addPanel(p, p.gridPos)]
   ), panels, []),
 
-  parseLabels(str) :: (
-    std.parseJson(str)
+  labels_suffix(labels):: (
+    if labels == null || labels == '' then
+      ''
+    else
+      std.format(',%s', labels)
   ),
-
-  generate_labels_string(labels):: std.foldl(function(_labels_string, label) (
-    std.format("%s%s=\"%s\"", [_labels_string, label.key, label.value])
-  ), std.objectKeysValues(labels), ""),
 }

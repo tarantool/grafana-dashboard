@@ -2,8 +2,8 @@ local grafana = import 'grafonnet/grafana.libsonnet';
 
 local timeseries = import 'dashboard/grafana/timeseries.libsonnet';
 local common = import 'dashboard/panels/common.libsonnet';
-local variable = import 'dashboard/variable.libsonnet';
 local utils = import 'dashboard/utils.libsonnet';
+local variable = import 'dashboard/variable.libsonnet';
 
 local graph = grafana.graphPanel;
 local influxdb = grafana.influxdb;
@@ -43,7 +43,7 @@ local prometheus = grafana.prometheus;
   ).addTarget(
     if datasource_type == variable.datasource_type.prometheus then
       prometheus.target(
-        expr=std.format('tnt_replication_status{job=~"%s",alias=~"%s",%s}', [job, alias, utils.generate_labels_string(labels)]),
+        expr=std.format('tnt_replication_status{job=~"%s",alias=~"%s"%s}', [job, alias, utils.labels_suffix(labels)]),
         legendFormat='{{alias}} {{stream}} ({{id}})',
       )
     else if datasource_type == variable.datasource_type.influxdb then
@@ -84,7 +84,7 @@ local prometheus = grafana.prometheus;
   ).addTarget(
     if datasource_type == variable.datasource_type.prometheus then
       prometheus.target(
-        expr=std.format('tnt_replication_lag{job=~"%s",alias=~"%s",%s}', [job, alias, utils.generate_labels_string(labels)]),
+        expr=std.format('tnt_replication_lag{job=~"%s",alias=~"%s"%s}', [job, alias, utils.labels_suffix(labels)]),
         legendFormat='{{alias}} ({{id}})',
       )
     else if datasource_type == variable.datasource_type.influxdb then
@@ -128,7 +128,7 @@ local prometheus = grafana.prometheus;
   ).addTarget(
     if datasource_type == variable.datasource_type.prometheus then
       prometheus.target(
-        expr=std.format('tnt_clock_delta{job=~"%s",alias=~"%s",%s}', [job, alias, utils.generate_labels_string(labels)]),
+        expr=std.format('tnt_clock_delta{job=~"%s",alias=~"%s"%s}', [job, alias, utils.labels_suffix(labels)]),
         legendFormat='{{alias}} ({{delta}})',
       )
     else if datasource_type == variable.datasource_type.influxdb then

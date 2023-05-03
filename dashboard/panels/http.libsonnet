@@ -1,8 +1,8 @@
 local grafana = import 'grafonnet/grafana.libsonnet';
 
 local common = import 'dashboard/panels/common.libsonnet';
-local variable = import 'dashboard/variable.libsonnet';
 local utils = import 'dashboard/utils.libsonnet';
+local variable = import 'dashboard/variable.libsonnet';
 
 local influxdb = grafana.influxdb;
 local prometheus = grafana.prometheus;
@@ -30,8 +30,8 @@ local prometheus = grafana.prometheus;
   ).addTarget(
     if datasource_type == variable.datasource_type.prometheus then
       prometheus.target(
-        expr=std.format('rate(%s{job=~"%s",alias=~"%s",status=~"%s",%s}[$__rate_interval])',
-                        [metric_name, job, alias, std.strReplace(status_regex, '\\', '\\\\'), utils.generate_labels_string(labels)]),
+        expr=std.format('rate(%s{job=~"%s",alias=~"%s",status=~"%s"%s}[$__rate_interval])',
+                        [metric_name, job, alias, std.strReplace(status_regex, '\\', '\\\\'), utils.labels_suffix(labels)]),
         legendFormat='{{alias}} — {{method}} {{path}} (code {{status}})',
       )
     else if datasource_type == variable.datasource_type.influxdb then
@@ -155,8 +155,8 @@ local prometheus = grafana.prometheus;
   ).addTarget(
     if datasource_type == variable.datasource_type.prometheus then
       prometheus.target(
-        expr=std.format('%s{job=~"%s",alias=~"%s",quantile="%s",status=~"%s",%s}',
-                        [metric_name, job, alias, quantile, std.strReplace(status_regex, '\\', '\\\\'), utils.generate_labels_string(labels)]),
+        expr=std.format('%s{job=~"%s",alias=~"%s",quantile="%s",status=~"%s"%s}',
+                        [metric_name, job, alias, quantile, std.strReplace(status_regex, '\\', '\\\\'), utils.labels_suffix(labels)]),
         legendFormat='{{alias}} — {{method}} {{path}} (code {{status}})',
       )
     else if datasource_type == variable.datasource_type.influxdb then
