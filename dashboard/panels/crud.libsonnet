@@ -101,7 +101,7 @@ local operation_latency_template(
   min=0,
   labelY1='99th percentile',
   decimals=2,
-  decimalsY1=3,
+  decimalsY1=2,
   panel_height=8,
   panel_width=6,
 ).addTarget(
