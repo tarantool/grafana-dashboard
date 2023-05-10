@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## Unreleased
+
+### Changed
+- Display two digits after decimal point instead of three
+
+
 ## [2.0.0] - 2023-03-03
 Grafana revisions: [InfluxDB revision 16](https://grafana.com/api/dashboards/12567/revisions/16/download), [Prometheus revision 16](https://grafana.com/api/dashboards/13054/revisions/16/download), [InfluxDB TDG revision 5](https://grafana.com/api/dashboards/16405/revisions/5/download), [Prometheus TDG revision 5](https://grafana.com/api/dashboards/16406/revisions/5/download).
 

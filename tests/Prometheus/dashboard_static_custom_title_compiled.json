@@ -327,7 +327,7 @@
                         "last"
                      ],
                      "defaults": {
-                        "decimals": 3,
+                        "decimals": 2,
                         "links": [ ],
                         "mappings": [ ],
                         "thresholds": {
@@ -381,7 +381,7 @@
                         "last"
                      ],
                      "defaults": {
-                        "decimals": 3,
+                        "decimals": 2,
                         "links": [ ],
                         "mappings": [ ],
                         "thresholds": {
@@ -435,7 +435,7 @@
                         "last"
                      ],
                      "defaults": {
-                        "decimals": 3,
+                        "decimals": 2,
                         "links": [ ],
                         "mappings": [ ],
                         "thresholds": {
@@ -657,7 +657,7 @@
                "dashLength": 10,
                "dashes": false,
                "datasource": "Prometheus",
-               "decimals": 3,
+               "decimals": 2,
                "description": "Displays the count of failover triggers in a replicaset.\nGraph shows average per second.\n\nPanel works with `metrics >= 0.15.0`.\n",
                "fill": 0,
                "gridPos": {
@@ -731,7 +731,7 @@
                      "show": true
                   },
                   {
-                     "decimals": 3,
+                     "decimals": 2,
                      "format": "none",
                      "label": null,
                      "logBase": 1,
@@ -1739,7 +1739,7 @@
                "dashLength": 10,
                "dashes": false,
                "datasource": "Prometheus",
-               "decimals": 3,
+               "decimals": 2,
                "description": "Count of transactions collecting confirmations now.\n\nPanel works with metrics 0.15.0 or newer, Tarantool 2.8.1 or newer.\n",
                "fill": 0,
                "gridPos": {
@@ -1813,7 +1813,7 @@
                      "show": true
                   },
                   {
-                     "decimals": 3,
+                     "decimals": 2,
                      "format": "none",
                      "label": null,
                      "logBase": 1,
@@ -1958,7 +1958,7 @@
                "dashLength": 10,
                "dashes": false,
                "datasource": "Prometheus",
-               "decimals": 3,
+               "decimals": 2,
                "description": "Requests, processed with success (code 2xx) on Tarantool's side.\nGraph shows mean count per second.\n",
                "fill": 0,
                "gridPos": {
@@ -2032,7 +2032,7 @@
                      "show": true
                   },
                   {
-                     "decimals": 3,
+                     "decimals": 2,
                      "format": "none",
                      "label": null,
                      "logBase": 1,
@@ -2048,7 +2048,7 @@
                "dashLength": 10,
                "dashes": false,
                "datasource": "Prometheus",
-               "decimals": 3,
+               "decimals": 2,
                "description": "Requests, processed with 4xx error on Tarantool's side.\nGraph shows mean count per second.\n",
                "fill": 0,
                "gridPos": {
@@ -2122,7 +2122,7 @@
                      "show": true
                   },
                   {
-                     "decimals": 3,
+                     "decimals": 2,
                      "format": "none",
                      "label": null,
                      "logBase": 1,
@@ -2138,7 +2138,7 @@
                "dashLength": 10,
                "dashes": false,
                "datasource": "Prometheus",
-               "decimals": 3,
+               "decimals": 2,
                "description": "Requests, processed with 5xx error on Tarantool's side.\nGraph shows mean count per second.\n",
                "fill": 0,
                "gridPos": {
@@ -2212,7 +2212,7 @@
                      "show": true
                   },
                   {
-                     "decimals": 3,
+                     "decimals": 2,
                      "format": "none",
                      "label": null,
                      "logBase": 1,
@@ -2228,7 +2228,7 @@
                "dashLength": 10,
                "dashes": false,
                "datasource": "Prometheus",
-               "decimals": 3,
+               "decimals": 2,
                "description": "99th percentile of requests latency.\nIncludes only requests processed with success\n(code 2xx) on Tarantool's side.\n",
                "fill": 0,
                "gridPos": {
@@ -2293,7 +2293,7 @@
                },
                "yaxes": [
                   {
-                     "decimals": 3,
+                     "decimals": 2,
                      "format": "s",
                      "label": "99th percentile",
                      "logBase": 1,
@@ -2302,7 +2302,7 @@
                      "show": true
                   },
                   {
-                     "decimals": 3,
+                     "decimals": 2,
                      "format": "s",
                      "label": null,
                      "logBase": 1,
@@ -2318,7 +2318,7 @@
                "dashLength": 10,
                "dashes": false,
                "datasource": "Prometheus",
-               "decimals": 3,
+               "decimals": 2,
                "description": "99th percentile of requests latency.\nIncludes only requests processed with\n4xx error on Tarantool's side.\n",
                "fill": 0,
                "gridPos": {
@@ -2383,7 +2383,7 @@
                },
                "yaxes": [
                   {
-                     "decimals": 3,
+                     "decimals": 2,
                      "format": "s",
                      "label": "99th percentile",
                      "logBase": 1,
@@ -2392,7 +2392,7 @@
                      "show": true
                   },
                   {
-                     "decimals": 3,
+                     "decimals": 2,
                      "format": "s",
                      "label": null,
                      "logBase": 1,
@@ -2408,7 +2408,7 @@
                "dashLength": 10,
                "dashes": false,
                "datasource": "Prometheus",
-               "decimals": 3,
+               "decimals": 2,
                "description": "99th percentile of requests latency.\nIncludes only requests processed with\n5xx error on Tarantool's side.\n",
                "fill": 0,
                "gridPos": {
@@ -2473,7 +2473,7 @@
                },
                "yaxes": [
                   {
-                     "decimals": 3,
+                     "decimals": 2,
                      "format": "s",
                      "label": "99th percentile",
                      "logBase": 1,
@@ -2482,7 +2482,7 @@
                      "show": true
                   },
                   {
-                     "decimals": 3,
+                     "decimals": 2,
                      "format": "s",
                      "label": null,
                      "logBase": 1,
@@ -2518,7 +2518,7 @@
                "dashLength": 10,
                "dashes": false,
                "datasource": "Prometheus",
-               "decimals": 3,
+               "decimals": 2,
                "description": "Memory used for network input/output buffers.\n",
                "fill": 0,
                "gridPos": {
@@ -2592,7 +2592,7 @@
                      "show": true
                   },
                   {
-                     "decimals": 3,
+                     "decimals": 2,
                      "format": "bytes",
                      "label": null,
                      "logBase": 1,
@@ -2608,7 +2608,7 @@
                "dashLength": 10,
                "dashes": false,
                "datasource": "Prometheus",
-               "decimals": 3,
+               "decimals": 2,
                "description": "Data received by instance from binary protocol connections.\nGraph shows average bytes per second.\n",
                "fill": 0,
                "gridPos": {
@@ -2682,7 +2682,7 @@
                      "show": true
                   },
                   {
-                     "decimals": 3,
+                     "decimals": 2,
                      "format": "Bps",
                      "label": null,
                      "logBase": 1,
@@ -2698,7 +2698,7 @@
                "dashLength": 10,
                "dashes": false,
                "datasource": "Prometheus",
-               "decimals": 3,
+               "decimals": 2,
                "description": "Data sent by instance with binary protocol connections.\nGraph shows average bytes per second.\n",
                "fill": 0,
                "gridPos": {
@@ -2772,7 +2772,7 @@
                      "show": true
                   },
                   {
-                     "decimals": 3,
+                     "decimals": 2,
                      "format": "Bps",
                      "label": null,
                      "logBase": 1,
@@ -2788,7 +2788,7 @@
                "dashLength": 10,
                "dashes": false,
                "datasource": "Prometheus",
-               "decimals": 3,
+               "decimals": 2,
                "description": "Number of network requests this instance has handled.\nGraph shows mean rps.\n",
                "fill": 0,
                "gridPos": {
@@ -2862,7 +2862,7 @@
                      "show": true
                   },
                   {
-                     "decimals": 3,
+                     "decimals": 2,
                      "format": "none",
                      "label": null,
                      "logBase": 1,
@@ -2968,7 +2968,7 @@
                "dashLength": 10,
                "dashes": false,
                "datasource": "Prometheus",
-               "decimals": 3,
+               "decimals": 2,
                "description": "Average number of requests processed by tx thread per second.\n\nPanel works with `metrics >= 0.13.0` and `Tarantool >= 2.10-beta2`.\n",
                "fill": 0,
                "gridPos": {
@@ -3042,7 +3042,7 @@
                      "show": true
                   },
                   {
-                     "decimals": 3,
+                     "decimals": 2,
                      "format": "none",
                      "label": null,
                      "logBase": 1,
@@ -3148,7 +3148,7 @@
                "dashLength": 10,
                "dashes": false,
                "datasource": "Prometheus",
-               "decimals": 3,
+               "decimals": 2,
                "description": "Average number of requests which was placed in queues\nof streams per second.\n\nPanel works with `metrics >= 0.13.0` and `Tarantool >= 2.10-beta2`.\n",
                "fill": 0,
                "gridPos": {
@@ -3222,7 +3222,7 @@
                      "show": true
                   },
                   {
-                     "decimals": 3,
+                     "decimals": 2,
                      "format": "none",
                      "label": null,
                      "logBase": 1,
@@ -3328,7 +3328,7 @@
                "dashLength": 10,
                "dashes": false,
                "datasource": "Prometheus",
-               "decimals": 3,
+               "decimals": 2,
                "description": "Average number of new binary protocol connections per second.\n",
                "fill": 0,
                "gridPos": {
@@ -3402,7 +3402,7 @@
                      "show": true
                   },
                   {
-                     "decimals": 3,
+                     "decimals": 2,
                      "format": "none",
                      "label": null,
                      "logBase": 1,
@@ -3508,7 +3508,7 @@
                "dashLength": 10,
                "dashes": false,
                "datasource": "Prometheus",
-               "decimals": 3,
+               "decimals": 2,
                "description": "Data sent by instance with binary protocol connections,\nseparated per thread.\nGraph shows average bytes per second.\n\nPanel works with metrics 0.15.0 or newer, Tarantool 2.10 or newer.\n",
                "fill": 0,
                "gridPos": {
@@ -3582,7 +3582,7 @@
                      "show": true
                   },
                   {
-                     "decimals": 3,
+                     "decimals": 2,
                      "format": "Bps",
                      "label": null,
                      "logBase": 1,
@@ -3598,7 +3598,7 @@
                "dashLength": 10,
                "dashes": false,
                "datasource": "Prometheus",
-               "decimals": 3,
+               "decimals": 2,
                "description": "Data received by instance from binary protocol connections,\nseparated per thread.\nGraph shows average bytes per second.\n\nPanel works with metrics 0.15.0 or newer, Tarantool 2.10 or newer.\n",
                "fill": 0,
                "gridPos": {
@@ -3672,7 +3672,7 @@
                      "show": true
                   },
                   {
-                     "decimals": 3,
+                     "decimals": 2,
                      "format": "Bps",
                      "label": null,
                      "logBase": 1,
@@ -3688,7 +3688,7 @@
                "dashLength": 10,
                "dashes": false,
                "datasource": "Prometheus",
-               "decimals": 3,
+               "decimals": 2,
                "description": "Average number of new binary protocol connections per second,\nseparated per thread.\n\nPanel works with metrics 0.15.0 or newer, Tarantool 2.10 or newer.\n",
                "fill": 0,
                "gridPos": {
@@ -3762,7 +3762,7 @@
                      "show": true
                   },
                   {
-                     "decimals": 3,
+                     "decimals": 2,
                      "format": "none",
                      "label": null,
                      "logBase": 1,
@@ -3868,7 +3868,7 @@
                "dashLength": 10,
                "dashes": false,
                "datasource": "Prometheus",
-               "decimals": 3,
+               "decimals": 2,
                "description": "Number of network requests this instance has handled,\nseparated per thread.\nGraph shows mean rps.\n\nPanel works with metrics 0.15.0 or newer, Tarantool 2.10 or newer.\n",
                "fill": 0,
                "gridPos": {
@@ -3942,7 +3942,7 @@
                      "show": true
                   },
                   {
-                     "decimals": 3,
+                     "decimals": 2,
                      "format": "none",
                      "label": null,
                      "logBase": 1,
@@ -3958,7 +3958,7 @@
                "dashLength": 10,
                "dashes": false,
                "datasource": "Prometheus",
-               "decimals": 3,
+               "decimals": 2,
                "description": "Average number of requests processed per second,\nseparated per thread.\n\nPanel works with metrics 0.15.0 or newer, Tarantool 2.10 or newer.\n",
                "fill": 0,
                "gridPos": {
@@ -4032,7 +4032,7 @@
                      "show": true
                   },
                   {
-                     "decimals": 3,
+                     "decimals": 2,
                      "format": "none",
                      "label": null,
                      "logBase": 1,
@@ -4048,7 +4048,7 @@
                "dashLength": 10,
                "dashes": false,
                "datasource": "Prometheus",
-               "decimals": 3,
+               "decimals": 2,
                "description": "Average number of requests which was placed in queues\nof streams per second, separated per thread.\n\nPanel works with metrics 0.15.0 or newer, Tarantool 2.10 or newer.\n",
                "fill": 0,
                "gridPos": {
@@ -4122,7 +4122,7 @@
                      "show": true
                   },
                   {
-                     "decimals": 3,
+                     "decimals": 2,
                      "format": "none",
                      "label": null,
                      "logBase": 1,
@@ -4442,7 +4442,7 @@
                "dashLength": 10,
                "dashes": false,
                "datasource": "Prometheus",
-               "decimals": 3,
+               "decimals": 2,
                "description": "`quota_used_ratio` = `quota_used` / `quota_size`.\n\n`quota_used` – used by slab allocator (for both tuple and index slabs).\n\n`quota_size` – memory limit for slab allocator (as configured in the *memtx_memory* parameter).\n",
                "fill": 0,
                "gridPos": {
@@ -4516,7 +4516,7 @@
                      "show": true
                   },
                   {
-                     "decimals": 3,
+                     "decimals": 2,
                      "format": "percent",
                      "label": null,
                      "logBase": 1,
@@ -4532,7 +4532,7 @@
                "dashLength": 10,
                "dashes": false,
                "datasource": "Prometheus",
-               "decimals": 3,
+               "decimals": 2,
                "description": "`arena_used_ratio` = `arena_used` / `arena_size`.\n\n`arena_used` – used for both tuples and indexes.\n\n`arena_size` – allocated for both tuples and indexes.\n",
                "fill": 0,
                "gridPos": {
@@ -4606,7 +4606,7 @@
                      "show": true
                   },
                   {
-                     "decimals": 3,
+                     "decimals": 2,
                      "format": "percent",
                      "label": null,
                      "logBase": 1,
@@ -4622,7 +4622,7 @@
                "dashLength": 10,
                "dashes": false,
                "datasource": "Prometheus",
-               "decimals": 3,
+               "decimals": 2,
                "description": "`items_used_ratio` = `items_used` / `items_size`.\n\n`items_used` – used only for tuples.\n\n`items_size` – allocated only for tuples.\n",
                "fill": 0,
                "gridPos": {
@@ -4696,7 +4696,7 @@
                      "show": true
                   },
                   {
-                     "decimals": 3,
+                     "decimals": 2,
                      "format": "percent",
                      "label": null,
                      "logBase": 1,
@@ -4712,7 +4712,7 @@
                "dashLength": 10,
                "dashes": false,
                "datasource": "Prometheus",
-               "decimals": 3,
+               "decimals": 2,
                "description": "Memory used by slab allocator (for both tuple and index slabs).\n",
                "fill": 0,
                "gridPos": {
@@ -4786,7 +4786,7 @@
                      "show": true
                   },
                   {
-                     "decimals": 3,
+                     "decimals": 2,
                      "format": "bytes",
                      "label": null,
                      "logBase": 1,
@@ -4802,7 +4802,7 @@
                "dashLength": 10,
                "dashes": false,
                "datasource": "Prometheus",
-               "decimals": 3,
+               "decimals": 2,
                "description": "Memory used for both tuples and indexes.\n",
                "fill": 0,
                "gridPos": {
@@ -4876,7 +4876,7 @@
                      "show": true
                   },
                   {
-                     "decimals": 3,
+                     "decimals": 2,
                      "format": "bytes",
                      "label": null,
                      "logBase": 1,
@@ -4892,7 +4892,7 @@
                "dashLength": 10,
                "dashes": false,
                "datasource": "Prometheus",
-               "decimals": 3,
+               "decimals": 2,
                "description": "Memory used for only tuples.\n",
                "fill": 0,
                "gridPos": {
@@ -4966,7 +4966,7 @@
                      "show": true
                   },
                   {
-                     "decimals": 3,
+                     "decimals": 2,
                      "format": "bytes",
                      "label": null,
                      "logBase": 1,
@@ -4982,7 +4982,7 @@
                "dashLength": 10,
                "dashes": false,
                "datasource": "Prometheus",
-               "decimals": 3,
+               "decimals": 2,
                "description": "Memory limit for slab allocator (as configured in the *memtx_memory* parameter).\n",
                "fill": 0,
                "gridPos": {
@@ -5056,7 +5056,7 @@
                      "show": true
                   },
                   {
-                     "decimals": 3,
+                     "decimals": 2,
                      "format": "bytes",
                      "label": null,
                      "logBase": 1,
@@ -5072,7 +5072,7 @@
                "dashLength": 10,
                "dashes": false,
                "datasource": "Prometheus",
-               "decimals": 3,
+               "decimals": 2,
                "description": "Memory allocated for both tuples and indexes by slab allocator.\n",
                "fill": 0,
                "gridPos": {
@@ -5146,7 +5146,7 @@
                      "show": true
                   },
                   {
-                     "decimals": 3,
+                     "decimals": 2,
                      "format": "bytes",
                      "label": null,
                      "logBase": 1,
@@ -5162,7 +5162,7 @@
                "dashLength": 10,
                "dashes": false,
                "datasource": "Prometheus",
-               "decimals": 3,
+               "decimals": 2,
                "description": "Memory allocated for only tuples by slab allocator.\n",
                "fill": 0,
                "gridPos": {
@@ -5236,7 +5236,7 @@
                      "show": true
                   },
                   {
-                     "decimals": 3,
+                     "decimals": 2,
                      "format": "bytes",
                      "label": null,
                      "logBase": 1,
@@ -5272,7 +5272,7 @@
                "dashLength": 10,
                "dashes": false,
                "datasource": "Prometheus",
-               "decimals": 3,
+               "decimals": 2,
                "description": "Each operation like `space:replace{}` turns into ``statement``\nfor the current transaction.\n\nGraph shows the number of bytes that are allocated\nfor the statements of all current transactions.\n\nPanel works with metrics 0.15.1 or newer, Tarantool 2.10 or newer.\n",
                "fill": 0,
                "gridPos": {
@@ -5346,7 +5346,7 @@
                      "show": true
                   },
                   {
-                     "decimals": 3,
+                     "decimals": 2,
                      "format": "bytes",
                      "label": null,
                      "logBase": 1,
@@ -5362,7 +5362,7 @@
                "dashLength": 10,
                "dashes": false,
                "datasource": "Prometheus",
-               "decimals": 3,
+               "decimals": 2,
                "description": "Each operation like `space:replace{}` turns into ``statement``\nfor the current transaction.\n\nGraph shows average bytes used by transactions for statements\n(`txn.statements.total` bytes / number of open transactions).\n\nPanel works with metrics 0.15.1 or newer, Tarantool 2.10 or newer.\n",
                "fill": 0,
                "gridPos": {
@@ -5436,7 +5436,7 @@
                      "show": true
                   },
                   {
-                     "decimals": 3,
+                     "decimals": 2,
                      "format": "bytes",
                      "label": null,
                      "logBase": 1,
@@ -5452,7 +5452,7 @@
                "dashLength": 10,
                "dashes": false,
                "datasource": "Prometheus",
-               "decimals": 3,
+               "decimals": 2,
                "description": "Each operation like `space:replace{}` turns into ``statement``\nfor the current transaction.\n\nGraph shows the maximum number of bytes used by one\nthe current transaction for statements.\n\nPanel works with metrics 0.15.1 or newer, Tarantool 2.10 or newer.\n",
                "fill": 0,
                "gridPos": {
@@ -5526,7 +5526,7 @@
                      "show": true
                   },
                   {
-                     "decimals": 3,
+                     "decimals": 2,
                      "format": "bytes",
                      "label": null,
                      "logBase": 1,
@@ -5542,7 +5542,7 @@
                "dashLength": 10,
                "dashes": false,
                "datasource": "Prometheus",
-               "decimals": 3,
+               "decimals": 2,
                "description": "User may allocate memory for the current transaction with\nTarantool C APIfunction `box_txn_alloc()`.\n\nGraph shows memory allocated for all current transactions.\n\nPanel works with metrics 0.15.1 or newer, Tarantool 2.10 or newer.\n",
                "fill": 0,
                "gridPos": {
@@ -5616,7 +5616,7 @@
                      "show": true
                   },
                   {
-                     "decimals": 3,
+                     "decimals": 2,
                      "format": "bytes",
                      "label": null,
                      "logBase": 1,
@@ -5632,7 +5632,7 @@
                "dashLength": 10,
                "dashes": false,
                "datasource": "Prometheus",
-               "decimals": 3,
+               "decimals": 2,
                "description": "User may allocate memory for the current transaction with\nTarantool C APIfunction `box_txn_alloc()`.\n\nGraph shows transaction average\n(total allocated bytes / number of all current transactions).\n\nPanel works with metrics 0.15.1 or newer, Tarantool 2.10 or newer.\n",
                "fill": 0,
                "gridPos": {
@@ -5706,7 +5706,7 @@
                      "show": true
                   },
                   {
-                     "decimals": 3,
+                     "decimals": 2,
                      "format": "bytes",
                      "label": null,
                      "logBase": 1,
@@ -5722,7 +5722,7 @@
                "dashLength": 10,
                "dashes": false,
                "datasource": "Prometheus",
-               "decimals": 3,
+               "decimals": 2,
                "description": "User may allocate memory for the current transaction with\nTarantool C APIfunction `box_txn_alloc()`.\n\nGraph shows the maximum number of bytes allocated over all current transactions.\n\nPanel works with metrics 0.15.1 or newer, Tarantool 2.10 or newer.\n",
                "fill": 0,
                "gridPos": {
@@ -5796,7 +5796,7 @@
                      "show": true
                   },
                   {
-                     "decimals": 3,
+                     "decimals": 2,
                      "format": "bytes",
                      "label": null,
                      "logBase": 1,
@@ -5812,7 +5812,7 @@
                "dashLength": 10,
                "dashes": false,
                "datasource": "Prometheus",
-               "decimals": 3,
+               "decimals": 2,
                "description": "System may store utility things like logs and savepoints\nfor each transaction.\n\nGraph shows memory allocated for all current transactions.\n\nPanel works with metrics 0.15.1 or newer, Tarantool 2.10 or newer.\n",
                "fill": 0,
                "gridPos": {
@@ -5886,7 +5886,7 @@
                      "show": true
                   },
                   {
-                     "decimals": 3,
+                     "decimals": 2,
                      "format": "bytes",
                      "label": null,
                      "logBase": 1,
@@ -5902,7 +5902,7 @@
                "dashLength": 10,
                "dashes": false,
                "datasource": "Prometheus",
-               "decimals": 3,
+               "decimals": 2,
                "description": "System may store utility things like logs and savepoints\nfor each transaction.\n\nGraph shows transaction average\n(total allocated bytes / number of all current transactions).\n\nPanel works with metrics 0.15.1 or newer, Tarantool 2.10 or newer.\n",
                "fill": 0,
                "gridPos": {
@@ -5976,7 +5976,7 @@
                      "show": true
                   },
                   {
-                     "decimals": 3,
+                     "decimals": 2,
                      "format": "bytes",
                      "label": null,
                      "logBase": 1,
@@ -5992,7 +5992,7 @@
                "dashLength": 10,
                "dashes": false,
                "datasource": "Prometheus",
-               "decimals": 3,
+               "decimals": 2,
                "description": "System may store utility things like logs and savepoints\nfor each transaction.\n\nGraph shows the maximum number of bytes allocated over all current transactions.\n\nPanel works with metrics 0.15.1 or newer, Tarantool 2.10 or newer.\n",
                "fill": 0,
                "gridPos": {
@@ -6066,7 +6066,7 @@
                      "show": true
                   },
                   {
-                     "decimals": 3,
+                     "decimals": 2,
                      "format": "bytes",
                      "label": null,
                      "logBase": 1,
@@ -6082,7 +6082,7 @@
                "dashLength": 10,
                "dashes": false,
                "datasource": "Prometheus",
-               "decimals": 3,
+               "decimals": 2,
                "description": "Tarantool allocates memory for trackers\nthat keep track of transaction reads.\n\nGraph shows memory allocated for trackers of all current transactions.\n\nPanel works with metrics 0.15.1 or newer, Tarantool 2.10 or newer.\n",
                "fill": 0,
                "gridPos": {
@@ -6156,7 +6156,7 @@
                      "show": true
                   },
                   {
-                     "decimals": 3,
+                     "decimals": 2,
                      "format": "bytes",
                      "label": null,
                      "logBase": 1,
@@ -6172,7 +6172,7 @@
                "dashLength": 10,
                "dashes": false,
                "datasource": "Prometheus",
-               "decimals": 3,
+               "decimals": 2,
                "description": "Tarantool allocates memory for trackers\nthat keep track of transaction reads.\n\nGraph shows transaction tracker average\n(total allocated bytes / number of all current transactions).\n\nPanel works with metrics 0.15.1 or newer, Tarantool 2.10 or newer.\n",
                "fill": 0,
                "gridPos": {
@@ -6246,7 +6246,7 @@
                      "show": true
                   },
                   {
-                     "decimals": 3,
+                     "decimals": 2,
                      "format": "bytes",
                      "label": null,
                      "logBase": 1,
@@ -6262,7 +6262,7 @@
                "dashLength": 10,
                "dashes": false,
                "datasource": "Prometheus",
-               "decimals": 3,
+               "decimals": 2,
                "description": "Tarantool allocates memory for trackers\nthat keep track of transaction reads.\n\nGraph shows the maximum number of bytes allocated for a tracker\nover all current transactions.\n\nPanel works with metrics 0.15.1 or newer, Tarantool 2.10 or newer.\n",
                "fill": 0,
                "gridPos": {
@@ -6336,7 +6336,7 @@
                      "show": true
                   },
                   {
-                     "decimals": 3,
+                     "decimals": 2,
                      "format": "bytes",
                      "label": null,
                      "logBase": 1,
@@ -6352,7 +6352,7 @@
                "dashLength": 10,
                "dashes": false,
                "datasource": "Prometheus",
-               "decimals": 3,
+               "decimals": 2,
                "description": "Tarantool allocates memory in case of conflicts.\n\nGraph shows memory allocated for all current conflicts.\n\nPanel works with metrics 0.15.1 or newer, Tarantool 2.10 or newer.\n",
                "fill": 0,
                "gridPos": {
@@ -6426,7 +6426,7 @@
                      "show": true
                   },
                   {
-                     "decimals": 3,
+                     "decimals": 2,
                      "format": "bytes",
                      "label": null,
                      "logBase": 1,
@@ -6442,7 +6442,7 @@
                "dashLength": 10,
                "dashes": false,
                "datasource": "Prometheus",
-               "decimals": 3,
+               "decimals": 2,
                "description": "Tarantool allocates memory in case of conflicts.\n\nGraph shows transaction conflict average\n(total allocated bytes / number of all current conflict).\n\nPanel works with metrics 0.15.1 or newer, Tarantool 2.10 or newer.\n",
                "fill": 0,
                "gridPos": {
@@ -6516,7 +6516,7 @@
                      "show": true
                   },
                   {
-                     "decimals": 3,
+                     "decimals": 2,
                      "format": "bytes",
                      "label": null,
                      "logBase": 1,
@@ -6532,7 +6532,7 @@
                "dashLength": 10,
                "dashes": false,
                "datasource": "Prometheus",
-               "decimals": 3,
+               "decimals": 2,
                "description": "Tarantool allocates memory in case of conflicts.\n\nGraph shows the maximum number of bytes allocated for a transaction conflict.\n\nPanel works with metrics 0.15.1 or newer, Tarantool 2.10 or newer.\n",
                "fill": 0,
                "gridPos": {
@@ -6606,7 +6606,7 @@
                      "show": true
                   },
                   {
-                     "decimals": 3,
+                     "decimals": 2,
                      "format": "bytes",
                      "label": null,
                      "logBase": 1,
@@ -6622,7 +6622,7 @@
                "dashLength": 10,
                "dashes": false,
                "datasource": "Prometheus",
-               "decimals": 3,
+               "decimals": 2,
                "description": "MVCC is based on the tuple story mechanism.\n\nThis graph shows tuples that are used by active read-write transactions.\n\nGraph shows the number of tuples.\nPanel works with metrics 0.15.1 or newer, Tarantool 2.10 or newer.\n",
                "fill": 0,
                "gridPos": {
@@ -6696,7 +6696,7 @@
                      "show": true
                   },
                   {
-                     "decimals": 3,
+                     "decimals": 2,
                      "format": "none",
                      "label": null,
                      "logBase": 1,
@@ -6712,7 +6712,7 @@
                "dashLength": 10,
                "dashes": false,
                "datasource": "Prometheus",
-               "decimals": 3,
+               "decimals": 2,
                "description": "MVCC is based on the tuple story mechanism.\n\nThis graph shows tuples that are used by active read-write transactions.\n\nGraph shows total size of tuples.\nPanel works with metrics 0.15.1 or newer, Tarantool 2.10 or newer.\n",
                "fill": 0,
                "gridPos": {
@@ -6786,7 +6786,7 @@
                      "show": true
                   },
                   {
-                     "decimals": 3,
+                     "decimals": 2,
                      "format": "bytes",
                      "label": null,
                      "logBase": 1,
@@ -6802,7 +6802,7 @@
                "dashLength": 10,
                "dashes": false,
                "datasource": "Prometheus",
-               "decimals": 3,
+               "decimals": 2,
                "description": "Retained tuples are no longer in the index,\nbut MVCC does not allow them to be removed.\n\nThis graph shows tuples that are used by active read-write transactions.\n\nGraph shows the number of tuples.\nPanel works with metrics 0.15.1 or newer, Tarantool 2.10 or newer.\n",
                "fill": 0,
                "gridPos": {
@@ -6876,7 +6876,7 @@
                      "show": true
                   },
                   {
-                     "decimals": 3,
+                     "decimals": 2,
                      "format": "none",
                      "label": null,
                      "logBase": 1,
@@ -6892,7 +6892,7 @@
                "dashLength": 10,
                "dashes": false,
                "datasource": "Prometheus",
-               "decimals": 3,
+               "decimals": 2,
                "description": "Retained tuples are no longer in the index,\nbut MVCC does not allow them to be removed.\n\nThis graph shows tuples that are used by active read-write transactions.\n\nGraph shows total size of tuples.\nPanel works with metrics 0.15.1 or newer, Tarantool 2.10 or newer.\n",
                "fill": 0,
                "gridPos": {
@@ -6966,7 +6966,7 @@
                      "show": true
                   },
                   {
-                     "decimals": 3,
+                     "decimals": 2,
                      "format": "bytes",
                      "label": null,
                      "logBase": 1,
@@ -6982,7 +6982,7 @@
                "dashLength": 10,
                "dashes": false,
                "datasource": "Prometheus",
-               "decimals": 3,
+               "decimals": 2,
                "description": "MVCC is based on the tuple story mechanism.\n\nThis graph shows tuples that are used by read-only transactions (i.e. in read view).\n\nGraph shows the number of tuples.\nPanel works with metrics 0.15.1 or newer, Tarantool 2.10 or newer.\n",
                "fill": 0,
                "gridPos": {
@@ -7056,7 +7056,7 @@
                      "show": true
                   },
                   {
-                     "decimals": 3,
+                     "decimals": 2,
                      "format": "none",
                      "label": null,
                      "logBase": 1,
@@ -7072,7 +7072,7 @@
                "dashLength": 10,
                "dashes": false,
                "datasource": "Prometheus",
-               "decimals": 3,
+               "decimals": 2,
                "description": "MVCC is based on the tuple story mechanism.\n\nThis graph shows tuples that are used by read-only transactions (i.e. in read view).\n\nGraph shows total size of tuples.\nPanel works with metrics 0.15.1 or newer, Tarantool 2.10 or newer.\n",
                "fill": 0,
                "gridPos": {
@@ -7146,7 +7146,7 @@
                      "show": true
                   },
                   {
-                     "decimals": 3,
+                     "decimals": 2,
                      "format": "bytes",
                      "label": null,
                      "logBase": 1,
@@ -7162,7 +7162,7 @@
                "dashLength": 10,
                "dashes": false,
                "datasource": "Prometheus",
-               "decimals": 3,
+               "decimals": 2,
                "description": "Retained tuples are no longer in the index,\nbut MVCC does not allow them to be removed.\n\nThis graph shows tuples that are used by read-only transactions (i.e. in read view).\n\nGraph shows the number of tuples.\nPanel works with metrics 0.15.1 or newer, Tarantool 2.10 or newer.\n",
                "fill": 0,
                "gridPos": {
@@ -7236,7 +7236,7 @@
                      "show": true
                   },
                   {
-                     "decimals": 3,
+                     "decimals": 2,
                      "format": "none",
                      "label": null,
                      "logBase": 1,
@@ -7252,7 +7252,7 @@
                "dashLength": 10,
                "dashes": false,
                "datasource": "Prometheus",
-               "decimals": 3,
+               "decimals": 2,
                "description": "Retained tuples are no longer in the index,\nbut MVCC does not allow them to be removed.\n\nThis graph shows tuples that are used by read-only transactions (i.e. in read view).\n\nGraph shows total size of tuples.\nPanel works with metrics 0.15.1 or newer, Tarantool 2.10 or newer.\n",
                "fill": 0,
                "gridPos": {
@@ -7326,7 +7326,7 @@
                      "show": true
                   },
                   {
-                     "decimals": 3,
+                     "decimals": 2,
                      "format": "bytes",
                      "label": null,
                      "logBase": 1,
@@ -7342,7 +7342,7 @@
                "dashLength": 10,
                "dashes": false,
                "datasource": "Prometheus",
-               "decimals": 3,
+               "decimals": 2,
                "description": "MVCC is based on the tuple story mechanism.\n\nThis graph shows tuples that are not used by current transactions,\nbut are used by MVCC to track reads.\n\nGraph shows the number of tuples.\nPanel works with metrics 0.15.1 or newer, Tarantool 2.10 or newer.\n",
                "fill": 0,
                "gridPos": {
@@ -7416,7 +7416,7 @@
                      "show": true
                   },
                   {
-                     "decimals": 3,
+                     "decimals": 2,
                      "format": "none",
                      "label": null,
                      "logBase": 1,
@@ -7432,7 +7432,7 @@
                "dashLength": 10,
                "dashes": false,
                "datasource": "Prometheus",
-               "decimals": 3,
+               "decimals": 2,
                "description": "MVCC is based on the tuple story mechanism.\n\nThis graph shows tuples that are not used by current transactions,\nbut are used by MVCC to track reads.\n\nGraph shows total size of tuples.\nPanel works with metrics 0.15.1 or newer, Tarantool 2.10 or newer.\n",
                "fill": 0,
                "gridPos": {
@@ -7506,7 +7506,7 @@
                      "show": true
                   },
                   {
-                     "decimals": 3,
+                     "decimals": 2,
                      "format": "bytes",
                      "label": null,
                      "logBase": 1,
@@ -7522,7 +7522,7 @@
                "dashLength": 10,
                "dashes": false,
                "datasource": "Prometheus",
-               "decimals": 3,
+               "decimals": 2,
                "description": "Retained tuples are no longer in the index,\nbut MVCC does not allow them to be removed.\n\nThis graph shows tuples that are not used by current transactions,\nbut are used by MVCC to track reads.\n\nGraph shows the number of tuples.\nPanel works with metrics 0.15.1 or newer, Tarantool 2.10 or newer.\n",
                "fill": 0,
                "gridPos": {
@@ -7596,7 +7596,7 @@
                      "show": true
                   },
                   {
-                     "decimals": 3,
+                     "decimals": 2,
                      "format": "none",
                      "label": null,
                      "logBase": 1,
@@ -7612,7 +7612,7 @@
                "dashLength": 10,
                "dashes": false,
                "datasource": "Prometheus",
-               "decimals": 3,
+               "decimals": 2,
                "description": "Retained tuples are no longer in the index,\nbut MVCC does not allow them to be removed.\n\nThis graph shows tuples that are not used by current transactions,\nbut are used by MVCC to track reads.\n\nGraph shows total size of tuples.\nPanel works with metrics 0.15.1 or newer, Tarantool 2.10 or newer.\n",
                "fill": 0,
                "gridPos": {
@@ -7686,7 +7686,7 @@
                      "show": true
                   },
                   {
-                     "decimals": 3,
+                     "decimals": 2,
                      "format": "bytes",
                      "label": null,
                      "logBase": 1,
@@ -7902,7 +7902,7 @@
                "dashLength": 10,
                "dashes": false,
                "datasource": "Prometheus",
-               "decimals": 3,
+               "decimals": 2,
                "description": "Total number of bytes in all tuples of the space (memtx engine).\nName of space is specified after dash.\n",
                "fill": 0,
                "gridPos": {
@@ -7976,7 +7976,7 @@
                      "show": true
                   },
                   {
-                     "decimals": 3,
+                     "decimals": 2,
                      "format": "bytes",
                      "label": null,
                      "logBase": 1,
@@ -7992,7 +7992,7 @@
                "dashLength": 10,
                "dashes": false,
                "datasource": "Prometheus",
-               "decimals": 3,
+               "decimals": 2,
                "description": "Total number of bytes taken by the index.\nName of space is specified after dash,\nindex name specified in parentheses.\nIncludes both memtx and vinyl spaces.\n",
                "fill": 0,
                "gridPos": {
@@ -8066,7 +8066,7 @@
                      "show": true
                   },
                   {
-                     "decimals": 3,
+                     "decimals": 2,
                      "format": "bytes",
                      "label": null,
                      "logBase": 1,
@@ -8082,7 +8082,7 @@
                "dashLength": 10,
                "dashes": false,
                "datasource": "Prometheus",
-               "decimals": 3,
+               "decimals": 2,
                "description": "Total size of tuples and all indexes in the space (memtx engine).\nName of space is specified after dash.\n",
                "fill": 0,
                "gridPos": {
@@ -8156,7 +8156,7 @@
                      "show": true
                   },
                   {
-                     "decimals": 3,
+                     "decimals": 2,
                      "format": "bytes",
                      "label": null,
                      "logBase": 1,
@@ -8192,7 +8192,7 @@
                "dashLength": 10,
                "dashes": false,
                "datasource": "Prometheus",
-               "decimals": 3,
+               "decimals": 2,
                "description": "The amount of data stored in the `.run` files located in the `vinyl_dir` directory.\n\nPanel works with `metrics >= 0.8.0`.\n",
                "fill": 0,
                "gridPos": {
@@ -8266,7 +8266,7 @@
                      "show": true
                   },
                   {
-                     "decimals": 3,
+                     "decimals": 2,
                      "format": "bytes",
                      "label": null,
                      "logBase": 1,
@@ -8282,7 +8282,7 @@
                "dashLength": 10,
                "dashes": false,
                "datasource": "Prometheus",
-               "decimals": 3,
+               "decimals": 2,
                "description": "The amount of data stored in the `.index` files located in the `vinyl_dir` directory.\n\nPanel works with `metrics >= 0.8.0`.\n",
                "fill": 0,
                "gridPos": {
@@ -8356,7 +8356,7 @@
                      "show": true
                   },
                   {
-                     "decimals": 3,
+                     "decimals": 2,
                      "format": "bytes",
                      "label": null,
                      "logBase": 1,
@@ -8372,7 +8372,7 @@
                "dashLength": 10,
                "dashes": false,
                "datasource": "Prometheus",
-               "decimals": 3,
+               "decimals": 2,
                "description": "Amount of memory in bytes currently used to store tuples (data).\n\nPanel works with `metrics >= 0.8.0`.\n",
                "fill": 0,
                "gridPos": {
@@ -8446,7 +8446,7 @@
                      "show": true
                   },
                   {
-                     "decimals": 3,
+                     "decimals": 2,
                      "format": "bytes",
                      "label": null,
                      "logBase": 1,
@@ -8462,7 +8462,7 @@
                "dashLength": 10,
                "dashes": false,
                "datasource": "Prometheus",
-               "decimals": 3,
+               "decimals": 2,
                "description": "Amount of memory in bytes currently used to store indexes.\nIf the metric value is close to box.cfg.vinyl_memory, this\nindicates that vinyl_page_size was chosen incorrectly.\n\nPanel works with `metrics >= 0.8.0`.\n",
                "fill": 0,
                "gridPos": {
@@ -8536,7 +8536,7 @@
                      "show": true
                   },
                   {
-                     "decimals": 3,
+                     "decimals": 2,
                      "format": "bytes",
                      "label": null,
                      "logBase": 1,
@@ -8552,7 +8552,7 @@
                "dashLength": 10,
                "dashes": false,
                "datasource": "Prometheus",
-               "decimals": 3,
+               "decimals": 2,
                "description": "Amount of memory in bytes used by bloom filters.\n",
                "fill": 0,
                "gridPos": {
@@ -8626,7 +8626,7 @@
                      "show": true
                   },
                   {
-                     "decimals": 3,
+                     "decimals": 2,
                      "format": "bytes",
                      "label": null,
                      "logBase": 1,
@@ -8642,7 +8642,7 @@
                "dashLength": 10,
                "dashes": false,
                "datasource": "Prometheus",
-               "decimals": 3,
+               "decimals": 2,
                "description": "The estimated average rate of taking dumps, bytes per second.\nInitially, the rate value is 10 megabytes per second\nand being recalculated depending on the the actual rate.\nOnly significant dumps that are larger than one megabyte\nare used for the estimate.\n\nPanel works with `metrics >= 0.8.0`.\n",
                "fill": 0,
                "gridPos": {
@@ -8716,7 +8716,7 @@
                      "show": true
                   },
                   {
-                     "decimals": 3,
+                     "decimals": 2,
                      "format": "Bps",
                      "label": null,
                      "logBase": 1,
@@ -8732,7 +8732,7 @@
                "dashLength": 10,
                "dashes": false,
                "datasource": "Prometheus",
-               "decimals": 3,
+               "decimals": 2,
                "description": "The actual average rate of performing the write operations, bytes per second.\nThe rate is calculated as a 5-second moving average.\nIf the metric value is gradually going down, this can indicate some disk issues.\n\nPanel works with `metrics >= 0.8.0`.\n",
                "fill": 0,
                "gridPos": {
@@ -8806,7 +8806,7 @@
                      "show": true
                   },
                   {
-                     "decimals": 3,
+                     "decimals": 2,
                      "format": "Bps",
                      "label": null,
                      "logBase": 1,
@@ -8822,7 +8822,7 @@
                "dashLength": 10,
                "dashes": false,
                "datasource": "Prometheus",
-               "decimals": 3,
+               "decimals": 2,
                "description": "The write rate limit, bytes per second.\nThe regulator imposes the limit on transactions based on the observed dump/compaction performance.\nIf the metric value is down to approximately 100 Kbps,\nthis indicates issues with the disk or the scheduler.\n\nPanel works with `metrics >= 0.8.0`.\n",
                "fill": 0,
                "gridPos": {
@@ -8896,7 +8896,7 @@
                      "show": true
                   },
                   {
-                     "decimals": 3,
+                     "decimals": 2,
                      "format": "Bps",
                      "label": null,
                      "logBase": 1,
@@ -8912,7 +8912,7 @@
                "dashLength": 10,
                "dashes": false,
                "datasource": "Prometheus",
-               "decimals": 3,
+               "decimals": 2,
                "description": "«Level 0» (L0) memory area in bytes. L0 is the area that\nvinyl can use for in-memory storage of an LSM tree.\nBy monitoring this metric, you can see when L0 is getting\nclose to its maximum (tnt_vinyl_regulator_dump_watermark),\nat which time a dump will occur. You can expect L0 = 0\nimmediately after the dump operation is completed.\n\nPanel works with `metrics >= 0.8.0`.\n",
                "fill": 0,
                "gridPos": {
@@ -8986,7 +8986,7 @@
                      "show": true
                   },
                   {
-                     "decimals": 3,
+                     "decimals": 2,
                      "format": "bytes",
                      "label": null,
                      "logBase": 1,
@@ -9002,7 +9002,7 @@
                "dashLength": 10,
                "dashes": false,
                "datasource": "Prometheus",
-               "decimals": 3,
+               "decimals": 2,
                "description": "The maximum amount of memory used for in-memory storing of a vinyl LSM tree.\nWhen accessing this maximum, the dumping must occur.\nFor details, see https://www.tarantool.io/en/doc/latest/book/box/engines/#engines-algorithm-filling-lsm.\nThe value is slightly smaller than the amount of memory allocated for vinyl trees,\nwhich is the `vinyl_memory` parameter.\n\nPanel works with `metrics >= 0.8.0`.\n",
                "fill": 0,
                "gridPos": {
@@ -9076,7 +9076,7 @@
                      "show": true
                   },
                   {
-                     "decimals": 3,
+                     "decimals": 2,
                      "format": "bytes",
                      "label": null,
                      "logBase": 1,
@@ -9092,7 +9092,7 @@
                "dashLength": 10,
                "dashes": false,
                "datasource": "Prometheus",
-               "decimals": 3,
+               "decimals": 2,
                "description": "The number of fibers that are blocked waiting for Vinyl level0 memory quota.\n\nPanel works with `metrics >= 0.13.0` and `Tarantool >= 2.8.3`.\n",
                "fill": 0,
                "gridPos": {
@@ -9166,7 +9166,7 @@
                      "show": true
                   },
                   {
-                     "decimals": 3,
+                     "decimals": 2,
                      "format": "none",
                      "label": null,
                      "logBase": 1,
@@ -9182,7 +9182,7 @@
                "dashLength": 10,
                "dashes": false,
                "datasource": "Prometheus",
-               "decimals": 3,
+               "decimals": 2,
                "description": "Average per second rate of commits (successful transaction ends).\nIt includes implicit commits: for example, any insert operation causes a commit\nunless it is within a `box.begin()`–`box.commit()` block.\n\nPanel works with `metrics >= 0.8.0`.\n",
                "fill": 0,
                "gridPos": {
@@ -9256,7 +9256,7 @@
                      "show": true
                   },
                   {
-                     "decimals": 3,
+                     "decimals": 2,
                      "format": "none",
                      "label": null,
                      "logBase": 1,
@@ -9272,7 +9272,7 @@
                "dashLength": 10,
                "dashes": false,
                "datasource": "Prometheus",
-               "decimals": 3,
+               "decimals": 2,
                "description": "Average per second rate of rollbacks (unsuccessful transaction ends).\nThis is not merely a count of explicit `box.rollback()` requests — it includes requests\nthat ended with errors.\nPanel works with `metrics >= 0.8.0`.\n",
                "fill": 0,
                "gridPos": {
@@ -9346,7 +9346,7 @@
                      "show": true
                   },
                   {
-                     "decimals": 3,
+                     "decimals": 2,
                      "format": "none",
                      "label": null,
                      "logBase": 1,
@@ -9362,7 +9362,7 @@
                "dashLength": 10,
                "dashes": false,
                "datasource": "Prometheus",
-               "decimals": 3,
+               "decimals": 2,
                "description": "Average per second rate of conflicts that caused transactions to roll back.\nThe ratio `tx conflicts` / `tx commits` above 5% indicates that vinyl is not healthy.\nAt this moment you’ll probably see a lot of other problems with vinyl.\n\nPanel works with `metrics >= 0.8.0`.\n",
                "fill": 0,
                "gridPos": {
@@ -9436,7 +9436,7 @@
                      "show": true
                   },
                   {
-                     "decimals": 3,
+                     "decimals": 2,
                      "format": "none",
                      "label": null,
                      "logBase": 1,
@@ -9542,7 +9542,7 @@
                "dashLength": 10,
                "dashes": false,
                "datasource": "Prometheus",
-               "decimals": 3,
+               "decimals": 2,
                "description": "The number of the scheduler dump/compaction tasks in progress now.\n\nPanel works with `metrics >= 0.8.0`.\n",
                "fill": 0,
                "gridPos": {
@@ -9616,7 +9616,7 @@
                      "show": true
                   },
                   {
-                     "decimals": 3,
+                     "decimals": 2,
                      "format": "none",
                      "label": null,
                      "logBase": 1,
@@ -9632,7 +9632,7 @@
                "dashLength": 10,
                "dashes": false,
                "datasource": "Prometheus",
-               "decimals": 3,
+               "decimals": 2,
                "description": "Scheduler dump/compaction tasks failed.\nAverage per second rate is shown.\n\nPanel works with `metrics >= 0.8.0`.\n",
                "fill": 0,
                "gridPos": {
@@ -9706,7 +9706,7 @@
                      "show": true
                   },
                   {
-                     "decimals": 3,
+                     "decimals": 2,
                      "format": "none",
                      "label": null,
                      "logBase": 1,
@@ -9722,7 +9722,7 @@
                "dashLength": 10,
                "dashes": false,
                "datasource": "Prometheus",
-               "decimals": 3,
+               "decimals": 2,
                "description": "Time spent by all worker threads performing dumps.\nAverage per second rate is shown.\n\nPanel works with `metrics >= 0.8.0`.\n",
                "fill": 0,
                "gridPos": {
@@ -9787,7 +9787,7 @@
                },
                "yaxes": [
                   {
-                     "decimals": 3,
+                     "decimals": 2,
                      "format": "s",
                      "label": "per second rate",
                      "logBase": 1,
@@ -9796,7 +9796,7 @@
                      "show": true
                   },
                   {
-                     "decimals": 3,
+                     "decimals": 2,
                      "format": "s",
                      "label": null,
                      "logBase": 1,
@@ -9812,7 +9812,7 @@
                "dashLength": 10,
                "dashes": false,
                "datasource": "Prometheus",
-               "decimals": 3,
+               "decimals": 2,
                "description": "Scheduler dumps completed average per second rate.\n\nPanel works with `metrics >= 0.13.0`.\n",
                "fill": 0,
                "gridPos": {
@@ -9877,7 +9877,7 @@
                },
                "yaxes": [
                   {
-                     "decimals": 3,
+                     "decimals": 2,
                      "format": "none",
                      "label": "per second rate",
                      "logBase": 1,
@@ -9886,7 +9886,7 @@
                      "show": true
                   },
                   {
-                     "decimals": 3,
+                     "decimals": 2,
                      "format": "none",
                      "label": null,
                      "logBase": 1,
@@ -9922,7 +9922,7 @@
                "dashLength": 10,
                "dashes": false,
                "datasource": "Prometheus",
-               "decimals": 3,
+               "decimals": 2,
                "description": "This is the average share of time\nspent by instance process executing in user mode.\nMetrics obtained using `getrusage()` call.\n\nPanel works with `metrics >= 0.8.0`.\n",
                "fill": 0,
                "gridPos": {
@@ -9996,7 +9996,7 @@
                      "show": true
                   },
                   {
-                     "decimals": 3,
+                     "decimals": 2,
                      "format": "percentunit",
                      "label": null,
                      "logBase": 1,
@@ -10012,7 +10012,7 @@
                "dashLength": 10,
                "dashes": false,
                "datasource": "Prometheus",
-               "decimals": 3,
+               "decimals": 2,
                "description": "This is the average share of time\nspent by instance process executing in kernel mode.\nMetrics obtained using `getrusage()` call.\n\nPanel works with `metrics >= 0.8.0`.\n",
                "fill": 0,
                "gridPos": {
@@ -10086,7 +10086,7 @@
                      "show": true
                   },
                   {
-                     "decimals": 3,
+                     "decimals": 2,
                      "format": "percentunit",
                      "label": null,
                      "logBase": 1,
@@ -10122,7 +10122,7 @@
                "dashLength": 10,
                "dashes": false,
                "datasource": "Prometheus",
-               "decimals": 3,
+               "decimals": 2,
                "description": "Memory used for objects allocated with Lua\nby using its internal mechanisms.\nLua memory is bounded by 2 GB per instance. \n",
                "fill": 0,
                "gridPos": {
@@ -10196,7 +10196,7 @@
                      "show": true
                   },
                   {
-                     "decimals": 3,
+                     "decimals": 2,
                      "format": "bytes",
                      "label": null,
                      "logBase": 1,
@@ -10212,7 +10212,7 @@
                "dashLength": 10,
                "dashes": false,
                "datasource": "Prometheus",
-               "decimals": 3,
+               "decimals": 2,
                "description": "Memory used by runtime arena.\nRuntime arena stores network buffers, tuples\ncreated with box.tuple.new and other objects\nallocated by application not covered by basic\nLua mechanisms (spaces data and indexes\nare not included here, see memtx/vinyl arena).\n",
                "fill": 0,
                "gridPos": {
@@ -10286,7 +10286,7 @@
                      "show": true
                   },
                   {
-                     "decimals": 3,
+                     "decimals": 2,
                      "format": "bytes",
                      "label": null,
                      "logBase": 1,
@@ -10302,7 +10302,7 @@
                "dashLength": 10,
                "dashes": false,
                "datasource": "Prometheus",
-               "decimals": 3,
+               "decimals": 2,
                "description": "Memory in use by active transactions.\nFor the vinyl storage engine, this is the total size of\nall allocated objects (struct txv, struct vy_tx, struct vy_read_interval)\nand tuples pinned for those objects. \n",
                "fill": 0,
                "gridPos": {
@@ -10376,7 +10376,7 @@
                      "show": true
                   },
                   {
-                     "decimals": 3,
+                     "decimals": 2,
                      "format": "bytes",
                      "label": null,
                      "logBase": 1,
@@ -10392,7 +10392,7 @@
                "dashLength": 10,
                "dashes": false,
                "datasource": "Prometheus",
-               "decimals": 3,
+               "decimals": 2,
                "description": "Number of fiber context switches.\nContext switches are counted over all current fibers.\n",
                "fill": 0,
                "gridPos": {
@@ -10466,7 +10466,7 @@
                      "show": true
                   },
                   {
-                     "decimals": 3,
+                     "decimals": 2,
                      "format": "none",
                      "label": null,
                      "logBase": 1,
@@ -10482,7 +10482,7 @@
                "dashLength": 10,
                "dashes": false,
                "datasource": "Prometheus",
-               "decimals": 3,
+               "decimals": 2,
                "description": "Duration of last event loop iteration (tx thread).\nHigh duration results in longer responses,\npossible bad health signals and may be the\nreason of \"Too long WAL write\" errors.\n\nPanel works with `metrics >= 0.13.0`.\n",
                "fill": 0,
                "gridPos": {
@@ -10547,7 +10547,7 @@
                },
                "yaxes": [
                   {
-                     "decimals": 3,
+                     "decimals": 2,
                      "format": "ms",
                      "label": "cycle duration",
                      "logBase": 1,
@@ -10556,7 +10556,7 @@
                      "show": true
                   },
                   {
-                     "decimals": 3,
+                     "decimals": 2,
                      "format": "ms",
                      "label": null,
                      "logBase": 1,
@@ -10662,7 +10662,7 @@
                "dashLength": 10,
                "dashes": false,
                "datasource": "Prometheus",
-               "decimals": 3,
+               "decimals": 2,
                "description": "Amount of memory used by current fibers.\n",
                "fill": 0,
                "gridPos": {
@@ -10736,7 +10736,7 @@
                      "show": true
                   },
                   {
-                     "decimals": 3,
+                     "decimals": 2,
                      "format": "bytes",
                      "label": null,
                      "logBase": 1,
@@ -10752,7 +10752,7 @@
                "dashLength": 10,
                "dashes": false,
                "datasource": "Prometheus",
-               "decimals": 3,
+               "decimals": 2,
                "description": "Amount of memory reserved for current fibers.\n",
                "fill": 0,
                "gridPos": {
@@ -10826,7 +10826,7 @@
                      "show": true
                   },
                   {
-                     "decimals": 3,
+                     "decimals": 2,
                      "format": "bytes",
                      "label": null,
                      "logBase": 1,
@@ -10862,7 +10862,7 @@
                "dashLength": 10,
                "dashes": false,
                "datasource": "Prometheus",
-               "decimals": 3,
+               "decimals": 2,
                "description": "Average number of snap restores (guard assertions\nleading to stopping trace executions) per second.\n\n\nPanel works with `metrics >= 0.15.0` and `Tarantool >= 2.6`.",
                "fill": 0,
                "gridPos": {
@@ -10936,7 +10936,7 @@
                      "show": true
                   },
                   {
-                     "decimals": 3,
+                     "decimals": 2,
                      "format": "none",
                      "label": null,
                      "logBase": 1,
@@ -10952,7 +10952,7 @@
                "dashLength": 10,
                "dashes": false,
                "datasource": "Prometheus",
-               "decimals": 3,
+               "decimals": 2,
                "description": "Average number of new JIT traces per second.\n\n\nPanel works with `metrics >= 0.6.0` and `Tarantool >= 2.6`.",
                "fill": 0,
                "gridPos": {
@@ -11026,7 +11026,7 @@
                      "show": true
                   },
                   {
-                     "decimals": 3,
+                     "decimals": 2,
                      "format": "none",
                      "label": null,
                      "logBase": 1,
@@ -11042,7 +11042,7 @@
                "dashLength": 10,
                "dashes": false,
                "datasource": "Prometheus",
-               "decimals": 3,
+               "decimals": 2,
                "description": "Average number of JIT trace aborts per second.\n\n\nPanel works with `metrics >= 0.15.0` and `Tarantool >= 2.6`.",
                "fill": 0,
                "gridPos": {
@@ -11116,7 +11116,7 @@
                      "show": true
                   },
                   {
-                     "decimals": 3,
+                     "decimals": 2,
                      "format": "none",
                      "label": null,
                      "logBase": 1,
@@ -11132,7 +11132,7 @@
                "dashLength": 10,
                "dashes": false,
                "datasource": "Prometheus",
-               "decimals": 3,
+               "decimals": 2,
                "description": "Total size of allocated machine code areas.\n\n\nPanel works with `metrics >= 0.6.0` and `Tarantool >= 2.6`.",
                "fill": 0,
                "gridPos": {
@@ -11206,7 +11206,7 @@
                      "show": true
                   },
                   {
-                     "decimals": 3,
+                     "decimals": 2,
                      "format": "bytes",
                      "label": null,
                      "logBase": 1,
@@ -11222,7 +11222,7 @@
                "dashLength": 10,
                "dashes": false,
                "datasource": "Prometheus",
-               "decimals": 3,
+               "decimals": 2,
                "description": "Average number of strings being extracted from hash instead of allocating per second.\n\n\nPanel works with `metrics >= 0.15.0` and `Tarantool >= 2.6`.",
                "fill": 0,
                "gridPos": {
@@ -11296,7 +11296,7 @@
                      "show": true
                   },
                   {
-                     "decimals": 3,
+                     "decimals": 2,
                      "format": "none",
                      "label": null,
                      "logBase": 1,
@@ -11312,7 +11312,7 @@
                "dashLength": 10,
                "dashes": false,
                "datasource": "Prometheus",
-               "decimals": 3,
+               "decimals": 2,
                "description": "Average number of strings being allocated due to hash miss per second.\n\n\nPanel works with `metrics >= 0.15.0` and `Tarantool >= 2.6`.",
                "fill": 0,
                "gridPos": {
@@ -11386,7 +11386,7 @@
                      "show": true
                   },
                   {
-                     "decimals": 3,
+                     "decimals": 2,
                      "format": "none",
                      "label": null,
                      "logBase": 1,
@@ -11402,7 +11402,7 @@
                "dashLength": 10,
                "dashes": false,
                "datasource": "Prometheus",
-               "decimals": 3,
+               "decimals": 2,
                "description": "Average count of incremental GC steps (atomic state) per second.\n\n\nPanel works with `metrics >= 0.15.0` and `Tarantool >= 2.6`.",
                "fill": 0,
                "gridPos": {
@@ -11476,7 +11476,7 @@
                      "show": true
                   },
                   {
-                     "decimals": 3,
+                     "decimals": 2,
                      "format": "none",
                      "label": null,
                      "logBase": 1,
@@ -11492,7 +11492,7 @@
                "dashLength": 10,
                "dashes": false,
                "datasource": "Prometheus",
-               "decimals": 3,
+               "decimals": 2,
                "description": "Average count of incremental GC steps (sweepstring state) per second.\n\n\nPanel works with `metrics >= 0.15.0` and `Tarantool >= 2.6`.",
                "fill": 0,
                "gridPos": {
@@ -11566,7 +11566,7 @@
                      "show": true
                   },
                   {
-                     "decimals": 3,
+                     "decimals": 2,
                      "format": "none",
                      "label": null,
                      "logBase": 1,
@@ -11582,7 +11582,7 @@
                "dashLength": 10,
                "dashes": false,
                "datasource": "Prometheus",
-               "decimals": 3,
+               "decimals": 2,
                "description": "Average count of incremental GC steps (finalize state) per second.\n\n\nPanel works with `metrics >= 0.15.0` and `Tarantool >= 2.6`.",
                "fill": 0,
                "gridPos": {
@@ -11656,7 +11656,7 @@
                      "show": true
                   },
                   {
-                     "decimals": 3,
+                     "decimals": 2,
                      "format": "none",
                      "label": null,
                      "logBase": 1,
@@ -11672,7 +11672,7 @@
                "dashLength": 10,
                "dashes": false,
                "datasource": "Prometheus",
-               "decimals": 3,
+               "decimals": 2,
                "description": "Average count of incremental GC steps (sweep state) per second.\n\n\nPanel works with `metrics >= 0.15.0` and `Tarantool >= 2.6`.",
                "fill": 0,
                "gridPos": {
@@ -11746,7 +11746,7 @@
                      "show": true
                   },
                   {
-                     "decimals": 3,
+                     "decimals": 2,
                      "format": "none",
                      "label": null,
                      "logBase": 1,
@@ -11762,7 +11762,7 @@
                "dashLength": 10,
                "dashes": false,
                "datasource": "Prometheus",
-               "decimals": 3,
+               "decimals": 2,
                "description": "Average count of incremental GC steps (propagate state) per second.\n\n\nPanel works with `metrics >= 0.15.0` and `Tarantool >= 2.6`.",
                "fill": 0,
                "gridPos": {
@@ -11836,7 +11836,7 @@
                      "show": true
                   },
                   {
-                     "decimals": 3,
+                     "decimals": 2,
                      "format": "none",
                      "label": null,
                      "logBase": 1,
@@ -11852,7 +11852,7 @@
                "dashLength": 10,
                "dashes": false,
                "datasource": "Prometheus",
-               "decimals": 3,
+               "decimals": 2,
                "description": "Average count of incremental GC steps (pause state) per second.\n\n\nPanel works with `metrics >= 0.15.0` and `Tarantool >= 2.6`.",
                "fill": 0,
                "gridPos": {
@@ -11926,7 +11926,7 @@
                      "show": true
                   },
                   {
-                     "decimals": 3,
+                     "decimals": 2,
                      "format": "none",
                      "label": null,
                      "logBase": 1,
@@ -12302,7 +12302,7 @@
                "dashLength": 10,
                "dashes": false,
                "datasource": "Prometheus",
-               "decimals": 3,
+               "decimals": 2,
                "description": "Current allocated Lua memory.\n\n\nPanel works with `metrics >= 0.6.0` and `Tarantool >= 2.6`.",
                "fill": 0,
                "gridPos": {
@@ -12376,7 +12376,7 @@
                      "show": true
                   },
                   {
-                     "decimals": 3,
+                     "decimals": 2,
                      "format": "bytes",
                      "label": null,
                      "logBase": 1,
@@ -12392,7 +12392,7 @@
                "dashLength": 10,
                "dashes": false,
                "datasource": "Prometheus",
-               "decimals": 3,
+               "decimals": 2,
                "description": "Average amount of freed Lua memory per second.\n\n\nPanel works with `metrics >= 0.15.0` and `Tarantool >= 2.6`.",
                "fill": 0,
                "gridPos": {
@@ -12466,7 +12466,7 @@
                      "show": true
                   },
                   {
-                     "decimals": 3,
+                     "decimals": 2,
                      "format": "bytes",
                      "label": null,
                      "logBase": 1,
@@ -12482,7 +12482,7 @@
                "dashLength": 10,
                "dashes": false,
                "datasource": "Prometheus",
-               "decimals": 3,
+               "decimals": 2,
                "description": "Average amount of allocated Lua memory per second.\n\n\nPanel works with `metrics >= 0.15.0` and `Tarantool >= 2.6`.",
                "fill": 0,
                "gridPos": {
@@ -12556,7 +12556,7 @@
                      "show": true
                   },
                   {
-                     "decimals": 3,
+                     "decimals": 2,
                      "format": "bytes",
                      "label": null,
                      "logBase": 1,
@@ -12592,7 +12592,7 @@
                "dashLength": 10,
                "dashes": false,
                "datasource": "Prometheus",
-               "decimals": 3,
+               "decimals": 2,
                "description": "Total count of SELECT requests to all instance spaces.\nGraph shows average requests per second.\n",
                "fill": 0,
                "gridPos": {
@@ -12666,7 +12666,7 @@
                      "show": true
                   },
                   {
-                     "decimals": 3,
+                     "decimals": 2,
                      "format": "none",
                      "label": null,
                      "logBase": 1,
@@ -12682,7 +12682,7 @@
                "dashLength": 10,
                "dashes": false,
                "datasource": "Prometheus",
-               "decimals": 3,
+               "decimals": 2,
                "description": "Total count of INSERT requests to all instance spaces.\nGraph shows average requests per second.\n",
                "fill": 0,
                "gridPos": {
@@ -12756,7 +12756,7 @@
                      "show": true
                   },
                   {
-                     "decimals": 3,
+                     "decimals": 2,
                      "format": "none",
                      "label": null,
                      "logBase": 1,
@@ -12772,7 +12772,7 @@
                "dashLength": 10,
                "dashes": false,
                "datasource": "Prometheus",
-               "decimals": 3,
+               "decimals": 2,
                "description": "Total count of REPLACE requests to all instance spaces.\nGraph shows average requests per second.\n",
                "fill": 0,
                "gridPos": {
@@ -12846,7 +12846,7 @@
                      "show": true
                   },
                   {
-                     "decimals": 3,
+                     "decimals": 2,
                      "format": "none",
                      "label": null,
                      "logBase": 1,
@@ -12862,7 +12862,7 @@
                "dashLength": 10,
                "dashes": false,
                "datasource": "Prometheus",
-               "decimals": 3,
+               "decimals": 2,
                "description": "Total count of UPSERT requests to all instance spaces.\nGraph shows average requests per second.\n",
                "fill": 0,
                "gridPos": {
@@ -12936,7 +12936,7 @@
                      "show": true
                   },
                   {
-                     "decimals": 3,
+                     "decimals": 2,
                      "format": "none",
                      "label": null,
                      "logBase": 1,
@@ -12952,7 +12952,7 @@
                "dashLength": 10,
                "dashes": false,
                "datasource": "Prometheus",
-               "decimals": 3,
+               "decimals": 2,
                "description": "Total count of UPDATE requests to all instance spaces.\nGraph shows average requests per second.\n",
                "fill": 0,
                "gridPos": {
@@ -13026,7 +13026,7 @@
                      "show": true
                   },
                   {
-                     "decimals": 3,
+                     "decimals": 2,
                      "format": "none",
                      "label": null,
                      "logBase": 1,
@@ -13042,7 +13042,7 @@
                "dashLength": 10,
                "dashes": false,
                "datasource": "Prometheus",
-               "decimals": 3,
+               "decimals": 2,
                "description": "Total count of DELETE requests to all instance spaces.\nGraph shows average requests per second.\n",
                "fill": 0,
                "gridPos": {
@@ -13116,7 +13116,7 @@
                      "show": true
                   },
                   {
-                     "decimals": 3,
+                     "decimals": 2,
                      "format": "none",
                      "label": null,
                      "logBase": 1,
@@ -13132,7 +13132,7 @@
                "dashLength": 10,
                "dashes": false,
                "datasource": "Prometheus",
-               "decimals": 3,
+               "decimals": 2,
                "description": "Requests to execute stored procedures.\nGraph shows average requests per second.\n",
                "fill": 0,
                "gridPos": {
@@ -13206,7 +13206,7 @@
                      "show": true
                   },
                   {
-                     "decimals": 3,
+                     "decimals": 2,
                      "format": "none",
                      "label": null,
                      "logBase": 1,
@@ -13222,7 +13222,7 @@
                "dashLength": 10,
                "dashes": false,
                "datasource": "Prometheus",
-               "decimals": 3,
+               "decimals": 2,
                "description": "Calls to evaluate Lua code.\nGraph shows average requests per second.\n",
                "fill": 0,
                "gridPos": {
@@ -13296,7 +13296,7 @@
                      "show": true
                   },
                   {
-                     "decimals": 3,
+                     "decimals": 2,
                      "format": "none",
                      "label": null,
                      "logBase": 1,
@@ -13312,7 +13312,7 @@
                "dashLength": 10,
                "dashes": false,
                "datasource": "Prometheus",
-               "decimals": 3,
+               "decimals": 2,
                "description": "Requests resulted in error.\nGraph shows average errors per second.\n",
                "fill": 0,
                "gridPos": {
@@ -13386,7 +13386,7 @@
                      "show": true
                   },
                   {
-                     "decimals": 3,
+                     "decimals": 2,
                      "format": "none",
                      "label": null,
                      "logBase": 1,
@@ -13402,7 +13402,7 @@
                "dashLength": 10,
                "dashes": false,
                "datasource": "Prometheus",
-               "decimals": 3,
+               "decimals": 2,
                "description": "Authentication requests.\nGraph shows average requests per second.\n",
                "fill": 0,
                "gridPos": {
@@ -13476,7 +13476,7 @@
                      "show": true
                   },
                   {
-                     "decimals": 3,
+                     "decimals": 2,
                      "format": "none",
                      "label": null,
                      "logBase": 1,
@@ -13492,7 +13492,7 @@
                "dashLength": 10,
                "dashes": false,
                "datasource": "Prometheus",
-               "decimals": 3,
+               "decimals": 2,
                "description": "SQL prepare calls.\nGraph shows average calls per second.\n\nPanel works with Tarantool 2.x.\n",
                "fill": 0,
                "gridPos": {
@@ -13566,7 +13566,7 @@
                      "show": true
                   },
                   {
-                     "decimals": 3,
+                     "decimals": 2,
                      "format": "none",
                      "label": null,
                      "logBase": 1,
@@ -13582,7 +13582,7 @@
                "dashLength": 10,
                "dashes": false,
                "datasource": "Prometheus",
-               "decimals": 3,
+               "decimals": 2,
                "description": "SQL execute calls.\nGraph shows average calls per second.\n\nPanel works with Tarantool 2.x.\n",
                "fill": 0,
                "gridPos": {
@@ -13656,7 +13656,7 @@
                      "show": true
                   },
                   {
-                     "decimals": 3,
+                     "decimals": 2,
                      "format": "none",
                      "label": null,
                      "logBase": 1,
@@ -13672,7 +13672,7 @@
                "dashLength": 10,
                "dashes": false,
                "datasource": "Prometheus",
-               "decimals": 3,
+               "decimals": 2,
                "description": "Panel displays the count of IPROTO_CALL and\nIPROTO_EVAL operations with `box.begin()`, IPROTO_EXECUTE\noperations with `TRANSACTION START` and IPROTO_BEGIN operations.\nGraph shows average calls per second.\n\nPanel works with Tarantool 2.10 or newer.\n",
                "fill": 0,
                "gridPos": {
@@ -13746,7 +13746,7 @@
                      "show": true
                   },
                   {
-                     "decimals": 3,
+                     "decimals": 2,
                      "format": "none",
                      "label": null,
                      "logBase": 1,
@@ -13762,7 +13762,7 @@
                "dashLength": 10,
                "dashes": false,
                "datasource": "Prometheus",
-               "decimals": 3,
+               "decimals": 2,
                "description": "Panel displays the count of IPROTO_CALL and\nIPROTO_EVAL operations with `box.commit()`, IPROTO_EXECUTE\noperations with `COMMIT` and IPROTO_COMMIT operations.\nGraph shows average calls per second.\n\nPanel works with Tarantool 2.10 or newer.\n",
                "fill": 0,
                "gridPos": {
@@ -13836,7 +13836,7 @@
                      "show": true
                   },
                   {
-                     "decimals": 3,
+                     "decimals": 2,
                      "format": "none",
                      "label": null,
                      "logBase": 1,
@@ -13852,7 +13852,7 @@
                "dashLength": 10,
                "dashes": false,
                "datasource": "Prometheus",
-               "decimals": 3,
+               "decimals": 2,
                "description": "Panel displays the count of IPROTO_CALL and\nIPROTO_EVAL operations with `box.rollback()`, IPROTO_EXECUTE\noperations with `ROLLBACK` and IPROTO_ROLLBACK operations.\nGraph shows average calls per second.\n\nPanel works with Tarantool 2.10 or newer.\n",
                "fill": 0,
                "gridPos": {
@@ -13926,7 +13926,7 @@
                      "show": true
                   },
                   {
-                     "decimals": 3,
+                     "decimals": 2,
                      "format": "none",
                      "label": null,
                      "logBase": 1,
@@ -14117,7 +14117,7 @@
                },
                "yaxes": [
                   {
-                     "decimals": 3,
+                     "decimals": 2,
                      "format": "s",
                      "label": "99th percentile",
                      "logBase": 1,
@@ -14297,7 +14297,7 @@
                },
                "yaxes": [
                   {
-                     "decimals": 3,
+                     "decimals": 2,
                      "format": "s",
                      "label": "99th percentile",
                      "logBase": 1,
@@ -14322,7 +14322,7 @@
                "dashLength": 10,
                "dashes": false,
                "datasource": "Prometheus",
-               "decimals": 3,
+               "decimals": 2,
                "description": "Average number of tuples fetched during SELECT/PAIRS request for a space.\nBoth success and error requests are taken into consideration.\n\nCRUD 0.11.0 or newer is required to use statistics.\nEnable statistics with `crud.cfg{stats = true, stats_driver = 'metrics'}`\n",
                "fill": 0,
                "gridPos": {
@@ -14396,7 +14396,7 @@
                      "show": true
                   },
                   {
-                     "decimals": 3,
+                     "decimals": 2,
                      "format": "none",
                      "label": null,
                      "logBase": 1,
@@ -14412,7 +14412,7 @@
                "dashLength": 10,
                "dashes": false,
                "datasource": "Prometheus",
-               "decimals": 3,
+               "decimals": 2,
                "description": "Average number of tuples looked up on storages while collecting responses\nfor SELECT/PAIRS requests (including scrolls for multibatch requests)\nfor a space. Both success and error requests are taken into consideration.\n\nCRUD 0.11.0 or newer is required to use statistics.\nEnable statistics with `crud.cfg{stats = true, stats_driver = 'metrics'}`\n",
                "fill": 0,
                "gridPos": {
@@ -14486,7 +14486,7 @@
                      "show": true
                   },
                   {
-                     "decimals": 3,
+                     "decimals": 2,
                      "format": "none",
                      "label": null,
                      "logBase": 1,
@@ -14502,7 +14502,7 @@
                "dashLength": 10,
                "dashes": false,
                "datasource": "Prometheus",
-               "decimals": 3,
+               "decimals": 2,
                "description": "Number of SELECT and PAIRS requests that resulted in map reduce.\nGraph shows average requests per second.\nBoth success and error requests are taken into consideration.\n\nCRUD 0.11.0 or newer is required to use statistics.\nEnable statistics with `crud.cfg{stats = true, stats_driver = 'metrics'}`\n",
                "fill": 0,
                "gridPos": {
@@ -14576,7 +14576,7 @@
                      "show": true
                   },
                   {
-                     "decimals": 3,
+                     "decimals": 2,
                      "format": "none",
                      "label": null,
                      "logBase": 1,
@@ -14747,7 +14747,7 @@
                },
                "yaxes": [
                   {
-                     "decimals": 3,
+                     "decimals": 2,
                      "format": "s",
                      "label": "99th percentile",
                      "logBase": 1,
@@ -14927,7 +14927,7 @@
                },
                "yaxes": [
                   {
-                     "decimals": 3,
+                     "decimals": 2,
                      "format": "s",
                      "label": "99th percentile",
                      "logBase": 1,
@@ -15107,7 +15107,7 @@
                },
                "yaxes": [
                   {
-                     "decimals": 3,
+                     "decimals": 2,
                      "format": "s",
                      "label": "99th percentile",
                      "logBase": 1,
@@ -15287,7 +15287,7 @@
                },
                "yaxes": [
                   {
-                     "decimals": 3,
+                     "decimals": 2,
                      "format": "s",
                      "label": "99th percentile",
                      "logBase": 1,
@@ -15467,7 +15467,7 @@
                },
                "yaxes": [
                   {
-                     "decimals": 3,
+                     "decimals": 2,
                      "format": "s",
                      "label": "99th percentile",
                      "logBase": 1,
@@ -15647,7 +15647,7 @@
                },
                "yaxes": [
                   {
-                     "decimals": 3,
+                     "decimals": 2,
                      "format": "s",
                      "label": "99th percentile",
                      "logBase": 1,
@@ -15827,7 +15827,7 @@
                },
                "yaxes": [
                   {
-                     "decimals": 3,
+                     "decimals": 2,
                      "format": "s",
                      "label": "99th percentile",
                      "logBase": 1,
@@ -16007,7 +16007,7 @@
                },
                "yaxes": [
                   {
-                     "decimals": 3,
+                     "decimals": 2,
                      "format": "s",
                      "label": "99th percentile",
                      "logBase": 1,
@@ -16187,7 +16187,7 @@
                },
                "yaxes": [
                   {
-                     "decimals": 3,
+                     "decimals": 2,
                      "format": "s",
                      "label": "99th percentile",
                      "logBase": 1,
@@ -16367,7 +16367,7 @@
                },
                "yaxes": [
                   {
-                     "decimals": 3,
+                     "decimals": 2,
                      "format": "s",
                      "label": "99th percentile",
                      "logBase": 1,
@@ -16547,7 +16547,7 @@
                },
                "yaxes": [
                   {
-                     "decimals": 3,
+                     "decimals": 2,
                      "format": "s",
                      "label": "99th percentile",
                      "logBase": 1,
@@ -16727,7 +16727,7 @@
                },
                "yaxes": [
                   {
-                     "decimals": 3,
+                     "decimals": 2,
                      "format": "s",
                      "label": "99th percentile",
                      "logBase": 1,
@@ -16907,7 +16907,7 @@
                },
                "yaxes": [
                   {
-                     "decimals": 3,
+                     "decimals": 2,
                      "format": "s",
                      "label": "99th percentile",
                      "logBase": 1,
@@ -17087,7 +17087,7 @@
                },
                "yaxes": [
                   {
-                     "decimals": 3,
+                     "decimals": 2,
                      "format": "s",
                      "label": "99th percentile",
                      "logBase": 1,
@@ -17267,7 +17267,7 @@
                },
                "yaxes": [
                   {
-                     "decimals": 3,
+                     "decimals": 2,
                      "format": "s",
                      "label": "99th percentile",
                      "logBase": 1,
@@ -17447,7 +17447,7 @@
                },
                "yaxes": [
                   {
-                     "decimals": 3,
+                     "decimals": 2,
                      "format": "s",
                      "label": "99th percentile",
                      "logBase": 1,
@@ -17627,7 +17627,7 @@
                },
                "yaxes": [
                   {
-                     "decimals": 3,
+                     "decimals": 2,
                      "format": "s",
                      "label": "99th percentile",
                      "logBase": 1,
@@ -17807,7 +17807,7 @@
                },
                "yaxes": [
                   {
-                     "decimals": 3,
+                     "decimals": 2,
                      "format": "s",
                      "label": "99th percentile",
                      "logBase": 1,
@@ -17987,7 +17987,7 @@
                },
                "yaxes": [
                   {
-                     "decimals": 3,
+                     "decimals": 2,
                      "format": "s",
                      "label": "99th percentile",
                      "logBase": 1,
@@ -18167,7 +18167,7 @@
                },
                "yaxes": [
                   {
-                     "decimals": 3,
+                     "decimals": 2,
                      "format": "s",
                      "label": "99th percentile",
                      "logBase": 1,
@@ -18347,7 +18347,7 @@
                },
                "yaxes": [
                   {
-                     "decimals": 3,
+                     "decimals": 2,
                      "format": "s",
                      "label": "99th percentile",
                      "logBase": 1,
@@ -18527,7 +18527,7 @@
                },
                "yaxes": [
                   {
-                     "decimals": 3,
+                     "decimals": 2,
                      "format": "s",
                      "label": "99th percentile",
                      "logBase": 1,
@@ -18707,7 +18707,7 @@
                },
                "yaxes": [
                   {
-                     "decimals": 3,
+                     "decimals": 2,
                      "format": "s",
                      "label": "99th percentile",
                      "logBase": 1,
@@ -18887,7 +18887,7 @@
                },
                "yaxes": [
                   {
-                     "decimals": 3,
+                     "decimals": 2,
                      "format": "s",
                      "label": "99th percentile",
                      "logBase": 1,
@@ -19067,7 +19067,7 @@
                },
                "yaxes": [
                   {
-                     "decimals": 3,
+                     "decimals": 2,
                      "format": "s",
                      "label": "99th percentile",
                      "logBase": 1,
@@ -19247,7 +19247,7 @@
                },
                "yaxes": [
                   {
-                     "decimals": 3,
+                     "decimals": 2,
                      "format": "s",
                      "label": "99th percentile",
                      "logBase": 1,
@@ -19292,7 +19292,7 @@
                "dashLength": 10,
                "dashes": false,
                "datasource": "Prometheus",
-               "decimals": 3,
+               "decimals": 2,
                "description": "A number of task tuples checked for expiration (expired + skipped).\nGraph shows mean tuples per second.\n",
                "fill": 0,
                "gridPos": {
@@ -19366,7 +19366,7 @@
                      "show": true
                   },
                   {
-                     "decimals": 3,
+                     "decimals": 2,
                      "format": "none",
                      "label": null,
                      "logBase": 1,
@@ -19382,7 +19382,7 @@
                "dashLength": 10,
                "dashes": false,
                "datasource": "Prometheus",
-               "decimals": 3,
+               "decimals": 2,
                "description": "A number of task expired tuples.\nGraph shows mean tuples per second.\n",
                "fill": 0,
                "gridPos": {
@@ -19456,7 +19456,7 @@
                      "show": true
                   },
                   {
-                     "decimals": 3,
+                     "decimals": 2,
                      "format": "none",
                      "label": null,
                      "logBase": 1,
@@ -19562,7 +19562,7 @@
                "dashLength": 10,
                "dashes": false,
                "datasource": "Prometheus",
-               "decimals": 3,
+               "decimals": 2,
                "description": "A task's operation time.\n",
                "fill": 0,
                "gridPos": {
@@ -19636,7 +19636,7 @@
                      "show": true
                   },
                   {
-                     "decimals": 3,
+                     "decimals": 2,
                      "format": "s",
                      "label": null,
                      "logBase": 1,

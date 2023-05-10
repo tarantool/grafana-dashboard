@@ -245,8 +245,8 @@ local common = import 'dashboard/panels/common.libsonnet';
     description=description,
     datasource=datasource,
     labelY1='cycle duration',
-    decimals=3,
-    decimalsY1=3,
+    decimals=2,
+    decimalsY1=2,
     format='ms',
     panel_width=12,
   ).addTarget(common.default_metric_target(
