@@ -36,9 +36,9 @@ if WITH_INSTANCE_VARIABLE then
   ).build()
 else
   tdg_dashboard_raw(
-    datasource=std.extVar('DATASOURCE'),
-    policy=std.extVar('POLICY'),
-    measurement=std.extVar('MEASUREMENT'),
+    datasource=DATASOURCE,
+    policy=POLICY,
+    measurement=MEASUREMENT,
     alias='/^.*$/',
     title=TITLE,
   ).build()
