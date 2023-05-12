@@ -1,69 +1,66 @@
 local grafana = import 'grafonnet/grafana.libsonnet';
 
+local config = import 'dashboard/build/config.libsonnet';
 local dashboard = import 'dashboard/build/influxdb/dashboard.libsonnet';
 local common = import 'dashboard/panels/common.libsonnet';
 local variable = import 'dashboard/variable.libsonnet';
+
+local cfg = config.prepare({ type: variable.datasource_type.influxdb });
 
 dashboard.addPanels([
   common.row('My custom metrics'),
 
   common.default_graph(
+    cfg,
     title='My custom component status',
     description=|||
       My custom component could have 3 statuses:
       code 2 is OK, code 1 is suspended process, code 0 means issues in component.
     |||,
-    datasource=variable.datasource.influxdb,
     labelY1='requests per second',
     panel_width=24,
     panel_height=6,
   ).addTarget(common.default_metric_target(
-    datasource_type=variable.datasource_type.influxdb,
+    cfg,
     metric_name='my_component_status',
-    policy=variable.influxdb.policy,
-    measurement=variable.influxdb.measurement,
-    alias=variable.influxdb.alias,
     converter='last',
   )),
 
   common.default_graph(
+    cfg,
     title='My custom component load',
     description=|||
       My custom component processes requests
       and collects info on process to summary collector
       'my_component_load_metric'.
     |||,
-    datasource=variable.datasource.influxdb,
     labelY1='requests per second',
     panel_width=12,
   ).addTarget(common.default_rps_target(
-    datasource_type=variable.datasource_type.influxdb,
+    cfg,
     metric_name='my_component_load_metric_count',
-    policy=variable.influxdb.policy,
-    measurement=variable.influxdb.measurement,
-    alias=variable.influxdb.alias,
   )),
 
   common.default_graph(
+    cfg,
     title='My custom component process',
     description=|||
       My custom component processes requests
       and collects info on process to summary collector
       'my_component_load_metric'.
     |||,
-    datasource=variable.datasource.influxdb,
     format='s',
     labelY1='process time',
     panel_width=12,
   ).addTarget(
     grafana.influxdb.target(
-      policy=variable.influxdb.policy,
-      measurement=variable.influxdb.measurement,
+      policy=cfg.policy,
+      measurement=cfg.measurement,
       group_tags=['label_pairs_alias'],
       alias='$tag_label_pairs_alias',
       fill='null',
     ).where('metric_name', '=', 'my_component_load_metric')
-    .where('label_pairs_alias', '=~', variable.influxdb.alias)
+    .where('label_pairs_alias', '=~', cfg.filters.label_pairs_alias)
     .where('label_pairs_quantile', '=', '0.99')
     .selectField('value').addConverter('mean')
   ),

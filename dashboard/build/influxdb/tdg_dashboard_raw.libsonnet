@@ -4,15 +4,9 @@ local dashboard = import 'dashboard/dashboard.libsonnet';
 local section = import 'dashboard/section.libsonnet';
 local variable = import 'dashboard/variable.libsonnet';
 
-function(
-  datasource,
-  policy,
-  measurement,
-  alias,
-  title='Tarantool Data Grid dashboard',
-) dashboard.new(
+function(cfg) dashboard.new(
   grafana.dashboard.new(
-    title=title,
+    title=cfg.title,
     description='Dashboard for Tarantool Data Grid ver. 2 application monitoring, based on grafonnet library.',
     editable=true,
     schemaVersion=21,
@@ -47,187 +41,47 @@ function(
     version='1.0.0'
   )
 ).addPanels(
-  section.cluster_influxdb(
-    datasource_type=variable.datasource_type.influxdb,
-    datasource=datasource,
-    policy=policy,
-    measurement=measurement,
-    alias=alias,
-  )
+  section.cluster_influxdb(cfg)
 ).addPanels(
-  section.replication(
-    datasource_type=variable.datasource_type.influxdb,
-    datasource=datasource,
-    policy=policy,
-    measurement=measurement,
-    alias=alias,
-  )
+  section.replication(cfg)
 ).addPanels(
-  section.net(
-    datasource_type=variable.datasource_type.influxdb,
-    datasource=datasource,
-    policy=policy,
-    measurement=measurement,
-    alias=alias,
-  )
+  section.net(cfg)
 ).addPanels(
-  section.slab(
-    datasource_type=variable.datasource_type.influxdb,
-    datasource=datasource,
-    policy=policy,
-    measurement=measurement,
-    alias=alias,
-  )
+  section.slab(cfg)
 ).addPanels(
-  section.mvcc(
-    datasource_type=variable.datasource_type.influxdb,
-    datasource=datasource,
-    policy=policy,
-    measurement=measurement,
-    alias=alias,
-  )
+  section.mvcc(cfg)
 ).addPanels(
-  section.space(
-    datasource_type=variable.datasource_type.influxdb,
-    datasource=datasource,
-    policy=policy,
-    measurement=measurement,
-    alias=alias,
-  )
+  section.space(cfg)
 ).addPanels(
-  section.vinyl(
-    datasource_type=variable.datasource_type.influxdb,
-    datasource=datasource,
-    policy=policy,
-    measurement=measurement,
-    alias=alias,
-  )
+  section.vinyl(cfg)
 ).addPanels(
-  section.cpu_extended(
-    datasource_type=variable.datasource_type.influxdb,
-    datasource=datasource,
-    policy=policy,
-    measurement=measurement,
-    alias=alias,
-  )
+  section.cpu_extended(cfg)
 ).addPanels(
-  section.runtime(
-    datasource_type=variable.datasource_type.influxdb,
-    datasource=datasource,
-    policy=policy,
-    measurement=measurement,
-    alias=alias,
-  )
+  section.runtime(cfg)
 ).addPanels(
-  section.luajit(
-    datasource_type=variable.datasource_type.influxdb,
-    datasource=datasource,
-    policy=policy,
-    measurement=measurement,
-    alias=alias,
-  )
+  section.luajit(cfg)
 ).addPanels(
-  section.operations(
-    datasource_type=variable.datasource_type.influxdb,
-    datasource=datasource,
-    policy=policy,
-    measurement=measurement,
-    alias=alias,
-  )
+  section.operations(cfg)
 ).addPanels(
-  section.tdg_kafka_common(
-    datasource_type=variable.datasource_type.influxdb,
-    datasource=datasource,
-    policy=policy,
-    measurement=measurement,
-    alias=alias,
-  )
+  section.tdg_kafka_common(cfg)
 ).addPanels(
-  section.tdg_kafka_brokers(
-    datasource_type=variable.datasource_type.influxdb,
-    datasource=datasource,
-    policy=policy,
-    measurement=measurement,
-    alias=alias,
-  )
+  section.tdg_kafka_brokers(cfg)
 ).addPanels(
-  section.tdg_kafka_topics(
-    datasource_type=variable.datasource_type.influxdb,
-    datasource=datasource,
-    policy=policy,
-    measurement=measurement,
-    alias=alias,
-  )
+  section.tdg_kafka_topics(cfg)
 ).addPanels(
-  section.tdg_kafka_consumer(
-    datasource_type=variable.datasource_type.influxdb,
-    datasource=datasource,
-    policy=policy,
-    measurement=measurement,
-    alias=alias,
-  )
+  section.tdg_kafka_consumer(cfg)
 ).addPanels(
-  section.tdg_kafka_producer(
-    datasource_type=variable.datasource_type.influxdb,
-    datasource=datasource,
-    policy=policy,
-    measurement=measurement,
-    alias=alias,
-  )
+  section.tdg_kafka_producer(cfg)
 ).addPanels(
-  section.expirationd(
-    datasource_type=variable.datasource_type.influxdb,
-    datasource=datasource,
-    policy=policy,
-    measurement=measurement,
-    alias=alias,
-  )
+  section.expirationd(cfg)
 ).addPanels(
-  section.tdg_tuples(
-    datasource_type=variable.datasource_type.influxdb,
-    datasource=datasource,
-    policy=policy,
-    measurement=measurement,
-    alias=alias,
-  )
+  section.tdg_tuples(cfg)
 ).addPanels(
-  section.tdg_file_connectors(
-    datasource_type=variable.datasource_type.influxdb,
-    datasource=datasource,
-    policy=policy,
-    measurement=measurement,
-    alias=alias,
-  )
+  section.tdg_file_connectors(cfg)
 ).addPanels(
-  section.tdg_graphql(
-    datasource_type=variable.datasource_type.influxdb,
-    datasource=datasource,
-    policy=policy,
-    measurement=measurement,
-    alias=alias,
-  )
+  section.tdg_graphql(cfg)
 ).addPanels(
-  section.tdg_iproto(
-    datasource_type=variable.datasource_type.influxdb,
-    datasource=datasource,
-    policy=policy,
-    measurement=measurement,
-    alias=alias,
-  )
+  section.tdg_iproto(cfg)
 ).addPanels(
-  section.tdg_rest_api(
-    datasource_type=variable.datasource_type.influxdb,
-    datasource=datasource,
-    policy=policy,
-    measurement=measurement,
-    alias=alias,
-  )
-).addPanels(
-  section.tdg_tasks(
-    datasource_type=variable.datasource_type.influxdb,
-    datasource=datasource,
-    policy=policy,
-    measurement=measurement,
-    alias=alias,
-  )
-)
+  section.tdg_rest_api(cfg)
+).addPanels(section.tdg_tasks(cfg))

@@ -10,112 +10,73 @@ local prometheus = grafana.prometheus;
   row:: common.row('Tarantool vinyl statistics'),
 
   local disk_size(
+    cfg,
     title=null,
     description=null,
-    datasource_type=null,
-    datasource=null,
-    policy=null,
-    measurement=null,
-    job=null,
-    alias=null,
     metric_name=null,
   ) = common.default_graph(
+    cfg,
     title=title,
     description=description,
-    datasource=datasource,
     format='bytes',
     legend_avg=false,
     legend_max=false,
     panel_width=12,
-  ).addTarget(common.default_metric_target(
-    datasource_type,
-    metric_name,
-    job,
-    policy,
-    measurement,
-    alias,
-  )),
+  ).addTarget(
+    common.default_metric_target(cfg, metric_name)
+  ),
 
   disk_data(
+    cfg,
     title='Vinyl disk data',
     description=|||
       The amount of data stored in the `.run` files located in the `vinyl_dir` directory.
 
       Panel works with `metrics >= 0.8.0`.
     |||,
-    datasource_type=null,
-    datasource=null,
-    policy=null,
-    measurement=null,
-    job=null,
-    alias=null,
   ):: disk_size(
+    cfg,
     title=title,
     description=description,
-    datasource_type=datasource_type,
-    datasource=datasource,
-    policy=policy,
-    measurement=measurement,
-    job=job,
-    alias=alias,
     metric_name='tnt_vinyl_disk_data_size',
   ),
 
   index_data(
+    cfg,
     title='Vinyl disk index',
     description=|||
       The amount of data stored in the `.index` files located in the `vinyl_dir` directory.
 
       Panel works with `metrics >= 0.8.0`.
     |||,
-    datasource_type=null,
-    datasource=null,
-    policy=null,
-    measurement=null,
-    job=null,
-    alias=null,
   ):: disk_size(
+    cfg,
     title=title,
     description=description,
-    datasource_type=datasource_type,
-    datasource=datasource,
-    policy=policy,
-    measurement=measurement,
-    job=job,
-    alias=alias,
     metric_name='tnt_vinyl_disk_index_size',
   ),
 
   tuples_cache_memory(
+    cfg,
     title='Tuples cache memory',
     description=|||
       Amount of memory in bytes currently used to store tuples (data).
 
       Panel works with `metrics >= 0.8.0`.
     |||,
-    datasource_type=null,
-    datasource=null,
-    policy=null,
-    measurement=null,
-    job=null,
-    alias=null,
   ):: common.default_graph(
+    cfg,
     title=title,
     description=description,
-    datasource=datasource,
     format='bytes',
     labelY1='in bytes',
     panel_width=8,
-  ).addTarget(common.default_metric_target(
-    datasource_type,
-    'tnt_vinyl_memory_tuple_cache',
-    job,
-    policy,
-    measurement,
-    alias,
-  )),
+  ).addTarget(
+    common.default_metric_target(cfg, 'tnt_vinyl_memory_tuple_cache')
+  ),
 
   index_memory(
+    cfg,
     title='Index memory',
     description=|||
       Amount of memory in bytes currently used to store indexes.
@@ -124,81 +85,51 @@ local prometheus = grafana.prometheus;
 
       Panel works with `metrics >= 0.8.0`.
     |||,
-    datasource_type=null,
-    datasource=null,
-    policy=null,
-    measurement=null,
-    job=null,
-    alias=null,
   ):: common.default_graph(
+    cfg,
     title=title,
     description=description,
-    datasource=datasource,
     format='bytes',
     labelY1='in bytes',
     panel_width=8,
-  ).addTarget(common.default_metric_target(
-    datasource_type,
-    'tnt_vinyl_memory_page_index',
-    job,
-    policy,
-    measurement,
-    alias,
-  )),
+  ).addTarget(
+    common.default_metric_target(cfg, 'tnt_vinyl_memory_page_index')
+  ),
 
   bloom_filter_memory(
+    cfg,
     title='Bloom filter memory',
     description=|||
       Amount of memory in bytes used by bloom filters.
     |||,
-    datasource_type=null,
-    datasource=null,
-    policy=null,
-    measurement=null,
-    job=null,
-    alias=null,
   ):: common.default_graph(
+    cfg,
     title=title,
     description=description,
-    datasource=datasource,
     format='bytes',
     labelY1='in bytes',
     panel_width=8,
-  ).addTarget(common.default_metric_target(
-    datasource_type,
-    'tnt_vinyl_memory_bloom_filter',
-    job,
-    policy,
-    measurement,
-    alias,
-  )),
+  ).addTarget(
+    common.default_metric_target(cfg, 'tnt_vinyl_memory_bloom_filter')
+  ),
 
   local regulator_bps(
+    cfg,
     title=null,
     description=null,
-    datasource_type=null,
-    datasource=null,
-    policy=null,
-    measurement=null,
-    job=null,
-    alias=null,
     metric_name=null,
   ) = common.default_graph(
+    cfg,
     title=title,
     description=description,
-    datasource=datasource,
     format='Bps',
     panel_width=8,
-  ).addTarget(common.default_metric_target(
-    datasource_type,
-    metric_name,
-    job,
-    policy,
-    measurement,
-    alias,
-  )),
+  ).addTarget(
+    common.default_metric_target(cfg, metric_name)
+  ),
 
   regulator_dump_bandwidth(
+    cfg,
     title='Vinyl regulator dump bandwidth',
     description=|||
       The estimated average rate of taking dumps, bytes per second.
@@ -209,25 +140,15 @@ local prometheus = grafana.prometheus;
 
       Panel works with `metrics >= 0.8.0`.
     |||,
-    datasource_type=null,
-    datasource=null,
-    policy=null,
-    measurement=null,
-    job=null,
-    alias=null,
   ):: regulator_bps(
+    cfg,
     title=title,
     description=description,
-    datasource_type=datasource_type,
-    datasource=datasource,
-    policy=policy,
-    measurement=measurement,
-    job=job,
-    alias=alias,
     metric_name='tnt_vinyl_regulator_dump_bandwidth',
   ),
 
   regulator_write_rate(
+    cfg,
     title='Vinyl regulator write rate',
     description=|||
       The actual average rate of performing the write operations, bytes per second.
@@ -236,25 +157,15 @@ local prometheus = grafana.prometheus;
 
       Panel works with `metrics >= 0.8.0`.
     |||,
-    datasource_type=null,
-    datasource=null,
-    policy=null,
-    measurement=null,
-    job=null,
-    alias=null,
   ):: regulator_bps(
+    cfg,
     title=title,
     description=description,
-    datasource_type=datasource_type,
-    datasource=datasource,
-    policy=policy,
-    measurement=measurement,
-    job=job,
-    alias=alias,
     metric_name='tnt_vinyl_regulator_write_rate',
   ),
 
   regulator_rate_limit(
+    cfg,
     title='Vinyl regulator rate limit',
     description=|||
       The write rate limit, bytes per second.
@@ -264,25 +175,15 @@ local prometheus = grafana.prometheus;
 
       Panel works with `metrics >= 0.8.0`.
     |||,
-    datasource_type=null,
-    datasource=null,
-    policy=null,
-    measurement=null,
-    job=null,
-    alias=null,
   ):: regulator_bps(
+    cfg,
     title=title,
     description=description,
-    datasource_type=datasource_type,
-    datasource=datasource,
-    policy=policy,
-    measurement=measurement,
-    job=job,
-    alias=alias,
     metric_name='tnt_vinyl_regulator_rate_limit',
   ),
 
   memory_level0(
+    cfg,
     title='Level 0 memory',
     description=|||
       «Level 0» (L0) memory area in bytes. L0 is the area that
@@ -295,29 +196,19 @@ local prometheus = grafana.prometheus;
       Panel works with `metrics >= 0.8.0`.
     |||,
 
-    datasource_type=null,
-    datasource=null,
-    policy=null,
-    measurement=null,
-    job=null,
-    alias=null,
   ):: common.default_graph(
+    cfg,
     title=title,
     description=description,
-    datasource=datasource,
     format='bytes',
     legend_avg=false,
     panel_width=8,
-  ).addTarget(common.default_metric_target(
-    datasource_type,
-    'tnt_vinyl_memory_level0',
-    job,
-    policy,
-    measurement,
-    alias,
-  )),
+  ).addTarget(
+    common.default_metric_target(cfg, 'tnt_vinyl_memory_level0')
+  ),
 
   regulator_dump_watermark(
+    cfg,
     title='Vinyl regulator dump watermark',
     description=|||
       The maximum amount of memory used for in-memory storing of a vinyl LSM tree.
@@ -329,87 +220,56 @@ local prometheus = grafana.prometheus;
       Panel works with `metrics >= 0.8.0`.
     |||,
 
-    datasource_type=null,
-    datasource=null,
-    policy=null,
-    measurement=null,
-    job=null,
-    alias=null,
   ):: common.default_graph(
+    cfg,
     title=title,
     description=description,
-    datasource=datasource,
     format='bytes',
     legend_avg=false,
     legend_max=false,
     panel_width=8,
-  ).addTarget(common.default_metric_target(
-    datasource_type,
-    'tnt_vinyl_regulator_dump_watermark',
-    job,
-    policy,
-    measurement,
-    alias,
-  )),
+  ).addTarget(
+    common.default_metric_target(cfg, 'tnt_vinyl_regulator_dump_watermark')
+  ),
 
   regulator_blocked_writers(
+    cfg,
     title='Vinyl regulator blocked writers',
     description=|||
       The number of fibers that are blocked waiting for Vinyl level0 memory quota.
 
       Panel works with `metrics >= 0.13.0` and `Tarantool >= 2.8.3`.
     |||,
-
-    datasource_type=null,
-    datasource=null,
-    policy=null,
-    measurement=null,
-    job=null,
-    alias=null,
   ):: common.default_graph(
+    cfg,
     title=title,
     description=description,
-    datasource=datasource,
     legend_avg=false,
     legend_max=false,
     labelY1='fibers',
     panel_width=8,
-  ).addTarget(common.default_metric_target(
-    datasource_type,
-    'tnt_vinyl_regulator_blocked_writers',
-    job,
-    policy,
-    measurement,
-    alias,
-  )),
+  ).addTarget(
+    common.default_metric_target(cfg, 'tnt_vinyl_regulator_blocked_writers')
+  ),
 
   local tx_rate(
+    cfg,
     title=null,
     description=null,
-    datasource_type=null,
-    datasource=null,
-    policy=null,
-    measurement=null,
-    job=null,
-    alias=null,
     metric_name=null,
   ) = common.default_graph(
+    cfg,
     title=title,
     description=description,
-    datasource=datasource,
     format='none',
     labelY1='transactions per second',
     panel_width=6,
-  ).addTarget(common.default_rps_target(
-    datasource_type,
-    metric_name,
-    job,
-    policy,
-    measurement,
-    alias,
-  )),
+  ).addTarget(
+    common.default_rps_target(cfg, metric_name)
+  ),
 
   tx_commit_rate(
+    cfg,
     title='Vinyl tx commit rate',
     description=|||
       Average per second rate of commits (successful transaction ends).
@@ -418,25 +278,15 @@ local prometheus = grafana.prometheus;
 
       Panel works with `metrics >= 0.8.0`.
     |||,
-    datasource_type=null,
-    datasource=null,
-    policy=null,
-    measurement=null,
-    job=null,
-    alias=null,
   ):: tx_rate(
+    cfg,
     title=title,
     description=description,
-    datasource_type=datasource_type,
-    datasource=datasource,
-    policy=policy,
-    measurement=measurement,
-    job=job,
-    alias=alias,
     metric_name='tnt_vinyl_tx_commit',
   ),
 
   tx_rollback_rate(
+    cfg,
     title='Vinyl tx rollback rate',
     description=|||
       Average per second rate of rollbacks (unsuccessful transaction ends).
@@ -444,25 +294,15 @@ local prometheus = grafana.prometheus;
       that ended with errors.
       Panel works with `metrics >= 0.8.0`.
     |||,
-    datasource_type=null,
-    datasource=null,
-    policy=null,
-    measurement=null,
-    job=null,
-    alias=null,
   ):: tx_rate(
+    cfg,
     title=title,
     description=description,
-    datasource_type=datasource_type,
-    datasource=datasource,
-    policy=policy,
-    measurement=measurement,
-    job=job,
-    alias=alias,
     metric_name='tnt_vinyl_tx_rollback',
   ),
 
   tx_conflicts_rate(
+    cfg,
     title='Vinyl tx conflict rate',
     description=|||
       Average per second rate of conflicts that caused transactions to roll back.
@@ -471,25 +311,15 @@ local prometheus = grafana.prometheus;
 
       Panel works with `metrics >= 0.8.0`.
     |||,
-    datasource_type=null,
-    datasource=null,
-    policy=null,
-    measurement=null,
-    job=null,
-    alias=null,
   ):: tx_rate(
+    cfg,
     title=title,
     description=description,
-    datasource_type=datasource_type,
-    datasource=datasource,
-    policy=policy,
-    measurement=measurement,
-    job=job,
-    alias=alias,
     metric_name='tnt_vinyl_tx_conflict',
   ),
 
   tx_read_views(
+    cfg,
     title='Vinyl read views',
     description=|||
       Number of current read views, that is, transactions entered a read-only state
@@ -499,55 +329,35 @@ local prometheus = grafana.prometheus;
       Panel works with `metrics >= 0.8.0`.
     |||,
 
-    datasource_type=null,
-    datasource=null,
-    policy=null,
-    measurement=null,
-    job=null,
-    alias=null,
   ):: common.default_graph(
+    cfg,
     title=title,
     description=description,
-    datasource=datasource,
     decimals=0,
     labelY1='current',
     panel_width=6,
-  ).addTarget(common.default_metric_target(
-    datasource_type,
-    'tnt_vinyl_tx_read_views',
-    job,
-    policy,
-    measurement,
-    alias,
-    'last',
-  )),
+  ).addTarget(
+    common.default_metric_target(cfg, 'tnt_vinyl_tx_read_views', 'last')
+  ),
 
   local memory(
+    cfg,
     title=null,
     description=null,
-    datasource_type=null,
-    datasource=null,
-    policy=null,
-    measurement=null,
-    job=null,
-    alias=null,
     metric_name=null,
   ) = common.default_graph(
+    cfg,
     title=title,
     description=description,
-    datasource=datasource,
     format='bytes',
     legend_avg=false,
     panel_width=6,
-  ).addTarget(common.default_metric_target(
-    datasource_type,
-    metric_name,
-    job,
-    policy,
-    measurement,
-  )),
+  ).addTarget(
+    common.default_metric_target(cfg, metric_name)
+  ),
 
   memory_page_index(
+    cfg,
     title='Vinyl index memory',
     description=|||
       The amount of memory that is being used for storing indexes.
@@ -556,25 +366,15 @@ local prometheus = grafana.prometheus;
 
       Panel works with `metrics >= 0.8.0`.
     |||,
-    datasource_type=null,
-    datasource=null,
-    policy=null,
-    measurement=null,
-    job=null,
-    alias=null,
   ):: memory(
+    cfg,
     title=title,
     description=description,
-    datasource_type=datasource_type,
-    datasource=datasource,
-    policy=policy,
-    measurement=measurement,
-    job=job,
-    alias=alias,
     metric_name='tnt_vinyl_memory_page_index',
   ),
 
   memory_bloom_filter(
+    cfg,
     title='Vinyl bloom filter memory',
     description=|||
       The amount of memory used by bloom filters.
@@ -582,65 +382,50 @@ local prometheus = grafana.prometheus;
 
       Panel works with `metrics >= 0.8.0`.
     |||,
-    datasource_type=null,
-    datasource=null,
-    policy=null,
-    measurement=null,
-    job=null,
-    alias=null,
   ):: memory(
+    cfg,
     title=title,
     description=description,
-    datasource_type=datasource_type,
-    datasource=datasource,
-    policy=policy,
-    measurement=measurement,
-    job=job,
-    alias=alias,
     metric_name='tnt_vinyl_memory_bloom_filter',
   ),
 
   scheduler_tasks_inprogress(
+    cfg,
     title='Vinyl scheduler tasks in progress',
     description=|||
       The number of the scheduler dump/compaction tasks in progress now.
 
       Panel works with `metrics >= 0.8.0`.
     |||,
-    datasource_type=null,
-    datasource=null,
-    policy=null,
-    measurement=null,
-    job=null,
-    alias=null,
   ):: common.default_graph(
+    cfg,
     title=title,
     description=description,
-    datasource=datasource,
     format='none',
     legend_avg=false,
     panel_width=6,
   ).addTarget(
-    if datasource_type == variable.datasource_type.prometheus then
+    if cfg.type == variable.datasource_type.prometheus then
       prometheus.target(
         expr=std.format('tnt_vinyl_scheduler_tasks{job=~"%s", alias=~"%s", status="inprogress"}',
-                        [job, alias]),
+                        [cfg.job, cfg.filters.alias]),
         legendFormat='{{alias}}',
       )
-    else if datasource_type == variable.datasource_type.influxdb then
+    else if cfg.type == variable.datasource_type.influxdb then
       influxdb.target(
-        policy=policy,
-        measurement=measurement,
+        policy=cfg.policy,
+        measurement=cfg.measurement,
         group_tags=['label_pairs_alias'],
         alias='$tag_label_pairs_alias',
         fill='null',
       ).where('metric_name', '=', 'tnt_vinyl_scheduler_tasks')
-      .where('label_pairs_alias', '=~', alias)
+      .where('label_pairs_alias', '=~', cfg.filters.label_pairs_alias)
       .where('label_pairs_status', '=', 'inprogress')
       .selectField('value').addConverter('last')
   ),
 
   scheduler_tasks_failed_rate(
+    cfg,
     title='Vinyl scheduler failed tasks rate',
     description=|||
       Scheduler dump/compaction tasks failed.
@@ -648,41 +433,36 @@ local prometheus = grafana.prometheus;
 
       Panel works with `metrics >= 0.8.0`.
     |||,
-    datasource_type=null,
-    datasource=null,
-    policy=null,
-    measurement=null,
-    job=null,
-    alias=null,
   ):: common.default_graph(
+    cfg,
     title=title,
     description=description,
-    datasource=datasource,
     format='none',
     labelY1='per second rate',
     legend_avg=false,
     panel_width=6,
   ).addTarget(
-    if datasource_type == variable.datasource_type.prometheus then
+    if cfg.type == variable.datasource_type.prometheus then
       prometheus.target(
         expr=std.format('rate(tnt_vinyl_scheduler_tasks{job=~"%s",alias=~"%s",status="failed"}[$__rate_interval])',
-                        [job, alias]),
+                        [cfg.job, cfg.filters.alias]),
         legendFormat='{{alias}}',
       )
-    else if datasource_type == variable.datasource_type.influxdb then
+    else if cfg.type == variable.datasource_type.influxdb then
       influxdb.target(
-        policy=policy,
-        measurement=measurement,
+        policy=cfg.policy,
+        measurement=cfg.measurement,
         group_tags=['label_pairs_alias'],
         alias='$tag_label_pairs_alias',
         fill='null',
       ).where('metric_name', '=', 'tnt_vinyl_scheduler_tasks')
-      .where('label_pairs_alias', '=~', alias)
+      .where('label_pairs_alias', '=~', cfg.filters.label_pairs_alias)
       .where('label_pairs_status', '=', 'failed')
       .selectField('value').addConverter('mean').addConverter('non_negative_derivative', ['1s'])
   ),
 
   scheduler_dump_time_rate(
+    cfg,
     title='Vinyl scheduler dump time rate',
     description=|||
       Time spent by all worker threads performing dumps.
@@ -690,56 +470,35 @@ local prometheus = grafana.prometheus;
 
       Panel works with `metrics >= 0.8.0`.
     |||,
-    datasource_type=null,
-    datasource=null,
-    policy=null,
-    measurement=null,
-    job=null,
-    alias=null,
   ):: common.default_graph(
+    cfg,
     title=title,
     description=description,
-    datasource=datasource,
     format='s',
     labelY1='per second rate',
     decimalsY1=null,
     panel_width=6,
-  ).addTarget(common.default_rps_target(
-    datasource_type,
-    'tnt_vinyl_scheduler_dump_time',
-    job,
-    policy,
-    measurement,
-    alias,
-  )),
+  ).addTarget(
+    common.default_rps_target(cfg, 'tnt_vinyl_scheduler_dump_time')
+  ),
 
   scheduler_dump_count_rate(
+    cfg,
     title='Vinyl scheduler dump count rate',
     description=|||
       Scheduler dumps completed average per second rate.
 
       Panel works with `metrics >= 0.13.0`.
     |||,
-    datasource_type=null,
-    datasource=null,
-    policy=null,
-    measurement=null,
-    job=null,
-    alias=null,
   ):: common.default_graph(
+    cfg,
     title=title,
     description=description,
-    datasource=datasource,
     format='none',
     labelY1='per second rate',
     decimalsY1=null,
     panel_width=6,
-  ).addTarget(common.default_rps_target(
-    datasource_type,
-    'tnt_vinyl_scheduler_dump_total',
-    job,
-    policy,
-    measurement,
-    alias,
-  )),
+  ).addTarget(
+    common.default_rps_target(cfg, 'tnt_vinyl_scheduler_dump_total')
+  ),
 }

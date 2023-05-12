@@ -4,15 +4,9 @@ local dashboard = import 'dashboard/dashboard.libsonnet';
 local section = import 'dashboard/section.libsonnet';
 local variable = import 'dashboard/variable.libsonnet';
 
-function(
-  datasource,
-  policy,
-  measurement,
-  alias,
-  title='Tarantool dashboard',
-) dashboard.new(
+function(cfg) dashboard.new(
   grafana.dashboard.new(
-    title=title,
+    title=cfg.title,
     description='Dashboard for Tarantool application and database server monitoring, based on grafonnet library.',
     editable=true,
     schemaVersion=21,
@@ -47,115 +41,29 @@ function(
     version='1.0.0'
   )
 ).addPanels(
-  section.cluster_influxdb(
-    datasource_type=variable.datasource_type.influxdb,
-    datasource=datasource,
-    policy=policy,
-    measurement=measurement,
-    alias=alias,
-  )
+  section.cluster_influxdb(cfg)
 ).addPanels(
-  section.replication(
-    datasource_type=variable.datasource_type.influxdb,
-    datasource=datasource,
-    policy=policy,
-    measurement=measurement,
-    alias=alias,
-  )
+  section.replication(cfg)
 ).addPanels(
-  section.http(
-    datasource_type=variable.datasource_type.influxdb,
-    datasource=datasource,
-    policy=policy,
-    measurement=measurement,
-    alias=alias,
-  )
+  section.http(cfg)
 ).addPanels(
-  section.net(
-    datasource_type=variable.datasource_type.influxdb,
-    datasource=datasource,
-    policy=policy,
-    measurement=measurement,
-    alias=alias,
-  )
+  section.net(cfg)
 ).addPanels(
-  section.slab(
-    datasource_type=variable.datasource_type.influxdb,
-    datasource=datasource,
-    policy=policy,
-    measurement=measurement,
-    alias=alias,
-  )
+  section.slab(cfg)
 ).addPanels(
-  section.mvcc(
-    datasource_type=variable.datasource_type.influxdb,
-    datasource=datasource,
-    policy=policy,
-    measurement=measurement,
-    alias=alias,
-  )
+  section.mvcc(cfg)
 ).addPanels(
-  section.space(
-    datasource_type=variable.datasource_type.influxdb,
-    datasource=datasource,
-    policy=policy,
-    measurement=measurement,
-    alias=alias,
-  )
+  section.space(cfg)
 ).addPanels(
-  section.vinyl(
-    datasource_type=variable.datasource_type.influxdb,
-    datasource=datasource,
-    policy=policy,
-    measurement=measurement,
-    alias=alias,
-  )
+  section.vinyl(cfg)
 ).addPanels(
-  section.cpu(
-    datasource_type=variable.datasource_type.influxdb,
-    datasource=datasource,
-    policy=policy,
-    measurement=measurement,
-    alias=alias,
-  )
+  section.cpu(cfg)
 ).addPanels(
-  section.runtime(
-    datasource_type=variable.datasource_type.influxdb,
-    datasource=datasource,
-    policy=policy,
-    measurement=measurement,
-    alias=alias,
-  )
+  section.runtime(cfg)
 ).addPanels(
-  section.luajit(
-    datasource_type=variable.datasource_type.influxdb,
-    datasource=datasource,
-    policy=policy,
-    measurement=measurement,
-    alias=alias,
-  )
+  section.luajit(cfg)
 ).addPanels(
-  section.operations(
-    datasource_type=variable.datasource_type.influxdb,
-    datasource=datasource,
-    policy=policy,
-    measurement=measurement,
-    alias=alias,
-  )
+  section.operations(cfg)
 ).addPanels(
-  section.crud(
-    datasource_type=variable.datasource_type.influxdb,
-    datasource=datasource,
-    policy=policy,
-    measurement=measurement,
-    alias=alias,
-  )
-).addPanels(
-  section.expirationd(
-    datasource_type=variable.datasource_type.influxdb,
-    datasource=datasource,
-    policy=policy,
-    measurement=measurement,
-    alias=alias,
-  )
-)
+  section.crud(cfg)
+).addPanels(section.expirationd(cfg))

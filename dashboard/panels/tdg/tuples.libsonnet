@@ -10,14 +10,10 @@ local prometheus = grafana.prometheus;
   row:: common_utils.row('TDG tuples statistics'),
 
   local average_target(
-    datasource_type,
+    cfg,
     metric_name,
-    job=null,
-    policy=null,
-    measurement=null,
-    alias=null,
   ) =
-    if datasource_type == variable.datasource_type.prometheus then
+    if cfg.type == variable.datasource_type.prometheus then
       prometheus.target(
         expr=std.format(
           |||
@@ -27,13 +23,13 @@ local prometheus = grafana.prometheus;
           {
             metric_name_sum: std.join('_', [metric_name, 'sum']),
             metric_name_count: std.join('_', [metric_name, 'count']),
-            job: job,
-            alias: alias,
+            job: cfg.job,
+            alias: cfg.filters.alias,
           }
         ),
         legendFormat='{{type_name}} — {{alias}}'
       )
-    else if datasource_type == variable.datasource_type.influxdb then
+    else if cfg.type == variable.datasource_type.influxdb then
       influxdb.target(
         rawQuery=true,
         query=std.format(|||
@@ -47,124 +43,84 @@ local prometheus = grafana.prometheus;
         |||, {
           metric_name_sum: std.join('_', [metric_name, 'sum']),
           metric_name_count: std.join('_', [metric_name, 'count']),
-          policy_prefix: if policy == 'default' then '' else std.format('"%(policy)s".', policy),
-          measurement: measurement,
-          alias: alias,
+          policy_prefix: if cfg.policy == 'default' then '' else std.format('"%(policy)s".', cfg.policy),
+          measurement: cfg.measurement,
+          alias: cfg.filters.label_pairs_alias,
         }),
         alias='$tag_label_pairs_type_name — $tag_label_pairs_alias'
       ),
 
   tuples_scanned_average(
+    cfg,
     title='Tuples scanned (average)',
     description=|||
       Amount of tuples scanned in request.
       Data resets between each collect.
       Graph shows average per request.
     |||,
-    datasource_type=null,
-    datasource=null,
-    policy=null,
-    measurement=null,
-    job=null,
-    alias=null,
   ):: common_utils.default_graph(
+    cfg,
     title=title,
     description=description,
-    datasource=datasource,
     labelY1='tuples per request',
     panel_width=12,
-  ).addTarget(average_target(
-    datasource_type,
-    'tdg_scanned_tuples',
-    job,
-    policy,
-    measurement,
-    alias,
-  )),
+  ).addTarget(
+    average_target(cfg, 'tdg_scanned_tuples')
+  ),
 
   tuples_returned_average(
+    cfg,
     title='Tuples returned (average)',
     description=|||
       Amount of tuples returned in request.
       Data resets between each collect.
       Graph shows average per request.
     |||,
-    datasource_type=null,
-    datasource=null,
-    policy=null,
-    measurement=null,
-    job=null,
-    alias=null,
   ):: common_utils.default_graph(
+    cfg,
     title=title,
     description=description,
-    datasource=datasource,
     labelY1='tuples per request',
     panel_width=12,
-  ).addTarget(average_target(
-    datasource_type,
-    'tdg_returned_tuples',
-    job,
-    policy,
-    measurement,
-    alias,
-  )),
+  ).addTarget(
+    average_target(cfg, 'tdg_returned_tuples')
+  ),
 
   tuples_scanned_max(
+    cfg,
     title='Tuples scanned (max)',
     description=|||
       Amount of tuples scanned in request.
       Data resets between each collect.
       Graph shows maximum observation.
     |||,
-    datasource_type=null,
-    datasource=null,
-    policy=null,
-    measurement=null,
-    job=null,
-    alias=null,
   ):: common_utils.default_graph(
+    cfg,
     title=title,
     description=description,
-    datasource=datasource,
     labelY1='tuples per request',
     decimals=0,
     panel_width=12,
-  ).addTarget(common_utils.default_metric_target(
-    datasource_type,
-    'tdg_scanned_tuples_max',
-    job,
-    policy,
-    measurement,
-    alias,
-  )),
+  ).addTarget(
+    common_utils.default_metric_target(cfg, 'tdg_scanned_tuples_max')
+  ),
 
   tuples_returned_max(
+    cfg,
     title='Tuples returned (max)',
     description=|||
       Amount of tuples returned in request.
       Data resets between each collect.
       Graph shows maximum observation.
     |||,
-    datasource_type=null,
-    datasource=null,
-    policy=null,
-    measurement=null,
-    job=null,
-    alias=null,
   ):: common_utils.default_graph(
+    cfg,
     title=title,
     description=description,
-    datasource=datasource,
     labelY1='tuples per request',
     decimals=0,
     panel_width=12,
-  ).addTarget(common_utils.default_metric_target(
-    datasource_type,
-    'tdg_returned_tuples_max',
-    job,
-    policy,
-    measurement,
-    alias,
-  )),
+  ).addTarget(
+    common_utils.default_metric_target(cfg, 'tdg_returned_tuples_max')
+  ),
 }

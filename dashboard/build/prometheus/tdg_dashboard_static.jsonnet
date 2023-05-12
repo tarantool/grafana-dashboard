@@ -18,12 +18,7 @@ local cfg = config.prepare({
 });
 
 if WITH_INSTANCE_VARIABLE then
-  tdg_dashboard_raw(
-    datasource=cfg.datasource,
-    job=cfg.job,
-    alias=cfg.filters.alias,
-    title=cfg.title,
-  ).addTemplate(
+  tdg_dashboard_raw(cfg).addTemplate(
     grafana.template.new(
       name='alias',
       datasource=cfg.datasource,
@@ -36,9 +31,4 @@ if WITH_INSTANCE_VARIABLE then
     )
   ).build()
 else
-  tdg_dashboard_raw(
-    datasource=cfg.datasource,
-    job=cfg.job,
-    alias=cfg.filters.alias,
-    title=cfg.title,
-  ).build()
+  tdg_dashboard_raw(cfg).build()

@@ -7,9 +7,9 @@ local prometheus = grafana.prometheus;
 
 {
   default_graph(
+    cfg,
     title=null,
     description=null,
-    datasource=null,
     format='none',
     min=null,
     max=null,
@@ -25,7 +25,7 @@ local prometheus = grafana.prometheus;
   ):: grafana.graphPanel.new(
     title=title,
     description=description,
-    datasource=datasource,
+    datasource=cfg.datasource,
 
     format=format,
     min=min,
@@ -48,58 +48,50 @@ local prometheus = grafana.prometheus;
   row(title):: grafana.row.new(title, collapse=true) { gridPos: { w: 24, h: 1 } },
 
   default_metric_target(
-    datasource_type,
+    cfg,
     metric_name,
-    job=null,
-    policy=null,
-    measurement=null,
-    alias=null,
     converter='mean'
   )::
-    if datasource_type == variable.datasource_type.prometheus then
+    if cfg.type == variable.datasource_type.prometheus then
       prometheus.target(
-        expr=std.format('%s{job=~"%s",alias=~"%s"}', [metric_name, job, alias]),
+        expr=std.format('%s{job=~"%s",alias=~"%s"}', [metric_name, cfg.job, cfg.filters.alias]),
         legendFormat='{{alias}}',
       )
-    else if datasource_type == variable.datasource_type.influxdb then
+    else if cfg.type == variable.datasource_type.influxdb then
       influxdb.target(
-        policy=policy,
-        measurement=measurement,
+        policy=cfg.policy,
+        measurement=cfg.measurement,
         group_tags=['label_pairs_alias'],
         alias='$tag_label_pairs_alias',
         fill='null',
-      ).where('metric_name', '=', metric_name).where('label_pairs_alias', '=~', alias)
+      ).where('metric_name', '=', metric_name).where('label_pairs_alias', '=~', cfg.filters.label_pairs_alias)
       .selectField('value').addConverter(converter),
 
   default_rps_target(
-    datasource_type,
+    cfg,
     metric_name,
-    job=null,
-    policy=null,
-    measurement=null,
-    alias=null,
   )::
-    if datasource_type == variable.datasource_type.prometheus then
+    if cfg.type == variable.datasource_type.prometheus then
       prometheus.target(
         expr=std.format('rate(%s{job=~"%s",alias=~"%s"}[$__rate_interval])',
-                        [metric_name, job, alias]),
+                        [metric_name, cfg.job, cfg.filters.alias]),
         legendFormat='{{alias}}',
       )
-    else if datasource_type == variable.datasource_type.influxdb then
+    else if cfg.type == variable.datasource_type.influxdb then
       influxdb.target(
-        policy=policy,
-        measurement=measurement,
+        policy=cfg.policy,
+        measurement=cfg.measurement,
         group_tags=['label_pairs_alias'],
         alias='$tag_label_pairs_alias',
         fill='null',
-      ).where('metric_name', '=', metric_name).where('label_pairs_alias', '=~', alias)
+      ).where('metric_name', '=', metric_name).where('label_pairs_alias', '=~', cfg.filters.label_pairs_alias)
       .selectField('value').addConverter('mean').addConverter('non_negative_derivative', ['1s']),
 
   group_by_fill_0_warning(
+    cfg,
     description,
-    datasource_type=variable.datasource_type.influxdb,
   )::
-    if datasource_type == variable.datasource_type.influxdb then
+    if cfg.type == variable.datasource_type.influxdb then
       std.join('\n', [description, |||
         Current value may be 0 from time to time due to fill(0)
         and GROUP BY including partial intervals.

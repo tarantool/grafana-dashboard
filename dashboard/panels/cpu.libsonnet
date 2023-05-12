@@ -10,33 +10,25 @@ local prometheus = grafana.prometheus;
   row:: common.row('Tarantool CPU statistics'),
 
   local getrusage_cpu_percentage_graph(
+    cfg,
     title,
     description,
-    datasource_type,
-    datasource,
-    policy,
-    measurement,
-    job,
-    alias,
     metric_name,
   ) = common.default_graph(
+    cfg,
     title=title,
     description=description,
-    datasource=datasource,
     format='percentunit',
     decimalsY1=0,
     min=0,
     panel_width=12,
   ).addTarget(common.default_rps_target(
-    datasource_type,
+    cfg,
     metric_name,
-    job,
-    policy,
-    measurement,
-    alias
   )),
 
   getrusage_cpu_user_time(
+    cfg,
     title='CPU user time',
     description=|||
       This is the average share of time
@@ -45,25 +37,15 @@ local prometheus = grafana.prometheus;
 
       Panel works with `metrics >= 0.8.0`.
     |||,
-    datasource_type=null,
-    datasource=null,
-    policy=null,
-    measurement=null,
-    job=null,
-    alias=null,
   ):: getrusage_cpu_percentage_graph(
+    cfg=cfg,
     title=title,
     description=description,
-    datasource_type=datasource_type,
-    datasource=datasource,
-    policy=policy,
-    measurement=measurement,
-    job=job,
-    alias=alias,
     metric_name='tnt_cpu_user_time',
   ),
 
   getrusage_cpu_system_time(
+    cfg,
     title='CPU system time',
     description=|||
       This is the average share of time
@@ -72,62 +54,47 @@ local prometheus = grafana.prometheus;
 
       Panel works with `metrics >= 0.8.0`.
     |||,
-    datasource_type=null,
-    datasource=null,
-    policy=null,
-    measurement=null,
-    job=null,
-    alias=null,
   ):: getrusage_cpu_percentage_graph(
+    cfg=cfg,
     title=title,
     description=description,
-    datasource_type=datasource_type,
-    datasource=datasource,
-    policy=policy,
-    measurement=measurement,
-    job=job,
-    alias=alias,
     metric_name='tnt_cpu_system_time',
   ),
 
   local procstat_thread_time_graph(
+    cfg,
     title,
     description,
-    datasource_type,
-    datasource,
-    policy,
-    measurement,
-    job,
-    alias,
     kind,
   ) = common.default_graph(
+    cfg=cfg,
     title=title,
     description=description,
-    datasource=datasource,
     labelY1='ticks per second',
     min=0,
     decimalsY1=2,
     panel_width=12,
   ).addTarget(
-    if datasource_type == variable.datasource_type.prometheus then
+    if cfg.type == variable.datasource_type.prometheus then
       prometheus.target(
         expr=std.format('rate(tnt_cpu_thread{job=~"%s",alias=~"%s",kind="%s"}[$__rate_interval])',
-                        [job, alias, kind]),
+                        [cfg.job, cfg.filters.alias, kind]),
         legendFormat='{{alias}} — {{thread_name}}',
       )
-    else if datasource_type == variable.datasource_type.influxdb then
+    else if cfg.type == variable.datasource_type.influxdb then
       influxdb.target(
-        policy=policy,
-        measurement=measurement,
+        policy=cfg.policy,
+        measurement=cfg.measurement,
         group_tags=['label_pairs_alias', 'label_pairs_thread_name'],
         alias='$tag_label_pairs_alias — $tag_label_pairs_thread_name',
         fill='null',
-      ).where('metric_name', '=', 'tnt_cpu_thread').where('label_pairs_alias', '=~', alias)
+      ).where('metric_name', '=', 'tnt_cpu_thread').where('label_pairs_alias', '=~', cfg.filters.label_pairs_alias)
       .where('label_pairs_kind', '=', kind)
       .selectField('value').addConverter('mean').addConverter('non_negative_derivative', ['1s']),
   ),
 
   procstat_thread_user_time(
+    cfg,
     title='Thread user time',
     description=|||
       Amount of time that each process has been scheduled
@@ -140,25 +107,15 @@ local prometheus = grafana.prometheus;
 
       Metrics are obtained by parsing `/proc/self/task/[pid]/stat`.
     |||,
-    datasource_type=null,
-    datasource=null,
-    policy=null,
-    measurement=null,
-    job=null,
-    alias=null,
   ):: procstat_thread_time_graph(
+    cfg,
     title,
     description,
-    datasource_type,
-    datasource,
-    policy,
-    measurement,
-    job,
-    alias,
     'user',
   ),
 
   procstat_thread_system_time(
+    cfg,
     title='Thread system time',
     description=|||
       Amount of time that this process has been scheduled
@@ -167,21 +124,10 @@ local prometheus = grafana.prometheus;
 
       Metrics are obtained by parsing `/proc/self/task/[pid]/stat`.
     |||,
-    datasource_type=null,
-    datasource=null,
-    policy=null,
-    measurement=null,
-    job=null,
-    alias=null,
   ):: procstat_thread_time_graph(
+    cfg,
     title,
     description,
-    datasource_type,
-    datasource,
-    policy,
-    measurement,
-    job,
-    alias,
     'system',
   ),
 }

@@ -4,13 +4,12 @@ local config = import 'dashboard/build/config.libsonnet';
 local tdg_dashboard_raw = import 'dashboard/build/prometheus/tdg_dashboard_raw.libsonnet';
 local variable = import 'dashboard/variable.libsonnet';
 
-local cfg = config.prepare({ type: variable.datasource_type.prometheus });
+local cfg = config.prepare({
+  type: variable.datasource_type.prometheus,
+  title: 'Tarantool Data Grid dashboard',
+});
 
-tdg_dashboard_raw(
-  datasource=cfg.datasource,
-  job=cfg.job,
-  alias=cfg.filters.alias,
-).addTemplate(
+tdg_dashboard_raw(cfg).addTemplate(
   grafana.template.datasource(
     name='prometheus',
     query='prometheus',

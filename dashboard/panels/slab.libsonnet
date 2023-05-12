@@ -16,56 +16,36 @@ local common = import 'dashboard/panels/common.libsonnet';
   ) { gridPos: { w: 24, h: 3 } },
 
   local used_panel(
+    cfg,
     title=null,
     description=null,
-    datasource_type=null,
-    datasource=null,
-    policy=null,
-    measurement=null,
-    job=null,
-    alias=null,
     metric_name=null,
     format=null,
     labelY1=null,
     max=null,
   ) = common.default_graph(
+    cfg,
     title=title,
     description=description,
-    datasource=datasource,
     format=format,
     min=0,
     max=max,
     labelY1=labelY1,
     legend_avg=false,
     legend_max=false,
-  ).addTarget(common.default_metric_target(
-    datasource_type,
-    metric_name,
-    job,
-    policy,
-    measurement,
-    alias,
-  )),
+  ).addTarget(
+    common.default_metric_target(cfg, metric_name)
+  ),
 
   local used_ratio(
+    cfg,
     title,
     description,
-    datasource_type,
-    datasource,
-    policy,
-    measurement,
-    job,
-    alias,
     metric_name,
   ) = used_panel(
+    cfg,
     title,
     description,
-    datasource_type,
-    datasource,
-    policy,
-    measurement,
-    job,
-    alias,
     metric_name,
     format='percent',
     labelY1='used ratio',
@@ -73,6 +53,7 @@ local common = import 'dashboard/panels/common.libsonnet';
   ),
 
   quota_used_ratio(
+    cfg,
     title='Used by slab allocator (quota_used_ratio)',
     description=|||
       `quota_used_ratio` = `quota_used` / `quota_size`.
@@ -81,26 +62,15 @@ local common = import 'dashboard/panels/common.libsonnet';
 
       `quota_size` – memory limit for slab allocator (as configured in the *memtx_memory* parameter).
     |||,
-
-    datasource_type=null,
-    datasource=null,
-    policy=null,
-    measurement=null,
-    job=null,
-    alias=null,
   ):: used_ratio(
+    cfg,
     title=title,
     description=description,
-    datasource_type=datasource_type,
-    datasource=datasource,
-    policy=policy,
-    measurement=measurement,
-    job=job,
-    alias=alias,
     metric_name='tnt_slab_quota_used_ratio',
   ),
 
   arena_used_ratio(
+    cfg,
     title='Used for tuples and indexes (arena_used_ratio)',
     description=|||
       `arena_used_ratio` = `arena_used` / `arena_size`.
@@ -109,26 +79,15 @@ local common = import 'dashboard/panels/common.libsonnet';
 
       `arena_size` – allocated for both tuples and indexes.
     |||,
-
-    datasource_type=null,
-    datasource=null,
-    policy=null,
-    measurement=null,
-    job=null,
-    alias=null,
   ):: used_ratio(
+    cfg,
     title=title,
     description=description,
-    datasource_type=datasource_type,
-    datasource=datasource,
-    policy=policy,
-    measurement=measurement,
-    job=job,
-    alias=alias,
     metric_name='tnt_slab_arena_used_ratio',
   ),
 
   items_used_ratio(
+    cfg,
     title='Used for tuples (items_used_ratio)',
     description=|||
       `items_used_ratio` = `items_used` / `items_size`.
@@ -137,190 +96,102 @@ local common = import 'dashboard/panels/common.libsonnet';
 
       `items_size` – allocated only for tuples.
     |||,
-
-    datasource_type=null,
-    datasource=null,
-    policy=null,
-    measurement=null,
-    job=null,
-    alias=null,
   ):: used_ratio(
+    cfg,
     title=title,
     description=description,
-    datasource_type=datasource_type,
-    datasource=datasource,
-    policy=policy,
-    measurement=measurement,
-    job=job,
-    alias=alias,
     metric_name='tnt_slab_items_used_ratio',
   ),
 
   local used_memory(
+    cfg,
     title,
     description,
-    datasource_type,
-    datasource,
-    policy,
-    measurement,
-    job,
-    alias,
     metric_name,
   ) = used_panel(
+    cfg,
     title,
     description,
-    datasource_type,
-    datasource,
-    policy,
-    measurement,
-    job,
-    alias,
     metric_name,
     format='bytes',
     labelY1='in bytes',
   ),
 
   quota_used(
+    cfg,
     title='Used by slab allocator (quota_used)',
     description=|||
       Memory used by slab allocator (for both tuple and index slabs).
     |||,
-
-    datasource_type=null,
-    datasource=null,
-    policy=null,
-    measurement=null,
-    job=null,
-    alias=null,
   ):: used_memory(
+    cfg,
     title=title,
     description=description,
-    datasource_type=datasource_type,
-    datasource=datasource,
-    policy=policy,
-    measurement=measurement,
-    job=job,
-    alias=alias,
     metric_name='tnt_slab_quota_used',
   ),
 
   quota_size(
+    cfg,
     title='Slab allocator memory limit (quota_size)',
     description=|||
       Memory limit for slab allocator (as configured in the *memtx_memory* parameter).
     |||,
-
-    datasource_type=null,
-    datasource=null,
-    policy=null,
-    measurement=null,
-    job=null,
-    alias=null,
   ):: used_memory(
+    cfg,
     title=title,
     description=description,
-    datasource_type=datasource_type,
-    datasource=datasource,
-    policy=policy,
-    measurement=measurement,
-    job=job,
-    alias=alias,
     metric_name='tnt_slab_quota_size',
   ),
 
   arena_used(
+    cfg,
     title='Used for tuples and indexes (arena_used)',
     description=|||
       Memory used for both tuples and indexes.
     |||,
-
-    datasource_type=null,
-    datasource=null,
-    policy=null,
-    measurement=null,
-    job=null,
-    alias=null,
   ):: used_memory(
+    cfg,
     title=title,
     description=description,
-    datasource_type=datasource_type,
-    datasource=datasource,
-    policy=policy,
-    measurement=measurement,
-    job=job,
-    alias=alias,
     metric_name='tnt_slab_arena_used',
   ),
 
   arena_size(
+    cfg,
     title='Allocated for tuples and indexes (arena_size)',
     description=|||
       Memory allocated for both tuples and indexes by slab allocator.
     |||,
-
-    datasource_type=null,
-    datasource=null,
-    policy=null,
-    measurement=null,
-    job=null,
-    alias=null,
   ):: used_memory(
+    cfg,
     title=title,
     description=description,
-    datasource_type=datasource_type,
-    datasource=datasource,
-    policy=policy,
-    measurement=measurement,
-    job=job,
-    alias=alias,
     metric_name='tnt_slab_arena_size',
   ),
 
   items_used(
+    cfg,
     title='Used for tuples (items_used)',
     description=|||
       Memory used for only tuples.
     |||,
-
-    datasource_type=null,
-    datasource=null,
-    policy=null,
-    measurement=null,
-    job=null,
-    alias=null,
   ):: used_memory(
+    cfg,
     title=title,
     description=description,
-    datasource_type=datasource_type,
-    datasource=datasource,
-    policy=policy,
-    measurement=measurement,
-    job=job,
-    alias=alias,
     metric_name='tnt_slab_items_used',
   ),
 
   items_size(
+    cfg,
     title='Allocated for tuples (items_size)',
     description=|||
       Memory allocated for only tuples by slab allocator.
     |||,
-
-    datasource_type=null,
-    datasource=null,
-    policy=null,
-    measurement=null,
-    job=null,
-    alias=null,
   ):: used_memory(
+    cfg,
     title=title,
     description=description,
-    datasource_type=datasource_type,
-    datasource=datasource,
-    policy=policy,
-    measurement=measurement,
-    job=job,
-    alias=alias,
     metric_name='tnt_slab_items_size',
   ),
 }
