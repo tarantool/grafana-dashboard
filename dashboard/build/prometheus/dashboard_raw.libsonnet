@@ -8,11 +8,10 @@ function(
   datasource,
   job,
   alias,
-  title='',
+  title='Tarantool dashboard',
 ) dashboard.new(
   grafana.dashboard.new(
-    // Cannot use in-built means to work with defaults due to possible ext vars.
-    title=(if title != '' then title else 'Tarantool dashboard'),
+    title=title,
     description='Dashboard for Tarantool application and database server monitoring, based on grafonnet library.',
     editable=true,
     schemaVersion=21,

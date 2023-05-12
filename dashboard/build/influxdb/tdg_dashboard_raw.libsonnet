@@ -9,11 +9,10 @@ function(
   policy,
   measurement,
   alias,
-  title='',
+  title='Tarantool Data Grid dashboard',
 ) dashboard.new(
   grafana.dashboard.new(
-    // Cannot use in-built means to work with defaults due to possible ext vars.
-    title=(if title != '' then title else 'Tarantool Data Grid dashboard'),
+    title=title,
     description='Dashboard for Tarantool Data Grid ver. 2 application monitoring, based on grafonnet library.',
     editable=true,
     schemaVersion=21,

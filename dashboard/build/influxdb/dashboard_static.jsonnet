@@ -7,7 +7,7 @@ local DATASOURCE = std.extVar('DATASOURCE');
 local POLICY = std.extVar('POLICY');
 local MEASUREMENT = std.extVar('MEASUREMENT');
 local WITH_INSTANCE_VARIABLE = (std.asciiUpper(std.extVar('WITH_INSTANCE_VARIABLE')) == 'TRUE');
-local TITLE = std.extVar('TITLE');
+local TITLE = if std.extVar('TITLE') != '' then std.extVar('TITLE') else 'Tarantool dashboard';
 
 if WITH_INSTANCE_VARIABLE then
   dashboard_raw(
