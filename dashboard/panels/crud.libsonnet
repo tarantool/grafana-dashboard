@@ -54,7 +54,7 @@ local operation_rps_template(
     prometheus.target(
       expr=std.format(
         'rate(tnt_crud_stats_count{job=~"%s",alias=~"%s",operation="%s",status="%s"}[$__rate_interval])',
-        [cfg.filters.job, cfg.filters.alias, operation, status]
+        [cfg.filters.job[1], cfg.filters.alias[1], operation, status]
       ),
       legendFormat='{{alias}} — {{name}}'
     )
@@ -66,7 +66,7 @@ local operation_rps_template(
       alias='$tag_label_pairs_alias — $tag_label_pairs_name',
       fill='null',
     ).where('metric_name', '=', 'tnt_crud_stats_count')
-    .where('label_pairs_alias', '=~', cfg.filters.label_pairs_alias)
+    .where('label_pairs_alias', '=~', cfg.filters.label_pairs_alias[1])
     .where('label_pairs_operation', '=', operation)
     .where('label_pairs_status', '=', status)
     .selectField('value').addConverter('mean').addConverter('non_negative_derivative', ['1s'])
@@ -99,7 +99,7 @@ local operation_latency_template(
     prometheus.target(
       expr=std.format(
         'tnt_crud_stats{job=~"%s",alias=~"%s",operation="%s",status="%s",quantile="0.99"}',
-        [cfg.filters.job, cfg.filters.alias, operation, status]
+        [cfg.filters.job[1], cfg.filters.alias[1], operation, status]
       ),
       legendFormat='{{alias}} — {{name}}'
     )
@@ -111,7 +111,7 @@ local operation_latency_template(
       alias='$tag_label_pairs_alias — $tag_label_pairs_name',
       fill='null',
     ).where('metric_name', '=', 'tnt_crud_stats')
-    .where('label_pairs_alias', '=~', cfg.filters.label_pairs_alias)
+    .where('label_pairs_alias', '=~', cfg.filters.label_pairs_alias[1])
     .where('label_pairs_operation', '=', operation)
     .where('label_pairs_status', '=', status)
     .where('label_pairs_quantile', '=', '0.99')
@@ -356,8 +356,8 @@ local tuples_panel(
         |||,
         {
           metric_name: metric_name,
-          job: cfg.filters.job,
-          alias: cfg.filters.alias,
+          job: cfg.filters.job[1],
+          alias: cfg.filters.alias[1],
         }
       ),
       legendFormat='{{alias}} — {{name}}'
@@ -382,7 +382,7 @@ local tuples_panel(
         metric_name: metric_name,
         policy_prefix: if cfg.policy == 'default' then '' else std.format('"%(policy)s".', cfg.policy),
         measurement: cfg.measurement,
-        alias: cfg.filters.label_pairs_alias,
+        alias: cfg.filters.label_pairs_alias[1],
       }),
       alias='$tag_label_pairs_alias — $tag_label_pairs_name'
     )
@@ -486,7 +486,7 @@ local module = {
       prometheus.target(
         expr=std.format(
           'rate(tnt_crud_map_reduces{job=~"%s",alias=~"%s",operation="select"}[$__rate_interval])',
-          [cfg.filters.job, cfg.filters.alias],
+          [cfg.filters.job[1], cfg.filters.alias[1]],
         ),
         legendFormat='{{alias}} — {{name}}'
       )
@@ -498,7 +498,7 @@ local module = {
         alias='$tag_label_pairs_alias — $tag_label_pairs_name',
         fill='null',
       ).where('metric_name', '=', 'tnt_crud_map_reduces')
-      .where('label_pairs_alias', '=~', cfg.filters.label_pairs_alias)
+      .where('label_pairs_alias', '=~', cfg.filters.label_pairs_alias[1])
       .where('label_pairs_operation', '=', 'select')
       .selectField('value').addConverter('mean').addConverter('non_negative_derivative', ['1s'])
   ),

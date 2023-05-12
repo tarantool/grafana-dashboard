@@ -60,7 +60,7 @@ dashboard.addPanels([
       alias='$tag_label_pairs_alias',
       fill='null',
     ).where('metric_name', '=', 'my_component_load_metric')
-    .where('label_pairs_alias', '=~', cfg.filters.label_pairs_alias)
+    .where('label_pairs_alias', '=~', cfg.filters.label_pairs_alias[1])
     .where('label_pairs_quantile', '=', '0.99')
     .selectField('value').addConverter('mean')
   ),

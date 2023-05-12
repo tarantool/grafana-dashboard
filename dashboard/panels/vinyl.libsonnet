@@ -408,7 +408,7 @@ local prometheus = grafana.prometheus;
     if cfg.type == variable.datasource_type.prometheus then
       prometheus.target(
         expr=std.format('tnt_vinyl_scheduler_tasks{job=~"%s", alias=~"%s", status="inprogress"}',
-                        [cfg.filters.job, cfg.filters.alias]),
+                        [cfg.filters.job[1], cfg.filters.alias[1]]),
         legendFormat='{{alias}}',
       )
     else if cfg.type == variable.datasource_type.influxdb then
@@ -419,7 +419,7 @@ local prometheus = grafana.prometheus;
         alias='$tag_label_pairs_alias',
         fill='null',
       ).where('metric_name', '=', 'tnt_vinyl_scheduler_tasks')
-      .where('label_pairs_alias', '=~', cfg.filters.label_pairs_alias)
+      .where('label_pairs_alias', '=~', cfg.filters.label_pairs_alias[1])
       .where('label_pairs_status', '=', 'inprogress')
       .selectField('value').addConverter('last')
   ),
@@ -445,7 +445,7 @@ local prometheus = grafana.prometheus;
     if cfg.type == variable.datasource_type.prometheus then
       prometheus.target(
         expr=std.format('rate(tnt_vinyl_scheduler_tasks{job=~"%s",alias=~"%s",status="failed"}[$__rate_interval])',
-                        [cfg.filters.job, cfg.filters.alias]),
+                        [cfg.filters.job[1], cfg.filters.alias[1]]),
         legendFormat='{{alias}}',
       )
     else if cfg.type == variable.datasource_type.influxdb then
@@ -456,7 +456,7 @@ local prometheus = grafana.prometheus;
         alias='$tag_label_pairs_alias',
         fill='null',
       ).where('metric_name', '=', 'tnt_vinyl_scheduler_tasks')
-      .where('label_pairs_alias', '=~', cfg.filters.label_pairs_alias)
+      .where('label_pairs_alias', '=~', cfg.filters.label_pairs_alias[1])
       .where('label_pairs_status', '=', 'failed')
       .selectField('value').addConverter('mean').addConverter('non_negative_derivative', ['1s'])
   ),

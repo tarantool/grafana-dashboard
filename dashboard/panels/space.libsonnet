@@ -27,7 +27,7 @@ local prometheus = grafana.prometheus;
   ).addTarget(
     if cfg.type == variable.datasource_type.prometheus then
       prometheus.target(
-        expr=std.format('%s{job=~"%s", alias=~"%s", engine="%s"}', [metric_name, cfg.filters.job, cfg.filters.alias, engine]),
+        expr=std.format('%s{job=~"%s", alias=~"%s", engine="%s"}', [metric_name, cfg.filters.job[1], cfg.filters.alias[1], engine]),
         legendFormat='{{alias}} — {{name}}',
       )
     else if cfg.type == variable.datasource_type.influxdb then
@@ -38,7 +38,7 @@ local prometheus = grafana.prometheus;
         alias='$tag_label_pairs_alias — $tag_label_pairs_name',
         fill='null',
       ).where('metric_name', '=', metric_name)
-      .where('label_pairs_alias', '=~', cfg.filters.label_pairs_alias)
+      .where('label_pairs_alias', '=~', cfg.filters.label_pairs_alias[1])
       .where('label_pairs_engine', '=', engine)
       .selectField('value').addConverter('last')
   ),
@@ -95,7 +95,7 @@ local prometheus = grafana.prometheus;
   ).addTarget(
     if cfg.type == variable.datasource_type.prometheus then
       prometheus.target(
-        expr=std.format('%s{job=~"%s", alias=~"%s", engine="memtx"}', [metric_name, cfg.filters.job, cfg.filters.alias]),
+        expr=std.format('%s{job=~"%s", alias=~"%s", engine="memtx"}', [metric_name, cfg.filters.job[1], cfg.filters.alias[1]]),
         legendFormat='{{alias}} — {{name}}',
       )
     else if cfg.type == variable.datasource_type.influxdb then
@@ -106,7 +106,7 @@ local prometheus = grafana.prometheus;
         alias='$tag_label_pairs_alias — $tag_label_pairs_name',
         fill='null',
       ).where('metric_name', '=', metric_name)
-      .where('label_pairs_alias', '=~', cfg.filters.label_pairs_alias)
+      .where('label_pairs_alias', '=~', cfg.filters.label_pairs_alias[1])
       .where('label_pairs_engine', '=', 'memtx')
       .selectField('value').addConverter('mean')
   ),
@@ -155,7 +155,7 @@ local prometheus = grafana.prometheus;
   ).addTarget(
     if cfg.type == variable.datasource_type.prometheus then
       prometheus.target(
-        expr=std.format('tnt_space_index_bsize{job=~"%s", alias=~"%s"}', [cfg.filters.job, cfg.filters.alias]),
+        expr=std.format('tnt_space_index_bsize{job=~"%s", alias=~"%s"}', [cfg.filters.job[1], cfg.filters.alias[1]]),
         legendFormat='{{alias}} — {{name}} ({{index_name}})',
       )
     else if cfg.type == variable.datasource_type.influxdb then
@@ -166,7 +166,7 @@ local prometheus = grafana.prometheus;
         alias='$tag_label_pairs_alias — $tag_label_pairs_name ($tag_label_pairs_index_name)',
         fill='null',
       ).where('metric_name', '=', 'tnt_space_index_bsize')
-      .where('label_pairs_alias', '=~', cfg.filters.label_pairs_alias)
+      .where('label_pairs_alias', '=~', cfg.filters.label_pairs_alias[1])
       .selectField('value').addConverter('mean')
   ),
 
