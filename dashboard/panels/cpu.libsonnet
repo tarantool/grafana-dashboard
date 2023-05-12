@@ -22,10 +22,9 @@ local prometheus = grafana.prometheus;
     decimalsY1=0,
     min=0,
     panel_width=12,
-  ).addTarget(common.default_rps_target(
-    cfg,
-    metric_name,
-  )),
+  ).addTarget(
+    common.target(cfg, metric_name, rate=true)
+  ),
 
   getrusage_cpu_user_time(
     cfg,

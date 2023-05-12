@@ -19,7 +19,7 @@ local common = import 'dashboard/panels/common.libsonnet';
     labelY1='in bytes',
     panel_width=8,
   ).addTarget(
-    common.default_metric_target(cfg, 'tnt_info_memory_lua')
+    common.target(cfg, 'tnt_info_memory_lua')
   ),
 
   runtime_memory(
@@ -43,7 +43,7 @@ local common = import 'dashboard/panels/common.libsonnet';
     legend_max=false,
     panel_width=8,
   ).addTarget(
-    common.default_metric_target(cfg, 'tnt_runtime_used')
+    common.target(cfg, 'tnt_runtime_used')
   ),
 
   memory_tx(
@@ -63,7 +63,7 @@ local common = import 'dashboard/panels/common.libsonnet';
     labelY1='in bytes',
     panel_width=8,
   ).addTarget(
-    common.default_metric_target(cfg, 'tnt_info_memory_tx')
+    common.target(cfg, 'tnt_info_memory_tx')
   ),
 
   fiber_count(
@@ -82,7 +82,7 @@ local common = import 'dashboard/panels/common.libsonnet';
     legend_avg=false,
     panel_width=8,
   ).addTarget(
-    common.default_metric_target(cfg, 'tnt_fiber_amount', 'last')
+    common.target(cfg, 'tnt_fiber_amount', converter='last')
   ),
 
   fiber_csw(
@@ -99,7 +99,7 @@ local common = import 'dashboard/panels/common.libsonnet';
     labelY1='switches',
     panel_width=12,
   ).addTarget(
-    common.default_metric_target(cfg, 'tnt_fiber_csw')
+    common.target(cfg, 'tnt_fiber_csw')
   ),
 
   local fiber_memory(
@@ -114,7 +114,7 @@ local common = import 'dashboard/panels/common.libsonnet';
     format='bytes',
     panel_width=8,
   ).addTarget(
-    common.default_metric_target(cfg, metric_name)
+    common.target(cfg, metric_name)
   ),
 
   fiber_memused(
@@ -164,6 +164,6 @@ local common = import 'dashboard/panels/common.libsonnet';
     format='ms',
     panel_width=12,
   ).addTarget(
-    common.default_metric_target(cfg, 'tnt_ev_loop_time', 'last')
+    common.target(cfg, 'tnt_ev_loop_time', converter='last')
   ),
 }

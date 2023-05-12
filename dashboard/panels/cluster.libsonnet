@@ -357,10 +357,9 @@ local prometheus = grafana.prometheus;
     description=description,
     labelY1='failovers per second',
     panel_width=12,
-  ).addTarget(common.default_rps_target(
-    cfg,
-    'tnt_cartridge_failover_trigger_total',
-  )),
+  ).addTarget(
+    common.target(cfg, 'tnt_cartridge_failover_trigger_total', rate=true)
+  ),
 
   read_only_status(
     cfg,
@@ -386,7 +385,7 @@ local prometheus = grafana.prometheus;
   ).addRangeMapping(
     0.001, 0.999, '-'
   ).addTarget(
-    common.default_metric_target(cfg, 'tnt_read_only', 'last')
+    common.target(cfg, 'tnt_read_only', converter='last')
   ),
 
   local election_warning(description) = std.join(
@@ -427,7 +426,7 @@ local prometheus = grafana.prometheus;
   ).addRangeMapping(
     1.001, 1.999, '-'
   ).addTarget(
-    common.default_metric_target(cfg, 'tnt_election_state', 'last')
+    common.target(cfg, 'tnt_election_state', converter='last')
   ),
 
   election_vote(
@@ -446,7 +445,7 @@ local prometheus = grafana.prometheus;
     decimals=0,
     panel_width=6,
   ).addTarget(
-    common.default_metric_target(cfg, 'tnt_election_vote')
+    common.target(cfg, 'tnt_election_vote')
   ),
 
   election_leader(
@@ -465,7 +464,7 @@ local prometheus = grafana.prometheus;
     decimals=0,
     panel_width=6,
   ).addTarget(
-    common.default_metric_target(cfg, 'tnt_election_leader')
+    common.target(cfg, 'tnt_election_leader')
   ),
 
   election_term(
@@ -482,6 +481,6 @@ local prometheus = grafana.prometheus;
     decimals=0,
     panel_width=6,
   ).addTarget(
-    common.default_metric_target(cfg, 'tnt_election_term')
+    common.target(cfg, 'tnt_election_term')
   ),
 }

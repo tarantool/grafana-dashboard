@@ -23,7 +23,7 @@ local prometheus = grafana.prometheus;
     legend_max=false,
     panel_width=12,
   ).addTarget(
-    common.default_metric_target(cfg, metric_name)
+    common.target(cfg, metric_name)
   ),
 
   disk_data(
@@ -72,7 +72,7 @@ local prometheus = grafana.prometheus;
     labelY1='in bytes',
     panel_width=8,
   ).addTarget(
-    common.default_metric_target(cfg, 'tnt_vinyl_memory_tuple_cache')
+    common.target(cfg, 'tnt_vinyl_memory_tuple_cache')
   ),
 
   index_memory(
@@ -93,7 +93,7 @@ local prometheus = grafana.prometheus;
     labelY1='in bytes',
     panel_width=8,
   ).addTarget(
-    common.default_metric_target(cfg, 'tnt_vinyl_memory_page_index')
+    common.target(cfg, 'tnt_vinyl_memory_page_index')
   ),
 
   bloom_filter_memory(
@@ -110,7 +110,7 @@ local prometheus = grafana.prometheus;
     labelY1='in bytes',
     panel_width=8,
   ).addTarget(
-    common.default_metric_target(cfg, 'tnt_vinyl_memory_bloom_filter')
+    common.target(cfg, 'tnt_vinyl_memory_bloom_filter')
   ),
 
   local regulator_bps(
@@ -125,7 +125,7 @@ local prometheus = grafana.prometheus;
     format='Bps',
     panel_width=8,
   ).addTarget(
-    common.default_metric_target(cfg, metric_name)
+    common.target(cfg, metric_name)
   ),
 
   regulator_dump_bandwidth(
@@ -204,7 +204,7 @@ local prometheus = grafana.prometheus;
     legend_avg=false,
     panel_width=8,
   ).addTarget(
-    common.default_metric_target(cfg, 'tnt_vinyl_memory_level0')
+    common.target(cfg, 'tnt_vinyl_memory_level0')
   ),
 
   regulator_dump_watermark(
@@ -229,7 +229,7 @@ local prometheus = grafana.prometheus;
     legend_max=false,
     panel_width=8,
   ).addTarget(
-    common.default_metric_target(cfg, 'tnt_vinyl_regulator_dump_watermark')
+    common.target(cfg, 'tnt_vinyl_regulator_dump_watermark')
   ),
 
   regulator_blocked_writers(
@@ -249,7 +249,7 @@ local prometheus = grafana.prometheus;
     labelY1='fibers',
     panel_width=8,
   ).addTarget(
-    common.default_metric_target(cfg, 'tnt_vinyl_regulator_blocked_writers')
+    common.target(cfg, 'tnt_vinyl_regulator_blocked_writers')
   ),
 
   local tx_rate(
@@ -265,7 +265,7 @@ local prometheus = grafana.prometheus;
     labelY1='transactions per second',
     panel_width=6,
   ).addTarget(
-    common.default_rps_target(cfg, metric_name)
+    common.target(cfg, metric_name, rate=true)
   ),
 
   tx_commit_rate(
@@ -337,7 +337,7 @@ local prometheus = grafana.prometheus;
     labelY1='current',
     panel_width=6,
   ).addTarget(
-    common.default_metric_target(cfg, 'tnt_vinyl_tx_read_views', 'last')
+    common.target(cfg, 'tnt_vinyl_tx_read_views', converter='last')
   ),
 
   local memory(
@@ -353,7 +353,7 @@ local prometheus = grafana.prometheus;
     legend_avg=false,
     panel_width=6,
   ).addTarget(
-    common.default_metric_target(cfg, metric_name)
+    common.target(cfg, metric_name)
   ),
 
   memory_page_index(
@@ -479,7 +479,7 @@ local prometheus = grafana.prometheus;
     decimalsY1=null,
     panel_width=6,
   ).addTarget(
-    common.default_rps_target(cfg, 'tnt_vinyl_scheduler_dump_time')
+    common.target(cfg, 'tnt_vinyl_scheduler_dump_time', rate=true)
   ),
 
   scheduler_dump_count_rate(
@@ -499,6 +499,6 @@ local prometheus = grafana.prometheus;
     decimalsY1=null,
     panel_width=6,
   ).addTarget(
-    common.default_rps_target(cfg, 'tnt_vinyl_scheduler_dump_total')
+    common.target(cfg, 'tnt_vinyl_scheduler_dump_total', rate=true)
   ),
 }

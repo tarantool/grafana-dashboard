@@ -34,7 +34,7 @@ local common = import 'dashboard/panels/common.libsonnet';
     legend_avg=false,
     legend_max=false,
   ).addTarget(
-    common.default_metric_target(cfg, metric_name)
+    common.target(cfg, metric_name)
   ),
 
   local used_ratio(

@@ -102,7 +102,7 @@ local prometheus = grafana.prometheus;
     decimals=0,
     panel_width=12,
   ).addTarget(
-    common_utils.default_metric_target(cfg, 'tdg_scanned_tuples_max')
+    common_utils.target(cfg, 'tdg_scanned_tuples_max')
   ),
 
   tuples_returned_max(
@@ -121,6 +121,6 @@ local prometheus = grafana.prometheus;
     decimals=0,
     panel_width=12,
   ).addTarget(
-    common_utils.default_metric_target(cfg, 'tdg_returned_tuples_max')
+    common_utils.target(cfg, 'tdg_returned_tuples_max')
   ),
 }

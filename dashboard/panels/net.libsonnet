@@ -23,7 +23,7 @@ local prometheus = grafana.prometheus;
     labelY1='in bytes',
     panel_width=8,
   ).addTarget(
-    common.default_metric_target(cfg, 'tnt_info_memory_net')
+    common.target(cfg, 'tnt_info_memory_net')
   ),
 
   local bytes_per_second_graph(
@@ -40,7 +40,7 @@ local prometheus = grafana.prometheus;
     labelY1=labelY1,
     panel_width=8,
   ).addTarget(
-    common.default_rps_target(cfg, metric_name)
+    common.target(cfg, metric_name, rate=true)
   ),
 
   bytes_received_per_second(
@@ -87,7 +87,7 @@ local prometheus = grafana.prometheus;
     labelY1='requests per second',
     panel_width=12,
   ).addTarget(
-    common.default_rps_target(cfg, 'tnt_net_requests_total')
+    common.target(cfg, 'tnt_net_requests_total', rate=true)
   ),
 
   net_pending(
@@ -105,7 +105,7 @@ local prometheus = grafana.prometheus;
     min=0,
     panel_width=12,
   ).addTarget(
-    common.default_metric_target(cfg, 'tnt_net_requests_current')
+    common.target(cfg, 'tnt_net_requests_current')
   ),
 
   requests_in_progress_per_second(
@@ -123,7 +123,7 @@ local prometheus = grafana.prometheus;
     labelY1='requests per second',
     panel_width=6,
   ).addTarget(
-    common.default_rps_target(cfg, 'tnt_net_requests_in_progress_total')
+    common.target(cfg, 'tnt_net_requests_in_progress_total', rate=true)
   ),
 
   requests_in_progress_current(
@@ -142,7 +142,7 @@ local prometheus = grafana.prometheus;
     labelY1='current',
     panel_width=6,
   ).addTarget(
-    common.default_metric_target(cfg, 'tnt_net_requests_in_progress_current', 'last')
+    common.target(cfg, 'tnt_net_requests_in_progress_current', converter='last')
   ),
 
   requests_in_queue_per_second(
@@ -161,7 +161,7 @@ local prometheus = grafana.prometheus;
     labelY1='requests per second',
     panel_width=6,
   ).addTarget(
-    common.default_rps_target(cfg, 'tnt_net_requests_in_stream_queue_total')
+    common.target(cfg, 'tnt_net_requests_in_stream_queue_total', rate=true)
   ),
 
   requests_in_queue_current(
@@ -180,7 +180,7 @@ local prometheus = grafana.prometheus;
     labelY1='current',
     panel_width=6,
   ).addTarget(
-    common.default_metric_target(cfg, 'tnt_net_requests_in_stream_queue_current', 'last')
+    common.target(cfg, 'tnt_net_requests_in_stream_queue_current', converter='last')
   ),
 
   connections_per_second(
@@ -196,7 +196,7 @@ local prometheus = grafana.prometheus;
     labelY1='new per second',
     panel_width=12,
   ).addTarget(
-    common.default_rps_target(cfg, 'tnt_net_connections_total')
+    common.target(cfg, 'tnt_net_connections_total', rate=true)
   ),
 
   current_connections(
@@ -213,7 +213,7 @@ local prometheus = grafana.prometheus;
     labelY1='current',
     panel_width=12,
   ).addTarget(
-    common.default_metric_target(cfg, 'tnt_net_connections_current', 'last')
+    common.target(cfg, 'tnt_net_connections_current', converter='last')
   ),
 
   local per_thread_warning(description) = std.join(
