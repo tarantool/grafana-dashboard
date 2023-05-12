@@ -25,7 +25,7 @@ local prometheus = grafana.prometheus;
     if cfg.type == variable.datasource_type.prometheus then
       prometheus.target(
         expr=std.format('rate(tnt_stats_op_total{job=~"%s",alias=~"%s",operation="%s"}[$__rate_interval])',
-                        [cfg.job, cfg.filters.alias, operation]),
+                        [cfg.filters.job, cfg.filters.alias, operation]),
         legendFormat='{{alias}}'
       )
     else if cfg.type == variable.datasource_type.influxdb then

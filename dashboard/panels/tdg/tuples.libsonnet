@@ -23,7 +23,7 @@ local prometheus = grafana.prometheus;
           {
             metric_name_sum: std.join('_', [metric_name, 'sum']),
             metric_name_count: std.join('_', [metric_name, 'count']),
-            job: cfg.job,
+            job: cfg.filters.job,
             alias: cfg.filters.alias,
           }
         ),

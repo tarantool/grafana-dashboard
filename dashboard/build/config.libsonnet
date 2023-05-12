@@ -21,8 +21,7 @@ local variable = import 'dashboard/variable.libsonnet';
       type: variable.datasource_type.prometheus,
       title: 'Tarantool dashboard',
       datasource: variable.datasource.prometheus,
-      job: variable.prometheus.job,
-      filters: { alias: variable.prometheus.alias },
+      filters: { alias: variable.prometheus.alias, job: variable.prometheus.job },
     },
     [variable.datasource_type.influxdb]: {
       type: variable.datasource_type.influxdb,
@@ -44,7 +43,6 @@ local variable = import 'dashboard/variable.libsonnet';
       type: 'string',
       title: 'string',
       datasource: 'string',
-      job: 'string',
       filters: 'object',
     },
     [variable.datasource_type.influxdb]: {

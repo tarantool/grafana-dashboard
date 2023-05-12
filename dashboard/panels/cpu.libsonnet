@@ -78,7 +78,7 @@ local prometheus = grafana.prometheus;
     if cfg.type == variable.datasource_type.prometheus then
       prometheus.target(
         expr=std.format('rate(tnt_cpu_thread{job=~"%s",alias=~"%s",kind="%s"}[$__rate_interval])',
-                        [cfg.job, cfg.filters.alias, kind]),
+                        [cfg.filters.job, cfg.filters.alias, kind]),
         legendFormat='{{alias}} — {{thread_name}}',
       )
     else if cfg.type == variable.datasource_type.influxdb then

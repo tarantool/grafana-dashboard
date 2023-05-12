@@ -15,7 +15,7 @@ local prometheus = grafana.prometheus;
   ) =
     if cfg.type == variable.datasource_type.prometheus then
       prometheus.target(
-        expr=std.format('%s{job=~"%s",alias=~"%s"}', [metric_name, cfg.job, cfg.filters.alias]),
+        expr=std.format('%s{job=~"%s",alias=~"%s"}', [metric_name, cfg.filters.job, cfg.filters.alias]),
         legendFormat='{{name}} ({{broker_name}}) — {{alias}} ({{type}}, {{connector_name}})',
       )
     else if cfg.type == variable.datasource_type.influxdb then
@@ -42,7 +42,7 @@ local prometheus = grafana.prometheus;
     if cfg.type == variable.datasource_type.prometheus then
       prometheus.target(
         expr=std.format('rate(%s{job=~"%s",alias=~"%s"}[$__rate_interval])',
-                        [metric_name, cfg.job, cfg.filters.alias]),
+                        [metric_name, cfg.filters.job, cfg.filters.alias]),
         legendFormat='{{name}} ({{broker_name}}) — {{alias}} ({{type}}, {{connector_name}})',
       )
     else if cfg.type == variable.datasource_type.influxdb then
@@ -69,7 +69,7 @@ local prometheus = grafana.prometheus;
     if cfg.type == variable.datasource_type.prometheus then
       prometheus.target(
         expr=std.format('%s{job=~"%s",alias=~"%s",quantile="0.99"}',
-                        [metric_name, cfg.job, cfg.filters.alias]),
+                        [metric_name, cfg.filters.job, cfg.filters.alias]),
         legendFormat='{{name}} ({{broker_name}}) — {{alias}} ({{type}}, {{connector_name}})',
       )
     else if cfg.type == variable.datasource_type.influxdb then
@@ -438,7 +438,7 @@ local prometheus = grafana.prometheus;
     if cfg.type == variable.datasource_type.prometheus then
       prometheus.target(
         expr=std.format('rate(tdg_kafka_broker_req{job=~"%s",alias=~"%s"}[$__rate_interval])',
-                        [cfg.job, cfg.filters.alias]),
+                        [cfg.filters.job, cfg.filters.alias]),
         legendFormat='{{request}} — {{name}} ({{broker_name}}) — {{alias}} ({{type}}, {{connector_name}})',
       )
     else if cfg.type == variable.datasource_type.influxdb then
