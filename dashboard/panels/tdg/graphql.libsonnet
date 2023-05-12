@@ -36,6 +36,7 @@ local prometheus = grafana.prometheus;
         alias='$tag_label_pairs_operation_name ($tag_label_pairs_schema, $tag_label_pairs_entity) — $tag_label_pairs_alias',
         fill='null',
       ).where('metric_name', '=', metric_name)
+      .where('label_pairs_alias', '=~', alias)
       .selectField('value').addConverter('mean').addConverter('non_negative_derivative', ['1s']),
 
   local average_target(

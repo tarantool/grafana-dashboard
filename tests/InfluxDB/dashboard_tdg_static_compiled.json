@@ -32304,6 +32304,12 @@
                            "key": "metric_name",
                            "operator": "=",
                            "value": "tdg_graphql_query_time_count"
+                        },
+                        {
+                           "condition": "AND",
+                           "key": "label_pairs_alias",
+                           "operator": "=~",
+                           "value": "/^.*$/"
                         }
                      ]
                   }
@@ -32566,6 +32572,12 @@
                            "key": "metric_name",
                            "operator": "=",
                            "value": "tdg_graphql_query_fail"
+                        },
+                        {
+                           "condition": "AND",
+                           "key": "label_pairs_alias",
+                           "operator": "=~",
+                           "value": "/^.*$/"
                         }
                      ]
                   }
@@ -32721,6 +32733,12 @@
                            "key": "metric_name",
                            "operator": "=",
                            "value": "tdg_graphql_mutation_time_count"
+                        },
+                        {
+                           "condition": "AND",
+                           "key": "label_pairs_alias",
+                           "operator": "=~",
+                           "value": "/^.*$/"
                         }
                      ]
                   }
@@ -32983,6 +33001,12 @@
                            "key": "metric_name",
                            "operator": "=",
                            "value": "tdg_graphql_mutation_fail"
+                        },
+                        {
+                           "condition": "AND",
+                           "key": "label_pairs_alias",
+                           "operator": "=~",
+                           "value": "/^.*$/"
                         }
                      ]
                   }
