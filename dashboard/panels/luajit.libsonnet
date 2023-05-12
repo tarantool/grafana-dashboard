@@ -23,7 +23,7 @@ local common = import 'dashboard/panels/common.libsonnet';
     labelY1='restores per second',
     panel_width=6,
   ).addTarget(
-    common.default_rps_target(cfg, 'lj_jit_snap_restore_total')
+    common.target(cfg, 'lj_jit_snap_restore_total', rate=true)
   ),
 
   jit_traces(
@@ -39,7 +39,7 @@ local common = import 'dashboard/panels/common.libsonnet';
     labelY1='new per second',
     panel_width=6,
   ).addTarget(
-    common.default_rps_target(cfg, 'lj_jit_trace_num')
+    common.target(cfg, 'lj_jit_trace_num', rate=true)
   ),
 
   jit_traces_aborts(
@@ -55,7 +55,7 @@ local common = import 'dashboard/panels/common.libsonnet';
     labelY1='aborts per second',
     panel_width=6,
   ).addTarget(
-    common.default_rps_target(cfg, 'lj_jit_trace_abort_total')
+    common.target(cfg, 'lj_jit_trace_abort_total', rate=true)
   ),
 
   machine_code_areas(
@@ -72,7 +72,7 @@ local common = import 'dashboard/panels/common.libsonnet';
     labelY1='in bytes',
     panel_width=6,
   ).addTarget(
-    common.default_metric_target(cfg, 'lj_jit_mcode_size')
+    common.target(cfg, 'lj_jit_mcode_size')
   ),
 
   strhash_hit(
@@ -88,7 +88,7 @@ local common = import 'dashboard/panels/common.libsonnet';
     labelY1='interned per second',
     panel_width=12,
   ).addTarget(
-    common.default_rps_target(cfg, 'lj_strhash_hit_total')
+    common.target(cfg, 'lj_strhash_hit_total', rate=true)
   ),
 
   strhash_miss(
@@ -104,7 +104,7 @@ local common = import 'dashboard/panels/common.libsonnet';
     labelY1='allocated per second',
     panel_width=12,
   ).addTarget(
-    common.default_rps_target(cfg, 'lj_strhash_miss_total')
+    common.target(cfg, 'lj_strhash_miss_total', rate=true)
   ),
 
   local gc_steps(
@@ -125,7 +125,7 @@ local common = import 'dashboard/panels/common.libsonnet';
     labelY1='steps per second',
     panel_width=8,
   ).addTarget(
-    common.default_rps_target(cfg, std.format('lj_gc_steps_%s_total', state))
+    common.target(cfg, std.format('lj_gc_steps_%s_total', state), rate=true)
   ),
 
   gc_steps_atomic(
@@ -206,7 +206,7 @@ local common = import 'dashboard/panels/common.libsonnet';
     decimals=0,
     panel_width=6,
   ).addTarget(
-    common.default_metric_target(cfg, metric_name)
+    common.target(cfg, metric_name)
   ),
 
   strings_allocated(
@@ -275,7 +275,7 @@ local common = import 'dashboard/panels/common.libsonnet';
     labelY1='in bytes',
     panel_width=8,
   ).addTarget(
-    common.default_metric_target(cfg, 'lj_gc_memory')
+    common.target(cfg, 'lj_gc_memory')
   ),
 
   gc_memory_freed(
@@ -292,7 +292,7 @@ local common = import 'dashboard/panels/common.libsonnet';
     labelY1='bytes per second',
     panel_width=8,
   ).addTarget(
-    common.default_rps_target(cfg, 'lj_gc_freed_total')
+    common.target(cfg, 'lj_gc_freed_total', rate=true)
   ),
 
   gc_memory_allocated(
@@ -309,6 +309,6 @@ local common = import 'dashboard/panels/common.libsonnet';
     labelY1='bytes per second',
     panel_width=8,
   ).addTarget(
-    common.default_rps_target(cfg, 'lj_gc_allocated_total')
+    common.target(cfg, 'lj_gc_allocated_total', rate=true)
   ),
 }

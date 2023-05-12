@@ -146,7 +146,7 @@ local prometheus = grafana.prometheus;
     legend_avg=false,
     legend_max=false,
   ).addTarget(
-    common.default_metric_target(cfg, 'tnt_synchro_queue_owner')
+    common.target(cfg, 'tnt_synchro_queue_owner')
   ),
 
   synchro_queue_term(
@@ -165,7 +165,7 @@ local prometheus = grafana.prometheus;
     legend_avg=false,
     legend_max=false,
   ).addTarget(
-    common.default_metric_target(cfg, 'tnt_synchro_queue_term')
+    common.target(cfg, 'tnt_synchro_queue_term')
   ),
 
   synchro_queue_length(
@@ -181,7 +181,7 @@ local prometheus = grafana.prometheus;
     labelY1='current',
     panel_width=6,
   ).addTarget(
-    common.default_metric_target(cfg, 'tnt_synchro_queue_len')
+    common.target(cfg, 'tnt_synchro_queue_len')
   ),
 
   synchro_queue_busy(
@@ -206,6 +206,6 @@ local prometheus = grafana.prometheus;
   ).addRangeMapping(
     0.001, 0.999, '-'
   ).addTarget(
-    common.default_metric_target(cfg, 'tnt_synchro_queue_busy')
+    common.target(cfg, 'tnt_synchro_queue_busy')
   ),
 }

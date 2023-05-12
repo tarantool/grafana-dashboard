@@ -20,11 +20,9 @@ dashboard.addPanels([
     labelY1='requests per second',
     panel_width=24,
     panel_height=6,
-  ).addTarget(common.default_metric_target(
-    cfg,
-    metric_name='my_component_status',
-    converter='last',
-  )),
+  ).addTarget(
+    common.target(cfg, 'my_component_status', converter='last')
+  ),
 
   common.default_graph(
     cfg,
@@ -36,10 +34,9 @@ dashboard.addPanels([
     |||,
     labelY1='requests per second',
     panel_width=12,
-  ).addTarget(common.default_rps_target(
-    cfg,
-    metric_name='my_component_load_metric_count',
-  )),
+  ).addTarget(
+    common.target(cfg, 'my_component_load_metric_count', rate=true)
+  ),
 
   common.default_graph(
     cfg,
