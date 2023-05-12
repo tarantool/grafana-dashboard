@@ -13,7 +13,7 @@ local cfg = config.prepare({
   type: variable.datasource_type.prometheus,
   title: TITLE,
   datasource: DATASOURCE,
-  filters: { job: JOB } + if WITH_INSTANCE_VARIABLE then {} else { alias: '.*' },
+  filters: { job: ['=~', JOB] } + if WITH_INSTANCE_VARIABLE then {} else { alias: ['=~', '.*'] },
 });
 
 if WITH_INSTANCE_VARIABLE then
@@ -21,7 +21,7 @@ if WITH_INSTANCE_VARIABLE then
     grafana.template.new(
       name='alias',
       datasource=cfg.datasource,
-      query=std.format('label_values(%s{job="%s"},alias)', [variable.metrics.tarantool_indicator, cfg.filters.job]),
+      query=std.format('label_values(%s{job="%s"},alias)', [variable.metrics.tarantool_indicator, cfg.filters.job[1]]),
       includeAll=true,
       multi=true,
       current='all',

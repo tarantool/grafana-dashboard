@@ -28,7 +28,7 @@ tdg_dashboard_raw(cfg).addTemplate(
   grafana.template.new(
     name='alias',
     datasource=cfg.datasource,
-    query=std.format('label_values(%s{job=~"%s"},alias)', [variable.metrics.tarantool_indicator, cfg.filters.job]),
+    query=std.format('label_values(%s{job=~"%s"},alias)', [variable.metrics.tarantool_indicator, cfg.filters.job[1]]),
     includeAll=true,
     multi=true,
     current='all',

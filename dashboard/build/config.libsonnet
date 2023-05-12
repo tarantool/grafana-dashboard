@@ -21,7 +21,7 @@ local variable = import 'dashboard/variable.libsonnet';
       type: variable.datasource_type.prometheus,
       title: 'Tarantool dashboard',
       datasource: variable.datasource.prometheus,
-      filters: { alias: variable.prometheus.alias, job: variable.prometheus.job },
+      filters: { alias: ['=~', variable.prometheus.alias], job: ['=~', variable.prometheus.job] },
     },
     [variable.datasource_type.influxdb]: {
       type: variable.datasource_type.influxdb,
@@ -29,7 +29,7 @@ local variable = import 'dashboard/variable.libsonnet';
       datasource: variable.datasource.influxdb,
       policy: variable.influxdb.policy,
       measurement: variable.influxdb.measurement,
-      filters: { label_pairs_alias: variable.influxdb.alias },
+      filters: { label_pairs_alias: ['=~', variable.influxdb.alias] },
     },
   },
 
@@ -61,6 +61,15 @@ local variable = import 'dashboard/variable.libsonnet';
     else
       true,
 
+  local validate_filter(key, value) =
+    [assert_type(key, value, 'array', "ConfigurationError: field 'filters.%s' expected type %s, got %s")] + [
+      if std.length(value) != 2 then
+        error std.format("ConfigurationError: field 'filters.%s' expected to be in format [condition, value]", key)
+      else
+        true,
+    ] + [assert_type(key, value[0], 'string', "ConfigurationError: field 'filters.%s[0]' expected type %s, got %s")] +
+    [assert_type(key, value[1], 'string', "ConfigurationError: field 'filters.%s[1]' expected type %s, got %s")],
+
   local _validate_fields(cfg, schema) =
     [
       if (item.key in schema) == false then
@@ -68,10 +77,10 @@ local variable = import 'dashboard/variable.libsonnet';
       else
         assert_type(item.key, item.value, schema[item.key], "ConfigurationError: field '%s' expected type %s, got %s")
       for item in std.objectKeysValues(cfg)
-    ] + [
-      assert_type(item.key, item.value, 'string', "ConfigurationError: field 'filters.%s' expected type %s, got %s")
+    ] + std.flattenArrays([
+      validate_filter(item.key, item.value)
       for item in std.objectKeysValues(cfg.filters)
-    ],
+    ]),
 
   local validate_fields(cfg) =
     if std.all(_validate_fields(cfg, schema[cfg.type])) then cfg,

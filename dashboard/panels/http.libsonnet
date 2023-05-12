@@ -24,7 +24,7 @@ local prometheus = grafana.prometheus;
     if cfg.type == variable.datasource_type.prometheus then
       prometheus.target(
         expr=std.format('rate(%s{job=~"%s",alias=~"%s",status=~"%s"}[$__rate_interval])',
-                        [metric_name, cfg.filters.job, cfg.filters.alias, std.strReplace(status_regex, '\\', '\\\\')]),
+                        [metric_name, cfg.filters.job[1], cfg.filters.alias[1], std.strReplace(status_regex, '\\', '\\\\')]),
         legendFormat='{{alias}} — {{method}} {{path}} (code {{status}})',
       )
     else if cfg.type == variable.datasource_type.influxdb then
@@ -35,7 +35,7 @@ local prometheus = grafana.prometheus;
         alias='$tag_label_pairs_alias — $tag_label_pairs_method $tag_label_pairs_path (code $tag_label_pairs_status)',
         fill='null',
       ).where('metric_name', '=', metric_name)
-      .where('label_pairs_alias', '=~', cfg.filters.label_pairs_alias)
+      .where('label_pairs_alias', '=~', cfg.filters.label_pairs_alias[1])
       .where('label_pairs_status', '=~', std.format('/%s/', status_regex))
       .selectField('value').addConverter('mean').addConverter('non_negative_derivative', ['1s'])
   ),
@@ -107,7 +107,7 @@ local prometheus = grafana.prometheus;
     if cfg.type == variable.datasource_type.prometheus then
       prometheus.target(
         expr=std.format('%s{job=~"%s",alias=~"%s",quantile="%s",status=~"%s"}',
-                        [metric_name, cfg.filters.job, cfg.filters.alias, quantile, std.strReplace(status_regex, '\\', '\\\\')]),
+                        [metric_name, cfg.filters.job[1], cfg.filters.alias[1], quantile, std.strReplace(status_regex, '\\', '\\\\')]),
         legendFormat='{{alias}} — {{method}} {{path}} (code {{status}})',
       )
     else if cfg.type == variable.datasource_type.influxdb then
@@ -118,7 +118,7 @@ local prometheus = grafana.prometheus;
         alias='$tag_label_pairs_alias — $tag_label_pairs_method $tag_label_pairs_path (code $tag_label_pairs_status)',
         fill='null',
       ).where('metric_name', '=', metric_name)
-      .where('label_pairs_alias', '=~', cfg.filters.label_pairs_alias)
+      .where('label_pairs_alias', '=~', cfg.filters.label_pairs_alias[1])
       .where('label_pairs_quantile', '=', quantile)
       .where('label_pairs_status', '=~', std.format('/%s/', status_regex)).selectField('value').addConverter('mean')
   ),

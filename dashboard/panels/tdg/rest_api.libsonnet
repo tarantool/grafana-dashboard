@@ -26,8 +26,8 @@ local prometheus = grafana.prometheus;
       prometheus.target(
         expr=std.format('rate(%s{job=~"%s",alias=~"%s",method%s"GET",status_code=~"%s"}[$__rate_interval])', [
           metric_name,
-          cfg.filters.job,
-          cfg.filters.alias,
+          cfg.filters.job[1],
+          cfg.filters.alias[1],
           get_condition,
           std.strReplace(status_regex, '\\', '\\\\'),
         ]),
@@ -46,7 +46,7 @@ local prometheus = grafana.prometheus;
         alias='$tag_label_pairs_method $tag_label_pairs_type (code $tag_label_pairs_status_code) — $tag_label_pairs_alias',
         fill='null',
       ).where('metric_name', '=', metric_name)
-      .where('label_pairs_alias', '=~', cfg.filters.label_pairs_alias)
+      .where('label_pairs_alias', '=~', cfg.filters.label_pairs_alias[1])
       .where('label_pairs_method', get_condition, 'GET')
       .where('label_pairs_status_code', '=~', std.format('/%s/', status_regex))
       .selectField('value').addConverter('mean').addConverter('non_negative_derivative', ['1s']),
@@ -70,8 +70,8 @@ local prometheus = grafana.prometheus;
       prometheus.target(
         expr=std.format('%s{job=~"%s",alias=~"%s",method%s"GET",status_code=~"%s",quantile="0.99"}', [
           metric_name,
-          cfg.filters.job,
-          cfg.filters.alias,
+          cfg.filters.job[1],
+          cfg.filters.alias[1],
           get_condition,
           std.strReplace(status_regex, '\\', '\\\\'),
         ]),
@@ -90,7 +90,7 @@ local prometheus = grafana.prometheus;
         alias='$tag_label_pairs_method $tag_label_pairs_type (code $tag_label_pairs_status_code) — $tag_label_pairs_alias',
         fill='null',
       ).where('metric_name', '=', metric_name)
-      .where('label_pairs_alias', '=~', cfg.filters.label_pairs_alias)
+      .where('label_pairs_alias', '=~', cfg.filters.label_pairs_alias[1])
       .where('label_pairs_method', get_condition, 'GET')
       .where('label_pairs_status_code', '=~', std.format('/%s/', status_regex))
       .where('label_pairs_quantile', '=', '0.99')

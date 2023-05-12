@@ -12,7 +12,7 @@ local prometheus = grafana.prometheus;
   )::
     if cfg.type == variable.datasource_type.prometheus then
       prometheus.target(
-        expr=std.format('%s{job=~"%s",alias=~"%s"}', [metric_name, cfg.filters.job, cfg.filters.alias]),
+        expr=std.format('%s{job=~"%s",alias=~"%s"}', [metric_name, cfg.filters.job[1], cfg.filters.alias[1]]),
         legendFormat='{{name}} — {{alias}} ({{type}}, {{connector_name}})',
       )
     else if cfg.type == variable.datasource_type.influxdb then
@@ -23,7 +23,7 @@ local prometheus = grafana.prometheus;
         alias='$tag_label_pairs_name — $tag_label_pairs_alias ($tag_label_pairs_type, $tag_label_pairs_connector_name)',
         fill='null',
       ).where('metric_name', '=', metric_name)
-      .where('label_pairs_alias', '=~', cfg.filters.label_pairs_alias)
+      .where('label_pairs_alias', '=~', cfg.filters.label_pairs_alias[1])
       .selectField('value').addConverter('mean'),
 
   kafka_rps_target(
@@ -33,7 +33,7 @@ local prometheus = grafana.prometheus;
     if cfg.type == variable.datasource_type.prometheus then
       prometheus.target(
         expr=std.format('rate(%s{job=~"%s",alias=~"%s"}[$__rate_interval])',
-                        [metric_name, cfg.filters.job, cfg.filters.alias]),
+                        [metric_name, cfg.filters.job[1], cfg.filters.alias[1]]),
         legendFormat='{{name}} — {{alias}} ({{type}}, {{connector_name}})',
       )
     else if cfg.type == variable.datasource_type.influxdb then
@@ -44,6 +44,6 @@ local prometheus = grafana.prometheus;
         alias='$tag_label_pairs_name — $tag_label_pairs_alias ($tag_label_pairs_type, $tag_label_pairs_connector_name)',
         fill='null',
       ).where('metric_name', '=', metric_name)
-      .where('label_pairs_alias', '=~', cfg.filters.label_pairs_alias)
+      .where('label_pairs_alias', '=~', cfg.filters.label_pairs_alias[1])
       .selectField('value').addConverter('mean').addConverter('non_negative_derivative', ['1s']),
 }

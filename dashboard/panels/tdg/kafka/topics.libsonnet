@@ -15,7 +15,7 @@ local prometheus = grafana.prometheus;
   ) =
     if cfg.type == variable.datasource_type.prometheus then
       prometheus.target(
-        expr=std.format('%s{job=~"%s",alias=~"%s"}', [metric_name, cfg.filters.job, cfg.filters.alias]),
+        expr=std.format('%s{job=~"%s",alias=~"%s"}', [metric_name, cfg.filters.job[1], cfg.filters.alias[1]]),
         legendFormat='{{name}} ({{topic}}) — {{alias}} ({{type}}, {{connector_name}})',
       )
     else if cfg.type == variable.datasource_type.influxdb then
@@ -32,7 +32,7 @@ local prometheus = grafana.prometheus;
         alias='$tag_label_pairs_name ($tag_label_pairs_topic) — $tag_label_pairs_alias ($tag_label_pairs_type, $tag_label_pairs_connector_name)',
         fill='null',
       ).where('metric_name', '=', metric_name)
-      .where('label_pairs_alias', '=~', cfg.filters.label_pairs_alias)
+      .where('label_pairs_alias', '=~', cfg.filters.label_pairs_alias[1])
       .selectField('value').addConverter('mean'),
 
   local partitions_target(
@@ -41,7 +41,7 @@ local prometheus = grafana.prometheus;
   ) =
     if cfg.type == variable.datasource_type.prometheus then
       prometheus.target(
-        expr=std.format('%s{job=~"%s",alias=~"%s"}', [metric_name, cfg.filters.job, cfg.filters.alias]),
+        expr=std.format('%s{job=~"%s",alias=~"%s"}', [metric_name, cfg.filters.job[1], cfg.filters.alias[1]]),
         legendFormat='{{name}} ({{topic}}, {{partition}}) — {{alias}} ({{type}}, {{connector_name}})',
       )
     else if cfg.type == variable.datasource_type.influxdb then
@@ -59,7 +59,7 @@ local prometheus = grafana.prometheus;
         alias='$tag_label_pairs_name ($tag_label_pairs_topic, $tag_label_pairs_partition) — $tag_label_pairs_alias ($tag_label_pairs_type, $tag_label_pairs_connector_name)',
         fill='null',
       ).where('metric_name', '=', metric_name)
-      .where('label_pairs_alias', '=~', cfg.filters.label_pairs_alias)
+      .where('label_pairs_alias', '=~', cfg.filters.label_pairs_alias[1])
       .selectField('value').addConverter('mean'),
 
   local partitions_rps_target(
@@ -69,7 +69,7 @@ local prometheus = grafana.prometheus;
     if cfg.type == variable.datasource_type.prometheus then
       prometheus.target(
         expr=std.format('rate(%s{job=~"%s",alias=~"%s"}[$__rate_interval])',
-                        [metric_name, cfg.filters.job, cfg.filters.alias]),
+                        [metric_name, cfg.filters.job[1], cfg.filters.alias[1]]),
         legendFormat='{{name}} ({{topic}}, {{partition}}) — {{alias}} ({{type}}, {{connector_name}})',
       )
     else if cfg.type == variable.datasource_type.influxdb then
@@ -87,7 +87,7 @@ local prometheus = grafana.prometheus;
         alias='$tag_label_pairs_name ($tag_label_pairs_topic, $tag_label_pairs_partition) — $tag_label_pairs_alias ($tag_label_pairs_type, $tag_label_pairs_connector_name)',
         fill='null',
       ).where('metric_name', '=', metric_name)
-      .where('label_pairs_alias', '=~', cfg.filters.label_pairs_alias)
+      .where('label_pairs_alias', '=~', cfg.filters.label_pairs_alias[1])
       .selectField('value').addConverter('mean').addConverter('non_negative_derivative', ['1s']),
 
   local topics_quantile_target(
@@ -97,7 +97,7 @@ local prometheus = grafana.prometheus;
     if cfg.type == variable.datasource_type.prometheus then
       prometheus.target(
         expr=std.format('%s{job=~"%s",alias=~"%s",quantile="0.99"}',
-                        [metric_name, cfg.filters.job, cfg.filters.alias]),
+                        [metric_name, cfg.filters.job[1], cfg.filters.alias[1]]),
         legendFormat='{{name}} ({{topic}}) — {{alias}} ({{type}}, {{connector_name}})',
       )
     else if cfg.type == variable.datasource_type.influxdb then
@@ -114,7 +114,7 @@ local prometheus = grafana.prometheus;
         alias='$tag_label_pairs_name ($tag_label_pairs_topic) — $tag_label_pairs_alias ($tag_label_pairs_type, $tag_label_pairs_connector_name)',
         fill='null',
       ).where('metric_name', '=', metric_name)
-      .where('label_pairs_alias', '=~', cfg.filters.label_pairs_alias)
+      .where('label_pairs_alias', '=~', cfg.filters.label_pairs_alias[1])
       .where('label_pairs_quantile', '=', '0.99')
       .selectField('value').addConverter('last'),
 

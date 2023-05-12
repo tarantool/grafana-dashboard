@@ -75,7 +75,7 @@ local prometheus = grafana.prometheus;
             up{job=~"%s"} * on(instance) group_left(alias) tnt_info_uptime{job=~"%s"} or
             on(instance) label_replace(up{job=~"%s"}, "alias", "Not available", "instance", ".*")
           |||,
-          [cfg.filters.job, cfg.filters.job, cfg.filters.job]
+          [cfg.filters.job[1], cfg.filters.job[1], cfg.filters.job[1]]
         ),
         format='table',
         instant=true,
@@ -147,7 +147,7 @@ local prometheus = grafana.prometheus;
       stat_title='Total instances running:',
       decimals=0,
       unit='none',
-      expr=std.format('sum(up{job=~"%s"})', cfg.filters.job),
+      expr=std.format('sum(up{job=~"%s"})', cfg.filters.job[1]),
     ) { gridPos: { w: 6, h: 3 } }
   else if cfg.type == variable.datasource_type.influxdb then
     error 'InfluxDB target is not supported yet',
@@ -172,7 +172,7 @@ local prometheus = grafana.prometheus;
       stat_title='Overall memory used:',
       decimals=2,
       unit='bytes',
-      expr=std.format('sum(tnt_slab_arena_used{job=~"%s"})', cfg.filters.job),
+      expr=std.format('sum(tnt_slab_arena_used{job=~"%s"})', cfg.filters.job[1]),
     ) { gridPos: { w: 3, h: 3 } }
   else if cfg.type == variable.datasource_type.influxdb then
     error 'InfluxDB target is not supported yet',
@@ -196,7 +196,7 @@ local prometheus = grafana.prometheus;
       stat_title='Overall memory reserved:',
       decimals=2,
       unit='bytes',
-      expr=std.format('sum(tnt_slab_quota_size{job=~"%s"})', cfg.filters.job),
+      expr=std.format('sum(tnt_slab_quota_size{job=~"%s"})', cfg.filters.job[1]),
     ) { gridPos: { w: 3, h: 3 } }
   else if cfg.type == variable.datasource_type.influxdb then
     error 'InfluxDB target is not supported yet',
@@ -220,7 +220,7 @@ local prometheus = grafana.prometheus;
       stat_title='Overall space load:',
       decimals=2,
       unit='ops',
-      expr=std.format('sum(rate(tnt_stats_op_total{job=~"%s"}[$__rate_interval]))', [cfg.filters.job]),
+      expr=std.format('sum(rate(tnt_stats_op_total{job=~"%s"}[$__rate_interval]))', [cfg.filters.job[1]]),
     ) { gridPos: { w: 4, h: 5 } }
   else if cfg.type == variable.datasource_type.influxdb then
     error 'InfluxDB target is not supported yet',
@@ -244,7 +244,7 @@ local prometheus = grafana.prometheus;
       stat_title='Overall HTTP load:',
       decimals=2,
       unit='reqps',
-      expr=std.format('sum(rate(http_server_request_latency_count{job=~"%s"}[$__rate_interval]))', [cfg.filters.job]),
+      expr=std.format('sum(rate(http_server_request_latency_count{job=~"%s"}[$__rate_interval]))', [cfg.filters.job[1]]),
     ) { gridPos: { w: 4, h: 5 } }
   else if cfg.type == variable.datasource_type.influxdb then
     error 'InfluxDB target is not supported yet',
@@ -267,7 +267,7 @@ local prometheus = grafana.prometheus;
       stat_title='Overall net load:',
       decimals=2,
       unit='reqps',
-      expr=std.format('sum(rate(tnt_net_requests_total{job=~"%s"}[$__rate_interval]))', [cfg.filters.job]),
+      expr=std.format('sum(rate(tnt_net_requests_total{job=~"%s"}[$__rate_interval]))', [cfg.filters.job[1]]),
     ) { gridPos: { w: 4, h: 5 } }
   else if cfg.type == variable.datasource_type.influxdb then
     error 'InfluxDB target is not supported yet',
@@ -290,7 +290,7 @@ local prometheus = grafana.prometheus;
   ).addTarget(
     if cfg.type == variable.datasource_type.prometheus then
       prometheus.target(
-        expr=std.format('tnt_cartridge_issues{job=~"%s",alias=~"%s",level="%s"}', [cfg.filters.job, cfg.filters.alias, level]),
+        expr=std.format('tnt_cartridge_issues{job=~"%s",alias=~"%s",level="%s"}', [cfg.filters.job[1], cfg.filters.alias[1], level]),
         legendFormat='{{alias}}',
       )
     else if cfg.type == variable.datasource_type.influxdb then
@@ -300,7 +300,7 @@ local prometheus = grafana.prometheus;
         group_tags=['label_pairs_alias'],
         alias='$tag_label_pairs_alias',
         fill='null',
-      ).where('metric_name', '=', 'tnt_cartridge_issues').where('label_pairs_alias', '=~', cfg.filters.label_pairs_alias)
+      ).where('metric_name', '=', 'tnt_cartridge_issues').where('label_pairs_alias', '=~', cfg.filters.label_pairs_alias[1])
       .where('label_pairs_level', '=', level)
       .selectField('value').addConverter('last')
   ),
