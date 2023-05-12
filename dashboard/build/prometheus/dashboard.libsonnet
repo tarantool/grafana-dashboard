@@ -1,12 +1,15 @@
 local grafana = import 'grafonnet/grafana.libsonnet';
 
+local config = import 'dashboard/build/config.libsonnet';
 local dashboard_raw = import 'dashboard/build/prometheus/dashboard_raw.libsonnet';
 local variable = import 'dashboard/variable.libsonnet';
 
+local cfg = config.prepare({ type: variable.datasource_type.prometheus });
+
 dashboard_raw(
-  datasource=variable.datasource.prometheus,
-  job=variable.prometheus.job,
-  alias=variable.prometheus.alias,
+  datasource=cfg.datasource,
+  job=cfg.job,
+  alias=cfg.filters.alias,
 ).addTemplate(
   grafana.template.datasource(
     name='prometheus',
@@ -17,7 +20,7 @@ dashboard_raw(
 ).addTemplate(
   grafana.template.new(
     name='job',
-    datasource=variable.datasource.prometheus,
+    datasource=cfg.datasource,
     query=std.format('label_values(%s,job)', variable.metrics.tarantool_indicator),
     label='Prometheus job',
     refresh='load',
@@ -25,8 +28,8 @@ dashboard_raw(
 ).addTemplate(
   grafana.template.new(
     name='alias',
-    datasource=variable.datasource.prometheus,
-    query=std.format('label_values(%s{job=~"%s"},alias)', [variable.metrics.tarantool_indicator, variable.prometheus.job]),
+    datasource=cfg.datasource,
+    query=std.format('label_values(%s{job=~"%s"},alias)', [variable.metrics.tarantool_indicator, cfg.job]),
     includeAll=true,
     multi=true,
     current='all',
