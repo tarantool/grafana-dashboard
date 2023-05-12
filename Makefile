@@ -7,7 +7,7 @@ TITLE ?=
 
 .PHONY: build-deps
 build-deps:
-	go install github.com/google/go-jsonnet/cmd/jsonnet@v0.19.1
+	go install github.com/google/go-jsonnet/cmd/jsonnet@v0.20.0
 	go install github.com/jsonnet-bundler/jsonnet-bundler/cmd/jb@v0.5.1
 	jb install
 
@@ -66,7 +66,7 @@ build-static-tdg-influxdb:
 
 .PHONY: test-deps
 test-deps: build-deps
-	go install github.com/google/go-jsonnet/cmd/jsonnetfmt@v0.19.1
+	go install github.com/google/go-jsonnet/cmd/jsonnetfmt@v0.20.0
 	wget -qO- "https://github.com/prometheus/prometheus/releases/download/v2.40.4/prometheus-2.40.4.linux-amd64.tar.gz" \
 	  | tar xvzf - "prometheus-2.40.4.linux-amd64"/promtool --strip-components=1
 
