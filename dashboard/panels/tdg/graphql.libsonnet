@@ -16,7 +16,7 @@ local prometheus = grafana.prometheus;
     if cfg.type == variable.datasource_type.prometheus then
       prometheus.target(
         expr=std.format('rate(%s{job=~"%s",alias=~"%s"}[$__rate_interval])',
-                        [metric_name, cfg.job, cfg.filters.alias]),
+                        [metric_name, cfg.filters.job, cfg.filters.alias]),
         legendFormat='{{operation_name}} ({{schema}}, {{entity}}) — {{alias}}',
       )
     else if cfg.type == variable.datasource_type.influxdb then
@@ -48,7 +48,7 @@ local prometheus = grafana.prometheus;
           {
             metric_name_sum: std.join('_', [metric_name, 'sum']),
             metric_name_count: std.join('_', [metric_name, 'count']),
-            job: cfg.job,
+            job: cfg.filters.job,
             alias: cfg.filters.alias,
           }
         ),

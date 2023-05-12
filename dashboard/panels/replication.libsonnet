@@ -36,7 +36,7 @@ local prometheus = grafana.prometheus;
   ).addTarget(
     if cfg.type == variable.datasource_type.prometheus then
       prometheus.target(
-        expr=std.format('tnt_replication_status{job=~"%s",alias=~"%s"}', [cfg.job, cfg.filters.alias]),
+        expr=std.format('tnt_replication_status{job=~"%s",alias=~"%s"}', [cfg.filters.job, cfg.filters.alias]),
         legendFormat='{{alias}} {{stream}} ({{id}})',
       )
     else if cfg.type == variable.datasource_type.influxdb then
@@ -71,7 +71,7 @@ local prometheus = grafana.prometheus;
   ).addTarget(
     if cfg.type == variable.datasource_type.prometheus then
       prometheus.target(
-        expr=std.format('tnt_replication_lag{job=~"%s",alias=~"%s"}', [cfg.job, cfg.filters.alias]),
+        expr=std.format('tnt_replication_lag{job=~"%s",alias=~"%s"}', [cfg.filters.job, cfg.filters.alias]),
         legendFormat='{{alias}} ({{id}})',
       )
     else if cfg.type == variable.datasource_type.influxdb then
@@ -109,7 +109,7 @@ local prometheus = grafana.prometheus;
   ).addTarget(
     if cfg.type == variable.datasource_type.prometheus then
       prometheus.target(
-        expr=std.format('tnt_clock_delta{job=~"%s",alias=~"%s"}', [cfg.job, cfg.filters.alias]),
+        expr=std.format('tnt_clock_delta{job=~"%s",alias=~"%s"}', [cfg.filters.job, cfg.filters.alias]),
         legendFormat='{{alias}} ({{delta}})',
       )
     else if cfg.type == variable.datasource_type.influxdb then

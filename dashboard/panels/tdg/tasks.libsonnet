@@ -24,7 +24,7 @@ local prometheus = grafana.prometheus;
   ).addTarget(
     if cfg.type == variable.datasource_type.prometheus then
       prometheus.target(
-        expr=std.format('rate(%s{job=~"%s",alias=~"%s"}[$__rate_interval])', [metric_name, cfg.job, cfg.filters.alias]),
+        expr=std.format('rate(%s{job=~"%s",alias=~"%s"}[$__rate_interval])', [metric_name, cfg.filters.job, cfg.filters.alias]),
         legendFormat='{{name}} — {{alias}}',
       )
     else if cfg.type == variable.datasource_type.influxdb then
@@ -58,7 +58,7 @@ local prometheus = grafana.prometheus;
   ).addTarget(
     if cfg.type == variable.datasource_type.prometheus then
       prometheus.target(
-        expr=std.format('%s{job=~"%s",alias=~"%s"}', [metric_name, cfg.job, cfg.filters.alias]),
+        expr=std.format('%s{job=~"%s",alias=~"%s"}', [metric_name, cfg.filters.job, cfg.filters.alias]),
         legendFormat='{{name}} — {{alias}}',
       )
     else if cfg.type == variable.datasource_type.influxdb then
@@ -99,7 +99,7 @@ local prometheus = grafana.prometheus;
           {
             metric_name_sum: std.join('_', [metric_name, 'sum']),
             metric_name_count: std.join('_', [metric_name, 'count']),
-            job: cfg.job,
+            job: cfg.filters.job,
             alias: cfg.filters.alias,
           }
         ),
@@ -144,7 +144,7 @@ local prometheus = grafana.prometheus;
   ).addTarget(
     if cfg.type == variable.datasource_type.prometheus then
       prometheus.target(
-        expr=std.format('rate(%s{job=~"%s",alias=~"%s"}[$__rate_interval])', [metric_name, cfg.job, cfg.filters.alias]),
+        expr=std.format('rate(%s{job=~"%s",alias=~"%s"}[$__rate_interval])', [metric_name, cfg.filters.job, cfg.filters.alias]),
         legendFormat='{{name}} ({{kind}}) — {{alias}}',
       )
     else if cfg.type == variable.datasource_type.influxdb then
@@ -179,7 +179,7 @@ local prometheus = grafana.prometheus;
   ).addTarget(
     if cfg.type == variable.datasource_type.prometheus then
       prometheus.target(
-        expr=std.format('%s{job=~"%s",alias=~"%s"}', [metric_name, cfg.job, cfg.filters.alias]),
+        expr=std.format('%s{job=~"%s",alias=~"%s"}', [metric_name, cfg.filters.job, cfg.filters.alias]),
         legendFormat='{{name}} ({{kind}}) — {{alias}}',
       )
     else if cfg.type == variable.datasource_type.influxdb then
@@ -221,7 +221,7 @@ local prometheus = grafana.prometheus;
           {
             metric_name_sum: std.join('_', [metric_name, 'sum']),
             metric_name_count: std.join('_', [metric_name, 'count']),
-            job: cfg.job,
+            job: cfg.filters.job,
             alias: cfg.filters.alias,
           }
         ),

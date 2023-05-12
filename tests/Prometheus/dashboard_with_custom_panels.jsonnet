@@ -54,7 +54,7 @@ dashboard.addPanels([
     panel_width=12,
   ).addTarget(grafana.prometheus.target(
     expr=std.format('my_component_load_metric{job=~"%s",alias=~"%s",quantile="0.99"}',
-                    [cfg.job, cfg.filters.alias]),
+                    [cfg.filters.job, cfg.filters.alias]),
     legendFormat='{{alias}}',
   )),
 ]).build()

@@ -24,7 +24,7 @@ local prometheus = grafana.prometheus;
     if cfg.type == variable.datasource_type.prometheus then
       prometheus.target(
         expr=std.format('rate(%s{job=~"%s",alias=~"%s",status=~"%s"}[$__rate_interval])',
-                        [metric_name, cfg.job, cfg.filters.alias, std.strReplace(status_regex, '\\', '\\\\')]),
+                        [metric_name, cfg.filters.job, cfg.filters.alias, std.strReplace(status_regex, '\\', '\\\\')]),
         legendFormat='{{alias}} — {{method}} {{path}} (code {{status}})',
       )
     else if cfg.type == variable.datasource_type.influxdb then
@@ -107,7 +107,7 @@ local prometheus = grafana.prometheus;
     if cfg.type == variable.datasource_type.prometheus then
       prometheus.target(
         expr=std.format('%s{job=~"%s",alias=~"%s",quantile="%s",status=~"%s"}',
-                        [metric_name, cfg.job, cfg.filters.alias, quantile, std.strReplace(status_regex, '\\', '\\\\')]),
+                        [metric_name, cfg.filters.job, cfg.filters.alias, quantile, std.strReplace(status_regex, '\\', '\\\\')]),
         legendFormat='{{alias}} — {{method}} {{path}} (code {{status}})',
       )
     else if cfg.type == variable.datasource_type.influxdb then

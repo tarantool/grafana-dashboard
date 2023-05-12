@@ -26,7 +26,7 @@ local prometheus = grafana.prometheus;
       prometheus.target(
         expr=std.format('rate(%s{job=~"%s",alias=~"%s",method%s"GET",status_code=~"%s"}[$__rate_interval])', [
           metric_name,
-          cfg.job,
+          cfg.filters.job,
           cfg.filters.alias,
           get_condition,
           std.strReplace(status_regex, '\\', '\\\\'),
@@ -70,7 +70,7 @@ local prometheus = grafana.prometheus;
       prometheus.target(
         expr=std.format('%s{job=~"%s",alias=~"%s",method%s"GET",status_code=~"%s",quantile="0.99"}', [
           metric_name,
-          cfg.job,
+          cfg.filters.job,
           cfg.filters.alias,
           get_condition,
           std.strReplace(status_regex, '\\', '\\\\'),

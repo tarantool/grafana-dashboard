@@ -408,7 +408,7 @@ local prometheus = grafana.prometheus;
     if cfg.type == variable.datasource_type.prometheus then
       prometheus.target(
         expr=std.format('tnt_vinyl_scheduler_tasks{job=~"%s", alias=~"%s", status="inprogress"}',
-                        [cfg.job, cfg.filters.alias]),
+                        [cfg.filters.job, cfg.filters.alias]),
         legendFormat='{{alias}}',
       )
     else if cfg.type == variable.datasource_type.influxdb then
@@ -445,7 +445,7 @@ local prometheus = grafana.prometheus;
     if cfg.type == variable.datasource_type.prometheus then
       prometheus.target(
         expr=std.format('rate(tnt_vinyl_scheduler_tasks{job=~"%s",alias=~"%s",status="failed"}[$__rate_interval])',
-                        [cfg.job, cfg.filters.alias]),
+                        [cfg.filters.job, cfg.filters.alias]),
         legendFormat='{{alias}}',
       )
     else if cfg.type == variable.datasource_type.influxdb then

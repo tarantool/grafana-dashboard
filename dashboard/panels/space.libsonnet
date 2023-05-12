@@ -27,7 +27,7 @@ local prometheus = grafana.prometheus;
   ).addTarget(
     if cfg.type == variable.datasource_type.prometheus then
       prometheus.target(
-        expr=std.format('%s{job=~"%s", alias=~"%s", engine="%s"}', [metric_name, cfg.job, cfg.filters.alias, engine]),
+        expr=std.format('%s{job=~"%s", alias=~"%s", engine="%s"}', [metric_name, cfg.filters.job, cfg.filters.alias, engine]),
         legendFormat='{{alias}} — {{name}}',
       )
     else if cfg.type == variable.datasource_type.influxdb then
@@ -95,7 +95,7 @@ local prometheus = grafana.prometheus;
   ).addTarget(
     if cfg.type == variable.datasource_type.prometheus then
       prometheus.target(
-        expr=std.format('%s{job=~"%s", alias=~"%s", engine="memtx"}', [metric_name, cfg.job, cfg.filters.alias]),
+        expr=std.format('%s{job=~"%s", alias=~"%s", engine="memtx"}', [metric_name, cfg.filters.job, cfg.filters.alias]),
         legendFormat='{{alias}} — {{name}}',
       )
     else if cfg.type == variable.datasource_type.influxdb then
@@ -155,7 +155,7 @@ local prometheus = grafana.prometheus;
   ).addTarget(
     if cfg.type == variable.datasource_type.prometheus then
       prometheus.target(
-        expr=std.format('tnt_space_index_bsize{job=~"%s", alias=~"%s"}', [cfg.job, cfg.filters.alias]),
+        expr=std.format('tnt_space_index_bsize{job=~"%s", alias=~"%s"}', [cfg.filters.job, cfg.filters.alias]),
         legendFormat='{{alias}} — {{name}} ({{index_name}})',
       )
     else if cfg.type == variable.datasource_type.influxdb then

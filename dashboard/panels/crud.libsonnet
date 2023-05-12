@@ -54,7 +54,7 @@ local operation_rps_template(
     prometheus.target(
       expr=std.format(
         'rate(tnt_crud_stats_count{job=~"%s",alias=~"%s",operation="%s",status="%s"}[$__rate_interval])',
-        [cfg.job, cfg.filters.alias, operation, status]
+        [cfg.filters.job, cfg.filters.alias, operation, status]
       ),
       legendFormat='{{alias}} — {{name}}'
     )
@@ -99,7 +99,7 @@ local operation_latency_template(
     prometheus.target(
       expr=std.format(
         'tnt_crud_stats{job=~"%s",alias=~"%s",operation="%s",status="%s",quantile="0.99"}',
-        [cfg.job, cfg.filters.alias, operation, status]
+        [cfg.filters.job, cfg.filters.alias, operation, status]
       ),
       legendFormat='{{alias}} — {{name}}'
     )
@@ -356,7 +356,7 @@ local tuples_panel(
         |||,
         {
           metric_name: metric_name,
-          job: cfg.job,
+          job: cfg.filters.job,
           alias: cfg.filters.alias,
         }
       ),
@@ -486,7 +486,7 @@ local module = {
       prometheus.target(
         expr=std.format(
           'rate(tnt_crud_map_reduces{job=~"%s",alias=~"%s",operation="select"}[$__rate_interval])',
-          [cfg.job, cfg.filters.alias],
+          [cfg.filters.job, cfg.filters.alias],
         ),
         legendFormat='{{alias}} — {{name}}'
       )
