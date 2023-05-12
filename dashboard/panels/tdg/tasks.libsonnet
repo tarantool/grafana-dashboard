@@ -10,32 +10,27 @@ local prometheus = grafana.prometheus;
   row:: common_utils.row('TDG tasks statistics'),
 
   local jobs_rps_panel(
+    cfg,
     title,
     description,
-    datasource_type,
-    datasource,
     metric_name,
-    job=null,
-    policy=null,
-    measurement=null,
-    alias=null,
     panel_width=8,
   ) = common_utils.default_graph(
+    cfg,
     title=title,
     description=description,
-    datasource=datasource,
     labelY1='jobs per second',
     panel_width=panel_width,
   ).addTarget(
-    if datasource_type == variable.datasource_type.prometheus then
+    if cfg.type == variable.datasource_type.prometheus then
       prometheus.target(
-        expr=std.format('rate(%s{job=~"%s",alias=~"%s"}[$__rate_interval])', [metric_name, job, alias]),
+        expr=std.format('rate(%s{job=~"%s",alias=~"%s"}[$__rate_interval])', [metric_name, cfg.job, cfg.filters.alias]),
         legendFormat='{{name}} — {{alias}}',
       )
-    else if datasource_type == variable.datasource_type.influxdb then
+    else if cfg.type == variable.datasource_type.influxdb then
       influxdb.target(
-        policy=policy,
-        measurement=measurement,
+        policy=cfg.policy,
+        measurement=cfg.measurement,
         group_tags=[
           'label_pairs_alias',
           'label_pairs_name',
@@ -43,38 +38,33 @@ local prometheus = grafana.prometheus;
         alias='$tag_label_pairs_name — $tag_label_pairs_alias',
         fill='null',
       ).where('metric_name', '=', metric_name)
-      .where('label_pairs_alias', '=~', alias)
+      .where('label_pairs_alias', '=~', cfg.filters.label_pairs_alias)
       .selectField('value').addConverter('mean').addConverter('non_negative_derivative', ['1s']),
   ),
 
   local jobs_metric_panel(
+    cfg,
     title,
     description,
-    datasource_type,
-    datasource,
     metric_name,
-    job=null,
-    policy=null,
-    measurement=null,
-    alias=null,
   ) = common_utils.default_graph(
+    cfg,
     title=title,
     description=description,
-    datasource=datasource,
     labelY1='current',
     legend_avg=false,
     legend_max=false,
     panel_width=12,
   ).addTarget(
-    if datasource_type == variable.datasource_type.prometheus then
+    if cfg.type == variable.datasource_type.prometheus then
       prometheus.target(
-        expr=std.format('%s{job=~"%s",alias=~"%s"}', [metric_name, job, alias]),
+        expr=std.format('%s{job=~"%s",alias=~"%s"}', [metric_name, cfg.job, cfg.filters.alias]),
         legendFormat='{{name}} — {{alias}}',
       )
-    else if datasource_type == variable.datasource_type.influxdb then
+    else if cfg.type == variable.datasource_type.influxdb then
       influxdb.target(
-        policy=policy,
-        measurement=measurement,
+        policy=cfg.policy,
+        measurement=cfg.measurement,
         group_tags=[
           'label_pairs_alias',
           'label_pairs_name',
@@ -82,29 +72,24 @@ local prometheus = grafana.prometheus;
         alias='$tag_label_pairs_name — $tag_label_pairs_alias',
         fill='null',
       ).where('metric_name', '=', metric_name)
-      .where('label_pairs_alias', '=~', alias)
+      .where('label_pairs_alias', '=~', cfg.filters.label_pairs_alias)
       .selectField('value').addConverter('mean'),
   ),
 
   local jobs_average_panel(
+    cfg,
     title,
     description,
-    datasource_type,
-    datasource,
     metric_name,
-    job=null,
-    policy=null,
-    measurement=null,
-    alias=null,
   ) = common_utils.default_graph(
+    cfg,
     title=title,
     description=description,
-    datasource=datasource,
     labelY1='average',
     format='s',
     panel_width=12,
   ).addTarget(
-    if datasource_type == variable.datasource_type.prometheus then
+    if cfg.type == variable.datasource_type.prometheus then
       prometheus.target(
         expr=std.format(
           |||
@@ -114,13 +99,13 @@ local prometheus = grafana.prometheus;
           {
             metric_name_sum: std.join('_', [metric_name, 'sum']),
             metric_name_count: std.join('_', [metric_name, 'count']),
-            job: job,
-            alias: alias,
+            job: cfg.job,
+            alias: cfg.filters.alias,
           }
         ),
         legendFormat='{{name}} — {{alias}}'
       )
-    else if datasource_type == variable.datasource_type.influxdb then
+    else if cfg.type == variable.datasource_type.influxdb then
       influxdb.target(
         rawQuery=true,
         query=std.format(|||
@@ -136,41 +121,36 @@ local prometheus = grafana.prometheus;
         |||, {
           metric_name_sum: std.join('_', [metric_name, 'sum']),
           metric_name_count: std.join('_', [metric_name, 'count']),
-          policy_prefix: if policy == 'default' then '' else std.format('"%(policy)s".', policy),
-          measurement: measurement,
-          alias: alias,
+          policy_prefix: if cfg.policy == 'default' then '' else std.format('"%(policy)s".', cfg.policy),
+          measurement: cfg.measurement,
+          alias: cfg.filters.label_pairs_alias,
         }),
         alias='$tag_label_pairs_name — $tag_label_pairs_alias'
       )
   ),
 
   local tasks_rps_panel(
+    cfg,
     title,
     description,
-    datasource_type,
-    datasource,
     metric_name,
-    job=null,
-    policy=null,
-    measurement=null,
-    alias=null,
     panel_width=8,
   ) = common_utils.default_graph(
+    cfg,
     title=title,
     description=description,
-    datasource=datasource,
     labelY1='tasks per second',
     panel_width=panel_width,
   ).addTarget(
-    if datasource_type == variable.datasource_type.prometheus then
+    if cfg.type == variable.datasource_type.prometheus then
       prometheus.target(
-        expr=std.format('rate(%s{job=~"%s",alias=~"%s"}[$__rate_interval])', [metric_name, job, alias]),
+        expr=std.format('rate(%s{job=~"%s",alias=~"%s"}[$__rate_interval])', [metric_name, cfg.job, cfg.filters.alias]),
         legendFormat='{{name}} ({{kind}}) — {{alias}}',
       )
-    else if datasource_type == variable.datasource_type.influxdb then
+    else if cfg.type == variable.datasource_type.influxdb then
       influxdb.target(
-        policy=policy,
-        measurement=measurement,
+        policy=cfg.policy,
+        measurement=cfg.measurement,
         group_tags=[
           'label_pairs_alias',
           'label_pairs_name',
@@ -179,38 +159,33 @@ local prometheus = grafana.prometheus;
         alias='$tag_label_pairs_name ($tag_label_pairs_kind) — $tag_label_pairs_alias',
         fill='null',
       ).where('metric_name', '=', metric_name)
-      .where('label_pairs_alias', '=~', alias)
+      .where('label_pairs_alias', '=~', cfg.filters.label_pairs_alias)
       .selectField('value').addConverter('mean').addConverter('non_negative_derivative', ['1s']),
   ),
 
   local tasks_metric_panel(
+    cfg,
     title,
     description,
-    datasource_type,
-    datasource,
     metric_name,
-    job=null,
-    policy=null,
-    measurement=null,
-    alias=null,
   ) = common_utils.default_graph(
+    cfg,
     title=title,
     description=description,
-    datasource=datasource,
     labelY1='current',
     legend_avg=false,
     legend_max=false,
     panel_width=12,
   ).addTarget(
-    if datasource_type == variable.datasource_type.prometheus then
+    if cfg.type == variable.datasource_type.prometheus then
       prometheus.target(
-        expr=std.format('%s{job=~"%s",alias=~"%s"}', [metric_name, job, alias]),
+        expr=std.format('%s{job=~"%s",alias=~"%s"}', [metric_name, cfg.job, cfg.filters.alias]),
         legendFormat='{{name}} ({{kind}}) — {{alias}}',
       )
-    else if datasource_type == variable.datasource_type.influxdb then
+    else if cfg.type == variable.datasource_type.influxdb then
       influxdb.target(
-        policy=policy,
-        measurement=measurement,
+        policy=cfg.policy,
+        measurement=cfg.measurement,
         group_tags=[
           'label_pairs_alias',
           'label_pairs_name',
@@ -219,29 +194,24 @@ local prometheus = grafana.prometheus;
         alias='$tag_label_pairs_name ($tag_label_pairs_kind) — $tag_label_pairs_alias',
         fill='null',
       ).where('metric_name', '=', metric_name)
-      .where('label_pairs_alias', '=~', alias)
+      .where('label_pairs_alias', '=~', cfg.filters.label_pairs_alias)
       .selectField('value').addConverter('mean'),
   ),
 
   local tasks_average_panel(
+    cfg,
     title,
     description,
-    datasource_type,
-    datasource,
     metric_name,
-    job=null,
-    policy=null,
-    measurement=null,
-    alias=null,
   ) = common_utils.default_graph(
+    cfg,
     title=title,
     description=description,
-    datasource=datasource,
     labelY1='average',
     format='s',
     panel_width=12,
   ).addTarget(
-    if datasource_type == variable.datasource_type.prometheus then
+    if cfg.type == variable.datasource_type.prometheus then
       prometheus.target(
         expr=std.format(
           |||
@@ -251,13 +221,13 @@ local prometheus = grafana.prometheus;
           {
             metric_name_sum: std.join('_', [metric_name, 'sum']),
             metric_name_count: std.join('_', [metric_name, 'count']),
-            job: job,
-            alias: alias,
+            job: cfg.job,
+            alias: cfg.filters.alias,
           }
         ),
         legendFormat='{{name}} ({{kind}}) — {{alias}}'
       )
-    else if datasource_type == variable.datasource_type.influxdb then
+    else if cfg.type == variable.datasource_type.influxdb then
       influxdb.target(
         rawQuery=true,
         query=std.format(|||
@@ -274,393 +244,233 @@ local prometheus = grafana.prometheus;
         |||, {
           metric_name_sum: std.join('_', [metric_name, 'sum']),
           metric_name_count: std.join('_', [metric_name, 'count']),
-          policy_prefix: if policy == 'default' then '' else std.format('"%(policy)s".', policy),
-          measurement: measurement,
-          alias: alias,
+          policy_prefix: if cfg.policy == 'default' then '' else std.format('"%(policy)s".', cfg.policy),
+          measurement: cfg.measurement,
+          alias: cfg.filters.label_pairs_alias,
         }),
         alias='$tag_label_pairs_name ($tag_label_pairs_kind) — $tag_label_pairs_alias'
       )
   ),
 
   jobs_started(
+    cfg,
     title='Jobs started',
     description=|||
       Number of TDG jobs started.
       Graph shows mean jobs per second.
     |||,
-    datasource_type=null,
-    datasource=null,
-    policy=null,
-    measurement=null,
-    job=null,
-    alias=null,
   ):: jobs_rps_panel(
+    cfg,
     title=title,
     description=description,
-    datasource_type=datasource_type,
-    datasource=datasource,
     metric_name='tdg_jobs_started',
-    job=job,
-    policy=policy,
-    measurement=measurement,
-    alias=alias,
   ),
 
   jobs_failed(
+    cfg,
     title='Jobs failed',
     description=|||
       Number of TDG jobs failed.
       Graph shows mean jobs per second.
     |||,
-    datasource_type=null,
-    datasource=null,
-    policy=null,
-    measurement=null,
-    job=null,
-    alias=null,
   ):: jobs_rps_panel(
+    cfg,
     title=title,
     description=description,
-    datasource_type=datasource_type,
-    datasource=datasource,
     metric_name='tdg_jobs_failed',
-    job=job,
-    policy=policy,
-    measurement=measurement,
-    alias=alias,
   ),
 
   jobs_succeeded(
+    cfg,
     title='Jobs succeeded',
     description=|||
       Number of TDG jobs succeeded.
       Graph shows mean jobs per second.
     |||,
-    datasource_type=null,
-    datasource=null,
-    policy=null,
-    measurement=null,
-    job=null,
-    alias=null,
   ):: jobs_rps_panel(
+    cfg,
     title=title,
     description=description,
-    datasource_type=datasource_type,
-    datasource=datasource,
     metric_name='tdg_jobs_succeeded',
-    job=job,
-    policy=policy,
-    measurement=measurement,
-    alias=alias,
   ),
 
   jobs_running(
+    cfg,
     title='Jobs running',
     description=|||
       Number of TDG jobs running now.
     |||,
-    datasource_type=null,
-    datasource=null,
-    policy=null,
-    measurement=null,
-    job=null,
-    alias=null,
   ):: jobs_metric_panel(
+    cfg,
     title=title,
     description=description,
-    datasource_type=datasource_type,
-    datasource=datasource,
     metric_name='tdg_jobs_running',
-    job=job,
-    policy=policy,
-    measurement=measurement,
-    alias=alias,
   ),
 
   jobs_time(
+    cfg,
     title='Jobs execution time',
     description=|||
       Average time of TDG job execution.
     |||,
-    datasource_type=null,
-    datasource=null,
-    policy=null,
-    measurement=null,
-    job=null,
-    alias=null,
   ):: jobs_average_panel(
+    cfg,
     title=title,
     description=description,
-    datasource_type=datasource_type,
-    datasource=datasource,
     metric_name='tdg_jobs_execution_time',
-    job=job,
-    policy=policy,
-    measurement=measurement,
-    alias=alias,
   ),
 
   tasks_started(
+    cfg,
     title='Tasks started',
     description=|||
       Number of TDG tasks started.
       Graph shows mean tasks per second.
     |||,
-    datasource_type=null,
-    datasource=null,
-    policy=null,
-    measurement=null,
-    job=null,
-    alias=null,
   ):: tasks_rps_panel(
+    cfg,
     title=title,
     description=description,
-    datasource_type=datasource_type,
-    datasource=datasource,
     metric_name='tdg_tasks_started',
-    job=job,
-    policy=policy,
-    measurement=measurement,
-    alias=alias,
     panel_width=6,
   ),
 
   tasks_failed(
+    cfg,
     title='Tasks failed',
     description=|||
       Number of TDG tasks failed.
       Graph shows mean tasks per second.
     |||,
-    datasource_type=null,
-    datasource=null,
-    policy=null,
-    measurement=null,
-    job=null,
-    alias=null,
   ):: tasks_rps_panel(
+    cfg,
     title=title,
     description=description,
-    datasource_type=datasource_type,
-    datasource=datasource,
     metric_name='tdg_tasks_failed',
-    job=job,
-    policy=policy,
-    measurement=measurement,
-    alias=alias,
     panel_width=6,
   ),
 
   tasks_succeeded(
+    cfg,
     title='Tasks succeeded',
     description=|||
       Number of TDG tasks succeeded.
       Graph shows mean tasks per second.
     |||,
-    datasource_type=null,
-    datasource=null,
-    policy=null,
-    measurement=null,
-    job=null,
-    alias=null,
   ):: tasks_rps_panel(
+    cfg,
     title=title,
     description=description,
-    datasource_type=datasource_type,
-    datasource=datasource,
     metric_name='tdg_tasks_succeeded',
-    job=job,
-    policy=policy,
-    measurement=measurement,
-    alias=alias,
     panel_width=6,
   ),
 
   tasks_stopped(
+    cfg,
     title='Tasks stopped',
     description=|||
       Number of TDG tasks stopped.
       Graph shows mean tasks per second.
     |||,
-    datasource_type=null,
-    datasource=null,
-    policy=null,
-    measurement=null,
-    job=null,
-    alias=null,
   ):: tasks_rps_panel(
+    cfg,
     title=title,
     description=description,
-    datasource_type=datasource_type,
-    datasource=datasource,
     metric_name='tdg_tasks_stopped',
-    job=job,
-    policy=policy,
-    measurement=measurement,
-    alias=alias,
     panel_width=6,
   ),
 
   tasks_running(
+    cfg,
     title='Tasks running',
     description=|||
       Number of TDG tasks running now.
     |||,
-    datasource_type=null,
-    datasource=null,
-    policy=null,
-    measurement=null,
-    job=null,
-    alias=null,
   ):: tasks_metric_panel(
+    cfg,
     title=title,
     description=description,
-    datasource_type=datasource_type,
-    datasource=datasource,
     metric_name='tdg_tasks_running',
-    job=job,
-    policy=policy,
-    measurement=measurement,
-    alias=alias,
   ),
 
   tasks_time(
+    cfg,
     title='Tasks execution time',
     description=|||
       Average time of TDG task execution.
     |||,
-    datasource_type=null,
-    datasource=null,
-    policy=null,
-    measurement=null,
-    job=null,
-    alias=null,
   ):: tasks_average_panel(
+    cfg,
     title=title,
     description=description,
-    datasource_type=datasource_type,
-    datasource=datasource,
     metric_name='tdg_tasks_execution_time',
-    job=job,
-    policy=policy,
-    measurement=measurement,
-    alias=alias,
   ),
 
   system_tasks_started(
+    cfg,
     title='System tasks started',
     description=|||
       Number of TDG system tasks started.
       Graph shows mean tasks per second.
     |||,
-    datasource_type=null,
-    datasource=null,
-    policy=null,
-    measurement=null,
-    job=null,
-    alias=null,
   ):: tasks_rps_panel(
+    cfg,
     title=title,
     description=description,
-    datasource_type=datasource_type,
-    datasource=datasource,
     metric_name='tdg_system_tasks_started',
-    job=job,
-    policy=policy,
-    measurement=measurement,
-    alias=alias,
   ),
 
   system_tasks_failed(
+    cfg,
     title='System tasks failed',
     description=|||
       Number of TDG system tasks failed.
       Graph shows mean tasks per second.
     |||,
-    datasource_type=null,
-    datasource=null,
-    policy=null,
-    measurement=null,
-    job=null,
-    alias=null,
   ):: tasks_rps_panel(
+    cfg,
     title=title,
     description=description,
-    datasource_type=datasource_type,
-    datasource=datasource,
     metric_name='tdg_system_tasks_failed',
-    job=job,
-    policy=policy,
-    measurement=measurement,
-    alias=alias,
   ),
 
   system_tasks_succeeded(
+    cfg,
     title='System tasks succeeded',
     description=|||
       Number of TDG system tasks succeeded.
       Graph shows mean tasks per second.
     |||,
-    datasource_type=null,
-    datasource=null,
-    policy=null,
-    measurement=null,
-    job=null,
-    alias=null,
   ):: tasks_rps_panel(
+    cfg,
     title=title,
     description=description,
-    datasource_type=datasource_type,
-    datasource=datasource,
     metric_name='tdg_system_tasks_succeeded',
-    job=job,
-    policy=policy,
-    measurement=measurement,
-    alias=alias,
   ),
 
   system_tasks_running(
+    cfg,
     title='System tasks running',
     description=|||
       Number of TDG system tasks running now.
     |||,
-    datasource_type=null,
-    datasource=null,
-    policy=null,
-    measurement=null,
-    job=null,
-    alias=null,
   ):: tasks_metric_panel(
+    cfg,
     title=title,
     description=description,
-    datasource_type=datasource_type,
-    datasource=datasource,
     metric_name='tdg_system_tasks_running',
-    job=job,
-    policy=policy,
-    measurement=measurement,
-    alias=alias,
   ),
 
   system_tasks_time(
+    cfg,
     title='Tasks execution time',
     description=|||
       Average time of TDG system task execution.
     |||,
-    datasource_type=null,
-    datasource=null,
-    policy=null,
-    measurement=null,
-    job=null,
-    alias=null,
   ):: tasks_average_panel(
+    cfg,
     title=title,
     description=description,
-    datasource_type=datasource_type,
-    datasource=datasource,
     metric_name='tdg_system_tasks_execution_time',
-    job=job,
-    policy=policy,
-    measurement=measurement,
-    alias=alias,
   ),
 }

@@ -10,70 +10,56 @@ local prometheus = grafana.prometheus;
   row:: common.row('Tarantool space statistics'),
 
   local count(
+    cfg,
     title=null,
     description=null,
-    datasource_type=null,
-    datasource=null,
-    policy=null,
-    measurement=null,
-    job=null,
-    alias=null,
     metric_name=null,
     engine=null
   ) = common.default_graph(
+    cfg,
     title=title,
     description=description,
-    datasource=datasource,
     format='none',
     decimals=0,
     legend_avg=false,
     legend_max=false,
     panel_width=12,
   ).addTarget(
-    if datasource_type == variable.datasource_type.prometheus then
+    if cfg.type == variable.datasource_type.prometheus then
       prometheus.target(
-        expr=std.format('%s{job=~"%s", alias=~"%s", engine="%s"}', [metric_name, job, alias, engine]),
+        expr=std.format('%s{job=~"%s", alias=~"%s", engine="%s"}', [metric_name, cfg.job, cfg.filters.alias, engine]),
         legendFormat='{{alias}} — {{name}}',
       )
-    else if datasource_type == variable.datasource_type.influxdb then
+    else if cfg.type == variable.datasource_type.influxdb then
       influxdb.target(
-        policy=policy,
-        measurement=measurement,
+        policy=cfg.policy,
+        measurement=cfg.measurement,
         group_tags=['label_pairs_alias', 'label_pairs_name'],
         alias='$tag_label_pairs_alias — $tag_label_pairs_name',
         fill='null',
       ).where('metric_name', '=', metric_name)
-      .where('label_pairs_alias', '=~', alias)
+      .where('label_pairs_alias', '=~', cfg.filters.label_pairs_alias)
       .where('label_pairs_engine', '=', engine)
       .selectField('value').addConverter('last')
   ),
 
   memtx_len(
+    cfg,
     title='Number of records (memtx)',
     description=|||
       Number of records in the space (memtx engine).
       Name of space is specified after dash.
     |||,
-    datasource_type=null,
-    datasource=null,
-    policy=null,
-    measurement=null,
-    job=null,
-    alias=null,
   ):: count(
+    cfg,
     title=title,
     description=description,
-    datasource_type=datasource_type,
-    datasource=datasource,
-    policy=policy,
-    measurement=measurement,
-    job=job,
-    alias=alias,
     metric_name='tnt_space_len',
     engine='memtx'
   ),
 
   vinyl_count(
+    cfg,
     title='Number of records (vinyl)',
     description=|||
       Number of records in the space (vinyl engine).
@@ -86,62 +72,47 @@ local prometheus = grafana.prometheus;
 
       Panel works with `metrics >= 0.13.0`.
     |||,
-    datasource_type=null,
-    datasource=null,
-    policy=null,
-    measurement=null,
-    job=null,
-    alias=null,
   ):: count(
+    cfg,
     title=title,
     description=description,
-    datasource_type=datasource_type,
-    datasource=datasource,
-    policy=policy,
-    measurement=measurement,
-    job=job,
-    alias=alias,
     metric_name='tnt_vinyl_tuples',
     engine='vinyl'
   ),
 
   local bsize_memtx(
+    cfg,
     title=null,
     description=null,
-    datasource_type=null,
-    datasource=null,
-    policy=null,
-    measurement=null,
-    job=null,
-    alias=null,
     metric_name=null,
   ) = common.default_graph(
+    cfg,
     title=title,
     description=description,
-    datasource=datasource,
     format='bytes',
     legend_avg=false,
     legend_max=false,
   ).addTarget(
-    if datasource_type == variable.datasource_type.prometheus then
+    if cfg.type == variable.datasource_type.prometheus then
       prometheus.target(
-        expr=std.format('%s{job=~"%s", alias=~"%s", engine="memtx"}', [metric_name, job, alias]),
+        expr=std.format('%s{job=~"%s", alias=~"%s", engine="memtx"}', [metric_name, cfg.job, cfg.filters.alias]),
         legendFormat='{{alias}} — {{name}}',
       )
-    else if datasource_type == variable.datasource_type.influxdb then
+    else if cfg.type == variable.datasource_type.influxdb then
       influxdb.target(
-        policy=policy,
-        measurement=measurement,
+        policy=cfg.policy,
+        measurement=cfg.measurement,
         group_tags=['label_pairs_alias', 'label_pairs_name'],
         alias='$tag_label_pairs_alias — $tag_label_pairs_name',
         fill='null',
       ).where('metric_name', '=', metric_name)
-      .where('label_pairs_alias', '=~', alias)
+      .where('label_pairs_alias', '=~', cfg.filters.label_pairs_alias)
       .where('label_pairs_engine', '=', 'memtx')
       .selectField('value').addConverter('mean')
   ),
 
   space_bsize(
+    cfg,
     title='Data size (memtx)',
     description=std.join(
       '\n',
@@ -150,7 +121,7 @@ local prometheus = grafana.prometheus;
           Total number of bytes in all tuples of the space (memtx engine).
           Name of space is specified after dash.
         |||,
-        if datasource_type == variable.datasource_type.influxdb then
+        if cfg.type == variable.datasource_type.influxdb then
           |||
             `No data` may be displayed because of tarantool/metrics issue #321,
             use `metrics >= 0.12.0` to fix.
@@ -158,25 +129,15 @@ local prometheus = grafana.prometheus;
         else null,
       ]
     ),
-    datasource_type=null,
-    datasource=null,
-    policy=null,
-    measurement=null,
-    job=null,
-    alias=null,
   ):: bsize_memtx(
+    cfg,
     title=title,
     description=description,
-    datasource_type=datasource_type,
-    datasource=datasource,
-    policy=policy,
-    measurement=measurement,
-    job=job,
-    alias=alias,
     metric_name='tnt_space_bsize'
   ),
 
   space_index_bsize(
+    cfg,
     title='Index size',
     description=|||
       Total number of bytes taken by the index.
@@ -184,38 +145,33 @@ local prometheus = grafana.prometheus;
       index name specified in parentheses.
       Includes both memtx and vinyl spaces.
     |||,
-    datasource_type=null,
-    datasource=null,
-    policy=null,
-    measurement=null,
-    job=null,
-    alias=null,
   ):: common.default_graph(
+    cfg,
     title=title,
     description=description,
-    datasource=datasource,
     format='bytes',
     legend_avg=false,
     legend_max=false,
   ).addTarget(
-    if datasource_type == variable.datasource_type.prometheus then
+    if cfg.type == variable.datasource_type.prometheus then
       prometheus.target(
-        expr=std.format('tnt_space_index_bsize{job=~"%s", alias=~"%s"}', [job, alias]),
+        expr=std.format('tnt_space_index_bsize{job=~"%s", alias=~"%s"}', [cfg.job, cfg.filters.alias]),
         legendFormat='{{alias}} — {{name}} ({{index_name}})',
       )
-    else if datasource_type == variable.datasource_type.influxdb then
+    else if cfg.type == variable.datasource_type.influxdb then
       influxdb.target(
-        policy=policy,
-        measurement=measurement,
+        policy=cfg.policy,
+        measurement=cfg.measurement,
         group_tags=['label_pairs_alias', 'label_pairs_name', 'label_pairs_index_name'],
         alias='$tag_label_pairs_alias — $tag_label_pairs_name ($tag_label_pairs_index_name)',
         fill='null',
       ).where('metric_name', '=', 'tnt_space_index_bsize')
-      .where('label_pairs_alias', '=~', alias)
+      .where('label_pairs_alias', '=~', cfg.filters.label_pairs_alias)
       .selectField('value').addConverter('mean')
   ),
 
   space_total_bsize(
+    cfg,
     title='Total size (memtx)',
     description=std.join(
       '\n',
@@ -224,7 +180,7 @@ local prometheus = grafana.prometheus;
           Total size of tuples and all indexes in the space (memtx engine).
           Name of space is specified after dash.
         |||,
-        if datasource_type == variable.datasource_type.influxdb then
+        if cfg.type == variable.datasource_type.influxdb then
           |||
             `No data` may be displayed because of tarantool/metrics issue #321,
             use `metrics >= 0.12.0` to fix.
@@ -232,21 +188,10 @@ local prometheus = grafana.prometheus;
         else null,
       ]
     ),
-    datasource_type=null,
-    datasource=null,
-    policy=null,
-    measurement=null,
-    job=null,
-    alias=null,
   ):: bsize_memtx(
+    cfg,
     title=title,
     description=description,
-    datasource_type=datasource_type,
-    datasource=datasource,
-    policy=policy,
-    measurement=measurement,
-    job=job,
-    alias=alias,
     metric_name='tnt_space_total_bsize'
   ),
 }

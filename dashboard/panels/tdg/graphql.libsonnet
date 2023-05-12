@@ -10,23 +10,19 @@ local prometheus = grafana.prometheus;
   row:: common_utils.row('TDG GraphQL requests'),
 
   local rps_target(
-    datasource_type,
+    cfg,
     metric_name,
-    job=null,
-    policy=null,
-    measurement=null,
-    alias=null,
   ) =
-    if datasource_type == variable.datasource_type.prometheus then
+    if cfg.type == variable.datasource_type.prometheus then
       prometheus.target(
         expr=std.format('rate(%s{job=~"%s",alias=~"%s"}[$__rate_interval])',
-                        [metric_name, job, alias]),
+                        [metric_name, cfg.job, cfg.filters.alias]),
         legendFormat='{{operation_name}} ({{schema}}, {{entity}}) — {{alias}}',
       )
-    else if datasource_type == variable.datasource_type.influxdb then
+    else if cfg.type == variable.datasource_type.influxdb then
       influxdb.target(
-        policy=policy,
-        measurement=measurement,
+        policy=cfg.policy,
+        measurement=cfg.measurement,
         group_tags=[
           'label_pairs_alias',
           'label_pairs_operation_name',
@@ -35,19 +31,14 @@ local prometheus = grafana.prometheus;
         ],
         alias='$tag_label_pairs_operation_name ($tag_label_pairs_schema, $tag_label_pairs_entity) — $tag_label_pairs_alias',
         fill='null',
-      ).where('metric_name', '=', metric_name)
-      .where('label_pairs_alias', '=~', alias)
+      ).where('metric_name', '=', metric_name).where('label_pairs_alias', '=~', cfg.filters.label_pairs_alias)
       .selectField('value').addConverter('mean').addConverter('non_negative_derivative', ['1s']),
 
   local average_target(
-    datasource_type,
+    cfg,
     metric_name,
-    job=null,
-    policy=null,
-    measurement=null,
-    alias=null,
   ) =
-    if datasource_type == variable.datasource_type.prometheus then
+    if cfg.type == variable.datasource_type.prometheus then
       prometheus.target(
         expr=std.format(
           |||
@@ -57,13 +48,13 @@ local prometheus = grafana.prometheus;
           {
             metric_name_sum: std.join('_', [metric_name, 'sum']),
             metric_name_count: std.join('_', [metric_name, 'count']),
-            job: job,
-            alias: alias,
+            job: cfg.job,
+            alias: cfg.filters.alias,
           }
         ),
         legendFormat='{{operation_name}} ({{schema}}, {{entity}}) — {{alias}}'
       )
-    else if datasource_type == variable.datasource_type.influxdb then
+    else if cfg.type == variable.datasource_type.influxdb then
       influxdb.target(
         rawQuery=true,
         query=std.format(|||
@@ -80,168 +71,108 @@ local prometheus = grafana.prometheus;
         |||, {
           metric_name_sum: std.join('_', [metric_name, 'sum']),
           metric_name_count: std.join('_', [metric_name, 'count']),
-          policy_prefix: if policy == 'default' then '' else std.format('"%(policy)s".', policy),
-          measurement: measurement,
-          alias: alias,
+          policy_prefix: if cfg.policy == 'default' then '' else std.format('"%(policy)s".', cfg.policy),
+          measurement: cfg.measurement,
+          alias: cfg.filters.label_pairs_alias,
         }),
         alias='$tag_label_pairs_operation_name ($tag_label_pairs_schema, $tag_label_pairs_entity) — $tag_label_pairs_alias'
       ),
 
   query_success_rps(
+    cfg,
     title='Success queries',
     description=|||
       A number of successfully executed GraphQL queries.
       Graph shows mean requests per second.
     |||,
-    datasource_type=null,
-    datasource=null,
-    policy=null,
-    measurement=null,
-    job=null,
-    alias=null,
   ):: common_utils.default_graph(
+    cfg,
     title=title,
     description=description,
-    datasource=datasource,
     labelY1='request per second',
-  ).addTarget(rps_target(
-    datasource_type,
-    'tdg_graphql_query_time_count',
-    job,
-    policy,
-    measurement,
-    alias,
-  )),
+  ).addTarget(
+    rps_target(cfg, 'tdg_graphql_query_time_count')
+  ),
 
   query_success_latency(
+    cfg,
     title='Success query latency',
     description=|||
       Average time of GraphQL query execution.
       Only success requests are count.
     |||,
-    datasource_type=null,
-    datasource=null,
-    policy=null,
-    measurement=null,
-    job=null,
-    alias=null,
   ):: common_utils.default_graph(
+    cfg,
     title=title,
     description=description,
-    datasource=datasource,
     labelY1='average',
     format='ms',
-  ).addTarget(average_target(
-    datasource_type,
-    'tdg_graphql_query_time',
-    job,
-    policy,
-    measurement,
-    alias,
-  )),
+  ).addTarget(
+    average_target(cfg, 'tdg_graphql_query_time')
+  ),
 
   query_error_rps(
+    cfg,
     title='Error queries',
     description=|||
       A number of GraphQL queries failed to execute.
       Graph shows mean requests per second.
     |||,
-    datasource_type=null,
-    datasource=null,
-    policy=null,
-    measurement=null,
-    job=null,
-    alias=null,
   ):: common_utils.default_graph(
+    cfg,
     title=title,
     description=description,
-    datasource=datasource,
     labelY1='request per second',
-  ).addTarget(rps_target(
-    datasource_type,
-    'tdg_graphql_query_fail',
-    job,
-    policy,
-    measurement,
-    alias,
-  )),
+  ).addTarget(
+    rps_target(cfg, 'tdg_graphql_query_fail')
+  ),
 
   mutation_success_rps(
+    cfg,
     title='Success mutations',
     description=|||
       A number of successfully executed GraphQL mutations.
       Graph shows mean requests per second.
     |||,
-    datasource_type=null,
-    datasource=null,
-    policy=null,
-    measurement=null,
-    job=null,
-    alias=null,
   ):: common_utils.default_graph(
+    cfg,
     title=title,
     description=description,
-    datasource=datasource,
     labelY1='request per second',
-  ).addTarget(rps_target(
-    datasource_type,
-    'tdg_graphql_mutation_time_count',
-    job,
-    policy,
-    measurement,
-    alias,
-  )),
+  ).addTarget(
+    rps_target(cfg, 'tdg_graphql_mutation_time_count')
+  ),
 
   mutation_success_latency(
+    cfg,
     title='Success mutation latency',
     description=|||
       Average time of GraphQL mutation execution.
       Only success requests are count.
     |||,
-    datasource_type=null,
-    datasource=null,
-    policy=null,
-    measurement=null,
-    job=null,
-    alias=null,
   ):: common_utils.default_graph(
+    cfg,
     title=title,
     description=description,
-    datasource=datasource,
     labelY1='average',
     format='ms',
-  ).addTarget(average_target(
-    datasource_type,
-    'tdg_graphql_mutation_time',
-    job,
-    policy,
-    measurement,
-    alias,
-  )),
+  ).addTarget(
+    average_target(cfg, 'tdg_graphql_mutation_time')
+  ),
 
   mutation_error_rps(
+    cfg,
     title='Error mutations',
     description=|||
       A number of GraphQL mutations failed to execute.
       Graph shows mean requests per second.
     |||,
-    datasource_type=null,
-    datasource=null,
-    policy=null,
-    measurement=null,
-    job=null,
-    alias=null,
   ):: common_utils.default_graph(
+    cfg,
     title=title,
     description=description,
-    datasource=datasource,
     labelY1='request per second',
-  ).addTarget(rps_target(
-    datasource_type,
-    'tdg_graphql_mutation_fail',
-    job,
-    policy,
-    measurement,
-    alias,
-  )),
+  ).addTarget(
+    rps_target(cfg, 'tdg_graphql_mutation_fail')
+  ),
 }

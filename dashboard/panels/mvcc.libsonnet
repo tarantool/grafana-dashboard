@@ -17,27 +17,23 @@ local prometheus = grafana.prometheus;
   ),
 
   local mvcc_target(
-    datasource_type,
+    cfg,
     metric_name,
-    job,
-    policy,
-    measurement,
-    alias,
-    kind,
+    kind
   ) = (
-    if datasource_type == variable.datasource_type.prometheus then
+    if cfg.type == variable.datasource_type.prometheus then
       prometheus.target(
-        expr=std.format('%s{job=~"%s",alias=~"%s",kind="%s"}', [metric_name, job, alias, kind]),
+        expr=std.format('%s{job=~"%s",alias=~"%s",kind="%s"}', [metric_name, cfg.job, cfg.filters.alias, kind]),
         legendFormat='{{alias}}',
       )
-    else if datasource_type == variable.datasource_type.influxdb then
+    else if cfg.type == variable.datasource_type.influxdb then
       influxdb.target(
-        policy=policy,
-        measurement=measurement,
+        policy=cfg.policy,
+        measurement=cfg.measurement,
         group_tags=['label_pairs_alias'],
         alias='$tag_label_pairs_alias',
         fill='null',
-      ).where('metric_name', '=', metric_name).where('label_pairs_alias', '=~', alias)
+      ).where('metric_name', '=', metric_name).where('label_pairs_alias', '=~', cfg.filters.label_pairs_alias)
       .where('label_pairs_kind', '=', kind).selectField('value').addConverter('last')
   ),
 
@@ -50,91 +46,58 @@ local prometheus = grafana.prometheus;
   ),
 
   memtx_tnx_statements_total(
+    cfg,
     title='Transaction statements size (total)',
     description=mvcc_warning(txn_statements_desc(|||
       Graph shows the number of bytes that are allocated
       for the statements of all current transactions.
     |||)),
-    datasource_type=null,
-    datasource=null,
-    policy=null,
-    measurement=null,
-    job=null,
-    alias=null,
   ):: common.default_graph(
+    cfg,
     title=title,
     description=description,
-    datasource=datasource,
     format='bytes',
     labelY1='in bytes',
     panel_width=8,
-  ).addTarget(mvcc_target(
-    datasource_type,
-    'tnt_memtx_tnx_statements',
-    job,
-    policy,
-    measurement,
-    alias,
-    'total'
-  )),
+  ).addTarget(
+    mvcc_target(cfg, 'tnt_memtx_tnx_statements', 'total')
+  ),
 
   memtx_tnx_statements_average(
+    cfg,
     title='Transaction statements size (average)',
     description=mvcc_warning(txn_statements_desc(|||
       Graph shows average bytes used by transactions for statements
       (`txn.statements.total` bytes / number of open transactions).
     |||)),
-    datasource_type=null,
-    datasource=null,
-    policy=null,
-    measurement=null,
-    job=null,
-    alias=null,
   ):: common.default_graph(
+    cfg,
     title=title,
     description=description,
-    datasource=datasource,
     format='bytes',
     labelY1='in bytes',
     panel_width=8,
-  ).addTarget(mvcc_target(
-    datasource_type,
-    'tnt_memtx_tnx_statements',
-    job,
-    policy,
-    measurement,
-    alias,
-    'average'
-  )),
+  ).addTarget(
+    mvcc_target(cfg, 'tnt_memtx_tnx_statements', 'average')
+  ),
 
   memtx_tnx_statements_max(
+    cfg,
     title='Transaction statements size (max)',
     description=mvcc_warning(txn_statements_desc(|||
       Graph shows the maximum number of bytes used by one
       the current transaction for statements.
     |||)),
-    datasource_type=null,
-    datasource=null,
-    policy=null,
-    measurement=null,
-    job=null,
-    alias=null,
   ):: common.default_graph(
+    cfg,
     title=title,
     description=description,
-    datasource=datasource,
     format='bytes',
     labelY1='in bytes',
     panel_width=8,
-  ).addTarget(mvcc_target(
-    datasource_type,
-    'tnt_memtx_tnx_statements',
-    job,
-    policy,
-    measurement,
-    alias,
-    'max'
-  )),
+  ).addTarget(
+    mvcc_target(cfg, 'tnt_memtx_tnx_statements', 'max')
+  ),
 
   local txn_user_desc(description) = std.join(
     '\n',
@@ -145,89 +108,56 @@ local prometheus = grafana.prometheus;
   ),
 
   memtx_tnx_user_total(
+    cfg,
     title='Transaction user size (total)',
     description=mvcc_warning(txn_user_desc(|||
       Graph shows memory allocated for all current transactions.
     |||)),
-    datasource_type=null,
-    datasource=null,
-    policy=null,
-    measurement=null,
-    job=null,
-    alias=null,
   ):: common.default_graph(
+    cfg,
     title=title,
     description=description,
-    datasource=datasource,
     format='bytes',
     labelY1='in bytes',
     panel_width=8,
-  ).addTarget(mvcc_target(
-    datasource_type,
-    'tnt_memtx_tnx_user',
-    job,
-    policy,
-    measurement,
-    alias,
-    'total'
-  )),
+  ).addTarget(
+    mvcc_target(cfg, 'tnt_memtx_tnx_user', 'total')
+  ),
 
   memtx_tnx_user_average(
+    cfg,
     title='Transaction user size (average)',
     description=mvcc_warning(txn_user_desc(|||
       Graph shows transaction average
       (total allocated bytes / number of all current transactions).
     |||)),
-    datasource_type=null,
-    datasource=null,
-    policy=null,
-    measurement=null,
-    job=null,
-    alias=null,
   ):: common.default_graph(
+    cfg,
     title=title,
     description=description,
-    datasource=datasource,
     format='bytes',
     labelY1='in bytes',
     panel_width=8,
-  ).addTarget(mvcc_target(
-    datasource_type,
-    'tnt_memtx_tnx_user',
-    job,
-    policy,
-    measurement,
-    alias,
-    'average'
-  )),
+  ).addTarget(
+    mvcc_target(cfg, 'tnt_memtx_tnx_user', 'average')
+  ),
 
   memtx_tnx_user_max(
+    cfg,
     title='Transaction user size (max)',
     description=mvcc_warning(txn_user_desc(|||
       Graph shows the maximum number of bytes allocated over all current transactions.
     |||)),
-    datasource_type=null,
-    datasource=null,
-    policy=null,
-    measurement=null,
-    job=null,
-    alias=null,
   ):: common.default_graph(
+    cfg,
     title=title,
     description=description,
-    datasource=datasource,
     format='bytes',
     labelY1='in bytes',
     panel_width=8,
-  ).addTarget(mvcc_target(
-    datasource_type,
-    'tnt_memtx_tnx_user',
-    job,
-    policy,
-    measurement,
-    alias,
-    'max'
-  )),
+  ).addTarget(
+    mvcc_target(cfg, 'tnt_memtx_tnx_user', 'max')
+  ),
 
   local txn_system_desc(description) = std.join(
     '\n',
@@ -238,89 +168,56 @@ local prometheus = grafana.prometheus;
   ),
 
   memtx_tnx_system_total(
+    cfg,
     title='Transaction system size (total)',
     description=mvcc_warning(txn_system_desc(|||
       Graph shows memory allocated for all current transactions.
     |||)),
-    datasource_type=null,
-    datasource=null,
-    policy=null,
-    measurement=null,
-    job=null,
-    alias=null,
   ):: common.default_graph(
+    cfg,
     title=title,
     description=description,
-    datasource=datasource,
     format='bytes',
     labelY1='in bytes',
     panel_width=8,
-  ).addTarget(mvcc_target(
-    datasource_type,
-    'tnt_memtx_tnx_system',
-    job,
-    policy,
-    measurement,
-    alias,
-    'total'
-  )),
+  ).addTarget(
+    mvcc_target(cfg, 'tnt_memtx_tnx_system', 'total')
+  ),
 
   memtx_tnx_system_average(
+    cfg,
     title='Transaction system size (average)',
     description=mvcc_warning(txn_system_desc(|||
       Graph shows transaction average
       (total allocated bytes / number of all current transactions).
     |||)),
-    datasource_type=null,
-    datasource=null,
-    policy=null,
-    measurement=null,
-    job=null,
-    alias=null,
   ):: common.default_graph(
+    cfg,
     title=title,
     description=description,
-    datasource=datasource,
     format='bytes',
     labelY1='in bytes',
     panel_width=8,
-  ).addTarget(mvcc_target(
-    datasource_type,
-    'tnt_memtx_tnx_system',
-    job,
-    policy,
-    measurement,
-    alias,
-    'average'
-  )),
+  ).addTarget(
+    mvcc_target(cfg, 'tnt_memtx_tnx_system', 'average')
+  ),
 
   memtx_tnx_system_max(
+    cfg,
     title='Transaction system size (max)',
     description=mvcc_warning(txn_system_desc(|||
       Graph shows the maximum number of bytes allocated over all current transactions.
     |||)),
-    datasource_type=null,
-    datasource=null,
-    policy=null,
-    measurement=null,
-    job=null,
-    alias=null,
   ):: common.default_graph(
+    cfg,
     title=title,
     description=description,
-    datasource=datasource,
     format='bytes',
     labelY1='in bytes',
     panel_width=8,
-  ).addTarget(mvcc_target(
-    datasource_type,
-    'tnt_memtx_tnx_system',
-    job,
-    policy,
-    measurement,
-    alias,
-    'max'
-  )),
+  ).addTarget(
+    mvcc_target(cfg, 'tnt_memtx_tnx_system', 'max')
+  ),
 
   local mvcc_trackers_desc(description) = std.join(
     '\n',
@@ -331,90 +228,57 @@ local prometheus = grafana.prometheus;
   ),
 
   memtx_mvcc_trackers_total(
+    cfg,
     title='Trackers size (total)',
     description=mvcc_warning(mvcc_trackers_desc(|||
       Graph shows memory allocated for trackers of all current transactions.
     |||)),
-    datasource_type=null,
-    datasource=null,
-    policy=null,
-    measurement=null,
-    job=null,
-    alias=null,
   ):: common.default_graph(
+    cfg,
     title=title,
     description=description,
-    datasource=datasource,
     format='bytes',
     labelY1='in bytes',
     panel_width=8,
-  ).addTarget(mvcc_target(
-    datasource_type,
-    'tnt_memtx_mvcc_trackers',
-    job,
-    policy,
-    measurement,
-    alias,
-    'total'
-  )),
+  ).addTarget(
+    mvcc_target(cfg, 'tnt_memtx_mvcc_trackers', 'total')
+  ),
 
   memtx_mvcc_trackers_average(
+    cfg,
     title='Trackers size (average)',
     description=mvcc_warning(mvcc_trackers_desc(|||
       Graph shows transaction tracker average
       (total allocated bytes / number of all current transactions).
     |||)),
-    datasource_type=null,
-    datasource=null,
-    policy=null,
-    measurement=null,
-    job=null,
-    alias=null,
   ):: common.default_graph(
+    cfg,
     title=title,
     description=description,
-    datasource=datasource,
     format='bytes',
     labelY1='in bytes',
     panel_width=8,
-  ).addTarget(mvcc_target(
-    datasource_type,
-    'tnt_memtx_mvcc_trackers',
-    job,
-    policy,
-    measurement,
-    alias,
-    'average'
-  )),
+  ).addTarget(
+    mvcc_target(cfg, 'tnt_memtx_mvcc_trackers', 'average')
+  ),
 
   memtx_mvcc_trackers_max(
+    cfg,
     title='Trackers size (max)',
     description=mvcc_warning(mvcc_trackers_desc(|||
       Graph shows the maximum number of bytes allocated for a tracker
       over all current transactions.
     |||)),
-    datasource_type=null,
-    datasource=null,
-    policy=null,
-    measurement=null,
-    job=null,
-    alias=null,
   ):: common.default_graph(
+    cfg,
     title=title,
     description=description,
-    datasource=datasource,
     format='bytes',
     labelY1='in bytes',
     panel_width=8,
-  ).addTarget(mvcc_target(
-    datasource_type,
-    'tnt_memtx_mvcc_trackers',
-    job,
-    policy,
-    measurement,
-    alias,
-    'max'
-  )),
+  ).addTarget(
+    mvcc_target(cfg, 'tnt_memtx_mvcc_trackers', 'max')
+  ),
 
   local mvcc_conflicts_desc(description) = std.join(
     '\n',
@@ -424,89 +288,56 @@ local prometheus = grafana.prometheus;
   ),
 
   memtx_mvcc_conflicts_total(
+    cfg,
     title='Conflicts size (total)',
     description=mvcc_warning(mvcc_conflicts_desc(|||
       Graph shows memory allocated for all current conflicts.
     |||)),
-    datasource_type=null,
-    datasource=null,
-    policy=null,
-    measurement=null,
-    job=null,
-    alias=null,
   ):: common.default_graph(
+    cfg,
     title=title,
     description=description,
-    datasource=datasource,
     format='bytes',
     labelY1='in bytes',
     panel_width=8,
-  ).addTarget(mvcc_target(
-    datasource_type,
-    'tnt_memtx_mvcc_conflicts',
-    job,
-    policy,
-    measurement,
-    alias,
-    'total'
-  )),
+  ).addTarget(
+    mvcc_target(cfg, 'tnt_memtx_mvcc_conflicts', 'total')
+  ),
 
   memtx_mvcc_conflicts_average(
+    cfg,
     title='Conflicts size (average)',
     description=mvcc_warning(mvcc_conflicts_desc(|||
       Graph shows transaction conflict average
       (total allocated bytes / number of all current conflict).
     |||)),
-    datasource_type=null,
-    datasource=null,
-    policy=null,
-    measurement=null,
-    job=null,
-    alias=null,
   ):: common.default_graph(
+    cfg,
     title=title,
     description=description,
-    datasource=datasource,
     format='bytes',
     labelY1='in bytes',
     panel_width=8,
-  ).addTarget(mvcc_target(
-    datasource_type,
-    'tnt_memtx_mvcc_conflicts',
-    job,
-    policy,
-    measurement,
-    alias,
-    'average'
-  )),
+  ).addTarget(
+    mvcc_target(cfg, 'tnt_memtx_mvcc_conflicts', 'average')
+  ),
 
   memtx_mvcc_conflicts_max(
+    cfg,
     title='Conflicts size (max)',
     description=mvcc_warning(mvcc_conflicts_desc(|||
       Graph shows the maximum number of bytes allocated for a transaction conflict.
     |||)),
-    datasource_type=null,
-    datasource=null,
-    policy=null,
-    measurement=null,
-    job=null,
-    alias=null,
   ):: common.default_graph(
+    cfg,
     title=title,
     description=description,
-    datasource=datasource,
     format='bytes',
     labelY1='in bytes',
     panel_width=8,
-  ).addTarget(mvcc_target(
-    datasource_type,
-    'tnt_memtx_mvcc_conflicts',
-    job,
-    policy,
-    measurement,
-    alias,
-    'max'
-  )),
+  ).addTarget(
+    mvcc_target(cfg, 'tnt_memtx_mvcc_conflicts', 'max')
+  ),
 
   local mvcc_retained_desc(description) = std.join(
     '\n',
@@ -550,314 +381,182 @@ local prometheus = grafana.prometheus;
   local total_desc = 'Graph shows total size of tuples.',
 
   memtx_mvcc_tuples_used_stories_count(
+    cfg,
     title='Stories tuples used',
     description=mvcc_warning(mvcc_stories_desc(mvcc_used_desc(count_desc))),
-    datasource_type=null,
-    datasource=null,
-    policy=null,
-    measurement=null,
-    job=null,
-    alias=null,
   ):: common.default_graph(
+    cfg,
     title=title,
     description=description,
-    datasource=datasource,
     format='none',
     labelY1='tuples',
     panel_width=6,
-  ).addTarget(mvcc_target(
-    datasource_type,
-    'tnt_memtx_mvcc_tuples_used_stories',
-    job,
-    policy,
-    measurement,
-    alias,
-    'count'
-  )),
+  ).addTarget(
+    mvcc_target(cfg, 'tnt_memtx_mvcc_tuples_used_stories', 'count')
+  ),
 
   memtx_mvcc_tuples_used_stories_total(
+    cfg,
     title='Stories tuples used size',
     description=mvcc_warning(mvcc_stories_desc(mvcc_used_desc(total_desc))),
-    datasource_type=null,
-    datasource=null,
-    policy=null,
-    measurement=null,
-    job=null,
-    alias=null,
   ):: common.default_graph(
+    cfg,
     title=title,
     description=description,
-    datasource=datasource,
     format='bytes',
     labelY1='in bytes',
     panel_width=6,
-  ).addTarget(mvcc_target(
-    datasource_type,
-    'tnt_memtx_mvcc_tuples_used_stories',
-    job,
-    policy,
-    measurement,
-    alias,
-    'total'
-  )),
+  ).addTarget(
+    mvcc_target(cfg, 'tnt_memtx_mvcc_tuples_used_stories', 'total')
+  ),
 
   memtx_mvcc_tuples_used_retained_count(
+    cfg,
     title='Retained tuples used',
     description=mvcc_warning(mvcc_retained_desc(mvcc_used_desc(count_desc))),
-    datasource_type=null,
-    datasource=null,
-    policy=null,
-    measurement=null,
-    job=null,
-    alias=null,
   ):: common.default_graph(
+    cfg,
     title=title,
     description=description,
-    datasource=datasource,
     format='none',
     labelY1='tuples',
     panel_width=6,
-  ).addTarget(mvcc_target(
-    datasource_type,
-    'tnt_memtx_mvcc_tuples_used_retained',
-    job,
-    policy,
-    measurement,
-    alias,
-    'count'
-  )),
+  ).addTarget(
+    mvcc_target(cfg, 'tnt_memtx_mvcc_tuples_used_retained', 'count')
+  ),
 
   memtx_mvcc_tuples_used_retained_total(
+    cfg,
     title='Retained tuples used size',
     description=mvcc_warning(mvcc_retained_desc(mvcc_used_desc(total_desc))),
-    datasource_type=null,
-    datasource=null,
-    policy=null,
-    measurement=null,
-    job=null,
-    alias=null,
   ):: common.default_graph(
+    cfg,
     title=title,
     description=description,
-    datasource=datasource,
     format='bytes',
     labelY1='in bytes',
     panel_width=6,
-  ).addTarget(mvcc_target(
-    datasource_type,
-    'tnt_memtx_mvcc_tuples_used_retained',
-    job,
-    policy,
-    measurement,
-    alias,
-    'total'
-  )),
+  ).addTarget(
+    mvcc_target(cfg, 'tnt_memtx_mvcc_tuples_used_retained', 'total')
+  ),
 
   memtx_mvcc_tuples_read_view_stories_count(
+    cfg,
     title='Stories tuples in read views',
     description=mvcc_warning(mvcc_stories_desc(mvcc_read_view_desc(count_desc))),
-    datasource_type=null,
-    datasource=null,
-    policy=null,
-    measurement=null,
-    job=null,
-    alias=null,
   ):: common.default_graph(
+    cfg,
     title=title,
     description=description,
-    datasource=datasource,
     format='none',
     labelY1='tuples',
     panel_width=6,
-  ).addTarget(mvcc_target(
-    datasource_type,
-    'tnt_memtx_mvcc_tuples_read_view_stories',
-    job,
-    policy,
-    measurement,
-    alias,
-    'count'
-  )),
+  ).addTarget(
+    mvcc_target(cfg, 'tnt_memtx_mvcc_tuples_read_view_stories', 'count')
+  ),
 
   memtx_mvcc_tuples_read_view_stories_total(
+    cfg,
     title='Stories tuples in read views size',
     description=mvcc_warning(mvcc_stories_desc(mvcc_read_view_desc(total_desc))),
-    datasource_type=null,
-    datasource=null,
-    policy=null,
-    measurement=null,
-    job=null,
-    alias=null,
   ):: common.default_graph(
+    cfg,
     title=title,
     description=description,
-    datasource=datasource,
     format='bytes',
     labelY1='in bytes',
     panel_width=6,
-  ).addTarget(mvcc_target(
-    datasource_type,
-    'tnt_memtx_mvcc_tuples_read_view_stories',
-    job,
-    policy,
-    measurement,
-    alias,
-    'total'
-  )),
+  ).addTarget(
+    mvcc_target(cfg, 'tnt_memtx_mvcc_tuples_read_view_stories', 'total')
+  ),
 
   memtx_mvcc_tuples_read_view_retained_count(
+    cfg,
     title='Retained tuples in read views',
     description=mvcc_warning(mvcc_retained_desc(mvcc_read_view_desc(count_desc))),
-    datasource_type=null,
-    datasource=null,
-    policy=null,
-    measurement=null,
-    job=null,
-    alias=null,
   ):: common.default_graph(
+    cfg,
     title=title,
     description=description,
-    datasource=datasource,
     format='none',
     labelY1='tuples',
     panel_width=6,
-  ).addTarget(mvcc_target(
-    datasource_type,
-    'tnt_memtx_mvcc_tuples_read_view_retained',
-    job,
-    policy,
-    measurement,
-    alias,
-    'count'
-  )),
+  ).addTarget(
+    mvcc_target(cfg, 'tnt_memtx_mvcc_tuples_read_view_retained', 'count')
+  ),
 
   memtx_mvcc_tuples_read_view_retained_total(
+    cfg,
     title='Retained tuples in read views size',
     description=mvcc_warning(mvcc_retained_desc(mvcc_read_view_desc(total_desc))),
-    datasource_type=null,
-    datasource=null,
-    policy=null,
-    measurement=null,
-    job=null,
-    alias=null,
   ):: common.default_graph(
+    cfg,
     title=title,
     description=description,
-    datasource=datasource,
     format='bytes',
     labelY1='in bytes',
     panel_width=6,
-  ).addTarget(mvcc_target(
-    datasource_type,
-    'tnt_memtx_mvcc_tuples_read_view_retained',
-    job,
-    policy,
-    measurement,
-    alias,
-    'total'
-  )),
+  ).addTarget(
+    mvcc_target(cfg, 'tnt_memtx_mvcc_tuples_read_view_retained', 'total')
+  ),
 
   memtx_mvcc_tuples_tracking_stories_count(
+    cfg,
     title='Stories tuples tracked',
     description=mvcc_warning(mvcc_stories_desc(mvcc_tracking_desc(count_desc))),
-    datasource_type=null,
-    datasource=null,
-    policy=null,
-    measurement=null,
-    job=null,
-    alias=null,
   ):: common.default_graph(
+    cfg,
     title=title,
     description=description,
-    datasource=datasource,
     format='none',
     labelY1='tuples',
     panel_width=6,
-  ).addTarget(mvcc_target(
-    datasource_type,
-    'tnt_memtx_mvcc_tuples_tracking_stories',
-    job,
-    policy,
-    measurement,
-    alias,
-    'count'
-  )),
+  ).addTarget(
+    mvcc_target(cfg, 'tnt_memtx_mvcc_tuples_tracking_stories', 'count')
+  ),
 
   memtx_mvcc_tuples_tracking_stories_total(
+    cfg,
     title='Stories tuples tracked size',
     description=mvcc_warning(mvcc_stories_desc(mvcc_tracking_desc(total_desc))),
-    datasource_type=null,
-    datasource=null,
-    policy=null,
-    measurement=null,
-    job=null,
-    alias=null,
   ):: common.default_graph(
+    cfg,
     title=title,
     description=description,
-    datasource=datasource,
     format='bytes',
     labelY1='in bytes',
     panel_width=6,
-  ).addTarget(mvcc_target(
-    datasource_type,
-    'tnt_memtx_mvcc_tuples_tracking_stories',
-    job,
-    policy,
-    measurement,
-    alias,
-    'total'
-  )),
+  ).addTarget(
+    mvcc_target(cfg, 'tnt_memtx_mvcc_tuples_tracking_stories', 'total')
+  ),
 
   memtx_mvcc_tuples_tracking_retained_count(
+    cfg,
     title='Retained tuples tracked',
     description=mvcc_warning(mvcc_retained_desc(mvcc_tracking_desc(count_desc))),
-    datasource_type=null,
-    datasource=null,
-    policy=null,
-    measurement=null,
-    job=null,
-    alias=null,
   ):: common.default_graph(
+    cfg,
     title=title,
     description=description,
-    datasource=datasource,
     format='none',
     labelY1='tuples',
     panel_width=6,
-  ).addTarget(mvcc_target(
-    datasource_type,
-    'tnt_memtx_mvcc_tuples_tracking_retained',
-    job,
-    policy,
-    measurement,
-    alias,
-    'count'
-  )),
+  ).addTarget(
+    mvcc_target(cfg, 'tnt_memtx_mvcc_tuples_tracking_retained', 'count')
+  ),
 
   memtx_mvcc_tuples_tracking_retained_total(
+    cfg,
     title='Retained tuples tracked size',
     description=mvcc_warning(mvcc_retained_desc(mvcc_tracking_desc(total_desc))),
-    datasource_type=null,
-    datasource=null,
-    policy=null,
-    measurement=null,
-    job=null,
-    alias=null,
   ):: common.default_graph(
+    cfg,
     title=title,
     description=description,
-    datasource=datasource,
     format='bytes',
     labelY1='in bytes',
     panel_width=6,
-  ).addTarget(mvcc_target(
-    datasource_type,
-    'tnt_memtx_mvcc_tuples_tracking_retained',
-    job,
-    policy,
-    measurement,
-    alias,
-    'total'
-  )),
+  ).addTarget(
+    mvcc_target(cfg, 'tnt_memtx_mvcc_tuples_tracking_retained', 'total')
+  ),
 }

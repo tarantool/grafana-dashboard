@@ -10,295 +10,181 @@ local prometheus = grafana.prometheus;
   row:: common.row('Tarantool operations statistics'),
 
   local operation_rps(
+    cfg,
     title=null,
     description=null,
-    datasource_type=null,
-    datasource=null,
-    policy=null,
-    measurement=null,
-    job=null,
-    alias=null,
     labelY1=null,
     operation=null,
   ) = common.default_graph(
+    cfg,
     title=title,
     description=description,
-    datasource=datasource,
     min=0,
     labelY1=labelY1,
   ).addTarget(
-    if datasource_type == variable.datasource_type.prometheus then
+    if cfg.type == variable.datasource_type.prometheus then
       prometheus.target(
         expr=std.format('rate(tnt_stats_op_total{job=~"%s",alias=~"%s",operation="%s"}[$__rate_interval])',
-                        [job, alias, operation]),
+                        [cfg.job, cfg.filters.alias, operation]),
         legendFormat='{{alias}}'
       )
-    else if datasource_type == variable.datasource_type.influxdb then
+    else if cfg.type == variable.datasource_type.influxdb then
       influxdb.target(
-        policy=policy,
-        measurement=measurement,
+        policy=cfg.policy,
+        measurement=cfg.measurement,
         group_tags=['label_pairs_alias'],
         alias='$tag_label_pairs_alias',
         fill='null',
       ).where('metric_name', '=', 'tnt_stats_op_total')
-      .where('label_pairs_alias', '=~', alias)
+      .where('label_pairs_alias', '=~', cfg.filters.label_pairs_alias)
       .where('label_pairs_operation', '=', operation)
       .selectField('value').addConverter('mean').addConverter('non_negative_derivative', ['1s'])
   ),
 
   local space_operation_rps(
+    cfg,
     title=null,
     description=null,
-    datasource_type=null,
-    datasource=null,
-    policy=null,
-    measurement=null,
-    job=null,
-    alias=null,
     operation=null,
   ) = operation_rps(
+    cfg,
     title=(if title != null then title else std.format('%s space requests', std.asciiUpper(operation))),
     description=std.format(|||
       Total count of %s requests to all instance spaces.
       Graph shows average requests per second.
     |||, std.asciiUpper(operation)),
-    datasource_type=datasource_type,
-    datasource=datasource,
-    policy=policy,
-    measurement=measurement,
-    job=job,
-    alias=alias,
     labelY1='requests per second',
     operation=operation,
   ),
 
   space_select_rps(
+    cfg,
     title=null,
     description=null,
-    datasource_type=null,
-    datasource=null,
-    policy=null,
-    measurement=null,
-    job=null,
-    alias=null,
   ):: space_operation_rps(
+    cfg,
     title=title,
     description=description,
-    datasource_type=datasource_type,
-    datasource=datasource,
-    policy=policy,
-    measurement=measurement,
-    job=job,
-    alias=alias,
     operation='select'
   ),
 
   space_insert_rps(
+    cfg,
     title=null,
     description=null,
-    datasource_type=null,
-    datasource=null,
-    policy=null,
-    measurement=null,
-    job=null,
-    alias=null,
   ):: space_operation_rps(
+    cfg,
     title=title,
     description=description,
-    datasource_type=datasource_type,
-    datasource=datasource,
-    policy=policy,
-    measurement=measurement,
-    job=job,
-    alias=alias,
     operation='insert'
   ),
 
   space_replace_rps(
+    cfg,
     title=null,
     description=null,
-    datasource_type=null,
-    datasource=null,
-    policy=null,
-    measurement=null,
-    job=null,
-    alias=null,
   ):: space_operation_rps(
+    cfg,
     title=title,
     description=description,
-    datasource_type=datasource_type,
-    datasource=datasource,
-    policy=policy,
-    measurement=measurement,
-    job=job,
-    alias=alias,
     operation='replace'
   ),
 
   space_upsert_rps(
+    cfg,
     title=null,
     description=null,
-    datasource_type=null,
-    datasource=null,
-    policy=null,
-    measurement=null,
-    job=null,
-    alias=null,
   ):: space_operation_rps(
+    cfg,
     title=title,
     description=description,
-    datasource_type=datasource_type,
-    datasource=datasource,
-    policy=policy,
-    measurement=measurement,
-    job=job,
-    alias=alias,
     operation='upsert'
   ),
 
   space_update_rps(
+    cfg,
     title=null,
     description=null,
-    datasource_type=null,
-    datasource=null,
-    policy=null,
-    measurement=null,
-    job=null,
-    alias=null,
   ):: space_operation_rps(
+    cfg,
     title=title,
     description=description,
-    datasource_type=datasource_type,
-    datasource=datasource,
-    policy=policy,
-    measurement=measurement,
-    job=job,
-    alias=alias,
     operation='update'
   ),
 
   space_delete_rps(
+    cfg,
     title=null,
     description=null,
-    datasource_type=null,
-    datasource=null,
-    policy=null,
-    measurement=null,
-    job=null,
-    alias=null,
   ):: space_operation_rps(
+    cfg,
     title=title,
     description=description,
-    datasource_type=datasource_type,
-    datasource=datasource,
-    policy=policy,
-    measurement=measurement,
-    job=job,
-    alias=alias,
     operation='delete'
   ),
 
   call_rps(
+    cfg,
     title='Call requests',
     description=|||
       Requests to execute stored procedures.
       Graph shows average requests per second.
     |||,
-    datasource_type=null,
-    datasource=null,
-    policy=null,
-    measurement=null,
-    job=null,
-    alias=null,
   ):: operation_rps(
+    cfg,
     title=title,
     description=description,
-    datasource_type=datasource_type,
-    datasource=datasource,
-    policy=policy,
-    measurement=measurement,
-    job=job,
-    alias=alias,
     labelY1='requests per second',
     operation='call'
   ),
 
   eval_rps(
+    cfg,
     title='Eval calls',
     description=|||
       Calls to evaluate Lua code.
       Graph shows average requests per second.
     |||,
-    datasource_type=null,
-    datasource=null,
-    policy=null,
-    measurement=null,
-    job=null,
-    alias=null,
   ):: operation_rps(
+    cfg,
     title=title,
     description=description,
-    datasource_type=datasource_type,
-    datasource=datasource,
-    policy=policy,
-    measurement=measurement,
-    job=job,
-    alias=alias,
     labelY1='requests per second',
     operation='eval'
   ),
 
   error_rps(
+    cfg,
     title='Request errors',
     description=|||
       Requests resulted in error.
       Graph shows average errors per second.
     |||,
-    datasource_type=null,
-    datasource=null,
-    policy=null,
-    measurement=null,
-    job=null,
-    alias=null,
   ):: operation_rps(
+    cfg,
     title=title,
     description=description,
-    datasource_type=datasource_type,
-    datasource=datasource,
-    policy=policy,
-    measurement=measurement,
-    job=job,
-    alias=alias,
     labelY1='errors per second',
     operation='error'
   ),
 
   auth_rps(
+    cfg,
     title='Authentication requests',
     description=|||
       Authentication requests.
       Graph shows average requests per second.
     |||,
-    datasource_type=null,
-    datasource=null,
-    policy=null,
-    measurement=null,
-    job=null,
-    alias=null,
   ):: operation_rps(
+    cfg,
     title=title,
     description=description,
-    datasource_type=datasource_type,
-    datasource=datasource,
-    policy=policy,
-    measurement=measurement,
-    job=job,
-    alias=alias,
     labelY1='requests per second',
     operation='auth'
   ),
 
   SQL_prepare_rps(
+    cfg,
     title='SQL prepare calls',
     description=|||
       SQL prepare calls.
@@ -306,26 +192,16 @@ local prometheus = grafana.prometheus;
 
       Panel works with Tarantool 2.x.
     |||,
-    datasource_type=null,
-    datasource=null,
-    policy=null,
-    measurement=null,
-    job=null,
-    alias=null,
   ):: operation_rps(
+    cfg,
     title=title,
     description=description,
-    datasource_type=datasource_type,
-    datasource=datasource,
-    policy=policy,
-    measurement=measurement,
-    job=job,
-    alias=alias,
     labelY1='requests per second',
     operation='prepare'
   ),
 
   SQL_execute_rps(
+    cfg,
     title='SQL execute calls',
     description=|||
       SQL execute calls.
@@ -333,26 +209,16 @@ local prometheus = grafana.prometheus;
 
       Panel works with Tarantool 2.x.
     |||,
-    datasource_type=null,
-    datasource=null,
-    policy=null,
-    measurement=null,
-    job=null,
-    alias=null,
   ):: operation_rps(
+    cfg,
     title=title,
     description=description,
-    datasource_type=datasource_type,
-    datasource=datasource,
-    policy=policy,
-    measurement=measurement,
-    job=job,
-    alias=alias,
     labelY1='requests per second',
     operation='execute'
   ),
 
   txn_begin_rps(
+    cfg,
     title='Transaction begins',
     description=|||
       Panel displays the count of IPROTO_CALL and
@@ -362,26 +228,16 @@ local prometheus = grafana.prometheus;
 
       Panel works with Tarantool 2.10 or newer.
     |||,
-    datasource_type=null,
-    datasource=null,
-    policy=null,
-    measurement=null,
-    job=null,
-    alias=null,
   ):: operation_rps(
+    cfg,
     title=title,
     description=description,
-    datasource_type=datasource_type,
-    datasource=datasource,
-    policy=policy,
-    measurement=measurement,
-    job=job,
-    alias=alias,
     labelY1='begins per second',
     operation='begin'
   ),
 
   txn_commit_rps(
+    cfg,
     title='Transaction commits',
     description=|||
       Panel displays the count of IPROTO_CALL and
@@ -391,26 +247,16 @@ local prometheus = grafana.prometheus;
 
       Panel works with Tarantool 2.10 or newer.
     |||,
-    datasource_type=null,
-    datasource=null,
-    policy=null,
-    measurement=null,
-    job=null,
-    alias=null,
   ):: operation_rps(
+    cfg,
     title=title,
     description=description,
-    datasource_type=datasource_type,
-    datasource=datasource,
-    policy=policy,
-    measurement=measurement,
-    job=job,
-    alias=alias,
     labelY1='commits per second',
     operation='commit'
   ),
 
   txn_rollback_rps(
+    cfg,
     title='Transaction rollbacks',
     description=|||
       Panel displays the count of IPROTO_CALL and
@@ -420,21 +266,10 @@ local prometheus = grafana.prometheus;
 
       Panel works with Tarantool 2.10 or newer.
     |||,
-    datasource_type=null,
-    datasource=null,
-    policy=null,
-    measurement=null,
-    job=null,
-    alias=null,
   ):: operation_rps(
+    cfg,
     title=title,
     description=description,
-    datasource_type=datasource_type,
-    datasource=datasource,
-    policy=policy,
-    measurement=measurement,
-    job=job,
-    alias=alias,
     labelY1='rollbacks per second',
     operation='rollback'
   ),

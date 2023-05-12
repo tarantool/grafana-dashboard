@@ -29,17 +29,13 @@ local crud_quantile_warning(description) = std.join(
 local status_text(status) = (if status == 'ok' then 'success' else 'error');
 
 local operation_rps_template(
+  cfg,
   title=null,
   description=null,
-  datasource_type=null,
-  datasource=null,
-  policy=null,
-  measurement=null,
-  job=null,
-  alias=null,
   operation=null,
   status=null,
       ) = common.default_graph(
+  cfg,
   title=(
     if title != null then
       title
@@ -47,7 +43,6 @@ local operation_rps_template(
       std.format('%s %s requests', [std.asciiUpper(operation), status_text(status)])
   ),
   description=description,
-  datasource=datasource,
   min=0,
   labelY1='requests per second',
   decimals=2,
@@ -55,40 +50,36 @@ local operation_rps_template(
   panel_height=8,
   panel_width=6,
 ).addTarget(
-  if datasource_type == variable.datasource_type.prometheus then
+  if cfg.type == variable.datasource_type.prometheus then
     prometheus.target(
       expr=std.format(
         'rate(tnt_crud_stats_count{job=~"%s",alias=~"%s",operation="%s",status="%s"}[$__rate_interval])',
-        [job, alias, operation, status]
+        [cfg.job, cfg.filters.alias, operation, status]
       ),
       legendFormat='{{alias}} — {{name}}'
     )
-  else if datasource_type == variable.datasource_type.influxdb then
+  else if cfg.type == variable.datasource_type.influxdb then
     influxdb.target(
-      policy=policy,
-      measurement=measurement,
+      policy=cfg.policy,
+      measurement=cfg.measurement,
       group_tags=['label_pairs_alias', 'label_pairs_name'],
       alias='$tag_label_pairs_alias — $tag_label_pairs_name',
       fill='null',
     ).where('metric_name', '=', 'tnt_crud_stats_count')
-    .where('label_pairs_alias', '=~', alias)
+    .where('label_pairs_alias', '=~', cfg.filters.label_pairs_alias)
     .where('label_pairs_operation', '=', operation)
     .where('label_pairs_status', '=', status)
     .selectField('value').addConverter('mean').addConverter('non_negative_derivative', ['1s'])
 );
 
 local operation_latency_template(
+  cfg,
   title=null,
   description=null,
-  datasource_type=null,
-  datasource=null,
-  policy=null,
-  measurement=null,
-  job=null,
-  alias=null,
   operation=null,
   status=null,
       ) = common.default_graph(
+  cfg,
   title=(
     if title != null then
       title
@@ -96,7 +87,6 @@ local operation_latency_template(
       std.format('%s %s requests latency', [std.asciiUpper(operation), status_text(status)])
   ),
   description=description,
-  datasource=datasource,
   format='s',
   min=0,
   labelY1='99th percentile',
@@ -105,23 +95,23 @@ local operation_latency_template(
   panel_height=8,
   panel_width=6,
 ).addTarget(
-  if datasource_type == variable.datasource_type.prometheus then
+  if cfg.type == variable.datasource_type.prometheus then
     prometheus.target(
       expr=std.format(
         'tnt_crud_stats{job=~"%s",alias=~"%s",operation="%s",status="%s",quantile="0.99"}',
-        [job, alias, operation, status]
+        [cfg.job, cfg.filters.alias, operation, status]
       ),
       legendFormat='{{alias}} — {{name}}'
     )
-  else if datasource_type == variable.datasource_type.influxdb then
+  else if cfg.type == variable.datasource_type.influxdb then
     influxdb.target(
-      policy=policy,
-      measurement=measurement,
+      policy=cfg.policy,
+      measurement=cfg.measurement,
       group_tags=['label_pairs_alias', 'label_pairs_name'],
       alias='$tag_label_pairs_alias — $tag_label_pairs_name',
       fill='null',
     ).where('metric_name', '=', 'tnt_crud_stats')
-    .where('label_pairs_alias', '=~', alias)
+    .where('label_pairs_alias', '=~', cfg.filters.label_pairs_alias)
     .where('label_pairs_operation', '=', operation)
     .where('label_pairs_status', '=', status)
     .where('label_pairs_quantile', '=', '0.99')
@@ -129,17 +119,13 @@ local operation_latency_template(
 );
 
 local operation_rps(
+  cfg,
   title=null,
   description=null,
-  datasource_type=null,
-  datasource=null,
-  policy=null,
-  measurement=null,
-  job=null,
-  alias=null,
   operation=null,
   status=null,
       ) = operation_rps_template(
+  cfg,
   title=title,
   description=(
     if description != null then
@@ -150,28 +136,18 @@ local operation_rps(
         Graph shows average requests per second.
       |||, [status_text(status), operation]))
   ),
-  datasource_type=datasource_type,
-  datasource=datasource,
-  policy=policy,
-  measurement=measurement,
-  job=job,
-  alias=alias,
   operation=operation,
   status=status,
 );
 
 local operation_latency(
+  cfg,
   title=null,
   description=null,
-  datasource_type=null,
-  datasource=null,
-  policy=null,
-  measurement=null,
-  job=null,
-  alias=null,
   operation=null,
   status=null,
       ) = operation_latency_template(
+  cfg,
   title=title,
   description=(
     if description != null then
@@ -181,28 +157,18 @@ local operation_latency(
         99th percentile of %s %s CRUD module requests latency with aging.
       |||, [status_text(status), operation]))
   ),
-  datasource_type=datasource_type,
-  datasource=datasource,
-  policy=policy,
-  measurement=measurement,
-  job=job,
-  alias=alias,
   operation=operation,
   status=status,
 );
 
 local operation_rps_object(
+  cfg,
   title=null,
   description=null,
-  datasource_type=null,
-  datasource=null,
-  policy=null,
-  measurement=null,
-  job=null,
-  alias=null,
   operation=null,
   status=null,
       ) = operation_rps_template(
+  cfg,
   title=title,
   description=(
     if description != null then
@@ -213,28 +179,18 @@ local operation_rps_object(
         Graph shows average requests per second.
       |||, [status_text(status), operation, operation]))
   ),
-  datasource_type=datasource_type,
-  datasource=datasource,
-  policy=policy,
-  measurement=measurement,
-  job=job,
-  alias=alias,
   operation=operation,
   status=status,
 );
 
 local operation_latency_object(
+  cfg,
   title=null,
   description=null,
-  datasource_type=null,
-  datasource=null,
-  policy=null,
-  measurement=null,
-  job=null,
-  alias=null,
   operation=null,
   status=null,
       ) = operation_latency_template(
+  cfg,
   title=title,
   description=(
     if description != null then
@@ -244,28 +200,18 @@ local operation_latency_object(
         99th percentile of %s %s and %s_object CRUD module requests latency with aging.
       |||, [status_text(status), operation, operation]))
   ),
-  datasource_type=datasource_type,
-  datasource=datasource,
-  policy=policy,
-  measurement=measurement,
-  job=job,
-  alias=alias,
   operation=operation,
   status=status,
 );
 
 local operation_rps_object_many(
+  cfg,
   title=null,
   description=null,
-  datasource_type=null,
-  datasource=null,
-  policy=null,
-  measurement=null,
-  job=null,
-  alias=null,
   operation_stripped=null,
   status=null,
       ) = operation_rps_template(
+  cfg,
   title=title,
   description=(
     if description != null then
@@ -276,28 +222,18 @@ local operation_rps_object_many(
         Graph shows average requests per second.
       |||, [status_text(status), operation_stripped, operation_stripped]))
   ),
-  datasource_type=datasource_type,
-  datasource=datasource,
-  policy=policy,
-  measurement=measurement,
-  job=job,
-  alias=alias,
   operation=std.format('%s_many', operation_stripped),
   status=status,
 );
 
 local operation_latency_object_many(
+  cfg,
   title=null,
   description=null,
-  datasource_type=null,
-  datasource=null,
-  policy=null,
-  measurement=null,
-  job=null,
-  alias=null,
   operation_stripped=null,
   status=null,
       ) = operation_latency_template(
+  cfg,
   title=title,
   description=(
     if description != null then
@@ -307,27 +243,17 @@ local operation_latency_object_many(
         99th percentile of %s %s_many and %s_object_many CRUD module requests latency with aging.
       |||, [status_text(status), operation_stripped, operation_stripped]))
   ),
-  datasource_type=datasource_type,
-  datasource=datasource,
-  policy=policy,
-  measurement=measurement,
-  job=job,
-  alias=alias,
   operation=std.format('%s_many', operation_stripped),
   status=status,
 );
 
 local operation_rps_select(
+  cfg,
   title=null,
   description=null,
-  datasource_type=null,
-  datasource=null,
-  policy=null,
-  measurement=null,
-  job=null,
-  alias=null,
   status=null,
       ) = operation_rps_template(
+  cfg,
   title=title,
   description=(
     if description != null then
@@ -338,28 +264,17 @@ local operation_rps_select(
         Graph shows average requests per second.
       |||, status_text(status)))
   ),
-  datasource_type=datasource_type,
-  datasource=datasource,
-  policy=policy,
-  measurement=measurement,
-  job=job,
-  alias=alias,
   operation='select',
   status=status,
 );
 
 local operation_latency_select(
+  cfg,
   title=null,
   description=null,
-  datasource_type=null,
-  datasource=null,
-  policy=null,
-  measurement=null,
-  job=null,
-  alias=null,
-  operation=null,
   status=null,
       ) = operation_latency_template(
+  cfg,
   title=title,
   description=(
     if description != null then
@@ -369,27 +284,17 @@ local operation_latency_select(
         99th percentile of %s SELECT and PAIRS CRUD module requests latency with aging.
       |||, status_text(status)))
   ),
-  datasource_type=datasource_type,
-  datasource=datasource,
-  policy=policy,
-  measurement=measurement,
-  job=job,
-  alias=alias,
   operation='select',
   status=status,
 );
 
 local operation_rps_borders(
+  cfg,
   title=null,
   description=null,
-  datasource_type=null,
-  datasource=null,
-  policy=null,
-  measurement=null,
-  job=null,
-  alias=null,
   status=null,
       ) = operation_rps_template(
+  cfg,
   title=title,
   description=(
     if description != null then
@@ -400,28 +305,18 @@ local operation_rps_borders(
         Graph shows average requests per second.
       |||, status_text(status)))
   ),
-  datasource_type=datasource_type,
-  datasource=datasource,
-  policy=policy,
-  measurement=measurement,
-  job=job,
-  alias=alias,
   operation='borders',
   status=status,
 );
 
 local operation_latency_borders(
+  cfg,
   title=null,
   description=null,
-  datasource_type=null,
-  datasource=null,
-  policy=null,
-  measurement=null,
-  job=null,
-  alias=null,
   operation=null,
   status=null,
       ) = operation_latency_template(
+  cfg,
   title=title,
   description=(
     if description != null then
@@ -431,39 +326,28 @@ local operation_latency_borders(
         99th percentile of %s MIN and MAX CRUD module requests latency with aging.
       |||, status_text(status)))
   ),
-  datasource_type=datasource_type,
-  datasource=datasource,
-  policy=policy,
-  measurement=measurement,
-  job=job,
-  alias=alias,
   operation='borders',
   status=status,
 );
 
 local tuples_panel(
+  cfg,
   title=null,
   description=null,
-  datasource_type=null,
-  datasource=null,
-  policy=null,
-  measurement=null,
-  job=null,
-  alias=null,
   metric_name=null,
       ) = common.default_graph(
+  cfg,
   title=title,
   description=common.group_by_fill_0_warning(
+    cfg,
     crud_warning(description),
-    datasource_type,
   ),
-  datasource=datasource,
   min=0,
   labelY1='tuples per request',
   panel_height=8,
   panel_width=8,
 ).addTarget(
-  if datasource_type == variable.datasource_type.prometheus then
+  if cfg.type == variable.datasource_type.prometheus then
     prometheus.target(
       expr=std.format(
         |||
@@ -472,13 +356,13 @@ local tuples_panel(
         |||,
         {
           metric_name: metric_name,
-          job: job,
-          alias: alias,
+          job: cfg.job,
+          alias: cfg.filters.alias,
         }
       ),
       legendFormat='{{alias}} — {{name}}'
     )
-  else if datasource_type == variable.datasource_type.influxdb then
+  else if cfg.type == variable.datasource_type.influxdb then
     influxdb.target(
       rawQuery=true,
       query=std.format(|||
@@ -496,9 +380,9 @@ local tuples_panel(
         GROUP BY time($__interval * 2), "label_pairs_alias", "label_pairs_name" fill(0)
       |||, {
         metric_name: metric_name,
-        policy_prefix: if policy == 'default' then '' else std.format('"%(policy)s".', policy),
-        measurement: measurement,
-        alias: alias,
+        policy_prefix: if cfg.policy == 'default' then '' else std.format('"%(policy)s".', cfg.policy),
+        measurement: cfg.measurement,
+        alias: cfg.filters.label_pairs_alias,
       }),
       alias='$tag_label_pairs_alias — $tag_label_pairs_name'
     )
@@ -509,262 +393,157 @@ local module = {
   row:: common.row('CRUD module statistics'),
 
   select_success_rps(
+    cfg,
     title=null,
     description=null,
-    datasource_type=null,
-    datasource=null,
-    policy=null,
-    measurement=null,
-    job=null,
-    alias=null,
   ):: operation_rps_select(
+    cfg,
     title=title,
     description=description,
-    datasource_type=datasource_type,
-    datasource=datasource,
-    policy=policy,
-    measurement=measurement,
-    job=job,
-    alias=alias,
     status='ok',
   ),
 
   select_success_latency(
+    cfg,
     title=null,
     description=null,
-    datasource_type=null,
-    datasource=null,
-    policy=null,
-    measurement=null,
-    job=null,
-    alias=null,
   ):: operation_latency_select(
+    cfg,
     title=title,
     description=description,
-    datasource_type=datasource_type,
-    datasource=datasource,
-    policy=policy,
-    measurement=measurement,
-    job=job,
-    alias=alias,
     status='ok',
   ),
 
   select_error_rps(
+    cfg,
     title=null,
     description=null,
-    datasource_type=null,
-    datasource=null,
-    policy=null,
-    measurement=null,
-    job=null,
-    alias=null,
   ):: operation_rps_select(
+    cfg,
     title=title,
     description=description,
-    datasource_type=datasource_type,
-    datasource=datasource,
-    policy=policy,
-    measurement=measurement,
-    job=job,
-    alias=alias,
     status='error',
   ),
 
   select_error_latency(
+    cfg,
     title=null,
     description=null,
-    datasource_type=null,
-    datasource=null,
-    policy=null,
-    measurement=null,
-    job=null,
-    alias=null,
   ):: operation_latency_select(
+    cfg,
     title=title,
     description=description,
-    datasource_type=datasource_type,
-    datasource=datasource,
-    policy=policy,
-    measurement=measurement,
-    job=job,
-    alias=alias,
     status='error',
   ),
 
   tuples_fetched_panel(
+    cfg,
     title='SELECT tuples fetched',
     description=|||
       Average number of tuples fetched during SELECT/PAIRS request for a space.
       Both success and error requests are taken into consideration.
     |||,
-    datasource_type=null,
-    datasource=null,
-    policy=null,
-    measurement=null,
-    job=null,
-    alias=null,
   ):: tuples_panel(
+    cfg,
     title=title,
     description=description,
-    datasource_type=datasource_type,
-    datasource=datasource,
-    policy=policy,
-    measurement=measurement,
-    job=job,
-    alias=alias,
     metric_name='tnt_crud_tuples_fetched',
   ),
 
   tuples_lookup_panel(
+    cfg,
     title='SELECT tuples lookup',
     description=|||
       Average number of tuples looked up on storages while collecting responses
       for SELECT/PAIRS requests (including scrolls for multibatch requests)
       for a space. Both success and error requests are taken into consideration.
     |||,
-    datasource_type=null,
-    datasource=null,
-    policy=null,
-    measurement=null,
-    job=null,
-    alias=null,
   ):: tuples_panel(
+    cfg,
     title=title,
     description=description,
-    datasource_type=datasource_type,
-    datasource=datasource,
-    policy=policy,
-    measurement=measurement,
-    job=job,
-    alias=alias,
     metric_name='tnt_crud_tuples_lookup',
   ),
 
   map_reduces(
+    cfg,
     title='Map reduce SELECT requests',
     description=crud_warning(|||
       Number of SELECT and PAIRS requests that resulted in map reduce.
       Graph shows average requests per second.
       Both success and error requests are taken into consideration.
     |||),
-    datasource_type=null,
-    datasource=null,
-    policy=null,
-    measurement=null,
-    job=null,
-    alias=null,
   ):: common.default_graph(
+    cfg,
     title=title,
     description=description,
-    datasource=datasource,
     min=0,
     labelY1='requests per second',
     panel_height=8,
     panel_width=8,
   ).addTarget(
-    if datasource_type == variable.datasource_type.prometheus then
+    if cfg.type == variable.datasource_type.prometheus then
       prometheus.target(
         expr=std.format(
           'rate(tnt_crud_map_reduces{job=~"%s",alias=~"%s",operation="select"}[$__rate_interval])',
-          [job, alias],
+          [cfg.job, cfg.filters.alias],
         ),
         legendFormat='{{alias}} — {{name}}'
       )
-    else if datasource_type == variable.datasource_type.influxdb then
+    else if cfg.type == variable.datasource_type.influxdb then
       influxdb.target(
-        policy=policy,
-        measurement=measurement,
+        policy=cfg.policy,
+        measurement=cfg.measurement,
         group_tags=['label_pairs_alias', 'label_pairs_name'],
         alias='$tag_label_pairs_alias — $tag_label_pairs_name',
         fill='null',
       ).where('metric_name', '=', 'tnt_crud_map_reduces')
-      .where('label_pairs_alias', '=~', alias)
+      .where('label_pairs_alias', '=~', cfg.filters.label_pairs_alias)
       .where('label_pairs_operation', '=', 'select')
       .selectField('value').addConverter('mean').addConverter('non_negative_derivative', ['1s'])
   ),
 
   borders_success_rps(
+    cfg,
     title=null,
     description=null,
-    datasource_type=null,
-    datasource=null,
-    policy=null,
-    measurement=null,
-    job=null,
-    alias=null,
   ):: operation_rps_borders(
+    cfg,
     title=title,
     description=description,
-    datasource_type=datasource_type,
-    datasource=datasource,
-    policy=policy,
-    measurement=measurement,
-    job=job,
-    alias=alias,
     status='ok',
   ),
 
   borders_success_latency(
+    cfg,
     title=null,
     description=null,
-    datasource_type=null,
-    datasource=null,
-    policy=null,
-    measurement=null,
-    job=null,
-    alias=null,
   ):: operation_latency_borders(
+    cfg,
     title=title,
     description=description,
-    datasource_type=datasource_type,
-    datasource=datasource,
-    policy=policy,
-    measurement=measurement,
-    job=job,
-    alias=alias,
     status='ok',
   ),
 
   borders_error_rps(
+    cfg,
     title=null,
     description=null,
-    datasource_type=null,
-    datasource=null,
-    policy=null,
-    measurement=null,
-    job=null,
-    alias=null,
   ):: operation_rps_borders(
+    cfg,
     title=title,
     description=description,
-    datasource_type=datasource_type,
-    datasource=datasource,
-    policy=policy,
-    measurement=measurement,
-    job=job,
-    alias=alias,
     status='error',
   ),
 
   borders_error_latency(
+    cfg,
     title=null,
     description=null,
-    datasource_type=null,
-    datasource=null,
-    policy=null,
-    measurement=null,
-    job=null,
-    alias=null,
   ):: operation_latency_borders(
+    cfg,
     title=title,
     description=description,
-    datasource_type=datasource_type,
-    datasource=datasource,
-    policy=policy,
-    measurement=measurement,
-    job=job,
-    alias=alias,
     status='error',
   ),
 };
@@ -777,89 +556,49 @@ local operations_without_object = ['update', 'delete', 'get', 'len', 'truncate',
 local module_with_object_panels = std.foldl(function(_module, operation) (
   _module {
     [std.format('%s_success_rps', operation)](
+      cfg,
       title=null,
       description=null,
-      datasource_type=null,
-      datasource=null,
-      policy=null,
-      measurement=null,
-      job=null,
-      alias=null,
     ):: operation_rps_object(
+      cfg,
       title=title,
       description=description,
-      datasource_type=datasource_type,
-      datasource=datasource,
-      policy=policy,
-      measurement=measurement,
-      job=job,
-      alias=alias,
       operation=operation,
       status='ok',
     ),
 
     [std.format('%s_success_latency', operation)](
+      cfg,
       title=null,
       description=null,
-      datasource_type=null,
-      datasource=null,
-      policy=null,
-      measurement=null,
-      job=null,
-      alias=null,
     ):: operation_latency_object(
+      cfg,
       title=title,
       description=description,
-      datasource_type=datasource_type,
-      datasource=datasource,
-      policy=policy,
-      measurement=measurement,
-      job=job,
-      alias=alias,
       operation=operation,
       status='ok',
     ),
 
     [std.format('%s_error_rps', operation)](
+      cfg,
       title=null,
       description=null,
-      datasource_type=null,
-      datasource=null,
-      policy=null,
-      measurement=null,
-      job=null,
-      alias=null,
     ):: operation_rps_object(
+      cfg,
       title=title,
       description=description,
-      datasource_type=datasource_type,
-      datasource=datasource,
-      policy=policy,
-      measurement=measurement,
-      job=job,
-      alias=alias,
       operation=operation,
       status='error',
     ),
 
     [std.format('%s_error_latency', operation)](
+      cfg,
       title=null,
       description=null,
-      datasource_type=null,
-      datasource=null,
-      policy=null,
-      measurement=null,
-      job=null,
-      alias=null,
     ):: operation_latency_object(
+      cfg,
       title=title,
       description=description,
-      datasource_type=datasource_type,
-      datasource=datasource,
-      policy=policy,
-      measurement=measurement,
-      job=job,
-      alias=alias,
       operation=operation,
       status='error',
     ),
@@ -870,89 +609,49 @@ local module_with_object_panels = std.foldl(function(_module, operation) (
 local module_with_object_and_many_panels = std.foldl(function(_module, operation_stripped) (
   _module {
     [std.format('%s_many_success_rps', operation_stripped)](
+      cfg,
       title=null,
       description=null,
-      datasource_type=null,
-      datasource=null,
-      policy=null,
-      measurement=null,
-      job=null,
-      alias=null,
     ):: operation_rps_object_many(
+      cfg,
       title=title,
       description=description,
-      datasource_type=datasource_type,
-      datasource=datasource,
-      policy=policy,
-      measurement=measurement,
-      job=job,
-      alias=alias,
       operation_stripped=operation_stripped,
       status='ok',
     ),
 
     [std.format('%s_many_success_latency', operation_stripped)](
+      cfg,
       title=null,
       description=null,
-      datasource_type=null,
-      datasource=null,
-      policy=null,
-      measurement=null,
-      job=null,
-      alias=null,
     ):: operation_latency_object_many(
+      cfg,
       title=title,
       description=description,
-      datasource_type=datasource_type,
-      datasource=datasource,
-      policy=policy,
-      measurement=measurement,
-      job=job,
-      alias=alias,
       operation_stripped=operation_stripped,
       status='ok',
     ),
 
     [std.format('%s_many_error_rps', operation_stripped)](
+      cfg,
       title=null,
       description=null,
-      datasource_type=null,
-      datasource=null,
-      policy=null,
-      measurement=null,
-      job=null,
-      alias=null,
     ):: operation_rps_object_many(
+      cfg,
       title=title,
       description=description,
-      datasource_type=datasource_type,
-      datasource=datasource,
-      policy=policy,
-      measurement=measurement,
-      job=job,
-      alias=alias,
       operation_stripped=operation_stripped,
       status='error',
     ),
 
     [std.format('%s_many_error_latency', operation_stripped)](
+      cfg,
       title=null,
       description=null,
-      datasource_type=null,
-      datasource=null,
-      policy=null,
-      measurement=null,
-      job=null,
-      alias=null,
     ):: operation_latency_object_many(
+      cfg,
       title=title,
       description=description,
-      datasource_type=datasource_type,
-      datasource=datasource,
-      policy=policy,
-      measurement=measurement,
-      job=job,
-      alias=alias,
       operation_stripped=operation_stripped,
       status='error',
     ),
@@ -963,89 +662,49 @@ local module_with_object_and_many_panels = std.foldl(function(_module, operation
 std.foldl(function(_module, operation) (
   _module {
     [std.format('%s_success_rps', operation)](
+      cfg,
       title=null,
       description=null,
-      datasource_type=null,
-      datasource=null,
-      policy=null,
-      measurement=null,
-      job=null,
-      alias=null,
     ):: operation_rps(
+      cfg,
       title=title,
       description=description,
-      datasource_type=datasource_type,
-      datasource=datasource,
-      policy=policy,
-      measurement=measurement,
-      job=job,
-      alias=alias,
       operation=operation,
       status='ok',
     ),
 
     [std.format('%s_success_latency', operation)](
+      cfg,
       title=null,
       description=null,
-      datasource_type=null,
-      datasource=null,
-      policy=null,
-      measurement=null,
-      job=null,
-      alias=null,
     ):: operation_latency(
+      cfg,
       title=title,
       description=description,
-      datasource_type=datasource_type,
-      datasource=datasource,
-      policy=policy,
-      measurement=measurement,
-      job=job,
-      alias=alias,
       operation=operation,
       status='ok',
     ),
 
     [std.format('%s_error_rps', operation)](
+      cfg,
       title=null,
       description=null,
-      datasource_type=null,
-      datasource=null,
-      policy=null,
-      measurement=null,
-      job=null,
-      alias=null,
     ):: operation_rps(
+      cfg,
       title=title,
       description=description,
-      datasource_type=datasource_type,
-      datasource=datasource,
-      policy=policy,
-      measurement=measurement,
-      job=job,
-      alias=alias,
       operation=operation,
       status='error',
     ),
 
     [std.format('%s_error_latency', operation)](
+      cfg,
       title=null,
       description=null,
-      datasource_type=null,
-      datasource=null,
-      policy=null,
-      measurement=null,
-      job=null,
-      alias=null,
     ):: operation_latency(
+      cfg,
       title=title,
       description=description,
-      datasource_type=datasource_type,
-      datasource=datasource,
-      policy=policy,
-      measurement=measurement,
-      job=job,
-      alias=alias,
       operation=operation,
       status='error',
     ),

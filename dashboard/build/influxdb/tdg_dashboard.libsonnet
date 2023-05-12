@@ -4,14 +4,12 @@ local config = import 'dashboard/build/config.libsonnet';
 local tdg_dashboard_raw = import 'dashboard/build/influxdb/tdg_dashboard_raw.libsonnet';
 local variable = import 'dashboard/variable.libsonnet';
 
-local cfg = config.prepare({ type: variable.datasource_type.influxdb });
+local cfg = config.prepare({
+  type: variable.datasource_type.influxdb,
+  title: 'Tarantool Data Grid dashboard',
+});
 
-tdg_dashboard_raw(
-  datasource=cfg.datasource,
-  policy=cfg.policy,
-  measurement=cfg.measurement,
-  alias=cfg.filters.label_pairs_alias,
-).addTemplate(
+tdg_dashboard_raw(cfg).addTemplate(
   grafana.template.datasource(
     name='influxdb',
     query='influxdb',
@@ -37,7 +35,7 @@ tdg_dashboard_raw(
 ).addTemplate(
   grafana.template.new(
     name='alias',
-    datasource=cfg.influxdb,
+    datasource=cfg.datasource,
     query=std.format(
       'SHOW TAG VALUES FROM "%(policy)s"."%(measurement)s" WITH KEY="label_pairs_alias"',
       {
