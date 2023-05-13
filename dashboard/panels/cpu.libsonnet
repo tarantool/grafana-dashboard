@@ -121,6 +121,7 @@ local prometheus = grafana.prometheus;
         measurement=measurement,
         group_tags=['label_pairs_alias', 'label_pairs_thread_name'],
         alias='$tag_label_pairs_alias — $tag_label_pairs_thread_name',
+        fill='null',
       ).where('metric_name', '=', 'tnt_cpu_thread').where('label_pairs_alias', '=~', alias)
       .where('label_pairs_kind', '=', kind)
       .selectField('value').addConverter('mean').addConverter('non_negative_derivative', ['1s']),
