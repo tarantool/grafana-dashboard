@@ -38042,12 +38042,6 @@
                         },
                         {
                            "params": [
-                              "label_pairs_kind"
-                           ],
-                           "type": "tag"
-                        },
-                        {
-                           "params": [
                               "null"
                            ],
                            "type": "fill"
@@ -38192,12 +38186,6 @@
                         {
                            "params": [
                               "label_pairs_name"
-                           ],
-                           "type": "tag"
-                        },
-                        {
-                           "params": [
-                              "label_pairs_kind"
                            ],
                            "type": "tag"
                         },
@@ -38352,12 +38340,6 @@
                         },
                         {
                            "params": [
-                              "label_pairs_kind"
-                           ],
-                           "type": "tag"
-                        },
-                        {
-                           "params": [
                               "null"
                            ],
                            "type": "fill"
@@ -38502,12 +38484,6 @@
                         {
                            "params": [
                               "label_pairs_name"
-                           ],
-                           "type": "tag"
-                        },
-                        {
-                           "params": [
-                              "label_pairs_kind"
                            ],
                            "type": "tag"
                         },
