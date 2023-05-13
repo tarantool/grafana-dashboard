@@ -288,21 +288,15 @@ local prometheus = grafana.prometheus;
     panel_height=6,
     panel_width=12,
   ).addTarget(
-    if cfg.type == variable.datasource_type.prometheus then
-      prometheus.target(
-        expr=std.format('tnt_cartridge_issues{job=~"%s",alias=~"%s",level="%s"}', [cfg.filters.job[1], cfg.filters.alias[1], level]),
-        legendFormat='{{alias}}',
-      )
-    else if cfg.type == variable.datasource_type.influxdb then
-      influxdb.target(
-        policy=cfg.policy,
-        measurement=cfg.measurement,
-        group_tags=['label_pairs_alias'],
-        alias='$tag_label_pairs_alias',
-        fill='null',
-      ).where('metric_name', '=', 'tnt_cartridge_issues').where('label_pairs_alias', '=~', cfg.filters.label_pairs_alias[1])
-      .where('label_pairs_level', '=', level)
-      .selectField('value').addConverter('last')
+    common.target(
+      cfg,
+      'tnt_cartridge_issues',
+      additional_filters={
+        [variable.datasource_type.prometheus]: { level: ['=', level] },
+        [variable.datasource_type.influxdb]: { label_pairs_level: ['=', level] },
+      },
+      converter='last',
+    ),
   ),
 
   cartridge_warning_issues(

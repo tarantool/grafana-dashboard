@@ -34,20 +34,16 @@ local prometheus = grafana.prometheus;
   ).addRangeMapping(
     0.001, 0.999, '-'
   ).addTarget(
-    if cfg.type == variable.datasource_type.prometheus then
-      prometheus.target(
-        expr=std.format('tnt_replication_status{job=~"%s",alias=~"%s"}', [cfg.filters.job[1], cfg.filters.alias[1]]),
-        legendFormat='{{alias}} {{stream}} ({{id}})',
-      )
-    else if cfg.type == variable.datasource_type.influxdb then
-      influxdb.target(
-        policy=cfg.policy,
-        measurement=cfg.measurement,
-        group_tags=['label_pairs_alias', 'label_pairs_stream', 'label_pairs_id'],
-        alias='$tag_label_pairs_alias $tag_label_pairs_stream ($tag_label_pairs_id)',
-        fill='null',
-      ).where('metric_name', '=', 'tnt_replication_status').where('label_pairs_alias', '=~', cfg.filters.label_pairs_alias[1])
-      .selectField('value').addConverter('last')
+    common.target(
+      cfg,
+      'tnt_replication_status',
+      legend={
+        [variable.datasource_type.prometheus]: '{{alias}} {{stream}} ({{id}})',
+        [variable.datasource_type.influxdb]: '$tag_label_pairs_alias $tag_label_pairs_stream ($tag_label_pairs_id)',
+      },
+      group_tags=['label_pairs_alias', 'label_pairs_stream', 'label_pairs_id'],
+      converter='last',
+    ),
   ),
 
   replication_lag(
@@ -69,20 +65,15 @@ local prometheus = grafana.prometheus;
     min=0,
     panel_width=8,
   ).addTarget(
-    if cfg.type == variable.datasource_type.prometheus then
-      prometheus.target(
-        expr=std.format('tnt_replication_lag{job=~"%s",alias=~"%s"}', [cfg.filters.job[1], cfg.filters.alias[1]]),
-        legendFormat='{{alias}} ({{id}})',
-      )
-    else if cfg.type == variable.datasource_type.influxdb then
-      influxdb.target(
-        policy=cfg.policy,
-        measurement=cfg.measurement,
-        group_tags=['label_pairs_alias', 'label_pairs_id'],
-        alias='$tag_label_pairs_alias ($tag_label_pairs_id)',
-        fill='null',
-      ).where('metric_name', '=', 'tnt_replication_lag').where('label_pairs_alias', '=~', cfg.filters.label_pairs_alias[1])
-      .selectField('value').addConverter('mean')
+    common.target(
+      cfg,
+      'tnt_replication_lag',
+      legend={
+        [variable.datasource_type.prometheus]: '{{alias}} ({{id}})',
+        [variable.datasource_type.influxdb]: '$tag_label_pairs_alias ($tag_label_pairs_id)',
+      },
+      group_tags=['label_pairs_alias', 'label_pairs_id'],
+    ),
   ),
 
   clock_delta(
@@ -107,20 +98,16 @@ local prometheus = grafana.prometheus;
     legend_max=false,
     panel_width=8,
   ).addTarget(
-    if cfg.type == variable.datasource_type.prometheus then
-      prometheus.target(
-        expr=std.format('tnt_clock_delta{job=~"%s",alias=~"%s"}', [cfg.filters.job[1], cfg.filters.alias[1]]),
-        legendFormat='{{alias}} ({{delta}})',
-      )
-    else if cfg.type == variable.datasource_type.influxdb then
-      influxdb.target(
-        policy=cfg.policy,
-        measurement=cfg.measurement,
-        group_tags=['label_pairs_alias', 'label_pairs_delta'],
-        alias='$tag_label_pairs_alias ($tag_label_pairs_delta)',
-        fill='null',
-      ).where('metric_name', '=', 'tnt_clock_delta').where('label_pairs_alias', '=~', cfg.filters.label_pairs_alias[1])
-      .selectField('value').addConverter('last')
+    common.target(
+      cfg,
+      'tnt_clock_delta',
+      legend={
+        [variable.datasource_type.prometheus]: '{{alias}} ({{delta}})',
+        [variable.datasource_type.influxdb]: '$tag_label_pairs_alias ($tag_label_pairs_delta)',
+      },
+      group_tags=['label_pairs_alias', 'label_pairs_delta'],
+      converter='last',
+    ),
   ),
 
   local syncro_warning(description) = std.join(

@@ -52,7 +52,7 @@ local kafka_utils = import 'dashboard/panels/tdg/kafka/utils.libsonnet';
     labelY1='rebalances per second',
     panel_width=12,
   ).addTarget(
-    kafka_utils.kafka_rps_target(cfg, 'tdg_kafka_cgrp_rebalance_cnt')
+    kafka_utils.kafka_target(cfg, 'tdg_kafka_cgrp_rebalance_cnt', rate=true)
   ),
 
   assignment_size(

@@ -50,26 +50,26 @@ local operation_rps_template(
   panel_height=8,
   panel_width=6,
 ).addTarget(
-  if cfg.type == variable.datasource_type.prometheus then
-    prometheus.target(
-      expr=std.format(
-        'rate(tnt_crud_stats_count{job=~"%s",alias=~"%s",operation="%s",status="%s"}[$__rate_interval])',
-        [cfg.filters.job[1], cfg.filters.alias[1], operation, status]
-      ),
-      legendFormat='{{alias}} — {{name}}'
-    )
-  else if cfg.type == variable.datasource_type.influxdb then
-    influxdb.target(
-      policy=cfg.policy,
-      measurement=cfg.measurement,
-      group_tags=['label_pairs_alias', 'label_pairs_name'],
-      alias='$tag_label_pairs_alias — $tag_label_pairs_name',
-      fill='null',
-    ).where('metric_name', '=', 'tnt_crud_stats_count')
-    .where('label_pairs_alias', '=~', cfg.filters.label_pairs_alias[1])
-    .where('label_pairs_operation', '=', operation)
-    .where('label_pairs_status', '=', status)
-    .selectField('value').addConverter('mean').addConverter('non_negative_derivative', ['1s'])
+  common.target(
+    cfg,
+    'tnt_crud_stats_count',
+    additional_filters={
+      [variable.datasource_type.prometheus]: {
+        operation: ['=', operation],
+        status: ['=', status],
+      },
+      [variable.datasource_type.influxdb]: {
+        label_pairs_operation: ['=', operation],
+        label_pairs_status: ['=', status],
+      },
+    },
+    legend={
+      [variable.datasource_type.prometheus]: '{{alias}} — {{name}}',
+      [variable.datasource_type.influxdb]: '$tag_label_pairs_alias — $tag_label_pairs_name',
+    },
+    group_tags=['label_pairs_alias', 'label_pairs_name'],
+    rate=true,
+  )
 );
 
 local operation_latency_template(
@@ -95,27 +95,27 @@ local operation_latency_template(
   panel_height=8,
   panel_width=6,
 ).addTarget(
-  if cfg.type == variable.datasource_type.prometheus then
-    prometheus.target(
-      expr=std.format(
-        'tnt_crud_stats{job=~"%s",alias=~"%s",operation="%s",status="%s",quantile="0.99"}',
-        [cfg.filters.job[1], cfg.filters.alias[1], operation, status]
-      ),
-      legendFormat='{{alias}} — {{name}}'
-    )
-  else if cfg.type == variable.datasource_type.influxdb then
-    influxdb.target(
-      policy=cfg.policy,
-      measurement=cfg.measurement,
-      group_tags=['label_pairs_alias', 'label_pairs_name'],
-      alias='$tag_label_pairs_alias — $tag_label_pairs_name',
-      fill='null',
-    ).where('metric_name', '=', 'tnt_crud_stats')
-    .where('label_pairs_alias', '=~', cfg.filters.label_pairs_alias[1])
-    .where('label_pairs_operation', '=', operation)
-    .where('label_pairs_status', '=', status)
-    .where('label_pairs_quantile', '=', '0.99')
-    .selectField('value').addConverter('mean')
+  common.target(
+    cfg,
+    'tnt_crud_stats',
+    additional_filters={
+      [variable.datasource_type.prometheus]: {
+        operation: ['=', operation],
+        status: ['=', status],
+        quantile: ['=', '0.99'],
+      },
+      [variable.datasource_type.influxdb]: {
+        label_pairs_operation: ['=', operation],
+        label_pairs_status: ['=', status],
+        label_pairs_quantile: ['=', '0.99'],
+      },
+    },
+    legend={
+      [variable.datasource_type.prometheus]: '{{alias}} — {{name}}',
+      [variable.datasource_type.influxdb]: '$tag_label_pairs_alias — $tag_label_pairs_name',
+    },
+    group_tags=['label_pairs_alias', 'label_pairs_name'],
+  ),
 );
 
 local operation_rps(
@@ -482,25 +482,24 @@ local module = {
     panel_height=8,
     panel_width=8,
   ).addTarget(
-    if cfg.type == variable.datasource_type.prometheus then
-      prometheus.target(
-        expr=std.format(
-          'rate(tnt_crud_map_reduces{job=~"%s",alias=~"%s",operation="select"}[$__rate_interval])',
-          [cfg.filters.job[1], cfg.filters.alias[1]],
-        ),
-        legendFormat='{{alias}} — {{name}}'
-      )
-    else if cfg.type == variable.datasource_type.influxdb then
-      influxdb.target(
-        policy=cfg.policy,
-        measurement=cfg.measurement,
-        group_tags=['label_pairs_alias', 'label_pairs_name'],
-        alias='$tag_label_pairs_alias — $tag_label_pairs_name',
-        fill='null',
-      ).where('metric_name', '=', 'tnt_crud_map_reduces')
-      .where('label_pairs_alias', '=~', cfg.filters.label_pairs_alias[1])
-      .where('label_pairs_operation', '=', 'select')
-      .selectField('value').addConverter('mean').addConverter('non_negative_derivative', ['1s'])
+    common.target(
+      cfg,
+      'tnt_crud_map_reduces',
+      additional_filters={
+        [variable.datasource_type.prometheus]: {
+          operation: ['=', 'select'],
+        },
+        [variable.datasource_type.influxdb]: {
+          label_pairs_operation: ['=', 'select'],
+        },
+      },
+      legend={
+        [variable.datasource_type.prometheus]: '{{alias}} — {{name}}',
+        [variable.datasource_type.influxdb]: '$tag_label_pairs_alias — $tag_label_pairs_name',
+      },
+      group_tags=['label_pairs_alias', 'label_pairs_name'],
+      rate=true,
+    )
   ),
 
   borders_success_rps(

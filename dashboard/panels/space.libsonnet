@@ -25,22 +25,20 @@ local prometheus = grafana.prometheus;
     legend_max=false,
     panel_width=12,
   ).addTarget(
-    if cfg.type == variable.datasource_type.prometheus then
-      prometheus.target(
-        expr=std.format('%s{job=~"%s", alias=~"%s", engine="%s"}', [metric_name, cfg.filters.job[1], cfg.filters.alias[1], engine]),
-        legendFormat='{{alias}} — {{name}}',
-      )
-    else if cfg.type == variable.datasource_type.influxdb then
-      influxdb.target(
-        policy=cfg.policy,
-        measurement=cfg.measurement,
-        group_tags=['label_pairs_alias', 'label_pairs_name'],
-        alias='$tag_label_pairs_alias — $tag_label_pairs_name',
-        fill='null',
-      ).where('metric_name', '=', metric_name)
-      .where('label_pairs_alias', '=~', cfg.filters.label_pairs_alias[1])
-      .where('label_pairs_engine', '=', engine)
-      .selectField('value').addConverter('last')
+    common.target(
+      cfg,
+      metric_name,
+      additional_filters={
+        [variable.datasource_type.prometheus]: { engine: ['=', engine] },
+        [variable.datasource_type.influxdb]: { label_pairs_engine: ['=', engine] },
+      },
+      legend={
+        [variable.datasource_type.prometheus]: '{{alias}} — {{name}}',
+        [variable.datasource_type.influxdb]: '$tag_label_pairs_alias — $tag_label_pairs_name',
+      },
+      group_tags=['label_pairs_alias', 'label_pairs_name'],
+      converter='last',
+    ),
   ),
 
   memtx_len(
@@ -93,22 +91,19 @@ local prometheus = grafana.prometheus;
     legend_avg=false,
     legend_max=false,
   ).addTarget(
-    if cfg.type == variable.datasource_type.prometheus then
-      prometheus.target(
-        expr=std.format('%s{job=~"%s", alias=~"%s", engine="memtx"}', [metric_name, cfg.filters.job[1], cfg.filters.alias[1]]),
-        legendFormat='{{alias}} — {{name}}',
-      )
-    else if cfg.type == variable.datasource_type.influxdb then
-      influxdb.target(
-        policy=cfg.policy,
-        measurement=cfg.measurement,
-        group_tags=['label_pairs_alias', 'label_pairs_name'],
-        alias='$tag_label_pairs_alias — $tag_label_pairs_name',
-        fill='null',
-      ).where('metric_name', '=', metric_name)
-      .where('label_pairs_alias', '=~', cfg.filters.label_pairs_alias[1])
-      .where('label_pairs_engine', '=', 'memtx')
-      .selectField('value').addConverter('mean')
+    common.target(
+      cfg,
+      metric_name,
+      additional_filters={
+        [variable.datasource_type.prometheus]: { engine: ['=', 'memtx'] },
+        [variable.datasource_type.influxdb]: { label_pairs_engine: ['=', 'memtx'] },
+      },
+      legend={
+        [variable.datasource_type.prometheus]: '{{alias}} — {{name}}',
+        [variable.datasource_type.influxdb]: '$tag_label_pairs_alias — $tag_label_pairs_name',
+      },
+      group_tags=['label_pairs_alias', 'label_pairs_name'],
+    ),
   ),
 
   space_bsize(
@@ -153,21 +148,15 @@ local prometheus = grafana.prometheus;
     legend_avg=false,
     legend_max=false,
   ).addTarget(
-    if cfg.type == variable.datasource_type.prometheus then
-      prometheus.target(
-        expr=std.format('tnt_space_index_bsize{job=~"%s", alias=~"%s"}', [cfg.filters.job[1], cfg.filters.alias[1]]),
-        legendFormat='{{alias}} — {{name}} ({{index_name}})',
-      )
-    else if cfg.type == variable.datasource_type.influxdb then
-      influxdb.target(
-        policy=cfg.policy,
-        measurement=cfg.measurement,
-        group_tags=['label_pairs_alias', 'label_pairs_name', 'label_pairs_index_name'],
-        alias='$tag_label_pairs_alias — $tag_label_pairs_name ($tag_label_pairs_index_name)',
-        fill='null',
-      ).where('metric_name', '=', 'tnt_space_index_bsize')
-      .where('label_pairs_alias', '=~', cfg.filters.label_pairs_alias[1])
-      .selectField('value').addConverter('mean')
+    common.target(
+      cfg,
+      'tnt_space_index_bsize',
+      legend={
+        [variable.datasource_type.prometheus]: '{{alias}} — {{name}} ({{index_name}})',
+        [variable.datasource_type.influxdb]: '$tag_label_pairs_alias — $tag_label_pairs_name ($tag_label_pairs_index_name)',
+      },
+      group_tags=['label_pairs_alias', 'label_pairs_name', 'label_pairs_index_name'],
+    ),
   ),
 
   space_total_bsize(

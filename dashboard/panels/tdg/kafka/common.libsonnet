@@ -66,7 +66,7 @@ local variable = import 'dashboard/variable.libsonnet';
     labelY1='requests per second',
     panel_width=6,
   ).addTarget(
-    kafka_utils.kafka_rps_target(cfg, 'tdg_kafka_tx')
+    kafka_utils.kafka_target(cfg, 'tdg_kafka_tx', rate=true)
   ),
 
   request_bytes(
@@ -83,7 +83,7 @@ local variable = import 'dashboard/variable.libsonnet';
     labelY1='bytes per second',
     panel_width=6,
   ).addTarget(
-    kafka_utils.kafka_rps_target(cfg, 'tdg_kafka_tx_bytes')
+    kafka_utils.kafka_target(cfg, 'tdg_kafka_tx_bytes', rate=true)
   ),
 
   responses(
@@ -100,7 +100,7 @@ local variable = import 'dashboard/variable.libsonnet';
     labelY1='responses per second',
     panel_width=6,
   ).addTarget(
-    kafka_utils.kafka_rps_target(cfg, 'tdg_kafka_rx')
+    kafka_utils.kafka_target(cfg, 'tdg_kafka_rx', rate=true)
   ),
 
   response_bytes(
@@ -117,7 +117,7 @@ local variable = import 'dashboard/variable.libsonnet';
     labelY1='bytes per second',
     panel_width=6,
   ).addTarget(
-    kafka_utils.kafka_rps_target(cfg, 'tdg_kafka_rx_bytes')
+    kafka_utils.kafka_target(cfg, 'tdg_kafka_rx_bytes', rate=true)
   ),
 
   messages_sent(
@@ -134,7 +134,7 @@ local variable = import 'dashboard/variable.libsonnet';
     labelY1='messages per second',
     panel_width=6,
   ).addTarget(
-    kafka_utils.kafka_rps_target(cfg, 'tdg_kafka_txmsgs')
+    kafka_utils.kafka_target(cfg, 'tdg_kafka_txmsgs', rate=true)
   ),
 
   message_bytes_sent(
@@ -152,7 +152,7 @@ local variable = import 'dashboard/variable.libsonnet';
     labelY1='bytes per second',
     panel_width=6,
   ).addTarget(
-    kafka_utils.kafka_rps_target(cfg, 'tdg_kafka_txmsg_bytes')
+    kafka_utils.kafka_target(cfg, 'tdg_kafka_txmsg_bytes', rate=true)
   ),
 
   messages_received(
@@ -169,7 +169,7 @@ local variable = import 'dashboard/variable.libsonnet';
     labelY1='messages per second',
     panel_width=6,
   ).addTarget(
-    kafka_utils.kafka_rps_target(cfg, 'tdg_kafka_rxmsgs')
+    kafka_utils.kafka_target(cfg, 'tdg_kafka_rxmsgs', rate=true)
   ),
 
   message_bytes_received(
@@ -187,6 +187,6 @@ local variable = import 'dashboard/variable.libsonnet';
     labelY1='bytes per second',
     panel_width=6,
   ).addTarget(
-    kafka_utils.kafka_rps_target(cfg, 'tdg_kafka_rxmsg_bytes')
+    kafka_utils.kafka_target(cfg, 'tdg_kafka_rxmsg_bytes', rate=true)
   ),
 }

@@ -22,24 +22,19 @@ local prometheus = grafana.prometheus;
     labelY1='jobs per second',
     panel_width=panel_width,
   ).addTarget(
-    if cfg.type == variable.datasource_type.prometheus then
-      prometheus.target(
-        expr=std.format('rate(%s{job=~"%s",alias=~"%s"}[$__rate_interval])', [metric_name, cfg.filters.job[1], cfg.filters.alias[1]]),
-        legendFormat='{{name}} — {{alias}}',
-      )
-    else if cfg.type == variable.datasource_type.influxdb then
-      influxdb.target(
-        policy=cfg.policy,
-        measurement=cfg.measurement,
-        group_tags=[
-          'label_pairs_alias',
-          'label_pairs_name',
-        ],
-        alias='$tag_label_pairs_name — $tag_label_pairs_alias',
-        fill='null',
-      ).where('metric_name', '=', metric_name)
-      .where('label_pairs_alias', '=~', cfg.filters.label_pairs_alias[1])
-      .selectField('value').addConverter('mean').addConverter('non_negative_derivative', ['1s']),
+    common_utils.target(
+      cfg,
+      metric_name,
+      legend={
+        [variable.datasource_type.prometheus]: '{{name}} — {{alias}}',
+        [variable.datasource_type.influxdb]: '$tag_label_pairs_name — $tag_label_pairs_alias',
+      },
+      group_tags=[
+        'label_pairs_alias',
+        'label_pairs_name',
+      ],
+      rate=true,
+    ),
   ),
 
   local jobs_metric_panel(
@@ -56,24 +51,18 @@ local prometheus = grafana.prometheus;
     legend_max=false,
     panel_width=12,
   ).addTarget(
-    if cfg.type == variable.datasource_type.prometheus then
-      prometheus.target(
-        expr=std.format('%s{job=~"%s",alias=~"%s"}', [metric_name, cfg.filters.job[1], cfg.filters.alias[1]]),
-        legendFormat='{{name}} — {{alias}}',
-      )
-    else if cfg.type == variable.datasource_type.influxdb then
-      influxdb.target(
-        policy=cfg.policy,
-        measurement=cfg.measurement,
-        group_tags=[
-          'label_pairs_alias',
-          'label_pairs_name',
-        ],
-        alias='$tag_label_pairs_name — $tag_label_pairs_alias',
-        fill='null',
-      ).where('metric_name', '=', metric_name)
-      .where('label_pairs_alias', '=~', cfg.filters.label_pairs_alias[1])
-      .selectField('value').addConverter('mean'),
+    common_utils.target(
+      cfg,
+      metric_name,
+      legend={
+        [variable.datasource_type.prometheus]: '{{name}} — {{alias}}',
+        [variable.datasource_type.influxdb]: '$tag_label_pairs_name — $tag_label_pairs_alias',
+      },
+      group_tags=[
+        'label_pairs_alias',
+        'label_pairs_name',
+      ],
+    ),
   ),
 
   local jobs_average_panel(
@@ -142,25 +131,20 @@ local prometheus = grafana.prometheus;
     labelY1='tasks per second',
     panel_width=panel_width,
   ).addTarget(
-    if cfg.type == variable.datasource_type.prometheus then
-      prometheus.target(
-        expr=std.format('rate(%s{job=~"%s",alias=~"%s"}[$__rate_interval])', [metric_name, cfg.filters.job[1], cfg.filters.alias[1]]),
-        legendFormat='{{name}} ({{kind}}) — {{alias}}',
-      )
-    else if cfg.type == variable.datasource_type.influxdb then
-      influxdb.target(
-        policy=cfg.policy,
-        measurement=cfg.measurement,
-        group_tags=[
-          'label_pairs_alias',
-          'label_pairs_name',
-          'label_pairs_kind',
-        ],
-        alias='$tag_label_pairs_name ($tag_label_pairs_kind) — $tag_label_pairs_alias',
-        fill='null',
-      ).where('metric_name', '=', metric_name)
-      .where('label_pairs_alias', '=~', cfg.filters.label_pairs_alias[1])
-      .selectField('value').addConverter('mean').addConverter('non_negative_derivative', ['1s']),
+    common_utils.target(
+      cfg,
+      metric_name,
+      legend={
+        [variable.datasource_type.prometheus]: '{{name}} ({{kind}}) — {{alias}}',
+        [variable.datasource_type.influxdb]: '$tag_label_pairs_name ($tag_label_pairs_kind) — $tag_label_pairs_alias',
+      },
+      group_tags=[
+        'label_pairs_alias',
+        'label_pairs_name',
+        'label_pairs_kind',
+      ],
+      rate=true,
+    ),
   ),
 
   local tasks_metric_panel(
@@ -177,25 +161,19 @@ local prometheus = grafana.prometheus;
     legend_max=false,
     panel_width=12,
   ).addTarget(
-    if cfg.type == variable.datasource_type.prometheus then
-      prometheus.target(
-        expr=std.format('%s{job=~"%s",alias=~"%s"}', [metric_name, cfg.filters.job[1], cfg.filters.alias[1]]),
-        legendFormat='{{name}} ({{kind}}) — {{alias}}',
-      )
-    else if cfg.type == variable.datasource_type.influxdb then
-      influxdb.target(
-        policy=cfg.policy,
-        measurement=cfg.measurement,
-        group_tags=[
-          'label_pairs_alias',
-          'label_pairs_name',
-          'label_pairs_kind',
-        ],
-        alias='$tag_label_pairs_name ($tag_label_pairs_kind) — $tag_label_pairs_alias',
-        fill='null',
-      ).where('metric_name', '=', metric_name)
-      .where('label_pairs_alias', '=~', cfg.filters.label_pairs_alias[1])
-      .selectField('value').addConverter('mean'),
+    common_utils.target(
+      cfg,
+      metric_name,
+      legend={
+        [variable.datasource_type.prometheus]: '{{name}} ({{kind}}) — {{alias}}',
+        [variable.datasource_type.influxdb]: '$tag_label_pairs_name ($tag_label_pairs_kind) — $tag_label_pairs_alias',
+      },
+      group_tags=[
+        'label_pairs_alias',
+        'label_pairs_name',
+        'label_pairs_kind',
+      ],
+    ),
   ),
 
   local tasks_average_panel(

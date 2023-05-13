@@ -74,22 +74,20 @@ local prometheus = grafana.prometheus;
     decimalsY1=2,
     panel_width=12,
   ).addTarget(
-    if cfg.type == variable.datasource_type.prometheus then
-      prometheus.target(
-        expr=std.format('rate(tnt_cpu_thread{job=~"%s",alias=~"%s",kind="%s"}[$__rate_interval])',
-                        [cfg.filters.job[1], cfg.filters.alias[1], kind]),
-        legendFormat='{{alias}} — {{thread_name}}',
-      )
-    else if cfg.type == variable.datasource_type.influxdb then
-      influxdb.target(
-        policy=cfg.policy,
-        measurement=cfg.measurement,
-        group_tags=['label_pairs_alias', 'label_pairs_thread_name'],
-        alias='$tag_label_pairs_alias — $tag_label_pairs_thread_name',
-        fill='null',
-      ).where('metric_name', '=', 'tnt_cpu_thread').where('label_pairs_alias', '=~', cfg.filters.label_pairs_alias[1])
-      .where('label_pairs_kind', '=', kind)
-      .selectField('value').addConverter('mean').addConverter('non_negative_derivative', ['1s']),
+    common.target(
+      cfg,
+      'tnt_cpu_thread',
+      additional_filters={
+        [variable.datasource_type.prometheus]: { kind: ['=', kind] },
+        [variable.datasource_type.influxdb]: { label_pairs_kind: ['=', kind] },
+      },
+      legend={
+        [variable.datasource_type.prometheus]: '{{alias}} — {{thread_name}}',
+        [variable.datasource_type.influxdb]: '$tag_label_pairs_alias — $tag_label_pairs_thread_name',
+      },
+      group_tags=['label_pairs_alias', 'label_pairs_thread_name'],
+      rate=true,
+    ),
   ),
 
   procstat_thread_user_time(

@@ -239,21 +239,16 @@ local prometheus = grafana.prometheus;
     labelY1=labelY1,
     panel_width=panel_width,
   ).addTarget(
-    if cfg.type == variable.datasource_type.prometheus then
-      prometheus.target(
-        expr=std.format('rate(%s{job=~"%s",alias=~"%s"}[$__rate_interval])',
-                        [metric_name, cfg.filters.job[1], cfg.filters.alias[1]]),
-        legendFormat='{{alias}} (thread {{thread}})',
-      )
-    else if cfg.type == variable.datasource_type.influxdb then
-      influxdb.target(
-        policy=cfg.policy,
-        measurement=cfg.measurement,
-        group_tags=['label_pairs_alias', 'label_pairs_thread'],
-        alias='$tag_label_pairs_alias (thread $tag_label_pairs_thread)',
-        fill='null',
-      ).where('metric_name', '=', metric_name).where('label_pairs_alias', '=~', cfg.filters.label_pairs_alias[1])
-      .selectField('value').addConverter('mean').addConverter('non_negative_derivative', ['1s']),
+    common.target(
+      cfg,
+      metric_name,
+      legend={
+        [variable.datasource_type.prometheus]: '{{alias}} (thread {{thread}})',
+        [variable.datasource_type.influxdb]: '$tag_label_pairs_alias (thread $tag_label_pairs_thread)',
+      },
+      group_tags=['label_pairs_alias', 'label_pairs_thread'],
+      rate=true,
+    ),
   ),
 
   local per_thread_current_graph(
@@ -273,21 +268,16 @@ local prometheus = grafana.prometheus;
     decimals=0,
     panel_width=panel_width,
   ).addTarget(
-    if cfg.type == variable.datasource_type.prometheus then
-      prometheus.target(
-        expr=std.format('%s{job=~"%s",alias=~"%s"}',
-                        [metric_name, cfg.filters.job[1], cfg.filters.alias[1]]),
-        legendFormat='{{alias}} (thread {{thread}})',
-      )
-    else if cfg.type == variable.datasource_type.influxdb then
-      influxdb.target(
-        policy=cfg.policy,
-        measurement=cfg.measurement,
-        group_tags=['label_pairs_alias', 'label_pairs_thread'],
-        alias='$tag_label_pairs_alias (thread $tag_label_pairs_thread)',
-        fill='null',
-      ).where('metric_name', '=', metric_name).where('label_pairs_alias', '=~', cfg.filters.label_pairs_alias[1])
-      .selectField('value').addConverter('last'),
+    common.target(
+      cfg,
+      metric_name,
+      legend={
+        [variable.datasource_type.prometheus]: '{{alias}} (thread {{thread}})',
+        [variable.datasource_type.influxdb]: '$tag_label_pairs_alias (thread $tag_label_pairs_thread)',
+      },
+      group_tags=['label_pairs_alias', 'label_pairs_thread'],
+      converter='last',
+    ),
   ),
 
   bytes_sent_per_thread_per_second(
