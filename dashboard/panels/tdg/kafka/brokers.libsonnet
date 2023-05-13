@@ -12,83 +12,47 @@ local prometheus = grafana.prometheus;
   local brokers_target(
     cfg,
     metric_name,
-  ) =
-    if cfg.type == variable.datasource_type.prometheus then
-      prometheus.target(
-        expr=std.format('%s{job=~"%s",alias=~"%s"}', [metric_name, cfg.filters.job[1], cfg.filters.alias[1]]),
-        legendFormat='{{name}} ({{broker_name}}) — {{alias}} ({{type}}, {{connector_name}})',
-      )
-    else if cfg.type == variable.datasource_type.influxdb then
-      influxdb.target(
-        policy=cfg.policy,
-        measurement=cfg.measurement,
-        group_tags=[
-          'label_pairs_alias',
-          'label_pairs_name',
-          'label_pairs_type',
-          'label_pairs_connector_name',
-          'label_pairs_broker_name',
-        ],
-        alias='$tag_label_pairs_name ($tag_label_pairs_broker_name) — $tag_label_pairs_alias ($tag_label_pairs_type, $tag_label_pairs_connector_name)',
-        fill='null',
-      ).where('metric_name', '=', metric_name)
-      .where('label_pairs_alias', '=~', cfg.filters.label_pairs_alias[1])
-      .selectField('value').addConverter('mean'),
-
-  local brokers_rps_target(
+    rate=false,
+  ) = common_utils.target(
     cfg,
     metric_name,
-  ) =
-    if cfg.type == variable.datasource_type.prometheus then
-      prometheus.target(
-        expr=std.format('rate(%s{job=~"%s",alias=~"%s"}[$__rate_interval])',
-                        [metric_name, cfg.filters.job[1], cfg.filters.alias[1]]),
-        legendFormat='{{name}} ({{broker_name}}) — {{alias}} ({{type}}, {{connector_name}})',
-      )
-    else if cfg.type == variable.datasource_type.influxdb then
-      influxdb.target(
-        policy=cfg.policy,
-        measurement=cfg.measurement,
-        group_tags=[
-          'label_pairs_alias',
-          'label_pairs_name',
-          'label_pairs_type',
-          'label_pairs_connector_name',
-          'label_pairs_broker_name',
-        ],
-        alias='$tag_label_pairs_name ($tag_label_pairs_broker_name) — $tag_label_pairs_alias ($tag_label_pairs_type, $tag_label_pairs_connector_name)',
-        fill='null',
-      ).where('metric_name', '=', metric_name)
-      .where('label_pairs_alias', '=~', cfg.filters.label_pairs_alias[1])
-      .selectField('value').addConverter('mean').addConverter('non_negative_derivative', ['1s']),
+    legend={
+      [variable.datasource_type.prometheus]: '{{name}} ({{broker_name}}) — {{alias}} ({{type}}, {{connector_name}})',
+      [variable.datasource_type.influxdb]: '$tag_label_pairs_name ($tag_label_pairs_broker_name) — $tag_label_pairs_alias ($tag_label_pairs_type, $tag_label_pairs_connector_name)',
+    },
+    group_tags=[
+      'label_pairs_alias',
+      'label_pairs_name',
+      'label_pairs_type',
+      'label_pairs_connector_name',
+      'label_pairs_broker_name',
+    ],
+    rate=rate,
+  ),
 
   local brokers_quantile_target(
     cfg,
     metric_name,
-  ) =
-    if cfg.type == variable.datasource_type.prometheus then
-      prometheus.target(
-        expr=std.format('%s{job=~"%s",alias=~"%s",quantile="0.99"}',
-                        [metric_name, cfg.filters.job[1], cfg.filters.alias[1]]),
-        legendFormat='{{name}} ({{broker_name}}) — {{alias}} ({{type}}, {{connector_name}})',
-      )
-    else if cfg.type == variable.datasource_type.influxdb then
-      influxdb.target(
-        policy=cfg.policy,
-        measurement=cfg.measurement,
-        group_tags=[
-          'label_pairs_alias',
-          'label_pairs_name',
-          'label_pairs_type',
-          'label_pairs_connector_name',
-          'label_pairs_broker_name',
-        ],
-        alias='$tag_label_pairs_name ($tag_label_pairs_broker_name) — $tag_label_pairs_alias ($tag_label_pairs_type, $tag_label_pairs_connector_name)',
-        fill='null',
-      ).where('metric_name', '=', metric_name)
-      .where('label_pairs_alias', '=~', cfg.filters.label_pairs_alias[1])
-      .where('label_pairs_quantile', '=', '0.99')
-      .selectField('value').addConverter('last'),
+  ) = common_utils.target(
+    cfg,
+    metric_name,
+    additional_filters={
+      [variable.datasource_type.prometheus]: { quantile: ['=', '0.99'] },
+      [variable.datasource_type.influxdb]: { label_pairs_quantile: ['=', '0.99'] },
+    },
+    legend={
+      [variable.datasource_type.prometheus]: '{{name}} ({{broker_name}}) — {{alias}} ({{type}}, {{connector_name}})',
+      [variable.datasource_type.influxdb]: '$tag_label_pairs_name ($tag_label_pairs_broker_name) — $tag_label_pairs_alias ($tag_label_pairs_type, $tag_label_pairs_connector_name)',
+    },
+    group_tags=[
+      'label_pairs_alias',
+      'label_pairs_name',
+      'label_pairs_type',
+      'label_pairs_connector_name',
+      'label_pairs_broker_name',
+    ],
+    converter='last',
+  ),
 
   stateage(
     cfg,
@@ -123,7 +87,7 @@ local prometheus = grafana.prometheus;
     labelY1='attempts per second',
     panel_width=6,
   ).addTarget(
-    brokers_rps_target(cfg, 'tdg_kafka_broker_connects')
+    brokers_target(cfg, 'tdg_kafka_broker_connects', rate=true)
   ),
 
   disconnects(
@@ -140,7 +104,7 @@ local prometheus = grafana.prometheus;
     labelY1='disconnects per second',
     panel_width=6,
   ).addTarget(
-    brokers_rps_target(cfg, 'tdg_kafka_broker_disconnects')
+    brokers_target(cfg, 'tdg_kafka_broker_disconnects', rate=true)
   ),
 
   poll_wakeups(
@@ -157,7 +121,7 @@ local prometheus = grafana.prometheus;
     labelY1='wakeups per second',
     panel_width=6,
   ).addTarget(
-    brokers_rps_target(cfg, 'tdg_kafka_broker_wakeups')
+    brokers_target(cfg, 'tdg_kafka_broker_wakeups', rate=true)
   ),
 
   outbuf(
@@ -237,7 +201,7 @@ local prometheus = grafana.prometheus;
     description=description,
     labelY1='requests per second',
   ).addTarget(
-    brokers_rps_target(cfg, 'tdg_kafka_broker_tx')
+    brokers_target(cfg, 'tdg_kafka_broker_tx', rate=true)
   ),
 
   request_bytes(
@@ -253,7 +217,7 @@ local prometheus = grafana.prometheus;
     description=description,
     labelY1='bytes per second',
   ).addTarget(
-    brokers_rps_target(cfg, 'tdg_kafka_broker_txbytes')
+    brokers_target(cfg, 'tdg_kafka_broker_txbytes', rate=true)
   ),
 
   request_errors(
@@ -269,7 +233,7 @@ local prometheus = grafana.prometheus;
     description=description,
     labelY1='errors per second',
   ).addTarget(
-    brokers_rps_target(cfg, 'tdg_kafka_broker_txerrs')
+    brokers_target(cfg, 'tdg_kafka_broker_txerrs', rate=true)
   ),
 
   request_retries(
@@ -285,7 +249,7 @@ local prometheus = grafana.prometheus;
     description=description,
     labelY1='retries per second',
   ).addTarget(
-    brokers_rps_target(cfg, 'tdg_kafka_broker_txretries')
+    brokers_target(cfg, 'tdg_kafka_broker_txretries', rate=true)
   ),
 
   request_idle(
@@ -318,7 +282,7 @@ local prometheus = grafana.prometheus;
     description=description,
     labelY1='requests per second',
   ).addTarget(
-    brokers_rps_target(cfg, 'tdg_kafka_broker_req_timeouts')
+    brokers_target(cfg, 'tdg_kafka_broker_req_timeouts', rate=true)
   ),
 
   responses(
@@ -334,7 +298,7 @@ local prometheus = grafana.prometheus;
     description=description,
     labelY1='responses per second',
   ).addTarget(
-    brokers_rps_target(cfg, 'tdg_kafka_broker_rx')
+    brokers_target(cfg, 'tdg_kafka_broker_rx', rate=true)
   ),
 
   response_bytes(
@@ -350,7 +314,7 @@ local prometheus = grafana.prometheus;
     description=description,
     labelY1='bytes per second',
   ).addTarget(
-    brokers_rps_target(cfg, 'tdg_kafka_broker_rxbytes')
+    brokers_target(cfg, 'tdg_kafka_broker_rxbytes', rate=true)
   ),
 
   response_errors(
@@ -366,7 +330,7 @@ local prometheus = grafana.prometheus;
     description=description,
     labelY1='errors per second',
   ).addTarget(
-    brokers_rps_target(cfg, 'tdg_kafka_broker_rxerrs')
+    brokers_target(cfg, 'tdg_kafka_broker_rxerrs', rate=true)
   ),
 
   response_corriderrs(
@@ -383,7 +347,7 @@ local prometheus = grafana.prometheus;
     description=description,
     labelY1='errors per second',
   ).addTarget(
-    brokers_rps_target(cfg, 'tdg_kafka_broker_rxcorriderrs')
+    brokers_target(cfg, 'tdg_kafka_broker_rxcorriderrs', rate=true)
   ),
 
   response_idle(
@@ -416,7 +380,7 @@ local prometheus = grafana.prometheus;
     description=description,
     labelY1='requests per second',
   ).addTarget(
-    brokers_rps_target(cfg, 'tdg_kafka_broker_rxpartial')
+    brokers_target(cfg, 'tdg_kafka_broker_rxpartial', rate=true)
   ),
 
   requests_by_type(
@@ -435,29 +399,23 @@ local prometheus = grafana.prometheus;
     panel_width=24,
     panel_height=10,
   ).addTarget(
-    if cfg.type == variable.datasource_type.prometheus then
-      prometheus.target(
-        expr=std.format('rate(tdg_kafka_broker_req{job=~"%s",alias=~"%s"}[$__rate_interval])',
-                        [cfg.filters.job[1], cfg.filters.alias[1]]),
-        legendFormat='{{request}} — {{name}} ({{broker_name}}) — {{alias}} ({{type}}, {{connector_name}})',
-      )
-    else if cfg.type == variable.datasource_type.influxdb then
-      influxdb.target(
-        policy=cfg.policy,
-        measurement=cfg.measurement,
-        group_tags=[
-          'label_pairs_alias',
-          'label_pairs_name',
-          'label_pairs_type',
-          'label_pairs_connector_name',
-          'label_pairs_broker_name',
-          'label_pairs_request',
-        ],
-        alias='$tag_label_pairs_request — $tag_label_pairs_name ($tag_label_pairs_broker_name) — $tag_label_pairs_alias ($tag_label_pairs_type, $tag_label_pairs_connector_name)',
-        fill='null',
-      ).where('metric_name', '=', 'tdg_kafka_broker_req')
-      .where('label_pairs_alias', '=~', cfg.filters.label_pairs_alias[1])
-      .selectField('value').addConverter('mean').addConverter('non_negative_derivative', ['1s']),
+    common_utils.target(
+      cfg,
+      'tdg_kafka_broker_req',
+      legend={
+        [variable.datasource_type.prometheus]: '{{request}} — {{name}} ({{broker_name}}) — {{alias}} ({{type}}, {{connector_name}})',
+        [variable.datasource_type.influxdb]: '$tag_label_pairs_request — $tag_label_pairs_name ($tag_label_pairs_broker_name) — $tag_label_pairs_alias ($tag_label_pairs_type, $tag_label_pairs_connector_name)',
+      },
+      group_tags=[
+        'label_pairs_alias',
+        'label_pairs_name',
+        'label_pairs_type',
+        'label_pairs_connector_name',
+        'label_pairs_broker_name',
+        'label_pairs_request',
+      ],
+      rate=true,
+    ),
   ),
 
   internal_producer_latency(

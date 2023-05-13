@@ -12,25 +12,18 @@ local prometheus = grafana.prometheus;
   local target(
     cfg,
     metric_name,
-  ) =
-    if cfg.type == variable.datasource_type.prometheus then
-      prometheus.target(
-        expr=std.format('%s{job=~"%s",alias=~"%s"}', [metric_name, cfg.filters.job[1], cfg.filters.alias[1]]),
-        legendFormat='{{connector_name}} — {{alias}}',
-      )
-    else if cfg.type == variable.datasource_type.influxdb then
-      influxdb.target(
-        policy=cfg.policy,
-        measurement=cfg.measurement,
-        group_tags=[
-          'label_pairs_alias',
-          'label_pairs_connector_name',
-        ],
-        alias='$tag_label_pairs_connector_name — $tag_label_pairs_alias',
-        fill='null',
-      ).where('metric_name', '=', metric_name)
-      .where('label_pairs_alias', '=~', cfg.filters.label_pairs_alias[1])
-      .selectField('value').addConverter('mean'),
+  ) = common_utils.target(
+    cfg,
+    metric_name,
+    legend={
+      [variable.datasource_type.prometheus]: '{{connector_name}} — {{alias}}',
+      [variable.datasource_type.influxdb]: '$tag_label_pairs_connector_name — $tag_label_pairs_alias',
+    },
+    group_tags=[
+      'label_pairs_alias',
+      'label_pairs_connector_name',
+    ],
+  ),
 
   files_processed(
     cfg,

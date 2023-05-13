@@ -34,26 +34,23 @@ local prometheus = grafana.prometheus;
     labelY1='request per second',
     panel_width=panel_width,
   ).addTarget(
-    if cfg.type == variable.datasource_type.prometheus then
-      prometheus.target(
-        expr=std.format('rate(%s{job=~"%s",alias=~"%s",method="repository.%s"}[$__rate_interval])',
-                        [metric_name, cfg.filters.job[1], cfg.filters.alias[1], method_tail]),
-        legendFormat='{{type}} — {{alias}}',
-      )
-    else if cfg.type == variable.datasource_type.influxdb then
-      influxdb.target(
-        policy=cfg.policy,
-        measurement=cfg.measurement,
-        group_tags=[
-          'label_pairs_alias',
-          'label_pairs_type',
-        ],
-        alias='$tag_label_pairs_type — $tag_label_pairs_alias',
-        fill='null',
-      ).where('metric_name', '=', metric_name)
-      .where('label_pairs_alias', '=~', cfg.filters.label_pairs_alias[1])
-      .where('label_pairs_method', '=', std.format('repository.%s', method_tail))
-      .selectField('value').addConverter('mean').addConverter('non_negative_derivative', ['1s']),
+    common_utils.target(
+      cfg,
+      metric_name,
+      additional_filters={
+        [variable.datasource_type.prometheus]: { method: ['=', 'repository.' + method_tail] },
+        [variable.datasource_type.influxdb]: { label_pairs_method: ['=', 'repository.' + method_tail] },
+      },
+      legend={
+        [variable.datasource_type.prometheus]: '{{type}} — {{alias}}',
+        [variable.datasource_type.influxdb]: '$tag_label_pairs_type — $tag_label_pairs_alias',
+      },
+      group_tags=[
+        'label_pairs_alias',
+        'label_pairs_type',
+      ],
+      rate=true,
+    ),
   ),
 
   local latency_panel(
@@ -81,27 +78,28 @@ local prometheus = grafana.prometheus;
     format='ms',
     panel_width=panel_width,
   ).addTarget(
-    if cfg.type == variable.datasource_type.prometheus then
-      prometheus.target(
-        expr=std.format('%s{job=~"%s",alias=~"%s",method="repository.%s",quantile="0.99"}',
-                        [metric_name, cfg.filters.job[1], cfg.filters.alias[1], method_tail]),
-        legendFormat='{{type}} — {{alias}}',
-      )
-    else if cfg.type == variable.datasource_type.influxdb then
-      influxdb.target(
-        policy=cfg.policy,
-        measurement=cfg.measurement,
-        group_tags=[
-          'label_pairs_alias',
-          'label_pairs_type',
-        ],
-        alias='$tag_label_pairs_type — $tag_label_pairs_alias',
-        fill='null',
-      ).where('metric_name', '=', metric_name)
-      .where('label_pairs_alias', '=~', cfg.filters.label_pairs_alias[1])
-      .where('label_pairs_method', '=', std.format('repository.%s', method_tail))
-      .where('label_pairs_quantile', '=', '0.99')
-      .selectField('value').addConverter('mean'),
+    common_utils.target(
+      cfg,
+      metric_name,
+      additional_filters={
+        [variable.datasource_type.prometheus]: {
+          method: ['=', 'repository.' + method_tail],
+          quantile: ['=', '0.99'],
+        },
+        [variable.datasource_type.influxdb]: {
+          label_pairs_method: ['=', 'repository.' + method_tail],
+          label_pairs_quantile: ['=', '0.99'],
+        },
+      },
+      legend={
+        [variable.datasource_type.prometheus]: '{{type}} — {{alias}}',
+        [variable.datasource_type.influxdb]: '$tag_label_pairs_type — $tag_label_pairs_alias',
+      },
+      group_tags=[
+        'label_pairs_alias',
+        'label_pairs_type',
+      ],
+    ),
   ),
 
   put_rps(

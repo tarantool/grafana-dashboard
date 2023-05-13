@@ -50,32 +50,42 @@ local prometheus = grafana.prometheus;
   target(
     cfg,
     metric_name,
-    converter='mean',
+    additional_filters={
+      [variable.datasource_type.prometheus]: {},
+      [variable.datasource_type.influxdb]: {},
+    },
+    legend={
+      [variable.datasource_type.prometheus]: '{{alias}}',
+      [variable.datasource_type.influxdb]: '$tag_label_pairs_alias',
+    },
+    group_tags=['label_pairs_alias'],  // influxdb only
+    converter='mean',  // influxdb only
     rate=false,
   )::
+    local filters = additional_filters[cfg.type] + cfg.filters;
     if cfg.type == variable.datasource_type.prometheus then
       local expr = std.format('%s{%s}', [metric_name, std.join(
         ',',
         std.map(
           function(key)
-            std.format('%s%s"%s"', [key, cfg.filters[key][0], cfg.filters[key][1]]),
-          std.objectFields(cfg.filters)
+            std.format('%s%s"%s"', [key, filters[key][0], filters[key][1]]),
+          std.objectFields(filters)
         )
       )]);
       prometheus.target(
         expr=if rate then std.format('rate(%s[$__rate_interval])', expr) else expr,
-        legendFormat='{{alias}}',
+        legendFormat=legend[cfg.type],
       )
     else if cfg.type == variable.datasource_type.influxdb then
       local target = std.foldl(
         function(target, key)
-          target.where(key, cfg.filters[key][0], cfg.filters[key][1]),
-        std.objectFields(cfg.filters),
+          target.where(key, filters[key][0], filters[key][1]),
+        std.objectFields(filters),
         influxdb.target(
           policy=cfg.policy,
           measurement=cfg.measurement,
-          group_tags=['label_pairs_alias'],
-          alias='$tag_label_pairs_alias',
+          group_tags=group_tags,
+          alias=legend[cfg.type],
           fill='null',
         ).where('metric_name', '=', metric_name)
       ).selectField('value').addConverter(converter);

@@ -22,34 +22,31 @@ local prometheus = grafana.prometheus;
     description=description,
     labelY1='request per second',
   ).addTarget(
-    if cfg.type == variable.datasource_type.prometheus then
-      prometheus.target(
-        expr=std.format('rate(%s{job=~"%s",alias=~"%s",method%s"GET",status_code=~"%s"}[$__rate_interval])', [
-          metric_name,
-          cfg.filters.job[1],
-          cfg.filters.alias[1],
-          get_condition,
-          std.strReplace(status_regex, '\\', '\\\\'),
-        ]),
-        legendFormat='{{type}} (code {{status_code}}) — {{alias}}',
-      )
-    else if cfg.type == variable.datasource_type.influxdb then
-      influxdb.target(
-        policy=cfg.policy,
-        measurement=cfg.measurement,
-        group_tags=[
-          'label_pairs_alias',
-          'label_pairs_type',
-          'label_pairs_status_code',
-          'label_pairs_method',
-        ],
-        alias='$tag_label_pairs_method $tag_label_pairs_type (code $tag_label_pairs_status_code) — $tag_label_pairs_alias',
-        fill='null',
-      ).where('metric_name', '=', metric_name)
-      .where('label_pairs_alias', '=~', cfg.filters.label_pairs_alias[1])
-      .where('label_pairs_method', get_condition, 'GET')
-      .where('label_pairs_status_code', '=~', std.format('/%s/', status_regex))
-      .selectField('value').addConverter('mean').addConverter('non_negative_derivative', ['1s']),
+    common_utils.target(
+      cfg,
+      metric_name,
+      additional_filters={
+        [variable.datasource_type.prometheus]: {
+          method: [get_condition, 'GET'],
+          status_code: ['=~', std.strReplace(status_regex, '\\', '\\\\')],
+        },
+        [variable.datasource_type.influxdb]: {
+          label_pairs_method: [get_condition, 'GET'],
+          label_pairs_status_code: ['=~', std.format('/%s/', status_regex)],
+        },
+      },
+      legend={
+        [variable.datasource_type.prometheus]: '{{type}} (code {{status_code}}) — {{alias}}',
+        [variable.datasource_type.influxdb]: '$tag_label_pairs_method $tag_label_pairs_type (code $tag_label_pairs_status_code) — $tag_label_pairs_alias',
+      },
+      group_tags=[
+        'label_pairs_alias',
+        'label_pairs_type',
+        'label_pairs_status_code',
+        'label_pairs_method',
+      ],
+      rate=true,
+    ),
   ),
 
   local latency_panel(
@@ -66,35 +63,32 @@ local prometheus = grafana.prometheus;
     labelY1='99th percentile',
     format='ms',
   ).addTarget(
-    if cfg.type == variable.datasource_type.prometheus then
-      prometheus.target(
-        expr=std.format('%s{job=~"%s",alias=~"%s",method%s"GET",status_code=~"%s",quantile="0.99"}', [
-          metric_name,
-          cfg.filters.job[1],
-          cfg.filters.alias[1],
-          get_condition,
-          std.strReplace(status_regex, '\\', '\\\\'),
-        ]),
-        legendFormat='{{type}} (code {{status_code}}) — {{alias}}',
-      )
-    else if cfg.type == variable.datasource_type.influxdb then
-      influxdb.target(
-        policy=cfg.policy,
-        measurement=cfg.measurement,
-        group_tags=[
-          'label_pairs_alias',
-          'label_pairs_type',
-          'label_pairs_status_code',
-          'label_pairs_method',
-        ],
-        alias='$tag_label_pairs_method $tag_label_pairs_type (code $tag_label_pairs_status_code) — $tag_label_pairs_alias',
-        fill='null',
-      ).where('metric_name', '=', metric_name)
-      .where('label_pairs_alias', '=~', cfg.filters.label_pairs_alias[1])
-      .where('label_pairs_method', get_condition, 'GET')
-      .where('label_pairs_status_code', '=~', std.format('/%s/', status_regex))
-      .where('label_pairs_quantile', '=', '0.99')
-      .selectField('value').addConverter('mean'),
+    common_utils.target(
+      cfg,
+      metric_name,
+      additional_filters={
+        [variable.datasource_type.prometheus]: {
+          method: [get_condition, 'GET'],
+          status_code: ['=~', std.strReplace(status_regex, '\\', '\\\\')],
+          quantile: ['=', '0.99'],
+        },
+        [variable.datasource_type.influxdb]: {
+          label_pairs_method: [get_condition, 'GET'],
+          label_pairs_status_code: ['=~', std.format('/%s/', status_regex)],
+          label_pairs_quantile: ['=', '0.99'],
+        },
+      },
+      legend={
+        [variable.datasource_type.prometheus]: '{{type}} (code {{status_code}}) — {{alias}}',
+        [variable.datasource_type.influxdb]: '$tag_label_pairs_method $tag_label_pairs_type (code $tag_label_pairs_status_code) — $tag_label_pairs_alias',
+      },
+      group_tags=[
+        'label_pairs_alias',
+        'label_pairs_type',
+        'label_pairs_status_code',
+        'label_pairs_method',
+      ],
+    ),
   ),
 
   read_success_rps(

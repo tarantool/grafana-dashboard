@@ -36520,15 +36520,15 @@
                         },
                         {
                            "condition": "AND",
-                           "key": "label_pairs_status_code",
-                           "operator": "=~",
-                           "value": "/^2\\d{2}$/"
-                        },
-                        {
-                           "condition": "AND",
                            "key": "label_pairs_quantile",
                            "operator": "=",
                            "value": "0.99"
+                        },
+                        {
+                           "condition": "AND",
+                           "key": "label_pairs_status_code",
+                           "operator": "=~",
+                           "value": "/^2\\d{2}$/"
                         }
                      ]
                   }
@@ -36693,15 +36693,15 @@
                         },
                         {
                            "condition": "AND",
-                           "key": "label_pairs_status_code",
-                           "operator": "=~",
-                           "value": "/^4\\d{2}$/"
-                        },
-                        {
-                           "condition": "AND",
                            "key": "label_pairs_quantile",
                            "operator": "=",
                            "value": "0.99"
+                        },
+                        {
+                           "condition": "AND",
+                           "key": "label_pairs_status_code",
+                           "operator": "=~",
+                           "value": "/^4\\d{2}$/"
                         }
                      ]
                   }
@@ -36866,15 +36866,15 @@
                         },
                         {
                            "condition": "AND",
-                           "key": "label_pairs_status_code",
-                           "operator": "=~",
-                           "value": "/^5\\d{2}$/"
-                        },
-                        {
-                           "condition": "AND",
                            "key": "label_pairs_quantile",
                            "operator": "=",
                            "value": "0.99"
+                        },
+                        {
+                           "condition": "AND",
+                           "key": "label_pairs_status_code",
+                           "operator": "=~",
+                           "value": "/^5\\d{2}$/"
                         }
                      ]
                   }
@@ -37558,15 +37558,15 @@
                         },
                         {
                            "condition": "AND",
-                           "key": "label_pairs_status_code",
-                           "operator": "=~",
-                           "value": "/^2\\d{2}$/"
-                        },
-                        {
-                           "condition": "AND",
                            "key": "label_pairs_quantile",
                            "operator": "=",
                            "value": "0.99"
+                        },
+                        {
+                           "condition": "AND",
+                           "key": "label_pairs_status_code",
+                           "operator": "=~",
+                           "value": "/^2\\d{2}$/"
                         }
                      ]
                   }
@@ -37731,15 +37731,15 @@
                         },
                         {
                            "condition": "AND",
-                           "key": "label_pairs_status_code",
-                           "operator": "=~",
-                           "value": "/^4\\d{2}$/"
-                        },
-                        {
-                           "condition": "AND",
                            "key": "label_pairs_quantile",
                            "operator": "=",
                            "value": "0.99"
+                        },
+                        {
+                           "condition": "AND",
+                           "key": "label_pairs_status_code",
+                           "operator": "=~",
+                           "value": "/^4\\d{2}$/"
                         }
                      ]
                   }
@@ -37904,15 +37904,15 @@
                         },
                         {
                            "condition": "AND",
-                           "key": "label_pairs_status_code",
-                           "operator": "=~",
-                           "value": "/^5\\d{2}$/"
-                        },
-                        {
-                           "condition": "AND",
                            "key": "label_pairs_quantile",
                            "operator": "=",
                            "value": "0.99"
+                        },
+                        {
+                           "condition": "AND",
+                           "key": "label_pairs_status_code",
+                           "operator": "=~",
+                           "value": "/^5\\d{2}$/"
                         }
                      ]
                   }

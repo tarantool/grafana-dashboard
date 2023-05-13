@@ -22,23 +22,15 @@ local prometheus = grafana.prometheus;
     min=0,
     labelY1=labelY1,
   ).addTarget(
-    if cfg.type == variable.datasource_type.prometheus then
-      prometheus.target(
-        expr=std.format('rate(tnt_stats_op_total{job=~"%s",alias=~"%s",operation="%s"}[$__rate_interval])',
-                        [cfg.filters.job[1], cfg.filters.alias[1], operation]),
-        legendFormat='{{alias}}'
-      )
-    else if cfg.type == variable.datasource_type.influxdb then
-      influxdb.target(
-        policy=cfg.policy,
-        measurement=cfg.measurement,
-        group_tags=['label_pairs_alias'],
-        alias='$tag_label_pairs_alias',
-        fill='null',
-      ).where('metric_name', '=', 'tnt_stats_op_total')
-      .where('label_pairs_alias', '=~', cfg.filters.label_pairs_alias[1])
-      .where('label_pairs_operation', '=', operation)
-      .selectField('value').addConverter('mean').addConverter('non_negative_derivative', ['1s'])
+    common.target(
+      cfg,
+      'tnt_stats_op_total',
+      additional_filters={
+        [variable.datasource_type.prometheus]: { operation: ['=', operation] },
+        [variable.datasource_type.influxdb]: { label_pairs_operation: ['=', operation] },
+      },
+      rate=true,
+    ),
   ),
 
   local space_operation_rps(

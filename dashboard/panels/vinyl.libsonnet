@@ -405,23 +405,15 @@ local prometheus = grafana.prometheus;
     legend_avg=false,
     panel_width=6,
   ).addTarget(
-    if cfg.type == variable.datasource_type.prometheus then
-      prometheus.target(
-        expr=std.format('tnt_vinyl_scheduler_tasks{job=~"%s", alias=~"%s", status="inprogress"}',
-                        [cfg.filters.job[1], cfg.filters.alias[1]]),
-        legendFormat='{{alias}}',
-      )
-    else if cfg.type == variable.datasource_type.influxdb then
-      influxdb.target(
-        policy=cfg.policy,
-        measurement=cfg.measurement,
-        group_tags=['label_pairs_alias'],
-        alias='$tag_label_pairs_alias',
-        fill='null',
-      ).where('metric_name', '=', 'tnt_vinyl_scheduler_tasks')
-      .where('label_pairs_alias', '=~', cfg.filters.label_pairs_alias[1])
-      .where('label_pairs_status', '=', 'inprogress')
-      .selectField('value').addConverter('last')
+    common.target(
+      cfg,
+      'tnt_vinyl_scheduler_tasks',
+      additional_filters={
+        [variable.datasource_type.prometheus]: { status: ['=', 'inprogress'] },
+        [variable.datasource_type.influxdb]: { label_pairs_status: ['=', 'inprogress'] },
+      },
+      converter='last',
+    ),
   ),
 
   scheduler_tasks_failed_rate(
@@ -442,23 +434,15 @@ local prometheus = grafana.prometheus;
     legend_avg=false,
     panel_width=6,
   ).addTarget(
-    if cfg.type == variable.datasource_type.prometheus then
-      prometheus.target(
-        expr=std.format('rate(tnt_vinyl_scheduler_tasks{job=~"%s",alias=~"%s",status="failed"}[$__rate_interval])',
-                        [cfg.filters.job[1], cfg.filters.alias[1]]),
-        legendFormat='{{alias}}',
-      )
-    else if cfg.type == variable.datasource_type.influxdb then
-      influxdb.target(
-        policy=cfg.policy,
-        measurement=cfg.measurement,
-        group_tags=['label_pairs_alias'],
-        alias='$tag_label_pairs_alias',
-        fill='null',
-      ).where('metric_name', '=', 'tnt_vinyl_scheduler_tasks')
-      .where('label_pairs_alias', '=~', cfg.filters.label_pairs_alias[1])
-      .where('label_pairs_status', '=', 'failed')
-      .selectField('value').addConverter('mean').addConverter('non_negative_derivative', ['1s'])
+    common.target(
+      cfg,
+      'tnt_vinyl_scheduler_tasks',
+      additional_filters={
+        [variable.datasource_type.prometheus]: { status: ['=', 'failed'] },
+        [variable.datasource_type.influxdb]: { label_pairs_status: ['=', 'failed'] },
+      },
+      rate=true,
+    ),
   ),
 
   scheduler_dump_time_rate(

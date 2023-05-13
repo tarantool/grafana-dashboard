@@ -12,111 +12,67 @@ local prometheus = grafana.prometheus;
   local topics_target(
     cfg,
     metric_name
-  ) =
-    if cfg.type == variable.datasource_type.prometheus then
-      prometheus.target(
-        expr=std.format('%s{job=~"%s",alias=~"%s"}', [metric_name, cfg.filters.job[1], cfg.filters.alias[1]]),
-        legendFormat='{{name}} ({{topic}}) — {{alias}} ({{type}}, {{connector_name}})',
-      )
-    else if cfg.type == variable.datasource_type.influxdb then
-      influxdb.target(
-        policy=cfg.policy,
-        measurement=cfg.measurement,
-        group_tags=[
-          'label_pairs_alias',
-          'label_pairs_name',
-          'label_pairs_type',
-          'label_pairs_connector_name',
-          'label_pairs_topic',
-        ],
-        alias='$tag_label_pairs_name ($tag_label_pairs_topic) — $tag_label_pairs_alias ($tag_label_pairs_type, $tag_label_pairs_connector_name)',
-        fill='null',
-      ).where('metric_name', '=', metric_name)
-      .where('label_pairs_alias', '=~', cfg.filters.label_pairs_alias[1])
-      .selectField('value').addConverter('mean'),
+  ) = common_utils.target(
+    cfg,
+    metric_name,
+    legend={
+      [variable.datasource_type.prometheus]: '{{name}} ({{topic}}) — {{alias}} ({{type}}, {{connector_name}})',
+      [variable.datasource_type.influxdb]: '$tag_label_pairs_name ($tag_label_pairs_topic) — $tag_label_pairs_alias ($tag_label_pairs_type, $tag_label_pairs_connector_name)',
+    },
+    group_tags=[
+      'label_pairs_alias',
+      'label_pairs_name',
+      'label_pairs_type',
+      'label_pairs_connector_name',
+      'label_pairs_topic',
+    ],
+  ),
 
   local partitions_target(
     cfg,
     metric_name,
-  ) =
-    if cfg.type == variable.datasource_type.prometheus then
-      prometheus.target(
-        expr=std.format('%s{job=~"%s",alias=~"%s"}', [metric_name, cfg.filters.job[1], cfg.filters.alias[1]]),
-        legendFormat='{{name}} ({{topic}}, {{partition}}) — {{alias}} ({{type}}, {{connector_name}})',
-      )
-    else if cfg.type == variable.datasource_type.influxdb then
-      influxdb.target(
-        policy=cfg.policy,
-        measurement=cfg.measurement,
-        group_tags=[
-          'label_pairs_alias',
-          'label_pairs_name',
-          'label_pairs_type',
-          'label_pairs_connector_name',
-          'label_pairs_topic',
-          'label_pairs_partition',
-        ],
-        alias='$tag_label_pairs_name ($tag_label_pairs_topic, $tag_label_pairs_partition) — $tag_label_pairs_alias ($tag_label_pairs_type, $tag_label_pairs_connector_name)',
-        fill='null',
-      ).where('metric_name', '=', metric_name)
-      .where('label_pairs_alias', '=~', cfg.filters.label_pairs_alias[1])
-      .selectField('value').addConverter('mean'),
-
-  local partitions_rps_target(
+    rate=false,
+  ) = common_utils.target(
     cfg,
     metric_name,
-  ) =
-    if cfg.type == variable.datasource_type.prometheus then
-      prometheus.target(
-        expr=std.format('rate(%s{job=~"%s",alias=~"%s"}[$__rate_interval])',
-                        [metric_name, cfg.filters.job[1], cfg.filters.alias[1]]),
-        legendFormat='{{name}} ({{topic}}, {{partition}}) — {{alias}} ({{type}}, {{connector_name}})',
-      )
-    else if cfg.type == variable.datasource_type.influxdb then
-      influxdb.target(
-        policy=cfg.policy,
-        measurement=cfg.measurement,
-        group_tags=[
-          'label_pairs_alias',
-          'label_pairs_name',
-          'label_pairs_type',
-          'label_pairs_connector_name',
-          'label_pairs_topic',
-          'label_pairs_partition',
-        ],
-        alias='$tag_label_pairs_name ($tag_label_pairs_topic, $tag_label_pairs_partition) — $tag_label_pairs_alias ($tag_label_pairs_type, $tag_label_pairs_connector_name)',
-        fill='null',
-      ).where('metric_name', '=', metric_name)
-      .where('label_pairs_alias', '=~', cfg.filters.label_pairs_alias[1])
-      .selectField('value').addConverter('mean').addConverter('non_negative_derivative', ['1s']),
+    legend={
+      [variable.datasource_type.prometheus]: '{{name}} ({{topic}}, {{partition}}) — {{alias}} ({{type}}, {{connector_name}})',
+      [variable.datasource_type.influxdb]: '$tag_label_pairs_name ($tag_label_pairs_topic, $tag_label_pairs_partition) — $tag_label_pairs_alias ($tag_label_pairs_type, $tag_label_pairs_connector_name)',
+    },
+    group_tags=[
+      'label_pairs_alias',
+      'label_pairs_name',
+      'label_pairs_type',
+      'label_pairs_connector_name',
+      'label_pairs_topic',
+      'label_pairs_partition',
+    ],
+    rate=rate,
+  ),
 
   local topics_quantile_target(
     cfg,
     metric_name,
-  ) =
-    if cfg.type == variable.datasource_type.prometheus then
-      prometheus.target(
-        expr=std.format('%s{job=~"%s",alias=~"%s",quantile="0.99"}',
-                        [metric_name, cfg.filters.job[1], cfg.filters.alias[1]]),
-        legendFormat='{{name}} ({{topic}}) — {{alias}} ({{type}}, {{connector_name}})',
-      )
-    else if cfg.type == variable.datasource_type.influxdb then
-      influxdb.target(
-        policy=cfg.policy,
-        measurement=cfg.measurement,
-        group_tags=[
-          'label_pairs_alias',
-          'label_pairs_name',
-          'label_pairs_type',
-          'label_pairs_connector_name',
-          'label_pairs_topic',
-        ],
-        alias='$tag_label_pairs_name ($tag_label_pairs_topic) — $tag_label_pairs_alias ($tag_label_pairs_type, $tag_label_pairs_connector_name)',
-        fill='null',
-      ).where('metric_name', '=', metric_name)
-      .where('label_pairs_alias', '=~', cfg.filters.label_pairs_alias[1])
-      .where('label_pairs_quantile', '=', '0.99')
-      .selectField('value').addConverter('last'),
+  ) = common_utils.target(
+    cfg,
+    metric_name,
+    additional_filters={
+      [variable.datasource_type.prometheus]: { quantile: ['=', '0.99'] },
+      [variable.datasource_type.influxdb]: { label_pairs_quantile: ['=', '0.99'] },
+    },
+    legend={
+      [variable.datasource_type.prometheus]: '{{name}} ({{topic}}) — {{alias}} ({{type}}, {{connector_name}})',
+      [variable.datasource_type.influxdb]: '$tag_label_pairs_name ($tag_label_pairs_topic) — $tag_label_pairs_alias ($tag_label_pairs_type, $tag_label_pairs_connector_name)',
+    },
+    group_tags=[
+      'label_pairs_alias',
+      'label_pairs_name',
+      'label_pairs_type',
+      'label_pairs_connector_name',
+      'label_pairs_topic',
+    ],
+    converter='last',
+  ),
 
   age(
     cfg,
@@ -290,7 +246,7 @@ local prometheus = grafana.prometheus;
     labelY1='messages per second',
     panel_width=6,
   ).addTarget(
-    partitions_rps_target(cfg, 'tdg_kafka_topic_partitions_txmsgs')
+    partitions_target(cfg, 'tdg_kafka_topic_partitions_txmsgs', rate=true)
   ),
 
   partition_message_bytes_sent(
@@ -308,7 +264,7 @@ local prometheus = grafana.prometheus;
     format='bytes',
     panel_width=6,
   ).addTarget(
-    partitions_rps_target(cfg, 'tdg_kafka_topic_partitions_txbytes')
+    partitions_target(cfg, 'tdg_kafka_topic_partitions_txbytes', rate=true)
   ),
 
   partition_messages_consumed(
@@ -326,7 +282,7 @@ local prometheus = grafana.prometheus;
     labelY1='messages per second',
     panel_width=6,
   ).addTarget(
-    partitions_rps_target(cfg, 'tdg_kafka_topic_partitions_rxmsgs')
+    partitions_target(cfg, 'tdg_kafka_topic_partitions_rxmsgs', rate=true)
   ),
 
   partition_message_bytes_consumed(
@@ -345,7 +301,7 @@ local prometheus = grafana.prometheus;
     format='bytes',
     panel_width=6,
   ).addTarget(
-    partitions_rps_target(cfg, 'tdg_kafka_topic_partitions_rxbytes')
+    partitions_target(cfg, 'tdg_kafka_topic_partitions_rxbytes', rate=true)
   ),
 
   partition_messages_dropped(
@@ -362,7 +318,7 @@ local prometheus = grafana.prometheus;
     labelY1='messages per second',
     panel_width=12,
   ).addTarget(
-    partitions_rps_target(cfg, 'tdg_kafka_topic_partitions_rx_ver_drops')
+    partitions_target(cfg, 'tdg_kafka_topic_partitions_rx_ver_drops', rate=true)
   ),
 
   partition_messages_in_flight(
