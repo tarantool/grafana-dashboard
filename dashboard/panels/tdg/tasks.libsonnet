@@ -39,7 +39,6 @@ local prometheus = grafana.prometheus;
         group_tags=[
           'label_pairs_alias',
           'label_pairs_name',
-          'label_pairs_kind',
         ],
         alias='$tag_label_pairs_name — $tag_label_pairs_alias',
         fill='null',
@@ -79,7 +78,6 @@ local prometheus = grafana.prometheus;
         group_tags=[
           'label_pairs_alias',
           'label_pairs_name',
-          'label_pairs_kind',
         ],
         alias='$tag_label_pairs_name — $tag_label_pairs_alias',
         fill='null',
