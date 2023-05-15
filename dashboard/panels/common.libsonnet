@@ -5,6 +5,26 @@ local variable = import 'dashboard/variable.libsonnet';
 local influxdb = grafana.influxdb;
 local prometheus = grafana.prometheus;
 
+local prometheus_query_filters(filters) = std.join(
+  ',',
+  std.map(
+    function(key)
+      std.format('%s%s"%s"', [key, filters[key][0], filters[key][1]]),
+    std.objectFields(filters)
+  )
+);
+
+local influxdb_query_filters(filters) = std.join(' AND ', std.map(
+  function(key)
+    local condition = filters[key][0];
+    local value = filters[key][1];
+    if std.startsWith(value, '/') && std.endsWith(value, '/') then  //regex condition
+      std.format('"%s" %s %s', [key, condition, value])
+    else
+      std.format('"%s" %s \'%s\'', [key, condition, value]),
+  std.objectFields(filters)
+));
+
 {
   default_graph(
     cfg,
@@ -47,6 +67,9 @@ local prometheus = grafana.prometheus;
 
   row(title):: grafana.row.new(title, collapse=true) { gridPos: { w: 24, h: 1 } },
 
+  prometheus_query_filters:: prometheus_query_filters,
+  influxdb_query_filters:: influxdb_query_filters,
+
   target(
     cfg,
     metric_name,
@@ -64,14 +87,7 @@ local prometheus = grafana.prometheus;
   )::
     local filters = additional_filters[cfg.type] + cfg.filters;
     if cfg.type == variable.datasource_type.prometheus then
-      local expr = std.format('%s{%s}', [metric_name, std.join(
-        ',',
-        std.map(
-          function(key)
-            std.format('%s%s"%s"', [key, filters[key][0], filters[key][1]]),
-          std.objectFields(filters)
-        )
-      )]);
+      local expr = std.format('%s{%s}', [metric_name, prometheus_query_filters(filters)]);
       prometheus.target(
         expr=if rate then std.format('rate(%s[$__rate_interval])', expr) else expr,
         legendFormat=legend[cfg.type],

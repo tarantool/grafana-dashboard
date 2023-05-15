@@ -79,32 +79,32 @@ local prometheus = grafana.prometheus;
     panel_width=12,
   ).addTarget(
     if cfg.type == variable.datasource_type.prometheus then
+      local filters = common_utils.prometheus_query_filters(cfg.filters);
       prometheus.target(
         expr=std.format(
           |||
-            %(metric_name_sum)s{job=~"%(job)s",alias=~"%(alias)s"} /
-            %(metric_name_count)s{job=~"%(job)s",alias=~"%(alias)s"}
+            %(metric_name_sum)s{%(filters)s} / %(metric_name_count)s{%(filters)s"}
           |||,
           {
             metric_name_sum: std.join('_', [metric_name, 'sum']),
             metric_name_count: std.join('_', [metric_name, 'count']),
-            job: cfg.filters.job[1],
-            alias: cfg.filters.alias[1],
+            filters: filters,
           }
         ),
         legendFormat='{{name}} — {{alias}}'
       )
     else if cfg.type == variable.datasource_type.influxdb then
+      local filters = common_utils.influxdb_query_filters(cfg.filters);
       influxdb.target(
         rawQuery=true,
         query=std.format(|||
           SELECT mean("%(metric_name_sum)s") / mean("%(metric_name_count)s")
           as "average" FROM
           (SELECT "value" as "%(metric_name_sum)s" FROM %(policy_prefix)s"%(measurement)s"
-          WHERE ("metric_name" = '%(metric_name_sum)s' AND "label_pairs_alias" =~ %(alias)s)
+          WHERE ("metric_name" = '%(metric_name_sum)s' %(filters)s)
           AND $timeFilter),
           (SELECT "value" as "%(metric_name_count)s" FROM %(policy_prefix)s"%(measurement)s"
-          WHERE ("metric_name" = '%(metric_name_count)s' AND "label_pairs_alias" =~ %(alias)s)
+          WHERE ("metric_name" = '%(metric_name_count)s' %(filters)s)
           AND $timeFilter)
           GROUP BY time($__interval), "label_pairs_alias", "label_pairs_name" fill(null)
         |||, {
@@ -112,7 +112,7 @@ local prometheus = grafana.prometheus;
           metric_name_count: std.join('_', [metric_name, 'count']),
           policy_prefix: if cfg.policy == 'default' then '' else std.format('"%(policy)s".', cfg.policy),
           measurement: cfg.measurement,
-          alias: cfg.filters.label_pairs_alias[1],
+          filters: if filters == '' then '' else std.format('AND %s', filters),
         }),
         alias='$tag_label_pairs_name — $tag_label_pairs_alias'
       )
@@ -190,32 +190,32 @@ local prometheus = grafana.prometheus;
     panel_width=12,
   ).addTarget(
     if cfg.type == variable.datasource_type.prometheus then
+      local filters = common_utils.prometheus_query_filters(cfg.filters);
       prometheus.target(
         expr=std.format(
           |||
-            %(metric_name_sum)s{job=~"%(job)s",alias=~"%(alias)s"} /
-            %(metric_name_count)s{job=~"%(job)s",alias=~"%(alias)s"}
+            %(metric_name_sum)s{%(filters)s} / %(metric_name_count)s{%(filters)s}
           |||,
           {
             metric_name_sum: std.join('_', [metric_name, 'sum']),
             metric_name_count: std.join('_', [metric_name, 'count']),
-            job: cfg.filters.job[1],
-            alias: cfg.filters.alias[1],
+            filters: filters,
           }
         ),
         legendFormat='{{name}} ({{kind}}) — {{alias}}'
       )
     else if cfg.type == variable.datasource_type.influxdb then
+      local filters = common_utils.influxdb_query_filters(cfg.filters);
       influxdb.target(
         rawQuery=true,
         query=std.format(|||
           SELECT mean("%(metric_name_sum)s") / mean("%(metric_name_count)s")
           as "average" FROM
           (SELECT "value" as "%(metric_name_sum)s" FROM %(policy_prefix)s"%(measurement)s"
-          WHERE ("metric_name" = '%(metric_name_sum)s' AND "label_pairs_alias" =~ %(alias)s)
+          WHERE ("metric_name" = '%(metric_name_sum)s' %(filters)s)
           AND $timeFilter),
           (SELECT "value" as "%(metric_name_count)s" FROM %(policy_prefix)s"%(measurement)s"
-          WHERE ("metric_name" = '%(metric_name_count)s' AND "label_pairs_alias" =~ %(alias)s)
+          WHERE ("metric_name" = '%(metric_name_count)s' %(filters)s)
           AND $timeFilter)
           GROUP BY time($__interval), "label_pairs_alias", "label_pairs_name",
           "label_pairs_kind" fill(null)
@@ -224,7 +224,7 @@ local prometheus = grafana.prometheus;
           metric_name_count: std.join('_', [metric_name, 'count']),
           policy_prefix: if cfg.policy == 'default' then '' else std.format('"%(policy)s".', cfg.policy),
           measurement: cfg.measurement,
-          alias: cfg.filters.label_pairs_alias[1],
+          filters: if filters == '' then '' else std.format('AND %s', filters),
         }),
         alias='$tag_label_pairs_name ($tag_label_pairs_kind) — $tag_label_pairs_alias'
       )

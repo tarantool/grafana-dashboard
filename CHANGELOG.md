@@ -6,6 +6,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Unreleased
 
+### Added
+- Custom filters support on static build
+
 ### Changed
 - Display two digits after decimal point instead of three
 

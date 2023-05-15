@@ -69,7 +69,7 @@
             {
                "columns": [ ],
                "datasource": "$prometheus",
-               "description": "Overview of Tarantool instances observed by Prometheus job.\n\nIf instance row is *red*, it means Prometheus can't reach\nURI specified in targets or ran into error.\nIf instance row is *green*, it means instance is up and running and\nPrometheus is successfully extracting metrics from it.\n\"Uptime\" column shows time since instant start.\n\nInstance alias filtering is disabled here.\n",
+               "description": "Overview of Tarantool instances observed by Prometheus job.\n\nIf instance row is *red*, it means Prometheus can't reach\nURI specified in targets or ran into error.\nIf instance row is *green*, it means instance is up and running and\nPrometheus is successfully extracting metrics from it.\n\"Uptime\" column shows time since instant start.\n\nInstance alias filtering is disabled here.\n\nIf Prometheus job filter is not specified, displays running instances\nand ignores unreachable instances (we have no specific source to fetch)\n",
                "gridPos": {
                   "h": 8,
                   "w": 12,
@@ -19321,7 +19321,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tdg_scanned_tuples_sum{job=~\"$job\",alias=~\"$alias\"} /\ntdg_scanned_tuples_count{job=~\"$job\",alias=~\"$alias\"}\n",
+                     "expr": "tdg_scanned_tuples_sum{alias=~\"$alias\",job=~\"$job\"} / tdg_scanned_tuples_count{alias=~\"$alias\",job=~\"$job\"}\n",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{type_name}} — {{alias}}",
@@ -19411,7 +19411,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tdg_returned_tuples_sum{job=~\"$job\",alias=~\"$alias\"} /\ntdg_returned_tuples_count{job=~\"$job\",alias=~\"$alias\"}\n",
+                     "expr": "tdg_returned_tuples_sum{alias=~\"$alias\",job=~\"$job\"} / tdg_returned_tuples_count{alias=~\"$alias\",job=~\"$job\"}\n",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{type_name}} — {{alias}}",
@@ -20351,7 +20351,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tdg_graphql_query_time_sum{job=~\"$job\",alias=~\"$alias\"} /\ntdg_graphql_query_time_count{job=~\"$job\",alias=~\"$alias\"}\n",
+                     "expr": "tdg_graphql_query_time_sum{alias=~\"$alias\",job=~\"$job\"} / tdg_graphql_query_time_count{alias=~\"$alias\",job=~\"$job\"}\n",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{operation_name}} ({{schema}}, {{entity}}) — {{alias}}",
@@ -20621,7 +20621,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tdg_graphql_mutation_time_sum{job=~\"$job\",alias=~\"$alias\"} /\ntdg_graphql_mutation_time_count{job=~\"$job\",alias=~\"$alias\"}\n",
+                     "expr": "tdg_graphql_mutation_time_sum{alias=~\"$alias\",job=~\"$job\"} / tdg_graphql_mutation_time_count{alias=~\"$alias\",job=~\"$job\"}\n",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{operation_name}} ({{schema}}, {{entity}}) — {{alias}}",
@@ -23921,7 +23921,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tdg_jobs_execution_time_sum{job=~\"$job\",alias=~\"$alias\"} /\ntdg_jobs_execution_time_count{job=~\"$job\",alias=~\"$alias\"}\n",
+                     "expr": "tdg_jobs_execution_time_sum{alias=~\"$alias\",job=~\"$job\"} / tdg_jobs_execution_time_count{alias=~\"$alias\",job=~\"$job\"\"}\n",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{name}} — {{alias}}",
@@ -24461,7 +24461,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tdg_tasks_execution_time_sum{job=~\"$job\",alias=~\"$alias\"} /\ntdg_tasks_execution_time_count{job=~\"$job\",alias=~\"$alias\"}\n",
+                     "expr": "tdg_tasks_execution_time_sum{alias=~\"$alias\",job=~\"$job\"} / tdg_tasks_execution_time_count{alias=~\"$alias\",job=~\"$job\"}\n",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{name}} ({{kind}}) — {{alias}}",
@@ -24911,7 +24911,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tdg_system_tasks_execution_time_sum{job=~\"$job\",alias=~\"$alias\"} /\ntdg_system_tasks_execution_time_count{job=~\"$job\",alias=~\"$alias\"}\n",
+                     "expr": "tdg_system_tasks_execution_time_sum{alias=~\"$alias\",job=~\"$job\"} / tdg_system_tasks_execution_time_count{alias=~\"$alias\",job=~\"$job\"}\n",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{name}} ({{kind}}) — {{alias}}",
