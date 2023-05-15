@@ -348,41 +348,41 @@ local tuples_panel(
   panel_width=8,
 ).addTarget(
   if cfg.type == variable.datasource_type.prometheus then
+    local filters = common.prometheus_query_filters(cfg.filters { operation: ['=', 'select'] });
     prometheus.target(
       expr=std.format(
         |||
-          rate(%(metric_name)s{job=~"%(job)s",alias=~"%(alias)s", operation="select"}[$__rate_interval]) /
-          (sum without (status) (rate(tnt_crud_stats_count{job=~"%(job)s",alias=~"%(alias)s",operation="select"}[$__rate_interval])))
+          rate(%(metric_name)s{%(filters)s}[$__rate_interval]) /
+          (sum without (status) (rate(tnt_crud_stats_count{%(filters)s}[$__rate_interval])))
         |||,
         {
           metric_name: metric_name,
-          job: cfg.filters.job[1],
-          alias: cfg.filters.alias[1],
+          filters: filters,
         }
       ),
       legendFormat='{{alias}} — {{name}}'
     )
   else if cfg.type == variable.datasource_type.influxdb then
+    local filters = common.influxdb_query_filters(cfg.filters {
+      label_pairs_operation: ['=', 'select'],
+    });
     influxdb.target(
       rawQuery=true,
       query=std.format(|||
         SELECT mean("%(metric_name)s") / (mean("tnt_crud_stats_count_ok") + mean("tnt_crud_stats_count_error"))
         as "tnt_crud_tuples_per_request" FROM
         (SELECT "value" as "%(metric_name)s" FROM %(policy_prefix)s"%(measurement)s"
-        WHERE ("metric_name" = '%(metric_name)s' AND "label_pairs_alias" =~ %(alias)s
-        AND "label_pairs_operation" = 'select') AND $timeFilter),
+        WHERE ("metric_name" = '%(metric_name)s' %(filters)s) AND $timeFilter),
         (SELECT "value" as "tnt_crud_stats_count_error" FROM %(policy_prefix)s"%(measurement)s"
-        WHERE ("metric_name" = 'tnt_crud_stats_count' AND "label_pairs_alias" =~ %(alias)s
-        AND "label_pairs_operation" = 'select' AND "label_pairs_status" = 'error') AND $timeFilter),
+        WHERE ("metric_name" = 'tnt_crud_stats_count' %(filters)s AND "label_pairs_status" = 'error') AND $timeFilter),
         (SELECT "value" as "tnt_crud_stats_count_ok" FROM %(policy_prefix)s"%(measurement)s"
-        WHERE ("metric_name" = 'tnt_crud_stats_count' AND "label_pairs_alias" =~ %(alias)s
-        AND "label_pairs_operation" = 'select' AND "label_pairs_status" = 'ok') AND $timeFilter)
+        WHERE ("metric_name" = 'tnt_crud_stats_count' %(filters)s AND "label_pairs_status" = 'ok') AND $timeFilter)
         GROUP BY time($__interval * 2), "label_pairs_alias", "label_pairs_name" fill(0)
       |||, {
         metric_name: metric_name,
         policy_prefix: if cfg.policy == 'default' then '' else std.format('"%(policy)s".', cfg.policy),
         measurement: cfg.measurement,
-        alias: cfg.filters.label_pairs_alias[1],
+        filters: if filters == '' then '' else std.format('AND %s', filters),
       }),
       alias='$tag_label_pairs_alias — $tag_label_pairs_name'
     )

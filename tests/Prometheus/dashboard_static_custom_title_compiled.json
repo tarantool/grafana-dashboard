@@ -69,7 +69,7 @@
             {
                "columns": [ ],
                "datasource": "Prometheus",
-               "description": "Overview of Tarantool instances observed by Prometheus job.\n\nIf instance row is *red*, it means Prometheus can't reach\nURI specified in targets or ran into error.\nIf instance row is *green*, it means instance is up and running and\nPrometheus is successfully extracting metrics from it.\n\"Uptime\" column shows time since instant start.\n\nInstance alias filtering is disabled here.\n",
+               "description": "Overview of Tarantool instances observed by Prometheus job.\n\nIf instance row is *red*, it means Prometheus can't reach\nURI specified in targets or ran into error.\nIf instance row is *green*, it means instance is up and running and\nPrometheus is successfully extracting metrics from it.\n\"Uptime\" column shows time since instant start.\n\nInstance alias filtering is disabled here.\n\nIf Prometheus job filter is not specified, displays running instances\nand ignores unreachable instances (we have no specific source to fetch)\n",
                "gridPos": {
                   "h": 8,
                   "w": 12,
@@ -14361,7 +14361,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_crud_tuples_fetched{job=~\"tarantool\",alias=~\".*\", operation=\"select\"}[$__rate_interval]) /\n(sum without (status) (rate(tnt_crud_stats_count{job=~\"tarantool\",alias=~\".*\",operation=\"select\"}[$__rate_interval])))\n",
+                     "expr": "rate(tnt_crud_tuples_fetched{alias=~\".*\",job=~\"tarantool\",operation=\"select\"}[$__rate_interval]) /\n(sum without (status) (rate(tnt_crud_stats_count{alias=~\".*\",job=~\"tarantool\",operation=\"select\"}[$__rate_interval])))\n",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}} — {{name}}",
@@ -14451,7 +14451,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_crud_tuples_lookup{job=~\"tarantool\",alias=~\".*\", operation=\"select\"}[$__rate_interval]) /\n(sum without (status) (rate(tnt_crud_stats_count{job=~\"tarantool\",alias=~\".*\",operation=\"select\"}[$__rate_interval])))\n",
+                     "expr": "rate(tnt_crud_tuples_lookup{alias=~\".*\",job=~\"tarantool\",operation=\"select\"}[$__rate_interval]) /\n(sum without (status) (rate(tnt_crud_stats_count{alias=~\".*\",job=~\"tarantool\",operation=\"select\"}[$__rate_interval])))\n",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}} — {{name}}",

@@ -9,6 +9,9 @@ local tablePanel = grafana.tablePanel;
 local influxdb = grafana.influxdb;
 local prometheus = grafana.prometheus;
 
+local remove_field(obj, key) =
+  { [item.key]: item.value for item in std.objectKeysValuesAll(obj) if item.key != key };
+
 {
   row:: common.row('Cluster overview'),
 
@@ -25,6 +28,9 @@ local prometheus = grafana.prometheus;
       "Uptime" column shows time since instant start.
 
       Instance alias filtering is disabled here.
+
+      If Prometheus job filter is not specified, displays running instances
+      and ignores unreachable instances (we have no specific source to fetch)
     |||,
   ):: tablePanel.new(
     title=title,
@@ -70,13 +76,17 @@ local prometheus = grafana.prometheus;
   ).hideColumn('job').hideColumn('__name__').hideColumn('Time').addTarget(
     if cfg.type == variable.datasource_type.prometheus then
       prometheus.target(
-        expr=std.format(
-          |||
-            up{job=~"%s"} * on(instance) group_left(alias) tnt_info_uptime{job=~"%s"} or
-            on(instance) label_replace(up{job=~"%s"}, "alias", "Not available", "instance", ".*")
-          |||,
-          [cfg.filters.job[1], cfg.filters.job[1], cfg.filters.job[1]]
-        ),
+        expr=if std.objectHas(cfg.filters, 'job') then
+          std.format(
+            |||
+              up{%(up_filters)s} * on(instance) group_left(alias) tnt_info_uptime{%(tnt_filters)s} or
+              on(instance) label_replace(up{%(up_filters)s}, "alias", "Not available", "instance", ".*")
+            |||,
+            {
+              up_filters: common.prometheus_query_filters({ job: cfg.filters.job }),
+              tnt_filters: common.prometheus_query_filters(remove_field(cfg.filters, 'alias')),
+            }
+          ) else std.format('tnt_info_uptime{%s}', common.prometheus_query_filters(remove_field(cfg.filters, 'alias'))),
         format='table',
         instant=true,
       )
@@ -147,7 +157,17 @@ local prometheus = grafana.prometheus;
       stat_title='Total instances running:',
       decimals=0,
       unit='none',
-      expr=std.format('sum(up{job=~"%s"})', cfg.filters.job[1]),
+      expr=
+      if std.objectHas(cfg.filters, 'job') then
+        std.format(
+          'sum(up{%s})',
+          common.prometheus_query_filters({ job: cfg.filters.job }),
+        )
+      else
+        std.format(
+          'count(tnt_info_uptime{%s})',
+          common.prometheus_query_filters(common.remove_field(cfg.filters, 'alias'))
+        ),
     ) { gridPos: { w: 6, h: 3 } }
   else if cfg.type == variable.datasource_type.influxdb then
     error 'InfluxDB target is not supported yet',
@@ -172,7 +192,8 @@ local prometheus = grafana.prometheus;
       stat_title='Overall memory used:',
       decimals=2,
       unit='bytes',
-      expr=std.format('sum(tnt_slab_arena_used{job=~"%s"})', cfg.filters.job[1]),
+      expr=std.format('sum(tnt_slab_arena_used{%s})',
+                      [common.prometheus_query_filters(remove_field(cfg.filters, 'alias'))]),
     ) { gridPos: { w: 3, h: 3 } }
   else if cfg.type == variable.datasource_type.influxdb then
     error 'InfluxDB target is not supported yet',
@@ -196,7 +217,8 @@ local prometheus = grafana.prometheus;
       stat_title='Overall memory reserved:',
       decimals=2,
       unit='bytes',
-      expr=std.format('sum(tnt_slab_quota_size{job=~"%s"})', cfg.filters.job[1]),
+      expr=std.format('sum(tnt_slab_quota_size{%s})',
+                      [common.prometheus_query_filters(remove_field(cfg.filters, 'alias'))]),
     ) { gridPos: { w: 3, h: 3 } }
   else if cfg.type == variable.datasource_type.influxdb then
     error 'InfluxDB target is not supported yet',
@@ -220,7 +242,8 @@ local prometheus = grafana.prometheus;
       stat_title='Overall space load:',
       decimals=2,
       unit='ops',
-      expr=std.format('sum(rate(tnt_stats_op_total{job=~"%s"}[$__rate_interval]))', [cfg.filters.job[1]]),
+      expr=std.format('sum(rate(tnt_stats_op_total{%s}[$__rate_interval]))',
+                      [common.prometheus_query_filters(remove_field(cfg.filters, 'alias'))]),
     ) { gridPos: { w: 4, h: 5 } }
   else if cfg.type == variable.datasource_type.influxdb then
     error 'InfluxDB target is not supported yet',
@@ -244,7 +267,8 @@ local prometheus = grafana.prometheus;
       stat_title='Overall HTTP load:',
       decimals=2,
       unit='reqps',
-      expr=std.format('sum(rate(http_server_request_latency_count{job=~"%s"}[$__rate_interval]))', [cfg.filters.job[1]]),
+      expr=std.format('sum(rate(http_server_request_latency_count{%s}[$__rate_interval]))',
+                      [common.prometheus_query_filters(remove_field(cfg.filters, 'alias'))]),
     ) { gridPos: { w: 4, h: 5 } }
   else if cfg.type == variable.datasource_type.influxdb then
     error 'InfluxDB target is not supported yet',
@@ -267,7 +291,8 @@ local prometheus = grafana.prometheus;
       stat_title='Overall net load:',
       decimals=2,
       unit='reqps',
-      expr=std.format('sum(rate(tnt_net_requests_total{job=~"%s"}[$__rate_interval]))', [cfg.filters.job[1]]),
+      expr=std.format('sum(rate(tnt_net_requests_total{%s}[$__rate_interval]))',
+                      [common.prometheus_query_filters(remove_field(cfg.filters, 'alias'))]),
     ) { gridPos: { w: 4, h: 5 } }
   else if cfg.type == variable.datasource_type.influxdb then
     error 'InfluxDB target is not supported yet',
