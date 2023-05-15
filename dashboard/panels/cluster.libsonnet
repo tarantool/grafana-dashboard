@@ -24,6 +24,8 @@ local prometheus = grafana.prometheus;
         If instance row is *green*, it means instance is up and running and
         Prometheus is successfully extracting metrics from it.
         "Uptime" column shows time since instant start.
+
+        Instance alias filtering is disabled here.
       |||
     else if datasource == variable.datasource_type.influxdb then
       error 'InfluxDB target is not supported yet',
@@ -145,6 +147,8 @@ local prometheus = grafana.prometheus;
         Count of running Tarantool instances observed by Prometheus job.
         If Prometheus can't reach URI specified in targets
         or ran into error, instance is not counted.
+
+        Instance alias filtering is disabled here.
       |||
     else if datasource_type == variable.datasource_type.influxdb then
       error 'InfluxDB target is not supported yet',
@@ -175,6 +179,8 @@ local prometheus = grafana.prometheus;
         If Tarantool instance is not available
         for Prometheus metrics extraction now,
         its contribution is not counted.
+
+        Instance alias filtering is disabled here.
       |||
     else if datasource_type == variable.datasource_type.influxdb then
       error 'InfluxDB target is not supported yet',
@@ -204,6 +210,8 @@ local prometheus = grafana.prometheus;
         and indexes allocation (*memtx_memory* or *quota_size* values).
         If Tarantool instance is not available for Prometheus metrics
         extraction now, its contribution is not counted.
+
+        Instance alias filtering is disabled here.
       |||
     else if datasource_type == variable.datasource_type.influxdb then
       error 'InfluxDB target is not supported yet',
@@ -233,6 +241,8 @@ local prometheus = grafana.prometheus;
         (*select*, *insert*, *update* etc.).
         If Tarantool instance is not available for Prometheus metrics
         extraction now, its contribution is not counted.
+
+        Instance alias filtering is disabled here.
       |||
     else if datasource_type == variable.datasource_type.influxdb then
       error 'InfluxDB target is not supported yet',
@@ -262,6 +272,8 @@ local prometheus = grafana.prometheus;
         on Tarantool instances (all methods and response codes).
         If Tarantool instance is not available for Prometheus metrics
         extraction now, its contribution is not counted.
+
+        Instance alias filtering is disabled here.
       |||
     else if datasource_type == variable.datasource_type.influxdb then
       error 'InfluxDB target is not supported yet',
@@ -290,6 +302,8 @@ local prometheus = grafana.prometheus;
         Overall rate of network requests processed on Tarantool instances.
         If Tarantool instance is not available for Prometheus metrics
         extraction now, its contribution is not counted.
+
+        Instance alias filtering is disabled here.
       |||
     else if datasource_type == variable.datasource_type.influxdb then
       error 'InfluxDB target is not supported yet',
