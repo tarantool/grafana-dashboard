@@ -30866,7 +30866,7 @@
                         }
                      ],
                      "policy": "default",
-                     "query": "SELECT mean(\"tdg_scanned_tuples_sum\") / mean(\"tdg_scanned_tuples_count\")\nas \"average\" FROM\n(SELECT \"value\" as \"tdg_scanned_tuples_sum\" FROM \"autogen\".\"tarantool_http\"\nWHERE (\"metric_name\" = 'tdg_scanned_tuples_sum') AND $timeFilter),\n(SELECT \"value\" as \"tdg_scanned_tuples_count\" FROM \"autogen\".\"tarantool_http\"\nWHERE (\"metric_name\" = 'tdg_scanned_tuples_count') AND $timeFilter)\nGROUP BY time($__interval), \"label_pairs_alias\", \"label_pairs_type_name\" fill(null)\n",
+                     "query": "SELECT mean(\"tdg_scanned_tuples_sum\") / mean(\"tdg_scanned_tuples_count\")\nas \"average\" FROM\n(SELECT \"value\" as \"tdg_scanned_tuples_sum\" FROM \"autogen\".\"tarantool_http\"\nWHERE (\"metric_name\" = 'tdg_scanned_tuples_sum' AND \"label_pairs_alias\" =~ /^.*$/) AND $timeFilter),\n(SELECT \"value\" as \"tdg_scanned_tuples_count\" FROM \"autogen\".\"tarantool_http\"\nWHERE (\"metric_name\" = 'tdg_scanned_tuples_count' AND \"label_pairs_alias\" =~ /^.*$/) AND $timeFilter)\nGROUP BY time($__interval), \"label_pairs_alias\", \"label_pairs_type_name\" fill(null)\n",
                      "rawQuery": true,
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -30973,7 +30973,7 @@
                         }
                      ],
                      "policy": "default",
-                     "query": "SELECT mean(\"tdg_returned_tuples_sum\") / mean(\"tdg_returned_tuples_count\")\nas \"average\" FROM\n(SELECT \"value\" as \"tdg_returned_tuples_sum\" FROM \"autogen\".\"tarantool_http\"\nWHERE (\"metric_name\" = 'tdg_returned_tuples_sum') AND $timeFilter),\n(SELECT \"value\" as \"tdg_returned_tuples_count\" FROM \"autogen\".\"tarantool_http\"\nWHERE (\"metric_name\" = 'tdg_returned_tuples_count') AND $timeFilter)\nGROUP BY time($__interval), \"label_pairs_alias\", \"label_pairs_type_name\" fill(null)\n",
+                     "query": "SELECT mean(\"tdg_returned_tuples_sum\") / mean(\"tdg_returned_tuples_count\")\nas \"average\" FROM\n(SELECT \"value\" as \"tdg_returned_tuples_sum\" FROM \"autogen\".\"tarantool_http\"\nWHERE (\"metric_name\" = 'tdg_returned_tuples_sum' AND \"label_pairs_alias\" =~ /^.*$/) AND $timeFilter),\n(SELECT \"value\" as \"tdg_returned_tuples_count\" FROM \"autogen\".\"tarantool_http\"\nWHERE (\"metric_name\" = 'tdg_returned_tuples_count' AND \"label_pairs_alias\" =~ /^.*$/) AND $timeFilter)\nGROUP BY time($__interval), \"label_pairs_alias\", \"label_pairs_type_name\" fill(null)\n",
                      "rawQuery": true,
                      "refId": "A",
                      "resultFormat": "time_series",

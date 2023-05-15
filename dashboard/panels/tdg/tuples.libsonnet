@@ -21,13 +21,14 @@ local prometheus = grafana.prometheus;
       prometheus.target(
         expr=std.format(
           |||
-            %(metric_name_sum)s{job=~"%(job)s"} /
-            %(metric_name_count)s{job=~"%(job)s"}
+            %(metric_name_sum)s{job=~"%(job)s",alias=~"%(alias)s"} /
+            %(metric_name_count)s{job=~"%(job)s",alias=~"%(alias)s"}
           |||,
           {
             metric_name_sum: std.join('_', [metric_name, 'sum']),
             metric_name_count: std.join('_', [metric_name, 'count']),
             job: job,
+            alias: alias,
           }
         ),
         legendFormat='{{type_name}} — {{alias}}'
@@ -39,15 +40,16 @@ local prometheus = grafana.prometheus;
           SELECT mean("%(metric_name_sum)s") / mean("%(metric_name_count)s")
           as "average" FROM
           (SELECT "value" as "%(metric_name_sum)s" FROM %(policy_prefix)s"%(measurement)s"
-          WHERE ("metric_name" = '%(metric_name_sum)s') AND $timeFilter),
+          WHERE ("metric_name" = '%(metric_name_sum)s' AND "label_pairs_alias" =~ %(alias)s) AND $timeFilter),
           (SELECT "value" as "%(metric_name_count)s" FROM %(policy_prefix)s"%(measurement)s"
-          WHERE ("metric_name" = '%(metric_name_count)s') AND $timeFilter)
+          WHERE ("metric_name" = '%(metric_name_count)s' AND "label_pairs_alias" =~ %(alias)s) AND $timeFilter)
           GROUP BY time($__interval), "label_pairs_alias", "label_pairs_type_name" fill(null)
         |||, {
           metric_name_sum: std.join('_', [metric_name, 'sum']),
           metric_name_count: std.join('_', [metric_name, 'count']),
           policy_prefix: if policy == 'default' then '' else std.format('"%(policy)s".', policy),
           measurement: measurement,
+          alias: alias,
         }),
         alias='$tag_label_pairs_type_name — $tag_label_pairs_alias'
       ),
