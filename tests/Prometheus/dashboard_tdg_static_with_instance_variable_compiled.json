@@ -19321,7 +19321,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tdg_scanned_tuples_sum{job=~\"tarantool\"} /\ntdg_scanned_tuples_count{job=~\"tarantool\"}\n",
+                     "expr": "tdg_scanned_tuples_sum{job=~\"tarantool\",alias=~\"$alias\"} /\ntdg_scanned_tuples_count{job=~\"tarantool\",alias=~\"$alias\"}\n",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{type_name}} — {{alias}}",
@@ -19411,7 +19411,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tdg_returned_tuples_sum{job=~\"tarantool\"} /\ntdg_returned_tuples_count{job=~\"tarantool\"}\n",
+                     "expr": "tdg_returned_tuples_sum{job=~\"tarantool\",alias=~\"$alias\"} /\ntdg_returned_tuples_count{job=~\"tarantool\",alias=~\"$alias\"}\n",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{type_name}} — {{alias}}",
