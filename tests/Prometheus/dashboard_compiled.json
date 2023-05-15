@@ -14361,7 +14361,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_crud_tuples_fetched{job=~\"$job\",alias=~\"$alias\", operation=\"select\"}[$__rate_interval]) /\n(sum without (status) (rate(tnt_crud_stats_count{job=~\"$job\",operation=\"select\"}[$__rate_interval])))\n",
+                     "expr": "rate(tnt_crud_tuples_fetched{job=~\"$job\",alias=~\"$alias\", operation=\"select\"}[$__rate_interval]) /\n(sum without (status) (rate(tnt_crud_stats_count{job=~\"$job\",alias=~\"$alias\",operation=\"select\"}[$__rate_interval])))\n",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}} — {{name}}",
@@ -14451,7 +14451,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_crud_tuples_lookup{job=~\"$job\",alias=~\"$alias\", operation=\"select\"}[$__rate_interval]) /\n(sum without (status) (rate(tnt_crud_stats_count{job=~\"$job\",operation=\"select\"}[$__rate_interval])))\n",
+                     "expr": "rate(tnt_crud_tuples_lookup{job=~\"$job\",alias=~\"$alias\", operation=\"select\"}[$__rate_interval]) /\n(sum without (status) (rate(tnt_crud_stats_count{job=~\"$job\",alias=~\"$alias\",operation=\"select\"}[$__rate_interval])))\n",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}} — {{name}}",

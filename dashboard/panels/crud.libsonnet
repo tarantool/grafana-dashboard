@@ -468,7 +468,7 @@ local tuples_panel(
       expr=std.format(
         |||
           rate(%(metric_name)s{job=~"%(job)s",alias=~"%(alias)s", operation="select"}[$__rate_interval]) /
-          (sum without (status) (rate(tnt_crud_stats_count{job=~"%(job)s",operation="select"}[$__rate_interval])))
+          (sum without (status) (rate(tnt_crud_stats_count{job=~"%(job)s",alias=~"%(alias)s",operation="select"}[$__rate_interval])))
         |||,
         {
           metric_name: metric_name,
