@@ -146,12 +146,6 @@
                         },
                         {
                            "condition": "AND",
-                           "key": "label_pairs_alias",
-                           "operator": "=~",
-                           "value": "/^.*$/"
-                        },
-                        {
-                           "condition": "AND",
                            "key": "label_pairs_level",
                            "operator": "=",
                            "value": "warning"
@@ -286,12 +280,6 @@
                            "key": "metric_name",
                            "operator": "=",
                            "value": "tnt_cartridge_issues"
-                        },
-                        {
-                           "condition": "AND",
-                           "key": "label_pairs_alias",
-                           "operator": "=~",
-                           "value": "/^.*$/"
                         },
                         {
                            "condition": "AND",
@@ -435,12 +423,6 @@
                            "key": "metric_name",
                            "operator": "=",
                            "value": "tnt_cartridge_failover_trigger_total"
-                        },
-                        {
-                           "condition": "AND",
-                           "key": "label_pairs_alias",
-                           "operator": "=~",
-                           "value": "/^.*$/"
                         }
                      ]
                   }
@@ -626,12 +608,6 @@
                            "key": "metric_name",
                            "operator": "=",
                            "value": "tnt_read_only"
-                        },
-                        {
-                           "condition": "AND",
-                           "key": "label_pairs_alias",
-                           "operator": "=~",
-                           "value": "/^.*$/"
                         }
                      ]
                   }
@@ -803,12 +779,6 @@
                            "key": "metric_name",
                            "operator": "=",
                            "value": "tnt_election_state"
-                        },
-                        {
-                           "condition": "AND",
-                           "key": "label_pairs_alias",
-                           "operator": "=~",
-                           "value": "/^.*$/"
                         }
                      ]
                   }
@@ -905,12 +875,6 @@
                            "key": "metric_name",
                            "operator": "=",
                            "value": "tnt_election_vote"
-                        },
-                        {
-                           "condition": "AND",
-                           "key": "label_pairs_alias",
-                           "operator": "=~",
-                           "value": "/^.*$/"
                         }
                      ]
                   }
@@ -1042,12 +1006,6 @@
                            "key": "metric_name",
                            "operator": "=",
                            "value": "tnt_election_leader"
-                        },
-                        {
-                           "condition": "AND",
-                           "key": "label_pairs_alias",
-                           "operator": "=~",
-                           "value": "/^.*$/"
                         }
                      ]
                   }
@@ -1179,12 +1137,6 @@
                            "key": "metric_name",
                            "operator": "=",
                            "value": "tnt_election_term"
-                        },
-                        {
-                           "condition": "AND",
-                           "key": "label_pairs_alias",
-                           "operator": "=~",
-                           "value": "/^.*$/"
                         }
                      ]
                   }
@@ -1402,12 +1354,6 @@
                            "key": "metric_name",
                            "operator": "=",
                            "value": "tnt_replication_status"
-                        },
-                        {
-                           "condition": "AND",
-                           "key": "label_pairs_alias",
-                           "operator": "=~",
-                           "value": "/^.*$/"
                         }
                      ]
                   }
@@ -1509,12 +1455,6 @@
                            "key": "metric_name",
                            "operator": "=",
                            "value": "tnt_replication_lag"
-                        },
-                        {
-                           "condition": "AND",
-                           "key": "label_pairs_alias",
-                           "operator": "=~",
-                           "value": "/^.*$/"
                         }
                      ]
                   }
@@ -1649,12 +1589,6 @@
                            "key": "metric_name",
                            "operator": "=",
                            "value": "tnt_clock_delta"
-                        },
-                        {
-                           "condition": "AND",
-                           "key": "label_pairs_alias",
-                           "operator": "=~",
-                           "value": "/^.*$/"
                         }
                      ]
                   }
@@ -1784,12 +1718,6 @@
                            "key": "metric_name",
                            "operator": "=",
                            "value": "tnt_synchro_queue_owner"
-                        },
-                        {
-                           "condition": "AND",
-                           "key": "label_pairs_alias",
-                           "operator": "=~",
-                           "value": "/^.*$/"
                         }
                      ]
                   }
@@ -1921,12 +1849,6 @@
                            "key": "metric_name",
                            "operator": "=",
                            "value": "tnt_synchro_queue_term"
-                        },
-                        {
-                           "condition": "AND",
-                           "key": "label_pairs_alias",
-                           "operator": "=~",
-                           "value": "/^.*$/"
                         }
                      ]
                   }
@@ -2058,12 +1980,6 @@
                            "key": "metric_name",
                            "operator": "=",
                            "value": "tnt_synchro_queue_len"
-                        },
-                        {
-                           "condition": "AND",
-                           "key": "label_pairs_alias",
-                           "operator": "=~",
-                           "value": "/^.*$/"
                         }
                      ]
                   }
@@ -2249,12 +2165,6 @@
                            "key": "metric_name",
                            "operator": "=",
                            "value": "tnt_synchro_queue_busy"
-                        },
-                        {
-                           "condition": "AND",
-                           "key": "label_pairs_alias",
-                           "operator": "=~",
-                           "value": "/^.*$/"
                         }
                      ]
                   }
@@ -2395,12 +2305,6 @@
                            "key": "metric_name",
                            "operator": "=",
                            "value": "http_server_request_latency_count"
-                        },
-                        {
-                           "condition": "AND",
-                           "key": "label_pairs_alias",
-                           "operator": "=~",
-                           "value": "/^.*$/"
                         },
                         {
                            "condition": "AND",
@@ -2565,12 +2469,6 @@
                         },
                         {
                            "condition": "AND",
-                           "key": "label_pairs_alias",
-                           "operator": "=~",
-                           "value": "/^.*$/"
-                        },
-                        {
-                           "condition": "AND",
                            "key": "label_pairs_status",
                            "operator": "=~",
                            "value": "/^4\\d{2}$/"
@@ -2732,12 +2630,6 @@
                         },
                         {
                            "condition": "AND",
-                           "key": "label_pairs_alias",
-                           "operator": "=~",
-                           "value": "/^.*$/"
-                        },
-                        {
-                           "condition": "AND",
                            "key": "label_pairs_status",
                            "operator": "=~",
                            "value": "/^5\\d{2}$/"
@@ -2890,12 +2782,6 @@
                            "key": "metric_name",
                            "operator": "=",
                            "value": "http_server_request_latency"
-                        },
-                        {
-                           "condition": "AND",
-                           "key": "label_pairs_alias",
-                           "operator": "=~",
-                           "value": "/^.*$/"
                         },
                         {
                            "condition": "AND",
@@ -3060,12 +2946,6 @@
                         },
                         {
                            "condition": "AND",
-                           "key": "label_pairs_alias",
-                           "operator": "=~",
-                           "value": "/^.*$/"
-                        },
-                        {
-                           "condition": "AND",
                            "key": "label_pairs_quantile",
                            "operator": "=",
                            "value": "0.99"
@@ -3224,12 +3104,6 @@
                            "key": "metric_name",
                            "operator": "=",
                            "value": "http_server_request_latency"
-                        },
-                        {
-                           "condition": "AND",
-                           "key": "label_pairs_alias",
-                           "operator": "=~",
-                           "value": "/^.*$/"
                         },
                         {
                            "condition": "AND",
@@ -3393,12 +3267,6 @@
                            "key": "metric_name",
                            "operator": "=",
                            "value": "tnt_info_memory_net"
-                        },
-                        {
-                           "condition": "AND",
-                           "key": "label_pairs_alias",
-                           "operator": "=~",
-                           "value": "/^.*$/"
                         }
                      ]
                   }
@@ -3536,12 +3404,6 @@
                            "key": "metric_name",
                            "operator": "=",
                            "value": "tnt_net_received_total"
-                        },
-                        {
-                           "condition": "AND",
-                           "key": "label_pairs_alias",
-                           "operator": "=~",
-                           "value": "/^.*$/"
                         }
                      ]
                   }
@@ -3679,12 +3541,6 @@
                            "key": "metric_name",
                            "operator": "=",
                            "value": "tnt_net_sent_total"
-                        },
-                        {
-                           "condition": "AND",
-                           "key": "label_pairs_alias",
-                           "operator": "=~",
-                           "value": "/^.*$/"
                         }
                      ]
                   }
@@ -3822,12 +3678,6 @@
                            "key": "metric_name",
                            "operator": "=",
                            "value": "tnt_net_requests_total"
-                        },
-                        {
-                           "condition": "AND",
-                           "key": "label_pairs_alias",
-                           "operator": "=~",
-                           "value": "/^.*$/"
                         }
                      ]
                   }
@@ -3959,12 +3809,6 @@
                            "key": "metric_name",
                            "operator": "=",
                            "value": "tnt_net_requests_current"
-                        },
-                        {
-                           "condition": "AND",
-                           "key": "label_pairs_alias",
-                           "operator": "=~",
-                           "value": "/^.*$/"
                         }
                      ]
                   }
@@ -4102,12 +3946,6 @@
                            "key": "metric_name",
                            "operator": "=",
                            "value": "tnt_net_requests_in_progress_total"
-                        },
-                        {
-                           "condition": "AND",
-                           "key": "label_pairs_alias",
-                           "operator": "=~",
-                           "value": "/^.*$/"
                         }
                      ]
                   }
@@ -4239,12 +4077,6 @@
                            "key": "metric_name",
                            "operator": "=",
                            "value": "tnt_net_requests_in_progress_current"
-                        },
-                        {
-                           "condition": "AND",
-                           "key": "label_pairs_alias",
-                           "operator": "=~",
-                           "value": "/^.*$/"
                         }
                      ]
                   }
@@ -4382,12 +4214,6 @@
                            "key": "metric_name",
                            "operator": "=",
                            "value": "tnt_net_requests_in_stream_queue_total"
-                        },
-                        {
-                           "condition": "AND",
-                           "key": "label_pairs_alias",
-                           "operator": "=~",
-                           "value": "/^.*$/"
                         }
                      ]
                   }
@@ -4519,12 +4345,6 @@
                            "key": "metric_name",
                            "operator": "=",
                            "value": "tnt_net_requests_in_stream_queue_current"
-                        },
-                        {
-                           "condition": "AND",
-                           "key": "label_pairs_alias",
-                           "operator": "=~",
-                           "value": "/^.*$/"
                         }
                      ]
                   }
@@ -4662,12 +4482,6 @@
                            "key": "metric_name",
                            "operator": "=",
                            "value": "tnt_net_connections_total"
-                        },
-                        {
-                           "condition": "AND",
-                           "key": "label_pairs_alias",
-                           "operator": "=~",
-                           "value": "/^.*$/"
                         }
                      ]
                   }
@@ -4799,12 +4613,6 @@
                            "key": "metric_name",
                            "operator": "=",
                            "value": "tnt_net_connections_current"
-                        },
-                        {
-                           "condition": "AND",
-                           "key": "label_pairs_alias",
-                           "operator": "=~",
-                           "value": "/^.*$/"
                         }
                      ]
                   }
@@ -4948,12 +4756,6 @@
                            "key": "metric_name",
                            "operator": "=",
                            "value": "tnt_net_per_thread_sent_total"
-                        },
-                        {
-                           "condition": "AND",
-                           "key": "label_pairs_alias",
-                           "operator": "=~",
-                           "value": "/^.*$/"
                         }
                      ]
                   }
@@ -5097,12 +4899,6 @@
                            "key": "metric_name",
                            "operator": "=",
                            "value": "tnt_net_per_thread_received_total"
-                        },
-                        {
-                           "condition": "AND",
-                           "key": "label_pairs_alias",
-                           "operator": "=~",
-                           "value": "/^.*$/"
                         }
                      ]
                   }
@@ -5246,12 +5042,6 @@
                            "key": "metric_name",
                            "operator": "=",
                            "value": "tnt_net_per_thread_connections_total"
-                        },
-                        {
-                           "condition": "AND",
-                           "key": "label_pairs_alias",
-                           "operator": "=~",
-                           "value": "/^.*$/"
                         }
                      ]
                   }
@@ -5389,12 +5179,6 @@
                            "key": "metric_name",
                            "operator": "=",
                            "value": "tnt_net_per_thread_connections_current"
-                        },
-                        {
-                           "condition": "AND",
-                           "key": "label_pairs_alias",
-                           "operator": "=~",
-                           "value": "/^.*$/"
                         }
                      ]
                   }
@@ -5538,12 +5322,6 @@
                            "key": "metric_name",
                            "operator": "=",
                            "value": "tnt_net_per_thread_requests_total"
-                        },
-                        {
-                           "condition": "AND",
-                           "key": "label_pairs_alias",
-                           "operator": "=~",
-                           "value": "/^.*$/"
                         }
                      ]
                   }
@@ -5687,12 +5465,6 @@
                            "key": "metric_name",
                            "operator": "=",
                            "value": "tnt_net_per_thread_requests_in_progress_total"
-                        },
-                        {
-                           "condition": "AND",
-                           "key": "label_pairs_alias",
-                           "operator": "=~",
-                           "value": "/^.*$/"
                         }
                      ]
                   }
@@ -5836,12 +5608,6 @@
                            "key": "metric_name",
                            "operator": "=",
                            "value": "tnt_net_per_thread_requests_in_stream_queue_total"
-                        },
-                        {
-                           "condition": "AND",
-                           "key": "label_pairs_alias",
-                           "operator": "=~",
-                           "value": "/^.*$/"
                         }
                      ]
                   }
@@ -5979,12 +5745,6 @@
                            "key": "metric_name",
                            "operator": "=",
                            "value": "tnt_net_per_thread_requests_current"
-                        },
-                        {
-                           "condition": "AND",
-                           "key": "label_pairs_alias",
-                           "operator": "=~",
-                           "value": "/^.*$/"
                         }
                      ]
                   }
@@ -6122,12 +5882,6 @@
                            "key": "metric_name",
                            "operator": "=",
                            "value": "tnt_net_per_thread_requests_in_progress_current"
-                        },
-                        {
-                           "condition": "AND",
-                           "key": "label_pairs_alias",
-                           "operator": "=~",
-                           "value": "/^.*$/"
                         }
                      ]
                   }
@@ -6265,12 +6019,6 @@
                            "key": "metric_name",
                            "operator": "=",
                            "value": "tnt_net_per_thread_requests_in_stream_queue_current"
-                        },
-                        {
-                           "condition": "AND",
-                           "key": "label_pairs_alias",
-                           "operator": "=~",
-                           "value": "/^.*$/"
                         }
                      ]
                   }
@@ -6436,12 +6184,6 @@
                            "key": "metric_name",
                            "operator": "=",
                            "value": "tnt_slab_quota_used_ratio"
-                        },
-                        {
-                           "condition": "AND",
-                           "key": "label_pairs_alias",
-                           "operator": "=~",
-                           "value": "/^.*$/"
                         }
                      ]
                   }
@@ -6573,12 +6315,6 @@
                            "key": "metric_name",
                            "operator": "=",
                            "value": "tnt_slab_arena_used_ratio"
-                        },
-                        {
-                           "condition": "AND",
-                           "key": "label_pairs_alias",
-                           "operator": "=~",
-                           "value": "/^.*$/"
                         }
                      ]
                   }
@@ -6710,12 +6446,6 @@
                            "key": "metric_name",
                            "operator": "=",
                            "value": "tnt_slab_items_used_ratio"
-                        },
-                        {
-                           "condition": "AND",
-                           "key": "label_pairs_alias",
-                           "operator": "=~",
-                           "value": "/^.*$/"
                         }
                      ]
                   }
@@ -6847,12 +6577,6 @@
                            "key": "metric_name",
                            "operator": "=",
                            "value": "tnt_slab_quota_used"
-                        },
-                        {
-                           "condition": "AND",
-                           "key": "label_pairs_alias",
-                           "operator": "=~",
-                           "value": "/^.*$/"
                         }
                      ]
                   }
@@ -6984,12 +6708,6 @@
                            "key": "metric_name",
                            "operator": "=",
                            "value": "tnt_slab_arena_used"
-                        },
-                        {
-                           "condition": "AND",
-                           "key": "label_pairs_alias",
-                           "operator": "=~",
-                           "value": "/^.*$/"
                         }
                      ]
                   }
@@ -7121,12 +6839,6 @@
                            "key": "metric_name",
                            "operator": "=",
                            "value": "tnt_slab_items_used"
-                        },
-                        {
-                           "condition": "AND",
-                           "key": "label_pairs_alias",
-                           "operator": "=~",
-                           "value": "/^.*$/"
                         }
                      ]
                   }
@@ -7258,12 +6970,6 @@
                            "key": "metric_name",
                            "operator": "=",
                            "value": "tnt_slab_quota_size"
-                        },
-                        {
-                           "condition": "AND",
-                           "key": "label_pairs_alias",
-                           "operator": "=~",
-                           "value": "/^.*$/"
                         }
                      ]
                   }
@@ -7395,12 +7101,6 @@
                            "key": "metric_name",
                            "operator": "=",
                            "value": "tnt_slab_arena_size"
-                        },
-                        {
-                           "condition": "AND",
-                           "key": "label_pairs_alias",
-                           "operator": "=~",
-                           "value": "/^.*$/"
                         }
                      ]
                   }
@@ -7532,12 +7232,6 @@
                            "key": "metric_name",
                            "operator": "=",
                            "value": "tnt_slab_items_size"
-                        },
-                        {
-                           "condition": "AND",
-                           "key": "label_pairs_alias",
-                           "operator": "=~",
-                           "value": "/^.*$/"
                         }
                      ]
                   }
@@ -7692,12 +7386,6 @@
                         },
                         {
                            "condition": "AND",
-                           "key": "label_pairs_alias",
-                           "operator": "=~",
-                           "value": "/^.*$/"
-                        },
-                        {
-                           "condition": "AND",
                            "key": "label_pairs_kind",
                            "operator": "=",
                            "value": "total"
@@ -7832,12 +7520,6 @@
                            "key": "metric_name",
                            "operator": "=",
                            "value": "tnt_memtx_tnx_statements"
-                        },
-                        {
-                           "condition": "AND",
-                           "key": "label_pairs_alias",
-                           "operator": "=~",
-                           "value": "/^.*$/"
                         },
                         {
                            "condition": "AND",
@@ -7978,12 +7660,6 @@
                         },
                         {
                            "condition": "AND",
-                           "key": "label_pairs_alias",
-                           "operator": "=~",
-                           "value": "/^.*$/"
-                        },
-                        {
-                           "condition": "AND",
                            "key": "label_pairs_kind",
                            "operator": "=",
                            "value": "max"
@@ -8118,12 +7794,6 @@
                            "key": "metric_name",
                            "operator": "=",
                            "value": "tnt_memtx_tnx_user"
-                        },
-                        {
-                           "condition": "AND",
-                           "key": "label_pairs_alias",
-                           "operator": "=~",
-                           "value": "/^.*$/"
                         },
                         {
                            "condition": "AND",
@@ -8264,12 +7934,6 @@
                         },
                         {
                            "condition": "AND",
-                           "key": "label_pairs_alias",
-                           "operator": "=~",
-                           "value": "/^.*$/"
-                        },
-                        {
-                           "condition": "AND",
                            "key": "label_pairs_kind",
                            "operator": "=",
                            "value": "average"
@@ -8404,12 +8068,6 @@
                            "key": "metric_name",
                            "operator": "=",
                            "value": "tnt_memtx_tnx_user"
-                        },
-                        {
-                           "condition": "AND",
-                           "key": "label_pairs_alias",
-                           "operator": "=~",
-                           "value": "/^.*$/"
                         },
                         {
                            "condition": "AND",
@@ -8550,12 +8208,6 @@
                         },
                         {
                            "condition": "AND",
-                           "key": "label_pairs_alias",
-                           "operator": "=~",
-                           "value": "/^.*$/"
-                        },
-                        {
-                           "condition": "AND",
                            "key": "label_pairs_kind",
                            "operator": "=",
                            "value": "total"
@@ -8690,12 +8342,6 @@
                            "key": "metric_name",
                            "operator": "=",
                            "value": "tnt_memtx_tnx_system"
-                        },
-                        {
-                           "condition": "AND",
-                           "key": "label_pairs_alias",
-                           "operator": "=~",
-                           "value": "/^.*$/"
                         },
                         {
                            "condition": "AND",
@@ -8836,12 +8482,6 @@
                         },
                         {
                            "condition": "AND",
-                           "key": "label_pairs_alias",
-                           "operator": "=~",
-                           "value": "/^.*$/"
-                        },
-                        {
-                           "condition": "AND",
                            "key": "label_pairs_kind",
                            "operator": "=",
                            "value": "max"
@@ -8976,12 +8616,6 @@
                            "key": "metric_name",
                            "operator": "=",
                            "value": "tnt_memtx_mvcc_trackers"
-                        },
-                        {
-                           "condition": "AND",
-                           "key": "label_pairs_alias",
-                           "operator": "=~",
-                           "value": "/^.*$/"
                         },
                         {
                            "condition": "AND",
@@ -9122,12 +8756,6 @@
                         },
                         {
                            "condition": "AND",
-                           "key": "label_pairs_alias",
-                           "operator": "=~",
-                           "value": "/^.*$/"
-                        },
-                        {
-                           "condition": "AND",
                            "key": "label_pairs_kind",
                            "operator": "=",
                            "value": "average"
@@ -9262,12 +8890,6 @@
                            "key": "metric_name",
                            "operator": "=",
                            "value": "tnt_memtx_mvcc_trackers"
-                        },
-                        {
-                           "condition": "AND",
-                           "key": "label_pairs_alias",
-                           "operator": "=~",
-                           "value": "/^.*$/"
                         },
                         {
                            "condition": "AND",
@@ -9408,12 +9030,6 @@
                         },
                         {
                            "condition": "AND",
-                           "key": "label_pairs_alias",
-                           "operator": "=~",
-                           "value": "/^.*$/"
-                        },
-                        {
-                           "condition": "AND",
                            "key": "label_pairs_kind",
                            "operator": "=",
                            "value": "total"
@@ -9548,12 +9164,6 @@
                            "key": "metric_name",
                            "operator": "=",
                            "value": "tnt_memtx_mvcc_conflicts"
-                        },
-                        {
-                           "condition": "AND",
-                           "key": "label_pairs_alias",
-                           "operator": "=~",
-                           "value": "/^.*$/"
                         },
                         {
                            "condition": "AND",
@@ -9694,12 +9304,6 @@
                         },
                         {
                            "condition": "AND",
-                           "key": "label_pairs_alias",
-                           "operator": "=~",
-                           "value": "/^.*$/"
-                        },
-                        {
-                           "condition": "AND",
                            "key": "label_pairs_kind",
                            "operator": "=",
                            "value": "max"
@@ -9834,12 +9438,6 @@
                            "key": "metric_name",
                            "operator": "=",
                            "value": "tnt_memtx_mvcc_tuples_used_stories"
-                        },
-                        {
-                           "condition": "AND",
-                           "key": "label_pairs_alias",
-                           "operator": "=~",
-                           "value": "/^.*$/"
                         },
                         {
                            "condition": "AND",
@@ -9980,12 +9578,6 @@
                         },
                         {
                            "condition": "AND",
-                           "key": "label_pairs_alias",
-                           "operator": "=~",
-                           "value": "/^.*$/"
-                        },
-                        {
-                           "condition": "AND",
                            "key": "label_pairs_kind",
                            "operator": "=",
                            "value": "total"
@@ -10120,12 +9712,6 @@
                            "key": "metric_name",
                            "operator": "=",
                            "value": "tnt_memtx_mvcc_tuples_used_retained"
-                        },
-                        {
-                           "condition": "AND",
-                           "key": "label_pairs_alias",
-                           "operator": "=~",
-                           "value": "/^.*$/"
                         },
                         {
                            "condition": "AND",
@@ -10266,12 +9852,6 @@
                         },
                         {
                            "condition": "AND",
-                           "key": "label_pairs_alias",
-                           "operator": "=~",
-                           "value": "/^.*$/"
-                        },
-                        {
-                           "condition": "AND",
                            "key": "label_pairs_kind",
                            "operator": "=",
                            "value": "total"
@@ -10406,12 +9986,6 @@
                            "key": "metric_name",
                            "operator": "=",
                            "value": "tnt_memtx_mvcc_tuples_read_view_stories"
-                        },
-                        {
-                           "condition": "AND",
-                           "key": "label_pairs_alias",
-                           "operator": "=~",
-                           "value": "/^.*$/"
                         },
                         {
                            "condition": "AND",
@@ -10552,12 +10126,6 @@
                         },
                         {
                            "condition": "AND",
-                           "key": "label_pairs_alias",
-                           "operator": "=~",
-                           "value": "/^.*$/"
-                        },
-                        {
-                           "condition": "AND",
                            "key": "label_pairs_kind",
                            "operator": "=",
                            "value": "total"
@@ -10692,12 +10260,6 @@
                            "key": "metric_name",
                            "operator": "=",
                            "value": "tnt_memtx_mvcc_tuples_read_view_retained"
-                        },
-                        {
-                           "condition": "AND",
-                           "key": "label_pairs_alias",
-                           "operator": "=~",
-                           "value": "/^.*$/"
                         },
                         {
                            "condition": "AND",
@@ -10838,12 +10400,6 @@
                         },
                         {
                            "condition": "AND",
-                           "key": "label_pairs_alias",
-                           "operator": "=~",
-                           "value": "/^.*$/"
-                        },
-                        {
-                           "condition": "AND",
                            "key": "label_pairs_kind",
                            "operator": "=",
                            "value": "total"
@@ -10978,12 +10534,6 @@
                            "key": "metric_name",
                            "operator": "=",
                            "value": "tnt_memtx_mvcc_tuples_tracking_stories"
-                        },
-                        {
-                           "condition": "AND",
-                           "key": "label_pairs_alias",
-                           "operator": "=~",
-                           "value": "/^.*$/"
                         },
                         {
                            "condition": "AND",
@@ -11124,12 +10674,6 @@
                         },
                         {
                            "condition": "AND",
-                           "key": "label_pairs_alias",
-                           "operator": "=~",
-                           "value": "/^.*$/"
-                        },
-                        {
-                           "condition": "AND",
                            "key": "label_pairs_kind",
                            "operator": "=",
                            "value": "total"
@@ -11267,12 +10811,6 @@
                         },
                         {
                            "condition": "AND",
-                           "key": "label_pairs_alias",
-                           "operator": "=~",
-                           "value": "/^.*$/"
-                        },
-                        {
-                           "condition": "AND",
                            "key": "label_pairs_kind",
                            "operator": "=",
                            "value": "count"
@@ -11407,12 +10945,6 @@
                            "key": "metric_name",
                            "operator": "=",
                            "value": "tnt_memtx_mvcc_tuples_tracking_retained"
-                        },
-                        {
-                           "condition": "AND",
-                           "key": "label_pairs_alias",
-                           "operator": "=~",
-                           "value": "/^.*$/"
                         },
                         {
                            "condition": "AND",
@@ -11579,12 +11111,6 @@
                         },
                         {
                            "condition": "AND",
-                           "key": "label_pairs_alias",
-                           "operator": "=~",
-                           "value": "/^.*$/"
-                        },
-                        {
-                           "condition": "AND",
                            "key": "label_pairs_engine",
                            "operator": "=",
                            "value": "memtx"
@@ -11728,12 +11254,6 @@
                         },
                         {
                            "condition": "AND",
-                           "key": "label_pairs_alias",
-                           "operator": "=~",
-                           "value": "/^.*$/"
-                        },
-                        {
-                           "condition": "AND",
                            "key": "label_pairs_engine",
                            "operator": "=",
                            "value": "vinyl"
@@ -11874,12 +11394,6 @@
                            "key": "metric_name",
                            "operator": "=",
                            "value": "tnt_space_bsize"
-                        },
-                        {
-                           "condition": "AND",
-                           "key": "label_pairs_alias",
-                           "operator": "=~",
-                           "value": "/^.*$/"
                         },
                         {
                            "condition": "AND",
@@ -12029,12 +11543,6 @@
                            "key": "metric_name",
                            "operator": "=",
                            "value": "tnt_space_index_bsize"
-                        },
-                        {
-                           "condition": "AND",
-                           "key": "label_pairs_alias",
-                           "operator": "=~",
-                           "value": "/^.*$/"
                         }
                      ]
                   }
@@ -12172,12 +11680,6 @@
                            "key": "metric_name",
                            "operator": "=",
                            "value": "tnt_space_total_bsize"
-                        },
-                        {
-                           "condition": "AND",
-                           "key": "label_pairs_alias",
-                           "operator": "=~",
-                           "value": "/^.*$/"
                         },
                         {
                            "condition": "AND",
@@ -12335,12 +11837,6 @@
                            "key": "metric_name",
                            "operator": "=",
                            "value": "tnt_vinyl_disk_data_size"
-                        },
-                        {
-                           "condition": "AND",
-                           "key": "label_pairs_alias",
-                           "operator": "=~",
-                           "value": "/^.*$/"
                         }
                      ]
                   }
@@ -12472,12 +11968,6 @@
                            "key": "metric_name",
                            "operator": "=",
                            "value": "tnt_vinyl_disk_index_size"
-                        },
-                        {
-                           "condition": "AND",
-                           "key": "label_pairs_alias",
-                           "operator": "=~",
-                           "value": "/^.*$/"
                         }
                      ]
                   }
@@ -12609,12 +12099,6 @@
                            "key": "metric_name",
                            "operator": "=",
                            "value": "tnt_vinyl_memory_tuple_cache"
-                        },
-                        {
-                           "condition": "AND",
-                           "key": "label_pairs_alias",
-                           "operator": "=~",
-                           "value": "/^.*$/"
                         }
                      ]
                   }
@@ -12746,12 +12230,6 @@
                            "key": "metric_name",
                            "operator": "=",
                            "value": "tnt_vinyl_memory_page_index"
-                        },
-                        {
-                           "condition": "AND",
-                           "key": "label_pairs_alias",
-                           "operator": "=~",
-                           "value": "/^.*$/"
                         }
                      ]
                   }
@@ -12883,12 +12361,6 @@
                            "key": "metric_name",
                            "operator": "=",
                            "value": "tnt_vinyl_memory_bloom_filter"
-                        },
-                        {
-                           "condition": "AND",
-                           "key": "label_pairs_alias",
-                           "operator": "=~",
-                           "value": "/^.*$/"
                         }
                      ]
                   }
@@ -13020,12 +12492,6 @@
                            "key": "metric_name",
                            "operator": "=",
                            "value": "tnt_vinyl_regulator_dump_bandwidth"
-                        },
-                        {
-                           "condition": "AND",
-                           "key": "label_pairs_alias",
-                           "operator": "=~",
-                           "value": "/^.*$/"
                         }
                      ]
                   }
@@ -13157,12 +12623,6 @@
                            "key": "metric_name",
                            "operator": "=",
                            "value": "tnt_vinyl_regulator_write_rate"
-                        },
-                        {
-                           "condition": "AND",
-                           "key": "label_pairs_alias",
-                           "operator": "=~",
-                           "value": "/^.*$/"
                         }
                      ]
                   }
@@ -13294,12 +12754,6 @@
                            "key": "metric_name",
                            "operator": "=",
                            "value": "tnt_vinyl_regulator_rate_limit"
-                        },
-                        {
-                           "condition": "AND",
-                           "key": "label_pairs_alias",
-                           "operator": "=~",
-                           "value": "/^.*$/"
                         }
                      ]
                   }
@@ -13431,12 +12885,6 @@
                            "key": "metric_name",
                            "operator": "=",
                            "value": "tnt_vinyl_memory_level0"
-                        },
-                        {
-                           "condition": "AND",
-                           "key": "label_pairs_alias",
-                           "operator": "=~",
-                           "value": "/^.*$/"
                         }
                      ]
                   }
@@ -13568,12 +13016,6 @@
                            "key": "metric_name",
                            "operator": "=",
                            "value": "tnt_vinyl_regulator_dump_watermark"
-                        },
-                        {
-                           "condition": "AND",
-                           "key": "label_pairs_alias",
-                           "operator": "=~",
-                           "value": "/^.*$/"
                         }
                      ]
                   }
@@ -13705,12 +13147,6 @@
                            "key": "metric_name",
                            "operator": "=",
                            "value": "tnt_vinyl_regulator_blocked_writers"
-                        },
-                        {
-                           "condition": "AND",
-                           "key": "label_pairs_alias",
-                           "operator": "=~",
-                           "value": "/^.*$/"
                         }
                      ]
                   }
@@ -13848,12 +13284,6 @@
                            "key": "metric_name",
                            "operator": "=",
                            "value": "tnt_vinyl_tx_commit"
-                        },
-                        {
-                           "condition": "AND",
-                           "key": "label_pairs_alias",
-                           "operator": "=~",
-                           "value": "/^.*$/"
                         }
                      ]
                   }
@@ -13991,12 +13421,6 @@
                            "key": "metric_name",
                            "operator": "=",
                            "value": "tnt_vinyl_tx_rollback"
-                        },
-                        {
-                           "condition": "AND",
-                           "key": "label_pairs_alias",
-                           "operator": "=~",
-                           "value": "/^.*$/"
                         }
                      ]
                   }
@@ -14134,12 +13558,6 @@
                            "key": "metric_name",
                            "operator": "=",
                            "value": "tnt_vinyl_tx_conflict"
-                        },
-                        {
-                           "condition": "AND",
-                           "key": "label_pairs_alias",
-                           "operator": "=~",
-                           "value": "/^.*$/"
                         }
                      ]
                   }
@@ -14271,12 +13689,6 @@
                            "key": "metric_name",
                            "operator": "=",
                            "value": "tnt_vinyl_tx_read_views"
-                        },
-                        {
-                           "condition": "AND",
-                           "key": "label_pairs_alias",
-                           "operator": "=~",
-                           "value": "/^.*$/"
                         }
                      ]
                   }
@@ -14408,12 +13820,6 @@
                            "key": "metric_name",
                            "operator": "=",
                            "value": "tnt_vinyl_scheduler_tasks"
-                        },
-                        {
-                           "condition": "AND",
-                           "key": "label_pairs_alias",
-                           "operator": "=~",
-                           "value": "/^.*$/"
                         },
                         {
                            "condition": "AND",
@@ -14560,12 +13966,6 @@
                         },
                         {
                            "condition": "AND",
-                           "key": "label_pairs_alias",
-                           "operator": "=~",
-                           "value": "/^.*$/"
-                        },
-                        {
-                           "condition": "AND",
                            "key": "label_pairs_status",
                            "operator": "=",
                            "value": "failed"
@@ -14706,12 +14106,6 @@
                            "key": "metric_name",
                            "operator": "=",
                            "value": "tnt_vinyl_scheduler_dump_time"
-                        },
-                        {
-                           "condition": "AND",
-                           "key": "label_pairs_alias",
-                           "operator": "=~",
-                           "value": "/^.*$/"
                         }
                      ]
                   }
@@ -14849,12 +14243,6 @@
                            "key": "metric_name",
                            "operator": "=",
                            "value": "tnt_vinyl_scheduler_dump_total"
-                        },
-                        {
-                           "condition": "AND",
-                           "key": "label_pairs_alias",
-                           "operator": "=~",
-                           "value": "/^.*$/"
                         }
                      ]
                   }
@@ -15012,12 +14400,6 @@
                            "key": "metric_name",
                            "operator": "=",
                            "value": "tnt_cpu_user_time"
-                        },
-                        {
-                           "condition": "AND",
-                           "key": "label_pairs_alias",
-                           "operator": "=~",
-                           "value": "/^.*$/"
                         }
                      ]
                   }
@@ -15155,12 +14537,6 @@
                            "key": "metric_name",
                            "operator": "=",
                            "value": "tnt_cpu_system_time"
-                        },
-                        {
-                           "condition": "AND",
-                           "key": "label_pairs_alias",
-                           "operator": "=~",
-                           "value": "/^.*$/"
                         }
                      ]
                   }
@@ -15312,12 +14688,6 @@
                            "key": "metric_name",
                            "operator": "=",
                            "value": "tnt_info_memory_lua"
-                        },
-                        {
-                           "condition": "AND",
-                           "key": "label_pairs_alias",
-                           "operator": "=~",
-                           "value": "/^.*$/"
                         }
                      ]
                   }
@@ -15449,12 +14819,6 @@
                            "key": "metric_name",
                            "operator": "=",
                            "value": "tnt_runtime_used"
-                        },
-                        {
-                           "condition": "AND",
-                           "key": "label_pairs_alias",
-                           "operator": "=~",
-                           "value": "/^.*$/"
                         }
                      ]
                   }
@@ -15586,12 +14950,6 @@
                            "key": "metric_name",
                            "operator": "=",
                            "value": "tnt_info_memory_tx"
-                        },
-                        {
-                           "condition": "AND",
-                           "key": "label_pairs_alias",
-                           "operator": "=~",
-                           "value": "/^.*$/"
                         }
                      ]
                   }
@@ -15723,12 +15081,6 @@
                            "key": "metric_name",
                            "operator": "=",
                            "value": "tnt_fiber_csw"
-                        },
-                        {
-                           "condition": "AND",
-                           "key": "label_pairs_alias",
-                           "operator": "=~",
-                           "value": "/^.*$/"
                         }
                      ]
                   }
@@ -15860,12 +15212,6 @@
                            "key": "metric_name",
                            "operator": "=",
                            "value": "tnt_ev_loop_time"
-                        },
-                        {
-                           "condition": "AND",
-                           "key": "label_pairs_alias",
-                           "operator": "=~",
-                           "value": "/^.*$/"
                         }
                      ]
                   }
@@ -15997,12 +15343,6 @@
                            "key": "metric_name",
                            "operator": "=",
                            "value": "tnt_fiber_amount"
-                        },
-                        {
-                           "condition": "AND",
-                           "key": "label_pairs_alias",
-                           "operator": "=~",
-                           "value": "/^.*$/"
                         }
                      ]
                   }
@@ -16134,12 +15474,6 @@
                            "key": "metric_name",
                            "operator": "=",
                            "value": "tnt_fiber_memused"
-                        },
-                        {
-                           "condition": "AND",
-                           "key": "label_pairs_alias",
-                           "operator": "=~",
-                           "value": "/^.*$/"
                         }
                      ]
                   }
@@ -16271,12 +15605,6 @@
                            "key": "metric_name",
                            "operator": "=",
                            "value": "tnt_fiber_memalloc"
-                        },
-                        {
-                           "condition": "AND",
-                           "key": "label_pairs_alias",
-                           "operator": "=~",
-                           "value": "/^.*$/"
                         }
                      ]
                   }
@@ -16434,12 +15762,6 @@
                            "key": "metric_name",
                            "operator": "=",
                            "value": "lj_jit_snap_restore_total"
-                        },
-                        {
-                           "condition": "AND",
-                           "key": "label_pairs_alias",
-                           "operator": "=~",
-                           "value": "/^.*$/"
                         }
                      ]
                   }
@@ -16577,12 +15899,6 @@
                            "key": "metric_name",
                            "operator": "=",
                            "value": "lj_jit_trace_num"
-                        },
-                        {
-                           "condition": "AND",
-                           "key": "label_pairs_alias",
-                           "operator": "=~",
-                           "value": "/^.*$/"
                         }
                      ]
                   }
@@ -16720,12 +16036,6 @@
                            "key": "metric_name",
                            "operator": "=",
                            "value": "lj_jit_trace_abort_total"
-                        },
-                        {
-                           "condition": "AND",
-                           "key": "label_pairs_alias",
-                           "operator": "=~",
-                           "value": "/^.*$/"
                         }
                      ]
                   }
@@ -16857,12 +16167,6 @@
                            "key": "metric_name",
                            "operator": "=",
                            "value": "lj_jit_mcode_size"
-                        },
-                        {
-                           "condition": "AND",
-                           "key": "label_pairs_alias",
-                           "operator": "=~",
-                           "value": "/^.*$/"
                         }
                      ]
                   }
@@ -17000,12 +16304,6 @@
                            "key": "metric_name",
                            "operator": "=",
                            "value": "lj_strhash_hit_total"
-                        },
-                        {
-                           "condition": "AND",
-                           "key": "label_pairs_alias",
-                           "operator": "=~",
-                           "value": "/^.*$/"
                         }
                      ]
                   }
@@ -17143,12 +16441,6 @@
                            "key": "metric_name",
                            "operator": "=",
                            "value": "lj_strhash_miss_total"
-                        },
-                        {
-                           "condition": "AND",
-                           "key": "label_pairs_alias",
-                           "operator": "=~",
-                           "value": "/^.*$/"
                         }
                      ]
                   }
@@ -17286,12 +16578,6 @@
                            "key": "metric_name",
                            "operator": "=",
                            "value": "lj_gc_steps_atomic_total"
-                        },
-                        {
-                           "condition": "AND",
-                           "key": "label_pairs_alias",
-                           "operator": "=~",
-                           "value": "/^.*$/"
                         }
                      ]
                   }
@@ -17429,12 +16715,6 @@
                            "key": "metric_name",
                            "operator": "=",
                            "value": "lj_gc_steps_sweepstring_total"
-                        },
-                        {
-                           "condition": "AND",
-                           "key": "label_pairs_alias",
-                           "operator": "=~",
-                           "value": "/^.*$/"
                         }
                      ]
                   }
@@ -17572,12 +16852,6 @@
                            "key": "metric_name",
                            "operator": "=",
                            "value": "lj_gc_steps_finalize_total"
-                        },
-                        {
-                           "condition": "AND",
-                           "key": "label_pairs_alias",
-                           "operator": "=~",
-                           "value": "/^.*$/"
                         }
                      ]
                   }
@@ -17715,12 +16989,6 @@
                            "key": "metric_name",
                            "operator": "=",
                            "value": "lj_gc_steps_sweep_total"
-                        },
-                        {
-                           "condition": "AND",
-                           "key": "label_pairs_alias",
-                           "operator": "=~",
-                           "value": "/^.*$/"
                         }
                      ]
                   }
@@ -17858,12 +17126,6 @@
                            "key": "metric_name",
                            "operator": "=",
                            "value": "lj_gc_steps_propagate_total"
-                        },
-                        {
-                           "condition": "AND",
-                           "key": "label_pairs_alias",
-                           "operator": "=~",
-                           "value": "/^.*$/"
                         }
                      ]
                   }
@@ -18001,12 +17263,6 @@
                            "key": "metric_name",
                            "operator": "=",
                            "value": "lj_gc_steps_pause_total"
-                        },
-                        {
-                           "condition": "AND",
-                           "key": "label_pairs_alias",
-                           "operator": "=~",
-                           "value": "/^.*$/"
                         }
                      ]
                   }
@@ -18138,12 +17394,6 @@
                            "key": "metric_name",
                            "operator": "=",
                            "value": "lj_gc_strnum"
-                        },
-                        {
-                           "condition": "AND",
-                           "key": "label_pairs_alias",
-                           "operator": "=~",
-                           "value": "/^.*$/"
                         }
                      ]
                   }
@@ -18275,12 +17525,6 @@
                            "key": "metric_name",
                            "operator": "=",
                            "value": "lj_gc_tabnum"
-                        },
-                        {
-                           "condition": "AND",
-                           "key": "label_pairs_alias",
-                           "operator": "=~",
-                           "value": "/^.*$/"
                         }
                      ]
                   }
@@ -18412,12 +17656,6 @@
                            "key": "metric_name",
                            "operator": "=",
                            "value": "lj_gc_cdatanum"
-                        },
-                        {
-                           "condition": "AND",
-                           "key": "label_pairs_alias",
-                           "operator": "=~",
-                           "value": "/^.*$/"
                         }
                      ]
                   }
@@ -18549,12 +17787,6 @@
                            "key": "metric_name",
                            "operator": "=",
                            "value": "lj_gc_udatanum"
-                        },
-                        {
-                           "condition": "AND",
-                           "key": "label_pairs_alias",
-                           "operator": "=~",
-                           "value": "/^.*$/"
                         }
                      ]
                   }
@@ -18686,12 +17918,6 @@
                            "key": "metric_name",
                            "operator": "=",
                            "value": "lj_gc_memory"
-                        },
-                        {
-                           "condition": "AND",
-                           "key": "label_pairs_alias",
-                           "operator": "=~",
-                           "value": "/^.*$/"
                         }
                      ]
                   }
@@ -18829,12 +18055,6 @@
                            "key": "metric_name",
                            "operator": "=",
                            "value": "lj_gc_freed_total"
-                        },
-                        {
-                           "condition": "AND",
-                           "key": "label_pairs_alias",
-                           "operator": "=~",
-                           "value": "/^.*$/"
                         }
                      ]
                   }
@@ -18972,12 +18192,6 @@
                            "key": "metric_name",
                            "operator": "=",
                            "value": "lj_gc_allocated_total"
-                        },
-                        {
-                           "condition": "AND",
-                           "key": "label_pairs_alias",
-                           "operator": "=~",
-                           "value": "/^.*$/"
                         }
                      ]
                   }
@@ -19138,12 +18352,6 @@
                         },
                         {
                            "condition": "AND",
-                           "key": "label_pairs_alias",
-                           "operator": "=~",
-                           "value": "/^.*$/"
-                        },
-                        {
-                           "condition": "AND",
                            "key": "label_pairs_operation",
                            "operator": "=",
                            "value": "select"
@@ -19284,12 +18492,6 @@
                            "key": "metric_name",
                            "operator": "=",
                            "value": "tnt_stats_op_total"
-                        },
-                        {
-                           "condition": "AND",
-                           "key": "label_pairs_alias",
-                           "operator": "=~",
-                           "value": "/^.*$/"
                         },
                         {
                            "condition": "AND",
@@ -19436,12 +18638,6 @@
                         },
                         {
                            "condition": "AND",
-                           "key": "label_pairs_alias",
-                           "operator": "=~",
-                           "value": "/^.*$/"
-                        },
-                        {
-                           "condition": "AND",
                            "key": "label_pairs_operation",
                            "operator": "=",
                            "value": "replace"
@@ -19582,12 +18778,6 @@
                            "key": "metric_name",
                            "operator": "=",
                            "value": "tnt_stats_op_total"
-                        },
-                        {
-                           "condition": "AND",
-                           "key": "label_pairs_alias",
-                           "operator": "=~",
-                           "value": "/^.*$/"
                         },
                         {
                            "condition": "AND",
@@ -19734,12 +18924,6 @@
                         },
                         {
                            "condition": "AND",
-                           "key": "label_pairs_alias",
-                           "operator": "=~",
-                           "value": "/^.*$/"
-                        },
-                        {
-                           "condition": "AND",
                            "key": "label_pairs_operation",
                            "operator": "=",
                            "value": "update"
@@ -19880,12 +19064,6 @@
                            "key": "metric_name",
                            "operator": "=",
                            "value": "tnt_stats_op_total"
-                        },
-                        {
-                           "condition": "AND",
-                           "key": "label_pairs_alias",
-                           "operator": "=~",
-                           "value": "/^.*$/"
                         },
                         {
                            "condition": "AND",
@@ -20032,12 +19210,6 @@
                         },
                         {
                            "condition": "AND",
-                           "key": "label_pairs_alias",
-                           "operator": "=~",
-                           "value": "/^.*$/"
-                        },
-                        {
-                           "condition": "AND",
                            "key": "label_pairs_operation",
                            "operator": "=",
                            "value": "call"
@@ -20178,12 +19350,6 @@
                            "key": "metric_name",
                            "operator": "=",
                            "value": "tnt_stats_op_total"
-                        },
-                        {
-                           "condition": "AND",
-                           "key": "label_pairs_alias",
-                           "operator": "=~",
-                           "value": "/^.*$/"
                         },
                         {
                            "condition": "AND",
@@ -20330,12 +19496,6 @@
                         },
                         {
                            "condition": "AND",
-                           "key": "label_pairs_alias",
-                           "operator": "=~",
-                           "value": "/^.*$/"
-                        },
-                        {
-                           "condition": "AND",
                            "key": "label_pairs_operation",
                            "operator": "=",
                            "value": "error"
@@ -20476,12 +19636,6 @@
                            "key": "metric_name",
                            "operator": "=",
                            "value": "tnt_stats_op_total"
-                        },
-                        {
-                           "condition": "AND",
-                           "key": "label_pairs_alias",
-                           "operator": "=~",
-                           "value": "/^.*$/"
                         },
                         {
                            "condition": "AND",
@@ -20628,12 +19782,6 @@
                         },
                         {
                            "condition": "AND",
-                           "key": "label_pairs_alias",
-                           "operator": "=~",
-                           "value": "/^.*$/"
-                        },
-                        {
-                           "condition": "AND",
                            "key": "label_pairs_operation",
                            "operator": "=",
                            "value": "prepare"
@@ -20774,12 +19922,6 @@
                            "key": "metric_name",
                            "operator": "=",
                            "value": "tnt_stats_op_total"
-                        },
-                        {
-                           "condition": "AND",
-                           "key": "label_pairs_alias",
-                           "operator": "=~",
-                           "value": "/^.*$/"
                         },
                         {
                            "condition": "AND",
@@ -20926,12 +20068,6 @@
                         },
                         {
                            "condition": "AND",
-                           "key": "label_pairs_alias",
-                           "operator": "=~",
-                           "value": "/^.*$/"
-                        },
-                        {
-                           "condition": "AND",
                            "key": "label_pairs_operation",
                            "operator": "=",
                            "value": "begin"
@@ -21075,12 +20211,6 @@
                         },
                         {
                            "condition": "AND",
-                           "key": "label_pairs_alias",
-                           "operator": "=~",
-                           "value": "/^.*$/"
-                        },
-                        {
-                           "condition": "AND",
                            "key": "label_pairs_operation",
                            "operator": "=",
                            "value": "commit"
@@ -21221,12 +20351,6 @@
                            "key": "metric_name",
                            "operator": "=",
                            "value": "tnt_stats_op_total"
-                        },
-                        {
-                           "condition": "AND",
-                           "key": "label_pairs_alias",
-                           "operator": "=~",
-                           "value": "/^.*$/"
                         },
                         {
                            "condition": "AND",
@@ -21399,12 +20523,6 @@
                         },
                         {
                            "condition": "AND",
-                           "key": "label_pairs_alias",
-                           "operator": "=~",
-                           "value": "/^.*$/"
-                        },
-                        {
-                           "condition": "AND",
                            "key": "label_pairs_operation",
                            "operator": "=",
                            "value": "select"
@@ -21551,12 +20669,6 @@
                            "key": "metric_name",
                            "operator": "=",
                            "value": "tnt_crud_stats"
-                        },
-                        {
-                           "condition": "AND",
-                           "key": "label_pairs_alias",
-                           "operator": "=~",
-                           "value": "/^.*$/"
                         },
                         {
                            "condition": "AND",
@@ -21721,12 +20833,6 @@
                         },
                         {
                            "condition": "AND",
-                           "key": "label_pairs_alias",
-                           "operator": "=~",
-                           "value": "/^.*$/"
-                        },
-                        {
-                           "condition": "AND",
                            "key": "label_pairs_operation",
                            "operator": "=",
                            "value": "select"
@@ -21876,12 +20982,6 @@
                         },
                         {
                            "condition": "AND",
-                           "key": "label_pairs_alias",
-                           "operator": "=~",
-                           "value": "/^.*$/"
-                        },
-                        {
-                           "condition": "AND",
                            "key": "label_pairs_operation",
                            "operator": "=",
                            "value": "select"
@@ -22000,7 +21100,7 @@
                         }
                      ],
                      "policy": "default",
-                     "query": "SELECT mean(\"tnt_crud_tuples_fetched\") / (mean(\"tnt_crud_stats_count_ok\") + mean(\"tnt_crud_stats_count_error\"))\nas \"tnt_crud_tuples_per_request\" FROM\n(SELECT \"value\" as \"tnt_crud_tuples_fetched\" FROM \"autogen\".\"tarantool_http\"\nWHERE (\"metric_name\" = 'tnt_crud_tuples_fetched' AND \"label_pairs_alias\" =~ /^.*$/ AND \"label_pairs_operation\" = 'select') AND $timeFilter),\n(SELECT \"value\" as \"tnt_crud_stats_count_error\" FROM \"autogen\".\"tarantool_http\"\nWHERE (\"metric_name\" = 'tnt_crud_stats_count' AND \"label_pairs_alias\" =~ /^.*$/ AND \"label_pairs_operation\" = 'select' AND \"label_pairs_status\" = 'error') AND $timeFilter),\n(SELECT \"value\" as \"tnt_crud_stats_count_ok\" FROM \"autogen\".\"tarantool_http\"\nWHERE (\"metric_name\" = 'tnt_crud_stats_count' AND \"label_pairs_alias\" =~ /^.*$/ AND \"label_pairs_operation\" = 'select' AND \"label_pairs_status\" = 'ok') AND $timeFilter)\nGROUP BY time($__interval * 2), \"label_pairs_alias\", \"label_pairs_name\" fill(0)\n",
+                     "query": "SELECT mean(\"tnt_crud_tuples_fetched\") / (mean(\"tnt_crud_stats_count_ok\") + mean(\"tnt_crud_stats_count_error\"))\nas \"tnt_crud_tuples_per_request\" FROM\n(SELECT \"value\" as \"tnt_crud_tuples_fetched\" FROM \"autogen\".\"tarantool_http\"\nWHERE (\"metric_name\" = 'tnt_crud_tuples_fetched' AND \"label_pairs_operation\" = 'select') AND $timeFilter),\n(SELECT \"value\" as \"tnt_crud_stats_count_error\" FROM \"autogen\".\"tarantool_http\"\nWHERE (\"metric_name\" = 'tnt_crud_stats_count' AND \"label_pairs_operation\" = 'select' AND \"label_pairs_status\" = 'error') AND $timeFilter),\n(SELECT \"value\" as \"tnt_crud_stats_count_ok\" FROM \"autogen\".\"tarantool_http\"\nWHERE (\"metric_name\" = 'tnt_crud_stats_count' AND \"label_pairs_operation\" = 'select' AND \"label_pairs_status\" = 'ok') AND $timeFilter)\nGROUP BY time($__interval * 2), \"label_pairs_alias\", \"label_pairs_name\" fill(0)\n",
                      "rawQuery": true,
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -22107,7 +21207,7 @@
                         }
                      ],
                      "policy": "default",
-                     "query": "SELECT mean(\"tnt_crud_tuples_lookup\") / (mean(\"tnt_crud_stats_count_ok\") + mean(\"tnt_crud_stats_count_error\"))\nas \"tnt_crud_tuples_per_request\" FROM\n(SELECT \"value\" as \"tnt_crud_tuples_lookup\" FROM \"autogen\".\"tarantool_http\"\nWHERE (\"metric_name\" = 'tnt_crud_tuples_lookup' AND \"label_pairs_alias\" =~ /^.*$/ AND \"label_pairs_operation\" = 'select') AND $timeFilter),\n(SELECT \"value\" as \"tnt_crud_stats_count_error\" FROM \"autogen\".\"tarantool_http\"\nWHERE (\"metric_name\" = 'tnt_crud_stats_count' AND \"label_pairs_alias\" =~ /^.*$/ AND \"label_pairs_operation\" = 'select' AND \"label_pairs_status\" = 'error') AND $timeFilter),\n(SELECT \"value\" as \"tnt_crud_stats_count_ok\" FROM \"autogen\".\"tarantool_http\"\nWHERE (\"metric_name\" = 'tnt_crud_stats_count' AND \"label_pairs_alias\" =~ /^.*$/ AND \"label_pairs_operation\" = 'select' AND \"label_pairs_status\" = 'ok') AND $timeFilter)\nGROUP BY time($__interval * 2), \"label_pairs_alias\", \"label_pairs_name\" fill(0)\n",
+                     "query": "SELECT mean(\"tnt_crud_tuples_lookup\") / (mean(\"tnt_crud_stats_count_ok\") + mean(\"tnt_crud_stats_count_error\"))\nas \"tnt_crud_tuples_per_request\" FROM\n(SELECT \"value\" as \"tnt_crud_tuples_lookup\" FROM \"autogen\".\"tarantool_http\"\nWHERE (\"metric_name\" = 'tnt_crud_tuples_lookup' AND \"label_pairs_operation\" = 'select') AND $timeFilter),\n(SELECT \"value\" as \"tnt_crud_stats_count_error\" FROM \"autogen\".\"tarantool_http\"\nWHERE (\"metric_name\" = 'tnt_crud_stats_count' AND \"label_pairs_operation\" = 'select' AND \"label_pairs_status\" = 'error') AND $timeFilter),\n(SELECT \"value\" as \"tnt_crud_stats_count_ok\" FROM \"autogen\".\"tarantool_http\"\nWHERE (\"metric_name\" = 'tnt_crud_stats_count' AND \"label_pairs_operation\" = 'select' AND \"label_pairs_status\" = 'ok') AND $timeFilter)\nGROUP BY time($__interval * 2), \"label_pairs_alias\", \"label_pairs_name\" fill(0)\n",
                      "rawQuery": true,
                      "refId": "A",
                      "resultFormat": "time_series",
@@ -22254,12 +21354,6 @@
                            "key": "metric_name",
                            "operator": "=",
                            "value": "tnt_crud_map_reduces"
-                        },
-                        {
-                           "condition": "AND",
-                           "key": "label_pairs_alias",
-                           "operator": "=~",
-                           "value": "/^.*$/"
                         },
                         {
                            "condition": "AND",
@@ -22412,12 +21506,6 @@
                         },
                         {
                            "condition": "AND",
-                           "key": "label_pairs_alias",
-                           "operator": "=~",
-                           "value": "/^.*$/"
-                        },
-                        {
-                           "condition": "AND",
                            "key": "label_pairs_operation",
                            "operator": "=",
                            "value": "insert"
@@ -22564,12 +21652,6 @@
                            "key": "metric_name",
                            "operator": "=",
                            "value": "tnt_crud_stats"
-                        },
-                        {
-                           "condition": "AND",
-                           "key": "label_pairs_alias",
-                           "operator": "=~",
-                           "value": "/^.*$/"
                         },
                         {
                            "condition": "AND",
@@ -22734,12 +21816,6 @@
                         },
                         {
                            "condition": "AND",
-                           "key": "label_pairs_alias",
-                           "operator": "=~",
-                           "value": "/^.*$/"
-                        },
-                        {
-                           "condition": "AND",
                            "key": "label_pairs_operation",
                            "operator": "=",
                            "value": "insert"
@@ -22886,12 +21962,6 @@
                            "key": "metric_name",
                            "operator": "=",
                            "value": "tnt_crud_stats"
-                        },
-                        {
-                           "condition": "AND",
-                           "key": "label_pairs_alias",
-                           "operator": "=~",
-                           "value": "/^.*$/"
                         },
                         {
                            "condition": "AND",
@@ -23056,12 +22126,6 @@
                         },
                         {
                            "condition": "AND",
-                           "key": "label_pairs_alias",
-                           "operator": "=~",
-                           "value": "/^.*$/"
-                        },
-                        {
-                           "condition": "AND",
                            "key": "label_pairs_operation",
                            "operator": "=",
                            "value": "insert_many"
@@ -23208,12 +22272,6 @@
                            "key": "metric_name",
                            "operator": "=",
                            "value": "tnt_crud_stats"
-                        },
-                        {
-                           "condition": "AND",
-                           "key": "label_pairs_alias",
-                           "operator": "=~",
-                           "value": "/^.*$/"
                         },
                         {
                            "condition": "AND",
@@ -23378,12 +22436,6 @@
                         },
                         {
                            "condition": "AND",
-                           "key": "label_pairs_alias",
-                           "operator": "=~",
-                           "value": "/^.*$/"
-                        },
-                        {
-                           "condition": "AND",
                            "key": "label_pairs_operation",
                            "operator": "=",
                            "value": "insert_many"
@@ -23530,12 +22582,6 @@
                            "key": "metric_name",
                            "operator": "=",
                            "value": "tnt_crud_stats"
-                        },
-                        {
-                           "condition": "AND",
-                           "key": "label_pairs_alias",
-                           "operator": "=~",
-                           "value": "/^.*$/"
                         },
                         {
                            "condition": "AND",
@@ -23700,12 +22746,6 @@
                         },
                         {
                            "condition": "AND",
-                           "key": "label_pairs_alias",
-                           "operator": "=~",
-                           "value": "/^.*$/"
-                        },
-                        {
-                           "condition": "AND",
                            "key": "label_pairs_operation",
                            "operator": "=",
                            "value": "replace"
@@ -23852,12 +22892,6 @@
                            "key": "metric_name",
                            "operator": "=",
                            "value": "tnt_crud_stats"
-                        },
-                        {
-                           "condition": "AND",
-                           "key": "label_pairs_alias",
-                           "operator": "=~",
-                           "value": "/^.*$/"
                         },
                         {
                            "condition": "AND",
@@ -24022,12 +23056,6 @@
                         },
                         {
                            "condition": "AND",
-                           "key": "label_pairs_alias",
-                           "operator": "=~",
-                           "value": "/^.*$/"
-                        },
-                        {
-                           "condition": "AND",
                            "key": "label_pairs_operation",
                            "operator": "=",
                            "value": "replace"
@@ -24174,12 +23202,6 @@
                            "key": "metric_name",
                            "operator": "=",
                            "value": "tnt_crud_stats"
-                        },
-                        {
-                           "condition": "AND",
-                           "key": "label_pairs_alias",
-                           "operator": "=~",
-                           "value": "/^.*$/"
                         },
                         {
                            "condition": "AND",
@@ -24344,12 +23366,6 @@
                         },
                         {
                            "condition": "AND",
-                           "key": "label_pairs_alias",
-                           "operator": "=~",
-                           "value": "/^.*$/"
-                        },
-                        {
-                           "condition": "AND",
                            "key": "label_pairs_operation",
                            "operator": "=",
                            "value": "replace_many"
@@ -24496,12 +23512,6 @@
                            "key": "metric_name",
                            "operator": "=",
                            "value": "tnt_crud_stats"
-                        },
-                        {
-                           "condition": "AND",
-                           "key": "label_pairs_alias",
-                           "operator": "=~",
-                           "value": "/^.*$/"
                         },
                         {
                            "condition": "AND",
@@ -24666,12 +23676,6 @@
                         },
                         {
                            "condition": "AND",
-                           "key": "label_pairs_alias",
-                           "operator": "=~",
-                           "value": "/^.*$/"
-                        },
-                        {
-                           "condition": "AND",
                            "key": "label_pairs_operation",
                            "operator": "=",
                            "value": "replace_many"
@@ -24818,12 +23822,6 @@
                            "key": "metric_name",
                            "operator": "=",
                            "value": "tnt_crud_stats"
-                        },
-                        {
-                           "condition": "AND",
-                           "key": "label_pairs_alias",
-                           "operator": "=~",
-                           "value": "/^.*$/"
                         },
                         {
                            "condition": "AND",
@@ -24988,12 +23986,6 @@
                         },
                         {
                            "condition": "AND",
-                           "key": "label_pairs_alias",
-                           "operator": "=~",
-                           "value": "/^.*$/"
-                        },
-                        {
-                           "condition": "AND",
                            "key": "label_pairs_operation",
                            "operator": "=",
                            "value": "upsert"
@@ -25140,12 +24132,6 @@
                            "key": "metric_name",
                            "operator": "=",
                            "value": "tnt_crud_stats"
-                        },
-                        {
-                           "condition": "AND",
-                           "key": "label_pairs_alias",
-                           "operator": "=~",
-                           "value": "/^.*$/"
                         },
                         {
                            "condition": "AND",
@@ -25310,12 +24296,6 @@
                         },
                         {
                            "condition": "AND",
-                           "key": "label_pairs_alias",
-                           "operator": "=~",
-                           "value": "/^.*$/"
-                        },
-                        {
-                           "condition": "AND",
                            "key": "label_pairs_operation",
                            "operator": "=",
                            "value": "upsert"
@@ -25462,12 +24442,6 @@
                            "key": "metric_name",
                            "operator": "=",
                            "value": "tnt_crud_stats"
-                        },
-                        {
-                           "condition": "AND",
-                           "key": "label_pairs_alias",
-                           "operator": "=~",
-                           "value": "/^.*$/"
                         },
                         {
                            "condition": "AND",
@@ -25632,12 +24606,6 @@
                         },
                         {
                            "condition": "AND",
-                           "key": "label_pairs_alias",
-                           "operator": "=~",
-                           "value": "/^.*$/"
-                        },
-                        {
-                           "condition": "AND",
                            "key": "label_pairs_operation",
                            "operator": "=",
                            "value": "upsert_many"
@@ -25784,12 +24752,6 @@
                            "key": "metric_name",
                            "operator": "=",
                            "value": "tnt_crud_stats"
-                        },
-                        {
-                           "condition": "AND",
-                           "key": "label_pairs_alias",
-                           "operator": "=~",
-                           "value": "/^.*$/"
                         },
                         {
                            "condition": "AND",
@@ -25954,12 +24916,6 @@
                         },
                         {
                            "condition": "AND",
-                           "key": "label_pairs_alias",
-                           "operator": "=~",
-                           "value": "/^.*$/"
-                        },
-                        {
-                           "condition": "AND",
                            "key": "label_pairs_operation",
                            "operator": "=",
                            "value": "upsert_many"
@@ -26106,12 +25062,6 @@
                            "key": "metric_name",
                            "operator": "=",
                            "value": "tnt_crud_stats"
-                        },
-                        {
-                           "condition": "AND",
-                           "key": "label_pairs_alias",
-                           "operator": "=~",
-                           "value": "/^.*$/"
                         },
                         {
                            "condition": "AND",
@@ -26276,12 +25226,6 @@
                         },
                         {
                            "condition": "AND",
-                           "key": "label_pairs_alias",
-                           "operator": "=~",
-                           "value": "/^.*$/"
-                        },
-                        {
-                           "condition": "AND",
                            "key": "label_pairs_operation",
                            "operator": "=",
                            "value": "update"
@@ -26428,12 +25372,6 @@
                            "key": "metric_name",
                            "operator": "=",
                            "value": "tnt_crud_stats"
-                        },
-                        {
-                           "condition": "AND",
-                           "key": "label_pairs_alias",
-                           "operator": "=~",
-                           "value": "/^.*$/"
                         },
                         {
                            "condition": "AND",
@@ -26598,12 +25536,6 @@
                         },
                         {
                            "condition": "AND",
-                           "key": "label_pairs_alias",
-                           "operator": "=~",
-                           "value": "/^.*$/"
-                        },
-                        {
-                           "condition": "AND",
                            "key": "label_pairs_operation",
                            "operator": "=",
                            "value": "update"
@@ -26750,12 +25682,6 @@
                            "key": "metric_name",
                            "operator": "=",
                            "value": "tnt_crud_stats"
-                        },
-                        {
-                           "condition": "AND",
-                           "key": "label_pairs_alias",
-                           "operator": "=~",
-                           "value": "/^.*$/"
                         },
                         {
                            "condition": "AND",
@@ -26920,12 +25846,6 @@
                         },
                         {
                            "condition": "AND",
-                           "key": "label_pairs_alias",
-                           "operator": "=~",
-                           "value": "/^.*$/"
-                        },
-                        {
-                           "condition": "AND",
                            "key": "label_pairs_operation",
                            "operator": "=",
                            "value": "delete"
@@ -27072,12 +25992,6 @@
                            "key": "metric_name",
                            "operator": "=",
                            "value": "tnt_crud_stats"
-                        },
-                        {
-                           "condition": "AND",
-                           "key": "label_pairs_alias",
-                           "operator": "=~",
-                           "value": "/^.*$/"
                         },
                         {
                            "condition": "AND",
@@ -27242,12 +26156,6 @@
                         },
                         {
                            "condition": "AND",
-                           "key": "label_pairs_alias",
-                           "operator": "=~",
-                           "value": "/^.*$/"
-                        },
-                        {
-                           "condition": "AND",
                            "key": "label_pairs_operation",
                            "operator": "=",
                            "value": "delete"
@@ -27394,12 +26302,6 @@
                            "key": "metric_name",
                            "operator": "=",
                            "value": "tnt_crud_stats"
-                        },
-                        {
-                           "condition": "AND",
-                           "key": "label_pairs_alias",
-                           "operator": "=~",
-                           "value": "/^.*$/"
                         },
                         {
                            "condition": "AND",
@@ -27564,12 +26466,6 @@
                         },
                         {
                            "condition": "AND",
-                           "key": "label_pairs_alias",
-                           "operator": "=~",
-                           "value": "/^.*$/"
-                        },
-                        {
-                           "condition": "AND",
                            "key": "label_pairs_operation",
                            "operator": "=",
                            "value": "count"
@@ -27716,12 +26612,6 @@
                            "key": "metric_name",
                            "operator": "=",
                            "value": "tnt_crud_stats"
-                        },
-                        {
-                           "condition": "AND",
-                           "key": "label_pairs_alias",
-                           "operator": "=~",
-                           "value": "/^.*$/"
                         },
                         {
                            "condition": "AND",
@@ -27886,12 +26776,6 @@
                         },
                         {
                            "condition": "AND",
-                           "key": "label_pairs_alias",
-                           "operator": "=~",
-                           "value": "/^.*$/"
-                        },
-                        {
-                           "condition": "AND",
                            "key": "label_pairs_operation",
                            "operator": "=",
                            "value": "count"
@@ -28038,12 +26922,6 @@
                            "key": "metric_name",
                            "operator": "=",
                            "value": "tnt_crud_stats"
-                        },
-                        {
-                           "condition": "AND",
-                           "key": "label_pairs_alias",
-                           "operator": "=~",
-                           "value": "/^.*$/"
                         },
                         {
                            "condition": "AND",
@@ -28208,12 +27086,6 @@
                         },
                         {
                            "condition": "AND",
-                           "key": "label_pairs_alias",
-                           "operator": "=~",
-                           "value": "/^.*$/"
-                        },
-                        {
-                           "condition": "AND",
                            "key": "label_pairs_operation",
                            "operator": "=",
                            "value": "get"
@@ -28360,12 +27232,6 @@
                            "key": "metric_name",
                            "operator": "=",
                            "value": "tnt_crud_stats"
-                        },
-                        {
-                           "condition": "AND",
-                           "key": "label_pairs_alias",
-                           "operator": "=~",
-                           "value": "/^.*$/"
                         },
                         {
                            "condition": "AND",
@@ -28530,12 +27396,6 @@
                         },
                         {
                            "condition": "AND",
-                           "key": "label_pairs_alias",
-                           "operator": "=~",
-                           "value": "/^.*$/"
-                        },
-                        {
-                           "condition": "AND",
                            "key": "label_pairs_operation",
                            "operator": "=",
                            "value": "get"
@@ -28682,12 +27542,6 @@
                            "key": "metric_name",
                            "operator": "=",
                            "value": "tnt_crud_stats"
-                        },
-                        {
-                           "condition": "AND",
-                           "key": "label_pairs_alias",
-                           "operator": "=~",
-                           "value": "/^.*$/"
                         },
                         {
                            "condition": "AND",
@@ -28852,12 +27706,6 @@
                         },
                         {
                            "condition": "AND",
-                           "key": "label_pairs_alias",
-                           "operator": "=~",
-                           "value": "/^.*$/"
-                        },
-                        {
-                           "condition": "AND",
                            "key": "label_pairs_operation",
                            "operator": "=",
                            "value": "borders"
@@ -29004,12 +27852,6 @@
                            "key": "metric_name",
                            "operator": "=",
                            "value": "tnt_crud_stats"
-                        },
-                        {
-                           "condition": "AND",
-                           "key": "label_pairs_alias",
-                           "operator": "=~",
-                           "value": "/^.*$/"
                         },
                         {
                            "condition": "AND",
@@ -29174,12 +28016,6 @@
                         },
                         {
                            "condition": "AND",
-                           "key": "label_pairs_alias",
-                           "operator": "=~",
-                           "value": "/^.*$/"
-                        },
-                        {
-                           "condition": "AND",
                            "key": "label_pairs_operation",
                            "operator": "=",
                            "value": "borders"
@@ -29326,12 +28162,6 @@
                            "key": "metric_name",
                            "operator": "=",
                            "value": "tnt_crud_stats"
-                        },
-                        {
-                           "condition": "AND",
-                           "key": "label_pairs_alias",
-                           "operator": "=~",
-                           "value": "/^.*$/"
                         },
                         {
                            "condition": "AND",
@@ -29496,12 +28326,6 @@
                         },
                         {
                            "condition": "AND",
-                           "key": "label_pairs_alias",
-                           "operator": "=~",
-                           "value": "/^.*$/"
-                        },
-                        {
-                           "condition": "AND",
                            "key": "label_pairs_operation",
                            "operator": "=",
                            "value": "len"
@@ -29648,12 +28472,6 @@
                            "key": "metric_name",
                            "operator": "=",
                            "value": "tnt_crud_stats"
-                        },
-                        {
-                           "condition": "AND",
-                           "key": "label_pairs_alias",
-                           "operator": "=~",
-                           "value": "/^.*$/"
                         },
                         {
                            "condition": "AND",
@@ -29818,12 +28636,6 @@
                         },
                         {
                            "condition": "AND",
-                           "key": "label_pairs_alias",
-                           "operator": "=~",
-                           "value": "/^.*$/"
-                        },
-                        {
-                           "condition": "AND",
                            "key": "label_pairs_operation",
                            "operator": "=",
                            "value": "len"
@@ -29970,12 +28782,6 @@
                            "key": "metric_name",
                            "operator": "=",
                            "value": "tnt_crud_stats"
-                        },
-                        {
-                           "condition": "AND",
-                           "key": "label_pairs_alias",
-                           "operator": "=~",
-                           "value": "/^.*$/"
                         },
                         {
                            "condition": "AND",
@@ -30140,12 +28946,6 @@
                         },
                         {
                            "condition": "AND",
-                           "key": "label_pairs_alias",
-                           "operator": "=~",
-                           "value": "/^.*$/"
-                        },
-                        {
-                           "condition": "AND",
                            "key": "label_pairs_operation",
                            "operator": "=",
                            "value": "truncate"
@@ -30292,12 +29092,6 @@
                            "key": "metric_name",
                            "operator": "=",
                            "value": "tnt_crud_stats"
-                        },
-                        {
-                           "condition": "AND",
-                           "key": "label_pairs_alias",
-                           "operator": "=~",
-                           "value": "/^.*$/"
                         },
                         {
                            "condition": "AND",
@@ -30462,12 +29256,6 @@
                         },
                         {
                            "condition": "AND",
-                           "key": "label_pairs_alias",
-                           "operator": "=~",
-                           "value": "/^.*$/"
-                        },
-                        {
-                           "condition": "AND",
                            "key": "label_pairs_operation",
                            "operator": "=",
                            "value": "truncate"
@@ -30614,12 +29402,6 @@
                            "key": "metric_name",
                            "operator": "=",
                            "value": "tnt_crud_stats"
-                        },
-                        {
-                           "condition": "AND",
-                           "key": "label_pairs_alias",
-                           "operator": "=~",
-                           "value": "/^.*$/"
                         },
                         {
                            "condition": "AND",
@@ -30801,12 +29583,6 @@
                            "key": "metric_name",
                            "operator": "=",
                            "value": "expirationd_checked_count"
-                        },
-                        {
-                           "condition": "AND",
-                           "key": "label_pairs_alias",
-                           "operator": "=~",
-                           "value": "/^.*$/"
                         }
                      ]
                   }
@@ -30950,12 +29726,6 @@
                            "key": "metric_name",
                            "operator": "=",
                            "value": "expirationd_expired_count"
-                        },
-                        {
-                           "condition": "AND",
-                           "key": "label_pairs_alias",
-                           "operator": "=~",
-                           "value": "/^.*$/"
                         }
                      ]
                   }
@@ -31093,12 +29863,6 @@
                            "key": "metric_name",
                            "operator": "=",
                            "value": "expirationd_restarts"
-                        },
-                        {
-                           "condition": "AND",
-                           "key": "label_pairs_alias",
-                           "operator": "=~",
-                           "value": "/^.*$/"
                         }
                      ]
                   }
@@ -31236,12 +30000,6 @@
                            "key": "metric_name",
                            "operator": "=",
                            "value": "expirationd_working_time"
-                        },
-                        {
-                           "condition": "AND",
-                           "key": "label_pairs_alias",
-                           "operator": "=~",
-                           "value": "/^.*$/"
                         }
                      ]
                   }

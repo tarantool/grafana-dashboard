@@ -13,7 +13,7 @@ local cfg = config.prepare({
   type: variable.datasource_type.prometheus,
   title: TITLE,
   datasource: DATASOURCE,
-  filters: { job: ['=~', JOB] } + if WITH_INSTANCE_VARIABLE then {} else { alias: ['=~', '.*'] },
+  filters: { job: ['=~', JOB] } + if WITH_INSTANCE_VARIABLE then { alias: ['=~', variable.prometheus.alias] } else {},
 });
 
 if WITH_INSTANCE_VARIABLE then

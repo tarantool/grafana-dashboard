@@ -516,7 +516,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_cartridge_issues{alias=~\".*\",job=~\"tarantool\",level=\"warning\"}",
+                     "expr": "tnt_cartridge_issues{job=~\"tarantool\",level=\"warning\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -606,7 +606,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_cartridge_issues{alias=~\".*\",job=~\"tarantool\",level=\"critical\"}",
+                     "expr": "tnt_cartridge_issues{job=~\"tarantool\",level=\"critical\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -696,7 +696,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_cartridge_failover_trigger_total{alias=~\".*\",job=~\"tarantool\"}[$__rate_interval])",
+                     "expr": "rate(tnt_cartridge_failover_trigger_total{job=~\"tarantool\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -840,7 +840,7 @@
                },
                "targets": [
                   {
-                     "expr": "tnt_read_only{alias=~\".*\",job=~\"tarantool\"}",
+                     "expr": "tnt_read_only{job=~\"tarantool\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -970,7 +970,7 @@
                },
                "targets": [
                   {
-                     "expr": "tnt_election_state{alias=~\".*\",job=~\"tarantool\"}",
+                     "expr": "tnt_election_state{job=~\"tarantool\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -1025,7 +1025,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_election_vote{alias=~\".*\",job=~\"tarantool\"}",
+                     "expr": "tnt_election_vote{job=~\"tarantool\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -1115,7 +1115,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_election_leader{alias=~\".*\",job=~\"tarantool\"}",
+                     "expr": "tnt_election_leader{job=~\"tarantool\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -1205,7 +1205,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_election_term{alias=~\".*\",job=~\"tarantool\"}",
+                     "expr": "tnt_election_term{job=~\"tarantool\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -1369,7 +1369,7 @@
                },
                "targets": [
                   {
-                     "expr": "tnt_replication_status{alias=~\".*\",job=~\"tarantool\"}",
+                     "expr": "tnt_replication_status{job=~\"tarantool\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}} {{stream}} ({{id}})",
@@ -1423,7 +1423,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_replication_lag{alias=~\".*\",job=~\"tarantool\"}",
+                     "expr": "tnt_replication_lag{job=~\"tarantool\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}} ({{id}})",
@@ -1510,7 +1510,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_clock_delta{alias=~\".*\",job=~\"tarantool\"}",
+                     "expr": "tnt_clock_delta{job=~\"tarantool\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}} ({{delta}})",
@@ -1598,7 +1598,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_synchro_queue_owner{alias=~\".*\",job=~\"tarantool\"}",
+                     "expr": "tnt_synchro_queue_owner{job=~\"tarantool\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -1688,7 +1688,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_synchro_queue_term{alias=~\".*\",job=~\"tarantool\"}",
+                     "expr": "tnt_synchro_queue_term{job=~\"tarantool\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -1778,7 +1778,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_synchro_queue_len{alias=~\".*\",job=~\"tarantool\"}",
+                     "expr": "tnt_synchro_queue_len{job=~\"tarantool\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -1922,7 +1922,7 @@
                },
                "targets": [
                   {
-                     "expr": "tnt_synchro_queue_busy{alias=~\".*\",job=~\"tarantool\"}",
+                     "expr": "tnt_synchro_queue_busy{job=~\"tarantool\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -1997,7 +1997,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(http_server_request_latency_count{alias=~\".*\",job=~\"tarantool\",status=~\"^2\\\\d{2}$\"}[$__rate_interval])",
+                     "expr": "rate(http_server_request_latency_count{job=~\"tarantool\",status=~\"^2\\\\d{2}$\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}} — {{method}} {{path}} (code {{status}})",
@@ -2087,7 +2087,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(http_server_request_latency_count{alias=~\".*\",job=~\"tarantool\",status=~\"^4\\\\d{2}$\"}[$__rate_interval])",
+                     "expr": "rate(http_server_request_latency_count{job=~\"tarantool\",status=~\"^4\\\\d{2}$\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}} — {{method}} {{path}} (code {{status}})",
@@ -2177,7 +2177,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(http_server_request_latency_count{alias=~\".*\",job=~\"tarantool\",status=~\"^5\\\\d{2}$\"}[$__rate_interval])",
+                     "expr": "rate(http_server_request_latency_count{job=~\"tarantool\",status=~\"^5\\\\d{2}$\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}} — {{method}} {{path}} (code {{status}})",
@@ -2267,7 +2267,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "http_server_request_latency{alias=~\".*\",job=~\"tarantool\",quantile=\"0.99\",status=~\"^2\\\\d{2}$\"}",
+                     "expr": "http_server_request_latency{job=~\"tarantool\",quantile=\"0.99\",status=~\"^2\\\\d{2}$\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}} — {{method}} {{path}} (code {{status}})",
@@ -2357,7 +2357,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "http_server_request_latency{alias=~\".*\",job=~\"tarantool\",quantile=\"0.99\",status=~\"^4\\\\d{2}$\"}",
+                     "expr": "http_server_request_latency{job=~\"tarantool\",quantile=\"0.99\",status=~\"^4\\\\d{2}$\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}} — {{method}} {{path}} (code {{status}})",
@@ -2447,7 +2447,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "http_server_request_latency{alias=~\".*\",job=~\"tarantool\",quantile=\"0.99\",status=~\"^5\\\\d{2}$\"}",
+                     "expr": "http_server_request_latency{job=~\"tarantool\",quantile=\"0.99\",status=~\"^5\\\\d{2}$\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}} — {{method}} {{path}} (code {{status}})",
@@ -2557,7 +2557,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_info_memory_net{alias=~\".*\",job=~\"tarantool\"}",
+                     "expr": "tnt_info_memory_net{job=~\"tarantool\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -2647,7 +2647,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_net_received_total{alias=~\".*\",job=~\"tarantool\"}[$__rate_interval])",
+                     "expr": "rate(tnt_net_received_total{job=~\"tarantool\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -2737,7 +2737,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_net_sent_total{alias=~\".*\",job=~\"tarantool\"}[$__rate_interval])",
+                     "expr": "rate(tnt_net_sent_total{job=~\"tarantool\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -2827,7 +2827,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_net_requests_total{alias=~\".*\",job=~\"tarantool\"}[$__rate_interval])",
+                     "expr": "rate(tnt_net_requests_total{job=~\"tarantool\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -2917,7 +2917,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_net_requests_current{alias=~\".*\",job=~\"tarantool\"}",
+                     "expr": "tnt_net_requests_current{job=~\"tarantool\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -3007,7 +3007,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_net_requests_in_progress_total{alias=~\".*\",job=~\"tarantool\"}[$__rate_interval])",
+                     "expr": "rate(tnt_net_requests_in_progress_total{job=~\"tarantool\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -3097,7 +3097,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_net_requests_in_progress_current{alias=~\".*\",job=~\"tarantool\"}",
+                     "expr": "tnt_net_requests_in_progress_current{job=~\"tarantool\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -3187,7 +3187,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_net_requests_in_stream_queue_total{alias=~\".*\",job=~\"tarantool\"}[$__rate_interval])",
+                     "expr": "rate(tnt_net_requests_in_stream_queue_total{job=~\"tarantool\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -3277,7 +3277,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_net_requests_in_stream_queue_current{alias=~\".*\",job=~\"tarantool\"}",
+                     "expr": "tnt_net_requests_in_stream_queue_current{job=~\"tarantool\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -3367,7 +3367,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_net_connections_total{alias=~\".*\",job=~\"tarantool\"}[$__rate_interval])",
+                     "expr": "rate(tnt_net_connections_total{job=~\"tarantool\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -3457,7 +3457,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_net_connections_current{alias=~\".*\",job=~\"tarantool\"}",
+                     "expr": "tnt_net_connections_current{job=~\"tarantool\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -3547,7 +3547,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_net_per_thread_sent_total{alias=~\".*\",job=~\"tarantool\"}[$__rate_interval])",
+                     "expr": "rate(tnt_net_per_thread_sent_total{job=~\"tarantool\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}} (thread {{thread}})",
@@ -3637,7 +3637,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_net_per_thread_received_total{alias=~\".*\",job=~\"tarantool\"}[$__rate_interval])",
+                     "expr": "rate(tnt_net_per_thread_received_total{job=~\"tarantool\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}} (thread {{thread}})",
@@ -3727,7 +3727,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_net_per_thread_connections_total{alias=~\".*\",job=~\"tarantool\"}[$__rate_interval])",
+                     "expr": "rate(tnt_net_per_thread_connections_total{job=~\"tarantool\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}} (thread {{thread}})",
@@ -3817,7 +3817,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_net_per_thread_connections_current{alias=~\".*\",job=~\"tarantool\"}",
+                     "expr": "tnt_net_per_thread_connections_current{job=~\"tarantool\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}} (thread {{thread}})",
@@ -3907,7 +3907,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_net_per_thread_requests_total{alias=~\".*\",job=~\"tarantool\"}[$__rate_interval])",
+                     "expr": "rate(tnt_net_per_thread_requests_total{job=~\"tarantool\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}} (thread {{thread}})",
@@ -3997,7 +3997,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_net_per_thread_requests_in_progress_total{alias=~\".*\",job=~\"tarantool\"}[$__rate_interval])",
+                     "expr": "rate(tnt_net_per_thread_requests_in_progress_total{job=~\"tarantool\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}} (thread {{thread}})",
@@ -4087,7 +4087,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_net_per_thread_requests_in_stream_queue_total{alias=~\".*\",job=~\"tarantool\"}[$__rate_interval])",
+                     "expr": "rate(tnt_net_per_thread_requests_in_stream_queue_total{job=~\"tarantool\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}} (thread {{thread}})",
@@ -4177,7 +4177,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_net_per_thread_requests_current{alias=~\".*\",job=~\"tarantool\"}",
+                     "expr": "tnt_net_per_thread_requests_current{job=~\"tarantool\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}} (thread {{thread}})",
@@ -4267,7 +4267,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_net_per_thread_requests_in_progress_current{alias=~\".*\",job=~\"tarantool\"}",
+                     "expr": "tnt_net_per_thread_requests_in_progress_current{job=~\"tarantool\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}} (thread {{thread}})",
@@ -4357,7 +4357,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_net_per_thread_requests_in_stream_queue_current{alias=~\".*\",job=~\"tarantool\"}",
+                     "expr": "tnt_net_per_thread_requests_in_stream_queue_current{job=~\"tarantool\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}} (thread {{thread}})",
@@ -4481,7 +4481,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_slab_quota_used_ratio{alias=~\".*\",job=~\"tarantool\"}",
+                     "expr": "tnt_slab_quota_used_ratio{job=~\"tarantool\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -4571,7 +4571,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_slab_arena_used_ratio{alias=~\".*\",job=~\"tarantool\"}",
+                     "expr": "tnt_slab_arena_used_ratio{job=~\"tarantool\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -4661,7 +4661,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_slab_items_used_ratio{alias=~\".*\",job=~\"tarantool\"}",
+                     "expr": "tnt_slab_items_used_ratio{job=~\"tarantool\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -4751,7 +4751,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_slab_quota_used{alias=~\".*\",job=~\"tarantool\"}",
+                     "expr": "tnt_slab_quota_used{job=~\"tarantool\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -4841,7 +4841,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_slab_arena_used{alias=~\".*\",job=~\"tarantool\"}",
+                     "expr": "tnt_slab_arena_used{job=~\"tarantool\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -4931,7 +4931,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_slab_items_used{alias=~\".*\",job=~\"tarantool\"}",
+                     "expr": "tnt_slab_items_used{job=~\"tarantool\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -5021,7 +5021,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_slab_quota_size{alias=~\".*\",job=~\"tarantool\"}",
+                     "expr": "tnt_slab_quota_size{job=~\"tarantool\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -5111,7 +5111,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_slab_arena_size{alias=~\".*\",job=~\"tarantool\"}",
+                     "expr": "tnt_slab_arena_size{job=~\"tarantool\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -5201,7 +5201,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_slab_items_size{alias=~\".*\",job=~\"tarantool\"}",
+                     "expr": "tnt_slab_items_size{job=~\"tarantool\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -5311,7 +5311,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_memtx_tnx_statements{alias=~\".*\",job=~\"tarantool\",kind=\"total\"}",
+                     "expr": "tnt_memtx_tnx_statements{job=~\"tarantool\",kind=\"total\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -5401,7 +5401,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_memtx_tnx_statements{alias=~\".*\",job=~\"tarantool\",kind=\"average\"}",
+                     "expr": "tnt_memtx_tnx_statements{job=~\"tarantool\",kind=\"average\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -5491,7 +5491,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_memtx_tnx_statements{alias=~\".*\",job=~\"tarantool\",kind=\"max\"}",
+                     "expr": "tnt_memtx_tnx_statements{job=~\"tarantool\",kind=\"max\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -5581,7 +5581,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_memtx_tnx_user{alias=~\".*\",job=~\"tarantool\",kind=\"total\"}",
+                     "expr": "tnt_memtx_tnx_user{job=~\"tarantool\",kind=\"total\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -5671,7 +5671,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_memtx_tnx_user{alias=~\".*\",job=~\"tarantool\",kind=\"average\"}",
+                     "expr": "tnt_memtx_tnx_user{job=~\"tarantool\",kind=\"average\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -5761,7 +5761,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_memtx_tnx_user{alias=~\".*\",job=~\"tarantool\",kind=\"max\"}",
+                     "expr": "tnt_memtx_tnx_user{job=~\"tarantool\",kind=\"max\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -5851,7 +5851,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_memtx_tnx_system{alias=~\".*\",job=~\"tarantool\",kind=\"total\"}",
+                     "expr": "tnt_memtx_tnx_system{job=~\"tarantool\",kind=\"total\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -5941,7 +5941,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_memtx_tnx_system{alias=~\".*\",job=~\"tarantool\",kind=\"average\"}",
+                     "expr": "tnt_memtx_tnx_system{job=~\"tarantool\",kind=\"average\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -6031,7 +6031,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_memtx_tnx_system{alias=~\".*\",job=~\"tarantool\",kind=\"max\"}",
+                     "expr": "tnt_memtx_tnx_system{job=~\"tarantool\",kind=\"max\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -6121,7 +6121,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_memtx_mvcc_trackers{alias=~\".*\",job=~\"tarantool\",kind=\"total\"}",
+                     "expr": "tnt_memtx_mvcc_trackers{job=~\"tarantool\",kind=\"total\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -6211,7 +6211,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_memtx_mvcc_trackers{alias=~\".*\",job=~\"tarantool\",kind=\"average\"}",
+                     "expr": "tnt_memtx_mvcc_trackers{job=~\"tarantool\",kind=\"average\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -6301,7 +6301,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_memtx_mvcc_trackers{alias=~\".*\",job=~\"tarantool\",kind=\"max\"}",
+                     "expr": "tnt_memtx_mvcc_trackers{job=~\"tarantool\",kind=\"max\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -6391,7 +6391,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_memtx_mvcc_conflicts{alias=~\".*\",job=~\"tarantool\",kind=\"total\"}",
+                     "expr": "tnt_memtx_mvcc_conflicts{job=~\"tarantool\",kind=\"total\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -6481,7 +6481,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_memtx_mvcc_conflicts{alias=~\".*\",job=~\"tarantool\",kind=\"average\"}",
+                     "expr": "tnt_memtx_mvcc_conflicts{job=~\"tarantool\",kind=\"average\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -6571,7 +6571,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_memtx_mvcc_conflicts{alias=~\".*\",job=~\"tarantool\",kind=\"max\"}",
+                     "expr": "tnt_memtx_mvcc_conflicts{job=~\"tarantool\",kind=\"max\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -6661,7 +6661,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_memtx_mvcc_tuples_used_stories{alias=~\".*\",job=~\"tarantool\",kind=\"count\"}",
+                     "expr": "tnt_memtx_mvcc_tuples_used_stories{job=~\"tarantool\",kind=\"count\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -6751,7 +6751,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_memtx_mvcc_tuples_used_stories{alias=~\".*\",job=~\"tarantool\",kind=\"total\"}",
+                     "expr": "tnt_memtx_mvcc_tuples_used_stories{job=~\"tarantool\",kind=\"total\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -6841,7 +6841,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_memtx_mvcc_tuples_used_retained{alias=~\".*\",job=~\"tarantool\",kind=\"count\"}",
+                     "expr": "tnt_memtx_mvcc_tuples_used_retained{job=~\"tarantool\",kind=\"count\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -6931,7 +6931,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_memtx_mvcc_tuples_used_retained{alias=~\".*\",job=~\"tarantool\",kind=\"total\"}",
+                     "expr": "tnt_memtx_mvcc_tuples_used_retained{job=~\"tarantool\",kind=\"total\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -7021,7 +7021,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_memtx_mvcc_tuples_read_view_stories{alias=~\".*\",job=~\"tarantool\",kind=\"count\"}",
+                     "expr": "tnt_memtx_mvcc_tuples_read_view_stories{job=~\"tarantool\",kind=\"count\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -7111,7 +7111,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_memtx_mvcc_tuples_read_view_stories{alias=~\".*\",job=~\"tarantool\",kind=\"total\"}",
+                     "expr": "tnt_memtx_mvcc_tuples_read_view_stories{job=~\"tarantool\",kind=\"total\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -7201,7 +7201,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_memtx_mvcc_tuples_read_view_retained{alias=~\".*\",job=~\"tarantool\",kind=\"count\"}",
+                     "expr": "tnt_memtx_mvcc_tuples_read_view_retained{job=~\"tarantool\",kind=\"count\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -7291,7 +7291,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_memtx_mvcc_tuples_read_view_retained{alias=~\".*\",job=~\"tarantool\",kind=\"total\"}",
+                     "expr": "tnt_memtx_mvcc_tuples_read_view_retained{job=~\"tarantool\",kind=\"total\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -7381,7 +7381,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_memtx_mvcc_tuples_tracking_stories{alias=~\".*\",job=~\"tarantool\",kind=\"count\"}",
+                     "expr": "tnt_memtx_mvcc_tuples_tracking_stories{job=~\"tarantool\",kind=\"count\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -7471,7 +7471,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_memtx_mvcc_tuples_tracking_stories{alias=~\".*\",job=~\"tarantool\",kind=\"total\"}",
+                     "expr": "tnt_memtx_mvcc_tuples_tracking_stories{job=~\"tarantool\",kind=\"total\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -7561,7 +7561,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_memtx_mvcc_tuples_tracking_retained{alias=~\".*\",job=~\"tarantool\",kind=\"count\"}",
+                     "expr": "tnt_memtx_mvcc_tuples_tracking_retained{job=~\"tarantool\",kind=\"count\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -7651,7 +7651,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_memtx_mvcc_tuples_tracking_retained{alias=~\".*\",job=~\"tarantool\",kind=\"total\"}",
+                     "expr": "tnt_memtx_mvcc_tuples_tracking_retained{job=~\"tarantool\",kind=\"total\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -7761,7 +7761,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_space_len{alias=~\".*\",engine=\"memtx\",job=~\"tarantool\"}",
+                     "expr": "tnt_space_len{engine=\"memtx\",job=~\"tarantool\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}} — {{name}}",
@@ -7851,7 +7851,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_vinyl_tuples{alias=~\".*\",engine=\"vinyl\",job=~\"tarantool\"}",
+                     "expr": "tnt_vinyl_tuples{engine=\"vinyl\",job=~\"tarantool\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}} — {{name}}",
@@ -7941,7 +7941,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_space_bsize{alias=~\".*\",engine=\"memtx\",job=~\"tarantool\"}",
+                     "expr": "tnt_space_bsize{engine=\"memtx\",job=~\"tarantool\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}} — {{name}}",
@@ -8031,7 +8031,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_space_index_bsize{alias=~\".*\",job=~\"tarantool\"}",
+                     "expr": "tnt_space_index_bsize{job=~\"tarantool\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}} — {{name}} ({{index_name}})",
@@ -8121,7 +8121,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_space_total_bsize{alias=~\".*\",engine=\"memtx\",job=~\"tarantool\"}",
+                     "expr": "tnt_space_total_bsize{engine=\"memtx\",job=~\"tarantool\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}} — {{name}}",
@@ -8231,7 +8231,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_vinyl_disk_data_size{alias=~\".*\",job=~\"tarantool\"}",
+                     "expr": "tnt_vinyl_disk_data_size{job=~\"tarantool\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -8321,7 +8321,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_vinyl_disk_index_size{alias=~\".*\",job=~\"tarantool\"}",
+                     "expr": "tnt_vinyl_disk_index_size{job=~\"tarantool\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -8411,7 +8411,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_vinyl_memory_tuple_cache{alias=~\".*\",job=~\"tarantool\"}",
+                     "expr": "tnt_vinyl_memory_tuple_cache{job=~\"tarantool\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -8501,7 +8501,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_vinyl_memory_page_index{alias=~\".*\",job=~\"tarantool\"}",
+                     "expr": "tnt_vinyl_memory_page_index{job=~\"tarantool\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -8591,7 +8591,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_vinyl_memory_bloom_filter{alias=~\".*\",job=~\"tarantool\"}",
+                     "expr": "tnt_vinyl_memory_bloom_filter{job=~\"tarantool\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -8681,7 +8681,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_vinyl_regulator_dump_bandwidth{alias=~\".*\",job=~\"tarantool\"}",
+                     "expr": "tnt_vinyl_regulator_dump_bandwidth{job=~\"tarantool\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -8771,7 +8771,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_vinyl_regulator_write_rate{alias=~\".*\",job=~\"tarantool\"}",
+                     "expr": "tnt_vinyl_regulator_write_rate{job=~\"tarantool\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -8861,7 +8861,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_vinyl_regulator_rate_limit{alias=~\".*\",job=~\"tarantool\"}",
+                     "expr": "tnt_vinyl_regulator_rate_limit{job=~\"tarantool\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -8951,7 +8951,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_vinyl_memory_level0{alias=~\".*\",job=~\"tarantool\"}",
+                     "expr": "tnt_vinyl_memory_level0{job=~\"tarantool\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -9041,7 +9041,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_vinyl_regulator_dump_watermark{alias=~\".*\",job=~\"tarantool\"}",
+                     "expr": "tnt_vinyl_regulator_dump_watermark{job=~\"tarantool\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -9131,7 +9131,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_vinyl_regulator_blocked_writers{alias=~\".*\",job=~\"tarantool\"}",
+                     "expr": "tnt_vinyl_regulator_blocked_writers{job=~\"tarantool\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -9221,7 +9221,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_vinyl_tx_commit{alias=~\".*\",job=~\"tarantool\"}[$__rate_interval])",
+                     "expr": "rate(tnt_vinyl_tx_commit{job=~\"tarantool\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -9311,7 +9311,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_vinyl_tx_rollback{alias=~\".*\",job=~\"tarantool\"}[$__rate_interval])",
+                     "expr": "rate(tnt_vinyl_tx_rollback{job=~\"tarantool\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -9401,7 +9401,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_vinyl_tx_conflict{alias=~\".*\",job=~\"tarantool\"}[$__rate_interval])",
+                     "expr": "rate(tnt_vinyl_tx_conflict{job=~\"tarantool\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -9491,7 +9491,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_vinyl_tx_read_views{alias=~\".*\",job=~\"tarantool\"}",
+                     "expr": "tnt_vinyl_tx_read_views{job=~\"tarantool\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -9581,7 +9581,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_vinyl_scheduler_tasks{alias=~\".*\",job=~\"tarantool\",status=\"inprogress\"}",
+                     "expr": "tnt_vinyl_scheduler_tasks{job=~\"tarantool\",status=\"inprogress\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -9671,7 +9671,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_vinyl_scheduler_tasks{alias=~\".*\",job=~\"tarantool\",status=\"failed\"}[$__rate_interval])",
+                     "expr": "rate(tnt_vinyl_scheduler_tasks{job=~\"tarantool\",status=\"failed\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -9761,7 +9761,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_vinyl_scheduler_dump_time{alias=~\".*\",job=~\"tarantool\"}[$__rate_interval])",
+                     "expr": "rate(tnt_vinyl_scheduler_dump_time{job=~\"tarantool\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -9851,7 +9851,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_vinyl_scheduler_dump_total{alias=~\".*\",job=~\"tarantool\"}[$__rate_interval])",
+                     "expr": "rate(tnt_vinyl_scheduler_dump_total{job=~\"tarantool\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -9961,7 +9961,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_cpu_user_time{alias=~\".*\",job=~\"tarantool\"}[$__rate_interval])",
+                     "expr": "rate(tnt_cpu_user_time{job=~\"tarantool\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -10051,7 +10051,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_cpu_system_time{alias=~\".*\",job=~\"tarantool\"}[$__rate_interval])",
+                     "expr": "rate(tnt_cpu_system_time{job=~\"tarantool\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -10161,7 +10161,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_info_memory_lua{alias=~\".*\",job=~\"tarantool\"}",
+                     "expr": "tnt_info_memory_lua{job=~\"tarantool\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -10251,7 +10251,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_runtime_used{alias=~\".*\",job=~\"tarantool\"}",
+                     "expr": "tnt_runtime_used{job=~\"tarantool\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -10341,7 +10341,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_info_memory_tx{alias=~\".*\",job=~\"tarantool\"}",
+                     "expr": "tnt_info_memory_tx{job=~\"tarantool\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -10431,7 +10431,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_fiber_csw{alias=~\".*\",job=~\"tarantool\"}",
+                     "expr": "tnt_fiber_csw{job=~\"tarantool\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -10521,7 +10521,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_ev_loop_time{alias=~\".*\",job=~\"tarantool\"}",
+                     "expr": "tnt_ev_loop_time{job=~\"tarantool\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -10611,7 +10611,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_fiber_amount{alias=~\".*\",job=~\"tarantool\"}",
+                     "expr": "tnt_fiber_amount{job=~\"tarantool\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -10701,7 +10701,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_fiber_memused{alias=~\".*\",job=~\"tarantool\"}",
+                     "expr": "tnt_fiber_memused{job=~\"tarantool\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -10791,7 +10791,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_fiber_memalloc{alias=~\".*\",job=~\"tarantool\"}",
+                     "expr": "tnt_fiber_memalloc{job=~\"tarantool\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -10901,7 +10901,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(lj_jit_snap_restore_total{alias=~\".*\",job=~\"tarantool\"}[$__rate_interval])",
+                     "expr": "rate(lj_jit_snap_restore_total{job=~\"tarantool\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -10991,7 +10991,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(lj_jit_trace_num{alias=~\".*\",job=~\"tarantool\"}[$__rate_interval])",
+                     "expr": "rate(lj_jit_trace_num{job=~\"tarantool\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -11081,7 +11081,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(lj_jit_trace_abort_total{alias=~\".*\",job=~\"tarantool\"}[$__rate_interval])",
+                     "expr": "rate(lj_jit_trace_abort_total{job=~\"tarantool\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -11171,7 +11171,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "lj_jit_mcode_size{alias=~\".*\",job=~\"tarantool\"}",
+                     "expr": "lj_jit_mcode_size{job=~\"tarantool\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -11261,7 +11261,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(lj_strhash_hit_total{alias=~\".*\",job=~\"tarantool\"}[$__rate_interval])",
+                     "expr": "rate(lj_strhash_hit_total{job=~\"tarantool\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -11351,7 +11351,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(lj_strhash_miss_total{alias=~\".*\",job=~\"tarantool\"}[$__rate_interval])",
+                     "expr": "rate(lj_strhash_miss_total{job=~\"tarantool\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -11441,7 +11441,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(lj_gc_steps_atomic_total{alias=~\".*\",job=~\"tarantool\"}[$__rate_interval])",
+                     "expr": "rate(lj_gc_steps_atomic_total{job=~\"tarantool\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -11531,7 +11531,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(lj_gc_steps_sweepstring_total{alias=~\".*\",job=~\"tarantool\"}[$__rate_interval])",
+                     "expr": "rate(lj_gc_steps_sweepstring_total{job=~\"tarantool\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -11621,7 +11621,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(lj_gc_steps_finalize_total{alias=~\".*\",job=~\"tarantool\"}[$__rate_interval])",
+                     "expr": "rate(lj_gc_steps_finalize_total{job=~\"tarantool\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -11711,7 +11711,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(lj_gc_steps_sweep_total{alias=~\".*\",job=~\"tarantool\"}[$__rate_interval])",
+                     "expr": "rate(lj_gc_steps_sweep_total{job=~\"tarantool\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -11801,7 +11801,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(lj_gc_steps_propagate_total{alias=~\".*\",job=~\"tarantool\"}[$__rate_interval])",
+                     "expr": "rate(lj_gc_steps_propagate_total{job=~\"tarantool\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -11891,7 +11891,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(lj_gc_steps_pause_total{alias=~\".*\",job=~\"tarantool\"}[$__rate_interval])",
+                     "expr": "rate(lj_gc_steps_pause_total{job=~\"tarantool\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -11981,7 +11981,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "lj_gc_strnum{alias=~\".*\",job=~\"tarantool\"}",
+                     "expr": "lj_gc_strnum{job=~\"tarantool\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -12071,7 +12071,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "lj_gc_tabnum{alias=~\".*\",job=~\"tarantool\"}",
+                     "expr": "lj_gc_tabnum{job=~\"tarantool\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -12161,7 +12161,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "lj_gc_cdatanum{alias=~\".*\",job=~\"tarantool\"}",
+                     "expr": "lj_gc_cdatanum{job=~\"tarantool\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -12251,7 +12251,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "lj_gc_udatanum{alias=~\".*\",job=~\"tarantool\"}",
+                     "expr": "lj_gc_udatanum{job=~\"tarantool\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -12341,7 +12341,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "lj_gc_memory{alias=~\".*\",job=~\"tarantool\"}",
+                     "expr": "lj_gc_memory{job=~\"tarantool\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -12431,7 +12431,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(lj_gc_freed_total{alias=~\".*\",job=~\"tarantool\"}[$__rate_interval])",
+                     "expr": "rate(lj_gc_freed_total{job=~\"tarantool\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -12521,7 +12521,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(lj_gc_allocated_total{alias=~\".*\",job=~\"tarantool\"}[$__rate_interval])",
+                     "expr": "rate(lj_gc_allocated_total{job=~\"tarantool\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -12631,7 +12631,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_stats_op_total{alias=~\".*\",job=~\"tarantool\",operation=\"select\"}[$__rate_interval])",
+                     "expr": "rate(tnt_stats_op_total{job=~\"tarantool\",operation=\"select\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -12721,7 +12721,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_stats_op_total{alias=~\".*\",job=~\"tarantool\",operation=\"insert\"}[$__rate_interval])",
+                     "expr": "rate(tnt_stats_op_total{job=~\"tarantool\",operation=\"insert\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -12811,7 +12811,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_stats_op_total{alias=~\".*\",job=~\"tarantool\",operation=\"replace\"}[$__rate_interval])",
+                     "expr": "rate(tnt_stats_op_total{job=~\"tarantool\",operation=\"replace\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -12901,7 +12901,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_stats_op_total{alias=~\".*\",job=~\"tarantool\",operation=\"upsert\"}[$__rate_interval])",
+                     "expr": "rate(tnt_stats_op_total{job=~\"tarantool\",operation=\"upsert\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -12991,7 +12991,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_stats_op_total{alias=~\".*\",job=~\"tarantool\",operation=\"update\"}[$__rate_interval])",
+                     "expr": "rate(tnt_stats_op_total{job=~\"tarantool\",operation=\"update\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -13081,7 +13081,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_stats_op_total{alias=~\".*\",job=~\"tarantool\",operation=\"delete\"}[$__rate_interval])",
+                     "expr": "rate(tnt_stats_op_total{job=~\"tarantool\",operation=\"delete\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -13171,7 +13171,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_stats_op_total{alias=~\".*\",job=~\"tarantool\",operation=\"call\"}[$__rate_interval])",
+                     "expr": "rate(tnt_stats_op_total{job=~\"tarantool\",operation=\"call\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -13261,7 +13261,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_stats_op_total{alias=~\".*\",job=~\"tarantool\",operation=\"eval\"}[$__rate_interval])",
+                     "expr": "rate(tnt_stats_op_total{job=~\"tarantool\",operation=\"eval\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -13351,7 +13351,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_stats_op_total{alias=~\".*\",job=~\"tarantool\",operation=\"error\"}[$__rate_interval])",
+                     "expr": "rate(tnt_stats_op_total{job=~\"tarantool\",operation=\"error\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -13441,7 +13441,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_stats_op_total{alias=~\".*\",job=~\"tarantool\",operation=\"auth\"}[$__rate_interval])",
+                     "expr": "rate(tnt_stats_op_total{job=~\"tarantool\",operation=\"auth\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -13531,7 +13531,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_stats_op_total{alias=~\".*\",job=~\"tarantool\",operation=\"prepare\"}[$__rate_interval])",
+                     "expr": "rate(tnt_stats_op_total{job=~\"tarantool\",operation=\"prepare\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -13621,7 +13621,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_stats_op_total{alias=~\".*\",job=~\"tarantool\",operation=\"execute\"}[$__rate_interval])",
+                     "expr": "rate(tnt_stats_op_total{job=~\"tarantool\",operation=\"execute\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -13711,7 +13711,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_stats_op_total{alias=~\".*\",job=~\"tarantool\",operation=\"begin\"}[$__rate_interval])",
+                     "expr": "rate(tnt_stats_op_total{job=~\"tarantool\",operation=\"begin\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -13801,7 +13801,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_stats_op_total{alias=~\".*\",job=~\"tarantool\",operation=\"commit\"}[$__rate_interval])",
+                     "expr": "rate(tnt_stats_op_total{job=~\"tarantool\",operation=\"commit\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -13891,7 +13891,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_stats_op_total{alias=~\".*\",job=~\"tarantool\",operation=\"rollback\"}[$__rate_interval])",
+                     "expr": "rate(tnt_stats_op_total{job=~\"tarantool\",operation=\"rollback\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -14001,7 +14001,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_crud_stats_count{alias=~\".*\",job=~\"tarantool\",operation=\"select\",status=\"ok\"}[$__rate_interval])",
+                     "expr": "rate(tnt_crud_stats_count{job=~\"tarantool\",operation=\"select\",status=\"ok\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}} — {{name}}",
@@ -14091,7 +14091,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_crud_stats{alias=~\".*\",job=~\"tarantool\",operation=\"select\",quantile=\"0.99\",status=\"ok\"}",
+                     "expr": "tnt_crud_stats{job=~\"tarantool\",operation=\"select\",quantile=\"0.99\",status=\"ok\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}} — {{name}}",
@@ -14181,7 +14181,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_crud_stats_count{alias=~\".*\",job=~\"tarantool\",operation=\"select\",status=\"error\"}[$__rate_interval])",
+                     "expr": "rate(tnt_crud_stats_count{job=~\"tarantool\",operation=\"select\",status=\"error\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}} — {{name}}",
@@ -14271,7 +14271,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_crud_stats{alias=~\".*\",job=~\"tarantool\",operation=\"select\",quantile=\"0.99\",status=\"error\"}",
+                     "expr": "tnt_crud_stats{job=~\"tarantool\",operation=\"select\",quantile=\"0.99\",status=\"error\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}} — {{name}}",
@@ -14361,7 +14361,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_crud_tuples_fetched{alias=~\".*\",job=~\"tarantool\",operation=\"select\"}[$__rate_interval]) /\n(sum without (status) (rate(tnt_crud_stats_count{alias=~\".*\",job=~\"tarantool\",operation=\"select\"}[$__rate_interval])))\n",
+                     "expr": "rate(tnt_crud_tuples_fetched{job=~\"tarantool\",operation=\"select\"}[$__rate_interval]) /\n(sum without (status) (rate(tnt_crud_stats_count{job=~\"tarantool\",operation=\"select\"}[$__rate_interval])))\n",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}} — {{name}}",
@@ -14451,7 +14451,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_crud_tuples_lookup{alias=~\".*\",job=~\"tarantool\",operation=\"select\"}[$__rate_interval]) /\n(sum without (status) (rate(tnt_crud_stats_count{alias=~\".*\",job=~\"tarantool\",operation=\"select\"}[$__rate_interval])))\n",
+                     "expr": "rate(tnt_crud_tuples_lookup{job=~\"tarantool\",operation=\"select\"}[$__rate_interval]) /\n(sum without (status) (rate(tnt_crud_stats_count{job=~\"tarantool\",operation=\"select\"}[$__rate_interval])))\n",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}} — {{name}}",
@@ -14541,7 +14541,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_crud_map_reduces{alias=~\".*\",job=~\"tarantool\",operation=\"select\"}[$__rate_interval])",
+                     "expr": "rate(tnt_crud_map_reduces{job=~\"tarantool\",operation=\"select\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}} — {{name}}",
@@ -14631,7 +14631,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_crud_stats_count{alias=~\".*\",job=~\"tarantool\",operation=\"insert\",status=\"ok\"}[$__rate_interval])",
+                     "expr": "rate(tnt_crud_stats_count{job=~\"tarantool\",operation=\"insert\",status=\"ok\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}} — {{name}}",
@@ -14721,7 +14721,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_crud_stats{alias=~\".*\",job=~\"tarantool\",operation=\"insert\",quantile=\"0.99\",status=\"ok\"}",
+                     "expr": "tnt_crud_stats{job=~\"tarantool\",operation=\"insert\",quantile=\"0.99\",status=\"ok\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}} — {{name}}",
@@ -14811,7 +14811,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_crud_stats_count{alias=~\".*\",job=~\"tarantool\",operation=\"insert\",status=\"error\"}[$__rate_interval])",
+                     "expr": "rate(tnt_crud_stats_count{job=~\"tarantool\",operation=\"insert\",status=\"error\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}} — {{name}}",
@@ -14901,7 +14901,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_crud_stats{alias=~\".*\",job=~\"tarantool\",operation=\"insert\",quantile=\"0.99\",status=\"error\"}",
+                     "expr": "tnt_crud_stats{job=~\"tarantool\",operation=\"insert\",quantile=\"0.99\",status=\"error\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}} — {{name}}",
@@ -14991,7 +14991,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_crud_stats_count{alias=~\".*\",job=~\"tarantool\",operation=\"insert_many\",status=\"ok\"}[$__rate_interval])",
+                     "expr": "rate(tnt_crud_stats_count{job=~\"tarantool\",operation=\"insert_many\",status=\"ok\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}} — {{name}}",
@@ -15081,7 +15081,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_crud_stats{alias=~\".*\",job=~\"tarantool\",operation=\"insert_many\",quantile=\"0.99\",status=\"ok\"}",
+                     "expr": "tnt_crud_stats{job=~\"tarantool\",operation=\"insert_many\",quantile=\"0.99\",status=\"ok\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}} — {{name}}",
@@ -15171,7 +15171,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_crud_stats_count{alias=~\".*\",job=~\"tarantool\",operation=\"insert_many\",status=\"error\"}[$__rate_interval])",
+                     "expr": "rate(tnt_crud_stats_count{job=~\"tarantool\",operation=\"insert_many\",status=\"error\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}} — {{name}}",
@@ -15261,7 +15261,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_crud_stats{alias=~\".*\",job=~\"tarantool\",operation=\"insert_many\",quantile=\"0.99\",status=\"error\"}",
+                     "expr": "tnt_crud_stats{job=~\"tarantool\",operation=\"insert_many\",quantile=\"0.99\",status=\"error\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}} — {{name}}",
@@ -15351,7 +15351,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_crud_stats_count{alias=~\".*\",job=~\"tarantool\",operation=\"replace\",status=\"ok\"}[$__rate_interval])",
+                     "expr": "rate(tnt_crud_stats_count{job=~\"tarantool\",operation=\"replace\",status=\"ok\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}} — {{name}}",
@@ -15441,7 +15441,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_crud_stats{alias=~\".*\",job=~\"tarantool\",operation=\"replace\",quantile=\"0.99\",status=\"ok\"}",
+                     "expr": "tnt_crud_stats{job=~\"tarantool\",operation=\"replace\",quantile=\"0.99\",status=\"ok\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}} — {{name}}",
@@ -15531,7 +15531,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_crud_stats_count{alias=~\".*\",job=~\"tarantool\",operation=\"replace\",status=\"error\"}[$__rate_interval])",
+                     "expr": "rate(tnt_crud_stats_count{job=~\"tarantool\",operation=\"replace\",status=\"error\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}} — {{name}}",
@@ -15621,7 +15621,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_crud_stats{alias=~\".*\",job=~\"tarantool\",operation=\"replace\",quantile=\"0.99\",status=\"error\"}",
+                     "expr": "tnt_crud_stats{job=~\"tarantool\",operation=\"replace\",quantile=\"0.99\",status=\"error\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}} — {{name}}",
@@ -15711,7 +15711,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_crud_stats_count{alias=~\".*\",job=~\"tarantool\",operation=\"replace_many\",status=\"ok\"}[$__rate_interval])",
+                     "expr": "rate(tnt_crud_stats_count{job=~\"tarantool\",operation=\"replace_many\",status=\"ok\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}} — {{name}}",
@@ -15801,7 +15801,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_crud_stats{alias=~\".*\",job=~\"tarantool\",operation=\"replace_many\",quantile=\"0.99\",status=\"ok\"}",
+                     "expr": "tnt_crud_stats{job=~\"tarantool\",operation=\"replace_many\",quantile=\"0.99\",status=\"ok\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}} — {{name}}",
@@ -15891,7 +15891,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_crud_stats_count{alias=~\".*\",job=~\"tarantool\",operation=\"replace_many\",status=\"error\"}[$__rate_interval])",
+                     "expr": "rate(tnt_crud_stats_count{job=~\"tarantool\",operation=\"replace_many\",status=\"error\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}} — {{name}}",
@@ -15981,7 +15981,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_crud_stats{alias=~\".*\",job=~\"tarantool\",operation=\"replace_many\",quantile=\"0.99\",status=\"error\"}",
+                     "expr": "tnt_crud_stats{job=~\"tarantool\",operation=\"replace_many\",quantile=\"0.99\",status=\"error\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}} — {{name}}",
@@ -16071,7 +16071,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_crud_stats_count{alias=~\".*\",job=~\"tarantool\",operation=\"upsert\",status=\"ok\"}[$__rate_interval])",
+                     "expr": "rate(tnt_crud_stats_count{job=~\"tarantool\",operation=\"upsert\",status=\"ok\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}} — {{name}}",
@@ -16161,7 +16161,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_crud_stats{alias=~\".*\",job=~\"tarantool\",operation=\"upsert\",quantile=\"0.99\",status=\"ok\"}",
+                     "expr": "tnt_crud_stats{job=~\"tarantool\",operation=\"upsert\",quantile=\"0.99\",status=\"ok\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}} — {{name}}",
@@ -16251,7 +16251,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_crud_stats_count{alias=~\".*\",job=~\"tarantool\",operation=\"upsert\",status=\"error\"}[$__rate_interval])",
+                     "expr": "rate(tnt_crud_stats_count{job=~\"tarantool\",operation=\"upsert\",status=\"error\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}} — {{name}}",
@@ -16341,7 +16341,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_crud_stats{alias=~\".*\",job=~\"tarantool\",operation=\"upsert\",quantile=\"0.99\",status=\"error\"}",
+                     "expr": "tnt_crud_stats{job=~\"tarantool\",operation=\"upsert\",quantile=\"0.99\",status=\"error\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}} — {{name}}",
@@ -16431,7 +16431,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_crud_stats_count{alias=~\".*\",job=~\"tarantool\",operation=\"upsert_many\",status=\"ok\"}[$__rate_interval])",
+                     "expr": "rate(tnt_crud_stats_count{job=~\"tarantool\",operation=\"upsert_many\",status=\"ok\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}} — {{name}}",
@@ -16521,7 +16521,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_crud_stats{alias=~\".*\",job=~\"tarantool\",operation=\"upsert_many\",quantile=\"0.99\",status=\"ok\"}",
+                     "expr": "tnt_crud_stats{job=~\"tarantool\",operation=\"upsert_many\",quantile=\"0.99\",status=\"ok\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}} — {{name}}",
@@ -16611,7 +16611,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_crud_stats_count{alias=~\".*\",job=~\"tarantool\",operation=\"upsert_many\",status=\"error\"}[$__rate_interval])",
+                     "expr": "rate(tnt_crud_stats_count{job=~\"tarantool\",operation=\"upsert_many\",status=\"error\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}} — {{name}}",
@@ -16701,7 +16701,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_crud_stats{alias=~\".*\",job=~\"tarantool\",operation=\"upsert_many\",quantile=\"0.99\",status=\"error\"}",
+                     "expr": "tnt_crud_stats{job=~\"tarantool\",operation=\"upsert_many\",quantile=\"0.99\",status=\"error\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}} — {{name}}",
@@ -16791,7 +16791,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_crud_stats_count{alias=~\".*\",job=~\"tarantool\",operation=\"update\",status=\"ok\"}[$__rate_interval])",
+                     "expr": "rate(tnt_crud_stats_count{job=~\"tarantool\",operation=\"update\",status=\"ok\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}} — {{name}}",
@@ -16881,7 +16881,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_crud_stats{alias=~\".*\",job=~\"tarantool\",operation=\"update\",quantile=\"0.99\",status=\"ok\"}",
+                     "expr": "tnt_crud_stats{job=~\"tarantool\",operation=\"update\",quantile=\"0.99\",status=\"ok\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}} — {{name}}",
@@ -16971,7 +16971,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_crud_stats_count{alias=~\".*\",job=~\"tarantool\",operation=\"update\",status=\"error\"}[$__rate_interval])",
+                     "expr": "rate(tnt_crud_stats_count{job=~\"tarantool\",operation=\"update\",status=\"error\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}} — {{name}}",
@@ -17061,7 +17061,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_crud_stats{alias=~\".*\",job=~\"tarantool\",operation=\"update\",quantile=\"0.99\",status=\"error\"}",
+                     "expr": "tnt_crud_stats{job=~\"tarantool\",operation=\"update\",quantile=\"0.99\",status=\"error\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}} — {{name}}",
@@ -17151,7 +17151,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_crud_stats_count{alias=~\".*\",job=~\"tarantool\",operation=\"delete\",status=\"ok\"}[$__rate_interval])",
+                     "expr": "rate(tnt_crud_stats_count{job=~\"tarantool\",operation=\"delete\",status=\"ok\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}} — {{name}}",
@@ -17241,7 +17241,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_crud_stats{alias=~\".*\",job=~\"tarantool\",operation=\"delete\",quantile=\"0.99\",status=\"ok\"}",
+                     "expr": "tnt_crud_stats{job=~\"tarantool\",operation=\"delete\",quantile=\"0.99\",status=\"ok\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}} — {{name}}",
@@ -17331,7 +17331,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_crud_stats_count{alias=~\".*\",job=~\"tarantool\",operation=\"delete\",status=\"error\"}[$__rate_interval])",
+                     "expr": "rate(tnt_crud_stats_count{job=~\"tarantool\",operation=\"delete\",status=\"error\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}} — {{name}}",
@@ -17421,7 +17421,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_crud_stats{alias=~\".*\",job=~\"tarantool\",operation=\"delete\",quantile=\"0.99\",status=\"error\"}",
+                     "expr": "tnt_crud_stats{job=~\"tarantool\",operation=\"delete\",quantile=\"0.99\",status=\"error\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}} — {{name}}",
@@ -17511,7 +17511,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_crud_stats_count{alias=~\".*\",job=~\"tarantool\",operation=\"count\",status=\"ok\"}[$__rate_interval])",
+                     "expr": "rate(tnt_crud_stats_count{job=~\"tarantool\",operation=\"count\",status=\"ok\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}} — {{name}}",
@@ -17601,7 +17601,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_crud_stats{alias=~\".*\",job=~\"tarantool\",operation=\"count\",quantile=\"0.99\",status=\"ok\"}",
+                     "expr": "tnt_crud_stats{job=~\"tarantool\",operation=\"count\",quantile=\"0.99\",status=\"ok\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}} — {{name}}",
@@ -17691,7 +17691,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_crud_stats_count{alias=~\".*\",job=~\"tarantool\",operation=\"count\",status=\"error\"}[$__rate_interval])",
+                     "expr": "rate(tnt_crud_stats_count{job=~\"tarantool\",operation=\"count\",status=\"error\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}} — {{name}}",
@@ -17781,7 +17781,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_crud_stats{alias=~\".*\",job=~\"tarantool\",operation=\"count\",quantile=\"0.99\",status=\"error\"}",
+                     "expr": "tnt_crud_stats{job=~\"tarantool\",operation=\"count\",quantile=\"0.99\",status=\"error\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}} — {{name}}",
@@ -17871,7 +17871,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_crud_stats_count{alias=~\".*\",job=~\"tarantool\",operation=\"get\",status=\"ok\"}[$__rate_interval])",
+                     "expr": "rate(tnt_crud_stats_count{job=~\"tarantool\",operation=\"get\",status=\"ok\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}} — {{name}}",
@@ -17961,7 +17961,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_crud_stats{alias=~\".*\",job=~\"tarantool\",operation=\"get\",quantile=\"0.99\",status=\"ok\"}",
+                     "expr": "tnt_crud_stats{job=~\"tarantool\",operation=\"get\",quantile=\"0.99\",status=\"ok\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}} — {{name}}",
@@ -18051,7 +18051,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_crud_stats_count{alias=~\".*\",job=~\"tarantool\",operation=\"get\",status=\"error\"}[$__rate_interval])",
+                     "expr": "rate(tnt_crud_stats_count{job=~\"tarantool\",operation=\"get\",status=\"error\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}} — {{name}}",
@@ -18141,7 +18141,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_crud_stats{alias=~\".*\",job=~\"tarantool\",operation=\"get\",quantile=\"0.99\",status=\"error\"}",
+                     "expr": "tnt_crud_stats{job=~\"tarantool\",operation=\"get\",quantile=\"0.99\",status=\"error\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}} — {{name}}",
@@ -18231,7 +18231,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_crud_stats_count{alias=~\".*\",job=~\"tarantool\",operation=\"borders\",status=\"ok\"}[$__rate_interval])",
+                     "expr": "rate(tnt_crud_stats_count{job=~\"tarantool\",operation=\"borders\",status=\"ok\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}} — {{name}}",
@@ -18321,7 +18321,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_crud_stats{alias=~\".*\",job=~\"tarantool\",operation=\"borders\",quantile=\"0.99\",status=\"ok\"}",
+                     "expr": "tnt_crud_stats{job=~\"tarantool\",operation=\"borders\",quantile=\"0.99\",status=\"ok\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}} — {{name}}",
@@ -18411,7 +18411,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_crud_stats_count{alias=~\".*\",job=~\"tarantool\",operation=\"borders\",status=\"error\"}[$__rate_interval])",
+                     "expr": "rate(tnt_crud_stats_count{job=~\"tarantool\",operation=\"borders\",status=\"error\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}} — {{name}}",
@@ -18501,7 +18501,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_crud_stats{alias=~\".*\",job=~\"tarantool\",operation=\"borders\",quantile=\"0.99\",status=\"error\"}",
+                     "expr": "tnt_crud_stats{job=~\"tarantool\",operation=\"borders\",quantile=\"0.99\",status=\"error\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}} — {{name}}",
@@ -18591,7 +18591,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_crud_stats_count{alias=~\".*\",job=~\"tarantool\",operation=\"len\",status=\"ok\"}[$__rate_interval])",
+                     "expr": "rate(tnt_crud_stats_count{job=~\"tarantool\",operation=\"len\",status=\"ok\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}} — {{name}}",
@@ -18681,7 +18681,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_crud_stats{alias=~\".*\",job=~\"tarantool\",operation=\"len\",quantile=\"0.99\",status=\"ok\"}",
+                     "expr": "tnt_crud_stats{job=~\"tarantool\",operation=\"len\",quantile=\"0.99\",status=\"ok\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}} — {{name}}",
@@ -18771,7 +18771,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_crud_stats_count{alias=~\".*\",job=~\"tarantool\",operation=\"len\",status=\"error\"}[$__rate_interval])",
+                     "expr": "rate(tnt_crud_stats_count{job=~\"tarantool\",operation=\"len\",status=\"error\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}} — {{name}}",
@@ -18861,7 +18861,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_crud_stats{alias=~\".*\",job=~\"tarantool\",operation=\"len\",quantile=\"0.99\",status=\"error\"}",
+                     "expr": "tnt_crud_stats{job=~\"tarantool\",operation=\"len\",quantile=\"0.99\",status=\"error\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}} — {{name}}",
@@ -18951,7 +18951,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_crud_stats_count{alias=~\".*\",job=~\"tarantool\",operation=\"truncate\",status=\"ok\"}[$__rate_interval])",
+                     "expr": "rate(tnt_crud_stats_count{job=~\"tarantool\",operation=\"truncate\",status=\"ok\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}} — {{name}}",
@@ -19041,7 +19041,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_crud_stats{alias=~\".*\",job=~\"tarantool\",operation=\"truncate\",quantile=\"0.99\",status=\"ok\"}",
+                     "expr": "tnt_crud_stats{job=~\"tarantool\",operation=\"truncate\",quantile=\"0.99\",status=\"ok\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}} — {{name}}",
@@ -19131,7 +19131,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_crud_stats_count{alias=~\".*\",job=~\"tarantool\",operation=\"truncate\",status=\"error\"}[$__rate_interval])",
+                     "expr": "rate(tnt_crud_stats_count{job=~\"tarantool\",operation=\"truncate\",status=\"error\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}} — {{name}}",
@@ -19221,7 +19221,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_crud_stats{alias=~\".*\",job=~\"tarantool\",operation=\"truncate\",quantile=\"0.99\",status=\"error\"}",
+                     "expr": "tnt_crud_stats{job=~\"tarantool\",operation=\"truncate\",quantile=\"0.99\",status=\"error\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}} — {{name}}",
@@ -19331,7 +19331,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(expirationd_checked_count{alias=~\".*\",job=~\"tarantool\"}[$__rate_interval])",
+                     "expr": "rate(expirationd_checked_count{job=~\"tarantool\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{name}} — {{alias}}",
@@ -19421,7 +19421,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(expirationd_expired_count{alias=~\".*\",job=~\"tarantool\"}[$__rate_interval])",
+                     "expr": "rate(expirationd_expired_count{job=~\"tarantool\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{name}} — {{alias}}",
@@ -19511,7 +19511,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "expirationd_restarts{alias=~\".*\",job=~\"tarantool\"}",
+                     "expr": "expirationd_restarts{job=~\"tarantool\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{name}} — {{alias}}",
@@ -19601,7 +19601,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "expirationd_working_time{alias=~\".*\",job=~\"tarantool\"}",
+                     "expr": "expirationd_working_time{job=~\"tarantool\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{name}} — {{alias}}",

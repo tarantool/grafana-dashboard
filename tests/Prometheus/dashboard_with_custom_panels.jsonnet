@@ -5,7 +5,10 @@ local dashboard = import 'dashboard/build/prometheus/dashboard.libsonnet';
 local common = import 'dashboard/panels/common.libsonnet';
 local variable = import 'dashboard/variable.libsonnet';
 
-local cfg = config.prepare({ type: variable.datasource_type.prometheus });
+local cfg = config.prepare({
+  type: variable.datasource_type.prometheus,
+  filters: { alias: ['=~', variable.prometheus.alias] },
+});
 
 dashboard.addPanels([
   common.row('Tarantool network activity'),

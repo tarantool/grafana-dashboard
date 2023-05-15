@@ -5,7 +5,10 @@ local dashboard = import 'dashboard/build/influxdb/dashboard.libsonnet';
 local common = import 'dashboard/panels/common.libsonnet';
 local variable = import 'dashboard/variable.libsonnet';
 
-local cfg = config.prepare({ type: variable.datasource_type.influxdb });
+local cfg = config.prepare({
+  type: variable.datasource_type.influxdb,
+  filters: { label_pairs_alias: ['=~', variable.influxdb.alias] },
+});
 
 dashboard.addPanels([
   common.row('My custom metrics'),

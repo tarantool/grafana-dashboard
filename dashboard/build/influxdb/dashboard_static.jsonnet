@@ -16,7 +16,7 @@ local cfg = config.prepare({
   datasource: DATASOURCE,
   policy: POLICY,
   measurement: MEASUREMENT,
-  filters: if WITH_INSTANCE_VARIABLE then {} else { label_pairs_alias: ['=~', '/^.*$/'] },
+  filters: if WITH_INSTANCE_VARIABLE then { label_pairs_alias: ['=~', variable.influxdb.alias] } else {},
 });
 
 if WITH_INSTANCE_VARIABLE then
