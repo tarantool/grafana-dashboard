@@ -55,20 +55,29 @@ local variable = import 'dashboard/variable.libsonnet';
     },
   },
 
+  local array_to_obj(arr) = { [key]: true for key in arr },
+
   local assert_type(k, v, type, err_tmpl) =
-    if std.type(v) != type then
+    if (if std.type(type) == 'array' then !(std.type(v) in array_to_obj(type)) else std.type(v) != type) then
       error std.format(err_tmpl, [k, type, std.type(v)])
     else
       true,
 
   local validate_filter(key, value) =
-    [assert_type(key, value, 'array', "ConfigurationError: field 'filters.%s' expected type %s, got %s")] + [
-      if std.length(value) != 2 then
-        error std.format("ConfigurationError: field 'filters.%s' expected to be in format [condition, value]", key)
-      else
-        true,
-    ] + [assert_type(key, value[0], 'string', "ConfigurationError: field 'filters.%s[0]' expected type %s, got %s")] +
-    [assert_type(key, value[1], 'string', "ConfigurationError: field 'filters.%s[1]' expected type %s, got %s")],
+    [assert_type(key, value, ['array', 'null'], "ConfigurationError: field 'filters.%s' expected type %s, got %s")] +
+    if (std.type(value) == 'array') then
+      [
+        if std.length(value) != 2 then
+          error std.format("ConfigurationError: field 'filters.%s' expected to be in format [condition, value]", key)
+        else
+          true,
+      ] + [
+        assert_type(key, value[0], 'string', "ConfigurationError: field 'filters.%s[0]' expected type %s, got %s"),
+      ] + [
+        assert_type(key, value[1], 'string', "ConfigurationError: field 'filters.%s[1]' expected type %s, got %s"),
+      ]
+    else
+      [],
 
   local _validate_fields(cfg, schema) =
     [
@@ -85,6 +94,9 @@ local variable = import 'dashboard/variable.libsonnet';
   local validate_fields(cfg) =
     if std.all(_validate_fields(cfg, schema[cfg.type])) then cfg,
 
+  local truncate_null_filters(cfg) =
+    cfg { filters: { [item.key]: item.value for item in std.objectKeysValues(cfg.filters) if item.value != null } },
+
   prepare(cfg)::
-    validate_fields(fill_defaults(validate_basic(cfg))),
+    truncate_null_filters(validate_fields(fill_defaults(validate_basic(cfg)))),
 }
