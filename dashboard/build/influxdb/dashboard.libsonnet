@@ -7,6 +7,7 @@ local variable = import 'dashboard/variable.libsonnet';
 local cfg = config.prepare({
   type: variable.datasource_type.influxdb,
   title: 'Tarantool dashboard',
+  filters: { label_pairs_alias: ['=~', variable.influxdb.alias] },
 });
 
 dashboard_raw(cfg).addTemplate(

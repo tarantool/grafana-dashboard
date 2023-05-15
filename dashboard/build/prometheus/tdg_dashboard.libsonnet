@@ -7,6 +7,7 @@ local variable = import 'dashboard/variable.libsonnet';
 local cfg = config.prepare({
   type: variable.datasource_type.prometheus,
   title: 'Tarantool Data Grid dashboard',
+  filters: { alias: ['=~', variable.prometheus.alias] },
 });
 
 tdg_dashboard_raw(cfg).addTemplate(

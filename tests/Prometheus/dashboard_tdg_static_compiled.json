@@ -516,7 +516,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_cartridge_issues{alias=~\".*\",job=~\"tarantool\",level=\"warning\"}",
+                     "expr": "tnt_cartridge_issues{job=~\"tarantool\",level=\"warning\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -606,7 +606,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_cartridge_issues{alias=~\".*\",job=~\"tarantool\",level=\"critical\"}",
+                     "expr": "tnt_cartridge_issues{job=~\"tarantool\",level=\"critical\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -696,7 +696,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_cartridge_failover_trigger_total{alias=~\".*\",job=~\"tarantool\"}[$__rate_interval])",
+                     "expr": "rate(tnt_cartridge_failover_trigger_total{job=~\"tarantool\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -840,7 +840,7 @@
                },
                "targets": [
                   {
-                     "expr": "tnt_read_only{alias=~\".*\",job=~\"tarantool\"}",
+                     "expr": "tnt_read_only{job=~\"tarantool\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -970,7 +970,7 @@
                },
                "targets": [
                   {
-                     "expr": "tnt_election_state{alias=~\".*\",job=~\"tarantool\"}",
+                     "expr": "tnt_election_state{job=~\"tarantool\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -1025,7 +1025,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_election_vote{alias=~\".*\",job=~\"tarantool\"}",
+                     "expr": "tnt_election_vote{job=~\"tarantool\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -1115,7 +1115,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_election_leader{alias=~\".*\",job=~\"tarantool\"}",
+                     "expr": "tnt_election_leader{job=~\"tarantool\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -1205,7 +1205,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_election_term{alias=~\".*\",job=~\"tarantool\"}",
+                     "expr": "tnt_election_term{job=~\"tarantool\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -1369,7 +1369,7 @@
                },
                "targets": [
                   {
-                     "expr": "tnt_replication_status{alias=~\".*\",job=~\"tarantool\"}",
+                     "expr": "tnt_replication_status{job=~\"tarantool\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}} {{stream}} ({{id}})",
@@ -1423,7 +1423,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_replication_lag{alias=~\".*\",job=~\"tarantool\"}",
+                     "expr": "tnt_replication_lag{job=~\"tarantool\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}} ({{id}})",
@@ -1510,7 +1510,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_clock_delta{alias=~\".*\",job=~\"tarantool\"}",
+                     "expr": "tnt_clock_delta{job=~\"tarantool\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}} ({{delta}})",
@@ -1598,7 +1598,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_synchro_queue_owner{alias=~\".*\",job=~\"tarantool\"}",
+                     "expr": "tnt_synchro_queue_owner{job=~\"tarantool\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -1688,7 +1688,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_synchro_queue_term{alias=~\".*\",job=~\"tarantool\"}",
+                     "expr": "tnt_synchro_queue_term{job=~\"tarantool\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -1778,7 +1778,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_synchro_queue_len{alias=~\".*\",job=~\"tarantool\"}",
+                     "expr": "tnt_synchro_queue_len{job=~\"tarantool\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -1922,7 +1922,7 @@
                },
                "targets": [
                   {
-                     "expr": "tnt_synchro_queue_busy{alias=~\".*\",job=~\"tarantool\"}",
+                     "expr": "tnt_synchro_queue_busy{job=~\"tarantool\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -1997,7 +1997,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_info_memory_net{alias=~\".*\",job=~\"tarantool\"}",
+                     "expr": "tnt_info_memory_net{job=~\"tarantool\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -2087,7 +2087,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_net_received_total{alias=~\".*\",job=~\"tarantool\"}[$__rate_interval])",
+                     "expr": "rate(tnt_net_received_total{job=~\"tarantool\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -2177,7 +2177,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_net_sent_total{alias=~\".*\",job=~\"tarantool\"}[$__rate_interval])",
+                     "expr": "rate(tnt_net_sent_total{job=~\"tarantool\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -2267,7 +2267,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_net_requests_total{alias=~\".*\",job=~\"tarantool\"}[$__rate_interval])",
+                     "expr": "rate(tnt_net_requests_total{job=~\"tarantool\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -2357,7 +2357,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_net_requests_current{alias=~\".*\",job=~\"tarantool\"}",
+                     "expr": "tnt_net_requests_current{job=~\"tarantool\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -2447,7 +2447,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_net_requests_in_progress_total{alias=~\".*\",job=~\"tarantool\"}[$__rate_interval])",
+                     "expr": "rate(tnt_net_requests_in_progress_total{job=~\"tarantool\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -2537,7 +2537,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_net_requests_in_progress_current{alias=~\".*\",job=~\"tarantool\"}",
+                     "expr": "tnt_net_requests_in_progress_current{job=~\"tarantool\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -2627,7 +2627,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_net_requests_in_stream_queue_total{alias=~\".*\",job=~\"tarantool\"}[$__rate_interval])",
+                     "expr": "rate(tnt_net_requests_in_stream_queue_total{job=~\"tarantool\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -2717,7 +2717,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_net_requests_in_stream_queue_current{alias=~\".*\",job=~\"tarantool\"}",
+                     "expr": "tnt_net_requests_in_stream_queue_current{job=~\"tarantool\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -2807,7 +2807,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_net_connections_total{alias=~\".*\",job=~\"tarantool\"}[$__rate_interval])",
+                     "expr": "rate(tnt_net_connections_total{job=~\"tarantool\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -2897,7 +2897,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_net_connections_current{alias=~\".*\",job=~\"tarantool\"}",
+                     "expr": "tnt_net_connections_current{job=~\"tarantool\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -2987,7 +2987,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_net_per_thread_sent_total{alias=~\".*\",job=~\"tarantool\"}[$__rate_interval])",
+                     "expr": "rate(tnt_net_per_thread_sent_total{job=~\"tarantool\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}} (thread {{thread}})",
@@ -3077,7 +3077,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_net_per_thread_received_total{alias=~\".*\",job=~\"tarantool\"}[$__rate_interval])",
+                     "expr": "rate(tnt_net_per_thread_received_total{job=~\"tarantool\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}} (thread {{thread}})",
@@ -3167,7 +3167,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_net_per_thread_connections_total{alias=~\".*\",job=~\"tarantool\"}[$__rate_interval])",
+                     "expr": "rate(tnt_net_per_thread_connections_total{job=~\"tarantool\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}} (thread {{thread}})",
@@ -3257,7 +3257,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_net_per_thread_connections_current{alias=~\".*\",job=~\"tarantool\"}",
+                     "expr": "tnt_net_per_thread_connections_current{job=~\"tarantool\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}} (thread {{thread}})",
@@ -3347,7 +3347,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_net_per_thread_requests_total{alias=~\".*\",job=~\"tarantool\"}[$__rate_interval])",
+                     "expr": "rate(tnt_net_per_thread_requests_total{job=~\"tarantool\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}} (thread {{thread}})",
@@ -3437,7 +3437,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_net_per_thread_requests_in_progress_total{alias=~\".*\",job=~\"tarantool\"}[$__rate_interval])",
+                     "expr": "rate(tnt_net_per_thread_requests_in_progress_total{job=~\"tarantool\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}} (thread {{thread}})",
@@ -3527,7 +3527,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_net_per_thread_requests_in_stream_queue_total{alias=~\".*\",job=~\"tarantool\"}[$__rate_interval])",
+                     "expr": "rate(tnt_net_per_thread_requests_in_stream_queue_total{job=~\"tarantool\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}} (thread {{thread}})",
@@ -3617,7 +3617,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_net_per_thread_requests_current{alias=~\".*\",job=~\"tarantool\"}",
+                     "expr": "tnt_net_per_thread_requests_current{job=~\"tarantool\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}} (thread {{thread}})",
@@ -3707,7 +3707,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_net_per_thread_requests_in_progress_current{alias=~\".*\",job=~\"tarantool\"}",
+                     "expr": "tnt_net_per_thread_requests_in_progress_current{job=~\"tarantool\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}} (thread {{thread}})",
@@ -3797,7 +3797,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_net_per_thread_requests_in_stream_queue_current{alias=~\".*\",job=~\"tarantool\"}",
+                     "expr": "tnt_net_per_thread_requests_in_stream_queue_current{job=~\"tarantool\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}} (thread {{thread}})",
@@ -3921,7 +3921,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_slab_quota_used_ratio{alias=~\".*\",job=~\"tarantool\"}",
+                     "expr": "tnt_slab_quota_used_ratio{job=~\"tarantool\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -4011,7 +4011,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_slab_arena_used_ratio{alias=~\".*\",job=~\"tarantool\"}",
+                     "expr": "tnt_slab_arena_used_ratio{job=~\"tarantool\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -4101,7 +4101,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_slab_items_used_ratio{alias=~\".*\",job=~\"tarantool\"}",
+                     "expr": "tnt_slab_items_used_ratio{job=~\"tarantool\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -4191,7 +4191,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_slab_quota_used{alias=~\".*\",job=~\"tarantool\"}",
+                     "expr": "tnt_slab_quota_used{job=~\"tarantool\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -4281,7 +4281,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_slab_arena_used{alias=~\".*\",job=~\"tarantool\"}",
+                     "expr": "tnt_slab_arena_used{job=~\"tarantool\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -4371,7 +4371,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_slab_items_used{alias=~\".*\",job=~\"tarantool\"}",
+                     "expr": "tnt_slab_items_used{job=~\"tarantool\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -4461,7 +4461,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_slab_quota_size{alias=~\".*\",job=~\"tarantool\"}",
+                     "expr": "tnt_slab_quota_size{job=~\"tarantool\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -4551,7 +4551,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_slab_arena_size{alias=~\".*\",job=~\"tarantool\"}",
+                     "expr": "tnt_slab_arena_size{job=~\"tarantool\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -4641,7 +4641,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_slab_items_size{alias=~\".*\",job=~\"tarantool\"}",
+                     "expr": "tnt_slab_items_size{job=~\"tarantool\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -4751,7 +4751,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_memtx_tnx_statements{alias=~\".*\",job=~\"tarantool\",kind=\"total\"}",
+                     "expr": "tnt_memtx_tnx_statements{job=~\"tarantool\",kind=\"total\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -4841,7 +4841,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_memtx_tnx_statements{alias=~\".*\",job=~\"tarantool\",kind=\"average\"}",
+                     "expr": "tnt_memtx_tnx_statements{job=~\"tarantool\",kind=\"average\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -4931,7 +4931,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_memtx_tnx_statements{alias=~\".*\",job=~\"tarantool\",kind=\"max\"}",
+                     "expr": "tnt_memtx_tnx_statements{job=~\"tarantool\",kind=\"max\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -5021,7 +5021,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_memtx_tnx_user{alias=~\".*\",job=~\"tarantool\",kind=\"total\"}",
+                     "expr": "tnt_memtx_tnx_user{job=~\"tarantool\",kind=\"total\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -5111,7 +5111,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_memtx_tnx_user{alias=~\".*\",job=~\"tarantool\",kind=\"average\"}",
+                     "expr": "tnt_memtx_tnx_user{job=~\"tarantool\",kind=\"average\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -5201,7 +5201,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_memtx_tnx_user{alias=~\".*\",job=~\"tarantool\",kind=\"max\"}",
+                     "expr": "tnt_memtx_tnx_user{job=~\"tarantool\",kind=\"max\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -5291,7 +5291,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_memtx_tnx_system{alias=~\".*\",job=~\"tarantool\",kind=\"total\"}",
+                     "expr": "tnt_memtx_tnx_system{job=~\"tarantool\",kind=\"total\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -5381,7 +5381,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_memtx_tnx_system{alias=~\".*\",job=~\"tarantool\",kind=\"average\"}",
+                     "expr": "tnt_memtx_tnx_system{job=~\"tarantool\",kind=\"average\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -5471,7 +5471,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_memtx_tnx_system{alias=~\".*\",job=~\"tarantool\",kind=\"max\"}",
+                     "expr": "tnt_memtx_tnx_system{job=~\"tarantool\",kind=\"max\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -5561,7 +5561,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_memtx_mvcc_trackers{alias=~\".*\",job=~\"tarantool\",kind=\"total\"}",
+                     "expr": "tnt_memtx_mvcc_trackers{job=~\"tarantool\",kind=\"total\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -5651,7 +5651,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_memtx_mvcc_trackers{alias=~\".*\",job=~\"tarantool\",kind=\"average\"}",
+                     "expr": "tnt_memtx_mvcc_trackers{job=~\"tarantool\",kind=\"average\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -5741,7 +5741,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_memtx_mvcc_trackers{alias=~\".*\",job=~\"tarantool\",kind=\"max\"}",
+                     "expr": "tnt_memtx_mvcc_trackers{job=~\"tarantool\",kind=\"max\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -5831,7 +5831,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_memtx_mvcc_conflicts{alias=~\".*\",job=~\"tarantool\",kind=\"total\"}",
+                     "expr": "tnt_memtx_mvcc_conflicts{job=~\"tarantool\",kind=\"total\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -5921,7 +5921,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_memtx_mvcc_conflicts{alias=~\".*\",job=~\"tarantool\",kind=\"average\"}",
+                     "expr": "tnt_memtx_mvcc_conflicts{job=~\"tarantool\",kind=\"average\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -6011,7 +6011,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_memtx_mvcc_conflicts{alias=~\".*\",job=~\"tarantool\",kind=\"max\"}",
+                     "expr": "tnt_memtx_mvcc_conflicts{job=~\"tarantool\",kind=\"max\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -6101,7 +6101,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_memtx_mvcc_tuples_used_stories{alias=~\".*\",job=~\"tarantool\",kind=\"count\"}",
+                     "expr": "tnt_memtx_mvcc_tuples_used_stories{job=~\"tarantool\",kind=\"count\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -6191,7 +6191,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_memtx_mvcc_tuples_used_stories{alias=~\".*\",job=~\"tarantool\",kind=\"total\"}",
+                     "expr": "tnt_memtx_mvcc_tuples_used_stories{job=~\"tarantool\",kind=\"total\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -6281,7 +6281,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_memtx_mvcc_tuples_used_retained{alias=~\".*\",job=~\"tarantool\",kind=\"count\"}",
+                     "expr": "tnt_memtx_mvcc_tuples_used_retained{job=~\"tarantool\",kind=\"count\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -6371,7 +6371,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_memtx_mvcc_tuples_used_retained{alias=~\".*\",job=~\"tarantool\",kind=\"total\"}",
+                     "expr": "tnt_memtx_mvcc_tuples_used_retained{job=~\"tarantool\",kind=\"total\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -6461,7 +6461,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_memtx_mvcc_tuples_read_view_stories{alias=~\".*\",job=~\"tarantool\",kind=\"count\"}",
+                     "expr": "tnt_memtx_mvcc_tuples_read_view_stories{job=~\"tarantool\",kind=\"count\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -6551,7 +6551,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_memtx_mvcc_tuples_read_view_stories{alias=~\".*\",job=~\"tarantool\",kind=\"total\"}",
+                     "expr": "tnt_memtx_mvcc_tuples_read_view_stories{job=~\"tarantool\",kind=\"total\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -6641,7 +6641,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_memtx_mvcc_tuples_read_view_retained{alias=~\".*\",job=~\"tarantool\",kind=\"count\"}",
+                     "expr": "tnt_memtx_mvcc_tuples_read_view_retained{job=~\"tarantool\",kind=\"count\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -6731,7 +6731,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_memtx_mvcc_tuples_read_view_retained{alias=~\".*\",job=~\"tarantool\",kind=\"total\"}",
+                     "expr": "tnt_memtx_mvcc_tuples_read_view_retained{job=~\"tarantool\",kind=\"total\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -6821,7 +6821,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_memtx_mvcc_tuples_tracking_stories{alias=~\".*\",job=~\"tarantool\",kind=\"count\"}",
+                     "expr": "tnt_memtx_mvcc_tuples_tracking_stories{job=~\"tarantool\",kind=\"count\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -6911,7 +6911,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_memtx_mvcc_tuples_tracking_stories{alias=~\".*\",job=~\"tarantool\",kind=\"total\"}",
+                     "expr": "tnt_memtx_mvcc_tuples_tracking_stories{job=~\"tarantool\",kind=\"total\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -7001,7 +7001,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_memtx_mvcc_tuples_tracking_retained{alias=~\".*\",job=~\"tarantool\",kind=\"count\"}",
+                     "expr": "tnt_memtx_mvcc_tuples_tracking_retained{job=~\"tarantool\",kind=\"count\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -7091,7 +7091,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_memtx_mvcc_tuples_tracking_retained{alias=~\".*\",job=~\"tarantool\",kind=\"total\"}",
+                     "expr": "tnt_memtx_mvcc_tuples_tracking_retained{job=~\"tarantool\",kind=\"total\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -7201,7 +7201,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_space_len{alias=~\".*\",engine=\"memtx\",job=~\"tarantool\"}",
+                     "expr": "tnt_space_len{engine=\"memtx\",job=~\"tarantool\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}} — {{name}}",
@@ -7291,7 +7291,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_vinyl_tuples{alias=~\".*\",engine=\"vinyl\",job=~\"tarantool\"}",
+                     "expr": "tnt_vinyl_tuples{engine=\"vinyl\",job=~\"tarantool\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}} — {{name}}",
@@ -7381,7 +7381,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_space_bsize{alias=~\".*\",engine=\"memtx\",job=~\"tarantool\"}",
+                     "expr": "tnt_space_bsize{engine=\"memtx\",job=~\"tarantool\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}} — {{name}}",
@@ -7471,7 +7471,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_space_index_bsize{alias=~\".*\",job=~\"tarantool\"}",
+                     "expr": "tnt_space_index_bsize{job=~\"tarantool\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}} — {{name}} ({{index_name}})",
@@ -7561,7 +7561,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_space_total_bsize{alias=~\".*\",engine=\"memtx\",job=~\"tarantool\"}",
+                     "expr": "tnt_space_total_bsize{engine=\"memtx\",job=~\"tarantool\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}} — {{name}}",
@@ -7671,7 +7671,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_vinyl_disk_data_size{alias=~\".*\",job=~\"tarantool\"}",
+                     "expr": "tnt_vinyl_disk_data_size{job=~\"tarantool\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -7761,7 +7761,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_vinyl_disk_index_size{alias=~\".*\",job=~\"tarantool\"}",
+                     "expr": "tnt_vinyl_disk_index_size{job=~\"tarantool\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -7851,7 +7851,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_vinyl_memory_tuple_cache{alias=~\".*\",job=~\"tarantool\"}",
+                     "expr": "tnt_vinyl_memory_tuple_cache{job=~\"tarantool\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -7941,7 +7941,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_vinyl_memory_page_index{alias=~\".*\",job=~\"tarantool\"}",
+                     "expr": "tnt_vinyl_memory_page_index{job=~\"tarantool\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -8031,7 +8031,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_vinyl_memory_bloom_filter{alias=~\".*\",job=~\"tarantool\"}",
+                     "expr": "tnt_vinyl_memory_bloom_filter{job=~\"tarantool\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -8121,7 +8121,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_vinyl_regulator_dump_bandwidth{alias=~\".*\",job=~\"tarantool\"}",
+                     "expr": "tnt_vinyl_regulator_dump_bandwidth{job=~\"tarantool\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -8211,7 +8211,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_vinyl_regulator_write_rate{alias=~\".*\",job=~\"tarantool\"}",
+                     "expr": "tnt_vinyl_regulator_write_rate{job=~\"tarantool\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -8301,7 +8301,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_vinyl_regulator_rate_limit{alias=~\".*\",job=~\"tarantool\"}",
+                     "expr": "tnt_vinyl_regulator_rate_limit{job=~\"tarantool\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -8391,7 +8391,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_vinyl_memory_level0{alias=~\".*\",job=~\"tarantool\"}",
+                     "expr": "tnt_vinyl_memory_level0{job=~\"tarantool\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -8481,7 +8481,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_vinyl_regulator_dump_watermark{alias=~\".*\",job=~\"tarantool\"}",
+                     "expr": "tnt_vinyl_regulator_dump_watermark{job=~\"tarantool\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -8571,7 +8571,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_vinyl_regulator_blocked_writers{alias=~\".*\",job=~\"tarantool\"}",
+                     "expr": "tnt_vinyl_regulator_blocked_writers{job=~\"tarantool\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -8661,7 +8661,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_vinyl_tx_commit{alias=~\".*\",job=~\"tarantool\"}[$__rate_interval])",
+                     "expr": "rate(tnt_vinyl_tx_commit{job=~\"tarantool\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -8751,7 +8751,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_vinyl_tx_rollback{alias=~\".*\",job=~\"tarantool\"}[$__rate_interval])",
+                     "expr": "rate(tnt_vinyl_tx_rollback{job=~\"tarantool\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -8841,7 +8841,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_vinyl_tx_conflict{alias=~\".*\",job=~\"tarantool\"}[$__rate_interval])",
+                     "expr": "rate(tnt_vinyl_tx_conflict{job=~\"tarantool\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -8931,7 +8931,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_vinyl_tx_read_views{alias=~\".*\",job=~\"tarantool\"}",
+                     "expr": "tnt_vinyl_tx_read_views{job=~\"tarantool\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -9021,7 +9021,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_vinyl_scheduler_tasks{alias=~\".*\",job=~\"tarantool\",status=\"inprogress\"}",
+                     "expr": "tnt_vinyl_scheduler_tasks{job=~\"tarantool\",status=\"inprogress\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -9111,7 +9111,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_vinyl_scheduler_tasks{alias=~\".*\",job=~\"tarantool\",status=\"failed\"}[$__rate_interval])",
+                     "expr": "rate(tnt_vinyl_scheduler_tasks{job=~\"tarantool\",status=\"failed\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -9201,7 +9201,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_vinyl_scheduler_dump_time{alias=~\".*\",job=~\"tarantool\"}[$__rate_interval])",
+                     "expr": "rate(tnt_vinyl_scheduler_dump_time{job=~\"tarantool\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -9291,7 +9291,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_vinyl_scheduler_dump_total{alias=~\".*\",job=~\"tarantool\"}[$__rate_interval])",
+                     "expr": "rate(tnt_vinyl_scheduler_dump_total{job=~\"tarantool\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -9401,7 +9401,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_cpu_user_time{alias=~\".*\",job=~\"tarantool\"}[$__rate_interval])",
+                     "expr": "rate(tnt_cpu_user_time{job=~\"tarantool\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -9491,7 +9491,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_cpu_system_time{alias=~\".*\",job=~\"tarantool\"}[$__rate_interval])",
+                     "expr": "rate(tnt_cpu_system_time{job=~\"tarantool\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -9581,7 +9581,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_cpu_thread{alias=~\".*\",job=~\"tarantool\",kind=\"user\"}[$__rate_interval])",
+                     "expr": "rate(tnt_cpu_thread{job=~\"tarantool\",kind=\"user\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}} — {{thread_name}}",
@@ -9671,7 +9671,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_cpu_thread{alias=~\".*\",job=~\"tarantool\",kind=\"system\"}[$__rate_interval])",
+                     "expr": "rate(tnt_cpu_thread{job=~\"tarantool\",kind=\"system\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}} — {{thread_name}}",
@@ -9781,7 +9781,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_info_memory_lua{alias=~\".*\",job=~\"tarantool\"}",
+                     "expr": "tnt_info_memory_lua{job=~\"tarantool\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -9871,7 +9871,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_runtime_used{alias=~\".*\",job=~\"tarantool\"}",
+                     "expr": "tnt_runtime_used{job=~\"tarantool\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -9961,7 +9961,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_info_memory_tx{alias=~\".*\",job=~\"tarantool\"}",
+                     "expr": "tnt_info_memory_tx{job=~\"tarantool\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -10051,7 +10051,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_fiber_csw{alias=~\".*\",job=~\"tarantool\"}",
+                     "expr": "tnt_fiber_csw{job=~\"tarantool\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -10141,7 +10141,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_ev_loop_time{alias=~\".*\",job=~\"tarantool\"}",
+                     "expr": "tnt_ev_loop_time{job=~\"tarantool\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -10231,7 +10231,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_fiber_amount{alias=~\".*\",job=~\"tarantool\"}",
+                     "expr": "tnt_fiber_amount{job=~\"tarantool\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -10321,7 +10321,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_fiber_memused{alias=~\".*\",job=~\"tarantool\"}",
+                     "expr": "tnt_fiber_memused{job=~\"tarantool\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -10411,7 +10411,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_fiber_memalloc{alias=~\".*\",job=~\"tarantool\"}",
+                     "expr": "tnt_fiber_memalloc{job=~\"tarantool\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -10521,7 +10521,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(lj_jit_snap_restore_total{alias=~\".*\",job=~\"tarantool\"}[$__rate_interval])",
+                     "expr": "rate(lj_jit_snap_restore_total{job=~\"tarantool\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -10611,7 +10611,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(lj_jit_trace_num{alias=~\".*\",job=~\"tarantool\"}[$__rate_interval])",
+                     "expr": "rate(lj_jit_trace_num{job=~\"tarantool\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -10701,7 +10701,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(lj_jit_trace_abort_total{alias=~\".*\",job=~\"tarantool\"}[$__rate_interval])",
+                     "expr": "rate(lj_jit_trace_abort_total{job=~\"tarantool\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -10791,7 +10791,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "lj_jit_mcode_size{alias=~\".*\",job=~\"tarantool\"}",
+                     "expr": "lj_jit_mcode_size{job=~\"tarantool\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -10881,7 +10881,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(lj_strhash_hit_total{alias=~\".*\",job=~\"tarantool\"}[$__rate_interval])",
+                     "expr": "rate(lj_strhash_hit_total{job=~\"tarantool\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -10971,7 +10971,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(lj_strhash_miss_total{alias=~\".*\",job=~\"tarantool\"}[$__rate_interval])",
+                     "expr": "rate(lj_strhash_miss_total{job=~\"tarantool\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -11061,7 +11061,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(lj_gc_steps_atomic_total{alias=~\".*\",job=~\"tarantool\"}[$__rate_interval])",
+                     "expr": "rate(lj_gc_steps_atomic_total{job=~\"tarantool\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -11151,7 +11151,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(lj_gc_steps_sweepstring_total{alias=~\".*\",job=~\"tarantool\"}[$__rate_interval])",
+                     "expr": "rate(lj_gc_steps_sweepstring_total{job=~\"tarantool\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -11241,7 +11241,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(lj_gc_steps_finalize_total{alias=~\".*\",job=~\"tarantool\"}[$__rate_interval])",
+                     "expr": "rate(lj_gc_steps_finalize_total{job=~\"tarantool\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -11331,7 +11331,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(lj_gc_steps_sweep_total{alias=~\".*\",job=~\"tarantool\"}[$__rate_interval])",
+                     "expr": "rate(lj_gc_steps_sweep_total{job=~\"tarantool\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -11421,7 +11421,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(lj_gc_steps_propagate_total{alias=~\".*\",job=~\"tarantool\"}[$__rate_interval])",
+                     "expr": "rate(lj_gc_steps_propagate_total{job=~\"tarantool\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -11511,7 +11511,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(lj_gc_steps_pause_total{alias=~\".*\",job=~\"tarantool\"}[$__rate_interval])",
+                     "expr": "rate(lj_gc_steps_pause_total{job=~\"tarantool\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -11601,7 +11601,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "lj_gc_strnum{alias=~\".*\",job=~\"tarantool\"}",
+                     "expr": "lj_gc_strnum{job=~\"tarantool\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -11691,7 +11691,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "lj_gc_tabnum{alias=~\".*\",job=~\"tarantool\"}",
+                     "expr": "lj_gc_tabnum{job=~\"tarantool\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -11781,7 +11781,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "lj_gc_cdatanum{alias=~\".*\",job=~\"tarantool\"}",
+                     "expr": "lj_gc_cdatanum{job=~\"tarantool\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -11871,7 +11871,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "lj_gc_udatanum{alias=~\".*\",job=~\"tarantool\"}",
+                     "expr": "lj_gc_udatanum{job=~\"tarantool\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -11961,7 +11961,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "lj_gc_memory{alias=~\".*\",job=~\"tarantool\"}",
+                     "expr": "lj_gc_memory{job=~\"tarantool\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -12051,7 +12051,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(lj_gc_freed_total{alias=~\".*\",job=~\"tarantool\"}[$__rate_interval])",
+                     "expr": "rate(lj_gc_freed_total{job=~\"tarantool\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -12141,7 +12141,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(lj_gc_allocated_total{alias=~\".*\",job=~\"tarantool\"}[$__rate_interval])",
+                     "expr": "rate(lj_gc_allocated_total{job=~\"tarantool\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -12251,7 +12251,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_stats_op_total{alias=~\".*\",job=~\"tarantool\",operation=\"select\"}[$__rate_interval])",
+                     "expr": "rate(tnt_stats_op_total{job=~\"tarantool\",operation=\"select\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -12341,7 +12341,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_stats_op_total{alias=~\".*\",job=~\"tarantool\",operation=\"insert\"}[$__rate_interval])",
+                     "expr": "rate(tnt_stats_op_total{job=~\"tarantool\",operation=\"insert\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -12431,7 +12431,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_stats_op_total{alias=~\".*\",job=~\"tarantool\",operation=\"replace\"}[$__rate_interval])",
+                     "expr": "rate(tnt_stats_op_total{job=~\"tarantool\",operation=\"replace\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -12521,7 +12521,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_stats_op_total{alias=~\".*\",job=~\"tarantool\",operation=\"upsert\"}[$__rate_interval])",
+                     "expr": "rate(tnt_stats_op_total{job=~\"tarantool\",operation=\"upsert\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -12611,7 +12611,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_stats_op_total{alias=~\".*\",job=~\"tarantool\",operation=\"update\"}[$__rate_interval])",
+                     "expr": "rate(tnt_stats_op_total{job=~\"tarantool\",operation=\"update\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -12701,7 +12701,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_stats_op_total{alias=~\".*\",job=~\"tarantool\",operation=\"delete\"}[$__rate_interval])",
+                     "expr": "rate(tnt_stats_op_total{job=~\"tarantool\",operation=\"delete\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -12791,7 +12791,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_stats_op_total{alias=~\".*\",job=~\"tarantool\",operation=\"call\"}[$__rate_interval])",
+                     "expr": "rate(tnt_stats_op_total{job=~\"tarantool\",operation=\"call\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -12881,7 +12881,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_stats_op_total{alias=~\".*\",job=~\"tarantool\",operation=\"eval\"}[$__rate_interval])",
+                     "expr": "rate(tnt_stats_op_total{job=~\"tarantool\",operation=\"eval\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -12971,7 +12971,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_stats_op_total{alias=~\".*\",job=~\"tarantool\",operation=\"error\"}[$__rate_interval])",
+                     "expr": "rate(tnt_stats_op_total{job=~\"tarantool\",operation=\"error\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -13061,7 +13061,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_stats_op_total{alias=~\".*\",job=~\"tarantool\",operation=\"auth\"}[$__rate_interval])",
+                     "expr": "rate(tnt_stats_op_total{job=~\"tarantool\",operation=\"auth\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -13151,7 +13151,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_stats_op_total{alias=~\".*\",job=~\"tarantool\",operation=\"prepare\"}[$__rate_interval])",
+                     "expr": "rate(tnt_stats_op_total{job=~\"tarantool\",operation=\"prepare\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -13241,7 +13241,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_stats_op_total{alias=~\".*\",job=~\"tarantool\",operation=\"execute\"}[$__rate_interval])",
+                     "expr": "rate(tnt_stats_op_total{job=~\"tarantool\",operation=\"execute\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -13331,7 +13331,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_stats_op_total{alias=~\".*\",job=~\"tarantool\",operation=\"begin\"}[$__rate_interval])",
+                     "expr": "rate(tnt_stats_op_total{job=~\"tarantool\",operation=\"begin\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -13421,7 +13421,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_stats_op_total{alias=~\".*\",job=~\"tarantool\",operation=\"commit\"}[$__rate_interval])",
+                     "expr": "rate(tnt_stats_op_total{job=~\"tarantool\",operation=\"commit\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -13511,7 +13511,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tnt_stats_op_total{alias=~\".*\",job=~\"tarantool\",operation=\"rollback\"}[$__rate_interval])",
+                     "expr": "rate(tnt_stats_op_total{job=~\"tarantool\",operation=\"rollback\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -13621,7 +13621,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tdg_kafka_replyq{alias=~\".*\",job=~\"tarantool\"}",
+                     "expr": "tdg_kafka_replyq{job=~\"tarantool\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{name}} — {{alias}} ({{type}}, {{connector_name}})",
@@ -13711,7 +13711,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tdg_kafka_msg_size{alias=~\".*\",job=~\"tarantool\"}",
+                     "expr": "tdg_kafka_msg_size{job=~\"tarantool\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{name}} — {{alias}} ({{type}}, {{connector_name}})",
@@ -13801,7 +13801,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tdg_kafka_msg_cnt{alias=~\".*\",job=~\"tarantool\"}",
+                     "expr": "tdg_kafka_msg_cnt{job=~\"tarantool\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{name}} — {{alias}} ({{type}}, {{connector_name}})",
@@ -13891,7 +13891,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tdg_kafka_tx{alias=~\".*\",job=~\"tarantool\"}[$__rate_interval])",
+                     "expr": "rate(tdg_kafka_tx{job=~\"tarantool\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{name}} — {{alias}} ({{type}}, {{connector_name}})",
@@ -13981,7 +13981,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tdg_kafka_tx_bytes{alias=~\".*\",job=~\"tarantool\"}[$__rate_interval])",
+                     "expr": "rate(tdg_kafka_tx_bytes{job=~\"tarantool\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{name}} — {{alias}} ({{type}}, {{connector_name}})",
@@ -14071,7 +14071,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tdg_kafka_rx{alias=~\".*\",job=~\"tarantool\"}[$__rate_interval])",
+                     "expr": "rate(tdg_kafka_rx{job=~\"tarantool\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{name}} — {{alias}} ({{type}}, {{connector_name}})",
@@ -14161,7 +14161,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tdg_kafka_rx_bytes{alias=~\".*\",job=~\"tarantool\"}[$__rate_interval])",
+                     "expr": "rate(tdg_kafka_rx_bytes{job=~\"tarantool\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{name}} — {{alias}} ({{type}}, {{connector_name}})",
@@ -14251,7 +14251,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tdg_kafka_txmsgs{alias=~\".*\",job=~\"tarantool\"}[$__rate_interval])",
+                     "expr": "rate(tdg_kafka_txmsgs{job=~\"tarantool\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{name}} — {{alias}} ({{type}}, {{connector_name}})",
@@ -14341,7 +14341,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tdg_kafka_txmsg_bytes{alias=~\".*\",job=~\"tarantool\"}[$__rate_interval])",
+                     "expr": "rate(tdg_kafka_txmsg_bytes{job=~\"tarantool\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{name}} — {{alias}} ({{type}}, {{connector_name}})",
@@ -14431,7 +14431,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tdg_kafka_rxmsgs{alias=~\".*\",job=~\"tarantool\"}[$__rate_interval])",
+                     "expr": "rate(tdg_kafka_rxmsgs{job=~\"tarantool\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{name}} — {{alias}} ({{type}}, {{connector_name}})",
@@ -14521,7 +14521,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tdg_kafka_rxmsg_bytes{alias=~\".*\",job=~\"tarantool\"}[$__rate_interval])",
+                     "expr": "rate(tdg_kafka_rxmsg_bytes{job=~\"tarantool\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{name}} — {{alias}} ({{type}}, {{connector_name}})",
@@ -14631,7 +14631,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tdg_kafka_broker_stateage{alias=~\".*\",job=~\"tarantool\"}",
+                     "expr": "tdg_kafka_broker_stateage{job=~\"tarantool\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{name}} ({{broker_name}}) — {{alias}} ({{type}}, {{connector_name}})",
@@ -14721,7 +14721,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tdg_kafka_broker_connects{alias=~\".*\",job=~\"tarantool\"}[$__rate_interval])",
+                     "expr": "rate(tdg_kafka_broker_connects{job=~\"tarantool\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{name}} ({{broker_name}}) — {{alias}} ({{type}}, {{connector_name}})",
@@ -14811,7 +14811,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tdg_kafka_broker_disconnects{alias=~\".*\",job=~\"tarantool\"}[$__rate_interval])",
+                     "expr": "rate(tdg_kafka_broker_disconnects{job=~\"tarantool\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{name}} ({{broker_name}}) — {{alias}} ({{type}}, {{connector_name}})",
@@ -14901,7 +14901,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tdg_kafka_broker_wakeups{alias=~\".*\",job=~\"tarantool\"}[$__rate_interval])",
+                     "expr": "rate(tdg_kafka_broker_wakeups{job=~\"tarantool\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{name}} ({{broker_name}}) — {{alias}} ({{type}}, {{connector_name}})",
@@ -14991,7 +14991,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tdg_kafka_broker_outbuf_cnt{alias=~\".*\",job=~\"tarantool\"}",
+                     "expr": "tdg_kafka_broker_outbuf_cnt{job=~\"tarantool\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{name}} ({{broker_name}}) — {{alias}} ({{type}}, {{connector_name}})",
@@ -15081,7 +15081,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tdg_kafka_broker_outbuf_msg_cnt{alias=~\".*\",job=~\"tarantool\"}",
+                     "expr": "tdg_kafka_broker_outbuf_msg_cnt{job=~\"tarantool\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{name}} ({{broker_name}}) — {{alias}} ({{type}}, {{connector_name}})",
@@ -15171,7 +15171,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tdg_kafka_broker_waitresp_cnt{alias=~\".*\",job=~\"tarantool\"}",
+                     "expr": "tdg_kafka_broker_waitresp_cnt{job=~\"tarantool\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{name}} ({{broker_name}}) — {{alias}} ({{type}}, {{connector_name}})",
@@ -15261,7 +15261,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tdg_kafka_broker_waitresp_msg_cnt{alias=~\".*\",job=~\"tarantool\"}",
+                     "expr": "tdg_kafka_broker_waitresp_msg_cnt{job=~\"tarantool\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{name}} ({{broker_name}}) — {{alias}} ({{type}}, {{connector_name}})",
@@ -15351,7 +15351,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tdg_kafka_broker_tx{alias=~\".*\",job=~\"tarantool\"}[$__rate_interval])",
+                     "expr": "rate(tdg_kafka_broker_tx{job=~\"tarantool\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{name}} ({{broker_name}}) — {{alias}} ({{type}}, {{connector_name}})",
@@ -15441,7 +15441,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tdg_kafka_broker_txbytes{alias=~\".*\",job=~\"tarantool\"}[$__rate_interval])",
+                     "expr": "rate(tdg_kafka_broker_txbytes{job=~\"tarantool\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{name}} ({{broker_name}}) — {{alias}} ({{type}}, {{connector_name}})",
@@ -15531,7 +15531,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tdg_kafka_broker_txerrs{alias=~\".*\",job=~\"tarantool\"}[$__rate_interval])",
+                     "expr": "rate(tdg_kafka_broker_txerrs{job=~\"tarantool\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{name}} ({{broker_name}}) — {{alias}} ({{type}}, {{connector_name}})",
@@ -15621,7 +15621,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tdg_kafka_broker_txretries{alias=~\".*\",job=~\"tarantool\"}[$__rate_interval])",
+                     "expr": "rate(tdg_kafka_broker_txretries{job=~\"tarantool\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{name}} ({{broker_name}}) — {{alias}} ({{type}}, {{connector_name}})",
@@ -15711,7 +15711,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tdg_kafka_broker_txidle{alias=~\".*\",job=~\"tarantool\"}",
+                     "expr": "tdg_kafka_broker_txidle{job=~\"tarantool\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{name}} ({{broker_name}}) — {{alias}} ({{type}}, {{connector_name}})",
@@ -15801,7 +15801,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tdg_kafka_broker_req_timeouts{alias=~\".*\",job=~\"tarantool\"}[$__rate_interval])",
+                     "expr": "rate(tdg_kafka_broker_req_timeouts{job=~\"tarantool\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{name}} ({{broker_name}}) — {{alias}} ({{type}}, {{connector_name}})",
@@ -15891,7 +15891,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tdg_kafka_broker_rx{alias=~\".*\",job=~\"tarantool\"}[$__rate_interval])",
+                     "expr": "rate(tdg_kafka_broker_rx{job=~\"tarantool\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{name}} ({{broker_name}}) — {{alias}} ({{type}}, {{connector_name}})",
@@ -15981,7 +15981,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tdg_kafka_broker_rxbytes{alias=~\".*\",job=~\"tarantool\"}[$__rate_interval])",
+                     "expr": "rate(tdg_kafka_broker_rxbytes{job=~\"tarantool\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{name}} ({{broker_name}}) — {{alias}} ({{type}}, {{connector_name}})",
@@ -16071,7 +16071,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tdg_kafka_broker_rxerrs{alias=~\".*\",job=~\"tarantool\"}[$__rate_interval])",
+                     "expr": "rate(tdg_kafka_broker_rxerrs{job=~\"tarantool\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{name}} ({{broker_name}}) — {{alias}} ({{type}}, {{connector_name}})",
@@ -16161,7 +16161,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tdg_kafka_broker_rxcorriderrs{alias=~\".*\",job=~\"tarantool\"}[$__rate_interval])",
+                     "expr": "rate(tdg_kafka_broker_rxcorriderrs{job=~\"tarantool\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{name}} ({{broker_name}}) — {{alias}} ({{type}}, {{connector_name}})",
@@ -16251,7 +16251,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tdg_kafka_broker_rxidle{alias=~\".*\",job=~\"tarantool\"}",
+                     "expr": "tdg_kafka_broker_rxidle{job=~\"tarantool\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{name}} ({{broker_name}}) — {{alias}} ({{type}}, {{connector_name}})",
@@ -16341,7 +16341,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tdg_kafka_broker_rxpartial{alias=~\".*\",job=~\"tarantool\"}[$__rate_interval])",
+                     "expr": "rate(tdg_kafka_broker_rxpartial{job=~\"tarantool\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{name}} ({{broker_name}}) — {{alias}} ({{type}}, {{connector_name}})",
@@ -16431,7 +16431,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tdg_kafka_broker_req{alias=~\".*\",job=~\"tarantool\"}[$__rate_interval])",
+                     "expr": "rate(tdg_kafka_broker_req{job=~\"tarantool\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{request}} — {{name}} ({{broker_name}}) — {{alias}} ({{type}}, {{connector_name}})",
@@ -16521,7 +16521,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tdg_kafka_broker_int_latency{alias=~\".*\",job=~\"tarantool\",quantile=\"0.99\"}",
+                     "expr": "tdg_kafka_broker_int_latency{job=~\"tarantool\",quantile=\"0.99\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{name}} ({{broker_name}}) — {{alias}} ({{type}}, {{connector_name}})",
@@ -16611,7 +16611,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tdg_kafka_broker_outbuf_latency{alias=~\".*\",job=~\"tarantool\",quantile=\"0.99\"}",
+                     "expr": "tdg_kafka_broker_outbuf_latency{job=~\"tarantool\",quantile=\"0.99\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{name}} ({{broker_name}}) — {{alias}} ({{type}}, {{connector_name}})",
@@ -16701,7 +16701,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tdg_kafka_broker_rtt{alias=~\".*\",job=~\"tarantool\",quantile=\"0.99\"}",
+                     "expr": "tdg_kafka_broker_rtt{job=~\"tarantool\",quantile=\"0.99\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{name}} ({{broker_name}}) — {{alias}} ({{type}}, {{connector_name}})",
@@ -16791,7 +16791,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tdg_kafka_broker_throttle{alias=~\".*\",job=~\"tarantool\",quantile=\"0.99\"}",
+                     "expr": "tdg_kafka_broker_throttle{job=~\"tarantool\",quantile=\"0.99\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{name}} ({{broker_name}}) — {{alias}} ({{type}}, {{connector_name}})",
@@ -16901,7 +16901,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tdg_kafka_topic_age{alias=~\".*\",job=~\"tarantool\"}",
+                     "expr": "tdg_kafka_topic_age{job=~\"tarantool\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{name}} ({{topic}}) — {{alias}} ({{type}}, {{connector_name}})",
@@ -16991,7 +16991,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tdg_kafka_topic_metadata_age{alias=~\".*\",job=~\"tarantool\"}",
+                     "expr": "tdg_kafka_topic_metadata_age{job=~\"tarantool\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{name}} ({{topic}}) — {{alias}} ({{type}}, {{connector_name}})",
@@ -17081,7 +17081,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tdg_kafka_topic_batchsize{alias=~\".*\",job=~\"tarantool\",quantile=\"0.99\"}",
+                     "expr": "tdg_kafka_topic_batchsize{job=~\"tarantool\",quantile=\"0.99\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{name}} ({{topic}}) — {{alias}} ({{type}}, {{connector_name}})",
@@ -17171,7 +17171,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tdg_kafka_topic_batchcnt{alias=~\".*\",job=~\"tarantool\",quantile=\"0.99\"}",
+                     "expr": "tdg_kafka_topic_batchcnt{job=~\"tarantool\",quantile=\"0.99\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{name}} ({{topic}}) — {{alias}} ({{type}}, {{connector_name}})",
@@ -17261,7 +17261,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tdg_kafka_topic_partitions_msgq_cnt{alias=~\".*\",job=~\"tarantool\"}",
+                     "expr": "tdg_kafka_topic_partitions_msgq_cnt{job=~\"tarantool\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{name}} ({{topic}}, {{partition}}) — {{alias}} ({{type}}, {{connector_name}})",
@@ -17351,7 +17351,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tdg_kafka_topic_partitions_xmit_msgq_cnt{alias=~\".*\",job=~\"tarantool\"}",
+                     "expr": "tdg_kafka_topic_partitions_xmit_msgq_cnt{job=~\"tarantool\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{name}} ({{topic}}, {{partition}}) — {{alias}} ({{type}}, {{connector_name}})",
@@ -17441,7 +17441,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tdg_kafka_topic_partitions_fetchq_cnt{alias=~\".*\",job=~\"tarantool\"}",
+                     "expr": "tdg_kafka_topic_partitions_fetchq_cnt{job=~\"tarantool\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{name}} ({{topic}}, {{partition}}) — {{alias}} ({{type}}, {{connector_name}})",
@@ -17531,7 +17531,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tdg_kafka_topic_partitions_msgq_bytes{alias=~\".*\",job=~\"tarantool\"}",
+                     "expr": "tdg_kafka_topic_partitions_msgq_bytes{job=~\"tarantool\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{name}} ({{topic}}, {{partition}}) — {{alias}} ({{type}}, {{connector_name}})",
@@ -17621,7 +17621,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tdg_kafka_topic_partitions_xmit_msgq_bytes{alias=~\".*\",job=~\"tarantool\"}",
+                     "expr": "tdg_kafka_topic_partitions_xmit_msgq_bytes{job=~\"tarantool\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{name}} ({{topic}}, {{partition}}) — {{alias}} ({{type}}, {{connector_name}})",
@@ -17711,7 +17711,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tdg_kafka_topic_partitions_fetchq_size{alias=~\".*\",job=~\"tarantool\"}",
+                     "expr": "tdg_kafka_topic_partitions_fetchq_size{job=~\"tarantool\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{name}} ({{topic}}, {{partition}}) — {{alias}} ({{type}}, {{connector_name}})",
@@ -17801,7 +17801,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tdg_kafka_topic_partitions_txmsgs{alias=~\".*\",job=~\"tarantool\"}[$__rate_interval])",
+                     "expr": "rate(tdg_kafka_topic_partitions_txmsgs{job=~\"tarantool\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{name}} ({{topic}}, {{partition}}) — {{alias}} ({{type}}, {{connector_name}})",
@@ -17891,7 +17891,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tdg_kafka_topic_partitions_txbytes{alias=~\".*\",job=~\"tarantool\"}[$__rate_interval])",
+                     "expr": "rate(tdg_kafka_topic_partitions_txbytes{job=~\"tarantool\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{name}} ({{topic}}, {{partition}}) — {{alias}} ({{type}}, {{connector_name}})",
@@ -17981,7 +17981,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tdg_kafka_topic_partitions_rxmsgs{alias=~\".*\",job=~\"tarantool\"}[$__rate_interval])",
+                     "expr": "rate(tdg_kafka_topic_partitions_rxmsgs{job=~\"tarantool\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{name}} ({{topic}}, {{partition}}) — {{alias}} ({{type}}, {{connector_name}})",
@@ -18071,7 +18071,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tdg_kafka_topic_partitions_rxbytes{alias=~\".*\",job=~\"tarantool\"}[$__rate_interval])",
+                     "expr": "rate(tdg_kafka_topic_partitions_rxbytes{job=~\"tarantool\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{name}} ({{topic}}, {{partition}}) — {{alias}} ({{type}}, {{connector_name}})",
@@ -18161,7 +18161,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tdg_kafka_topic_partitions_rx_ver_drops{alias=~\".*\",job=~\"tarantool\"}[$__rate_interval])",
+                     "expr": "rate(tdg_kafka_topic_partitions_rx_ver_drops{job=~\"tarantool\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{name}} ({{topic}}, {{partition}}) — {{alias}} ({{type}}, {{connector_name}})",
@@ -18251,7 +18251,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tdg_kafka_topic_partitions_msgs_inflight{alias=~\".*\",job=~\"tarantool\"}",
+                     "expr": "tdg_kafka_topic_partitions_msgs_inflight{job=~\"tarantool\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{name}} ({{topic}}, {{partition}}) — {{alias}} ({{type}}, {{connector_name}})",
@@ -18361,7 +18361,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tdg_kafka_cgrp_stateage{alias=~\".*\",job=~\"tarantool\"}",
+                     "expr": "tdg_kafka_cgrp_stateage{job=~\"tarantool\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{name}} — {{alias}} ({{type}}, {{connector_name}})",
@@ -18451,7 +18451,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tdg_kafka_cgrp_rebalance_age{alias=~\".*\",job=~\"tarantool\"}",
+                     "expr": "tdg_kafka_cgrp_rebalance_age{job=~\"tarantool\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{name}} — {{alias}} ({{type}}, {{connector_name}})",
@@ -18541,7 +18541,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tdg_kafka_cgrp_rebalance_cnt{alias=~\".*\",job=~\"tarantool\"}[$__rate_interval])",
+                     "expr": "rate(tdg_kafka_cgrp_rebalance_cnt{job=~\"tarantool\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{name}} — {{alias}} ({{type}}, {{connector_name}})",
@@ -18631,7 +18631,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tdg_kafka_cgrp_assignment_size{alias=~\".*\",job=~\"tarantool\"}",
+                     "expr": "tdg_kafka_cgrp_assignment_size{job=~\"tarantool\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{name}} — {{alias}} ({{type}}, {{connector_name}})",
@@ -18741,7 +18741,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tdg_kafka_eos_idemp_stateage{alias=~\".*\",job=~\"tarantool\"}",
+                     "expr": "tdg_kafka_eos_idemp_stateage{job=~\"tarantool\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{name}} — {{alias}} ({{type}}, {{connector_name}})",
@@ -18831,7 +18831,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tdg_kafka_eos_txn_stateage{alias=~\".*\",job=~\"tarantool\"}",
+                     "expr": "tdg_kafka_eos_txn_stateage{job=~\"tarantool\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{name}} — {{alias}} ({{type}}, {{connector_name}})",
@@ -18941,7 +18941,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(expirationd_checked_count{alias=~\".*\",job=~\"tarantool\"}[$__rate_interval])",
+                     "expr": "rate(expirationd_checked_count{job=~\"tarantool\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{name}} — {{alias}}",
@@ -19031,7 +19031,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(expirationd_expired_count{alias=~\".*\",job=~\"tarantool\"}[$__rate_interval])",
+                     "expr": "rate(expirationd_expired_count{job=~\"tarantool\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{name}} — {{alias}}",
@@ -19121,7 +19121,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "expirationd_restarts{alias=~\".*\",job=~\"tarantool\"}",
+                     "expr": "expirationd_restarts{job=~\"tarantool\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{name}} — {{alias}}",
@@ -19211,7 +19211,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "expirationd_working_time{alias=~\".*\",job=~\"tarantool\"}",
+                     "expr": "expirationd_working_time{job=~\"tarantool\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{name}} — {{alias}}",
@@ -19321,7 +19321,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tdg_scanned_tuples_sum{alias=~\".*\",job=~\"tarantool\"} / tdg_scanned_tuples_count{alias=~\".*\",job=~\"tarantool\"}\n",
+                     "expr": "tdg_scanned_tuples_sum{job=~\"tarantool\"} / tdg_scanned_tuples_count{job=~\"tarantool\"}\n",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{type_name}} — {{alias}}",
@@ -19411,7 +19411,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tdg_returned_tuples_sum{alias=~\".*\",job=~\"tarantool\"} / tdg_returned_tuples_count{alias=~\".*\",job=~\"tarantool\"}\n",
+                     "expr": "tdg_returned_tuples_sum{job=~\"tarantool\"} / tdg_returned_tuples_count{job=~\"tarantool\"}\n",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{type_name}} — {{alias}}",
@@ -19501,7 +19501,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tdg_scanned_tuples_max{alias=~\".*\",job=~\"tarantool\"}",
+                     "expr": "tdg_scanned_tuples_max{job=~\"tarantool\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -19591,7 +19591,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tdg_returned_tuples_max{alias=~\".*\",job=~\"tarantool\"}",
+                     "expr": "tdg_returned_tuples_max{job=~\"tarantool\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
@@ -19701,7 +19701,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tdg_connector_input_file_processed_count{alias=~\".*\",job=~\"tarantool\"}",
+                     "expr": "tdg_connector_input_file_processed_count{job=~\"tarantool\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{connector_name}} — {{alias}}",
@@ -19791,7 +19791,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tdg_connector_input_file_processed_objects_count{alias=~\".*\",job=~\"tarantool\"}",
+                     "expr": "tdg_connector_input_file_processed_objects_count{job=~\"tarantool\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{connector_name}} — {{alias}}",
@@ -19881,7 +19881,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tdg_connector_input_file_failed_count{alias=~\".*\",job=~\"tarantool\"}",
+                     "expr": "tdg_connector_input_file_failed_count{job=~\"tarantool\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{connector_name}} — {{alias}}",
@@ -19971,7 +19971,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tdg_connector_input_file_size{alias=~\".*\",job=~\"tarantool\"}",
+                     "expr": "tdg_connector_input_file_size{job=~\"tarantool\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{connector_name}} — {{alias}}",
@@ -20061,7 +20061,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tdg_connector_input_file_current_bytes_processed{alias=~\".*\",job=~\"tarantool\"}",
+                     "expr": "tdg_connector_input_file_current_bytes_processed{job=~\"tarantool\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{connector_name}} — {{alias}}",
@@ -20151,7 +20151,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tdg_connector_input_file_current_processed_objects{alias=~\".*\",job=~\"tarantool\"}",
+                     "expr": "tdg_connector_input_file_current_processed_objects{job=~\"tarantool\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{connector_name}} — {{alias}}",
@@ -20261,7 +20261,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tdg_graphql_query_time_count{alias=~\".*\",job=~\"tarantool\"}[$__rate_interval])",
+                     "expr": "rate(tdg_graphql_query_time_count{job=~\"tarantool\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{operation_name}} ({{schema}}, {{entity}}) — {{alias}}",
@@ -20351,7 +20351,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tdg_graphql_query_time_sum{alias=~\".*\",job=~\"tarantool\"} / tdg_graphql_query_time_count{alias=~\".*\",job=~\"tarantool\"}\n",
+                     "expr": "tdg_graphql_query_time_sum{job=~\"tarantool\"} / tdg_graphql_query_time_count{job=~\"tarantool\"}\n",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{operation_name}} ({{schema}}, {{entity}}) — {{alias}}",
@@ -20441,7 +20441,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tdg_graphql_query_fail{alias=~\".*\",job=~\"tarantool\"}[$__rate_interval])",
+                     "expr": "rate(tdg_graphql_query_fail{job=~\"tarantool\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{operation_name}} ({{schema}}, {{entity}}) — {{alias}}",
@@ -20531,7 +20531,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tdg_graphql_mutation_time_count{alias=~\".*\",job=~\"tarantool\"}[$__rate_interval])",
+                     "expr": "rate(tdg_graphql_mutation_time_count{job=~\"tarantool\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{operation_name}} ({{schema}}, {{entity}}) — {{alias}}",
@@ -20621,7 +20621,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tdg_graphql_mutation_time_sum{alias=~\".*\",job=~\"tarantool\"} / tdg_graphql_mutation_time_count{alias=~\".*\",job=~\"tarantool\"}\n",
+                     "expr": "tdg_graphql_mutation_time_sum{job=~\"tarantool\"} / tdg_graphql_mutation_time_count{job=~\"tarantool\"}\n",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{operation_name}} ({{schema}}, {{entity}}) — {{alias}}",
@@ -20711,7 +20711,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tdg_graphql_mutation_fail{alias=~\".*\",job=~\"tarantool\"}[$__rate_interval])",
+                     "expr": "rate(tdg_graphql_mutation_fail{job=~\"tarantool\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{operation_name}} ({{schema}}, {{entity}}) — {{alias}}",
@@ -20821,7 +20821,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tdg_iproto_data_query_exec_time_count{alias=~\".*\",job=~\"tarantool\",method=\"repository.put\"}[$__rate_interval])",
+                     "expr": "rate(tdg_iproto_data_query_exec_time_count{job=~\"tarantool\",method=\"repository.put\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{type}} — {{alias}}",
@@ -20911,7 +20911,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tdg_iproto_data_query_exec_time{alias=~\".*\",job=~\"tarantool\",method=\"repository.put\",quantile=\"0.99\"}",
+                     "expr": "tdg_iproto_data_query_exec_time{job=~\"tarantool\",method=\"repository.put\",quantile=\"0.99\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{type}} — {{alias}}",
@@ -21001,7 +21001,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tdg_iproto_data_query_exec_time_count{alias=~\".*\",job=~\"tarantool\",method=\"repository.put_batch\"}[$__rate_interval])",
+                     "expr": "rate(tdg_iproto_data_query_exec_time_count{job=~\"tarantool\",method=\"repository.put_batch\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{type}} — {{alias}}",
@@ -21091,7 +21091,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tdg_iproto_data_query_exec_time{alias=~\".*\",job=~\"tarantool\",method=\"repository.put_batch\",quantile=\"0.99\"}",
+                     "expr": "tdg_iproto_data_query_exec_time{job=~\"tarantool\",method=\"repository.put_batch\",quantile=\"0.99\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{type}} — {{alias}}",
@@ -21181,7 +21181,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tdg_iproto_data_query_exec_time_count{alias=~\".*\",job=~\"tarantool\",method=\"repository.find\"}[$__rate_interval])",
+                     "expr": "rate(tdg_iproto_data_query_exec_time_count{job=~\"tarantool\",method=\"repository.find\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{type}} — {{alias}}",
@@ -21271,7 +21271,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tdg_iproto_data_query_exec_time{alias=~\".*\",job=~\"tarantool\",method=\"repository.find\",quantile=\"0.99\"}",
+                     "expr": "tdg_iproto_data_query_exec_time{job=~\"tarantool\",method=\"repository.find\",quantile=\"0.99\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{type}} — {{alias}}",
@@ -21361,7 +21361,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tdg_iproto_data_query_exec_time_count{alias=~\".*\",job=~\"tarantool\",method=\"repository.update\"}[$__rate_interval])",
+                     "expr": "rate(tdg_iproto_data_query_exec_time_count{job=~\"tarantool\",method=\"repository.update\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{type}} — {{alias}}",
@@ -21451,7 +21451,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tdg_iproto_data_query_exec_time{alias=~\".*\",job=~\"tarantool\",method=\"repository.update\",quantile=\"0.99\"}",
+                     "expr": "tdg_iproto_data_query_exec_time{job=~\"tarantool\",method=\"repository.update\",quantile=\"0.99\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{type}} — {{alias}}",
@@ -21541,7 +21541,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tdg_iproto_data_query_exec_time_count{alias=~\".*\",job=~\"tarantool\",method=\"repository.get\"}[$__rate_interval])",
+                     "expr": "rate(tdg_iproto_data_query_exec_time_count{job=~\"tarantool\",method=\"repository.get\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{type}} — {{alias}}",
@@ -21631,7 +21631,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tdg_iproto_data_query_exec_time{alias=~\".*\",job=~\"tarantool\",method=\"repository.get\",quantile=\"0.99\"}",
+                     "expr": "tdg_iproto_data_query_exec_time{job=~\"tarantool\",method=\"repository.get\",quantile=\"0.99\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{type}} — {{alias}}",
@@ -21721,7 +21721,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tdg_iproto_data_query_exec_time_count{alias=~\".*\",job=~\"tarantool\",method=\"repository.delete\"}[$__rate_interval])",
+                     "expr": "rate(tdg_iproto_data_query_exec_time_count{job=~\"tarantool\",method=\"repository.delete\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{type}} — {{alias}}",
@@ -21811,7 +21811,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tdg_iproto_data_query_exec_time{alias=~\".*\",job=~\"tarantool\",method=\"repository.delete\",quantile=\"0.99\"}",
+                     "expr": "tdg_iproto_data_query_exec_time{job=~\"tarantool\",method=\"repository.delete\",quantile=\"0.99\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{type}} — {{alias}}",
@@ -21901,7 +21901,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tdg_iproto_data_query_exec_time_count{alias=~\".*\",job=~\"tarantool\",method=\"repository.count\"}[$__rate_interval])",
+                     "expr": "rate(tdg_iproto_data_query_exec_time_count{job=~\"tarantool\",method=\"repository.count\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{type}} — {{alias}}",
@@ -21991,7 +21991,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tdg_iproto_data_query_exec_time{alias=~\".*\",job=~\"tarantool\",method=\"repository.count\",quantile=\"0.99\"}",
+                     "expr": "tdg_iproto_data_query_exec_time{job=~\"tarantool\",method=\"repository.count\",quantile=\"0.99\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{type}} — {{alias}}",
@@ -22081,7 +22081,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tdg_iproto_data_query_exec_time_count{alias=~\".*\",job=~\"tarantool\",method=\"repository.map_reduce\"}[$__rate_interval])",
+                     "expr": "rate(tdg_iproto_data_query_exec_time_count{job=~\"tarantool\",method=\"repository.map_reduce\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{type}} — {{alias}}",
@@ -22171,7 +22171,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tdg_iproto_data_query_exec_time{alias=~\".*\",job=~\"tarantool\",method=\"repository.map_reduce\",quantile=\"0.99\"}",
+                     "expr": "tdg_iproto_data_query_exec_time{job=~\"tarantool\",method=\"repository.map_reduce\",quantile=\"0.99\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{type}} — {{alias}}",
@@ -22261,7 +22261,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tdg_iproto_data_query_exec_time_count{alias=~\".*\",job=~\"tarantool\",method=\"repository.call_on_storage\"}[$__rate_interval])",
+                     "expr": "rate(tdg_iproto_data_query_exec_time_count{job=~\"tarantool\",method=\"repository.call_on_storage\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{type}} — {{alias}}",
@@ -22351,7 +22351,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tdg_iproto_data_query_exec_time{alias=~\".*\",job=~\"tarantool\",method=\"repository.call_on_storage\",quantile=\"0.99\"}",
+                     "expr": "tdg_iproto_data_query_exec_time{job=~\"tarantool\",method=\"repository.call_on_storage\",quantile=\"0.99\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{type}} — {{alias}}",
@@ -22461,7 +22461,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tdg_rest_exec_time_count{alias=~\".*\",job=~\"tarantool\",method=\"GET\",status_code=~\"^2\\\\d{2}$\"}[$__rate_interval])",
+                     "expr": "rate(tdg_rest_exec_time_count{job=~\"tarantool\",method=\"GET\",status_code=~\"^2\\\\d{2}$\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{type}} (code {{status_code}}) — {{alias}}",
@@ -22551,7 +22551,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tdg_rest_exec_time_count{alias=~\".*\",job=~\"tarantool\",method=\"GET\",status_code=~\"^4\\\\d{2}$\"}[$__rate_interval])",
+                     "expr": "rate(tdg_rest_exec_time_count{job=~\"tarantool\",method=\"GET\",status_code=~\"^4\\\\d{2}$\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{type}} (code {{status_code}}) — {{alias}}",
@@ -22641,7 +22641,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tdg_rest_exec_time_count{alias=~\".*\",job=~\"tarantool\",method=\"GET\",status_code=~\"^5\\\\d{2}$\"}[$__rate_interval])",
+                     "expr": "rate(tdg_rest_exec_time_count{job=~\"tarantool\",method=\"GET\",status_code=~\"^5\\\\d{2}$\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{type}} (code {{status_code}}) — {{alias}}",
@@ -22731,7 +22731,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tdg_rest_exec_time{alias=~\".*\",job=~\"tarantool\",method=\"GET\",quantile=\"0.99\",status_code=~\"^2\\\\d{2}$\"}",
+                     "expr": "tdg_rest_exec_time{job=~\"tarantool\",method=\"GET\",quantile=\"0.99\",status_code=~\"^2\\\\d{2}$\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{type}} (code {{status_code}}) — {{alias}}",
@@ -22821,7 +22821,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tdg_rest_exec_time{alias=~\".*\",job=~\"tarantool\",method=\"GET\",quantile=\"0.99\",status_code=~\"^4\\\\d{2}$\"}",
+                     "expr": "tdg_rest_exec_time{job=~\"tarantool\",method=\"GET\",quantile=\"0.99\",status_code=~\"^4\\\\d{2}$\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{type}} (code {{status_code}}) — {{alias}}",
@@ -22911,7 +22911,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tdg_rest_exec_time{alias=~\".*\",job=~\"tarantool\",method=\"GET\",quantile=\"0.99\",status_code=~\"^5\\\\d{2}$\"}",
+                     "expr": "tdg_rest_exec_time{job=~\"tarantool\",method=\"GET\",quantile=\"0.99\",status_code=~\"^5\\\\d{2}$\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{type}} (code {{status_code}}) — {{alias}}",
@@ -23001,7 +23001,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tdg_rest_exec_time_count{alias=~\".*\",job=~\"tarantool\",method!=\"GET\",status_code=~\"^2\\\\d{2}$\"}[$__rate_interval])",
+                     "expr": "rate(tdg_rest_exec_time_count{job=~\"tarantool\",method!=\"GET\",status_code=~\"^2\\\\d{2}$\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{type}} (code {{status_code}}) — {{alias}}",
@@ -23091,7 +23091,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tdg_rest_exec_time_count{alias=~\".*\",job=~\"tarantool\",method!=\"GET\",status_code=~\"^4\\\\d{2}$\"}[$__rate_interval])",
+                     "expr": "rate(tdg_rest_exec_time_count{job=~\"tarantool\",method!=\"GET\",status_code=~\"^4\\\\d{2}$\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{type}} (code {{status_code}}) — {{alias}}",
@@ -23181,7 +23181,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tdg_rest_exec_time_count{alias=~\".*\",job=~\"tarantool\",method!=\"GET\",status_code=~\"^5\\\\d{2}$\"}[$__rate_interval])",
+                     "expr": "rate(tdg_rest_exec_time_count{job=~\"tarantool\",method!=\"GET\",status_code=~\"^5\\\\d{2}$\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{type}} (code {{status_code}}) — {{alias}}",
@@ -23271,7 +23271,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tdg_rest_exec_time{alias=~\".*\",job=~\"tarantool\",method!=\"GET\",quantile=\"0.99\",status_code=~\"^2\\\\d{2}$\"}",
+                     "expr": "tdg_rest_exec_time{job=~\"tarantool\",method!=\"GET\",quantile=\"0.99\",status_code=~\"^2\\\\d{2}$\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{type}} (code {{status_code}}) — {{alias}}",
@@ -23361,7 +23361,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tdg_rest_exec_time{alias=~\".*\",job=~\"tarantool\",method!=\"GET\",quantile=\"0.99\",status_code=~\"^4\\\\d{2}$\"}",
+                     "expr": "tdg_rest_exec_time{job=~\"tarantool\",method!=\"GET\",quantile=\"0.99\",status_code=~\"^4\\\\d{2}$\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{type}} (code {{status_code}}) — {{alias}}",
@@ -23451,7 +23451,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tdg_rest_exec_time{alias=~\".*\",job=~\"tarantool\",method!=\"GET\",quantile=\"0.99\",status_code=~\"^5\\\\d{2}$\"}",
+                     "expr": "tdg_rest_exec_time{job=~\"tarantool\",method!=\"GET\",quantile=\"0.99\",status_code=~\"^5\\\\d{2}$\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{type}} (code {{status_code}}) — {{alias}}",
@@ -23561,7 +23561,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tdg_jobs_started{alias=~\".*\",job=~\"tarantool\"}[$__rate_interval])",
+                     "expr": "rate(tdg_jobs_started{job=~\"tarantool\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{name}} — {{alias}}",
@@ -23651,7 +23651,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tdg_jobs_failed{alias=~\".*\",job=~\"tarantool\"}[$__rate_interval])",
+                     "expr": "rate(tdg_jobs_failed{job=~\"tarantool\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{name}} — {{alias}}",
@@ -23741,7 +23741,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tdg_jobs_succeeded{alias=~\".*\",job=~\"tarantool\"}[$__rate_interval])",
+                     "expr": "rate(tdg_jobs_succeeded{job=~\"tarantool\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{name}} — {{alias}}",
@@ -23831,7 +23831,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tdg_jobs_running{alias=~\".*\",job=~\"tarantool\"}",
+                     "expr": "tdg_jobs_running{job=~\"tarantool\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{name}} — {{alias}}",
@@ -23921,7 +23921,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tdg_jobs_execution_time_sum{alias=~\".*\",job=~\"tarantool\"} / tdg_jobs_execution_time_count{alias=~\".*\",job=~\"tarantool\"\"}\n",
+                     "expr": "tdg_jobs_execution_time_sum{job=~\"tarantool\"} / tdg_jobs_execution_time_count{job=~\"tarantool\"\"}\n",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{name}} — {{alias}}",
@@ -24011,7 +24011,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tdg_tasks_started{alias=~\".*\",job=~\"tarantool\"}[$__rate_interval])",
+                     "expr": "rate(tdg_tasks_started{job=~\"tarantool\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{name}} ({{kind}}) — {{alias}}",
@@ -24101,7 +24101,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tdg_tasks_failed{alias=~\".*\",job=~\"tarantool\"}[$__rate_interval])",
+                     "expr": "rate(tdg_tasks_failed{job=~\"tarantool\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{name}} ({{kind}}) — {{alias}}",
@@ -24191,7 +24191,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tdg_tasks_succeeded{alias=~\".*\",job=~\"tarantool\"}[$__rate_interval])",
+                     "expr": "rate(tdg_tasks_succeeded{job=~\"tarantool\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{name}} ({{kind}}) — {{alias}}",
@@ -24281,7 +24281,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tdg_tasks_stopped{alias=~\".*\",job=~\"tarantool\"}[$__rate_interval])",
+                     "expr": "rate(tdg_tasks_stopped{job=~\"tarantool\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{name}} ({{kind}}) — {{alias}}",
@@ -24371,7 +24371,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tdg_tasks_running{alias=~\".*\",job=~\"tarantool\"}",
+                     "expr": "tdg_tasks_running{job=~\"tarantool\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{name}} ({{kind}}) — {{alias}}",
@@ -24461,7 +24461,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tdg_tasks_execution_time_sum{alias=~\".*\",job=~\"tarantool\"} / tdg_tasks_execution_time_count{alias=~\".*\",job=~\"tarantool\"}\n",
+                     "expr": "tdg_tasks_execution_time_sum{job=~\"tarantool\"} / tdg_tasks_execution_time_count{job=~\"tarantool\"}\n",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{name}} ({{kind}}) — {{alias}}",
@@ -24551,7 +24551,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tdg_system_tasks_started{alias=~\".*\",job=~\"tarantool\"}[$__rate_interval])",
+                     "expr": "rate(tdg_system_tasks_started{job=~\"tarantool\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{name}} ({{kind}}) — {{alias}}",
@@ -24641,7 +24641,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tdg_system_tasks_failed{alias=~\".*\",job=~\"tarantool\"}[$__rate_interval])",
+                     "expr": "rate(tdg_system_tasks_failed{job=~\"tarantool\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{name}} ({{kind}}) — {{alias}}",
@@ -24731,7 +24731,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "rate(tdg_system_tasks_succeeded{alias=~\".*\",job=~\"tarantool\"}[$__rate_interval])",
+                     "expr": "rate(tdg_system_tasks_succeeded{job=~\"tarantool\"}[$__rate_interval])",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{name}} ({{kind}}) — {{alias}}",
@@ -24821,7 +24821,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tdg_system_tasks_running{alias=~\".*\",job=~\"tarantool\"}",
+                     "expr": "tdg_system_tasks_running{job=~\"tarantool\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{name}} ({{kind}}) — {{alias}}",
@@ -24911,7 +24911,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tdg_system_tasks_execution_time_sum{alias=~\".*\",job=~\"tarantool\"} / tdg_system_tasks_execution_time_count{alias=~\".*\",job=~\"tarantool\"}\n",
+                     "expr": "tdg_system_tasks_execution_time_sum{job=~\"tarantool\"} / tdg_system_tasks_execution_time_count{job=~\"tarantool\"}\n",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{name}} ({{kind}}) — {{alias}}",
