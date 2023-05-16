@@ -1,5 +1,5 @@
 local config = import 'dashboard/build/config.libsonnet';
-local dashboard_raw = import 'dashboard/build/dashboard_raw.libsonnet';
+local dashboard = import 'dashboard/build/dashboard.libsonnet';
 local variable = import 'dashboard/variable.libsonnet';
 
 local cfg = config.prepare({
@@ -29,4 +29,4 @@ local cfg = config.prepare({
   ],
 });
 
-dashboard_raw(cfg)
+dashboard(cfg)
