@@ -1,0 +1,188 @@
+# type is 'prometheus' or 'influxdb'
+type: prometheus
+
+# title is dashboard artifact title
+# default is 'Tarantool dashboard'
+title: Tarantool dashboard
+
+# description is dashboard artifact description
+# default is 'Dashboard for Tarantool application and database server monitoring, based on grafonnet library.'
+description: Dashboard for Tarantool application and database server monitoring, based on grafonnet library.
+
+# grafana_tags are dashboard artifact tags
+# They do not related to Prometheus/InfluxDB quieries,
+# they are a part of Grafana UI and can be used to search dashboards in the library.
+# default is [tarantool]
+grafana_tags: [tarantool]
+
+# datasource is the name on metrics datasource
+# Use expression like '$prometheus' to work with dynamic datasource set with variable.
+# Use string like 'MyDashboard' to set your specific datasource.
+# default for prometheus type is '$prometheus', for influxdb type is '$influxdb'
+datasource: '$prometheus'
+
+# policy is InfluxDB datasource metrics retention policy
+# influxdb type only
+# Use expression like '$policy' to work with dynamic policy set with variable.
+# Use string like 'MyPolicy' to set your specific policy.
+# Use 'default' to work with default InfluxDB datasource policy.
+# default is '$policy'
+# policy: '$policy'
+
+# measurement is InfluxDB datasource metrics measurement
+# influxdb type only
+# Use expression like '$measurement' to work with dynamic measurement set with variable.
+# Use string like 'MyMeasurement' to set your specific measurement.
+# default is '$measurement'
+# measurement: '$measurement'
+
+# filters are Prometheus/InfluxQL query filters
+# By specifying them, you can filter metrics by Prometheus label conditions
+# or InfluxDB tag conditions.
+# Use app: ['=', 'myapp'] to display only metrics with 'myapp' app label/tag.
+# Use app: ['=~', '/^myapp\d/'] to display only metrics with app label/tag satisfying
+# a regular expression. See PromQL/InfluxQL documentation for a regex syntax.
+# Use job: ['=~', '$job'] to display only metrics with '$job' variable value job label/tag.
+# Beware that only job and alias (label_pairs_alias for InfluxDB) template variables
+# would be built automatically, if required.
+# default is {}
+filters: {
+  job: ['=~', '$job'],
+  alias: ['=~', '$alias'],
+}
+
+# sections are dashboard panels sections to be included
+# The list of supported sections:
+# - cluster
+# - replication
+# - http
+# - net
+# - slab
+# - mvcc
+# - space
+# - vinyl
+# - cpu
+# - cpu_extended' # for TDG
+# - runtime
+# - luajit
+# - operations
+# - crud
+# - expirationd
+# - tdg_kafka_common
+# - tdg_kafka_brokers
+# - tdg_kafka_topics
+# - tdg_kafka_consumer
+# - tdg_kafka_producer
+# - tdg_tuples
+# - tdg_file_connectors
+# - tdg_graphql
+# - tdg_iproto
+# - tdg_rest_api
+# - tdg_tasks
+# default is [cluster, replication, http, net, slab, mvcc, space, vinyl, cpu, runtime, luajit, operations, crud, expirationd]
+sections:
+- cluster
+- replication
+- http
+- net
+- slab
+- mvcc
+- space
+- vinyl
+- cpu
+- runtime
+- luajit
+- operations
+- crud
+- expirationd
+
+# Configuration example: prometheus dashboard with template variables
+# type: prometheus
+# datasource: '$prometheus'
+# filters: {
+#   job: ['=~', '$job'],
+#   alias: ['=~', '$alias'],
+# }
+
+# Configuration example: prometheus static dashboard
+# type: prometheus
+# datasource: MyPrometheusWithTarantoolMetrics
+# filters: {
+#   job: ['=', 'MyJobWithTarantoolMetrics'],
+# }
+
+# Configuration example: prometheus static dashboard with additional labels
+# type: prometheus
+# datasource: MyPrometheusWithTarantoolMetrics
+# filters: {
+#   job: ['=', 'MyJobWithTarantoolMetrics'],
+#   vendor_app_tag: ['=', 'MyCacheApplication'],
+# }
+
+# Configuration example: prometheus static dashboard with specific sections
+# type: prometheus
+# datasource: MyPrometheusWithTarantoolMetrics
+# filters: {
+#   job: ['=', 'MyJobWithTarantoolMetrics'],
+# }
+# sections:
+# - cluster
+# - replication
+# - http
+# - net
+# - slab
+# - space
+# - runtime
+# - luajit
+# - operations
+
+# Configuration example: prometheus static TDG dashboard
+# type: prometheus
+# title: Tarantool Data Grid dashboard
+# grafana_tags: [tarantool, TDG]
+# datasource: MyPrometheusWithTDGMetrics
+# filters: {
+#   job: ['=', 'MyJobWithTDGMetrics'],
+# }
+# sections:
+# - cluster
+# - replication
+# - http
+# - net
+# - slab
+# - mvcc
+# - space
+# - vinyl
+# - cpu_extended
+# - runtime
+# - luajit
+# - operations
+# - crud
+# - tdg_kafka_common
+# - tdg_kafka_brokers
+# - tdg_kafka_topics
+# - tdg_kafka_consumer
+# - tdg_kafka_producer
+# - expirationd
+# - tdg_tuples
+# - tdg_file_connectors
+# - tdg_graphql
+# - tdg_iproto
+# - tdg_rest_api
+# - tdg_tasks
+
+# Configuration example: influxdb dashboard with template variables
+# type: influxdb
+# datasource: '$influxdb'
+# policy: '$policy'
+# measurement: '$measurement'
+# filters: {
+#   label_pairs_alias: ['=~', '/^$label_pairs_alias$/'],
+# }
+
+# Configuration example: influxdb static dashboard
+# type: influxdb
+# datasource: MyInfluxDBWithTarantoolMetrics
+# policy: default
+# measurement: MyMeasurementWithTarantoolMetrics
+
