@@ -51,6 +51,11 @@ filters: {
   alias: ['=~', '$alias'],
 }
 
+# metrics_prefix is an additional prefix for metric names in Prometheus/InfluxQL queries
+# Use 'myapp_' if you expose metrics like 'myapp_tnt_uptime_info'
+# default is ''
+metrics_prefix: ''
+
 # sections are dashboard panels sections to be included
 # The list of supported sections:
 # - cluster

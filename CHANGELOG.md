@@ -12,6 +12,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Option to static build with custom set of sections
 - Custom description and Grafana tags on manual build
 - API to build a dashboard from YAML config
+- Support for metrics prefix on manual build
 
 ### Changed
 - Display two digits after decimal point instead of three

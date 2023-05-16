@@ -83,9 +83,10 @@ local prometheus = grafana.prometheus;
       prometheus.target(
         expr=std.format(
           |||
-            %(metric_name_sum)s{%(filters)s} / %(metric_name_count)s{%(filters)s"}
+            %(metrics_prefix)s%(metric_name_sum)s{%(filters)s} / %(metrics_prefix)s%(metric_name_count)s{%(filters)s"}
           |||,
           {
+            metrics_prefix: cfg.metrics_prefix,
             metric_name_sum: std.join('_', [metric_name, 'sum']),
             metric_name_count: std.join('_', [metric_name, 'count']),
             filters: filters,
@@ -98,16 +99,17 @@ local prometheus = grafana.prometheus;
       influxdb.target(
         rawQuery=true,
         query=std.format(|||
-          SELECT mean("%(metric_name_sum)s") / mean("%(metric_name_count)s")
+          SELECT mean("%(metrics_prefix)s%(metric_name_sum)s") / mean("%(metrics_prefix)s%(metric_name_count)s")
           as "average" FROM
-          (SELECT "value" as "%(metric_name_sum)s" FROM %(policy_prefix)s"%(measurement)s"
-          WHERE ("metric_name" = '%(metric_name_sum)s' %(filters)s)
+          (SELECT "value" as "%(metrics_prefix)s%(metric_name_sum)s" FROM %(policy_prefix)s"%(measurement)s"
+          WHERE ("metric_name" = '%(metrics_prefix)s%(metric_name_sum)s' %(filters)s)
           AND $timeFilter),
-          (SELECT "value" as "%(metric_name_count)s" FROM %(policy_prefix)s"%(measurement)s"
-          WHERE ("metric_name" = '%(metric_name_count)s' %(filters)s)
+          (SELECT "value" as "%(metrics_prefix)s%(metric_name_count)s" FROM %(policy_prefix)s"%(measurement)s"
+          WHERE ("metric_name" = '%(metrics_prefix)s%(metric_name_count)s' %(filters)s)
           AND $timeFilter)
           GROUP BY time($__interval), "label_pairs_alias", "label_pairs_name" fill(null)
         |||, {
+          metrics_prefix: cfg.metrics_prefix,
           metric_name_sum: std.join('_', [metric_name, 'sum']),
           metric_name_count: std.join('_', [metric_name, 'count']),
           policy_prefix: if cfg.policy == 'default' then '' else std.format('"%(policy)s".', cfg.policy),
@@ -194,9 +196,10 @@ local prometheus = grafana.prometheus;
       prometheus.target(
         expr=std.format(
           |||
-            %(metric_name_sum)s{%(filters)s} / %(metric_name_count)s{%(filters)s}
+            %(metrics_prefix)s%(metric_name_sum)s{%(filters)s} / %(metrics_prefix)s%(metric_name_count)s{%(filters)s}
           |||,
           {
+            metrics_prefix: cfg.metrics_prefix,
             metric_name_sum: std.join('_', [metric_name, 'sum']),
             metric_name_count: std.join('_', [metric_name, 'count']),
             filters: filters,
@@ -209,17 +212,18 @@ local prometheus = grafana.prometheus;
       influxdb.target(
         rawQuery=true,
         query=std.format(|||
-          SELECT mean("%(metric_name_sum)s") / mean("%(metric_name_count)s")
+          SELECT mean("%(metrics_prefix)s%(metric_name_sum)s") / mean("%(metrics_prefix)s%(metric_name_count)s")
           as "average" FROM
-          (SELECT "value" as "%(metric_name_sum)s" FROM %(policy_prefix)s"%(measurement)s"
-          WHERE ("metric_name" = '%(metric_name_sum)s' %(filters)s)
+          (SELECT "value" as "%(metrics_prefix)s%(metric_name_sum)s" FROM %(policy_prefix)s"%(measurement)s"
+          WHERE ("metric_name" = '%(metrics_prefix)s%(metric_name_sum)s' %(filters)s)
           AND $timeFilter),
-          (SELECT "value" as "%(metric_name_count)s" FROM %(policy_prefix)s"%(measurement)s"
-          WHERE ("metric_name" = '%(metric_name_count)s' %(filters)s)
+          (SELECT "value" as "%(metrics_prefix)s%(metric_name_count)s" FROM %(policy_prefix)s"%(measurement)s"
+          WHERE ("metric_name" = '%(metrics_prefix)s%(metric_name_count)s' %(filters)s)
           AND $timeFilter)
           GROUP BY time($__interval), "label_pairs_alias", "label_pairs_name",
           "label_pairs_kind" fill(null)
         |||, {
+          metrics_prefix: cfg.metrics_prefix,
           metric_name_sum: std.join('_', [metric_name, 'sum']),
           metric_name_count: std.join('_', [metric_name, 'count']),
           policy_prefix: if cfg.policy == 'default' then '' else std.format('"%(policy)s".', cfg.policy),

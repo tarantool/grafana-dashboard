@@ -87,7 +87,7 @@ local influxdb_query_filters(filters) = std.join(' AND ', std.map(
   )::
     local filters = additional_filters[cfg.type] + cfg.filters;
     if cfg.type == variable.datasource_type.prometheus then
-      local expr = std.format('%s{%s}', [metric_name, prometheus_query_filters(filters)]);
+      local expr = std.format('%s%s{%s}', [cfg.metrics_prefix, metric_name, prometheus_query_filters(filters)]);
       prometheus.target(
         expr=if rate then std.format('rate(%s[$__rate_interval])', expr) else expr,
         legendFormat=legend[cfg.type],
@@ -103,7 +103,7 @@ local influxdb_query_filters(filters) = std.join(' AND ', std.map(
           group_tags=group_tags,
           alias=legend[cfg.type],
           fill='null',
-        ).where('metric_name', '=', metric_name)
+        ).where('metric_name', '=', std.format('%s%s', [cfg.metrics_prefix, metric_name]))
       ).selectField('value').addConverter(converter);
       if rate then target.addConverter('non_negative_derivative', ['1s']) else target,
 

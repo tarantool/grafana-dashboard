@@ -25,6 +25,7 @@ local variable = import 'dashboard/variable.libsonnet';
       grafana_tags: ['tarantool'],
       datasource: variable.datasource.prometheus,
       filters: {},
+      metrics_prefix: '',
       sections: [
         'cluster',
         'replication',
@@ -51,6 +52,7 @@ local variable = import 'dashboard/variable.libsonnet';
       policy: variable.influxdb.policy,
       measurement: variable.influxdb.measurement,
       filters: {},
+      metrics_prefix: '',
       sections: [
         'cluster',
         'replication',
@@ -83,6 +85,7 @@ local variable = import 'dashboard/variable.libsonnet';
       grafana_tags: 'array',
       datasource: 'string',
       filters: 'object',
+      metrics_prefix: 'string',
       sections: 'array',
     },
     [variable.datasource_type.influxdb]: {
@@ -94,6 +97,7 @@ local variable = import 'dashboard/variable.libsonnet';
       policy: 'string',
       measurement: 'string',
       filters: 'object',
+      metrics_prefix: 'string',
       sections: 'array',
     },
   },
