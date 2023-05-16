@@ -9,9 +9,6 @@ local tablePanel = grafana.tablePanel;
 local influxdb = grafana.influxdb;
 local prometheus = grafana.prometheus;
 
-local remove_field(obj, key) =
-  { [item.key]: item.value for item in std.objectKeysValuesAll(obj) if item.key != key };
-
 {
   row:: common.row('Cluster overview'),
 
@@ -84,9 +81,9 @@ local remove_field(obj, key) =
             |||,
             {
               up_filters: common.prometheus_query_filters({ job: cfg.filters.job }),
-              tnt_filters: common.prometheus_query_filters(remove_field(cfg.filters, 'alias')),
+              tnt_filters: common.prometheus_query_filters(common.remove_field(cfg.filters, 'alias')),
             }
-          ) else std.format('tnt_info_uptime{%s}', common.prometheus_query_filters(remove_field(cfg.filters, 'alias'))),
+          ) else std.format('tnt_info_uptime{%s}', common.prometheus_query_filters(common.remove_field(cfg.filters, 'alias'))),
         format='table',
         instant=true,
       )
@@ -193,7 +190,7 @@ local remove_field(obj, key) =
       decimals=2,
       unit='bytes',
       expr=std.format('sum(tnt_slab_arena_used{%s})',
-                      [common.prometheus_query_filters(remove_field(cfg.filters, 'alias'))]),
+                      [common.prometheus_query_filters(common.remove_field(cfg.filters, 'alias'))]),
     ) { gridPos: { w: 3, h: 3 } }
   else if cfg.type == variable.datasource_type.influxdb then
     error 'InfluxDB target is not supported yet',
@@ -218,7 +215,7 @@ local remove_field(obj, key) =
       decimals=2,
       unit='bytes',
       expr=std.format('sum(tnt_slab_quota_size{%s})',
-                      [common.prometheus_query_filters(remove_field(cfg.filters, 'alias'))]),
+                      [common.prometheus_query_filters(common.remove_field(cfg.filters, 'alias'))]),
     ) { gridPos: { w: 3, h: 3 } }
   else if cfg.type == variable.datasource_type.influxdb then
     error 'InfluxDB target is not supported yet',
@@ -243,7 +240,7 @@ local remove_field(obj, key) =
       decimals=2,
       unit='ops',
       expr=std.format('sum(rate(tnt_stats_op_total{%s}[$__rate_interval]))',
-                      [common.prometheus_query_filters(remove_field(cfg.filters, 'alias'))]),
+                      [common.prometheus_query_filters(common.remove_field(cfg.filters, 'alias'))]),
     ) { gridPos: { w: 4, h: 5 } }
   else if cfg.type == variable.datasource_type.influxdb then
     error 'InfluxDB target is not supported yet',
@@ -268,7 +265,7 @@ local remove_field(obj, key) =
       decimals=2,
       unit='reqps',
       expr=std.format('sum(rate(http_server_request_latency_count{%s}[$__rate_interval]))',
-                      [common.prometheus_query_filters(remove_field(cfg.filters, 'alias'))]),
+                      [common.prometheus_query_filters(common.remove_field(cfg.filters, 'alias'))]),
     ) { gridPos: { w: 4, h: 5 } }
   else if cfg.type == variable.datasource_type.influxdb then
     error 'InfluxDB target is not supported yet',
@@ -292,7 +289,7 @@ local remove_field(obj, key) =
       decimals=2,
       unit='reqps',
       expr=std.format('sum(rate(tnt_net_requests_total{%s}[$__rate_interval]))',
-                      [common.prometheus_query_filters(remove_field(cfg.filters, 'alias'))]),
+                      [common.prometheus_query_filters(common.remove_field(cfg.filters, 'alias'))]),
     ) { gridPos: { w: 4, h: 5 } }
   else if cfg.type == variable.datasource_type.influxdb then
     error 'InfluxDB target is not supported yet',

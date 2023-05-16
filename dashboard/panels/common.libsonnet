@@ -120,4 +120,7 @@ local influxdb_query_filters(filters) = std.join(' AND ', std.map(
       |||])
     else
       description,
+
+  remove_field(obj, key)::
+    { [item.key]: item.value for item in std.objectKeysValuesAll(obj) if item.key != key },
 }

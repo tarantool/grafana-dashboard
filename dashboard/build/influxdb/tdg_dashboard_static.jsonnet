@@ -46,24 +46,4 @@ local cfg = config.prepare({
   ],
 });
 
-if WITH_INSTANCE_VARIABLE then
-  dashboard_raw(cfg).addTemplate(
-    grafana.template.new(
-      name='alias',
-      datasource=cfg.datasource,
-      query=std.format(
-        'SHOW TAG VALUES FROM %(policy_prefix)s"%(measurement)s" WITH KEY="label_pairs_alias"',
-        {
-          policy_prefix: if cfg.policy == 'default' then '' else std.format('"%s".', cfg.policy),
-          measurement: cfg.measurement,
-        },
-      ),
-      includeAll=true,
-      multi=true,
-      current='all',
-      label='Instances',
-      refresh='time',
-    )
-  ).build()
-else
-  dashboard_raw(cfg).build()
+dashboard_raw(cfg).build()

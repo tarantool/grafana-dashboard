@@ -24989,7 +24989,7 @@
             "multi": true,
             "name": "alias",
             "options": [ ],
-            "query": "label_values(tnt_info_uptime{job=\"tarantool\"},alias)",
+            "query": "label_values(tnt_info_uptime{job=~\"tarantool\"},alias)",
             "refresh": 2,
             "regex": "",
             "sort": 0,
