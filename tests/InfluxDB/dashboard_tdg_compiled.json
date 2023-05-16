@@ -40284,7 +40284,8 @@
    "schemaVersion": 21,
    "style": "dark",
    "tags": [
-      "tarantool"
+      "tarantool",
+      "TDG"
    ],
    "templating": {
       "list": [
