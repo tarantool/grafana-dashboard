@@ -1,3 +1,4 @@
+local section = import 'dashboard/section.libsonnet';
 local variable = import 'dashboard/variable.libsonnet';
 
 {
@@ -22,6 +23,22 @@ local variable = import 'dashboard/variable.libsonnet';
       title: 'Tarantool dashboard',
       datasource: variable.datasource.prometheus,
       filters: { job: ['=~', variable.prometheus.job] },
+      sections: [
+        'cluster',
+        'replication',
+        'http',
+        'net',
+        'slab',
+        'mvcc',
+        'space',
+        'vinyl',
+        'cpu',
+        'runtime',
+        'luajit',
+        'operations',
+        'crud',
+        'expirationd',
+      ],
     },
     [variable.datasource_type.influxdb]: {
       type: variable.datasource_type.influxdb,
@@ -30,6 +47,22 @@ local variable = import 'dashboard/variable.libsonnet';
       policy: variable.influxdb.policy,
       measurement: variable.influxdb.measurement,
       filters: {},
+      sections: [
+        'cluster',
+        'replication',
+        'http',
+        'net',
+        'slab',
+        'mvcc',
+        'space',
+        'vinyl',
+        'cpu',
+        'runtime',
+        'luajit',
+        'operations',
+        'crud',
+        'expirationd',
+      ],
     },
   },
 
@@ -44,6 +77,7 @@ local variable = import 'dashboard/variable.libsonnet';
       title: 'string',
       datasource: 'string',
       filters: 'object',
+      sections: 'array',
     },
     [variable.datasource_type.influxdb]: {
       type: 'string',
@@ -52,6 +86,7 @@ local variable = import 'dashboard/variable.libsonnet';
       policy: 'string',
       measurement: 'string',
       filters: 'object',
+      sections: 'array',
     },
   },
 
@@ -89,7 +124,13 @@ local variable = import 'dashboard/variable.libsonnet';
     ] + std.flattenArrays([
       validate_filter(item.key, item.value)
       for item in std.objectKeysValues(cfg.filters)
-    ]),
+    ]) + [
+      if (item in section) == false then
+        error std.format("ConfigurationError: configuration unknown sections value '%s'", [item])
+      else
+        true
+      for item in cfg.sections
+    ],
 
   local validate_fields(cfg) =
     if std.all(_validate_fields(cfg, schema[cfg.type])) then cfg,

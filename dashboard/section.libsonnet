@@ -1,3 +1,5 @@
+local variable = import 'dashboard/variable.libsonnet';
+
 local cluster = import 'dashboard/panels/cluster.libsonnet';
 local cpu = import 'dashboard/panels/cpu.libsonnet';
 local crud = import 'dashboard/panels/crud.libsonnet';
@@ -11,8 +13,6 @@ local replication = import 'dashboard/panels/replication.libsonnet';
 local runtime = import 'dashboard/panels/runtime.libsonnet';
 local slab = import 'dashboard/panels/slab.libsonnet';
 local space = import 'dashboard/panels/space.libsonnet';
-local vinyl = import 'dashboard/panels/vinyl.libsonnet';
-
 local tdg_file_connectors = import 'dashboard/panels/tdg/file_connectors.libsonnet';
 local tdg_graphql = import 'dashboard/panels/tdg/graphql.libsonnet';
 local tdg_iproto = import 'dashboard/panels/tdg/iproto.libsonnet';
@@ -24,10 +24,19 @@ local tdg_kafka_topics = import 'dashboard/panels/tdg/kafka/topics.libsonnet';
 local tdg_rest_api = import 'dashboard/panels/tdg/rest_api.libsonnet';
 local tdg_tasks = import 'dashboard/panels/tdg/tasks.libsonnet';
 local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
+local vinyl = import 'dashboard/panels/vinyl.libsonnet';
 
 {
-  cluster_influxdb(cfg):: [
+  cluster(cfg):: if cfg.type == variable.datasource_type.prometheus then [
+    // Must be used only in the top of a dashboard, overall stat panels use complicated layout
     cluster.row,
+    cluster.health_overview_table(cfg) { gridPos: { w: 12, h: 8, x: 0, y: 1 } },
+    cluster.health_overview_stat(cfg) { gridPos: { w: 6, h: 3, x: 12, y: 1 } },
+    cluster.memory_used_stat(cfg) { gridPos: { w: 3, h: 3, x: 18, y: 1 } },
+    cluster.memory_reserved_stat(cfg) { gridPos: { w: 3, h: 3, x: 21, y: 1 } },
+    cluster.http_rps_stat(cfg) { gridPos: { w: 4, h: 5, x: 12, y: 4 } },
+    cluster.net_rps_stat(cfg) { gridPos: { w: 4, h: 5, x: 16, y: 4 } },
+    cluster.space_ops_stat(cfg) { gridPos: { w: 4, h: 5, x: 20, y: 4 } },
     cluster.cartridge_warning_issues(cfg),
     cluster.cartridge_critical_issues(cfg),
     cluster.failovers_per_second(cfg),
@@ -36,40 +45,8 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
     cluster.election_vote(cfg),
     cluster.election_leader(cfg),
     cluster.election_term(cfg),
-  ],
-
-  // Must be used only in the top of a dashboard, overall stat panels use complicated layout
-  cluster_prometheus(cfg):: [
+  ] else if cfg.type == variable.datasource_type.influxdb then [
     cluster.row,
-
-    cluster.health_overview_table(
-      cfg=cfg,
-    ) { gridPos: { w: 12, h: 8, x: 0, y: 1 } },
-
-    cluster.health_overview_stat(
-      cfg=cfg,
-    ) { gridPos: { w: 6, h: 3, x: 12, y: 1 } },
-
-    cluster.memory_used_stat(
-      cfg=cfg,
-    ) { gridPos: { w: 3, h: 3, x: 18, y: 1 } },
-
-    cluster.memory_reserved_stat(
-      cfg=cfg,
-    ) { gridPos: { w: 3, h: 3, x: 21, y: 1 } },
-
-    cluster.http_rps_stat(
-      cfg=cfg,
-    ) { gridPos: { w: 4, h: 5, x: 12, y: 4 } },
-
-    cluster.net_rps_stat(
-      cfg=cfg,
-    ) { gridPos: { w: 4, h: 5, x: 16, y: 4 } },
-
-    cluster.space_ops_stat(
-      cfg=cfg,
-    ) { gridPos: { w: 4, h: 5, x: 20, y: 4 } },
-
     cluster.cartridge_warning_issues(cfg),
     cluster.cartridge_critical_issues(cfg),
     cluster.failovers_per_second(cfg),
