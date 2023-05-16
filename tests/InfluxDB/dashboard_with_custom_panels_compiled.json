@@ -31810,7 +31810,7 @@
             "multi": true,
             "name": "alias",
             "options": [ ],
-            "query": "SHOW TAG VALUES FROM \"$measurement\" WITH KEY=\"label_pairs_alias\"",
+            "query": "SHOW TAG VALUES FROM \"$policy\".\"$measurement\" WITH KEY=\"label_pairs_alias\"",
             "refresh": 2,
             "regex": "",
             "sort": 0,
