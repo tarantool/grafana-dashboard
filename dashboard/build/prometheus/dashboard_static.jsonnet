@@ -12,6 +12,8 @@ local TITLE = if std.extVar('TITLE') != '' then std.extVar('TITLE') else 'Tarant
 local cfg = config.prepare({
   type: variable.datasource_type.prometheus,
   title: TITLE,
+  description: 'Dashboard for Tarantool application and database server monitoring, based on grafonnet library.',
+  grafana_tags: ['tarantool'],
   datasource: DATASOURCE,
   filters: { job: ['=~', JOB] } + if WITH_INSTANCE_VARIABLE then { alias: ['=~', variable.prometheus.alias] } else {},
   sections: [

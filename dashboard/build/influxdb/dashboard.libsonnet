@@ -7,6 +7,8 @@ local variable = import 'dashboard/variable.libsonnet';
 local cfg = config.prepare({
   type: variable.datasource_type.influxdb,
   title: 'Tarantool dashboard',
+  description: 'Dashboard for Tarantool application and database server monitoring, based on grafonnet library.',
+  grafana_tags: ['tarantool'],
   filters: { label_pairs_alias: ['=~', variable.influxdb.alias] },
   sections: [
     'cluster',

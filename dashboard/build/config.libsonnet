@@ -21,6 +21,8 @@ local variable = import 'dashboard/variable.libsonnet';
     [variable.datasource_type.prometheus]: {
       type: variable.datasource_type.prometheus,
       title: 'Tarantool dashboard',
+      description: 'Dashboard for Tarantool application and database server monitoring, based on grafonnet library.',
+      grafana_tags: ['tarantool'],
       datasource: variable.datasource.prometheus,
       filters: { job: ['=~', variable.prometheus.job] },
       sections: [
@@ -43,6 +45,8 @@ local variable = import 'dashboard/variable.libsonnet';
     [variable.datasource_type.influxdb]: {
       type: variable.datasource_type.influxdb,
       title: 'Tarantool dashboard',
+      description: 'Dashboard for Tarantool application and database server monitoring, based on grafonnet library.',
+      grafana_tags: ['tarantool'],
       datasource: variable.datasource.influxdb,
       policy: variable.influxdb.policy,
       measurement: variable.influxdb.measurement,
@@ -75,6 +79,8 @@ local variable = import 'dashboard/variable.libsonnet';
     [variable.datasource_type.prometheus]: {
       type: 'string',
       title: 'string',
+      description: 'string',
+      grafana_tags: 'array',
       datasource: 'string',
       filters: 'object',
       sections: 'array',
@@ -82,6 +88,8 @@ local variable = import 'dashboard/variable.libsonnet';
     [variable.datasource_type.influxdb]: {
       type: 'string',
       title: 'string',
+      description: 'string',
+      grafana_tags: 'array',
       datasource: 'string',
       policy: 'string',
       measurement: 'string',
@@ -130,6 +138,9 @@ local variable = import 'dashboard/variable.libsonnet';
       else
         true
       for item in cfg.sections
+    ] + [
+      assert_type('', item, 'string', "ConfigurationError: field 'grafana_tags%s' values expected type %s, got %s")
+      for item in cfg.grafana_tags
     ],
 
   local validate_fields(cfg) =

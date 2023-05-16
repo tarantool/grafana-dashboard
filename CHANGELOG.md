@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Custom filters support on static build
 - Option to skip Prometheus job on static build
 - Option to static build with custom set of sections
+- Custom description and Grafana tags on manual build
 
 ### Changed
 - Display two digits after decimal point instead of three

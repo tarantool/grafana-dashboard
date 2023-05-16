@@ -1,7 +1,7 @@
 local grafana = import 'grafonnet/grafana.libsonnet';
 
 local config = import 'dashboard/build/config.libsonnet';
-local tdg_dashboard_raw = import 'dashboard/build/prometheus/tdg_dashboard_raw.libsonnet';
+local dashboard_raw = import 'dashboard/build/prometheus/dashboard_raw.libsonnet';
 local variable = import 'dashboard/variable.libsonnet';
 
 local DATASOURCE = std.extVar('DATASOURCE');
@@ -12,6 +12,8 @@ local TITLE = if std.extVar('TITLE') != '' then std.extVar('TITLE') else 'Tarant
 local cfg = config.prepare({
   type: variable.datasource_type.prometheus,
   title: TITLE,
+  description: 'Dashboard for Tarantool Data Grid ver. 2 application monitoring, based on grafonnet library.',
+  grafana_tags: ['tarantool', 'TDG'],
   datasource: DATASOURCE,
   filters: { job: ['=~', JOB] } + if WITH_INSTANCE_VARIABLE then { alias: ['=~', variable.prometheus.alias] } else {},
   sections: [
@@ -42,7 +44,7 @@ local cfg = config.prepare({
 });
 
 if WITH_INSTANCE_VARIABLE then
-  tdg_dashboard_raw(cfg).addTemplate(
+  dashboard_raw(cfg).addTemplate(
     grafana.template.new(
       name='alias',
       datasource=cfg.datasource,
@@ -55,4 +57,4 @@ if WITH_INSTANCE_VARIABLE then
     )
   ).build()
 else
-  tdg_dashboard_raw(cfg).build()
+  dashboard_raw(cfg).build()

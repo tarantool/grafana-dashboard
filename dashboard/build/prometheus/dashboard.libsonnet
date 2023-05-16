@@ -7,6 +7,8 @@ local variable = import 'dashboard/variable.libsonnet';
 local cfg = config.prepare({
   type: variable.datasource_type.prometheus,
   title: 'Tarantool dashboard',
+  description: 'Dashboard for Tarantool application and database server monitoring, based on grafonnet library.',
+  grafana_tags: ['tarantool'],
   filters: { alias: ['=~', variable.prometheus.alias] },
   sections: [
     'cluster',

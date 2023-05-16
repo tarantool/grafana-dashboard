@@ -1,12 +1,14 @@
 local grafana = import 'grafonnet/grafana.libsonnet';
 
 local config = import 'dashboard/build/config.libsonnet';
-local tdg_dashboard_raw = import 'dashboard/build/prometheus/tdg_dashboard_raw.libsonnet';
+local dashboard_raw = import 'dashboard/build/prometheus/dashboard_raw.libsonnet';
 local variable = import 'dashboard/variable.libsonnet';
 
 local cfg = config.prepare({
   type: variable.datasource_type.prometheus,
   title: 'Tarantool Data Grid dashboard',
+  description: 'Dashboard for Tarantool Data Grid ver. 2 application monitoring, based on grafonnet library.',
+  grafana_tags: ['tarantool', 'TDG'],
   filters: { alias: ['=~', variable.prometheus.alias] },
   sections: [
     'cluster',
@@ -35,7 +37,7 @@ local cfg = config.prepare({
   ],
 });
 
-tdg_dashboard_raw(cfg).addTemplate(
+dashboard_raw(cfg).addTemplate(
   grafana.template.datasource(
     name='prometheus',
     query='prometheus',
