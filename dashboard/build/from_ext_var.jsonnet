@@ -1,5 +1,5 @@
 local config = import 'dashboard/build/config.libsonnet';
-local dashboard_raw = import 'dashboard/build/dashboard_raw.libsonnet';
+local dashboard = import 'dashboard/build/dashboard.libsonnet';
 
 local DATASOURCE_TYPE = std.extVar('DATASOURCE_TYPE');
 local DASHBOARD_TEMPLATE = std.extVar('DASHBOARD_TEMPLATE');
@@ -90,4 +90,4 @@ local cfg =
       sections: sections,
     });
 
-dashboard_raw(cfg).build()
+dashboard(cfg).build()

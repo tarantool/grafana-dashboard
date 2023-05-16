@@ -3,6 +3,7 @@ POLICY ?= autogen
 MEASUREMENT ?= tarantool_http
 WITH_INSTANCE_VARIABLE ?= FALSE
 OUTPUT_STATIC_DASHBOARD ?= dashboard.json
+OUTPUT ?= dashboard.json
 TITLE ?= 
 
 .PHONY: build-deps
@@ -10,6 +11,17 @@ build-deps:
 	go install github.com/google/go-jsonnet/cmd/jsonnet@v0.20.0
 	go install github.com/jsonnet-bundler/jsonnet-bundler/cmd/jb@v0.5.1
 	jb install
+
+
+.PHONY: build
+build:
+ifndef CONFIG
+	@echo 1>&2 "CONFIG=config.yml must be set"
+		false
+endif
+	jsonnet -J ./vendor -J . \
+		-e "local build = import 'dashboard/build/from_config.libsonnet'; local file = importstr '${CONFIG}'; build(std.parseYaml(file))" \
+		-o ${OUTPUT}
 
 
 _build-static-prometheus:
