@@ -11,13 +11,13 @@ function(cfg) std.foldl(
   dashboard.new(  // TODO: requirements based on cfg.sections
     grafana.dashboard.new(
       title=cfg.title,
-      description='Dashboard for Tarantool application and database server monitoring, based on grafonnet library.',
+      description=cfg.description,
       editable=true,
       schemaVersion=21,
       time_from='now-3h',
       time_to='now',
       refresh='30s',
-      tags=['tarantool'],
+      tags=cfg.grafana_tags,
     ).addRequired(
       type='grafana',
       id='grafana',
