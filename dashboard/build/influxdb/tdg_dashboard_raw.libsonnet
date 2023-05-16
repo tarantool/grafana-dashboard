@@ -20,7 +20,7 @@ function(
     time_from='now-3h',
     time_to='now',
     refresh='30s',
-    tags=['tarantool'],
+    tags=['tarantool', 'TDG'],
   ).addRequired(
     type='grafana',
     id='grafana',
