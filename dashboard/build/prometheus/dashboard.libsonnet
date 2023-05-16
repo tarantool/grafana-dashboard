@@ -8,6 +8,22 @@ local cfg = config.prepare({
   type: variable.datasource_type.prometheus,
   title: 'Tarantool dashboard',
   filters: { alias: ['=~', variable.prometheus.alias] },
+  sections: [
+    'cluster',
+    'replication',
+    'http',
+    'net',
+    'slab',
+    'mvcc',
+    'space',
+    'vinyl',
+    'cpu',
+    'runtime',
+    'luajit',
+    'operations',
+    'crud',
+    'expirationd',
+  ],
 });
 
 dashboard_raw(cfg).addTemplate(

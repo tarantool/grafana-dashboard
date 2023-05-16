@@ -8,6 +8,22 @@ local cfg = config.prepare({
   type: variable.datasource_type.influxdb,
   title: 'Tarantool dashboard',
   filters: { label_pairs_alias: ['=~', variable.influxdb.alias] },
+  sections: [
+    'cluster',
+    'replication',
+    'http',
+    'net',
+    'slab',
+    'mvcc',
+    'space',
+    'vinyl',
+    'cpu',
+    'runtime',
+    'luajit',
+    'operations',
+    'crud',
+    'expirationd',
+  ],
 });
 
 dashboard_raw(cfg).addTemplate(

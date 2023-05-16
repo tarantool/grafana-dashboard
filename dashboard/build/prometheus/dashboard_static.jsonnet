@@ -14,6 +14,22 @@ local cfg = config.prepare({
   title: TITLE,
   datasource: DATASOURCE,
   filters: { job: ['=~', JOB] } + if WITH_INSTANCE_VARIABLE then { alias: ['=~', variable.prometheus.alias] } else {},
+  sections: [
+    'cluster',
+    'replication',
+    'http',
+    'net',
+    'slab',
+    'mvcc',
+    'space',
+    'vinyl',
+    'cpu',
+    'runtime',
+    'luajit',
+    'operations',
+    'crud',
+    'expirationd',
+  ],
 });
 
 if WITH_INSTANCE_VARIABLE then

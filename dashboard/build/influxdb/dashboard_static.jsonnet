@@ -17,6 +17,22 @@ local cfg = config.prepare({
   policy: POLICY,
   measurement: MEASUREMENT,
   filters: if WITH_INSTANCE_VARIABLE then { label_pairs_alias: ['=~', variable.influxdb.alias] } else {},
+  sections: [
+    'cluster',
+    'replication',
+    'http',
+    'net',
+    'slab',
+    'mvcc',
+    'space',
+    'vinyl',
+    'cpu',
+    'runtime',
+    'luajit',
+    'operations',
+    'crud',
+    'expirationd',
+  ],
 });
 
 if WITH_INSTANCE_VARIABLE then
