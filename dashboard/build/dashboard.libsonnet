@@ -47,7 +47,7 @@ local template_rules = {
       template(cfg):: grafana.template.new(
         name=std.lstripChars(cfg.filters.job[1], '$'),
         datasource=cfg.datasource,
-        query=std.format('label_values(%s,job)', variable.metrics.tarantool_indicator),
+        query=std.format('label_values(%s%s,job)', [cfg.metrics_prefix, variable.metrics.tarantool_indicator]),
         label='Prometheus job',
         refresh='load',
       ),
@@ -58,8 +58,9 @@ local template_rules = {
         name=std.lstripChars(cfg.filters.alias[1], '$'),
         datasource=cfg.datasource,
         query=std.format(
-          'label_values(%s{%s},alias)',
+          'label_values(%s%s{%s},alias)',
           [
+            cfg.metrics_prefix,
             variable.metrics.tarantool_indicator,
             panels_common.prometheus_query_filters(panels_common.remove_field(cfg.filters, 'alias')),
           ]
@@ -100,8 +101,9 @@ local template_rules = {
           name=std.lstripChars(cfg.measurement, '$'),
           datasource=cfg.datasource,
           query=std.format(
-            'SHOW MEASUREMENTS WHERE "metric_name"=\'%s\'%s',
+            'SHOW MEASUREMENTS WHERE "metric_name"=\'%s%s\'%s',
             [
+              cfg.metrics_prefix,
               variable.metrics.tarantool_indicator,
               if filters == '' then '' else std.format(' AND %s', filters),
             ]
