@@ -35,7 +35,13 @@ dashboard_raw(
   grafana.template.new(
     name='alias',
     datasource=variable.datasource.influxdb,
-    query=std.format('SHOW TAG VALUES FROM "%s" WITH KEY="label_pairs_alias"', variable.influxdb.measurement),
+    query=std.format(
+      'SHOW TAG VALUES FROM "%(policy)s"."%(measurement)s" WITH KEY="label_pairs_alias"',
+      {
+        policy: variable.influxdb.policy,
+        measurement: variable.influxdb.measurement,
+      },
+    ),
     includeAll=true,
     multi=true,
     current='all',
