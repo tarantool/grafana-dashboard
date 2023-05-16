@@ -22,19 +22,21 @@ endif
 	# TITLE is optional, default is "Tarantool dashboard" for plain dashboard
 	#                    and "Tarantool Data Grid dashboard" for TDG one
 	jsonnet -J ./vendor -J . \
+		--ext-str DASHBOARD_TEMPLATE=${DASHBOARD_TEMPLATE} \
+		--ext-str DATASOURCE_TYPE='prometheus' \
 		--ext-str DATASOURCE=${DATASOURCE} \
 		--ext-str JOB=${JOB} \
 		--ext-str WITH_INSTANCE_VARIABLE=${WITH_INSTANCE_VARIABLE} \
 		--ext-str TITLE='${TITLE}' \
-		dashboard/build/prometheus/${DASHBOARD_BUILD_SOURCE} -o ${OUTPUT_STATIC_DASHBOARD}
+		dashboard/build/from_ext_var.jsonnet -o ${OUTPUT_STATIC_DASHBOARD}
 
 .PHONY: build-static-prometheus
 build-static-prometheus:
-	${MAKE} DASHBOARD_BUILD_SOURCE=dashboard_static.jsonnet _build-static-prometheus
+	${MAKE} DASHBOARD_TEMPLATE='Tarantool' _build-static-prometheus
 
 .PHONY: build-static-tdg-prometheus
 build-static-tdg-prometheus:
-	${MAKE} DASHBOARD_BUILD_SOURCE=tdg_dashboard_static.jsonnet _build-static-prometheus
+	${MAKE} DASHBOARD_TEMPLATE='TDG' _build-static-prometheus
 
 
 _build-static-influxdb:
@@ -48,20 +50,22 @@ endif
 	# TITLE is optional, default is "Tarantool dashboard" for plain dashboard
 	#                    and "Tarantool Data Grid dashboard" for TDG one
 	jsonnet -J ./vendor -J . \
+		--ext-str DASHBOARD_TEMPLATE=${DASHBOARD_TEMPLATE} \
+		--ext-str DATASOURCE_TYPE='influxdb' \
 		--ext-str DATASOURCE=${DATASOURCE} \
 		--ext-str POLICY=${POLICY} \
 		--ext-str MEASUREMENT=${MEASUREMENT} \
 		--ext-str WITH_INSTANCE_VARIABLE=${WITH_INSTANCE_VARIABLE} \
 		--ext-str TITLE='${TITLE}' \
-		dashboard/build/influxdb/${DASHBOARD_BUILD_SOURCE} -o ${OUTPUT_STATIC_DASHBOARD}
+		dashboard/build/from_ext_var.jsonnet -o ${OUTPUT_STATIC_DASHBOARD}
 
 .PHONY: build-static-influxdb
 build-static-influxdb:
-	${MAKE} DASHBOARD_BUILD_SOURCE=dashboard_static.jsonnet _build-static-influxdb
+	${MAKE} DASHBOARD_TEMPLATE='Tarantool' _build-static-influxdb
 
 .PHONY: build-static-tdg-influxdb
 build-static-tdg-influxdb:
-	${MAKE} DASHBOARD_BUILD_SOURCE=tdg_dashboard_static.jsonnet _build-static-influxdb
+	${MAKE} DASHBOARD_TEMPLATE='TDG' _build-static-influxdb
 
 
 .PHONY: test-deps
