@@ -43,18 +43,4 @@ local cfg = config.prepare({
   ],
 });
 
-if WITH_INSTANCE_VARIABLE then
-  dashboard_raw(cfg).addTemplate(
-    grafana.template.new(
-      name='alias',
-      datasource=cfg.datasource,
-      query=std.format('label_values(%s{job="%s"},alias)', [variable.metrics.tarantool_indicator, cfg.filters.job[1]]),
-      includeAll=true,
-      multi=true,
-      current='all',
-      label='Instances',
-      refresh='time',
-    )
-  ).build()
-else
-  dashboard_raw(cfg).build()
+dashboard_raw(cfg).build()

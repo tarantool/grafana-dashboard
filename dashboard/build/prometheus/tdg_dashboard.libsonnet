@@ -9,7 +9,8 @@ local cfg = config.prepare({
   title: 'Tarantool Data Grid dashboard',
   description: 'Dashboard for Tarantool Data Grid ver. 2 application monitoring, based on grafonnet library.',
   grafana_tags: ['tarantool', 'TDG'],
-  filters: { alias: ['=~', variable.prometheus.alias] },
+  datasource: variable.datasource.prometheus,
+  filters: { job: ['=~', variable.prometheus.job], alias: ['=~', variable.prometheus.alias] },
   sections: [
     'cluster',
     'replication',
@@ -37,30 +38,4 @@ local cfg = config.prepare({
   ],
 });
 
-dashboard_raw(cfg).addTemplate(
-  grafana.template.datasource(
-    name='prometheus',
-    query='prometheus',
-    current=null,
-    label='Datasource',
-  )
-).addTemplate(
-  grafana.template.new(
-    name='job',
-    datasource=cfg.datasource,
-    query=std.format('label_values(%s,job)', variable.metrics.tarantool_indicator),
-    label='Prometheus job',
-    refresh='load',
-  )
-).addTemplate(
-  grafana.template.new(
-    name='alias',
-    datasource=cfg.datasource,
-    query=std.format('label_values(%s{job=~"%s"},alias)', [variable.metrics.tarantool_indicator, cfg.filters.job[1]]),
-    includeAll=true,
-    multi=true,
-    current='all',
-    label='Instances',
-    refresh='time',
-  )
-)
+dashboard_raw(cfg)
