@@ -24,7 +24,7 @@ local variable = import 'dashboard/variable.libsonnet';
       description: 'Dashboard for Tarantool application and database server monitoring, based on grafonnet library.',
       grafana_tags: ['tarantool'],
       datasource: variable.datasource.prometheus,
-      filters: { job: ['=~', variable.prometheus.job] },
+      filters: {},
       sections: [
         'cluster',
         'replication',
