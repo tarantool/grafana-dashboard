@@ -1,7 +1,7 @@
 local grafana = import 'grafonnet/grafana.libsonnet';
 
 local config = import 'dashboard/build/config.libsonnet';
-local dashboard_raw = import 'dashboard/build/influxdb/dashboard_raw.libsonnet';
+local dashboard_raw = import 'dashboard/build/dashboard_raw.libsonnet';
 local variable = import 'dashboard/variable.libsonnet';
 
 local DATASOURCE = std.extVar('DATASOURCE');

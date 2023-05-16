@@ -8,8 +8,9 @@ function(cfg) std.foldl(
   function(dashboard, key)
     dashboard.addPanels(section[key](cfg)),
   cfg.sections,
-  dashboard.new(  // TODO: requirements based on cfg.sections
-    grafana.dashboard.new(
+  dashboard.new(
+    // TODO: requirements based on cfg.sections
+    local dashboard_template = grafana.dashboard.new(
       title=cfg.title,
       description=cfg.description,
       editable=true,
@@ -38,11 +39,30 @@ function(cfg) std.foldl(
       id='text',
       name='Text',
       version=''
-    ).addRequired(
-      type='datasource',
-      id='influxdb',
-      name='InfluxDB',
-      version='1.0.0'
-    )
+    );
+    if cfg.type == variable.datasource_type.prometheus then
+      dashboard_template.addRequired(
+        type='panel',
+        id='stat',
+        name='Stat',
+        version='',
+      ).addRequired(
+        type='panel',
+        id='table',
+        name='Table',
+        version='',
+      ).addRequired(
+        type='datasource',
+        id='prometheus',
+        name='Prometheus',
+        version='1.0.0'
+      )
+    else if cfg.type == variable.datasource_type.influxdb then
+      dashboard_template.addRequired(
+        type='datasource',
+        id='influxdb',
+        name='InfluxDB',
+        version='1.0.0'
+      ),
   )
 )
