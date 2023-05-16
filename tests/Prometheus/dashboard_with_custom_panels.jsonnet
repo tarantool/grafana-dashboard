@@ -7,7 +7,7 @@ local variable = import 'dashboard/variable.libsonnet';
 
 local cfg = config.prepare({
   type: variable.datasource_type.prometheus,
-  filters: { alias: ['=~', variable.prometheus.alias] },
+  filters: { job: ['=~', variable.prometheus.job], alias: ['=~', variable.prometheus.alias] },
 });
 
 dashboard.addPanels([
