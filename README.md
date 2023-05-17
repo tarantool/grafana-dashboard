@@ -12,15 +12,19 @@ Refer to dashboard [documentation page](https://www.tarantool.io/en/doc/latest/b
 
 <img src="./doc/monitoring/images/Prometheus_dashboard_1.png" width="250"/> <img src="./doc/monitoring/images/Prometheus_dashboard_2.png" width="250"/> <img src="./doc/monitoring/images/Prometheus_dashboard_3.png" width="250"/>
 
-
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 ## Table of contents
 
 - [Installation](#installation)
 - [Monitoring cluster](#monitoring-cluster)
+  - [Example app](#example-app)
+  - [Monitoring local app](#monitoring-local-app)
 - [Manual build](#manual-build)
-- [Customization](#customization)
+- [Adding your panels](#adding-your-panels)
 - [Contacts](#contacts)
 
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 ## Installation
 
@@ -95,59 +99,13 @@ make test-deps
 ```
 to install build dependencies and dependencies that are required to run tests locally.
 
-To build a static dashboard with no input, run `make` commands.
+To build a custom dashboard, run `make build` command with your specific configuration.
+
 ```bash
-make DATASOURCE=Prometheus JOB=tarantool \
-     WITH_INSTANCE_VARIABLE=FALSE \
-     OUTPUT_STATIC_DASHBOARD=mydashboard.json \
-     build-static-prometheus
-```
-Following targets are available:
-- `build-static-prometheus`: Tarantool dashboard for a Prometheus datasource;
-- `build-static-tdg-prometheus`: TDG dashboard for a Prometheus datasource;
-- `build-static-influxdb`: Tarantool dashboard for an InfluxDB datasource;
-- `build-static-tdg-influxdb`: TDG dashboard for an InfluxDB datasource.
-
-Variables for Prometheus targets:
-- `DATASOURCE`: name of a Prometheus data source;
-- `JOB` (optional, default `tarantool`): name of a Prometheus job collecting your application metrics;
-- `WITH_INSTANCE_VARIABLE` (optional, default `FALSE`): build a dashboard with variable which
-  can be used to select displayed cluster instances;
-- `TITLE` (optional, default `"Tarantool dashboard"` for plain dashboard
-  and `"Tarantool Data Grid dashobard"` for TDG dashboard): dashboard title;
-- `OUTPUT_STATIC_DASHBOARD` (optional, default `dashboard.json`): compiled dashboard file.
-
-Variables for InfluxDB targets:
-- `DATASOURCE`: name of a InfluxDB data source;
-- `POLICY` (optional, default `autogen`): InfluxDB metrics retention policy;
-- `MEASUREMENT` (optional, default `tarantool_http`): name of a InfluxDB measurement with your application metrics;
-- `WITH_INSTANCE_VARIABLE` (optional, default `FALSE`): build a dashboard with variable which
-  can be used to select displayed cluster instances;
-- `TITLE` (optional, default `"Tarantool dashboard"` for plain dashboard
-  and `"Tarantool Data Grid dashobard"` for TDG dashboard): dashboard title;
-- `OUTPUT_STATIC_DASHBOARD` (optional, default `dashboard.json`): compiled dashboard file.
-
-With `WITH_INSTANCE_VARIABLE=FALSE`, dashboard will contain no dynamic variables and Grafana alerts can be used.
-With `WITH_INSTANCE_VARIABLE=TRUE`, dashboard will contain instance dynamic variable (but no inputs).
-
-You can also compile configurable Prometheus dashboard template (the same we publish to
-Grafana Official & community built dashboards) with
-```bash
-jsonnet -J ./vendor/ -e "local dashboard = import 'dashboard/build/prometheus/dashboard.libsonnet'; dashboard.build()"
-```
-and InfluxDB dashboard template with
-```bash
-jsonnet -J ./vendor/ -e "local dashboard = import 'dashboard/build/influxdb/dashboard.libsonnet'; dashboard.build()"
+make CONFIG=config.yml OUTPUT=mydashboard.json build
 ```
 
-To save output into `output.json` file, use
-```bash
-jsonnet -J ./vendor/ -e "local dashboard = import 'dashboard/build/prometheus/dashboard.libsonnet'; dashboard.build()" -o ./output.json
-```
-and to save output into clipboard, use
-```bash
-jsonnet -J ./vendor/ -e "local dashboard = import 'dashboard/build/prometheus/dashboard.libsonnet'; dashboard.build()" | xclip -selection clipboard
-```
+See repository example config [config.yml](config.yml) for detailed info about supported options.
 
 You can run tests with
 ```bash
@@ -161,7 +119,7 @@ make update-tests
 It also formats all source files with `jsonnetfmt`.
 
 
-## Customization
+## Adding your panels
 
 If you're interested in building grafonnet dashboards or custom panels,
 I suggest you to start with reading our grafonnet tutorial:
@@ -198,34 +156,40 @@ You can add your own custom panels to the bottom of the template dashboard.
     ```
     to install dependencies. [`grafonnet`](https://github.com/grafana/grafonnet-lib) library will also be installed as a transitive dependency.
 
-
-2. There are two main templates: `grafana-dashboard/dashboard/prometheus_dashboard.libsonnet` and `grafana-dashboard/dashboard/influxdb_dashboard.libsonnet`.
-    Import one of them in your jsonnet script to build your own custom dashboard.
+2. Load a configuration, same as in ["Manual build"](#manual-build) section. (You can build it as a dictionary in code instead of parsing a YAML file.)
     ```jsonnet
     # my_dashboard.jsonnet
-    local prometheus_dashboard = import 'grafana-dashboard/dashboard/build/prometheus/dashboard.libsonnet';
-    local influxdb_dashboard = import 'grafana-dashboard/dashboard/build/influxdb/dashboard.libsonnet';
+    local config = import 'grafana-dashboard/dashboard/build/config.libsonnet';
+    local raw_cfg = importstr 'config.yml';
+
+    local cfg = config.prepare(std.parseYaml(raw_cfg));
     ```
 
-3. To add your custom panels to a dashboard template, you must create panel objects.
+3. Import the main template.
+    ```jsonnet
+    # my_dashboard.jsonnet
+    local dashboard = import 'grafana-dashboard/dashboard/build/dashboard.libsonnet';
+    ```
+
+4. To add your custom panels to a dashboard template, you must create panel objects.
 
     A row panel can be created by using the following script:
     ```jsonnet
     # my_dashboard.jsonnet
-    local common_panels = import 'grafana-dashboard/dashboard/panels/common.libsonnet';
+    local common = import 'grafana-dashboard/dashboard/panels/common.libsonnet';
 
     local my_row = common_panels.row('My custom metrics')
     ```
 
-    Panel with metrics data consists of a visualisation base (graph, table, stat etc.) and one or several datasource queries called "targets". To build a simple visualization graph, you may use `common_panels.default_graph` util.
+    Panel with metrics data consists of a visualisation base (graph, table, stat etc.) and one or several datasource queries called "targets". To build a simple visualization graph, you may use `common.default_graph` util.
 
     ```jsonnet
     # vendor/grafana-dashboard/dashboard/panels/common.libsonnet
 
     default_graph( # graph panel shortcut
+      cfg, # Dashboard configuration
       title, # The title of the graph panel
       description, # (optional) The description of the panel
-      datasource, # Targets datasource. If you use default input variables, use grafana-dashboard/dashboard/variable.libsonnet to fill this value
       format, # (default 'none') Unit of the Y axes
       min, # (optional) Min of the Y axes
       max, # (optional) Max of the Y axes
@@ -253,143 +217,70 @@ You can add your own custom panels to the bottom of the template dashboard.
     ) { gridPos: { w: 6, h: 4 } };
     ```
 
-    To build a target, you may also use `common_panels` utils.
+    To build a target, you should use `common` utils.
     ```jsonnet
     # vendor/grafana-dashboard/dashboard/panels/common.libsonnet
 
-    default_metric_target( # plain "select metric" shortcut
-      datasource_type, # Target datasource type. Use grafana-dashboard/dashboard/variable.libsonnet to fill this value
+    target( # plain "select metric" shortcut
+      cfg, # Dashboard configuration
       metric_name, # Target metric name to select
-      job, # (Prometheus only) Prometheus metrics job. If you use default input variables, use grafana-dashboard/dashboard/variable.libsonnet to fill this value
-      policy, # (InfluxDB only) InfluxDB metrics policy. If you use default input variables, use grafana-dashboard/dashboard/variable.libsonnet to fill this value
-      measurement, # (InfluxDB only) InfluxDB metrics measurement. If you use default input variables, use grafana-dashboard/dashboard/variable.libsonnet to fill this value
+      additional_filters, # (optional) Query additional filter conditions. The structure is{ prometheus: filters, influxdb: filters }, filters have the same format as in cfg
+      legend, # (optional) Target result legend. The structure is{ prometheus: legend_str, influxdb: legend_str }
+      group_tags, # (InfluxDB only, optional). Target result group rules. All tags used in legend are expected to be here too
       converter, # (InfluxDB only, default 'mean') InfluxDB metrics converter (aggregation, selector, etc.)
+      rate, # (default false) Whether to transform the metrics as rate
     ),
-
-    default_rps_target( # counter metric transformed to rps shortcut
-      datasource_type, # Target datasource type. Use grafana-dashboard/dashboard/variable.libsonnet to fill this value
-      metric_name, # Target metric name to select
-      job, # (Prometheus only) Prometheus metrics job. If you use default input variables, use grafana-dashboard/dashboard/variable.libsonnet to fill this value
-      policy, # (InfluxDB only) InfluxDB metrics policy. If you use default input variables, use grafana-dashboard/dashboard/variable.libsonnet to fill this value
-      measurement, # (InfluxDB only) InfluxDB metrics measurement. If you use default input variables, use grafana-dashboard/dashboard/variable.libsonnet to fill this value
-    )
     ```
 
     To build more compound targets, use `grafonnet` library `prometheus` and `influxdb` templates.
 
-    To use dashboard-wide input and template variables in your queries you must use `grafana-dashboard/dashboard/variable.libsonnet`.
-    It imports json object with variable values you neet to set in your queries.
-
-    If you want to build a Prometheus dashboard with default input variables, use 
-    ```jsonnet
-    datasource=variable.datasource.prometheus,
-    job=variable.prometheus.job,
-    ```
-    in your targets.
-    
-    If you want to build an InfluxDB dashboard with default input variables, use 
-    ```jsonnet
-    datasource=variable.datasource.influxdb,
-    policy=variable.influxdb.policy,
-    measurement=variable.influxdb.measurement
-    ```
-    in your targets.
-
     To add a target to a panel, call `addTarget(target)`.
 
-    To summarise, you can build a simple 'select metric' prometheus panel with
+    To summarise, you can build a simple 'select metric' panel with
     ```jsonnet
-    local common_panels = import 'grafana-dashboard/dashboard/panels/common.libsonnet';
+    local common = import 'grafana-dashboard/dashboard/panels/common.libsonnet';
     local variable = import 'grafana-dashboard/dashboard/variable.libsonnet';
 
-    local my_custom_component_memory_graph = common_panels.default_graph(
+    local my_custom_component_memory_graph = common.default_graph(
+      cfg,
       title='My custom component memory',
       description=|||
         My custom component used memory.
         Shows mean value.
       |||,
-      datasource=variable.datasource.prometheus,
       format='bytes',
       panel_width=12,
       panel_height=6,
-    ).addTarget(common.default_metric_target(
-      datasource_type=variable.datasource_type.prometheus,
-      metric_name='my_component_memory',
-      job=variable.prometheus.job,
-    ))
+    ).addTarget(common.target(cfg, 'my_component_memory'))
     ```
     and a simple rps panel with
     ```jsonnet
-    local common_panels = import 'grafana-dashboard/dashboard/panels/common.libsonnet';
+    local common = import 'grafana-dashboard/dashboard/panels/common.libsonnet';
     local variable = import 'grafana-dashboard/dashboard/variable.libsonnet';
 
     local my_custom_component_rps_graph = common.default_graph(
+      cfg,
       title='My custom component load',
       description=|||
         My custom component processes requests
         and collects info on process to summary collector
         'my_component_load_metric'.
       |||,
-      datasource=variable.datasource.prometheus,
       labelY1='requests per second',
       panel_width=18,
       panel_height=6,
-    ).addTarget(common.default_rps_target(
-      datasource_type=variable.datasource_type.prometheus,
-      metric_name='my_component_load_metric_count',
-      job=variable.prometheus.job,
-    ))
-    ```
-    Corresponding InfluxDB panels could be built with
-    ```jsonnet
-    local common_panels = import 'grafana-dashboard/dashboard/panels/common.libsonnet';
-    local variable = import 'grafana-dashboard/dashboard/variable.libsonnet';
-
-    local my_custom_component_memory_graph = common_panels.default_graph(
-      title='My custom component memory',
-      description=|||
-        My custom component used memory.
-        Shows mean value.
-      |||,
-      datasource=variable.datasource.influxdb,
-      format='bytes',
-      panel_width=12,
-      panel_height=6,
-    ).addTarget(common.default_metric_target(
-      datasource_type=variable.datasource_type.influxdb,
-      metric_name='my_component_memory',
-      policy=variable.influxdb.policy,
-      measurement=variable.influxdb.measurement,
-    )),
-
-    local my_custom_component_rps_graph = common.default_graph(
-      title='My custom component load',
-      description=|||
-        My custom component processes requests
-        and collects info on process to summary collector
-        'my_component_load_metric'.
-      |||,
-      datasource=variable.datasource.influxdb,
-      labelY1='requests per second',
-      panel_width=18,
-      panel_height=6,
-    ).addTarget(common.default_rps_target(
-      datasource_type=variable.datasource_type.influxdb,
-      metric_name='my_component_load_metric_count',
-      policy=variable.influxdb.policy,
-      measurement=variable.influxdb.measurement,
-    ))
+    ).addTarget(common.target(cfg, my_component_load_metric_count', rate=true))
     ```
     For more panel tips and examples, please examine this template dashboard source code and test cases.
 
     To add your custom panels, call `addPanel(panel)` or `addPanels(panel_array)` in dashboard template:
     ```jsonnet
     # my_dashboard.jsonnet
-    local prometheus_dashboard = import 'grafana-dashboard/dashboard/build/prometheus/dashboard.libsonnet';
+    local dashboard = import 'grafana-dashboard/dashboard/build/dashboard.libsonnet';
 
     ...
     
-    local my_dashboard_template = prometheus_dashboard.addPanels([
+    local my_dashboard_template = dashboard.addPanels([
       my_row, my_custom_component_memory_graph, my_custom_component_rps_graph
     ]);
     ```
