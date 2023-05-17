@@ -44,10 +44,12 @@ endif
 
 .PHONY: build-static-prometheus
 build-static-prometheus:
+	@echo "This command is deprecated. Please, migrate to using 'CONFIG=config.yml make build' instead"
 	${MAKE} DASHBOARD_TEMPLATE='Tarantool' _build-static-prometheus
 
 .PHONY: build-static-tdg-prometheus
 build-static-tdg-prometheus:
+	@echo "This command is deprecated. Please, migrate to using 'CONFIG=config.yml make build' instead"
 	${MAKE} DASHBOARD_TEMPLATE='TDG' _build-static-prometheus
 
 
@@ -73,10 +75,12 @@ endif
 
 .PHONY: build-static-influxdb
 build-static-influxdb:
+	@echo "This command is deprecated. Please, migrate to using 'CONFIG=config.yml make build' instead"
 	${MAKE} DASHBOARD_TEMPLATE='Tarantool' _build-static-influxdb
 
 .PHONY: build-static-tdg-influxdb
 build-static-tdg-influxdb:
+	@echo "This command is deprecated. Please, migrate to using 'CONFIG=config.yml make build' instead"
 	${MAKE} DASHBOARD_TEMPLATE='TDG' _build-static-influxdb
 
 
