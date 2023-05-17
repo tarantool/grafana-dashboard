@@ -69,4 +69,30 @@ do
         x=1
     fi
 done
+
+for i in tests/*/*.yml
+do
+    json=$(dirname $i)/$( basename $i .yml )_test_output.json
+    json_e=$(dirname $i)/$( basename $i .yml )_compiled.json
+    t="Building $i..."
+    if CONFIG=$i OUTPUT=$json make build > /dev/null
+    then
+        echo $t OK
+    else
+        echo $t NOK
+        x=1
+        continue
+    fi
+
+    if [[ "$1" == "update" ]]; then cp $json $json_e; fi
+
+    t="Checking $i..."
+    if diff -urt $json_e $json
+    then
+        echo $t OK
+    else
+        echo $t NOK
+        x=1
+    fi
+done
 exit $x

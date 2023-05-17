@@ -1,0 +1,24 @@
+type: influxdb
+title: Tarantool dashboard
+description: Dashboard for Tarantool application and database server monitoring, based on grafonnet library.
+grafana_tags: [tarantool]
+datasource: '$influxdb'
+policy: '$policy'
+measurement: '$measurement'
+filters:
+  label_pairs_alias: ['=~', '/^$alias$/']
+sections:
+- cluster
+- replication
+- http
+- net
+- slab
+- mvcc
+- space
+- vinyl
+- cpu
+- runtime
+- luajit
+- operations
+- crud
+- expirationd

@@ -1,16 +1,15 @@
 local grafana = import 'grafonnet/grafana.libsonnet';
 
 local config = import 'dashboard/build/config.libsonnet';
-local dashboard = import 'dashboard/build/prometheus/dashboard.libsonnet';
+local dashboard = import 'dashboard/build/dashboard.libsonnet';
 local common = import 'dashboard/panels/common.libsonnet';
 local variable = import 'dashboard/variable.libsonnet';
 
-local cfg = config.prepare({
-  type: variable.datasource_type.prometheus,
-  filters: { job: ['=~', variable.prometheus.job], alias: ['=~', variable.prometheus.alias] },
-});
+local yaml_cfg = importstr 'dashboard.yml';
 
-dashboard.addPanels([
+local cfg = config.prepare(std.parseYaml(yaml_cfg));
+
+dashboard(cfg).addPanels([
   common.row('Tarantool network activity'),
 
   common.default_graph(
