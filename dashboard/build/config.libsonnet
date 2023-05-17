@@ -23,7 +23,7 @@ local variable = import 'dashboard/variable.libsonnet';
       title: 'Tarantool dashboard',
       description: 'Dashboard for Tarantool application and database server monitoring, based on grafonnet library.',
       grafana_tags: ['tarantool'],
-      datasource: variable.datasource.prometheus,
+      datasource: '$prometheus',
       filters: {},
       metrics_prefix: '',
       sections: [
@@ -48,9 +48,9 @@ local variable = import 'dashboard/variable.libsonnet';
       title: 'Tarantool dashboard',
       description: 'Dashboard for Tarantool application and database server monitoring, based on grafonnet library.',
       grafana_tags: ['tarantool'],
-      datasource: variable.datasource.influxdb,
-      policy: variable.influxdb.policy,
-      measurement: variable.influxdb.measurement,
+      datasource: '$influxdb',
+      policy: '$policy',
+      measurement: '$measurement',
       filters: {},
       metrics_prefix: '',
       sections: [

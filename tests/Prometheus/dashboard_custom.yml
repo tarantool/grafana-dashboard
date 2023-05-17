@@ -1,0 +1,19 @@
+type: prometheus
+title: MyCacheApplication dashboard
+description: Dashboard for MyCacheApplication monitoring.
+grafana_tags: [tarantool, cache]
+datasource: '$prometheus'
+filters:
+  alias: ['=~', '$alias']
+  vendor_app_label: ['=', 'MyCacheApplication']
+metrics_prefix: vendor_tt_
+sections:
+- cluster
+- replication
+- http
+- net
+- slab
+- space
+- runtime
+- luajit
+- operations

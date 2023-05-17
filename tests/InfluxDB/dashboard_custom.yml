@@ -1,0 +1,21 @@
+type: influxdb
+title: MyCacheApplication dashboard
+description: Dashboard for MyCacheApplication monitoring.
+grafana_tags: [tarantool, cache]
+datasource: '$influxdb'
+policy: default
+measurement: '$measurement'
+filters:
+  label_pairs_alias: ['=~', '$alias']
+  vendor_app_tag: ['=', 'MyCacheApplication']
+metrics_prefix: vendor_tt_
+sections:
+- cluster
+- replication
+- http
+- net
+- slab
+- space
+- runtime
+- luajit
+- operations
