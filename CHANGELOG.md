@@ -16,6 +16,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 - Display two digits after decimal point instead of three
+- Deprecate make single line static build
 
 ### Fixed
 - TDG Kafka brokers rps panels alias condition for InfluxDB
