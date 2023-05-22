@@ -70,7 +70,7 @@ local prometheus = grafana.prometheus;
       desc: false,
     },
     transform='table',
-  ).hideColumn('job').hideColumn('__name__').hideColumn('Time').addTarget(
+  ).hideColumn('job').hideColumn('/.*/').addTarget(
     if cfg.type == variable.datasource_type.prometheus then
       prometheus.target(
         expr=if std.objectHas(cfg.filters, 'job') then

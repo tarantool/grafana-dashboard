@@ -121,13 +121,8 @@
                      "type": "hidden"
                   },
                   {
-                     "alias": "__name__",
-                     "pattern": "__name__",
-                     "type": "hidden"
-                  },
-                  {
-                     "alias": "Time",
-                     "pattern": "Time",
+                     "alias": "/.*/",
+                     "pattern": "/.*/",
                      "type": "hidden"
                   }
                ],
