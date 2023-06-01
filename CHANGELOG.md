@@ -4,7 +4,8 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## Unreleased
+## [2.1.1] - 2023-06-01
+Grafana revisions: [InfluxDB revision 18](https://grafana.com/api/dashboards/12567/revisions/18/download), [Prometheus revision 18](https://grafana.com/api/dashboards/13054/revisions/18/download), [InfluxDB TDG revision 7](https://grafana.com/api/dashboards/16405/revisions/7/download), [Prometheus TDG revision 7](https://grafana.com/api/dashboards/16406/revisions/7/download).
 
 ### Changed
 - Use auto decimal scaling for most panels (PR #213)
