@@ -383,6 +383,7 @@ local prometheus = grafana.prometheus;
     description=description,
     format='none',
     labelY1='tuples',
+    decimals=0,
     panel_width=6,
   ).addTarget(
     mvcc_target(cfg, 'tnt_memtx_mvcc_tuples_used_stories', 'count')
@@ -413,6 +414,7 @@ local prometheus = grafana.prometheus;
     description=description,
     format='none',
     labelY1='tuples',
+    decimals=0,
     panel_width=6,
   ).addTarget(
     mvcc_target(cfg, 'tnt_memtx_mvcc_tuples_used_retained', 'count')
@@ -443,6 +445,7 @@ local prometheus = grafana.prometheus;
     description=description,
     format='none',
     labelY1='tuples',
+    decimals=0,
     panel_width=6,
   ).addTarget(
     mvcc_target(cfg, 'tnt_memtx_mvcc_tuples_read_view_stories', 'count')
@@ -473,6 +476,7 @@ local prometheus = grafana.prometheus;
     description=description,
     format='none',
     labelY1='tuples',
+    decimals=0,
     panel_width=6,
   ).addTarget(
     mvcc_target(cfg, 'tnt_memtx_mvcc_tuples_read_view_retained', 'count')
@@ -503,6 +507,7 @@ local prometheus = grafana.prometheus;
     description=description,
     format='none',
     labelY1='tuples',
+    decimals=0,
     panel_width=6,
   ).addTarget(
     mvcc_target(cfg, 'tnt_memtx_mvcc_tuples_tracking_stories', 'count')
@@ -533,6 +538,7 @@ local prometheus = grafana.prometheus;
     description=description,
     format='none',
     labelY1='tuples',
+    decimals=0,
     panel_width=6,
   ).addTarget(
     mvcc_target(cfg, 'tnt_memtx_mvcc_tuples_tracking_retained', 'count')

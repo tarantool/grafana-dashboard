@@ -71,7 +71,6 @@ local prometheus = grafana.prometheus;
     description=description,
     labelY1='ticks per second',
     min=0,
-    decimalsY1=2,
     panel_width=12,
   ).addTarget(
     common.target(

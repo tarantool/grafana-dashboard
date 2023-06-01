@@ -4,7 +4,6 @@ local timeseries = import 'dashboard/grafana/timeseries.libsonnet';
 local common = import 'dashboard/panels/common.libsonnet';
 local variable = import 'dashboard/variable.libsonnet';
 
-local graph = grafana.graphPanel;
 local influxdb = grafana.influxdb;
 local prometheus = grafana.prometheus;
 
@@ -59,8 +58,6 @@ local prometheus = grafana.prometheus;
     title=title,
     description=description,
     format='s',
-    decimals=null,
-    decimalsY1=null,
     legend_avg=false,
     min=0,
     panel_width=8,
@@ -91,8 +88,6 @@ local prometheus = grafana.prometheus;
     title=title,
     description=description,
     format='s',
-    decimals=null,
-    decimalsY1=null,
     fill=1,
     legend_avg=false,
     legend_max=false,
