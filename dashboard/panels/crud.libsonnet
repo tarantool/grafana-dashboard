@@ -45,8 +45,6 @@ local operation_rps_template(
   description=description,
   min=0,
   labelY1='requests per second',
-  decimals=2,
-  decimalsY1=2,
   panel_height=8,
   panel_width=6,
 ).addTarget(
@@ -90,8 +88,6 @@ local operation_latency_template(
   format='s',
   min=0,
   labelY1='99th percentile',
-  decimals=2,
-  decimalsY1=2,
   panel_height=8,
   panel_width=6,
 ).addTarget(

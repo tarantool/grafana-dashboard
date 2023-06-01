@@ -159,8 +159,6 @@ local common = import 'dashboard/panels/common.libsonnet';
     title=title,
     description=description,
     labelY1='cycle duration',
-    decimals=2,
-    decimalsY1=2,
     format='ms',
     panel_width=12,
   ).addTarget(

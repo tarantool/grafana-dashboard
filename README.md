@@ -194,8 +194,8 @@ You can add your own custom panels to the bottom of the template dashboard.
       min, # (optional) Min of the Y axes
       max, # (optional) Max of the Y axes
       labelY1, # (optional) Label of the left Y axis
-      decimals, # (default 3) Override automatic decimal precision for legend and tooltip
-      decimalsY1, # (default 0) Override automatic decimal precision for the left Y axis
+      decimals, # (default null) Override automatic decimal precision for legend and tooltip
+      decimalsY1, # (default null) Override automatic decimal precision for the left Y axis
       legend_avg, # (default true) Show average in legend
       legend_max, # (default true) Show max in legend
       panel_height, # (default 8) Panel heigth in grid units

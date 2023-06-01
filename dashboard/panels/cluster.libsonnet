@@ -320,7 +320,6 @@ local prometheus = grafana.prometheus;
     title=title,
     description=description,
     min=0,
-    decimals=0,
     legend_avg=false,
     legend_max=false,
     panel_height=6,

@@ -99,7 +99,6 @@ local prometheus = grafana.prometheus;
     description=description,
     format='s',
     labelY1=label,
-    decimalsY1=null,
   ).addTarget(
     common.target(
       cfg,

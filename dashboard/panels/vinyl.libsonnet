@@ -460,7 +460,6 @@ local prometheus = grafana.prometheus;
     description=description,
     format='s',
     labelY1='per second rate',
-    decimalsY1=null,
     panel_width=6,
   ).addTarget(
     common.target(cfg, 'tnt_vinyl_scheduler_dump_time', rate=true)
@@ -480,7 +479,6 @@ local prometheus = grafana.prometheus;
     description=description,
     format='none',
     labelY1='per second rate',
-    decimalsY1=null,
     panel_width=6,
   ).addTarget(
     common.target(cfg, 'tnt_vinyl_scheduler_dump_total', rate=true)
