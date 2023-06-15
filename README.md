@@ -4,7 +4,7 @@ Dashboard for Tarantool application and database server monitoring, based on [gr
 
 Our pages on Grafana Official & community built dashboards:
 [InfluxDB version](https://grafana.com/grafana/dashboards/12567),
-[Prometheus version](https://grafana.com/grafana/dashboards/13054)
+[Prometheus version](https://grafana.com/grafana/dashboards/13054),
 [InfluxDB TDG version](https://grafana.com/grafana/dashboards/16405),
 [Prometheus TDG version](https://grafana.com/grafana/dashboards/16406).
 
