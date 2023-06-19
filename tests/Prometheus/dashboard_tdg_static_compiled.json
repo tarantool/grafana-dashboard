@@ -23275,7 +23275,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tdg_jobs_execution_time_sum{job=~\"tarantool\"} / tdg_jobs_execution_time_count{job=~\"tarantool\"\"}\n",
+                     "expr": "tdg_jobs_execution_time_sum{job=~\"tarantool\"} / tdg_jobs_execution_time_count{job=~\"tarantool\"}\n",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{name}} — {{alias}}",
