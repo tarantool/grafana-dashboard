@@ -1,10 +1,4 @@
-local grafana = import 'github.com/grafana/grafonnet/gen/grafonnet-latest/main.libsonnet';
-
 local common = import 'dashboard/panels/common.libsonnet';
-local variable = import 'dashboard/variable.libsonnet';
-
-local influxdb = grafana.influxdb;
-local prometheus = grafana.prometheus;
 
 {
   row:: common.row('Tarantool operations statistics'),
@@ -26,8 +20,8 @@ local prometheus = grafana.prometheus;
       cfg,
       'tnt_stats_op_total',
       additional_filters={
-        [variable.datasource_type.prometheus]: { operation: ['=', operation] },
-        [variable.datasource_type.influxdb]: { label_pairs_operation: ['=', operation] },
+        prometheus: { operation: ['=', operation] },
+        influxdb: { label_pairs_operation: ['=', operation] },
       },
       rate=true,
     ),

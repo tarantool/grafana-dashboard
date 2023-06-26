@@ -1,10 +1,4 @@
-local grafana = import 'github.com/grafana/grafonnet/gen/grafonnet-latest/main.libsonnet';
-
 local common_utils = import 'dashboard/panels/common.libsonnet';
-local variable = import 'dashboard/variable.libsonnet';
-
-local influxdb = grafana.influxdb;
-local prometheus = grafana.prometheus;
 
 {
   row:: common_utils.row('TDG IProto requests'),
@@ -38,12 +32,12 @@ local prometheus = grafana.prometheus;
       cfg,
       metric_name,
       additional_filters={
-        [variable.datasource_type.prometheus]: { method: ['=', 'repository.' + method_tail] },
-        [variable.datasource_type.influxdb]: { label_pairs_method: ['=', 'repository.' + method_tail] },
+        prometheus: { method: ['=', 'repository.' + method_tail] },
+        influxdb: { label_pairs_method: ['=', 'repository.' + method_tail] },
       },
       legend={
-        [variable.datasource_type.prometheus]: '{{type}} — {{alias}}',
-        [variable.datasource_type.influxdb]: '$tag_label_pairs_type — $tag_label_pairs_alias',
+        prometheus: '{{type}} — {{alias}}',
+        influxdb: '$tag_label_pairs_type — $tag_label_pairs_alias',
       },
       group_tags=[
         'label_pairs_alias',
@@ -82,18 +76,18 @@ local prometheus = grafana.prometheus;
       cfg,
       metric_name,
       additional_filters={
-        [variable.datasource_type.prometheus]: {
+        prometheus: {
           method: ['=', 'repository.' + method_tail],
           quantile: ['=', '0.99'],
         },
-        [variable.datasource_type.influxdb]: {
+        influxdb: {
           label_pairs_method: ['=', 'repository.' + method_tail],
           label_pairs_quantile: ['=', '0.99'],
         },
       },
       legend={
-        [variable.datasource_type.prometheus]: '{{type}} — {{alias}}',
-        [variable.datasource_type.influxdb]: '$tag_label_pairs_type — $tag_label_pairs_alias',
+        prometheus: '{{type}} — {{alias}}',
+        influxdb: '$tag_label_pairs_type — $tag_label_pairs_alias',
       },
       group_tags=[
         'label_pairs_alias',

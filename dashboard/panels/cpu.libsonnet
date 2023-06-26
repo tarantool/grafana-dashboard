@@ -1,10 +1,4 @@
-local grafana = import 'github.com/grafana/grafonnet/gen/grafonnet-latest/main.libsonnet';
-
 local common = import 'dashboard/panels/common.libsonnet';
-local variable = import 'dashboard/variable.libsonnet';
-
-local influxdb = grafana.influxdb;
-local prometheus = grafana.prometheus;
 
 {
   row:: common.row('Tarantool CPU statistics'),
@@ -77,12 +71,12 @@ local prometheus = grafana.prometheus;
       cfg,
       'tnt_cpu_thread',
       additional_filters={
-        [variable.datasource_type.prometheus]: { kind: ['=', kind] },
-        [variable.datasource_type.influxdb]: { label_pairs_kind: ['=', kind] },
+        prometheus: { kind: ['=', kind] },
+        influxdb: { label_pairs_kind: ['=', kind] },
       },
       legend={
-        [variable.datasource_type.prometheus]: '{{alias}} — {{thread_name}}',
-        [variable.datasource_type.influxdb]: '$tag_label_pairs_alias — $tag_label_pairs_thread_name',
+        prometheus: '{{alias}} — {{thread_name}}',
+        influxdb: '$tag_label_pairs_alias — $tag_label_pairs_thread_name',
       },
       group_tags=['label_pairs_alias', 'label_pairs_thread_name'],
       rate=true,

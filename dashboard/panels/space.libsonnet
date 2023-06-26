@@ -1,10 +1,4 @@
-local grafana = import 'github.com/grafana/grafonnet/gen/grafonnet-latest/main.libsonnet';
-
 local common = import 'dashboard/panels/common.libsonnet';
-local variable = import 'dashboard/variable.libsonnet';
-
-local influxdb = grafana.influxdb;
-local prometheus = grafana.prometheus;
 
 {
   row:: common.row('Tarantool space statistics'),
@@ -29,12 +23,12 @@ local prometheus = grafana.prometheus;
       cfg,
       metric_name,
       additional_filters={
-        [variable.datasource_type.prometheus]: { engine: ['=', engine] },
-        [variable.datasource_type.influxdb]: { label_pairs_engine: ['=', engine] },
+        prometheus: { engine: ['=', engine] },
+        influxdb: { label_pairs_engine: ['=', engine] },
       },
       legend={
-        [variable.datasource_type.prometheus]: '{{alias}} — {{name}}',
-        [variable.datasource_type.influxdb]: '$tag_label_pairs_alias — $tag_label_pairs_name',
+        prometheus: '{{alias}} — {{name}}',
+        influxdb: '$tag_label_pairs_alias — $tag_label_pairs_name',
       },
       group_tags=['label_pairs_alias', 'label_pairs_name'],
       converter='last',
@@ -95,12 +89,12 @@ local prometheus = grafana.prometheus;
       cfg,
       metric_name,
       additional_filters={
-        [variable.datasource_type.prometheus]: { engine: ['=', 'memtx'] },
-        [variable.datasource_type.influxdb]: { label_pairs_engine: ['=', 'memtx'] },
+        prometheus: { engine: ['=', 'memtx'] },
+        influxdb: { label_pairs_engine: ['=', 'memtx'] },
       },
       legend={
-        [variable.datasource_type.prometheus]: '{{alias}} — {{name}}',
-        [variable.datasource_type.influxdb]: '$tag_label_pairs_alias — $tag_label_pairs_name',
+        prometheus: '{{alias}} — {{name}}',
+        influxdb: '$tag_label_pairs_alias — $tag_label_pairs_name',
       },
       group_tags=['label_pairs_alias', 'label_pairs_name'],
     ),
@@ -116,7 +110,7 @@ local prometheus = grafana.prometheus;
           Total number of bytes in all tuples of the space (memtx engine).
           Name of space is specified after dash.
         |||,
-        if cfg.type == variable.datasource_type.influxdb then
+        if cfg.type == 'influxdb' then
           |||
             `No data` may be displayed because of tarantool/metrics issue #321,
             use `metrics >= 0.12.0` to fix.
@@ -152,8 +146,8 @@ local prometheus = grafana.prometheus;
       cfg,
       'tnt_space_index_bsize',
       legend={
-        [variable.datasource_type.prometheus]: '{{alias}} — {{name}} ({{index_name}})',
-        [variable.datasource_type.influxdb]: '$tag_label_pairs_alias — $tag_label_pairs_name ($tag_label_pairs_index_name)',
+        prometheus: '{{alias}} — {{name}} ({{index_name}})',
+        influxdb: '$tag_label_pairs_alias — $tag_label_pairs_name ($tag_label_pairs_index_name)',
       },
       group_tags=['label_pairs_alias', 'label_pairs_name', 'label_pairs_index_name'],
     ),
@@ -169,7 +163,7 @@ local prometheus = grafana.prometheus;
           Total size of tuples and all indexes in the space (memtx engine).
           Name of space is specified after dash.
         |||,
-        if cfg.type == variable.datasource_type.influxdb then
+        if cfg.type == 'influxdb' then
           |||
             `No data` may be displayed because of tarantool/metrics issue #321,
             use `metrics >= 0.12.0` to fix.

@@ -1,5 +1,3 @@
-local variable = import 'dashboard/variable.libsonnet';
-
 local cluster = import 'dashboard/panels/cluster.libsonnet';
 local cpu = import 'dashboard/panels/cpu.libsonnet';
 local crud = import 'dashboard/panels/crud.libsonnet';
@@ -27,7 +25,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
 local vinyl = import 'dashboard/panels/vinyl.libsonnet';
 
 {
-  cluster(cfg):: if cfg.type == variable.datasource_type.prometheus then [
+  cluster(cfg):: if cfg.type == 'prometheus' then [
     // Must be used only in the top of a dashboard, overall stat panels use complicated layout
     cluster.row,
     cluster.health_overview_table(cfg) { gridPos: { w: 12, h: 8, x: 0, y: 1 } },

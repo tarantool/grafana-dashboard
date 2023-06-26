@@ -1,10 +1,4 @@
-local grafana = import 'github.com/grafana/grafonnet/gen/grafonnet-latest/main.libsonnet';
-
 local common = import 'dashboard/panels/common.libsonnet';
-local variable = import 'dashboard/variable.libsonnet';
-
-local influxdb = grafana.influxdb;
-local prometheus = grafana.prometheus;
 
 {
   row:: common.row('Tarantool network activity'),
@@ -243,8 +237,8 @@ local prometheus = grafana.prometheus;
       cfg,
       metric_name,
       legend={
-        [variable.datasource_type.prometheus]: '{{alias}} (thread {{thread}})',
-        [variable.datasource_type.influxdb]: '$tag_label_pairs_alias (thread $tag_label_pairs_thread)',
+        prometheus: '{{alias}} (thread {{thread}})',
+        influxdb: '$tag_label_pairs_alias (thread $tag_label_pairs_thread)',
       },
       group_tags=['label_pairs_alias', 'label_pairs_thread'],
       rate=true,
@@ -272,8 +266,8 @@ local prometheus = grafana.prometheus;
       cfg,
       metric_name,
       legend={
-        [variable.datasource_type.prometheus]: '{{alias}} (thread {{thread}})',
-        [variable.datasource_type.influxdb]: '$tag_label_pairs_alias (thread $tag_label_pairs_thread)',
+        prometheus: '{{alias}} (thread {{thread}})',
+        influxdb: '$tag_label_pairs_alias (thread $tag_label_pairs_thread)',
       },
       group_tags=['label_pairs_alias', 'label_pairs_thread'],
       converter='last',

@@ -1,10 +1,4 @@
-local grafana = import 'github.com/grafana/grafonnet/gen/grafonnet-latest/main.libsonnet';
-
 local common = import 'dashboard/panels/common.libsonnet';
-local variable = import 'dashboard/variable.libsonnet';
-
-local influxdb = grafana.influxdb;
-local prometheus = grafana.prometheus;
 
 // Add util functions for panels.
 
@@ -52,18 +46,18 @@ local operation_rps_template(
     cfg,
     'tnt_crud_stats_count',
     additional_filters={
-      [variable.datasource_type.prometheus]: {
+      prometheus: {
         operation: ['=', operation],
         status: ['=', status],
       },
-      [variable.datasource_type.influxdb]: {
+      influxdb: {
         label_pairs_operation: ['=', operation],
         label_pairs_status: ['=', status],
       },
     },
     legend={
-      [variable.datasource_type.prometheus]: '{{alias}} — {{name}}',
-      [variable.datasource_type.influxdb]: '$tag_label_pairs_alias — $tag_label_pairs_name',
+      prometheus: '{{alias}} — {{name}}',
+      influxdb: '$tag_label_pairs_alias — $tag_label_pairs_name',
     },
     group_tags=['label_pairs_alias', 'label_pairs_name'],
     rate=true,
@@ -95,20 +89,20 @@ local operation_latency_template(
     cfg,
     'tnt_crud_stats',
     additional_filters={
-      [variable.datasource_type.prometheus]: {
+      prometheus: {
         operation: ['=', operation],
         status: ['=', status],
         quantile: ['=', '0.99'],
       },
-      [variable.datasource_type.influxdb]: {
+      influxdb: {
         label_pairs_operation: ['=', operation],
         label_pairs_status: ['=', status],
         label_pairs_quantile: ['=', '0.99'],
       },
     },
     legend={
-      [variable.datasource_type.prometheus]: '{{alias}} — {{name}}',
-      [variable.datasource_type.influxdb]: '$tag_label_pairs_alias — $tag_label_pairs_name',
+      prometheus: '{{alias}} — {{name}}',
+      influxdb: '$tag_label_pairs_alias — $tag_label_pairs_name',
     },
     group_tags=['label_pairs_alias', 'label_pairs_name'],
   ),
@@ -343,7 +337,7 @@ local tuples_panel(
   panel_height=8,
   panel_width=8,
 ).addTarget(
-  if cfg.type == variable.datasource_type.prometheus then
+  if cfg.type == 'prometheus' then
     local filters = common.prometheus_query_filters(cfg.filters { operation: ['=', 'select'] });
     prometheus.target(
       expr=std.format(
@@ -359,7 +353,7 @@ local tuples_panel(
       ),
       legendFormat='{{alias}} — {{name}}'
     )
-  else if cfg.type == variable.datasource_type.influxdb then
+  else if cfg.type == 'influxdb' then
     local filters = common.influxdb_query_filters(cfg.filters {
       label_pairs_operation: ['=', 'select'],
     });
@@ -484,16 +478,16 @@ local module = {
       cfg,
       'tnt_crud_map_reduces',
       additional_filters={
-        [variable.datasource_type.prometheus]: {
+        prometheus: {
           operation: ['=', 'select'],
         },
-        [variable.datasource_type.influxdb]: {
+        influxdb: {
           label_pairs_operation: ['=', 'select'],
         },
       },
       legend={
-        [variable.datasource_type.prometheus]: '{{alias}} — {{name}}',
-        [variable.datasource_type.influxdb]: '$tag_label_pairs_alias — $tag_label_pairs_name',
+        prometheus: '{{alias}} — {{name}}',
+        influxdb: '$tag_label_pairs_alias — $tag_label_pairs_name',
       },
       group_tags=['label_pairs_alias', 'label_pairs_name'],
       rate=true,

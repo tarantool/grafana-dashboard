@@ -1,11 +1,4 @@
-local grafana = import 'github.com/grafana/grafonnet/gen/grafonnet-latest/main.libsonnet';
-
-local timeseries = import 'dashboard/grafana/timeseries.libsonnet';
 local common = import 'dashboard/panels/common.libsonnet';
-local variable = import 'dashboard/variable.libsonnet';
-
-local influxdb = grafana.influxdb;
-local prometheus = grafana.prometheus;
 
 {
   row:: common.row('Replication overview'),
@@ -37,8 +30,8 @@ local prometheus = grafana.prometheus;
       cfg,
       'tnt_replication_status',
       legend={
-        [variable.datasource_type.prometheus]: '{{alias}} {{stream}} ({{id}})',
-        [variable.datasource_type.influxdb]: '$tag_label_pairs_alias $tag_label_pairs_stream ($tag_label_pairs_id)',
+        prometheus: '{{alias}} {{stream}} ({{id}})',
+        influxdb: '$tag_label_pairs_alias $tag_label_pairs_stream ($tag_label_pairs_id)',
       },
       group_tags=['label_pairs_alias', 'label_pairs_stream', 'label_pairs_id'],
       converter='last',
@@ -66,8 +59,8 @@ local prometheus = grafana.prometheus;
       cfg,
       'tnt_replication_lag',
       legend={
-        [variable.datasource_type.prometheus]: '{{alias}} ({{id}})',
-        [variable.datasource_type.influxdb]: '$tag_label_pairs_alias ($tag_label_pairs_id)',
+        prometheus: '{{alias}} ({{id}})',
+        influxdb: '$tag_label_pairs_alias ($tag_label_pairs_id)',
       },
       group_tags=['label_pairs_alias', 'label_pairs_id'],
     ),
@@ -97,8 +90,8 @@ local prometheus = grafana.prometheus;
       cfg,
       'tnt_clock_delta',
       legend={
-        [variable.datasource_type.prometheus]: '{{alias}} ({{delta}})',
-        [variable.datasource_type.influxdb]: '$tag_label_pairs_alias ($tag_label_pairs_delta)',
+        prometheus: '{{alias}} ({{delta}})',
+        influxdb: '$tag_label_pairs_alias ($tag_label_pairs_delta)',
       },
       group_tags=['label_pairs_alias', 'label_pairs_delta'],
       converter='last',

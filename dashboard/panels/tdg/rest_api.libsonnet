@@ -1,10 +1,4 @@
-local grafana = import 'github.com/grafana/grafonnet/gen/grafonnet-latest/main.libsonnet';
-
 local common_utils = import 'dashboard/panels/common.libsonnet';
-local variable = import 'dashboard/variable.libsonnet';
-
-local influxdb = grafana.influxdb;
-local prometheus = grafana.prometheus;
 
 {
   row:: common_utils.row('TDG REST API requests'),
@@ -26,18 +20,18 @@ local prometheus = grafana.prometheus;
       cfg,
       metric_name,
       additional_filters={
-        [variable.datasource_type.prometheus]: {
+        prometheus: {
           method: [get_condition, 'GET'],
           status_code: ['=~', std.strReplace(status_regex, '\\', '\\\\')],
         },
-        [variable.datasource_type.influxdb]: {
+        influxdb: {
           label_pairs_method: [get_condition, 'GET'],
           label_pairs_status_code: ['=~', std.format('/%s/', status_regex)],
         },
       },
       legend={
-        [variable.datasource_type.prometheus]: '{{type}} (code {{status_code}}) — {{alias}}',
-        [variable.datasource_type.influxdb]: '$tag_label_pairs_method $tag_label_pairs_type (code $tag_label_pairs_status_code) — $tag_label_pairs_alias',
+        prometheus: '{{type}} (code {{status_code}}) — {{alias}}',
+        influxdb: '$tag_label_pairs_method $tag_label_pairs_type (code $tag_label_pairs_status_code) — $tag_label_pairs_alias',
       },
       group_tags=[
         'label_pairs_alias',
@@ -67,20 +61,20 @@ local prometheus = grafana.prometheus;
       cfg,
       metric_name,
       additional_filters={
-        [variable.datasource_type.prometheus]: {
+        prometheus: {
           method: [get_condition, 'GET'],
           status_code: ['=~', std.strReplace(status_regex, '\\', '\\\\')],
           quantile: ['=', '0.99'],
         },
-        [variable.datasource_type.influxdb]: {
+        influxdb: {
           label_pairs_method: [get_condition, 'GET'],
           label_pairs_status_code: ['=~', std.format('/%s/', status_regex)],
           label_pairs_quantile: ['=', '0.99'],
         },
       },
       legend={
-        [variable.datasource_type.prometheus]: '{{type}} (code {{status_code}}) — {{alias}}',
-        [variable.datasource_type.influxdb]: '$tag_label_pairs_method $tag_label_pairs_type (code $tag_label_pairs_status_code) — $tag_label_pairs_alias',
+        prometheus: '{{type}} (code {{status_code}}) — {{alias}}',
+        influxdb: '$tag_label_pairs_method $tag_label_pairs_type (code $tag_label_pairs_status_code) — $tag_label_pairs_alias',
       },
       group_tags=[
         'label_pairs_alias',

@@ -1,10 +1,4 @@
-local grafana = import 'github.com/grafana/grafonnet/gen/grafonnet-latest/main.libsonnet';
-
 local common_utils = import 'dashboard/panels/common.libsonnet';
-local variable = import 'dashboard/variable.libsonnet';
-
-local influxdb = grafana.influxdb;
-local prometheus = grafana.prometheus;
 
 {
   row:: common_utils.row('TDG tuples statistics'),
@@ -13,7 +7,7 @@ local prometheus = grafana.prometheus;
     cfg,
     metric_name,
   ) =
-    if cfg.type == variable.datasource_type.prometheus then
+    if cfg.type == 'prometheus' then
       local filters = common_utils.prometheus_query_filters(cfg.filters);
       prometheus.target(
         expr=std.format(
@@ -29,7 +23,7 @@ local prometheus = grafana.prometheus;
         ),
         legendFormat='{{type_name}} — {{alias}}'
       )
-    else if cfg.type == variable.datasource_type.influxdb then
+    else if cfg.type == 'influxdb' then
       local filters = common_utils.influxdb_query_filters(cfg.filters);
       influxdb.target(
         rawQuery=true,

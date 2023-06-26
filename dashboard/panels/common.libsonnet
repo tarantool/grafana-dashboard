@@ -2,9 +2,6 @@ local grafana = import 'github.com/grafana/grafonnet/gen/grafonnet-latest/main.l
 
 local variable = import 'dashboard/variable.libsonnet';
 
-local influxdb = grafana.influxdb;
-local prometheus = grafana.prometheus;
-
 local prometheus_query_filters(filters) = std.join(
   ',',
   std.map(
@@ -42,8 +39,8 @@ local influxdb_query_filters(filters) = std.join(' AND ', std.map(
     legend_rightSide=false,
     panel_height=8,
     panel_width=8,
-  ):: grafana.graphPanel.new(
-    title=title,
+  ):: grafana.panel.timeSeries.new(title)
+    + grafana.panel.timeSeries.withDescription(description)
     description=description,
     datasource=cfg.datasource,
 
@@ -74,25 +71,25 @@ local influxdb_query_filters(filters) = std.join(' AND ', std.map(
     cfg,
     metric_name,
     additional_filters={
-      [variable.datasource_type.prometheus]: {},
-      [variable.datasource_type.influxdb]: {},
+      prometheus: {},
+      influxdb: {},
     },
     legend={
-      [variable.datasource_type.prometheus]: '{{alias}}',
-      [variable.datasource_type.influxdb]: '$tag_label_pairs_alias',
+      prometheus: '{{alias}}',
+      influxdb: '$tag_label_pairs_alias',
     },
     group_tags=['label_pairs_alias'],  // influxdb only
     converter='mean',  // influxdb only
     rate=false,
   )::
     local filters = additional_filters[cfg.type] + cfg.filters;
-    if cfg.type == variable.datasource_type.prometheus then
+    if cfg.type == 'prometheus' then
       local expr = std.format('%s%s{%s}', [cfg.metrics_prefix, metric_name, prometheus_query_filters(filters)]);
       prometheus.target(
         expr=if rate then std.format('rate(%s[$__rate_interval])', expr) else expr,
         legendFormat=legend[cfg.type],
       )
-    else if cfg.type == variable.datasource_type.influxdb then
+    else if cfg.type == 'influxdb' then
       local target = std.foldl(
         function(target, key)
           target.where(key, filters[key][0], filters[key][1]),
@@ -111,7 +108,7 @@ local influxdb_query_filters(filters) = std.join(' AND ', std.map(
     cfg,
     description,
   )::
-    if cfg.type == variable.datasource_type.influxdb then
+    if cfg.type == 'influxdb' then
       std.join('\n', [description, |||
         Current value may be 0 from time to time due to fill(0)
         and GROUP BY including partial intervals.

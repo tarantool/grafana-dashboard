@@ -1,10 +1,4 @@
-local grafana = import 'github.com/grafana/grafonnet/gen/grafonnet-latest/main.libsonnet';
-
 local common = import 'dashboard/panels/common.libsonnet';
-local variable = import 'dashboard/variable.libsonnet';
-
-local influxdb = grafana.influxdb;
-local prometheus = grafana.prometheus;
 
 {
   row:: common.row('Tarantool HTTP statistics'),
@@ -25,12 +19,12 @@ local prometheus = grafana.prometheus;
       cfg,
       metric_name,
       additional_filters={
-        [variable.datasource_type.prometheus]: { status: ['=~', std.strReplace(status_regex, '\\', '\\\\')] },
-        [variable.datasource_type.influxdb]: { label_pairs_status: ['=~', std.format('/%s/', status_regex)] },
+        prometheus: { status: ['=~', std.strReplace(status_regex, '\\', '\\\\')] },
+        influxdb: { label_pairs_status: ['=~', std.format('/%s/', status_regex)] },
       },
       legend={
-        [variable.datasource_type.prometheus]: '{{alias}} — {{method}} {{path}} (code {{status}})',
-        [variable.datasource_type.influxdb]: '$tag_label_pairs_alias — $tag_label_pairs_method $tag_label_pairs_path (code $tag_label_pairs_status)',
+        prometheus: '{{alias}} — {{method}} {{path}} (code {{status}})',
+        influxdb: '$tag_label_pairs_alias — $tag_label_pairs_method $tag_label_pairs_path (code $tag_label_pairs_status)',
       },
       group_tags=['label_pairs_alias', 'label_pairs_path', 'label_pairs_method', 'label_pairs_status'],
       rate=true,
@@ -104,18 +98,18 @@ local prometheus = grafana.prometheus;
       cfg,
       metric_name,
       additional_filters={
-        [variable.datasource_type.prometheus]: {
+        prometheus: {
           status: ['=~', std.strReplace(status_regex, '\\', '\\\\')],
           quantile: ['=', '0.99'],
         },
-        [variable.datasource_type.influxdb]: {
+        influxdb: {
           label_pairs_status: ['=~', std.format('/%s/', status_regex)],
           label_pairs_quantile: ['=', '0.99'],
         },
       },
       legend={
-        [variable.datasource_type.prometheus]: '{{alias}} — {{method}} {{path}} (code {{status}})',
-        [variable.datasource_type.influxdb]: '$tag_label_pairs_alias — $tag_label_pairs_method $tag_label_pairs_path (code $tag_label_pairs_status)',
+        prometheus: '{{alias}} — {{method}} {{path}} (code {{status}})',
+        influxdb: '$tag_label_pairs_alias — $tag_label_pairs_method $tag_label_pairs_path (code $tag_label_pairs_status)',
       },
       group_tags=['label_pairs_alias', 'label_pairs_path', 'label_pairs_method', 'label_pairs_status'],
     ),

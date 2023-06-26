@@ -1,10 +1,4 @@
-local grafana = import 'github.com/grafana/grafonnet/gen/grafonnet-latest/main.libsonnet';
-
 local common_utils = import 'dashboard/panels/common.libsonnet';
-local variable = import 'dashboard/variable.libsonnet';
-
-local influxdb = grafana.influxdb;
-local prometheus = grafana.prometheus;
 
 {
   row:: common_utils.row('TDG tasks statistics'),
@@ -26,8 +20,8 @@ local prometheus = grafana.prometheus;
       cfg,
       metric_name,
       legend={
-        [variable.datasource_type.prometheus]: '{{name}} — {{alias}}',
-        [variable.datasource_type.influxdb]: '$tag_label_pairs_name — $tag_label_pairs_alias',
+        prometheus: '{{name}} — {{alias}}',
+        influxdb: '$tag_label_pairs_name — $tag_label_pairs_alias',
       },
       group_tags=[
         'label_pairs_alias',
@@ -55,8 +49,8 @@ local prometheus = grafana.prometheus;
       cfg,
       metric_name,
       legend={
-        [variable.datasource_type.prometheus]: '{{name}} — {{alias}}',
-        [variable.datasource_type.influxdb]: '$tag_label_pairs_name — $tag_label_pairs_alias',
+        prometheus: '{{name}} — {{alias}}',
+        influxdb: '$tag_label_pairs_name — $tag_label_pairs_alias',
       },
       group_tags=[
         'label_pairs_alias',
@@ -78,7 +72,7 @@ local prometheus = grafana.prometheus;
     format='s',
     panel_width=12,
   ).addTarget(
-    if cfg.type == variable.datasource_type.prometheus then
+    if cfg.type == 'prometheus' then
       local filters = common_utils.prometheus_query_filters(cfg.filters);
       prometheus.target(
         expr=std.format(
@@ -94,7 +88,7 @@ local prometheus = grafana.prometheus;
         ),
         legendFormat='{{name}} — {{alias}}'
       )
-    else if cfg.type == variable.datasource_type.influxdb then
+    else if cfg.type == 'influxdb' then
       local filters = common_utils.influxdb_query_filters(cfg.filters);
       influxdb.target(
         rawQuery=true,
@@ -137,8 +131,8 @@ local prometheus = grafana.prometheus;
       cfg,
       metric_name,
       legend={
-        [variable.datasource_type.prometheus]: '{{name}} ({{kind}}) — {{alias}}',
-        [variable.datasource_type.influxdb]: '$tag_label_pairs_name ($tag_label_pairs_kind) — $tag_label_pairs_alias',
+        prometheus: '{{name}} ({{kind}}) — {{alias}}',
+        influxdb: '$tag_label_pairs_name ($tag_label_pairs_kind) — $tag_label_pairs_alias',
       },
       group_tags=[
         'label_pairs_alias',
@@ -167,8 +161,8 @@ local prometheus = grafana.prometheus;
       cfg,
       metric_name,
       legend={
-        [variable.datasource_type.prometheus]: '{{name}} ({{kind}}) — {{alias}}',
-        [variable.datasource_type.influxdb]: '$tag_label_pairs_name ($tag_label_pairs_kind) — $tag_label_pairs_alias',
+        prometheus: '{{name}} ({{kind}}) — {{alias}}',
+        influxdb: '$tag_label_pairs_name ($tag_label_pairs_kind) — $tag_label_pairs_alias',
       },
       group_tags=[
         'label_pairs_alias',
@@ -191,7 +185,7 @@ local prometheus = grafana.prometheus;
     format='s',
     panel_width=12,
   ).addTarget(
-    if cfg.type == variable.datasource_type.prometheus then
+    if cfg.type == 'prometheus' then
       local filters = common_utils.prometheus_query_filters(cfg.filters);
       prometheus.target(
         expr=std.format(
@@ -207,7 +201,7 @@ local prometheus = grafana.prometheus;
         ),
         legendFormat='{{name}} ({{kind}}) — {{alias}}'
       )
-    else if cfg.type == variable.datasource_type.influxdb then
+    else if cfg.type == 'influxdb' then
       local filters = common_utils.influxdb_query_filters(cfg.filters);
       influxdb.target(
         rawQuery=true,

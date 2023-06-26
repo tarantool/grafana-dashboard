@@ -1,10 +1,6 @@
 local grafana = import 'github.com/grafana/grafonnet/gen/grafonnet-latest/main.libsonnet';
 
 local common_utils = import 'dashboard/panels/common.libsonnet';
-local variable = import 'dashboard/variable.libsonnet';
-
-local influxdb = grafana.influxdb;
-local prometheus = grafana.prometheus;
 
 {
   row:: common_utils.row('TDG Kafka topics statistics'),
@@ -16,8 +12,8 @@ local prometheus = grafana.prometheus;
     cfg,
     metric_name,
     legend={
-      [variable.datasource_type.prometheus]: '{{name}} ({{topic}}) — {{alias}} ({{type}}, {{connector_name}})',
-      [variable.datasource_type.influxdb]: '$tag_label_pairs_name ($tag_label_pairs_topic) — $tag_label_pairs_alias ($tag_label_pairs_type, $tag_label_pairs_connector_name)',
+      prometheus: '{{name}} ({{topic}}) — {{alias}} ({{type}}, {{connector_name}})',
+      influxdb: '$tag_label_pairs_name ($tag_label_pairs_topic) — $tag_label_pairs_alias ($tag_label_pairs_type, $tag_label_pairs_connector_name)',
     },
     group_tags=[
       'label_pairs_alias',
@@ -36,8 +32,8 @@ local prometheus = grafana.prometheus;
     cfg,
     metric_name,
     legend={
-      [variable.datasource_type.prometheus]: '{{name}} ({{topic}}, {{partition}}) — {{alias}} ({{type}}, {{connector_name}})',
-      [variable.datasource_type.influxdb]: '$tag_label_pairs_name ($tag_label_pairs_topic, $tag_label_pairs_partition) — $tag_label_pairs_alias ($tag_label_pairs_type, $tag_label_pairs_connector_name)',
+      prometheus: '{{name}} ({{topic}}, {{partition}}) — {{alias}} ({{type}}, {{connector_name}})',
+      influxdb: '$tag_label_pairs_name ($tag_label_pairs_topic, $tag_label_pairs_partition) — $tag_label_pairs_alias ($tag_label_pairs_type, $tag_label_pairs_connector_name)',
     },
     group_tags=[
       'label_pairs_alias',
@@ -57,12 +53,12 @@ local prometheus = grafana.prometheus;
     cfg,
     metric_name,
     additional_filters={
-      [variable.datasource_type.prometheus]: { quantile: ['=', '0.99'] },
-      [variable.datasource_type.influxdb]: { label_pairs_quantile: ['=', '0.99'] },
+      prometheus: { quantile: ['=', '0.99'] },
+      influxdb: { label_pairs_quantile: ['=', '0.99'] },
     },
     legend={
-      [variable.datasource_type.prometheus]: '{{name}} ({{topic}}) — {{alias}} ({{type}}, {{connector_name}})',
-      [variable.datasource_type.influxdb]: '$tag_label_pairs_name ($tag_label_pairs_topic) — $tag_label_pairs_alias ($tag_label_pairs_type, $tag_label_pairs_connector_name)',
+      prometheus: '{{name}} ({{topic}}) — {{alias}} ({{type}}, {{connector_name}})',
+      influxdb: '$tag_label_pairs_name ($tag_label_pairs_topic) — $tag_label_pairs_alias ($tag_label_pairs_type, $tag_label_pairs_connector_name)',
     },
     group_tags=[
       'label_pairs_alias',

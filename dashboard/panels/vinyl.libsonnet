@@ -1,10 +1,4 @@
-local grafana = import 'github.com/grafana/grafonnet/gen/grafonnet-latest/main.libsonnet';
-
 local common = import 'dashboard/panels/common.libsonnet';
-local variable = import 'dashboard/variable.libsonnet';
-
-local influxdb = grafana.influxdb;
-local prometheus = grafana.prometheus;
 
 {
   row:: common.row('Tarantool vinyl statistics'),
@@ -409,8 +403,8 @@ local prometheus = grafana.prometheus;
       cfg,
       'tnt_vinyl_scheduler_tasks',
       additional_filters={
-        [variable.datasource_type.prometheus]: { status: ['=', 'inprogress'] },
-        [variable.datasource_type.influxdb]: { label_pairs_status: ['=', 'inprogress'] },
+        prometheus: { status: ['=', 'inprogress'] },
+        influxdb: { label_pairs_status: ['=', 'inprogress'] },
       },
       converter='last',
     ),
@@ -438,8 +432,8 @@ local prometheus = grafana.prometheus;
       cfg,
       'tnt_vinyl_scheduler_tasks',
       additional_filters={
-        [variable.datasource_type.prometheus]: { status: ['=', 'failed'] },
-        [variable.datasource_type.influxdb]: { label_pairs_status: ['=', 'failed'] },
+        prometheus: { status: ['=', 'failed'] },
+        influxdb: { label_pairs_status: ['=', 'failed'] },
       },
       rate=true,
     ),

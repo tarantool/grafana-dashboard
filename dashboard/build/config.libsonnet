@@ -3,8 +3,8 @@ local variable = import 'dashboard/variable.libsonnet';
 
 {
   local supported_types = {
-    [variable.datasource_type.prometheus]: true,
-    [variable.datasource_type.influxdb]: true,
+    prometheus: true,
+    influxdb: true,
   },
 
   local validate_basic(cfg) =
@@ -18,8 +18,8 @@ local variable = import 'dashboard/variable.libsonnet';
       cfg,
 
   local default_cfg = {
-    [variable.datasource_type.prometheus]: {
-      type: variable.datasource_type.prometheus,
+    prometheus: {
+      type: 'prometheus',
       title: 'Tarantool dashboard',
       description: 'Dashboard for Tarantool application and database server monitoring, based on grafonnet library.',
       grafana_tags: ['tarantool'],
@@ -43,7 +43,7 @@ local variable = import 'dashboard/variable.libsonnet';
         'expirationd',
       ],
     },
-    [variable.datasource_type.influxdb]: {
+    influxdb: {
       type: variable.datasource_type.influxdb,
       title: 'Tarantool dashboard',
       description: 'Dashboard for Tarantool application and database server monitoring, based on grafonnet library.',
@@ -78,7 +78,7 @@ local variable = import 'dashboard/variable.libsonnet';
     { filters: default_cfg[cfg.type].filters + std.get(cfg, 'filters', default={}) },
 
   local schema = {
-    [variable.datasource_type.prometheus]: {
+    prometheus: {
       type: 'string',
       title: 'string',
       description: 'string',
@@ -88,7 +88,7 @@ local variable = import 'dashboard/variable.libsonnet';
       metrics_prefix: 'string',
       sections: 'array',
     },
-    [variable.datasource_type.influxdb]: {
+    influxdb: {
       type: 'string',
       title: 'string',
       description: 'string',

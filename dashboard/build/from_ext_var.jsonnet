@@ -90,4 +90,4 @@ local cfg =
       sections: sections,
     });
 
-dashboard(cfg).build()
+dashboard(cfg)
