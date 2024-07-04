@@ -3,10 +3,12 @@
 Dashboard for Tarantool application and database server monitoring, based on [grafonnet](https://github.com/grafana/grafonnet-lib) library.
 
 Our pages on Grafana Official & community built dashboards:
-[InfluxDB version](https://grafana.com/grafana/dashboards/12567),
-[Prometheus version](https://grafana.com/grafana/dashboards/13054),
-[InfluxDB TDG version](https://grafana.com/grafana/dashboards/16405),
-[Prometheus TDG version](https://grafana.com/grafana/dashboards/16406).
+- Tarantool Cartridge and Tarantool 1.10—2.x applications:
+  - [Prometheus](https://grafana.com/grafana/dashboards/13054),
+  - [InfluxDB](https://grafana.com/grafana/dashboards/12567);
+- TDG
+  - [Prometheus](https://grafana.com/grafana/dashboards/16406),
+  - [InfluxDB](https://grafana.com/grafana/dashboards/16405).
 
 Refer to dashboard [documentation page](https://www.tarantool.io/en/doc/latest/book/monitoring/grafana_dashboard/) for prerequirements and installation guide.
 
@@ -34,13 +36,9 @@ Refer to dashboard [documentation page](https://www.tarantool.io/en/doc/latest/b
 
 2. To import a specific dashboard, choose one of the following options:
 
-    - paste the dashboard id (``12567`` for InfluxDB dashboard, ``13054`` for Prometheus dashboard,
-      ``16405`` for InfluxDB TDG dashboard, ``16406`` for Prometheus TDG dashboard), or
-    - paste a link to the dashboard (
-      https://grafana.com/grafana/dashboards/12567 for InfluxDB dashboard,
-      https://grafana.com/grafana/dashboards/13054 for Prometheus dashboard,
-      https://grafana.com/grafana/dashboards/16405 for InfluxDB TDG dashboard,
-      https://grafana.com/grafana/dashboards/16406 for Prometheus TDG dashboard), or
+    - paste the dashboard id (for example, ``13054`` for Prometheus Tarantool Cartridge dashboard), or
+    - paste a link to the dashboard (for example, 
+      https://grafana.com/grafana/dashboards/13054 for Prometheus Tarantool Cartridge dashboard), or
     - paste the dashboard JSON file contents, or
     - upload the dashboard JSON file.
 

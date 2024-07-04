@@ -4,14 +4,23 @@
 Grafana dashboard
 ===============================================================================
 
-Tarantool Grafana dashboard is available as part of
-`Grafana Official & community built dashboards <https://grafana.com/grafana/dashboards>`_.
-There's a version
-`for Prometheus data source <https://grafana.com/grafana/dashboards/13054>`_
-and one `for InfluxDB data source <https://grafana.com/grafana/dashboards/12567>`_.
-There are also separate dashboards for TDG applications:
-`for Prometheus data source <https://grafana.com/grafana/dashboards/16406>`_
-and `for InfluxDB data source <https://grafana.com/grafana/dashboards/16405>`_.
+Tarantool Grafana dashboards are available as part of
+`Grafana Official & community built dashboards <https://grafana.com/grafana/dashboards>`_:
+
+..  container:: table
+
+    ..  list-table::
+        :widths: 25 75
+        :header-rows: 0
+
+        * Tarantool Cartridge and Tarantool 1.10—2.x applications:
+            - `Prometheus <https://grafana.com/grafana/dashboards/13054>`_,
+            - `InfluxDB <https://grafana.com/grafana/dashboards/12567>`_;
+
+        * TDG:
+            - `Prometheus <https://grafana.com/grafana/dashboards/16406>`_,
+            - `InfluxDB <https://grafana.com/grafana/dashboards/16405>`_.
+
 Tarantool Grafana dashboard is a ready for import template with basic memory,
 space operations, and HTTP load panels, based on default `metrics <https://github.com/tarantool/metrics>`_
 package functionality.

@@ -1,7 +1,7 @@
 services:
   app:
     build:
-      context: ./example_cluster/project
+      context: ./example_cluster/cartridge_project
       dockerfile: app.Dockerfile
     networks:
       tarantool_dashboard_dev:
@@ -19,7 +19,7 @@ services:
 
   load_generator:
     build:
-      context: ./example_cluster/project
+      context: ./example_cluster/cartridge_project
       dockerfile: load.Dockerfile
     networks:
       tarantool_dashboard_dev:
