@@ -62,7 +62,7 @@ For guide on setting up your monitoring stack refer to [documentation page](http
 This repository provides preconfigured monitoring cluster with example Tarantool app and load generatior for local dashboard development and tests.
 
 ```bash
-docker-compose up -d
+docker compose up -d
 ```
 will start 6 containers: Tarantool App, Tarantool Load Generator, Telegraf, InfluxDB, Prometheus and Grafana, which build cluster with two fully operational metrics datasources (InfluxDB and Prometheus), extracting metrics from Tarantool App example project.
 We recommend using the exact versions we use in experimental cluster (e.g. Grafana v8.1.5).
@@ -79,7 +79,7 @@ See more setup tips in [documentation](https://www.tarantool.io/en/doc/latest/bo
 
 Start cluster with 
 ```bash
-docker-compose -f docker-compose.localapp.yml -p localapp-monitoring up -d
+docker compose -f docker-compose.localapp.yml -p localapp-monitoring up -d
 ```
 After start, Grafana UI will be available at [localhost:3000](http://localhost:3000/).
 You can also interact with Prometheus at [localhost:9090](http://localhost:9090/) and InfluxDB at [localhost:8086](http://localhost:8086/).
