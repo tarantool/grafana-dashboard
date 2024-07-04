@@ -1,20 +1,20 @@
 ---
-project.tnt_router:
+cartridge_project.tnt_router:
   advertise_uri: localhost:13301
   http_port: 8081
 
-project.tnt_storage_1_master:
+cartridge_project.tnt_storage_1_master:
   advertise_uri: localhost:13302
   http_port: 8082
 
-project.tnt_storage_1_replica:
+cartridge_project.tnt_storage_1_replica:
   advertise_uri: localhost:13303
   http_port: 8083
 
-project.tnt_storage_2_master:
+cartridge_project.tnt_storage_2_master:
   advertise_uri: localhost:13304
   http_port: 8084
 
-project.tnt_storage_2_replica:
+cartridge_project.tnt_storage_2_replica:
   advertise_uri: localhost:13305
   http_port: 8085
