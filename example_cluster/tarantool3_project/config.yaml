@@ -1,0 +1,122 @@
+credentials:
+  users:
+    admin:
+      password: 'secret'
+      roles: [super]
+    replicator:
+      password: 'secret'
+      roles: [replication]
+    storage:
+      password: 'secret'
+      roles: [sharding]
+
+sharding:
+  bucket_count: 3000
+
+groups:
+  routers:
+    sharding:
+      roles: [router]
+    app:
+      module: router
+    roles:
+      - roles.crud-router
+      - roles.pseudoapp
+    roles_cfg:
+      roles.crud-router:
+        stats: true
+        stats_driver: metrics
+        stats_quantiles: true
+    replicasets: 
+      routers:
+        instances: 
+          router:
+            roles_cfg:
+              roles.pseudoapp:
+                listen: 0.0.0.0:8081
+            iproto:
+              listen:
+                - uri: 0.0.0.0:13301
+              advertise:
+                peer:
+                  login: replicator
+                  uri: localhost:13301
+                sharding:
+                  login: storage
+                  uri: localhost:13301
+                client: localhost:13301
+  storages:
+    sharding:
+      roles: [storage]
+    roles:
+      - roles.crud-storage
+      - roles.pseudoapp
+    replication:
+      failover: manual
+    replicasets:
+      storages_1:
+        leader: storage_1_master
+        instances: 
+          storage_1_master:
+            roles_cfg:
+              roles.pseudoapp:
+                listen: 0.0.0.0:8082
+            iproto:
+              listen:
+                - uri: 0.0.0.0:13302
+              advertise:
+                peer:
+                  login: replicator
+                  uri: localhost:13302
+                sharding:
+                  login: storage
+                  uri: localhost:13302
+                client: localhost:13302
+          storage_1_replica:
+            roles_cfg:
+              roles.pseudoapp:
+                listen: 0.0.0.0:8083
+            iproto:
+              listen:
+                - uri: 0.0.0.0:13303
+              advertise:
+                peer:
+                  login: replicator
+                  uri: localhost:13303
+                sharding:
+                  login: storage
+                  uri: localhost:13303
+                client: localhost:13303
+      storages_2:
+        leader: storage_2_master
+        instances:
+          storage_2_master:
+            roles_cfg:
+              roles.pseudoapp:
+                listen: 0.0.0.0:8084
+            iproto:
+              listen:
+                - uri: 0.0.0.0:13304
+              advertise:
+                peer:
+                  login: replicator
+                  uri: localhost:13304
+                sharding:
+                  login: storage
+                  uri: localhost:13304
+                client: localhost:13304
+          storage_2_replica:
+            roles_cfg:
+              roles.pseudoapp:
+                listen: 0.0.0.0:8085
+            iproto:
+              listen:
+                - uri: 0.0.0.0:13305
+              advertise:
+                peer:
+                  login: replicator
+                  uri: localhost:13305
+                sharding:
+                  login: storage
+                  uri: localhost:13305
+                client: localhost:13305
