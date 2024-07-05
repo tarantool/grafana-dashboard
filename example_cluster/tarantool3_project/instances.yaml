@@ -1,0 +1,5 @@
+router:
+storage_1_master:
+storage_1_replica:
+storage_2_master:
+storage_2_replica:
