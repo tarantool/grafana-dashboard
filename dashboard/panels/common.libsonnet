@@ -102,7 +102,7 @@ local influxdb_query_filters(filters) = std.join(' AND ', std.map(
           measurement=cfg.measurement,
           group_tags=group_tags,
           alias=legend[cfg.type],
-          fill='null',
+          fill='none',
         ).where('metric_name', '=', std.format('%s%s', [cfg.metrics_prefix, metric_name]))
       ).selectField('value').addConverter(converter);
       if rate then target.addConverter('non_negative_derivative', ['1s']) else target,
