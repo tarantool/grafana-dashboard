@@ -123,4 +123,10 @@ local influxdb_query_filters(filters) = std.join(' AND ', std.map(
 
   remove_field(obj, key)::
     { [item.key]: item.value for item in std.objectKeysValuesAll(obj) if item.key != key },
+
+  prometheus_metrics_pull_note(description)::
+    std.join('\n', [description, |||
+      This panel is designed to work with Prometheus client
+      set up to have each Tarantool instance as a separate pull target.
+    |||]),
 }
