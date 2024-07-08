@@ -25,8 +25,8 @@ local grafana_tags =
   else if DASHBOARD_TEMPLATE == 'TDG' then ['tarantool', 'TDG'];
 local sections =
   if DASHBOARD_TEMPLATE == 'Tarantool' then [
-    'cluster',
-    'replication',
+    'cluster_cartridge',
+    'replication_cartridge',
     'http',
     'net',
     'slab',
@@ -41,8 +41,8 @@ local sections =
     'expirationd',
   ]
   else if DASHBOARD_TEMPLATE == 'TDG' then [
-    'cluster',
-    'replication',
+    'cluster_cartridge',
+    'replication_cartridge',
     'net',
     'slab',
     'mvcc',

@@ -8,8 +8,8 @@ measurement: '$measurement'
 filters:
   label_pairs_alias: ['=~', '/^$alias$/']
 sections:
-- cluster
-- replication
+- cluster_cartridge
+- replication_cartridge
 - http
 - net
 - slab

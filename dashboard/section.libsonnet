@@ -27,7 +27,7 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
 local vinyl = import 'dashboard/panels/vinyl.libsonnet';
 
 {
-  cluster(cfg):: if cfg.type == variable.datasource_type.prometheus then [
+  cluster_cartridge(cfg):: if cfg.type == variable.datasource_type.prometheus then [
     // Must be used only in the top of a dashboard, overall stat panels use complicated layout
     cluster.row,
     cluster.health_overview_table(cfg) { gridPos: { w: 12, h: 8, x: 0, y: 1 } },
@@ -57,7 +57,7 @@ local vinyl = import 'dashboard/panels/vinyl.libsonnet';
     cluster.election_term(cfg),
   ],
 
-  replication(cfg):: [
+  replication_cartridge(cfg):: [
     replication.row,
     replication.replication_status(cfg),
     replication.replication_lag(cfg),

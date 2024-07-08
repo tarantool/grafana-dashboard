@@ -10,8 +10,8 @@ filters:
   vendor_app_tag: ['=', 'MyCacheApplication']
 metrics_prefix: vendor_tt_
 sections:
-- cluster
-- replication
+- cluster_cartridge
+- replication_cartridge
 - http
 - net
 - slab

@@ -48,8 +48,8 @@ local config_example = importstr 'config.yml';
       job: ['=', 'MyJobWithTarantoolMetrics'],
     }
     sections:
-    - cluster
-    - replication
+    - cluster_cartridge
+    - replication_cartridge
     - http
     - net
     - slab
@@ -68,8 +68,8 @@ local config_example = importstr 'config.yml';
       job: ['=', 'MyJobWithTDGMetrics'],
     }
     sections:
-    - cluster
-    - replication
+    - cluster_cartridge
+    - replication_cartridge
     - http
     - net
     - slab
