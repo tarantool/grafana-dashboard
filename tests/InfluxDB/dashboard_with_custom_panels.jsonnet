@@ -59,7 +59,7 @@ dashboard(cfg).addPanels([
       measurement=cfg.measurement,
       group_tags=['label_pairs_alias'],
       alias='$tag_label_pairs_alias',
-      fill='null',
+      fill='none',
     ).where('metric_name', '=', 'my_component_load_metric')
     .where('label_pairs_alias', '=~', cfg.filters.label_pairs_alias[1])
     .where('label_pairs_quantile', '=', '0.99')

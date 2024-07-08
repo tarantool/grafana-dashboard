@@ -17,6 +17,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   It affects all custom-built dashboards which had used `replication` (#224)
 - Remove deprecated `build-static-*` targets from `make` (#224)
 - Make default template use Tarantool 3 sections (#224)
+- Use `fill(none)` in InfluxQL requests (PR #229)
 
 ### Fixed
 - Removed extra quotation mark for TDG jobs_average_panel query (#220)

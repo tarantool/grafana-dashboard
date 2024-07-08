@@ -40,7 +40,7 @@ local prometheus = grafana.prometheus;
           WHERE ("metric_name" = '%(metrics_prefix)s%(metric_name_sum)s' %(filters)s) AND $timeFilter),
           (SELECT "value" as "%(metrics_prefix)s%(metric_name_count)s" FROM %(policy_prefix)s"%(measurement)s"
           WHERE ("metric_name" = '%(metrics_prefix)s%(metric_name_count)s' %(filters)s) AND $timeFilter)
-          GROUP BY time($__interval), "label_pairs_alias", "label_pairs_type_name" fill(null)
+          GROUP BY time($__interval), "label_pairs_alias", "label_pairs_type_name" fill(none)
         |||, {
           metrics_prefix: cfg.metrics_prefix,
           metric_name_sum: std.join('_', [metric_name, 'sum']),
