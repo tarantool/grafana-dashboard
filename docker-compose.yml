@@ -72,12 +72,8 @@ services:
     volumes:
       - ./example_cluster/grafana/provisioning:/etc/grafana/provisioning
       # Map to different folders to prevent name collision.
-      - ./tests/Prometheus/dashboard_compiled.json:/usr/lib/dashboards/Prometheus-common/dashboard.json
-      - ./tests/Prometheus/dashboard_static_compiled.json:/usr/lib/dashboards/Prometheus-static/dashboard.json
-      - ./tests/Prometheus/dashboard_static_with_instance_variable_compiled.json:/usr/lib/dashboards/Prometheus-static-var/dashboard.json
-      - ./tests/InfluxDB/dashboard_compiled.json:/usr/lib/dashboards/InfluxDB-common/dashboard.json
-      - ./tests/InfluxDB/dashboard_static_compiled.json:/usr/lib/dashboards/InfluxDB-static/dashboard.json
-      - ./tests/InfluxDB/dashboard_static_with_instance_variable_compiled.json:/usr/lib/dashboards/InfluxDB-static-var/dashboard.json
+      - ./tests/Prometheus/dashboard_tarantool3_compiled.json:/usr/lib/dashboards/Prometheus-common/dashboard.json
+      - ./tests/InfluxDB/dashboard_tarantool3_compiled.json:/usr/lib/dashboards/InfluxDB-common/dashboard.json
 
 networks:
   tarantool_dashboard_dev:
