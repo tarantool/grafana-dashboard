@@ -5,7 +5,7 @@ local dashboard = import 'dashboard/build/dashboard.libsonnet';
 local common = import 'dashboard/panels/common.libsonnet';
 local variable = import 'dashboard/variable.libsonnet';
 
-local yaml_cfg = importstr 'dashboard.yml';
+local yaml_cfg = importstr 'dashboard_tarantool3.yml';
 
 local cfg = config.prepare(std.parseYaml(yaml_cfg));
 

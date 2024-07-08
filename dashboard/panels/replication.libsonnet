@@ -19,11 +19,12 @@ local prometheus = grafana.prometheus;
 
       Panel works with `metrics >= 0.13.0` and Grafana 8.x.
     |||,
+    panel_width=8,
   ):: timeseries.new(
     title=title,
     description=description,
     datasource=cfg.datasource,
-    panel_width=8,
+    panel_width=panel_width,
     max=1,
     min=0,
   ).addValueMapping(
@@ -53,6 +54,7 @@ local prometheus = grafana.prometheus;
 
       Panel works with `metrics >= 0.13.0`.
     |||,
+    panel_width=8,
   ):: common.default_graph(
     cfg,
     title=title,
@@ -60,7 +62,7 @@ local prometheus = grafana.prometheus;
     format='s',
     legend_avg=false,
     min=0,
-    panel_width=8,
+    panel_width=panel_width,
   ).addTarget(
     common.target(
       cfg,

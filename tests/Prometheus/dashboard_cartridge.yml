@@ -1,6 +1,6 @@
 type: prometheus
-title: Tarantool dashboard
-description: Dashboard for Tarantool application and database server monitoring, based on grafonnet library.
+title: Tarantool Cartridge dashboard
+description: Dashboard for Tarantool Cartridge and Tarantool 1.10—2.x application and database server monitoring, based on grafonnet library.
 grafana_tags: [tarantool]
 datasource: '$prometheus'
 filters:

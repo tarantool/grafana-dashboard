@@ -27,8 +27,8 @@ local variable = import 'dashboard/variable.libsonnet';
       filters: {},
       metrics_prefix: '',
       sections: [
-        'cluster_cartridge',
-        'replication_cartridge',
+        'cluster_tarantool3',
+        'replication_tarantool3',
         'http',
         'net',
         'slab',
@@ -54,8 +54,8 @@ local variable = import 'dashboard/variable.libsonnet';
       filters: {},
       metrics_prefix: '',
       sections: [
-        'cluster_cartridge',
-        'replication_cartridge',
+        'cluster_tarantool3',
+        'replication_tarantool3',
         'http',
         'net',
         'slab',
