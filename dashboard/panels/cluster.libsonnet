@@ -402,11 +402,12 @@ local prometheus = grafana.prometheus;
 
       Panel works with `metrics >= 0.11.0` and Grafana 8.x.
     |||,
+    panel_width=12,
   ):: timeseries.new(
     title=title,
     description=description,
     datasource=cfg.datasource,
-    panel_width=12,
+    panel_width=panel_width,
     max=1,
     min=0,
   ).addValueMapping(

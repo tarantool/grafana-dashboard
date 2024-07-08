@@ -1,0 +1,23 @@
+type: prometheus
+title: Tarantool 3 dashboard
+description: Dashboard for Tarantool 3 application and database server monitoring, based on grafonnet library.
+grafana_tags: [tarantool]
+datasource: '$prometheus'
+filters:
+  job: ['=~', '$job']
+  alias: ['=~', '$alias']
+sections:
+- cluster_tarantool3
+- replication_tarantool3
+- http
+- net
+- slab
+- mvcc
+- space
+- vinyl
+- cpu
+- runtime
+- luajit
+- operations
+- crud
+- expirationd

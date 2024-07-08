@@ -55,444 +55,6 @@
          "id": 2,
          "panels": [
             {
-               "aliasColors": { },
-               "bars": false,
-               "dashLength": 10,
-               "dashes": false,
-               "datasource": "$influxdb",
-               "description": "Number of \"warning\" issues on each cluster instance.\n\"warning\" issues includes high replication lag, replication long idle,\nfailover and switchover issues, clock issues, memory fragmentation,\nconfiguration issues and alien members warnings.\n\nPanel works with `cartridge >= 2.0.2`, `metrics >= 0.6.0`,\nwhile `metrics >= 0.9.0` is recommended for per instance display.\n",
-               "fill": 0,
-               "gridPos": {
-                  "h": 6,
-                  "w": 12,
-                  "x": 0,
-                  "y": 1
-               },
-               "id": 3,
-               "legend": {
-                  "alignAsTable": true,
-                  "avg": false,
-                  "current": true,
-                  "max": false,
-                  "min": false,
-                  "rightSide": false,
-                  "show": true,
-                  "sideWidth": null,
-                  "sort": "current",
-                  "sortDesc": true,
-                  "total": false,
-                  "values": true
-               },
-               "lines": true,
-               "linewidth": 1,
-               "links": [ ],
-               "nullPointMode": "null",
-               "percentage": false,
-               "pointradius": 5,
-               "points": false,
-               "renderer": "flot",
-               "repeat": null,
-               "seriesOverrides": [ ],
-               "spaceLength": 10,
-               "stack": false,
-               "steppedLine": false,
-               "targets": [
-                  {
-                     "alias": "$tag_label_pairs_alias",
-                     "groupBy": [
-                        {
-                           "params": [
-                              "$__interval"
-                           ],
-                           "type": "time"
-                        },
-                        {
-                           "params": [
-                              "label_pairs_alias"
-                           ],
-                           "type": "tag"
-                        },
-                        {
-                           "params": [
-                              "null"
-                           ],
-                           "type": "fill"
-                        }
-                     ],
-                     "measurement": "$measurement",
-                     "policy": "default",
-                     "refId": "A",
-                     "resultFormat": "time_series",
-                     "select": [
-                        [
-                           {
-                              "params": [
-                                 "value"
-                              ],
-                              "type": "field"
-                           },
-                           {
-                              "params": [ ],
-                              "type": "last"
-                           }
-                        ]
-                     ],
-                     "tags": [
-                        {
-                           "key": "metric_name",
-                           "operator": "=",
-                           "value": "vendor_tt_tnt_cartridge_issues"
-                        },
-                        {
-                           "condition": "AND",
-                           "key": "label_pairs_alias",
-                           "operator": "=~",
-                           "value": "$alias"
-                        },
-                        {
-                           "condition": "AND",
-                           "key": "label_pairs_level",
-                           "operator": "=",
-                           "value": "warning"
-                        },
-                        {
-                           "condition": "AND",
-                           "key": "vendor_app_tag",
-                           "operator": "=",
-                           "value": "MyCacheApplication"
-                        }
-                     ]
-                  }
-               ],
-               "thresholds": [ ],
-               "timeFrom": null,
-               "timeShift": null,
-               "title": "Cartridge warning issues",
-               "tooltip": {
-                  "shared": true,
-                  "sort": 2,
-                  "value_type": "individual"
-               },
-               "type": "graph",
-               "xaxis": {
-                  "buckets": null,
-                  "mode": "time",
-                  "name": null,
-                  "show": true,
-                  "values": [ ]
-               },
-               "yaxes": [
-                  {
-                     "format": "none",
-                     "label": null,
-                     "logBase": 1,
-                     "max": null,
-                     "min": 0,
-                     "show": true
-                  },
-                  {
-                     "format": "none",
-                     "label": null,
-                     "logBase": 1,
-                     "max": null,
-                     "min": 0,
-                     "show": true
-                  }
-               ]
-            },
-            {
-               "aliasColors": { },
-               "bars": false,
-               "dashLength": 10,
-               "dashes": false,
-               "datasource": "$influxdb",
-               "description": "Number of \"critical\" issues on each cluster instance.\n\"critical\" issues includes replication process critical fails and\nrunning out of available memory.\n\nPanel works with `cartridge >= 2.0.2`, `metrics >= 0.6.0`,\nwhile `metrics >= 0.9.0` is recommended for per instance display.\n",
-               "fill": 0,
-               "gridPos": {
-                  "h": 6,
-                  "w": 12,
-                  "x": 12,
-                  "y": 1
-               },
-               "id": 4,
-               "legend": {
-                  "alignAsTable": true,
-                  "avg": false,
-                  "current": true,
-                  "max": false,
-                  "min": false,
-                  "rightSide": false,
-                  "show": true,
-                  "sideWidth": null,
-                  "sort": "current",
-                  "sortDesc": true,
-                  "total": false,
-                  "values": true
-               },
-               "lines": true,
-               "linewidth": 1,
-               "links": [ ],
-               "nullPointMode": "null",
-               "percentage": false,
-               "pointradius": 5,
-               "points": false,
-               "renderer": "flot",
-               "repeat": null,
-               "seriesOverrides": [ ],
-               "spaceLength": 10,
-               "stack": false,
-               "steppedLine": false,
-               "targets": [
-                  {
-                     "alias": "$tag_label_pairs_alias",
-                     "groupBy": [
-                        {
-                           "params": [
-                              "$__interval"
-                           ],
-                           "type": "time"
-                        },
-                        {
-                           "params": [
-                              "label_pairs_alias"
-                           ],
-                           "type": "tag"
-                        },
-                        {
-                           "params": [
-                              "null"
-                           ],
-                           "type": "fill"
-                        }
-                     ],
-                     "measurement": "$measurement",
-                     "policy": "default",
-                     "refId": "A",
-                     "resultFormat": "time_series",
-                     "select": [
-                        [
-                           {
-                              "params": [
-                                 "value"
-                              ],
-                              "type": "field"
-                           },
-                           {
-                              "params": [ ],
-                              "type": "last"
-                           }
-                        ]
-                     ],
-                     "tags": [
-                        {
-                           "key": "metric_name",
-                           "operator": "=",
-                           "value": "vendor_tt_tnt_cartridge_issues"
-                        },
-                        {
-                           "condition": "AND",
-                           "key": "label_pairs_alias",
-                           "operator": "=~",
-                           "value": "$alias"
-                        },
-                        {
-                           "condition": "AND",
-                           "key": "label_pairs_level",
-                           "operator": "=",
-                           "value": "critical"
-                        },
-                        {
-                           "condition": "AND",
-                           "key": "vendor_app_tag",
-                           "operator": "=",
-                           "value": "MyCacheApplication"
-                        }
-                     ]
-                  }
-               ],
-               "thresholds": [ ],
-               "timeFrom": null,
-               "timeShift": null,
-               "title": "Cartridge critical issues",
-               "tooltip": {
-                  "shared": true,
-                  "sort": 2,
-                  "value_type": "individual"
-               },
-               "type": "graph",
-               "xaxis": {
-                  "buckets": null,
-                  "mode": "time",
-                  "name": null,
-                  "show": true,
-                  "values": [ ]
-               },
-               "yaxes": [
-                  {
-                     "format": "none",
-                     "label": null,
-                     "logBase": 1,
-                     "max": null,
-                     "min": 0,
-                     "show": true
-                  },
-                  {
-                     "format": "none",
-                     "label": null,
-                     "logBase": 1,
-                     "max": null,
-                     "min": 0,
-                     "show": true
-                  }
-               ]
-            },
-            {
-               "aliasColors": { },
-               "bars": false,
-               "dashLength": 10,
-               "dashes": false,
-               "datasource": "$influxdb",
-               "description": "Displays the count of failover triggers in a replicaset.\nGraph shows average per second.\n\nPanel works with `metrics >= 0.15.0`.\n",
-               "fill": 0,
-               "gridPos": {
-                  "h": 8,
-                  "w": 12,
-                  "x": 0,
-                  "y": 7
-               },
-               "id": 5,
-               "legend": {
-                  "alignAsTable": true,
-                  "avg": true,
-                  "current": true,
-                  "max": true,
-                  "min": false,
-                  "rightSide": false,
-                  "show": true,
-                  "sideWidth": null,
-                  "sort": "current",
-                  "sortDesc": true,
-                  "total": false,
-                  "values": true
-               },
-               "lines": true,
-               "linewidth": 1,
-               "links": [ ],
-               "nullPointMode": "null",
-               "percentage": false,
-               "pointradius": 5,
-               "points": false,
-               "renderer": "flot",
-               "repeat": null,
-               "seriesOverrides": [ ],
-               "spaceLength": 10,
-               "stack": false,
-               "steppedLine": false,
-               "targets": [
-                  {
-                     "alias": "$tag_label_pairs_alias",
-                     "groupBy": [
-                        {
-                           "params": [
-                              "$__interval"
-                           ],
-                           "type": "time"
-                        },
-                        {
-                           "params": [
-                              "label_pairs_alias"
-                           ],
-                           "type": "tag"
-                        },
-                        {
-                           "params": [
-                              "null"
-                           ],
-                           "type": "fill"
-                        }
-                     ],
-                     "measurement": "$measurement",
-                     "policy": "default",
-                     "refId": "A",
-                     "resultFormat": "time_series",
-                     "select": [
-                        [
-                           {
-                              "params": [
-                                 "value"
-                              ],
-                              "type": "field"
-                           },
-                           {
-                              "params": [ ],
-                              "type": "mean"
-                           },
-                           {
-                              "params": [
-                                 "1s"
-                              ],
-                              "type": "non_negative_derivative"
-                           }
-                        ]
-                     ],
-                     "tags": [
-                        {
-                           "key": "metric_name",
-                           "operator": "=",
-                           "value": "vendor_tt_tnt_cartridge_failover_trigger_total"
-                        },
-                        {
-                           "condition": "AND",
-                           "key": "label_pairs_alias",
-                           "operator": "=~",
-                           "value": "$alias"
-                        },
-                        {
-                           "condition": "AND",
-                           "key": "vendor_app_tag",
-                           "operator": "=",
-                           "value": "MyCacheApplication"
-                        }
-                     ]
-                  }
-               ],
-               "thresholds": [ ],
-               "timeFrom": null,
-               "timeShift": null,
-               "title": "Failovers triggered",
-               "tooltip": {
-                  "shared": true,
-                  "sort": 2,
-                  "value_type": "individual"
-               },
-               "type": "graph",
-               "xaxis": {
-                  "buckets": null,
-                  "mode": "time",
-                  "name": null,
-                  "show": true,
-                  "values": [ ]
-               },
-               "yaxes": [
-                  {
-                     "format": "none",
-                     "label": "failovers per second",
-                     "logBase": 1,
-                     "max": null,
-                     "min": null,
-                     "show": true
-                  },
-                  {
-                     "format": "none",
-                     "label": null,
-                     "logBase": 1,
-                     "max": null,
-                     "min": null,
-                     "show": true
-                  }
-               ]
-            },
-            {
                "datasource": "$influxdb",
                "description": "`master` status means instance is available for read and\nwrite operations. `replica` status means instance is\navailable only for read operations.\n\nPanel works with `metrics >= 0.11.0` and Grafana 8.x.\n",
                "fieldConfig": {
@@ -572,11 +134,11 @@
                },
                "gridPos": {
                   "h": 8,
-                  "w": 12,
-                  "x": 12,
-                  "y": 7
+                  "w": 24,
+                  "x": 0,
+                  "y": 1
                },
-               "id": 6,
+               "id": 3,
                "options": {
                   "legend": {
                      "calcs": [
@@ -757,9 +319,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 0,
-                  "y": 15
+                  "y": 9
                },
-               "id": 7,
+               "id": 4,
                "options": {
                   "legend": {
                      "calcs": [
@@ -850,9 +412,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 6,
-                  "y": 15
+                  "y": 9
                },
-               "id": 8,
+               "id": 5,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -993,9 +555,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 12,
-                  "y": 15
+                  "y": 9
                },
-               "id": 9,
+               "id": 6,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -1136,9 +698,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 18,
-                  "y": 15
+                  "y": 9
                },
-               "id": 10,
+               "id": 7,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -1282,9 +844,9 @@
             "h": 1,
             "w": 24,
             "x": 0,
-            "y": 23
+            "y": 17
          },
-         "id": 11,
+         "id": 8,
          "panels": [
             {
                "datasource": "$influxdb",
@@ -1366,11 +928,11 @@
                },
                "gridPos": {
                   "h": 8,
-                  "w": 8,
+                  "w": 12,
                   "x": 0,
-                  "y": 24
+                  "y": 18
                },
-               "id": 12,
+               "id": 9,
                "options": {
                   "legend": {
                      "calcs": [
@@ -1470,11 +1032,11 @@
                "fill": 0,
                "gridPos": {
                   "h": 8,
-                  "w": 8,
-                  "x": 8,
-                  "y": 24
+                  "w": 12,
+                  "x": 12,
+                  "y": 18
                },
-               "id": 13,
+               "id": 10,
                "legend": {
                   "alignAsTable": true,
                   "avg": false,
@@ -1612,152 +1174,6 @@
                "dashLength": 10,
                "dashes": false,
                "datasource": "$influxdb",
-               "description": "Clock drift across the cluster.\nmax shows difference with the fastest clock (always positive),\nmin shows difference with the slowest clock (always negative).\n\nPanel works with `metrics >= 0.10.0`.\n",
-               "fill": 1,
-               "gridPos": {
-                  "h": 8,
-                  "w": 8,
-                  "x": 16,
-                  "y": 24
-               },
-               "id": 14,
-               "legend": {
-                  "alignAsTable": true,
-                  "avg": false,
-                  "current": true,
-                  "max": false,
-                  "min": false,
-                  "rightSide": false,
-                  "show": true,
-                  "sideWidth": null,
-                  "sort": "current",
-                  "sortDesc": true,
-                  "total": false,
-                  "values": true
-               },
-               "lines": true,
-               "linewidth": 1,
-               "links": [ ],
-               "nullPointMode": "null",
-               "percentage": false,
-               "pointradius": 5,
-               "points": false,
-               "renderer": "flot",
-               "repeat": null,
-               "seriesOverrides": [ ],
-               "spaceLength": 10,
-               "stack": false,
-               "steppedLine": false,
-               "targets": [
-                  {
-                     "alias": "$tag_label_pairs_alias ($tag_label_pairs_delta)",
-                     "groupBy": [
-                        {
-                           "params": [
-                              "$__interval"
-                           ],
-                           "type": "time"
-                        },
-                        {
-                           "params": [
-                              "label_pairs_alias"
-                           ],
-                           "type": "tag"
-                        },
-                        {
-                           "params": [
-                              "label_pairs_delta"
-                           ],
-                           "type": "tag"
-                        },
-                        {
-                           "params": [
-                              "null"
-                           ],
-                           "type": "fill"
-                        }
-                     ],
-                     "measurement": "$measurement",
-                     "policy": "default",
-                     "refId": "A",
-                     "resultFormat": "time_series",
-                     "select": [
-                        [
-                           {
-                              "params": [
-                                 "value"
-                              ],
-                              "type": "field"
-                           },
-                           {
-                              "params": [ ],
-                              "type": "last"
-                           }
-                        ]
-                     ],
-                     "tags": [
-                        {
-                           "key": "metric_name",
-                           "operator": "=",
-                           "value": "vendor_tt_tnt_clock_delta"
-                        },
-                        {
-                           "condition": "AND",
-                           "key": "label_pairs_alias",
-                           "operator": "=~",
-                           "value": "$alias"
-                        },
-                        {
-                           "condition": "AND",
-                           "key": "vendor_app_tag",
-                           "operator": "=",
-                           "value": "MyCacheApplication"
-                        }
-                     ]
-                  }
-               ],
-               "thresholds": [ ],
-               "timeFrom": null,
-               "timeShift": null,
-               "title": "Instances clock delta",
-               "tooltip": {
-                  "shared": true,
-                  "sort": 2,
-                  "value_type": "individual"
-               },
-               "type": "graph",
-               "xaxis": {
-                  "buckets": null,
-                  "mode": "time",
-                  "name": null,
-                  "show": true,
-                  "values": [ ]
-               },
-               "yaxes": [
-                  {
-                     "format": "s",
-                     "label": null,
-                     "logBase": 1,
-                     "max": null,
-                     "min": null,
-                     "show": true
-                  },
-                  {
-                     "format": "s",
-                     "label": null,
-                     "logBase": 1,
-                     "max": null,
-                     "min": null,
-                     "show": true
-                  }
-               ]
-            },
-            {
-               "aliasColors": { },
-               "bars": false,
-               "dashLength": 10,
-               "dashes": false,
-               "datasource": "$influxdb",
                "decimals": 0,
                "description": "Instance ID of the current synchronous replication master.\n\nPanel works with metrics 0.15.0 or newer, Tarantool 2.8.1 or newer.\n",
                "fill": 0,
@@ -1765,9 +1181,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 0,
-                  "y": 32
+                  "y": 26
                },
-               "id": 15,
+               "id": 11,
                "legend": {
                   "alignAsTable": true,
                   "avg": false,
@@ -1908,9 +1324,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 6,
-                  "y": 32
+                  "y": 26
                },
-               "id": 16,
+               "id": 12,
                "legend": {
                   "alignAsTable": true,
                   "avg": false,
@@ -2050,9 +1466,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 12,
-                  "y": 32
+                  "y": 26
                },
-               "id": 17,
+               "id": 13,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -2260,9 +1676,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 18,
-                  "y": 32
+                  "y": 26
                },
-               "id": 18,
+               "id": 14,
                "options": {
                   "legend": {
                      "calcs": [
@@ -2356,9 +1772,9 @@
             "h": 1,
             "w": 24,
             "x": 0,
-            "y": 40
+            "y": 34
          },
-         "id": 19,
+         "id": 15,
          "panels": [
             {
                "aliasColors": { },
@@ -2372,9 +1788,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 0,
-                  "y": 41
+                  "y": 35
                },
-               "id": 20,
+               "id": 16,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -2542,9 +1958,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 8,
-                  "y": 41
+                  "y": 35
                },
-               "id": 21,
+               "id": 17,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -2712,9 +2128,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 16,
-                  "y": 41
+                  "y": 35
                },
-               "id": 22,
+               "id": 18,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -2882,9 +2298,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 0,
-                  "y": 49
+                  "y": 43
                },
-               "id": 23,
+               "id": 19,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -3052,9 +2468,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 8,
-                  "y": 49
+                  "y": 43
                },
-               "id": 24,
+               "id": 20,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -3222,9 +2638,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 16,
-                  "y": 49
+                  "y": 43
                },
-               "id": 25,
+               "id": 21,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -3396,9 +2812,9 @@
             "h": 1,
             "w": 24,
             "x": 0,
-            "y": 57
+            "y": 51
          },
-         "id": 26,
+         "id": 22,
          "panels": [
             {
                "aliasColors": { },
@@ -3412,9 +2828,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 0,
-                  "y": 58
+                  "y": 52
                },
-               "id": 27,
+               "id": 23,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -3552,9 +2968,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 8,
-                  "y": 58
+                  "y": 52
                },
-               "id": 28,
+               "id": 24,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -3698,9 +3114,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 16,
-                  "y": 58
+                  "y": 52
                },
-               "id": 29,
+               "id": 25,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -3844,9 +3260,9 @@
                   "h": 8,
                   "w": 12,
                   "x": 0,
-                  "y": 66
+                  "y": 60
                },
-               "id": 30,
+               "id": 26,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -3991,9 +3407,9 @@
                   "h": 8,
                   "w": 12,
                   "x": 12,
-                  "y": 66
+                  "y": 60
                },
-               "id": 31,
+               "id": 27,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -4133,9 +3549,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 0,
-                  "y": 74
+                  "y": 68
                },
-               "id": 32,
+               "id": 28,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -4280,9 +3696,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 6,
-                  "y": 74
+                  "y": 68
                },
-               "id": 33,
+               "id": 29,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -4422,9 +3838,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 12,
-                  "y": 74
+                  "y": 68
                },
-               "id": 34,
+               "id": 30,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -4569,9 +3985,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 18,
-                  "y": 74
+                  "y": 68
                },
-               "id": 35,
+               "id": 31,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -4711,9 +4127,9 @@
                   "h": 8,
                   "w": 12,
                   "x": 0,
-                  "y": 82
+                  "y": 76
                },
-               "id": 36,
+               "id": 32,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -4858,9 +4274,9 @@
                   "h": 8,
                   "w": 12,
                   "x": 12,
-                  "y": 82
+                  "y": 76
                },
-               "id": 37,
+               "id": 33,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -5000,9 +4416,9 @@
                   "h": 8,
                   "w": 12,
                   "x": 0,
-                  "y": 90
+                  "y": 84
                },
-               "id": 38,
+               "id": 34,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -5152,9 +4568,9 @@
                   "h": 8,
                   "w": 12,
                   "x": 12,
-                  "y": 90
+                  "y": 84
                },
-               "id": 39,
+               "id": 35,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -5304,9 +4720,9 @@
                   "h": 8,
                   "w": 12,
                   "x": 0,
-                  "y": 98
+                  "y": 92
                },
-               "id": 40,
+               "id": 36,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -5457,9 +4873,9 @@
                   "h": 8,
                   "w": 12,
                   "x": 12,
-                  "y": 98
+                  "y": 92
                },
-               "id": 41,
+               "id": 37,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -5605,9 +5021,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 0,
-                  "y": 106
+                  "y": 100
                },
-               "id": 42,
+               "id": 38,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -5757,9 +5173,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 8,
-                  "y": 106
+                  "y": 100
                },
-               "id": 43,
+               "id": 39,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -5909,9 +5325,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 16,
-                  "y": 106
+                  "y": 100
                },
-               "id": 44,
+               "id": 40,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -6062,9 +5478,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 0,
-                  "y": 114
+                  "y": 108
                },
-               "id": 45,
+               "id": 41,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -6211,9 +5627,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 8,
-                  "y": 114
+                  "y": 108
                },
-               "id": 46,
+               "id": 42,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -6360,9 +5776,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 16,
-                  "y": 114
+                  "y": 108
                },
-               "id": 47,
+               "id": 43,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -6512,9 +5928,9 @@
             "h": 1,
             "w": 24,
             "x": 0,
-            "y": 122
+            "y": 116
          },
-         "id": 48,
+         "id": 44,
          "panels": [
             {
                "content": "`quota_used_ratio` > 90%, `arena_used_ratio` > 90%, 50% < `items_used_ratio` < 90% – your memory is highly fragmented. See [docs](https://www.tarantool.io/en/doc/1.10/reference/reference_lua/box_slab/#lua-function.box.slab.info) for more info.\n\n`quota_used_ratio` > 90%, `arena_used_ratio` > 90%, `items_used_ratio` > 90% – you are running out of memory. You should consider increasing Tarantool’s memory limit (*box.cfg.memtx_memory*).\n",
@@ -6523,9 +5939,9 @@
                   "h": 3,
                   "w": 24,
                   "x": 0,
-                  "y": 123
+                  "y": 117
                },
-               "id": 49,
+               "id": 45,
                "mode": "markdown",
                "title": "Slab allocator monitoring information",
                "type": "text"
@@ -6542,9 +5958,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 0,
-                  "y": 126
+                  "y": 120
                },
-               "id": 50,
+               "id": 46,
                "legend": {
                   "alignAsTable": true,
                   "avg": false,
@@ -6682,9 +6098,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 8,
-                  "y": 126
+                  "y": 120
                },
-               "id": 51,
+               "id": 47,
                "legend": {
                   "alignAsTable": true,
                   "avg": false,
@@ -6822,9 +6238,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 16,
-                  "y": 126
+                  "y": 120
                },
-               "id": 52,
+               "id": 48,
                "legend": {
                   "alignAsTable": true,
                   "avg": false,
@@ -6962,9 +6378,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 0,
-                  "y": 134
+                  "y": 128
                },
-               "id": 53,
+               "id": 49,
                "legend": {
                   "alignAsTable": true,
                   "avg": false,
@@ -7102,9 +6518,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 8,
-                  "y": 134
+                  "y": 128
                },
-               "id": 54,
+               "id": 50,
                "legend": {
                   "alignAsTable": true,
                   "avg": false,
@@ -7242,9 +6658,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 16,
-                  "y": 134
+                  "y": 128
                },
-               "id": 55,
+               "id": 51,
                "legend": {
                   "alignAsTable": true,
                   "avg": false,
@@ -7382,9 +6798,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 0,
-                  "y": 142
+                  "y": 136
                },
-               "id": 56,
+               "id": 52,
                "legend": {
                   "alignAsTable": true,
                   "avg": false,
@@ -7522,9 +6938,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 8,
-                  "y": 142
+                  "y": 136
                },
-               "id": 57,
+               "id": 53,
                "legend": {
                   "alignAsTable": true,
                   "avg": false,
@@ -7662,9 +7078,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 16,
-                  "y": 142
+                  "y": 136
                },
-               "id": 58,
+               "id": 54,
                "legend": {
                   "alignAsTable": true,
                   "avg": false,
@@ -7806,9 +7222,9 @@
             "h": 1,
             "w": 24,
             "x": 0,
-            "y": 150
+            "y": 144
          },
-         "id": 59,
+         "id": 55,
          "panels": [
             {
                "aliasColors": { },
@@ -7823,9 +7239,9 @@
                   "h": 8,
                   "w": 12,
                   "x": 0,
-                  "y": 151
+                  "y": 145
                },
-               "id": 60,
+               "id": 56,
                "legend": {
                   "alignAsTable": true,
                   "avg": false,
@@ -7978,9 +7394,9 @@
                   "h": 8,
                   "w": 12,
                   "x": 12,
-                  "y": 151
+                  "y": 145
                },
-               "id": 61,
+               "id": 57,
                "legend": {
                   "alignAsTable": true,
                   "avg": false,
@@ -8132,9 +7548,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 0,
-                  "y": 159
+                  "y": 153
                },
-               "id": 62,
+               "id": 58,
                "legend": {
                   "alignAsTable": true,
                   "avg": false,
@@ -8284,9 +7700,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 8,
-                  "y": 159
+                  "y": 153
                },
-               "id": 63,
+               "id": 59,
                "legend": {
                   "alignAsTable": true,
                   "avg": false,
@@ -8436,9 +7852,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 16,
-                  "y": 159
+                  "y": 153
                },
-               "id": 64,
+               "id": 60,
                "legend": {
                   "alignAsTable": true,
                   "avg": false,
@@ -8592,9 +8008,9 @@
             "h": 1,
             "w": 24,
             "x": 0,
-            "y": 167
+            "y": 161
          },
-         "id": 65,
+         "id": 61,
          "panels": [
             {
                "aliasColors": { },
@@ -8608,9 +8024,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 0,
-                  "y": 168
+                  "y": 162
                },
-               "id": 66,
+               "id": 62,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -8748,9 +8164,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 8,
-                  "y": 168
+                  "y": 162
                },
-               "id": 67,
+               "id": 63,
                "legend": {
                   "alignAsTable": true,
                   "avg": false,
@@ -8888,9 +8304,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 16,
-                  "y": 168
+                  "y": 162
                },
-               "id": 68,
+               "id": 64,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -9028,9 +8444,9 @@
                   "h": 8,
                   "w": 12,
                   "x": 0,
-                  "y": 176
+                  "y": 170
                },
-               "id": 69,
+               "id": 65,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -9168,9 +8584,9 @@
                   "h": 8,
                   "w": 12,
                   "x": 12,
-                  "y": 176
+                  "y": 170
                },
-               "id": 70,
+               "id": 66,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -9309,9 +8725,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 0,
-                  "y": 184
+                  "y": 178
                },
-               "id": 71,
+               "id": 67,
                "legend": {
                   "alignAsTable": true,
                   "avg": false,
@@ -9451,9 +8867,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 8,
-                  "y": 184
+                  "y": 178
                },
-               "id": 72,
+               "id": 68,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -9591,9 +9007,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 16,
-                  "y": 184
+                  "y": 178
                },
-               "id": 73,
+               "id": 69,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -9735,9 +9151,9 @@
             "h": 1,
             "w": 24,
             "x": 0,
-            "y": 192
+            "y": 186
          },
-         "id": 74,
+         "id": 70,
          "panels": [
             {
                "aliasColors": { },
@@ -9751,9 +9167,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 0,
-                  "y": 193
+                  "y": 187
                },
-               "id": 75,
+               "id": 71,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -9897,9 +9313,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 6,
-                  "y": 193
+                  "y": 187
                },
-               "id": 76,
+               "id": 72,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -10043,9 +9459,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 12,
-                  "y": 193
+                  "y": 187
                },
-               "id": 77,
+               "id": 73,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -10189,9 +9605,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 18,
-                  "y": 193
+                  "y": 187
                },
-               "id": 78,
+               "id": 74,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -10329,9 +9745,9 @@
                   "h": 8,
                   "w": 12,
                   "x": 0,
-                  "y": 201
+                  "y": 195
                },
-               "id": 79,
+               "id": 75,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -10475,9 +9891,9 @@
                   "h": 8,
                   "w": 12,
                   "x": 12,
-                  "y": 201
+                  "y": 195
                },
-               "id": 80,
+               "id": 76,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -10621,9 +10037,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 0,
-                  "y": 209
+                  "y": 203
                },
-               "id": 81,
+               "id": 77,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -10767,9 +10183,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 8,
-                  "y": 209
+                  "y": 203
                },
-               "id": 82,
+               "id": 78,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -10913,9 +10329,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 16,
-                  "y": 209
+                  "y": 203
                },
-               "id": 83,
+               "id": 79,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -11059,9 +10475,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 0,
-                  "y": 217
+                  "y": 211
                },
-               "id": 84,
+               "id": 80,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -11205,9 +10621,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 8,
-                  "y": 217
+                  "y": 211
                },
-               "id": 85,
+               "id": 81,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -11351,9 +10767,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 16,
-                  "y": 217
+                  "y": 211
                },
-               "id": 86,
+               "id": 82,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -11498,9 +10914,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 0,
-                  "y": 225
+                  "y": 219
                },
-               "id": 87,
+               "id": 83,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -11641,9 +11057,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 6,
-                  "y": 225
+                  "y": 219
                },
-               "id": 88,
+               "id": 84,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -11784,9 +11200,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 12,
-                  "y": 225
+                  "y": 219
                },
-               "id": 89,
+               "id": 85,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -11927,9 +11343,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 18,
-                  "y": 225
+                  "y": 219
                },
-               "id": 90,
+               "id": 86,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -12069,9 +11485,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 0,
-                  "y": 233
+                  "y": 227
                },
-               "id": 91,
+               "id": 87,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -12209,9 +11625,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 8,
-                  "y": 233
+                  "y": 227
                },
-               "id": 92,
+               "id": 88,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -12355,9 +11771,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 16,
-                  "y": 233
+                  "y": 227
                },
-               "id": 93,
+               "id": 89,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -12505,9 +11921,9 @@
             "h": 1,
             "w": 24,
             "x": 0,
-            "y": 241
+            "y": 235
          },
-         "id": 94,
+         "id": 90,
          "panels": [
             {
                "aliasColors": { },
@@ -12521,9 +11937,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 0,
-                  "y": 242
+                  "y": 236
                },
-               "id": 95,
+               "id": 91,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -12673,9 +12089,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 8,
-                  "y": 242
+                  "y": 236
                },
-               "id": 96,
+               "id": 92,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -12825,9 +12241,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 16,
-                  "y": 242
+                  "y": 236
                },
-               "id": 97,
+               "id": 93,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -12977,9 +12393,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 0,
-                  "y": 250
+                  "y": 244
                },
-               "id": 98,
+               "id": 94,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -13129,9 +12545,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 8,
-                  "y": 250
+                  "y": 244
                },
-               "id": 99,
+               "id": 95,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -13281,9 +12697,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 16,
-                  "y": 250
+                  "y": 244
                },
-               "id": 100,
+               "id": 96,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -13433,9 +12849,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 0,
-                  "y": 258
+                  "y": 252
                },
-               "id": 101,
+               "id": 97,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -13585,9 +13001,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 8,
-                  "y": 258
+                  "y": 252
                },
-               "id": 102,
+               "id": 98,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -13737,9 +13153,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 16,
-                  "y": 258
+                  "y": 252
                },
-               "id": 103,
+               "id": 99,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -13889,9 +13305,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 0,
-                  "y": 266
+                  "y": 260
                },
-               "id": 104,
+               "id": 100,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -14041,9 +13457,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 8,
-                  "y": 266
+                  "y": 260
                },
-               "id": 105,
+               "id": 101,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -14193,9 +13609,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 16,
-                  "y": 266
+                  "y": 260
                },
-               "id": 106,
+               "id": 102,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -14345,9 +13761,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 0,
-                  "y": 274
+                  "y": 268
                },
-               "id": 107,
+               "id": 103,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -14497,9 +13913,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 8,
-                  "y": 274
+                  "y": 268
                },
-               "id": 108,
+               "id": 104,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -14649,9 +14065,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 16,
-                  "y": 274
+                  "y": 268
                },
-               "id": 109,
+               "id": 105,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,

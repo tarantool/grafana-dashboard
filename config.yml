@@ -58,7 +58,9 @@ metrics_prefix: ''
 
 # sections are dashboard panels sections to be included
 # The list of supported sections:
+# - cluster_tarantool3
 # - cluster_cartridge
+# - replication_tarantool3
 # - replication_cartridge
 # - http
 # - net
@@ -84,10 +86,10 @@ metrics_prefix: ''
 # - tdg_iproto
 # - tdg_rest_api
 # - tdg_tasks
-# default is [cluster_cartridge, replication_cartridge, http, net, slab, mvcc, space, vinyl, cpu, runtime, luajit, operations, crud, expirationd]
+# default is [cluster_tarantool3, replication_tarantool3, http, net, slab, mvcc, space, vinyl, cpu, runtime, luajit, operations, crud, expirationd]
 sections:
-- cluster_cartridge
-- replication_cartridge
+- cluster_tarantool3
+- replication_tarantool3
 - http
 - net
 - slab
@@ -131,8 +133,8 @@ sections:
 #   job: ['=', 'MyJobWithTarantoolMetrics'],
 # }
 # sections:
-# - cluster_cartridge
-# - replication_cartridge
+# - cluster_tarantool3
+# - replication_tarantool3
 # - http
 # - net
 # - slab

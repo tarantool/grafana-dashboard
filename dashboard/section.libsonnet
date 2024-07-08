@@ -27,6 +27,30 @@ local tdg_tuples = import 'dashboard/panels/tdg/tuples.libsonnet';
 local vinyl = import 'dashboard/panels/vinyl.libsonnet';
 
 {
+  cluster_tarantool3(cfg):: if cfg.type == variable.datasource_type.prometheus then [
+    // Must be used only in the top of a dashboard, overall stat panels use complicated layout
+    cluster.row,
+    cluster.health_overview_table(cfg) { gridPos: { w: 12, h: 8, x: 0, y: 1 } },
+    cluster.health_overview_stat(cfg) { gridPos: { w: 6, h: 3, x: 12, y: 1 } },
+    cluster.memory_used_stat(cfg) { gridPos: { w: 3, h: 3, x: 18, y: 1 } },
+    cluster.memory_reserved_stat(cfg) { gridPos: { w: 3, h: 3, x: 21, y: 1 } },
+    cluster.http_rps_stat(cfg) { gridPos: { w: 4, h: 5, x: 12, y: 4 } },
+    cluster.net_rps_stat(cfg) { gridPos: { w: 4, h: 5, x: 16, y: 4 } },
+    cluster.space_ops_stat(cfg) { gridPos: { w: 4, h: 5, x: 20, y: 4 } },
+    cluster.read_only_status(cfg, panel_width=24),
+    cluster.election_state(cfg),
+    cluster.election_vote(cfg),
+    cluster.election_leader(cfg),
+    cluster.election_term(cfg),
+  ] else if cfg.type == variable.datasource_type.influxdb then [
+    cluster.row,
+    cluster.read_only_status(cfg, panel_width=24),
+    cluster.election_state(cfg),
+    cluster.election_vote(cfg),
+    cluster.election_leader(cfg),
+    cluster.election_term(cfg),
+  ],
+
   cluster_cartridge(cfg):: if cfg.type == variable.datasource_type.prometheus then [
     // Must be used only in the top of a dashboard, overall stat panels use complicated layout
     cluster.row,
@@ -55,6 +79,16 @@ local vinyl = import 'dashboard/panels/vinyl.libsonnet';
     cluster.election_vote(cfg),
     cluster.election_leader(cfg),
     cluster.election_term(cfg),
+  ],
+
+  replication_tarantool3(cfg):: [
+    replication.row,
+    replication.replication_status(cfg, panel_width=12),
+    replication.replication_lag(cfg, panel_width=12),
+    replication.synchro_queue_owner(cfg),
+    replication.synchro_queue_term(cfg),
+    replication.synchro_queue_length(cfg),
+    replication.synchro_queue_busy(cfg),
   ],
 
   replication_cartridge(cfg):: [

@@ -47,7 +47,7 @@
    "annotations": {
       "list": [ ]
    },
-   "description": "Dashboard for Tarantool application and database server monitoring, based on grafonnet library.",
+   "description": "Dashboard for Tarantool Cartridge and Tarantool 1.10—2.x application and database server monitoring, based on grafonnet library.",
    "editable": true,
    "gnetId": null,
    "graphTooltip": 0,
@@ -19223,6 +19223,6 @@
       ]
    },
    "timezone": "browser",
-   "title": "Tarantool dashboard",
+   "title": "Tarantool Cartridge dashboard",
    "version": 0
 }

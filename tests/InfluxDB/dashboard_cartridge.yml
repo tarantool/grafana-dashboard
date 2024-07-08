@@ -1,0 +1,24 @@
+type: influxdb
+title: Tarantool Cartridge dashboard
+description: Dashboard for Tarantool Cartridge and Tarantool 1.10—2.x application and database server monitoring, based on grafonnet library.
+grafana_tags: [tarantool]
+datasource: '$influxdb'
+policy: '$policy'
+measurement: '$measurement'
+filters:
+  label_pairs_alias: ['=~', '/^$alias$/']
+sections:
+- cluster_cartridge
+- replication_cartridge
+- http
+- net
+- slab
+- mvcc
+- space
+- vinyl
+- cpu
+- runtime
+- luajit
+- operations
+- crud
+- expirationd
