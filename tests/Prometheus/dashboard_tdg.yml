@@ -7,8 +7,8 @@ filters:
   job: ['=~', '$job']
   alias: ['=~', '$alias']
 sections:
-- cluster
-- replication
+- cluster_cartridge
+- replication_cartridge
 - net
 - slab
 - mvcc
