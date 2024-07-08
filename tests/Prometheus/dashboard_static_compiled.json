@@ -69,7 +69,7 @@
             {
                "columns": [ ],
                "datasource": "Prometheus",
-               "description": "Overview of Tarantool instances observed by Prometheus job.\n\nIf instance row is *red*, it means Prometheus can't reach\nURI specified in targets or ran into error.\nIf instance row is *green*, it means instance is up and running and\nPrometheus is successfully extracting metrics from it.\n\"Uptime\" column shows time since instant start.\n\nInstance alias filtering is disabled here.\n\nIf Prometheus job filter is not specified, displays running instances\nand ignores unreachable instances (we have no specific source to fetch)\n",
+               "description": "Overview of Tarantool instances observed by Prometheus job.\n\nIf instance row is *red*, it means Prometheus can't reach\nURI specified in targets or ran into error.\nIf instance row is *green*, it means instance is up and running and\nPrometheus is successfully extracting metrics from it.\n\"Uptime\" column shows time since instant start.\n\nInstance alias filtering is disabled here.\n\nIf Prometheus job filter is not specified, displays running instances\nand ignores unreachable instances (we have no specific source to fetch)\n\nThis panel is designed to work with Prometheus client\nset up to have each Tarantool instance as a separate pull target.\n",
                "gridPos": {
                   "h": 8,
                   "w": 12,
@@ -144,7 +144,7 @@
             },
             {
                "datasource": "Prometheus",
-               "description": "Count of running Tarantool instances observed by Prometheus job.\nIf Prometheus can't reach URI specified in targets\nor ran into error, instance is not counted.\n\nInstance alias filtering is disabled here.\n",
+               "description": "Count of running Tarantool instances observed by Prometheus job.\nIf Prometheus can't reach URI specified in targets\nor ran into error, instance is not counted.\n\nInstance alias filtering is disabled here.\n\nThis panel is designed to work with Prometheus client\nset up to have each Tarantool instance as a separate pull target.\n",
                "gridPos": {
                   "h": 3,
                   "w": 6,

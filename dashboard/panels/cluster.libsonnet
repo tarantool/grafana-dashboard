@@ -15,7 +15,7 @@ local prometheus = grafana.prometheus;
   health_overview_table(
     cfg,
     title='Cluster status overview',
-    description=|||
+    description=common.prometheus_metrics_pull_note(|||
       Overview of Tarantool instances observed by Prometheus job.
 
       If instance row is *red*, it means Prometheus can't reach
@@ -28,7 +28,7 @@ local prometheus = grafana.prometheus;
 
       If Prometheus job filter is not specified, displays running instances
       and ignores unreachable instances (we have no specific source to fetch)
-    |||,
+    |||),
   ):: tablePanel.new(
     title=title,
     description=description,
@@ -163,13 +163,13 @@ local prometheus = grafana.prometheus;
   health_overview_stat(
     cfg,
     title='',
-    description=|||
+    description=common.prometheus_metrics_pull_note(|||
       Count of running Tarantool instances observed by Prometheus job.
       If Prometheus can't reach URI specified in targets
       or ran into error, instance is not counted.
 
       Instance alias filtering is disabled here.
-    |||,
+    |||),
   ):: if cfg.type == variable.datasource_type.prometheus then
     overview_stat(
       cfg,
