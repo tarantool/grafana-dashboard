@@ -3,10 +3,13 @@
 Dashboard for Tarantool application and database server monitoring, based on [grafonnet](https://github.com/grafana/grafonnet-lib) library.
 
 Our pages on Grafana Official & community built dashboards:
-- Tarantool Cartridge and Tarantool 1.10—2.x applications:
+- Tarantool 3:
+  - [Prometheus](https://grafana.com/grafana/dashboards/21474),
+  - [InfluxDB](https://grafana.com/grafana/dashboards/21484);
+- Tarantool Cartridge and 1.10—2.x:
   - [Prometheus](https://grafana.com/grafana/dashboards/13054),
   - [InfluxDB](https://grafana.com/grafana/dashboards/12567);
-- TDG
+- Tarantool Data Grid 2:
   - [Prometheus](https://grafana.com/grafana/dashboards/16406),
   - [InfluxDB](https://grafana.com/grafana/dashboards/16405).
 
@@ -36,9 +39,9 @@ Refer to dashboard [documentation page](https://www.tarantool.io/en/doc/latest/b
 
 2. To import a specific dashboard, choose one of the following options:
 
-    - paste the dashboard id (for example, ``13054`` for Prometheus Tarantool Cartridge dashboard), or
+    - paste the dashboard id (for example, ``21474`` for Prometheus Tarantool 3 dashboard), or
     - paste a link to the dashboard (for example, 
-      https://grafana.com/grafana/dashboards/13054 for Prometheus Tarantool Cartridge dashboard), or
+      https://grafana.com/grafana/dashboards/21474 for Prometheus Tarantool 3 dashboard), or
     - paste the dashboard JSON file contents, or
     - upload the dashboard JSON file.
 

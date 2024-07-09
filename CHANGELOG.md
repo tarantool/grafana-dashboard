@@ -4,7 +4,17 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## Unreleased
+## [3.0.0] - 2024-07-09
+Grafana revisions:
+- Tarantool 3:
+  - [Prometheus revision 1](https://grafana.com/api/dashboards/21474/revisions/1/download),
+  - [InfluxDB revision 1](https://grafana.com/api/dashboards/21484/revisions/1/download);
+- Tarantool Cartridge and 1.10—2.x:
+  - [Prometheus revision 19](https://grafana.com/api/dashboards/13054/revisions/19/download),
+  - [InfluxDB revision 19](https://grafana.com/api/dashboards/12567/revisions/19/download);
+- Tarantool Data Grid 2:
+  - [Prometheus revision 8](https://grafana.com/api/dashboards/16406/revisions/8/download),
+  - [InfluxDB revision 8](https://grafana.com/api/dashboards/16405/revisions/8/download).
 
 ### Added
 - `cluster_tarantool3` panels section (`cluster` for Tarantool 3) (#224)
@@ -21,6 +31,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 - Removed extra quotation mark for TDG jobs_average_panel query (#220)
+
 
 ## [2.1.1] - 2023-06-01
 Grafana revisions: [InfluxDB revision 18](https://grafana.com/api/dashboards/12567/revisions/18/download), [Prometheus revision 18](https://grafana.com/api/dashboards/13054/revisions/18/download), [InfluxDB TDG revision 7](https://grafana.com/api/dashboards/16405/revisions/7/download), [Prometheus TDG revision 7](https://grafana.com/api/dashboards/16406/revisions/7/download).
