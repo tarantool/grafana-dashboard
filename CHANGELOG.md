@@ -4,7 +4,17 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased]
+## [3.1.0] - 2024-07-09
+Grafana revisions:
+- Tarantool 3:
+  - [Prometheus revision 3](https://grafana.com/api/dashboards/21474/revisions/3/download),
+  - [InfluxDB revision 3](https://grafana.com/api/dashboards/21484/revisions/3/download);
+- Tarantool Cartridge and 1.10—2.x:
+  - [Prometheus revision 20](https://grafana.com/api/dashboards/13054/revisions/20/download),
+  - [InfluxDB revision 20](https://grafana.com/api/dashboards/12567/revisions/20/download);
+- Tarantool Data Grid 2:
+  - [Prometheus revision 9](https://grafana.com/api/dashboards/16406/revisions/9/download),
+  - [InfluxDB revision 9](https://grafana.com/api/dashboards/16405/revisions/9/download).
 
 ### Added
 - Panels for Tarantool 3 configuration status and alerts (#224)
