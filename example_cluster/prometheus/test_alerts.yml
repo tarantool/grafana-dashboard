@@ -169,6 +169,97 @@ tests:
 
   - interval: 15s
     input_series:
+      - series: 'tnt_config_status{job="tarantool",instance="app:8081",alias="tnt_router",status="unitialized"}'
+        values: '1+0x4 0+0x4 0+0x30'
+      - series: 'tnt_config_status{job="tarantool",instance="app:8081",alias="tnt_router",status="check_errors"}'
+        values: '0+0x4 0+0x4 0+0x30'
+      - series: 'tnt_config_status{job="tarantool",instance="app:8081",alias="tnt_router",status="check_warnings"}'
+        values: '0+0x4 0+0x4 0+0x30'
+      - series: 'tnt_config_status{job="tarantool",instance="app:8081",alias="tnt_router",status="startup_in_progress"}'
+        values: '0+0x4 1+0x4 0+0x30'
+      - series: 'tnt_config_status{job="tarantool",instance="app:8081",alias="tnt_router",status="reload_in_progress"}'
+        values: '0+0x4 0+0x4 0+0x30'
+      - series: 'tnt_config_status{job="tarantool",instance="app:8081",alias="tnt_router",status="ready"}'
+        values: '0+0x4 0+0x4 1+0x30'
+    alert_rule_test:
+      - eval_time: 10m
+        alertname: ConfigStatusNotReady
+        exp_alerts: # no alert firing
+
+
+  - interval: 15s
+    input_series:
+      - series: 'tnt_config_status{job="tarantool",instance="app:8081",alias="tnt_router",status="unitialized"}'
+        values: '1+0x4 0+0x4 0+0x30'
+      - series: 'tnt_config_status{job="tarantool",instance="app:8081",alias="tnt_router",status="check_errors"}'
+        values: '0+0x4 0+0x4 1+0x30'
+      - series: 'tnt_config_status{job="tarantool",instance="app:8081",alias="tnt_router",status="check_warnings"}'
+        values: '0+0x4 0+0x4 0+0x30'
+      - series: 'tnt_config_status{job="tarantool",instance="app:8081",alias="tnt_router",status="startup_in_progress"}'
+        values: '0+0x4 1+0x4 0+0x30'
+      - series: 'tnt_config_status{job="tarantool",instance="app:8081",alias="tnt_router",status="reload_in_progress"}'
+        values: '0+0x4 0+0x4 0+0x30'
+      - series: 'tnt_config_status{job="tarantool",instance="app:8081",alias="tnt_router",status="ready"}'
+        values: '0+0x4 0+0x4 0+0x30'
+    alert_rule_test:
+      - eval_time: 10m
+        alertname: ConfigStatusNotReady
+        exp_alerts:
+          - exp_labels:
+              severity: warning
+              instance: app:8081
+              alias: tnt_router
+              job: tarantool
+              status: ready
+            exp_annotations:
+              summary: "Instance 'tnt_router' ('tarantool') configuration is not ready"
+              description: "Instance 'tnt_router' of job 'tarantool' configuration is not ready.
+                            Please, check config:info() for detailed info."
+
+
+  - interval: 15s
+    input_series:
+      - series: 'tnt_config_alerts{job="tarantool",instance="app:8081",alias="tnt_router",level="warn"}'
+        values: '1+0x10'
+    alert_rule_test:
+      - eval_time: 2m
+        alertname: ConfigWarningAlerts
+        exp_alerts:
+          - exp_labels:
+              severity: warning
+              instance: app:8081
+              alias: tnt_router
+              job: tarantool
+              level: warn
+            exp_annotations:
+              summary: "Instance 'tnt_router' ('tarantool') has configuration 'warn' alerts"
+              description: "Instance 'tnt_router' of job 'tarantool' has configuration 'warn' alerts.
+                            Please, check config:info() for detailed info."
+
+
+  - interval: 15s
+    input_series:
+      - series: 'tnt_config_alerts{job="tarantool",instance="app:8081",alias="tnt_router",level="error"}'
+        values: '1+0x10'
+    alert_rule_test:
+      - eval_time: 2m
+        alertname: ConfigErrorAlerts
+        exp_alerts:
+          - exp_labels:
+              severity: page
+              instance: app:8081
+              alias: tnt_router
+              job: tarantool
+              level: error
+            exp_annotations:
+              summary: "Instance 'tnt_router' ('tarantool') has configuration 'error' alerts"
+              description: "Instance 'tnt_router' of job 'tarantool' has configuration 'error' alerts.
+                            Latest configuration has not been applied.
+                            Please, check config:info() for detailed info."
+
+
+  - interval: 15s
+    input_series:
       - series: 'tnt_slab_quota_used_ratio{job="tarantool",instance="app:8081",alias="tnt_router"}'
         values: '75+0x2 92+0x8'
       - series: 'tnt_slab_items_used_ratio{job="tarantool",instance="app:8081",alias="tnt_router"}'

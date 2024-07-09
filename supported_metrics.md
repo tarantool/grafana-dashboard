@@ -156,8 +156,8 @@ Based on [tarantool/metrics 1.2.0](https://github.com/tarantool/metrics/releases
 - [ ] **tnt_memtx_index_total** ([#226](https://github.com/tarantool/grafana-dashboard/issues/226))
 - [ ] **tnt_memtx_index_read_view** ([#226](https://github.com/tarantool/grafana-dashboard/issues/226))
 - [ ] **tnt_vinyl_memory_tuple** ([#226](https://github.com/tarantool/grafana-dashboard/issues/226))
-- [ ] **tnt_config_alerts** ([#224](https://github.com/tarantool/grafana-dashboard/issues/224))
-- [ ] **tnt_config_status** ([#224](https://github.com/tarantool/grafana-dashboard/issues/224))
+- [x] **tnt_config_alerts**: see *Cluster overview/Tarantool configuration warnings*, *Cluster overview/Tarantool configuration errors* panels ([#224](https://github.com/tarantool/grafana-dashboard/issues/224))
+- [x] **tnt_config_status**: see *Cluster overview/Tarantool configuration status* panel ([#224](https://github.com/tarantool/grafana-dashboard/issues/224))
 - [x] **http_server_request_latency**, **http_server_request_latency_sum**, **http_server_request_latency_count**: see *Tarantool HTTP statistics/Success requests (code 2xx)*, *Tarantool HTTP statistics/Error requests (code 4xx)* *Tarantool HTTP statistics/Error requests (code 5xx)* *Tarantool HTTP statistics/Success requests latency (code 2xx)* *Tarantool HTTP statistics/Error requests latency (code 4xx)* *Tarantool HTTP statistics/Error requests latency (code 5xx)* ([dbb3374f](https://github.com/tarantool/grafana-dashboard/commit/dbb3374f214aaa069e5574960afd65f44f5ae0cd))
 
 # tarantool/crud

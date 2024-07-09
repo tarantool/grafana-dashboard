@@ -220,6 +220,48 @@ sleeps.
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+Configuration status
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+:ref:`Configuration status <config_api_reference_info>` displays
+Tarantool 3 configuration apply state. Additional metrics desplay the count
+of apply warnings and errors.
+
+..  code-block:: yaml
+
+    - alert: ConfigWarningAlerts
+      expr: tnt_config_alerts{level="warn"} > 0
+      for: 1m
+      labels:
+        severity: warning
+      annotations:
+        summary: "Instance '{{ $labels.alias }}' ('{{ $labels.job }}') has configuration 'warn' alerts"
+        description: "Instance '{{ $labels.alias }}' of job '{{ $labels.job }}' has configuration 'warn' alerts.
+                      Please, check config:info() for detailed info."
+
+    - alert: ConfigErrorAlerts
+      expr: tnt_config_alerts{level="error"} > 0
+      for: 1m
+      labels:
+        severity: page
+      annotations:
+        summary: "Instance '{{ $labels.alias }}' ('{{ $labels.job }}') has configuration 'error' alerts"
+        description: "Instance '{{ $labels.alias }}' of job '{{ $labels.job }}' has configuration 'error' alerts.
+                      Latest configuration has not been applied.
+                      Please, check config:info() for detailed info."
+
+    - alert: ConfigStatusNotReady
+      expr: tnt_config_status{status="ready"} == 0
+      for: 5m
+      labels:
+        severity: warning
+      annotations:
+        summary: "Instance '{{ $labels.alias }}' ('{{ $labels.job }}') configuration is not ready"
+        description: "Instance '{{ $labels.alias }}' of job '{{ $labels.job }}' configuration is not ready.
+                      Please, check config:info() for detailed info."
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 Cartridge issues
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
