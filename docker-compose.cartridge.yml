@@ -55,7 +55,7 @@ services:
       - 9090:9090
     volumes:
       - ./example_cluster/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
-      - ./example_cluster/prometheus/alerts.yml:/etc/prometheus/alerts.yml
+      - ./example_cluster/prometheus/alerts.yml:/etc/prometheus/cartridge_alerts.yml
 
   grafana:
     image: grafana/grafana:8.1.3

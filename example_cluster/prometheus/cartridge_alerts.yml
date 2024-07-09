@@ -82,6 +82,31 @@ groups:
         You are likely to hit limit soon.
         It is strongly recommended to increase memtx_memory or number of storages in case of sharded data."
 
+   # Warning for Cartridge warning issues.
+  - alert: CartridgeWarningIssues
+    expr: tnt_cartridge_issues{level="warning"} > 0
+    for: 1m
+    labels:
+      severity: warning
+    annotations:
+      summary: "Instance '{{ $labels.alias }}' ('{{ $labels.job }}') has 'warning'-level Cartridge issues"
+      description: "Instance '{{ $labels.alias }}' of job '{{ $labels.job }}' has 'warning'-level Cartridge issues.
+        Possible reasons: high replication lag, replication long idle,
+        failover or switchover issues, clock issues, memory fragmentation,
+        configuration issues, alien members."
+
+  # Alert for Cartridge critical issues.
+  - alert: CartridgeCriticalIssues
+    expr: tnt_cartridge_issues{level="critical"} > 0
+    for: 1m
+    labels:
+      severity: page
+    annotations:
+      summary: "Instance '{{ $labels.alias }}' ('{{ $labels.job }}') has 'critical'-level Cartridge issues"
+      description: "Instance '{{ $labels.alias }}' of job '{{ $labels.job }}' has 'critical'-level Cartridge issues.
+        Possible reasons: replication process critical fail,
+        running out of available memory."
+
   # Alert for Tarantool replication high lag (both for masters and replicas).
   - alert: HighReplicationLag
     expr: tnt_replication_lag > 1
