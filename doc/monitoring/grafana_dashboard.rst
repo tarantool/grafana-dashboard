@@ -13,11 +13,15 @@ Tarantool Grafana dashboards are available as part of
         :widths: 25 75
         :header-rows: 0
 
-        * Tarantool Cartridge and Tarantool 1.10—2.x applications:
+        * Tarantool 3:
+            - `Prometheus <https://grafana.com/grafana/dashboards/21474>`_,
+            - `InfluxDB <https://grafana.com/grafana/dashboards/21484>`_;
+
+        * Tarantool Cartridge and Tarantool 1.10—2.x:
             - `Prometheus <https://grafana.com/grafana/dashboards/13054>`_,
             - `InfluxDB <https://grafana.com/grafana/dashboards/12567>`_;
 
-        * TDG:
+        * Tarantool Data Grid 2:
             - `Prometheus <https://grafana.com/grafana/dashboards/16406>`_,
             - `InfluxDB <https://grafana.com/grafana/dashboards/16405>`_.
 
@@ -28,6 +32,7 @@ package functionality.
 Dashboard requires using ``metrics`` **0.15.0** or newer for complete experience;
 ``'alias'`` :ref:`global label <metrics-api_reference-labels>` must be set on each instance
 to properly display panels (e.g. provided with ``cartridge.roles.metrics`` role).
+Starting from Tarantool 2.11.1, ``metrics`` are a built-in part of Tarantool binary.
 
 To support `CRUD <https://github.com/tarantool/crud>`_ statistics, install ``CRUD``
 **0.11.1** or newer. Call ``crud.cfg`` on router to enable CRUD statistics collect
