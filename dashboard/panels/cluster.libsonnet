@@ -373,6 +373,179 @@ local prometheus = grafana.prometheus;
     level='critical',
   ),
 
+  local tarantool3_config_description_note(description) = std.join('\n', [description, |||
+    Panel minimal requirements: metrics 1.2.0, Tarantool 3.
+  |||]),
+
+  tarantool3_config_status(
+    cfg,
+    title='Tarantool configuration status',
+    description=tarantool3_config_description_note(|||
+      Current Tarantool 3 configuration apply status for a cluster instance.
+      `uninitialized` decribes uninitialized instance,
+      `check_errors` decribes instance with at least one apply error,
+      `check_warnings` decribes instance with at least one apply warning,
+      `startup_in_progress` decribes instance doing initial configuration apply,
+      `reload_in_progress` decribes instance doing configuration apply over existing configuration,
+      `ready` describes a healthy instance.
+
+      Panel minimal requirements: Grafana 8.
+    |||),
+  ):: timeseries.new(
+    title=title,
+    description=description,
+    datasource=cfg.datasource,
+    panel_width=12,
+    max=6,
+    min=1,
+  ).addValueMapping(
+    1, 'dark-red', 'uninitialized'
+  ).addRangeMapping(
+    1.001, 1.999, '-'
+  ).addValueMapping(
+    2, 'red', 'check_errors'
+  ).addRangeMapping(
+    2.001, 2.999, '-'
+  ).addValueMapping(
+    3, 'yellow', 'startup_in_progress'
+  ).addRangeMapping(
+    3.001, 3.999, '-'
+  ).addValueMapping(
+    4, 'dark-yellow', 'reload_in_progress'
+  ).addRangeMapping(
+    4.001, 4.999, '-'
+  ).addValueMapping(
+    5, 'dark-orange', 'check_warnings'
+  ).addRangeMapping(
+    5.001, 5.999, '-'
+  ).addValueMapping(
+    6, 'green', 'ready'
+  ).addTarget(
+    if cfg.type == variable.datasource_type.prometheus then
+      local expr = std.format(
+        |||
+          1 * %(metric_full_name)s{%(uninitialized_filters)s} + on(alias)
+          2 * %(metric_full_name)s{%(check_errors_filters)s} + on(alias)
+          3 * %(metric_full_name)s{%(startup_in_progress_filters)s} + on(alias)
+          4 * %(metric_full_name)s{%(reload_in_progress_filters)s} + on(alias)
+          5 * %(metric_full_name)s{%(check_warnings_filters)s} + on(alias)
+          6 * %(metric_full_name)s{%(ready_filters)s}
+        |||, {
+          metric_full_name: cfg.metrics_prefix + 'tnt_config_status',
+          uninitialized_filters: common.prometheus_query_filters(cfg.filters { status: ['=', 'uninitialized'] }),
+          check_errors_filters: common.prometheus_query_filters(cfg.filters { status: ['=', 'check_errors'] }),
+          startup_in_progress_filters: common.prometheus_query_filters(cfg.filters { status: ['=', 'startup_in_progress'] }),
+          reload_in_progress_filters: common.prometheus_query_filters(cfg.filters { status: ['=', 'reload_in_progress'] }),
+          check_warnings_filters: common.prometheus_query_filters(cfg.filters { status: ['=', 'check_warnings'] }),
+          ready_filters: common.prometheus_query_filters(cfg.filters { status: ['=', 'ready'] }),
+        }
+      );
+      prometheus.target(expr=expr, legendFormat='{{alias}}')
+    else if cfg.type == variable.datasource_type.influxdb then
+      local query = std.format(|||
+        SELECT (1 * last("uninitialized") + 2 * last("check_errors") + 3 * last("startup_in_progress") +
+                4 * last("reload_in_progress") + 5 * last("check_warnings") + 6 * last("ready")) as "status" FROM
+        (
+          SELECT "value" as "uninitialized" FROM %(measurement_with_policy)s
+          WHERE ("metric_name" = '%(metric_full_name)s' AND %(uninitialized_filters)s) AND $timeFilter
+        ),
+        (
+          SELECT "value" as "check_errors" FROM %(measurement_with_policy)s
+          WHERE ("metric_name" = '%(metric_full_name)s' AND %(check_errors_filters)s) AND $timeFilter
+        ),
+        (
+          SELECT "value" as "startup_in_progress" FROM %(measurement_with_policy)s
+          WHERE ("metric_name" = '%(metric_full_name)s' AND %(startup_in_progress_filters)s) AND $timeFilter
+        ),
+        (
+          SELECT "value" as "reload_in_progress" FROM %(measurement_with_policy)s
+          WHERE ("metric_name" = '%(metric_full_name)s' AND %(reload_in_progress_filters)s) AND $timeFilter
+        ),
+        (
+          SELECT "value" as "check_warnings" FROM %(measurement_with_policy)s
+          WHERE ("metric_name" = '%(metric_full_name)s' AND %(check_warnings_filters)s) AND $timeFilter
+        ),
+        (
+          SELECT "value" as "ready" FROM %(measurement_with_policy)s
+          WHERE ("metric_name" = '%(metric_full_name)s' AND %(ready_filters)s) AND $timeFilter
+        )
+        GROUP BY time($__interval), "label_pairs_alias" fill(0)
+      |||, {
+        metric_full_name: cfg.metrics_prefix + 'tnt_config_status',
+        measurement_with_policy: std.format('%(policy_prefix)s"%(measurement)s"', {
+          policy_prefix: if cfg.policy == 'default' then '' else std.format('"%(policy)s".', cfg.policy),
+          measurement: cfg.measurement,
+        }),
+        uninitialized_filters: common.influxdb_query_filters(cfg.filters { label_pairs_status: ['=', 'uninitialized'] }),
+        check_errors_filters: common.influxdb_query_filters(cfg.filters { label_pairs_status: ['=', 'check_errors'] }),
+        startup_in_progress_filters: common.influxdb_query_filters(cfg.filters { label_pairs_status: ['=', 'startup_in_progress'] }),
+        reload_in_progress_filters: common.influxdb_query_filters(cfg.filters { label_pairs_status: ['=', 'reload_in_progress'] }),
+        check_warnings_filters: common.influxdb_query_filters(cfg.filters { label_pairs_status: ['=', 'check_warnings'] }),
+        ready_filters: common.influxdb_query_filters(cfg.filters { label_pairs_status: ['=', 'ready'] }),
+      });
+      influxdb.target(
+        rawQuery=true,
+        query=query,
+        alias='$tag_label_pairs_alias',
+      )
+  ),
+
+  local tarantool3_config_alerts(
+    cfg,
+    title,
+    description,
+    level,
+  ) = common.default_graph(
+    cfg,
+    title=title,
+    description=tarantool3_config_description_note(description),
+    min=0,
+    legend_avg=false,
+    legend_max=false,
+    panel_height=8,
+    panel_width=6,
+  ).addTarget(
+    common.target(
+      cfg,
+      'tnt_config_alerts',
+      additional_filters={
+        [variable.datasource_type.prometheus]: { level: ['=', level] },
+        [variable.datasource_type.influxdb]: { label_pairs_level: ['=', level] },
+      },
+      converter='last',
+    ),
+  ),
+
+  tarantool3_config_warning_alerts(
+    cfg,
+    title='Tarantool configuration warnings',
+    description=|||
+      Number of "warn" alerts on Tarantool 3 configuration apply on a cluster instance.
+      "warn" alerts cover non-critical issues which do not result in apply failure,
+      like missing a role to grant for a user.
+    |||,
+  ):: tarantool3_config_alerts(
+    cfg,
+    title=title,
+    description=description,
+    level='warn',
+  ),
+
+  tarantool3_config_error_alerts(
+    cfg,
+    title='Tarantool configuration errors',
+    description=|||
+      Number of "error" alerts on Tarantool 3 configuration apply on a cluster instance.
+      "error" alerts cover critical issues which results in apply failure,
+      like instance missing itself in configuration.
+    |||,
+  ):: tarantool3_config_alerts(
+    cfg,
+    title=title,
+    description=description,
+    level='error',
+  ),
+
   failovers_per_second(
     cfg,
     title='Failovers triggered',

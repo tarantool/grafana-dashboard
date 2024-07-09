@@ -6,6 +6,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+- Panels for Tarantool 3 configuration status and alerts (#224)
+
 ### Changed
 - Use consistent style for panel requirements (PR #231)
 
