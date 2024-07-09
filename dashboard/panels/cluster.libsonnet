@@ -469,7 +469,7 @@ local prometheus = grafana.prometheus;
           SELECT "value" as "ready" FROM %(measurement_with_policy)s
           WHERE ("metric_name" = '%(metric_full_name)s' AND %(ready_filters)s) AND $timeFilter
         )
-        GROUP BY time($__interval), "label_pairs_alias" fill(0)
+        GROUP BY time($__interval), "label_pairs_alias" fill(none)
       |||, {
         metric_full_name: cfg.metrics_prefix + 'tnt_config_status',
         measurement_with_policy: std.format('%(policy_prefix)s"%(measurement)s"', {
