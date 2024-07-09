@@ -33,6 +33,7 @@ test-deps: build-deps
 run-tests:
 	./tests.sh
 	./promtool test rules example_cluster/prometheus/test_alerts.yml
+	./promtool test rules example_cluster/prometheus/test_cartridge_alerts.yml
 
 .PHONY: update-tests
 update-tests:
