@@ -66,9 +66,9 @@ local prometheus = grafana.prometheus;
       to enable it you must set global variable
       include_vinyl_count to true. Beware that
       count() operation scans the space and may
-      slow down your app. 
+      slow down your app.
 
-      Panel works with `metrics >= 0.13.0`.
+      Panel minimal requirements: metrics 0.13.0.
     |||,
   ):: count(
     cfg,
@@ -118,8 +118,7 @@ local prometheus = grafana.prometheus;
         |||,
         if cfg.type == variable.datasource_type.influxdb then
           |||
-            `No data` may be displayed because of tarantool/metrics issue #321,
-            use `metrics >= 0.12.0` to fix.
+            Panel minimal requirements: metrics 0.12.0.
           |||
         else null,
       ]
@@ -171,8 +170,7 @@ local prometheus = grafana.prometheus;
         |||,
         if cfg.type == variable.datasource_type.influxdb then
           |||
-            `No data` may be displayed because of tarantool/metrics issue #321,
-            use `metrics >= 0.12.0` to fix.
+            Panel minimal requirements: metrics 0.12.0.
           |||
         else null,
       ]

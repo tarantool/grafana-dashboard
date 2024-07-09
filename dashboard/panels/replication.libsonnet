@@ -17,7 +17,7 @@ local prometheus = grafana.prometheus;
       `follows` status means replication is running.
       Otherwise, `not running` is displayed.
 
-      Panel works with `metrics >= 0.13.0` and Grafana 8.x.
+      Panel minimal requirements: metrics 0.13.0, Grafana 8.
     |||,
     panel_width=8,
   ):: timeseries.new(
@@ -52,7 +52,7 @@ local prometheus = grafana.prometheus;
     description=|||
       Replication lag value for Tarantool instance.
 
-      Panel works with `metrics >= 0.13.0`.
+      Panel minimal requirements: metrics 0.13.0.
     |||,
     panel_width=8,
   ):: common.default_graph(
@@ -83,7 +83,7 @@ local prometheus = grafana.prometheus;
       max shows difference with the fastest clock (always positive),
       min shows difference with the slowest clock (always negative).
 
-      Panel works with `metrics >= 0.10.0`.
+      Panel minimal requirements: metrics 0.10.0.
     |||,
   ):: common.default_graph(
     cfg,
@@ -110,7 +110,7 @@ local prometheus = grafana.prometheus;
   local syncro_warning(description) = std.join(
     '\n',
     [description, |||
-      Panel works with metrics 0.15.0 or newer, Tarantool 2.8.1 or newer.
+      Panel minimal requirements: metrics 0.15.0, Tarantool 2.8.1.
     |||]
   ),
 
@@ -174,7 +174,7 @@ local prometheus = grafana.prometheus;
     description=syncro_warning(|||
       Whether the queue is processing any system entry (CONFIRM/ROLLBACK/PROMOTE/DEMOTE).
 
-      Panel works with Grafana 8.x.
+      Panel minimal requirements: Grafana 8.
     |||),
   ):: timeseries.new(
     title=title,

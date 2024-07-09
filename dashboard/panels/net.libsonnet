@@ -114,7 +114,7 @@ local prometheus = grafana.prometheus;
     description=|||
       Average number of requests processed by tx thread per second.
 
-      Panel works with `metrics >= 0.13.0` and `Tarantool >= 2.10-beta2`.
+      Panel minimal requirements: metrics 0.13.0, Tarantool 2.10-beta2.
     |||,
   ):: common.default_graph(
     cfg,
@@ -132,7 +132,7 @@ local prometheus = grafana.prometheus;
     description=|||
       Number of requests currently being processed in the tx thread.
 
-      Panel works with `metrics >= 0.13.0` and `Tarantool >= 2.10-beta2`.
+      Panel minimal requirements: metrics 0.13.0, Tarantool 2.10-beta2.
     |||,
   ):: common.default_graph(
     cfg,
@@ -152,7 +152,7 @@ local prometheus = grafana.prometheus;
       Average number of requests which was placed in queues
       of streams per second.
 
-      Panel works with `metrics >= 0.13.0` and `Tarantool >= 2.10-beta2`.
+      Panel minimal requirements: metrics 0.13.0, Tarantool 2.10-beta2.
     |||,
   ):: common.default_graph(
     cfg,
@@ -170,7 +170,7 @@ local prometheus = grafana.prometheus;
     description=|||
       Number of requests currently waiting in queues of streams.
 
-      Panel works with `metrics >= 0.13.0` and `Tarantool >= 2.10-beta2`.
+      Panel minimal requirements: metrics 0.13.0, Tarantool 2.10-beta2.
     |||,
   ):: common.default_graph(
     cfg,
@@ -219,7 +219,7 @@ local prometheus = grafana.prometheus;
   local per_thread_warning(description) = std.join(
     '\n',
     [description, |||
-      Panel works with metrics 0.15.0 or newer, Tarantool 2.10 or newer.
+      Panel minimal requirements: metrics 0.15.0, Tarantool 2.10.
     |||]
   ),
 

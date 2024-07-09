@@ -70,9 +70,9 @@ local common = import 'dashboard/panels/common.libsonnet';
     cfg,
     title='Number of fibers',
     description=|||
-      Current number of fibers in tx thread. 
+      Current number of fibers in tx thread.
 
-      Panel works with `metrics >= 0.13.0`.
+      Panel minimal requirements: metrics 0.13.0.
     |||,
   ):: common.default_graph(
     cfg,
@@ -152,7 +152,7 @@ local common = import 'dashboard/panels/common.libsonnet';
       possible bad health signals and may be the
       reason of "Too long WAL write" errors.
 
-      Panel works with `metrics >= 0.13.0`.
+      Panel minimal requirements: metrics 0.13.0.
     |||,
   ):: common.default_graph(
     cfg,

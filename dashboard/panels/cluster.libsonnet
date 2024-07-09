@@ -345,8 +345,8 @@ local prometheus = grafana.prometheus;
       failover and switchover issues, clock issues, memory fragmentation,
       configuration issues and alien members warnings.
 
-      Panel works with `cartridge >= 2.0.2`, `metrics >= 0.6.0`,
-      while `metrics >= 0.9.0` is recommended for per instance display.
+      Panel minimal requirements: cartridge 2.0.2, metrics 0.6.0;
+      at least metrics 0.9.0 is recommended for per instance display.
     |||,
   ):: cartridge_issues(
     cfg,
@@ -363,8 +363,8 @@ local prometheus = grafana.prometheus;
       "critical" issues includes replication process critical fails and
       running out of available memory.
 
-      Panel works with `cartridge >= 2.0.2`, `metrics >= 0.6.0`,
-      while `metrics >= 0.9.0` is recommended for per instance display.
+      Panel minimal requirements: cartridge 2.0.2, metrics 0.6.0;
+      at least metrics 0.9.0 is recommended for per instance display.
     |||,
   ):: cartridge_issues(
     cfg,
@@ -380,7 +380,7 @@ local prometheus = grafana.prometheus;
       Displays the count of failover triggers in a replicaset.
       Graph shows average per second.
 
-      Panel works with `metrics >= 0.15.0`.
+      Panel minimal requirements: metrics 0.15.0.
     |||,
   ):: common.default_graph(
     cfg,
@@ -400,7 +400,7 @@ local prometheus = grafana.prometheus;
       write operations. `replica` status means instance is
       available only for read operations.
 
-      Panel works with `metrics >= 0.11.0` and Grafana 8.x.
+      Panel minimal requirements: metrics 0.11.0, Grafana 8.
     |||,
     panel_width=12,
   ):: timeseries.new(
@@ -423,7 +423,7 @@ local prometheus = grafana.prometheus;
   local election_warning(description) = std.join(
     '\n',
     [description, |||
-      Panel works with metrics 0.15.0 or newer, Tarantool 2.6.1 or newer.
+      Panel minimal requirements: metrics 0.15.0, Tarantool 2.6.1.
     |||]
   ),
 
@@ -438,7 +438,7 @@ local prometheus = grafana.prometheus;
       `candidate`s are nodes that start a new election round.
       `leader` is a node that collected a quorum of votes.
 
-      Panel works with Grafana 8.x.
+      Panel minimal requirements: Grafana 8.
     |||),
   ):: timeseries.new(
     title=title,

@@ -12,7 +12,7 @@ local prometheus = grafana.prometheus;
   local mvcc_warning(description) = std.join(
     '\n',
     [description, |||
-      Panel works with metrics 0.15.1 or newer, Tarantool 2.10 or newer.
+      Panel minimal requirements: metrics 0.15.1, Tarantool 2.10.
     |||]
   ),
 
