@@ -34,7 +34,7 @@ local prometheus = grafana.prometheus;
       spent by instance process executing in user mode.
       Metrics obtained using `getrusage()` call.
 
-      Panel works with `metrics >= 0.8.0`.
+      Panel minimal requirements: metrics 0.8.0.
     |||,
   ):: getrusage_cpu_percentage_graph(
     cfg=cfg,
@@ -51,7 +51,7 @@ local prometheus = grafana.prometheus;
       spent by instance process executing in kernel mode.
       Metrics obtained using `getrusage()` call.
 
-      Panel works with `metrics >= 0.8.0`.
+      Panel minimal requirements: metrics 0.8.0.
     |||,
   ):: getrusage_cpu_percentage_graph(
     cfg=cfg,

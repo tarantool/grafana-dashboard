@@ -182,7 +182,7 @@ local prometheus = grafana.prometheus;
       SQL prepare calls.
       Graph shows average calls per second.
 
-      Panel works with Tarantool 2.x.
+      Panel minimal requirements: Tarantool 2.
     |||,
   ):: operation_rps(
     cfg,
@@ -199,7 +199,7 @@ local prometheus = grafana.prometheus;
       SQL execute calls.
       Graph shows average calls per second.
 
-      Panel works with Tarantool 2.x.
+      Panel minimal requirements: Tarantool 2.
     |||,
   ):: operation_rps(
     cfg,
@@ -218,7 +218,7 @@ local prometheus = grafana.prometheus;
       operations with `TRANSACTION START` and IPROTO_BEGIN operations.
       Graph shows average calls per second.
 
-      Panel works with Tarantool 2.10 or newer.
+      Panel minimal requirements: Tarantool 2.10.
     |||,
   ):: operation_rps(
     cfg,
@@ -237,7 +237,7 @@ local prometheus = grafana.prometheus;
       operations with `COMMIT` and IPROTO_COMMIT operations.
       Graph shows average calls per second.
 
-      Panel works with Tarantool 2.10 or newer.
+      Panel minimal requirements: Tarantool 2.10.
     |||,
   ):: operation_rps(
     cfg,
@@ -256,7 +256,7 @@ local prometheus = grafana.prometheus;
       operations with `ROLLBACK` and IPROTO_ROLLBACK operations.
       Graph shows average calls per second.
 
-      Panel works with Tarantool 2.10 or newer.
+      Panel minimal requirements: Tarantool 2.10.
     |||,
   ):: operation_rps(
     cfg,

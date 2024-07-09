@@ -60,7 +60,7 @@
                "dashLength": 10,
                "dashes": false,
                "datasource": "$influxdb",
-               "description": "Number of \"warning\" issues on each cluster instance.\n\"warning\" issues includes high replication lag, replication long idle,\nfailover and switchover issues, clock issues, memory fragmentation,\nconfiguration issues and alien members warnings.\n\nPanel works with `cartridge >= 2.0.2`, `metrics >= 0.6.0`,\nwhile `metrics >= 0.9.0` is recommended for per instance display.\n",
+               "description": "Number of \"warning\" issues on each cluster instance.\n\"warning\" issues includes high replication lag, replication long idle,\nfailover and switchover issues, clock issues, memory fragmentation,\nconfiguration issues and alien members warnings.\n\nPanel minimal requirements: cartridge 2.0.2, metrics 0.6.0;\nat least metrics 0.9.0 is recommended for per instance display.\n",
                "fill": 0,
                "gridPos": {
                   "h": 6,
@@ -200,7 +200,7 @@
                "dashLength": 10,
                "dashes": false,
                "datasource": "$influxdb",
-               "description": "Number of \"critical\" issues on each cluster instance.\n\"critical\" issues includes replication process critical fails and\nrunning out of available memory.\n\nPanel works with `cartridge >= 2.0.2`, `metrics >= 0.6.0`,\nwhile `metrics >= 0.9.0` is recommended for per instance display.\n",
+               "description": "Number of \"critical\" issues on each cluster instance.\n\"critical\" issues includes replication process critical fails and\nrunning out of available memory.\n\nPanel minimal requirements: cartridge 2.0.2, metrics 0.6.0;\nat least metrics 0.9.0 is recommended for per instance display.\n",
                "fill": 0,
                "gridPos": {
                   "h": 6,
@@ -340,7 +340,7 @@
                "dashLength": 10,
                "dashes": false,
                "datasource": "$influxdb",
-               "description": "Displays the count of failover triggers in a replicaset.\nGraph shows average per second.\n\nPanel works with `metrics >= 0.15.0`.\n",
+               "description": "Displays the count of failover triggers in a replicaset.\nGraph shows average per second.\n\nPanel minimal requirements: metrics 0.15.0.\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -476,7 +476,7 @@
             },
             {
                "datasource": "$influxdb",
-               "description": "`master` status means instance is available for read and\nwrite operations. `replica` status means instance is\navailable only for read operations.\n\nPanel works with `metrics >= 0.11.0` and Grafana 8.x.\n",
+               "description": "`master` status means instance is available for read and\nwrite operations. `replica` status means instance is\navailable only for read operations.\n\nPanel minimal requirements: metrics 0.11.0, Grafana 8.\n",
                "fieldConfig": {
                   "defaults": {
                      "color": {
@@ -632,7 +632,7 @@
             },
             {
                "datasource": "$influxdb",
-               "description": "Election state (mode) of the node.\nWhen election is enabled, the node is writable only in the leader state.\n\nAll the non-leader nodes are called `follower`s.\n`candidate`s are nodes that start a new election round.\n`leader` is a node that collected a quorum of votes.\n\nPanel works with Grafana 8.x.\n\nPanel works with metrics 0.15.0 or newer, Tarantool 2.6.1 or newer.\n",
+               "description": "Election state (mode) of the node.\nWhen election is enabled, the node is writable only in the leader state.\n\nAll the non-leader nodes are called `follower`s.\n`candidate`s are nodes that start a new election round.\n`leader` is a node that collected a quorum of votes.\n\nPanel minimal requirements: Grafana 8.\n\nPanel minimal requirements: metrics 0.15.0, Tarantool 2.6.1.\n",
                "fieldConfig": {
                   "defaults": {
                      "color": {
@@ -814,7 +814,7 @@
                "dashes": false,
                "datasource": "$influxdb",
                "decimals": 0,
-               "description": "ID of a node the current node votes for.\nIf the value is 0, it means the node hasn’t\nvoted in the current term yet.\n\nPanel works with metrics 0.15.0 or newer, Tarantool 2.6.1 or newer.\n",
+               "description": "ID of a node the current node votes for.\nIf the value is 0, it means the node hasn’t\nvoted in the current term yet.\n\nPanel minimal requirements: metrics 0.15.0, Tarantool 2.6.1.\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -951,7 +951,7 @@
                "dashes": false,
                "datasource": "$influxdb",
                "decimals": 0,
-               "description": "Leader node ID in the current term.\nIf the value is 0, it means the node doesn’t know which\nnode is the leader in the current term.\n\nPanel works with metrics 0.15.0 or newer, Tarantool 2.6.1 or newer.\n",
+               "description": "Leader node ID in the current term.\nIf the value is 0, it means the node doesn’t know which\nnode is the leader in the current term.\n\nPanel minimal requirements: metrics 0.15.0, Tarantool 2.6.1.\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -1088,7 +1088,7 @@
                "dashes": false,
                "datasource": "$influxdb",
                "decimals": 0,
-               "description": "Current election term.\n\nPanel works with metrics 0.15.0 or newer, Tarantool 2.6.1 or newer.\n",
+               "description": "Current election term.\n\nPanel minimal requirements: metrics 0.15.0, Tarantool 2.6.1.\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -1240,7 +1240,7 @@
          "panels": [
             {
                "datasource": "$influxdb",
-               "description": "`follows` status means replication is running.\nOtherwise, `not running` is displayed.\n\nPanel works with `metrics >= 0.13.0` and Grafana 8.x.\n",
+               "description": "`follows` status means replication is running.\nOtherwise, `not running` is displayed.\n\nPanel minimal requirements: metrics 0.13.0, Grafana 8.\n",
                "fieldConfig": {
                   "defaults": {
                      "color": {
@@ -1412,7 +1412,7 @@
                "dashLength": 10,
                "dashes": false,
                "datasource": "$influxdb",
-               "description": "Replication lag value for Tarantool instance.\n\nPanel works with `metrics >= 0.13.0`.\n",
+               "description": "Replication lag value for Tarantool instance.\n\nPanel minimal requirements: metrics 0.13.0.\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -1552,7 +1552,7 @@
                "dashLength": 10,
                "dashes": false,
                "datasource": "$influxdb",
-               "description": "Clock drift across the cluster.\nmax shows difference with the fastest clock (always positive),\nmin shows difference with the slowest clock (always negative).\n\nPanel works with `metrics >= 0.10.0`.\n",
+               "description": "Clock drift across the cluster.\nmax shows difference with the fastest clock (always positive),\nmin shows difference with the slowest clock (always negative).\n\nPanel minimal requirements: metrics 0.10.0.\n",
                "fill": 1,
                "gridPos": {
                   "h": 8,
@@ -1693,7 +1693,7 @@
                "dashes": false,
                "datasource": "$influxdb",
                "decimals": 0,
-               "description": "Instance ID of the current synchronous replication master.\n\nPanel works with metrics 0.15.0 or newer, Tarantool 2.8.1 or newer.\n",
+               "description": "Instance ID of the current synchronous replication master.\n\nPanel minimal requirements: metrics 0.15.0, Tarantool 2.8.1.\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -1830,7 +1830,7 @@
                "dashes": false,
                "datasource": "$influxdb",
                "decimals": 0,
-               "description": "Current queue term.\n\nPanel works with metrics 0.15.0 or newer, Tarantool 2.8.1 or newer.\n",
+               "description": "Current queue term.\n\nPanel minimal requirements: metrics 0.15.0, Tarantool 2.8.1.\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -1966,7 +1966,7 @@
                "dashLength": 10,
                "dashes": false,
                "datasource": "$influxdb",
-               "description": "Count of transactions collecting confirmations now.\n\nPanel works with metrics 0.15.0 or newer, Tarantool 2.8.1 or newer.\n",
+               "description": "Count of transactions collecting confirmations now.\n\nPanel minimal requirements: metrics 0.15.0, Tarantool 2.8.1.\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -2096,7 +2096,7 @@
             },
             {
                "datasource": "$influxdb",
-               "description": "Whether the queue is processing any system entry (CONFIRM/ROLLBACK/PROMOTE/DEMOTE).\n\nPanel works with Grafana 8.x.\n\nPanel works with metrics 0.15.0 or newer, Tarantool 2.8.1 or newer.\n",
+               "description": "Whether the queue is processing any system entry (CONFIRM/ROLLBACK/PROMOTE/DEMOTE).\n\nPanel minimal requirements: Grafana 8.\n\nPanel minimal requirements: metrics 0.15.0, Tarantool 2.8.1.\n",
                "fieldConfig": {
                   "defaults": {
                      "color": {
@@ -3971,7 +3971,7 @@
                "dashLength": 10,
                "dashes": false,
                "datasource": "$influxdb",
-               "description": "Average number of requests processed by tx thread per second.\n\nPanel works with `metrics >= 0.13.0` and `Tarantool >= 2.10-beta2`.\n",
+               "description": "Average number of requests processed by tx thread per second.\n\nPanel minimal requirements: metrics 0.13.0, Tarantool 2.10-beta2.\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -4112,7 +4112,7 @@
                "dashes": false,
                "datasource": "$influxdb",
                "decimals": 0,
-               "description": "Number of requests currently being processed in the tx thread.\n\nPanel works with `metrics >= 0.13.0` and `Tarantool >= 2.10-beta2`.\n",
+               "description": "Number of requests currently being processed in the tx thread.\n\nPanel minimal requirements: metrics 0.13.0, Tarantool 2.10-beta2.\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -4248,7 +4248,7 @@
                "dashLength": 10,
                "dashes": false,
                "datasource": "$influxdb",
-               "description": "Average number of requests which was placed in queues\nof streams per second.\n\nPanel works with `metrics >= 0.13.0` and `Tarantool >= 2.10-beta2`.\n",
+               "description": "Average number of requests which was placed in queues\nof streams per second.\n\nPanel minimal requirements: metrics 0.13.0, Tarantool 2.10-beta2.\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -4389,7 +4389,7 @@
                "dashes": false,
                "datasource": "$influxdb",
                "decimals": 0,
-               "description": "Number of requests currently waiting in queues of streams.\n\nPanel works with `metrics >= 0.13.0` and `Tarantool >= 2.10-beta2`.\n",
+               "description": "Number of requests currently waiting in queues of streams.\n\nPanel minimal requirements: metrics 0.13.0, Tarantool 2.10-beta2.\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -4802,7 +4802,7 @@
                "dashLength": 10,
                "dashes": false,
                "datasource": "$influxdb",
-               "description": "Data sent by instance with binary protocol connections,\nseparated per thread.\nGraph shows average bytes per second.\n\nPanel works with metrics 0.15.0 or newer, Tarantool 2.10 or newer.\n",
+               "description": "Data sent by instance with binary protocol connections,\nseparated per thread.\nGraph shows average bytes per second.\n\nPanel minimal requirements: metrics 0.15.0, Tarantool 2.10.\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -4948,7 +4948,7 @@
                "dashLength": 10,
                "dashes": false,
                "datasource": "$influxdb",
-               "description": "Data received by instance from binary protocol connections,\nseparated per thread.\nGraph shows average bytes per second.\n\nPanel works with metrics 0.15.0 or newer, Tarantool 2.10 or newer.\n",
+               "description": "Data received by instance from binary protocol connections,\nseparated per thread.\nGraph shows average bytes per second.\n\nPanel minimal requirements: metrics 0.15.0, Tarantool 2.10.\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -5094,7 +5094,7 @@
                "dashLength": 10,
                "dashes": false,
                "datasource": "$influxdb",
-               "description": "Average number of new binary protocol connections per second,\nseparated per thread.\n\nPanel works with metrics 0.15.0 or newer, Tarantool 2.10 or newer.\n",
+               "description": "Average number of new binary protocol connections per second,\nseparated per thread.\n\nPanel minimal requirements: metrics 0.15.0, Tarantool 2.10.\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -5241,7 +5241,7 @@
                "dashes": false,
                "datasource": "$influxdb",
                "decimals": 0,
-               "description": "Number of current active binary protocol connections,\nseparated per thread.\n\nPanel works with metrics 0.15.0 or newer, Tarantool 2.10 or newer.\n",
+               "description": "Number of current active binary protocol connections,\nseparated per thread.\n\nPanel minimal requirements: metrics 0.15.0, Tarantool 2.10.\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -5383,7 +5383,7 @@
                "dashLength": 10,
                "dashes": false,
                "datasource": "$influxdb",
-               "description": "Number of network requests this instance has handled,\nseparated per thread.\nGraph shows mean rps.\n\nPanel works with metrics 0.15.0 or newer, Tarantool 2.10 or newer.\n",
+               "description": "Number of network requests this instance has handled,\nseparated per thread.\nGraph shows mean rps.\n\nPanel minimal requirements: metrics 0.15.0, Tarantool 2.10.\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -5529,7 +5529,7 @@
                "dashLength": 10,
                "dashes": false,
                "datasource": "$influxdb",
-               "description": "Average number of requests processed per second,\nseparated per thread.\n\nPanel works with metrics 0.15.0 or newer, Tarantool 2.10 or newer.\n",
+               "description": "Average number of requests processed per second,\nseparated per thread.\n\nPanel minimal requirements: metrics 0.15.0, Tarantool 2.10.\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -5675,7 +5675,7 @@
                "dashLength": 10,
                "dashes": false,
                "datasource": "$influxdb",
-               "description": "Average number of requests which was placed in queues\nof streams per second, separated per thread.\n\nPanel works with metrics 0.15.0 or newer, Tarantool 2.10 or newer.\n",
+               "description": "Average number of requests which was placed in queues\nof streams per second, separated per thread.\n\nPanel minimal requirements: metrics 0.15.0, Tarantool 2.10.\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -5822,7 +5822,7 @@
                "dashes": false,
                "datasource": "$influxdb",
                "decimals": 0,
-               "description": "Number of pending network requests,\nseparated per thread.\n\nPanel works with metrics 0.15.0 or newer, Tarantool 2.10 or newer.\n",
+               "description": "Number of pending network requests,\nseparated per thread.\n\nPanel minimal requirements: metrics 0.15.0, Tarantool 2.10.\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -5965,7 +5965,7 @@
                "dashes": false,
                "datasource": "$influxdb",
                "decimals": 0,
-               "description": "Number of requests currently being processed,\nseparated per thread.\n\nPanel works with metrics 0.15.0 or newer, Tarantool 2.10 or newer.\n",
+               "description": "Number of requests currently being processed,\nseparated per thread.\n\nPanel minimal requirements: metrics 0.15.0, Tarantool 2.10.\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -6108,7 +6108,7 @@
                "dashes": false,
                "datasource": "$influxdb",
                "decimals": 0,
-               "description": "Number of requests currently waiting in queues of streams,\nseparated per thread.\n\nPanel works with metrics 0.15.0 or newer, Tarantool 2.10 or newer.\n",
+               "description": "Number of requests currently waiting in queues of streams,\nseparated per thread.\n\nPanel minimal requirements: metrics 0.15.0, Tarantool 2.10.\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -7510,7 +7510,7 @@
                "dashLength": 10,
                "dashes": false,
                "datasource": "$influxdb",
-               "description": "Each operation like `space:replace{}` turns into ``statement``\nfor the current transaction.\n\nGraph shows the number of bytes that are allocated\nfor the statements of all current transactions.\n\nPanel works with metrics 0.15.1 or newer, Tarantool 2.10 or newer.\n",
+               "description": "Each operation like `space:replace{}` turns into ``statement``\nfor the current transaction.\n\nGraph shows the number of bytes that are allocated\nfor the statements of all current transactions.\n\nPanel minimal requirements: metrics 0.15.1, Tarantool 2.10.\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -7650,7 +7650,7 @@
                "dashLength": 10,
                "dashes": false,
                "datasource": "$influxdb",
-               "description": "Each operation like `space:replace{}` turns into ``statement``\nfor the current transaction.\n\nGraph shows average bytes used by transactions for statements\n(`txn.statements.total` bytes / number of open transactions).\n\nPanel works with metrics 0.15.1 or newer, Tarantool 2.10 or newer.\n",
+               "description": "Each operation like `space:replace{}` turns into ``statement``\nfor the current transaction.\n\nGraph shows average bytes used by transactions for statements\n(`txn.statements.total` bytes / number of open transactions).\n\nPanel minimal requirements: metrics 0.15.1, Tarantool 2.10.\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -7790,7 +7790,7 @@
                "dashLength": 10,
                "dashes": false,
                "datasource": "$influxdb",
-               "description": "Each operation like `space:replace{}` turns into ``statement``\nfor the current transaction.\n\nGraph shows the maximum number of bytes used by one\nthe current transaction for statements.\n\nPanel works with metrics 0.15.1 or newer, Tarantool 2.10 or newer.\n",
+               "description": "Each operation like `space:replace{}` turns into ``statement``\nfor the current transaction.\n\nGraph shows the maximum number of bytes used by one\nthe current transaction for statements.\n\nPanel minimal requirements: metrics 0.15.1, Tarantool 2.10.\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -7930,7 +7930,7 @@
                "dashLength": 10,
                "dashes": false,
                "datasource": "$influxdb",
-               "description": "User may allocate memory for the current transaction with\nTarantool C APIfunction `box_txn_alloc()`.\n\nGraph shows memory allocated for all current transactions.\n\nPanel works with metrics 0.15.1 or newer, Tarantool 2.10 or newer.\n",
+               "description": "User may allocate memory for the current transaction with\nTarantool C APIfunction `box_txn_alloc()`.\n\nGraph shows memory allocated for all current transactions.\n\nPanel minimal requirements: metrics 0.15.1, Tarantool 2.10.\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -8070,7 +8070,7 @@
                "dashLength": 10,
                "dashes": false,
                "datasource": "$influxdb",
-               "description": "User may allocate memory for the current transaction with\nTarantool C APIfunction `box_txn_alloc()`.\n\nGraph shows transaction average\n(total allocated bytes / number of all current transactions).\n\nPanel works with metrics 0.15.1 or newer, Tarantool 2.10 or newer.\n",
+               "description": "User may allocate memory for the current transaction with\nTarantool C APIfunction `box_txn_alloc()`.\n\nGraph shows transaction average\n(total allocated bytes / number of all current transactions).\n\nPanel minimal requirements: metrics 0.15.1, Tarantool 2.10.\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -8210,7 +8210,7 @@
                "dashLength": 10,
                "dashes": false,
                "datasource": "$influxdb",
-               "description": "User may allocate memory for the current transaction with\nTarantool C APIfunction `box_txn_alloc()`.\n\nGraph shows the maximum number of bytes allocated over all current transactions.\n\nPanel works with metrics 0.15.1 or newer, Tarantool 2.10 or newer.\n",
+               "description": "User may allocate memory for the current transaction with\nTarantool C APIfunction `box_txn_alloc()`.\n\nGraph shows the maximum number of bytes allocated over all current transactions.\n\nPanel minimal requirements: metrics 0.15.1, Tarantool 2.10.\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -8350,7 +8350,7 @@
                "dashLength": 10,
                "dashes": false,
                "datasource": "$influxdb",
-               "description": "System may store utility things like logs and savepoints\nfor each transaction.\n\nGraph shows memory allocated for all current transactions.\n\nPanel works with metrics 0.15.1 or newer, Tarantool 2.10 or newer.\n",
+               "description": "System may store utility things like logs and savepoints\nfor each transaction.\n\nGraph shows memory allocated for all current transactions.\n\nPanel minimal requirements: metrics 0.15.1, Tarantool 2.10.\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -8490,7 +8490,7 @@
                "dashLength": 10,
                "dashes": false,
                "datasource": "$influxdb",
-               "description": "System may store utility things like logs and savepoints\nfor each transaction.\n\nGraph shows transaction average\n(total allocated bytes / number of all current transactions).\n\nPanel works with metrics 0.15.1 or newer, Tarantool 2.10 or newer.\n",
+               "description": "System may store utility things like logs and savepoints\nfor each transaction.\n\nGraph shows transaction average\n(total allocated bytes / number of all current transactions).\n\nPanel minimal requirements: metrics 0.15.1, Tarantool 2.10.\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -8630,7 +8630,7 @@
                "dashLength": 10,
                "dashes": false,
                "datasource": "$influxdb",
-               "description": "System may store utility things like logs and savepoints\nfor each transaction.\n\nGraph shows the maximum number of bytes allocated over all current transactions.\n\nPanel works with metrics 0.15.1 or newer, Tarantool 2.10 or newer.\n",
+               "description": "System may store utility things like logs and savepoints\nfor each transaction.\n\nGraph shows the maximum number of bytes allocated over all current transactions.\n\nPanel minimal requirements: metrics 0.15.1, Tarantool 2.10.\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -8770,7 +8770,7 @@
                "dashLength": 10,
                "dashes": false,
                "datasource": "$influxdb",
-               "description": "Tarantool allocates memory for trackers\nthat keep track of transaction reads.\n\nGraph shows memory allocated for trackers of all current transactions.\n\nPanel works with metrics 0.15.1 or newer, Tarantool 2.10 or newer.\n",
+               "description": "Tarantool allocates memory for trackers\nthat keep track of transaction reads.\n\nGraph shows memory allocated for trackers of all current transactions.\n\nPanel minimal requirements: metrics 0.15.1, Tarantool 2.10.\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -8910,7 +8910,7 @@
                "dashLength": 10,
                "dashes": false,
                "datasource": "$influxdb",
-               "description": "Tarantool allocates memory for trackers\nthat keep track of transaction reads.\n\nGraph shows transaction tracker average\n(total allocated bytes / number of all current transactions).\n\nPanel works with metrics 0.15.1 or newer, Tarantool 2.10 or newer.\n",
+               "description": "Tarantool allocates memory for trackers\nthat keep track of transaction reads.\n\nGraph shows transaction tracker average\n(total allocated bytes / number of all current transactions).\n\nPanel minimal requirements: metrics 0.15.1, Tarantool 2.10.\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -9050,7 +9050,7 @@
                "dashLength": 10,
                "dashes": false,
                "datasource": "$influxdb",
-               "description": "Tarantool allocates memory for trackers\nthat keep track of transaction reads.\n\nGraph shows the maximum number of bytes allocated for a tracker\nover all current transactions.\n\nPanel works with metrics 0.15.1 or newer, Tarantool 2.10 or newer.\n",
+               "description": "Tarantool allocates memory for trackers\nthat keep track of transaction reads.\n\nGraph shows the maximum number of bytes allocated for a tracker\nover all current transactions.\n\nPanel minimal requirements: metrics 0.15.1, Tarantool 2.10.\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -9190,7 +9190,7 @@
                "dashLength": 10,
                "dashes": false,
                "datasource": "$influxdb",
-               "description": "Tarantool allocates memory in case of conflicts.\n\nGraph shows memory allocated for all current conflicts.\n\nPanel works with metrics 0.15.1 or newer, Tarantool 2.10 or newer.\n",
+               "description": "Tarantool allocates memory in case of conflicts.\n\nGraph shows memory allocated for all current conflicts.\n\nPanel minimal requirements: metrics 0.15.1, Tarantool 2.10.\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -9330,7 +9330,7 @@
                "dashLength": 10,
                "dashes": false,
                "datasource": "$influxdb",
-               "description": "Tarantool allocates memory in case of conflicts.\n\nGraph shows transaction conflict average\n(total allocated bytes / number of all current conflict).\n\nPanel works with metrics 0.15.1 or newer, Tarantool 2.10 or newer.\n",
+               "description": "Tarantool allocates memory in case of conflicts.\n\nGraph shows transaction conflict average\n(total allocated bytes / number of all current conflict).\n\nPanel minimal requirements: metrics 0.15.1, Tarantool 2.10.\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -9470,7 +9470,7 @@
                "dashLength": 10,
                "dashes": false,
                "datasource": "$influxdb",
-               "description": "Tarantool allocates memory in case of conflicts.\n\nGraph shows the maximum number of bytes allocated for a transaction conflict.\n\nPanel works with metrics 0.15.1 or newer, Tarantool 2.10 or newer.\n",
+               "description": "Tarantool allocates memory in case of conflicts.\n\nGraph shows the maximum number of bytes allocated for a transaction conflict.\n\nPanel minimal requirements: metrics 0.15.1, Tarantool 2.10.\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -9611,7 +9611,7 @@
                "dashes": false,
                "datasource": "$influxdb",
                "decimals": 0,
-               "description": "MVCC is based on the tuple story mechanism.\n\nThis graph shows tuples that are used by active read-write transactions.\n\nGraph shows the number of tuples.\nPanel works with metrics 0.15.1 or newer, Tarantool 2.10 or newer.\n",
+               "description": "MVCC is based on the tuple story mechanism.\n\nThis graph shows tuples that are used by active read-write transactions.\n\nGraph shows the number of tuples.\nPanel minimal requirements: metrics 0.15.1, Tarantool 2.10.\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -9753,7 +9753,7 @@
                "dashLength": 10,
                "dashes": false,
                "datasource": "$influxdb",
-               "description": "MVCC is based on the tuple story mechanism.\n\nThis graph shows tuples that are used by active read-write transactions.\n\nGraph shows total size of tuples.\nPanel works with metrics 0.15.1 or newer, Tarantool 2.10 or newer.\n",
+               "description": "MVCC is based on the tuple story mechanism.\n\nThis graph shows tuples that are used by active read-write transactions.\n\nGraph shows total size of tuples.\nPanel minimal requirements: metrics 0.15.1, Tarantool 2.10.\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -9894,7 +9894,7 @@
                "dashes": false,
                "datasource": "$influxdb",
                "decimals": 0,
-               "description": "Retained tuples are no longer in the index,\nbut MVCC does not allow them to be removed.\n\nThis graph shows tuples that are used by active read-write transactions.\n\nGraph shows the number of tuples.\nPanel works with metrics 0.15.1 or newer, Tarantool 2.10 or newer.\n",
+               "description": "Retained tuples are no longer in the index,\nbut MVCC does not allow them to be removed.\n\nThis graph shows tuples that are used by active read-write transactions.\n\nGraph shows the number of tuples.\nPanel minimal requirements: metrics 0.15.1, Tarantool 2.10.\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -10036,7 +10036,7 @@
                "dashLength": 10,
                "dashes": false,
                "datasource": "$influxdb",
-               "description": "Retained tuples are no longer in the index,\nbut MVCC does not allow them to be removed.\n\nThis graph shows tuples that are used by active read-write transactions.\n\nGraph shows total size of tuples.\nPanel works with metrics 0.15.1 or newer, Tarantool 2.10 or newer.\n",
+               "description": "Retained tuples are no longer in the index,\nbut MVCC does not allow them to be removed.\n\nThis graph shows tuples that are used by active read-write transactions.\n\nGraph shows total size of tuples.\nPanel minimal requirements: metrics 0.15.1, Tarantool 2.10.\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -10177,7 +10177,7 @@
                "dashes": false,
                "datasource": "$influxdb",
                "decimals": 0,
-               "description": "MVCC is based on the tuple story mechanism.\n\nThis graph shows tuples that are used by read-only transactions (i.e. in read view).\n\nGraph shows the number of tuples.\nPanel works with metrics 0.15.1 or newer, Tarantool 2.10 or newer.\n",
+               "description": "MVCC is based on the tuple story mechanism.\n\nThis graph shows tuples that are used by read-only transactions (i.e. in read view).\n\nGraph shows the number of tuples.\nPanel minimal requirements: metrics 0.15.1, Tarantool 2.10.\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -10319,7 +10319,7 @@
                "dashLength": 10,
                "dashes": false,
                "datasource": "$influxdb",
-               "description": "MVCC is based on the tuple story mechanism.\n\nThis graph shows tuples that are used by read-only transactions (i.e. in read view).\n\nGraph shows total size of tuples.\nPanel works with metrics 0.15.1 or newer, Tarantool 2.10 or newer.\n",
+               "description": "MVCC is based on the tuple story mechanism.\n\nThis graph shows tuples that are used by read-only transactions (i.e. in read view).\n\nGraph shows total size of tuples.\nPanel minimal requirements: metrics 0.15.1, Tarantool 2.10.\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -10460,7 +10460,7 @@
                "dashes": false,
                "datasource": "$influxdb",
                "decimals": 0,
-               "description": "Retained tuples are no longer in the index,\nbut MVCC does not allow them to be removed.\n\nThis graph shows tuples that are used by read-only transactions (i.e. in read view).\n\nGraph shows the number of tuples.\nPanel works with metrics 0.15.1 or newer, Tarantool 2.10 or newer.\n",
+               "description": "Retained tuples are no longer in the index,\nbut MVCC does not allow them to be removed.\n\nThis graph shows tuples that are used by read-only transactions (i.e. in read view).\n\nGraph shows the number of tuples.\nPanel minimal requirements: metrics 0.15.1, Tarantool 2.10.\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -10602,7 +10602,7 @@
                "dashLength": 10,
                "dashes": false,
                "datasource": "$influxdb",
-               "description": "Retained tuples are no longer in the index,\nbut MVCC does not allow them to be removed.\n\nThis graph shows tuples that are used by read-only transactions (i.e. in read view).\n\nGraph shows total size of tuples.\nPanel works with metrics 0.15.1 or newer, Tarantool 2.10 or newer.\n",
+               "description": "Retained tuples are no longer in the index,\nbut MVCC does not allow them to be removed.\n\nThis graph shows tuples that are used by read-only transactions (i.e. in read view).\n\nGraph shows total size of tuples.\nPanel minimal requirements: metrics 0.15.1, Tarantool 2.10.\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -10743,7 +10743,7 @@
                "dashes": false,
                "datasource": "$influxdb",
                "decimals": 0,
-               "description": "MVCC is based on the tuple story mechanism.\n\nThis graph shows tuples that are not used by current transactions,\nbut are used by MVCC to track reads.\n\nGraph shows the number of tuples.\nPanel works with metrics 0.15.1 or newer, Tarantool 2.10 or newer.\n",
+               "description": "MVCC is based on the tuple story mechanism.\n\nThis graph shows tuples that are not used by current transactions,\nbut are used by MVCC to track reads.\n\nGraph shows the number of tuples.\nPanel minimal requirements: metrics 0.15.1, Tarantool 2.10.\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -10885,7 +10885,7 @@
                "dashLength": 10,
                "dashes": false,
                "datasource": "$influxdb",
-               "description": "MVCC is based on the tuple story mechanism.\n\nThis graph shows tuples that are not used by current transactions,\nbut are used by MVCC to track reads.\n\nGraph shows total size of tuples.\nPanel works with metrics 0.15.1 or newer, Tarantool 2.10 or newer.\n",
+               "description": "MVCC is based on the tuple story mechanism.\n\nThis graph shows tuples that are not used by current transactions,\nbut are used by MVCC to track reads.\n\nGraph shows total size of tuples.\nPanel minimal requirements: metrics 0.15.1, Tarantool 2.10.\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -11026,7 +11026,7 @@
                "dashes": false,
                "datasource": "$influxdb",
                "decimals": 0,
-               "description": "Retained tuples are no longer in the index,\nbut MVCC does not allow them to be removed.\n\nThis graph shows tuples that are not used by current transactions,\nbut are used by MVCC to track reads.\n\nGraph shows the number of tuples.\nPanel works with metrics 0.15.1 or newer, Tarantool 2.10 or newer.\n",
+               "description": "Retained tuples are no longer in the index,\nbut MVCC does not allow them to be removed.\n\nThis graph shows tuples that are not used by current transactions,\nbut are used by MVCC to track reads.\n\nGraph shows the number of tuples.\nPanel minimal requirements: metrics 0.15.1, Tarantool 2.10.\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -11168,7 +11168,7 @@
                "dashLength": 10,
                "dashes": false,
                "datasource": "$influxdb",
-               "description": "Retained tuples are no longer in the index,\nbut MVCC does not allow them to be removed.\n\nThis graph shows tuples that are not used by current transactions,\nbut are used by MVCC to track reads.\n\nGraph shows total size of tuples.\nPanel works with metrics 0.15.1 or newer, Tarantool 2.10 or newer.\n",
+               "description": "Retained tuples are no longer in the index,\nbut MVCC does not allow them to be removed.\n\nThis graph shows tuples that are not used by current transactions,\nbut are used by MVCC to track reads.\n\nGraph shows total size of tuples.\nPanel minimal requirements: metrics 0.15.1, Tarantool 2.10.\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -11478,7 +11478,7 @@
                "dashes": false,
                "datasource": "$influxdb",
                "decimals": 0,
-               "description": "Number of records in the space (vinyl engine).\nName of space is specified after dash.\nBy default this metrics is disabled,\nto enable it you must set global variable\ninclude_vinyl_count to true. Beware that\ncount() operation scans the space and may\nslow down your app. \n\nPanel works with `metrics >= 0.13.0`.\n",
+               "description": "Number of records in the space (vinyl engine).\nName of space is specified after dash.\nBy default this metrics is disabled,\nto enable it you must set global variable\ninclude_vinyl_count to true. Beware that\ncount() operation scans the space and may\nslow down your app.\n\nPanel minimal requirements: metrics 0.13.0.\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -11626,7 +11626,7 @@
                "dashLength": 10,
                "dashes": false,
                "datasource": "$influxdb",
-               "description": "Total number of bytes in all tuples of the space (memtx engine).\nName of space is specified after dash.\n\n`No data` may be displayed because of tarantool/metrics issue #321,\nuse `metrics >= 0.12.0` to fix.\n",
+               "description": "Total number of bytes in all tuples of the space (memtx engine).\nName of space is specified after dash.\n\nPanel minimal requirements: metrics 0.12.0.\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -11918,7 +11918,7 @@
                "dashLength": 10,
                "dashes": false,
                "datasource": "$influxdb",
-               "description": "Total size of tuples and all indexes in the space (memtx engine).\nName of space is specified after dash.\n\n`No data` may be displayed because of tarantool/metrics issue #321,\nuse `metrics >= 0.12.0` to fix.\n",
+               "description": "Total size of tuples and all indexes in the space (memtx engine).\nName of space is specified after dash.\n\nPanel minimal requirements: metrics 0.12.0.\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -12084,7 +12084,7 @@
                "dashLength": 10,
                "dashes": false,
                "datasource": "$influxdb",
-               "description": "The amount of data stored in the `.run` files located in the `vinyl_dir` directory.\n\nPanel works with `metrics >= 0.8.0`.\n",
+               "description": "The amount of data stored in the `.run` files located in the `vinyl_dir` directory.\n\nPanel minimal requirements: metrics 0.8.0.\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -12218,7 +12218,7 @@
                "dashLength": 10,
                "dashes": false,
                "datasource": "$influxdb",
-               "description": "The amount of data stored in the `.index` files located in the `vinyl_dir` directory.\n\nPanel works with `metrics >= 0.8.0`.\n",
+               "description": "The amount of data stored in the `.index` files located in the `vinyl_dir` directory.\n\nPanel minimal requirements: metrics 0.8.0.\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -12352,7 +12352,7 @@
                "dashLength": 10,
                "dashes": false,
                "datasource": "$influxdb",
-               "description": "Amount of memory in bytes currently used to store tuples (data).\n\nPanel works with `metrics >= 0.8.0`.\n",
+               "description": "Amount of memory in bytes currently used to store tuples (data).\n\nPanel minimal requirements: metrics 0.8.0.\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -12486,7 +12486,7 @@
                "dashLength": 10,
                "dashes": false,
                "datasource": "$influxdb",
-               "description": "Amount of memory in bytes currently used to store indexes.\nIf the metric value is close to box.cfg.vinyl_memory, this\nindicates that vinyl_page_size was chosen incorrectly.\n\nPanel works with `metrics >= 0.8.0`.\n",
+               "description": "Amount of memory in bytes currently used to store indexes.\nIf the metric value is close to box.cfg.vinyl_memory, this\nindicates that vinyl_page_size was chosen incorrectly.\n\nPanel minimal requirements: metrics 0.8.0.\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -12620,7 +12620,7 @@
                "dashLength": 10,
                "dashes": false,
                "datasource": "$influxdb",
-               "description": "Amount of memory in bytes used by bloom filters.\n",
+               "description": "Amount of memory in bytes used by bloom filters.\n\nPanel minimal requirements: metrics 0.8.0.\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -12754,7 +12754,7 @@
                "dashLength": 10,
                "dashes": false,
                "datasource": "$influxdb",
-               "description": "The estimated average rate of taking dumps, bytes per second.\nInitially, the rate value is 10 megabytes per second\nand being recalculated depending on the the actual rate.\nOnly significant dumps that are larger than one megabyte\nare used for the estimate.\n\nPanel works with `metrics >= 0.8.0`.\n",
+               "description": "The estimated average rate of taking dumps, bytes per second.\nInitially, the rate value is 10 megabytes per second\nand being recalculated depending on the the actual rate.\nOnly significant dumps that are larger than one megabyte\nare used for the estimate.\n\nPanel minimal requirements: metrics 0.8.0.\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -12888,7 +12888,7 @@
                "dashLength": 10,
                "dashes": false,
                "datasource": "$influxdb",
-               "description": "The actual average rate of performing the write operations, bytes per second.\nThe rate is calculated as a 5-second moving average.\nIf the metric value is gradually going down, this can indicate some disk issues.\n\nPanel works with `metrics >= 0.8.0`.\n",
+               "description": "The actual average rate of performing the write operations, bytes per second.\nThe rate is calculated as a 5-second moving average.\nIf the metric value is gradually going down, this can indicate some disk issues.\n\nPanel minimal requirements: metrics 0.8.0.\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -13022,7 +13022,7 @@
                "dashLength": 10,
                "dashes": false,
                "datasource": "$influxdb",
-               "description": "The write rate limit, bytes per second.\nThe regulator imposes the limit on transactions based on the observed dump/compaction performance.\nIf the metric value is down to approximately 100 Kbps,\nthis indicates issues with the disk or the scheduler.\n\nPanel works with `metrics >= 0.8.0`.\n",
+               "description": "The write rate limit, bytes per second.\nThe regulator imposes the limit on transactions based on the observed dump/compaction performance.\nIf the metric value is down to approximately 100 Kbps,\nthis indicates issues with the disk or the scheduler.\n\nPanel minimal requirements: metrics 0.8.0.\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -13156,7 +13156,7 @@
                "dashLength": 10,
                "dashes": false,
                "datasource": "$influxdb",
-               "description": "«Level 0» (L0) memory area in bytes. L0 is the area that\nvinyl can use for in-memory storage of an LSM tree.\nBy monitoring this metric, you can see when L0 is getting\nclose to its maximum (tnt_vinyl_regulator_dump_watermark),\nat which time a dump will occur. You can expect L0 = 0\nimmediately after the dump operation is completed.\n\nPanel works with `metrics >= 0.8.0`.\n",
+               "description": "«Level 0» (L0) memory area in bytes. L0 is the area that\nvinyl can use for in-memory storage of an LSM tree.\nBy monitoring this metric, you can see when L0 is getting\nclose to its maximum (tnt_vinyl_regulator_dump_watermark),\nat which time a dump will occur. You can expect L0 = 0\nimmediately after the dump operation is completed.\n\nPanel minimal requirements: metrics 0.8.0.\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -13290,7 +13290,7 @@
                "dashLength": 10,
                "dashes": false,
                "datasource": "$influxdb",
-               "description": "The maximum amount of memory used for in-memory storing of a vinyl LSM tree.\nWhen accessing this maximum, the dumping must occur.\nFor details, see https://www.tarantool.io/en/doc/latest/book/box/engines/#engines-algorithm-filling-lsm.\nThe value is slightly smaller than the amount of memory allocated for vinyl trees,\nwhich is the `vinyl_memory` parameter.\n\nPanel works with `metrics >= 0.8.0`.\n",
+               "description": "The maximum amount of memory used for in-memory storing of a vinyl LSM tree.\nWhen accessing this maximum, the dumping must occur.\nFor details, see https://www.tarantool.io/en/doc/latest/book/box/engines/#engines-algorithm-filling-lsm.\nThe value is slightly smaller than the amount of memory allocated for vinyl trees,\nwhich is the `vinyl_memory` parameter.\n\nPanel minimal requirements: metrics 0.8.0.\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -13424,7 +13424,7 @@
                "dashLength": 10,
                "dashes": false,
                "datasource": "$influxdb",
-               "description": "The number of fibers that are blocked waiting for Vinyl level0 memory quota.\n\nPanel works with `metrics >= 0.13.0` and `Tarantool >= 2.8.3`.\n",
+               "description": "The number of fibers that are blocked waiting for Vinyl level0 memory quota.\n\nPanel minimal requirements: metrics 0.13.0, Tarantool 2.8.3.\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -13558,7 +13558,7 @@
                "dashLength": 10,
                "dashes": false,
                "datasource": "$influxdb",
-               "description": "Average per second rate of commits (successful transaction ends).\nIt includes implicit commits: for example, any insert operation causes a commit\nunless it is within a `box.begin()`–`box.commit()` block.\n\nPanel works with `metrics >= 0.8.0`.\n",
+               "description": "Average per second rate of commits (successful transaction ends).\nIt includes implicit commits: for example, any insert operation causes a commit\nunless it is within a `box.begin()`–`box.commit()` block.\n\nPanel minimal requirements: metrics 0.8.0.\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -13698,7 +13698,7 @@
                "dashLength": 10,
                "dashes": false,
                "datasource": "$influxdb",
-               "description": "Average per second rate of rollbacks (unsuccessful transaction ends).\nThis is not merely a count of explicit `box.rollback()` requests — it includes requests\nthat ended with errors.\nPanel works with `metrics >= 0.8.0`.\n",
+               "description": "Average per second rate of rollbacks (unsuccessful transaction ends).\nThis is not merely a count of explicit `box.rollback()` requests — it includes requests\nthat ended with errors.\n\nPanel minimal requirements: metrics 0.8.0.\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -13838,7 +13838,7 @@
                "dashLength": 10,
                "dashes": false,
                "datasource": "$influxdb",
-               "description": "Average per second rate of conflicts that caused transactions to roll back.\nThe ratio `tx conflicts` / `tx commits` above 5% indicates that vinyl is not healthy.\nAt this moment you’ll probably see a lot of other problems with vinyl.\n\nPanel works with `metrics >= 0.8.0`.\n",
+               "description": "Average per second rate of conflicts that caused transactions to roll back.\nThe ratio `tx conflicts` / `tx commits` above 5% indicates that vinyl is not healthy.\nAt this moment you’ll probably see a lot of other problems with vinyl.\n\nPanel minimal requirements: metrics 0.8.0.\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -13979,7 +13979,7 @@
                "dashes": false,
                "datasource": "$influxdb",
                "decimals": 0,
-               "description": "Number of current read views, that is, transactions entered a read-only state\nto avoid conflict temporarily.\nIf the value stays non-zero for a long time, it indicates of a memory leak.\n\nPanel works with `metrics >= 0.8.0`.\n",
+               "description": "Number of current read views, that is, transactions entered a read-only state\nto avoid conflict temporarily.\nIf the value stays non-zero for a long time, it indicates of a memory leak.\n\nPanel minimal requirements: metrics 0.8.0.\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -14115,7 +14115,7 @@
                "dashLength": 10,
                "dashes": false,
                "datasource": "$influxdb",
-               "description": "The number of the scheduler dump/compaction tasks in progress now.\n\nPanel works with `metrics >= 0.8.0`.\n",
+               "description": "The number of the scheduler dump/compaction tasks in progress now.\n\nPanel minimal requirements: metrics 0.8.0.\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -14255,7 +14255,7 @@
                "dashLength": 10,
                "dashes": false,
                "datasource": "$influxdb",
-               "description": "Scheduler dump/compaction tasks failed.\nAverage per second rate is shown.\n\nPanel works with `metrics >= 0.8.0`.\n",
+               "description": "Scheduler dump/compaction tasks failed.\nAverage per second rate is shown.\n\nPanel minimal requirements: metrics 0.8.0.\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -14401,7 +14401,7 @@
                "dashLength": 10,
                "dashes": false,
                "datasource": "$influxdb",
-               "description": "Time spent by all worker threads performing dumps.\nAverage per second rate is shown.\n\nPanel works with `metrics >= 0.8.0`.\n",
+               "description": "Time spent by all worker threads performing dumps.\nAverage per second rate is shown.\n\nPanel minimal requirements: metrics 0.8.0.\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -14541,7 +14541,7 @@
                "dashLength": 10,
                "dashes": false,
                "datasource": "$influxdb",
-               "description": "Scheduler dumps completed average per second rate.\n\nPanel works with `metrics >= 0.13.0`.\n",
+               "description": "Scheduler dumps completed average per second rate.\n\nPanel minimal requirements: metrics 0.13.0.\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -14701,7 +14701,7 @@
                "dashLength": 10,
                "dashes": false,
                "datasource": "$influxdb",
-               "description": "This is the average share of time\nspent by instance process executing in user mode.\nMetrics obtained using `getrusage()` call.\n\nPanel works with `metrics >= 0.8.0`.\n",
+               "description": "This is the average share of time\nspent by instance process executing in user mode.\nMetrics obtained using `getrusage()` call.\n\nPanel minimal requirements: metrics 0.8.0.\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -14842,7 +14842,7 @@
                "dashLength": 10,
                "dashes": false,
                "datasource": "$influxdb",
-               "description": "This is the average share of time\nspent by instance process executing in kernel mode.\nMetrics obtained using `getrusage()` call.\n\nPanel works with `metrics >= 0.8.0`.\n",
+               "description": "This is the average share of time\nspent by instance process executing in kernel mode.\nMetrics obtained using `getrusage()` call.\n\nPanel minimal requirements: metrics 0.8.0.\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -15539,7 +15539,7 @@
                "dashLength": 10,
                "dashes": false,
                "datasource": "$influxdb",
-               "description": "Duration of last event loop iteration (tx thread).\nHigh duration results in longer responses,\npossible bad health signals and may be the\nreason of \"Too long WAL write\" errors.\n\nPanel works with `metrics >= 0.13.0`.\n",
+               "description": "Duration of last event loop iteration (tx thread).\nHigh duration results in longer responses,\npossible bad health signals and may be the\nreason of \"Too long WAL write\" errors.\n\nPanel minimal requirements: metrics 0.13.0.\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -15674,7 +15674,7 @@
                "dashes": false,
                "datasource": "$influxdb",
                "decimals": 0,
-               "description": "Current number of fibers in tx thread. \n\nPanel works with `metrics >= 0.13.0`.\n",
+               "description": "Current number of fibers in tx thread.\n\nPanel minimal requirements: metrics 0.13.0.\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -16098,7 +16098,7 @@
                "dashLength": 10,
                "dashes": false,
                "datasource": "$influxdb",
-               "description": "Average number of snap restores (guard assertions\nleading to stopping trace executions) per second.\n\n\nPanel works with `metrics >= 0.15.0` and `Tarantool >= 2.6`.",
+               "description": "Average number of snap restores (guard assertions\nleading to stopping trace executions) per second.\n\n\nPanel minimal requirements: metrics 0.15.0, Tarantool 2.6.",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -16238,7 +16238,7 @@
                "dashLength": 10,
                "dashes": false,
                "datasource": "$influxdb",
-               "description": "Average number of new JIT traces per second.\n\n\nPanel works with `metrics >= 0.6.0` and `Tarantool >= 2.6`.",
+               "description": "Average number of new JIT traces per second.\n\n\nPanel minimal requirements: metrics 0.6.0, Tarantool 2.6.",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -16378,7 +16378,7 @@
                "dashLength": 10,
                "dashes": false,
                "datasource": "$influxdb",
-               "description": "Average number of JIT trace aborts per second.\n\n\nPanel works with `metrics >= 0.15.0` and `Tarantool >= 2.6`.",
+               "description": "Average number of JIT trace aborts per second.\n\n\nPanel minimal requirements: metrics 0.15.0, Tarantool 2.6.",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -16518,7 +16518,7 @@
                "dashLength": 10,
                "dashes": false,
                "datasource": "$influxdb",
-               "description": "Total size of allocated machine code areas.\n\n\nPanel works with `metrics >= 0.6.0` and `Tarantool >= 2.6`.",
+               "description": "Total size of allocated machine code areas.\n\n\nPanel minimal requirements: metrics 0.6.0, Tarantool 2.6.",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -16652,7 +16652,7 @@
                "dashLength": 10,
                "dashes": false,
                "datasource": "$influxdb",
-               "description": "Average number of strings being extracted from hash instead of allocating per second.\n\n\nPanel works with `metrics >= 0.15.0` and `Tarantool >= 2.6`.",
+               "description": "Average number of strings being extracted from hash instead of allocating per second.\n\n\nPanel minimal requirements: metrics 0.15.0, Tarantool 2.6.",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -16792,7 +16792,7 @@
                "dashLength": 10,
                "dashes": false,
                "datasource": "$influxdb",
-               "description": "Average number of strings being allocated due to hash miss per second.\n\n\nPanel works with `metrics >= 0.15.0` and `Tarantool >= 2.6`.",
+               "description": "Average number of strings being allocated due to hash miss per second.\n\n\nPanel minimal requirements: metrics 0.15.0, Tarantool 2.6.",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -16932,7 +16932,7 @@
                "dashLength": 10,
                "dashes": false,
                "datasource": "$influxdb",
-               "description": "Average count of incremental GC steps (atomic state) per second.\n\n\nPanel works with `metrics >= 0.15.0` and `Tarantool >= 2.6`.",
+               "description": "Average count of incremental GC steps (atomic state) per second.\n\n\nPanel minimal requirements: metrics 0.15.0, Tarantool 2.6.",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -17072,7 +17072,7 @@
                "dashLength": 10,
                "dashes": false,
                "datasource": "$influxdb",
-               "description": "Average count of incremental GC steps (sweepstring state) per second.\n\n\nPanel works with `metrics >= 0.15.0` and `Tarantool >= 2.6`.",
+               "description": "Average count of incremental GC steps (sweepstring state) per second.\n\n\nPanel minimal requirements: metrics 0.15.0, Tarantool 2.6.",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -17212,7 +17212,7 @@
                "dashLength": 10,
                "dashes": false,
                "datasource": "$influxdb",
-               "description": "Average count of incremental GC steps (finalize state) per second.\n\n\nPanel works with `metrics >= 0.15.0` and `Tarantool >= 2.6`.",
+               "description": "Average count of incremental GC steps (finalize state) per second.\n\n\nPanel minimal requirements: metrics 0.15.0, Tarantool 2.6.",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -17352,7 +17352,7 @@
                "dashLength": 10,
                "dashes": false,
                "datasource": "$influxdb",
-               "description": "Average count of incremental GC steps (sweep state) per second.\n\n\nPanel works with `metrics >= 0.15.0` and `Tarantool >= 2.6`.",
+               "description": "Average count of incremental GC steps (sweep state) per second.\n\n\nPanel minimal requirements: metrics 0.15.0, Tarantool 2.6.",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -17492,7 +17492,7 @@
                "dashLength": 10,
                "dashes": false,
                "datasource": "$influxdb",
-               "description": "Average count of incremental GC steps (propagate state) per second.\n\n\nPanel works with `metrics >= 0.15.0` and `Tarantool >= 2.6`.",
+               "description": "Average count of incremental GC steps (propagate state) per second.\n\n\nPanel minimal requirements: metrics 0.15.0, Tarantool 2.6.",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -17632,7 +17632,7 @@
                "dashLength": 10,
                "dashes": false,
                "datasource": "$influxdb",
-               "description": "Average count of incremental GC steps (pause state) per second.\n\n\nPanel works with `metrics >= 0.15.0` and `Tarantool >= 2.6`.",
+               "description": "Average count of incremental GC steps (pause state) per second.\n\n\nPanel minimal requirements: metrics 0.15.0, Tarantool 2.6.",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -17773,7 +17773,7 @@
                "dashes": false,
                "datasource": "$influxdb",
                "decimals": 0,
-               "description": "Number of allocated string objects.\n\n\nPanel works with `metrics >= 0.6.0` and `Tarantool >= 2.6`.",
+               "description": "Number of allocated string objects.\n\n\nPanel minimal requirements: metrics 0.6.0, Tarantool 2.6.",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -17910,7 +17910,7 @@
                "dashes": false,
                "datasource": "$influxdb",
                "decimals": 0,
-               "description": "Number of allocated table objects.\n\n\nPanel works with `metrics >= 0.6.0` and `Tarantool >= 2.6`.",
+               "description": "Number of allocated table objects.\n\n\nPanel minimal requirements: metrics 0.6.0, Tarantool 2.6.",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -18047,7 +18047,7 @@
                "dashes": false,
                "datasource": "$influxdb",
                "decimals": 0,
-               "description": "Number of allocated cdata objects.\n\n\nPanel works with `metrics >= 0.6.0` and `Tarantool >= 2.6`.",
+               "description": "Number of allocated cdata objects.\n\n\nPanel minimal requirements: metrics 0.6.0, Tarantool 2.6.",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -18184,7 +18184,7 @@
                "dashes": false,
                "datasource": "$influxdb",
                "decimals": 0,
-               "description": "Number of allocated userdata objects.\n\n\nPanel works with `metrics >= 0.6.0` and `Tarantool >= 2.6`.",
+               "description": "Number of allocated userdata objects.\n\n\nPanel minimal requirements: metrics 0.6.0, Tarantool 2.6.",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -18320,7 +18320,7 @@
                "dashLength": 10,
                "dashes": false,
                "datasource": "$influxdb",
-               "description": "Current allocated Lua memory.\n\n\nPanel works with `metrics >= 0.6.0` and `Tarantool >= 2.6`.",
+               "description": "Current allocated Lua memory.\n\n\nPanel minimal requirements: metrics 0.6.0, Tarantool 2.6.",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -18454,7 +18454,7 @@
                "dashLength": 10,
                "dashes": false,
                "datasource": "$influxdb",
-               "description": "Average amount of freed Lua memory per second.\n\n\nPanel works with `metrics >= 0.15.0` and `Tarantool >= 2.6`.",
+               "description": "Average amount of freed Lua memory per second.\n\n\nPanel minimal requirements: metrics 0.15.0, Tarantool 2.6.",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -18594,7 +18594,7 @@
                "dashLength": 10,
                "dashes": false,
                "datasource": "$influxdb",
-               "description": "Average amount of allocated Lua memory per second.\n\n\nPanel works with `metrics >= 0.15.0` and `Tarantool >= 2.6`.",
+               "description": "Average amount of allocated Lua memory per second.\n\n\nPanel minimal requirements: metrics 0.15.0, Tarantool 2.6.",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -20214,7 +20214,7 @@
                "dashLength": 10,
                "dashes": false,
                "datasource": "$influxdb",
-               "description": "SQL prepare calls.\nGraph shows average calls per second.\n\nPanel works with Tarantool 2.x.\n",
+               "description": "SQL prepare calls.\nGraph shows average calls per second.\n\nPanel minimal requirements: Tarantool 2.\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -20360,7 +20360,7 @@
                "dashLength": 10,
                "dashes": false,
                "datasource": "$influxdb",
-               "description": "SQL execute calls.\nGraph shows average calls per second.\n\nPanel works with Tarantool 2.x.\n",
+               "description": "SQL execute calls.\nGraph shows average calls per second.\n\nPanel minimal requirements: Tarantool 2.\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -20506,7 +20506,7 @@
                "dashLength": 10,
                "dashes": false,
                "datasource": "$influxdb",
-               "description": "Panel displays the count of IPROTO_CALL and\nIPROTO_EVAL operations with `box.begin()`, IPROTO_EXECUTE\noperations with `TRANSACTION START` and IPROTO_BEGIN operations.\nGraph shows average calls per second.\n\nPanel works with Tarantool 2.10 or newer.\n",
+               "description": "Panel displays the count of IPROTO_CALL and\nIPROTO_EVAL operations with `box.begin()`, IPROTO_EXECUTE\noperations with `TRANSACTION START` and IPROTO_BEGIN operations.\nGraph shows average calls per second.\n\nPanel minimal requirements: Tarantool 2.10.\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -20652,7 +20652,7 @@
                "dashLength": 10,
                "dashes": false,
                "datasource": "$influxdb",
-               "description": "Panel displays the count of IPROTO_CALL and\nIPROTO_EVAL operations with `box.commit()`, IPROTO_EXECUTE\noperations with `COMMIT` and IPROTO_COMMIT operations.\nGraph shows average calls per second.\n\nPanel works with Tarantool 2.10 or newer.\n",
+               "description": "Panel displays the count of IPROTO_CALL and\nIPROTO_EVAL operations with `box.commit()`, IPROTO_EXECUTE\noperations with `COMMIT` and IPROTO_COMMIT operations.\nGraph shows average calls per second.\n\nPanel minimal requirements: Tarantool 2.10.\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -20798,7 +20798,7 @@
                "dashLength": 10,
                "dashes": false,
                "datasource": "$influxdb",
-               "description": "Panel displays the count of IPROTO_CALL and\nIPROTO_EVAL operations with `box.rollback()`, IPROTO_EXECUTE\noperations with `ROLLBACK` and IPROTO_ROLLBACK operations.\nGraph shows average calls per second.\n\nPanel works with Tarantool 2.10 or newer.\n",
+               "description": "Panel displays the count of IPROTO_CALL and\nIPROTO_EVAL operations with `box.rollback()`, IPROTO_EXECUTE\noperations with `ROLLBACK` and IPROTO_ROLLBACK operations.\nGraph shows average calls per second.\n\nPanel minimal requirements: Tarantool 2.10.\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,

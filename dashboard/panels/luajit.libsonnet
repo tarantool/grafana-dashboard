@@ -4,10 +4,10 @@ local common = import 'dashboard/panels/common.libsonnet';
   row:: common.row('Tarantool LuaJit statistics'),
 
   local version_warning(description) =
-    std.join('\n\n', [description, 'Panel works with `metrics >= 0.6.0` and `Tarantool >= 2.6`.']),
+    std.join('\n\n', [description, 'Panel minimal requirements: metrics 0.6.0, Tarantool 2.6.']),
 
   local version_warning_renamed(description) =
-    std.join('\n\n', [description, 'Panel works with `metrics >= 0.15.0` and `Tarantool >= 2.6`.']),
+    std.join('\n\n', [description, 'Panel minimal requirements: metrics 0.15.0, Tarantool 2.6.']),
 
   snap_restores(
     cfg,

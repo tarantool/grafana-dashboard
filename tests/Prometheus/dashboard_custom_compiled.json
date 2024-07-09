@@ -468,7 +468,7 @@
             },
             {
                "datasource": "$prometheus",
-               "description": "`master` status means instance is available for read and\nwrite operations. `replica` status means instance is\navailable only for read operations.\n\nPanel works with `metrics >= 0.11.0` and Grafana 8.x.\n",
+               "description": "`master` status means instance is available for read and\nwrite operations. `replica` status means instance is\navailable only for read operations.\n\nPanel minimal requirements: metrics 0.11.0, Grafana 8.\n",
                "fieldConfig": {
                   "defaults": {
                      "color": {
@@ -577,7 +577,7 @@
             },
             {
                "datasource": "$prometheus",
-               "description": "Election state (mode) of the node.\nWhen election is enabled, the node is writable only in the leader state.\n\nAll the non-leader nodes are called `follower`s.\n`candidate`s are nodes that start a new election round.\n`leader` is a node that collected a quorum of votes.\n\nPanel works with Grafana 8.x.\n\nPanel works with metrics 0.15.0 or newer, Tarantool 2.6.1 or newer.\n",
+               "description": "Election state (mode) of the node.\nWhen election is enabled, the node is writable only in the leader state.\n\nAll the non-leader nodes are called `follower`s.\n`candidate`s are nodes that start a new election round.\n`leader` is a node that collected a quorum of votes.\n\nPanel minimal requirements: Grafana 8.\n\nPanel minimal requirements: metrics 0.15.0, Tarantool 2.6.1.\n",
                "fieldConfig": {
                   "defaults": {
                      "color": {
@@ -712,7 +712,7 @@
                "dashes": false,
                "datasource": "$prometheus",
                "decimals": 0,
-               "description": "ID of a node the current node votes for.\nIf the value is 0, it means the node hasn’t\nvoted in the current term yet.\n\nPanel works with metrics 0.15.0 or newer, Tarantool 2.6.1 or newer.\n",
+               "description": "ID of a node the current node votes for.\nIf the value is 0, it means the node hasn’t\nvoted in the current term yet.\n\nPanel minimal requirements: metrics 0.15.0, Tarantool 2.6.1.\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -802,7 +802,7 @@
                "dashes": false,
                "datasource": "$prometheus",
                "decimals": 0,
-               "description": "Leader node ID in the current term.\nIf the value is 0, it means the node doesn’t know which\nnode is the leader in the current term.\n\nPanel works with metrics 0.15.0 or newer, Tarantool 2.6.1 or newer.\n",
+               "description": "Leader node ID in the current term.\nIf the value is 0, it means the node doesn’t know which\nnode is the leader in the current term.\n\nPanel minimal requirements: metrics 0.15.0, Tarantool 2.6.1.\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -892,7 +892,7 @@
                "dashes": false,
                "datasource": "$prometheus",
                "decimals": 0,
-               "description": "Current election term.\n\nPanel works with metrics 0.15.0 or newer, Tarantool 2.6.1 or newer.\n",
+               "description": "Current election term.\n\nPanel minimal requirements: metrics 0.15.0, Tarantool 2.6.1.\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -997,7 +997,7 @@
          "panels": [
             {
                "datasource": "$prometheus",
-               "description": "`follows` status means replication is running.\nOtherwise, `not running` is displayed.\n\nPanel works with `metrics >= 0.13.0` and Grafana 8.x.\n",
+               "description": "`follows` status means replication is running.\nOtherwise, `not running` is displayed.\n\nPanel minimal requirements: metrics 0.13.0, Grafana 8.\n",
                "fieldConfig": {
                   "defaults": {
                      "color": {
@@ -1110,7 +1110,7 @@
                "dashLength": 10,
                "dashes": false,
                "datasource": "$prometheus",
-               "description": "Replication lag value for Tarantool instance.\n\nPanel works with `metrics >= 0.13.0`.\n",
+               "description": "Replication lag value for Tarantool instance.\n\nPanel minimal requirements: metrics 0.13.0.\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -1198,7 +1198,7 @@
                "dashes": false,
                "datasource": "$prometheus",
                "decimals": 0,
-               "description": "Instance ID of the current synchronous replication master.\n\nPanel works with metrics 0.15.0 or newer, Tarantool 2.8.1 or newer.\n",
+               "description": "Instance ID of the current synchronous replication master.\n\nPanel minimal requirements: metrics 0.15.0, Tarantool 2.8.1.\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -1288,7 +1288,7 @@
                "dashes": false,
                "datasource": "$prometheus",
                "decimals": 0,
-               "description": "Current queue term.\n\nPanel works with metrics 0.15.0 or newer, Tarantool 2.8.1 or newer.\n",
+               "description": "Current queue term.\n\nPanel minimal requirements: metrics 0.15.0, Tarantool 2.8.1.\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -1377,7 +1377,7 @@
                "dashLength": 10,
                "dashes": false,
                "datasource": "$prometheus",
-               "description": "Count of transactions collecting confirmations now.\n\nPanel works with metrics 0.15.0 or newer, Tarantool 2.8.1 or newer.\n",
+               "description": "Count of transactions collecting confirmations now.\n\nPanel minimal requirements: metrics 0.15.0, Tarantool 2.8.1.\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -1460,7 +1460,7 @@
             },
             {
                "datasource": "$prometheus",
-               "description": "Whether the queue is processing any system entry (CONFIRM/ROLLBACK/PROMOTE/DEMOTE).\n\nPanel works with Grafana 8.x.\n\nPanel works with metrics 0.15.0 or newer, Tarantool 2.8.1 or newer.\n",
+               "description": "Whether the queue is processing any system entry (CONFIRM/ROLLBACK/PROMOTE/DEMOTE).\n\nPanel minimal requirements: Grafana 8.\n\nPanel minimal requirements: metrics 0.15.0, Tarantool 2.8.1.\n",
                "fieldConfig": {
                   "defaults": {
                      "color": {
@@ -2573,7 +2573,7 @@
                "dashLength": 10,
                "dashes": false,
                "datasource": "$prometheus",
-               "description": "Average number of requests processed by tx thread per second.\n\nPanel works with `metrics >= 0.13.0` and `Tarantool >= 2.10-beta2`.\n",
+               "description": "Average number of requests processed by tx thread per second.\n\nPanel minimal requirements: metrics 0.13.0, Tarantool 2.10-beta2.\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -2661,7 +2661,7 @@
                "dashes": false,
                "datasource": "$prometheus",
                "decimals": 0,
-               "description": "Number of requests currently being processed in the tx thread.\n\nPanel works with `metrics >= 0.13.0` and `Tarantool >= 2.10-beta2`.\n",
+               "description": "Number of requests currently being processed in the tx thread.\n\nPanel minimal requirements: metrics 0.13.0, Tarantool 2.10-beta2.\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -2750,7 +2750,7 @@
                "dashLength": 10,
                "dashes": false,
                "datasource": "$prometheus",
-               "description": "Average number of requests which was placed in queues\nof streams per second.\n\nPanel works with `metrics >= 0.13.0` and `Tarantool >= 2.10-beta2`.\n",
+               "description": "Average number of requests which was placed in queues\nof streams per second.\n\nPanel minimal requirements: metrics 0.13.0, Tarantool 2.10-beta2.\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -2838,7 +2838,7 @@
                "dashes": false,
                "datasource": "$prometheus",
                "decimals": 0,
-               "description": "Number of requests currently waiting in queues of streams.\n\nPanel works with `metrics >= 0.13.0` and `Tarantool >= 2.10-beta2`.\n",
+               "description": "Number of requests currently waiting in queues of streams.\n\nPanel minimal requirements: metrics 0.13.0, Tarantool 2.10-beta2.\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -3104,7 +3104,7 @@
                "dashLength": 10,
                "dashes": false,
                "datasource": "$prometheus",
-               "description": "Data sent by instance with binary protocol connections,\nseparated per thread.\nGraph shows average bytes per second.\n\nPanel works with metrics 0.15.0 or newer, Tarantool 2.10 or newer.\n",
+               "description": "Data sent by instance with binary protocol connections,\nseparated per thread.\nGraph shows average bytes per second.\n\nPanel minimal requirements: metrics 0.15.0, Tarantool 2.10.\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -3191,7 +3191,7 @@
                "dashLength": 10,
                "dashes": false,
                "datasource": "$prometheus",
-               "description": "Data received by instance from binary protocol connections,\nseparated per thread.\nGraph shows average bytes per second.\n\nPanel works with metrics 0.15.0 or newer, Tarantool 2.10 or newer.\n",
+               "description": "Data received by instance from binary protocol connections,\nseparated per thread.\nGraph shows average bytes per second.\n\nPanel minimal requirements: metrics 0.15.0, Tarantool 2.10.\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -3278,7 +3278,7 @@
                "dashLength": 10,
                "dashes": false,
                "datasource": "$prometheus",
-               "description": "Average number of new binary protocol connections per second,\nseparated per thread.\n\nPanel works with metrics 0.15.0 or newer, Tarantool 2.10 or newer.\n",
+               "description": "Average number of new binary protocol connections per second,\nseparated per thread.\n\nPanel minimal requirements: metrics 0.15.0, Tarantool 2.10.\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -3366,7 +3366,7 @@
                "dashes": false,
                "datasource": "$prometheus",
                "decimals": 0,
-               "description": "Number of current active binary protocol connections,\nseparated per thread.\n\nPanel works with metrics 0.15.0 or newer, Tarantool 2.10 or newer.\n",
+               "description": "Number of current active binary protocol connections,\nseparated per thread.\n\nPanel minimal requirements: metrics 0.15.0, Tarantool 2.10.\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -3455,7 +3455,7 @@
                "dashLength": 10,
                "dashes": false,
                "datasource": "$prometheus",
-               "description": "Number of network requests this instance has handled,\nseparated per thread.\nGraph shows mean rps.\n\nPanel works with metrics 0.15.0 or newer, Tarantool 2.10 or newer.\n",
+               "description": "Number of network requests this instance has handled,\nseparated per thread.\nGraph shows mean rps.\n\nPanel minimal requirements: metrics 0.15.0, Tarantool 2.10.\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -3542,7 +3542,7 @@
                "dashLength": 10,
                "dashes": false,
                "datasource": "$prometheus",
-               "description": "Average number of requests processed per second,\nseparated per thread.\n\nPanel works with metrics 0.15.0 or newer, Tarantool 2.10 or newer.\n",
+               "description": "Average number of requests processed per second,\nseparated per thread.\n\nPanel minimal requirements: metrics 0.15.0, Tarantool 2.10.\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -3629,7 +3629,7 @@
                "dashLength": 10,
                "dashes": false,
                "datasource": "$prometheus",
-               "description": "Average number of requests which was placed in queues\nof streams per second, separated per thread.\n\nPanel works with metrics 0.15.0 or newer, Tarantool 2.10 or newer.\n",
+               "description": "Average number of requests which was placed in queues\nof streams per second, separated per thread.\n\nPanel minimal requirements: metrics 0.15.0, Tarantool 2.10.\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -3717,7 +3717,7 @@
                "dashes": false,
                "datasource": "$prometheus",
                "decimals": 0,
-               "description": "Number of pending network requests,\nseparated per thread.\n\nPanel works with metrics 0.15.0 or newer, Tarantool 2.10 or newer.\n",
+               "description": "Number of pending network requests,\nseparated per thread.\n\nPanel minimal requirements: metrics 0.15.0, Tarantool 2.10.\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -3807,7 +3807,7 @@
                "dashes": false,
                "datasource": "$prometheus",
                "decimals": 0,
-               "description": "Number of requests currently being processed,\nseparated per thread.\n\nPanel works with metrics 0.15.0 or newer, Tarantool 2.10 or newer.\n",
+               "description": "Number of requests currently being processed,\nseparated per thread.\n\nPanel minimal requirements: metrics 0.15.0, Tarantool 2.10.\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -3897,7 +3897,7 @@
                "dashes": false,
                "datasource": "$prometheus",
                "decimals": 0,
-               "description": "Number of requests currently waiting in queues of streams,\nseparated per thread.\n\nPanel works with metrics 0.15.0 or newer, Tarantool 2.10 or newer.\n",
+               "description": "Number of requests currently waiting in queues of streams,\nseparated per thread.\n\nPanel minimal requirements: metrics 0.15.0, Tarantool 2.10.\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -4914,7 +4914,7 @@
                "dashes": false,
                "datasource": "$prometheus",
                "decimals": 0,
-               "description": "Number of records in the space (vinyl engine).\nName of space is specified after dash.\nBy default this metrics is disabled,\nto enable it you must set global variable\ninclude_vinyl_count to true. Beware that\ncount() operation scans the space and may\nslow down your app. \n\nPanel works with `metrics >= 0.13.0`.\n",
+               "description": "Number of records in the space (vinyl engine).\nName of space is specified after dash.\nBy default this metrics is disabled,\nto enable it you must set global variable\ninclude_vinyl_count to true. Beware that\ncount() operation scans the space and may\nslow down your app.\n\nPanel minimal requirements: metrics 0.13.0.\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -5632,7 +5632,7 @@
                "dashLength": 10,
                "dashes": false,
                "datasource": "$prometheus",
-               "description": "Duration of last event loop iteration (tx thread).\nHigh duration results in longer responses,\npossible bad health signals and may be the\nreason of \"Too long WAL write\" errors.\n\nPanel works with `metrics >= 0.13.0`.\n",
+               "description": "Duration of last event loop iteration (tx thread).\nHigh duration results in longer responses,\npossible bad health signals and may be the\nreason of \"Too long WAL write\" errors.\n\nPanel minimal requirements: metrics 0.13.0.\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -5720,7 +5720,7 @@
                "dashes": false,
                "datasource": "$prometheus",
                "decimals": 0,
-               "description": "Current number of fibers in tx thread. \n\nPanel works with `metrics >= 0.13.0`.\n",
+               "description": "Current number of fibers in tx thread.\n\nPanel minimal requirements: metrics 0.13.0.\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -6003,7 +6003,7 @@
                "dashLength": 10,
                "dashes": false,
                "datasource": "$prometheus",
-               "description": "Average number of snap restores (guard assertions\nleading to stopping trace executions) per second.\n\n\nPanel works with `metrics >= 0.15.0` and `Tarantool >= 2.6`.",
+               "description": "Average number of snap restores (guard assertions\nleading to stopping trace executions) per second.\n\n\nPanel minimal requirements: metrics 0.15.0, Tarantool 2.6.",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -6090,7 +6090,7 @@
                "dashLength": 10,
                "dashes": false,
                "datasource": "$prometheus",
-               "description": "Average number of new JIT traces per second.\n\n\nPanel works with `metrics >= 0.6.0` and `Tarantool >= 2.6`.",
+               "description": "Average number of new JIT traces per second.\n\n\nPanel minimal requirements: metrics 0.6.0, Tarantool 2.6.",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -6177,7 +6177,7 @@
                "dashLength": 10,
                "dashes": false,
                "datasource": "$prometheus",
-               "description": "Average number of JIT trace aborts per second.\n\n\nPanel works with `metrics >= 0.15.0` and `Tarantool >= 2.6`.",
+               "description": "Average number of JIT trace aborts per second.\n\n\nPanel minimal requirements: metrics 0.15.0, Tarantool 2.6.",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -6264,7 +6264,7 @@
                "dashLength": 10,
                "dashes": false,
                "datasource": "$prometheus",
-               "description": "Total size of allocated machine code areas.\n\n\nPanel works with `metrics >= 0.6.0` and `Tarantool >= 2.6`.",
+               "description": "Total size of allocated machine code areas.\n\n\nPanel minimal requirements: metrics 0.6.0, Tarantool 2.6.",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -6351,7 +6351,7 @@
                "dashLength": 10,
                "dashes": false,
                "datasource": "$prometheus",
-               "description": "Average number of strings being extracted from hash instead of allocating per second.\n\n\nPanel works with `metrics >= 0.15.0` and `Tarantool >= 2.6`.",
+               "description": "Average number of strings being extracted from hash instead of allocating per second.\n\n\nPanel minimal requirements: metrics 0.15.0, Tarantool 2.6.",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -6438,7 +6438,7 @@
                "dashLength": 10,
                "dashes": false,
                "datasource": "$prometheus",
-               "description": "Average number of strings being allocated due to hash miss per second.\n\n\nPanel works with `metrics >= 0.15.0` and `Tarantool >= 2.6`.",
+               "description": "Average number of strings being allocated due to hash miss per second.\n\n\nPanel minimal requirements: metrics 0.15.0, Tarantool 2.6.",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -6525,7 +6525,7 @@
                "dashLength": 10,
                "dashes": false,
                "datasource": "$prometheus",
-               "description": "Average count of incremental GC steps (atomic state) per second.\n\n\nPanel works with `metrics >= 0.15.0` and `Tarantool >= 2.6`.",
+               "description": "Average count of incremental GC steps (atomic state) per second.\n\n\nPanel minimal requirements: metrics 0.15.0, Tarantool 2.6.",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -6612,7 +6612,7 @@
                "dashLength": 10,
                "dashes": false,
                "datasource": "$prometheus",
-               "description": "Average count of incremental GC steps (sweepstring state) per second.\n\n\nPanel works with `metrics >= 0.15.0` and `Tarantool >= 2.6`.",
+               "description": "Average count of incremental GC steps (sweepstring state) per second.\n\n\nPanel minimal requirements: metrics 0.15.0, Tarantool 2.6.",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -6699,7 +6699,7 @@
                "dashLength": 10,
                "dashes": false,
                "datasource": "$prometheus",
-               "description": "Average count of incremental GC steps (finalize state) per second.\n\n\nPanel works with `metrics >= 0.15.0` and `Tarantool >= 2.6`.",
+               "description": "Average count of incremental GC steps (finalize state) per second.\n\n\nPanel minimal requirements: metrics 0.15.0, Tarantool 2.6.",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -6786,7 +6786,7 @@
                "dashLength": 10,
                "dashes": false,
                "datasource": "$prometheus",
-               "description": "Average count of incremental GC steps (sweep state) per second.\n\n\nPanel works with `metrics >= 0.15.0` and `Tarantool >= 2.6`.",
+               "description": "Average count of incremental GC steps (sweep state) per second.\n\n\nPanel minimal requirements: metrics 0.15.0, Tarantool 2.6.",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -6873,7 +6873,7 @@
                "dashLength": 10,
                "dashes": false,
                "datasource": "$prometheus",
-               "description": "Average count of incremental GC steps (propagate state) per second.\n\n\nPanel works with `metrics >= 0.15.0` and `Tarantool >= 2.6`.",
+               "description": "Average count of incremental GC steps (propagate state) per second.\n\n\nPanel minimal requirements: metrics 0.15.0, Tarantool 2.6.",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -6960,7 +6960,7 @@
                "dashLength": 10,
                "dashes": false,
                "datasource": "$prometheus",
-               "description": "Average count of incremental GC steps (pause state) per second.\n\n\nPanel works with `metrics >= 0.15.0` and `Tarantool >= 2.6`.",
+               "description": "Average count of incremental GC steps (pause state) per second.\n\n\nPanel minimal requirements: metrics 0.15.0, Tarantool 2.6.",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -7048,7 +7048,7 @@
                "dashes": false,
                "datasource": "$prometheus",
                "decimals": 0,
-               "description": "Number of allocated string objects.\n\n\nPanel works with `metrics >= 0.6.0` and `Tarantool >= 2.6`.",
+               "description": "Number of allocated string objects.\n\n\nPanel minimal requirements: metrics 0.6.0, Tarantool 2.6.",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -7138,7 +7138,7 @@
                "dashes": false,
                "datasource": "$prometheus",
                "decimals": 0,
-               "description": "Number of allocated table objects.\n\n\nPanel works with `metrics >= 0.6.0` and `Tarantool >= 2.6`.",
+               "description": "Number of allocated table objects.\n\n\nPanel minimal requirements: metrics 0.6.0, Tarantool 2.6.",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -7228,7 +7228,7 @@
                "dashes": false,
                "datasource": "$prometheus",
                "decimals": 0,
-               "description": "Number of allocated cdata objects.\n\n\nPanel works with `metrics >= 0.6.0` and `Tarantool >= 2.6`.",
+               "description": "Number of allocated cdata objects.\n\n\nPanel minimal requirements: metrics 0.6.0, Tarantool 2.6.",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -7318,7 +7318,7 @@
                "dashes": false,
                "datasource": "$prometheus",
                "decimals": 0,
-               "description": "Number of allocated userdata objects.\n\n\nPanel works with `metrics >= 0.6.0` and `Tarantool >= 2.6`.",
+               "description": "Number of allocated userdata objects.\n\n\nPanel minimal requirements: metrics 0.6.0, Tarantool 2.6.",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -7407,7 +7407,7 @@
                "dashLength": 10,
                "dashes": false,
                "datasource": "$prometheus",
-               "description": "Current allocated Lua memory.\n\n\nPanel works with `metrics >= 0.6.0` and `Tarantool >= 2.6`.",
+               "description": "Current allocated Lua memory.\n\n\nPanel minimal requirements: metrics 0.6.0, Tarantool 2.6.",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -7494,7 +7494,7 @@
                "dashLength": 10,
                "dashes": false,
                "datasource": "$prometheus",
-               "description": "Average amount of freed Lua memory per second.\n\n\nPanel works with `metrics >= 0.15.0` and `Tarantool >= 2.6`.",
+               "description": "Average amount of freed Lua memory per second.\n\n\nPanel minimal requirements: metrics 0.15.0, Tarantool 2.6.",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -7581,7 +7581,7 @@
                "dashLength": 10,
                "dashes": false,
                "datasource": "$prometheus",
-               "description": "Average amount of allocated Lua memory per second.\n\n\nPanel works with `metrics >= 0.15.0` and `Tarantool >= 2.6`.",
+               "description": "Average amount of allocated Lua memory per second.\n\n\nPanel minimal requirements: metrics 0.15.0, Tarantool 2.6.",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -8558,7 +8558,7 @@
                "dashLength": 10,
                "dashes": false,
                "datasource": "$prometheus",
-               "description": "SQL prepare calls.\nGraph shows average calls per second.\n\nPanel works with Tarantool 2.x.\n",
+               "description": "SQL prepare calls.\nGraph shows average calls per second.\n\nPanel minimal requirements: Tarantool 2.\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -8645,7 +8645,7 @@
                "dashLength": 10,
                "dashes": false,
                "datasource": "$prometheus",
-               "description": "SQL execute calls.\nGraph shows average calls per second.\n\nPanel works with Tarantool 2.x.\n",
+               "description": "SQL execute calls.\nGraph shows average calls per second.\n\nPanel minimal requirements: Tarantool 2.\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -8732,7 +8732,7 @@
                "dashLength": 10,
                "dashes": false,
                "datasource": "$prometheus",
-               "description": "Panel displays the count of IPROTO_CALL and\nIPROTO_EVAL operations with `box.begin()`, IPROTO_EXECUTE\noperations with `TRANSACTION START` and IPROTO_BEGIN operations.\nGraph shows average calls per second.\n\nPanel works with Tarantool 2.10 or newer.\n",
+               "description": "Panel displays the count of IPROTO_CALL and\nIPROTO_EVAL operations with `box.begin()`, IPROTO_EXECUTE\noperations with `TRANSACTION START` and IPROTO_BEGIN operations.\nGraph shows average calls per second.\n\nPanel minimal requirements: Tarantool 2.10.\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -8819,7 +8819,7 @@
                "dashLength": 10,
                "dashes": false,
                "datasource": "$prometheus",
-               "description": "Panel displays the count of IPROTO_CALL and\nIPROTO_EVAL operations with `box.commit()`, IPROTO_EXECUTE\noperations with `COMMIT` and IPROTO_COMMIT operations.\nGraph shows average calls per second.\n\nPanel works with Tarantool 2.10 or newer.\n",
+               "description": "Panel displays the count of IPROTO_CALL and\nIPROTO_EVAL operations with `box.commit()`, IPROTO_EXECUTE\noperations with `COMMIT` and IPROTO_COMMIT operations.\nGraph shows average calls per second.\n\nPanel minimal requirements: Tarantool 2.10.\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -8906,7 +8906,7 @@
                "dashLength": 10,
                "dashes": false,
                "datasource": "$prometheus",
-               "description": "Panel displays the count of IPROTO_CALL and\nIPROTO_EVAL operations with `box.rollback()`, IPROTO_EXECUTE\noperations with `ROLLBACK` and IPROTO_ROLLBACK operations.\nGraph shows average calls per second.\n\nPanel works with Tarantool 2.10 or newer.\n",
+               "description": "Panel displays the count of IPROTO_CALL and\nIPROTO_EVAL operations with `box.rollback()`, IPROTO_EXECUTE\noperations with `ROLLBACK` and IPROTO_ROLLBACK operations.\nGraph shows average calls per second.\n\nPanel minimal requirements: Tarantool 2.10.\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
