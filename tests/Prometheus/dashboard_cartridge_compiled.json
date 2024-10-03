@@ -118,11 +118,19 @@
                   {
                      "alias": "job",
                      "pattern": "job",
+                     "thresholds": [ ],
                      "type": "hidden"
                   },
                   {
-                     "alias": "/.*/",
-                     "pattern": "/.*/",
+                     "alias": "Time",
+                     "pattern": "Time",
+                     "thresholds": [ ],
+                     "type": "hidden"
+                  },
+                  {
+                     "alias": "__name__",
+                     "pattern": "__name__",
+                     "thresholds": [ ],
                      "type": "hidden"
                   }
                ],
