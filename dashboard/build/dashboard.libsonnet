@@ -170,7 +170,7 @@ function(cfg) std.foldl(
         type='grafana',
         id='grafana',
         name='Grafana',
-        version='8.0.0'
+        version='9.0.0'
       ).addRequired(
         type='panel',
         id='graph',

@@ -6,6 +6,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+- Use Grafana 11 color scheme for Prometheus cluster overview panel (#234)
+- Drop Grafana 8 support (#234)
+- Bump recommended requirements to Grafana 11 (#234)
+
 ### Fixed
 - Prometheus cluster overview panel not works for Grafana 11+ (#234)
 

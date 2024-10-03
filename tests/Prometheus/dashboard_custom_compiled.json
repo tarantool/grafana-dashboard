@@ -5,7 +5,7 @@
          "id": "grafana",
          "name": "Grafana",
          "type": "grafana",
-         "version": "8.0.0"
+         "version": "9.0.0"
       },
       {
          "id": "graph",
@@ -69,7 +69,160 @@
             {
                "columns": [ ],
                "datasource": "$prometheus",
-               "description": "Overview of Tarantool instances observed by Prometheus job.\n\nIf instance row is *red*, it means Prometheus can't reach\nURI specified in targets or ran into error.\nIf instance row is *green*, it means instance is up and running and\nPrometheus is successfully extracting metrics from it.\n\"Uptime\" column shows time since instant start.\n\nInstance alias filtering is disabled here.\n\nIf Prometheus job filter is not specified, displays running instances\nand ignores unreachable instances (we have no specific source to fetch)\n\nThis panel is designed to work with Prometheus client\nset up to have each Tarantool instance as a separate pull target.\n",
+               "description": "Overview of Tarantool instances observed by Prometheus job.\n\nIf instance row is *red*, it means Prometheus can't reach\nURI specified in targets or ran into error.\nIf instance row is *green*, it means instance is up and running and\nPrometheus is successfully extracting metrics from it.\n\"Uptime\" column shows time since instant start.\n\nInstance alias filtering is disabled here.\n\nIf Prometheus job filter is not specified, displays running instances\nand ignores unreachable instances (we have no specific source to fetch).\n\nColor scheme is expected to work properly only for Grafana 11+.\n\nThis panel is designed to work with Prometheus client\nset up to have each Tarantool instance as a separate pull target.\n",
+               "fieldConfig": {
+                  "defaults": {
+                     "custom": {
+                        "cellOptions": {
+                           "type": "auto"
+                        },
+                        "inspect": false
+                     },
+                     "mappings": [ ],
+                     "thresholds": {
+                        "mode": "absolute",
+                        "steps": [
+                           {
+                              "color": "green",
+                              "value": null
+                           },
+                           {
+                              "color": "red",
+                              "value": 80
+                           }
+                        ]
+                     }
+                  },
+                  "overrides": [
+                     {
+                        "matcher": {
+                           "id": "byName",
+                           "options": "alias"
+                        },
+                        "properties": [
+                           {
+                              "id": "displayName",
+                              "value": "Instance alias"
+                           },
+                           {
+                              "id": "custom.align"
+                           }
+                        ]
+                     },
+                     {
+                        "matcher": {
+                           "id": "byName",
+                           "options": "instance"
+                        },
+                        "properties": [
+                           {
+                              "id": "displayName",
+                              "value": "Instance URI"
+                           },
+                           {
+                              "id": "custom.align"
+                           }
+                        ]
+                     },
+                     {
+                        "matcher": {
+                           "id": "byName",
+                           "options": "Value"
+                        },
+                        "properties": [
+                           {
+                              "id": "displayName",
+                              "value": "Uptime"
+                           },
+                           {
+                              "id": "unit",
+                              "value": "s"
+                           },
+                           {
+                              "id": "custom.cellOptions",
+                              "value": {
+                                 "applyToRow": true,
+                                 "type": "color-background"
+                              }
+                           },
+                           {
+                              "id": "custom.align"
+                           },
+                           {
+                              "id": "thresholds",
+                              "value": {
+                                 "mode": "absolute",
+                                 "steps": [
+                                    {
+                                       "color": "rgba(245, 54, 54, 0.9)",
+                                       "value": null
+                                    },
+                                    {
+                                       "color": "rgba(50, 172, 45, 0.97)",
+                                       "value": 0.10000000000000001
+                                    }
+                                 ]
+                              }
+                           }
+                        ]
+                     },
+                     {
+                        "matcher": {
+                           "id": "byName",
+                           "options": "job"
+                        },
+                        "properties": [
+                           {
+                              "id": "displayName",
+                              "value": "job"
+                           },
+                           {
+                              "id": "custom.hidden",
+                              "value": true
+                           },
+                           {
+                              "id": "custom.align"
+                           }
+                        ]
+                     },
+                     {
+                        "matcher": {
+                           "id": "byName",
+                           "options": "job"
+                        },
+                        "properties": [
+                           {
+                              "id": "custom.hidden",
+                              "value": true
+                           }
+                        ]
+                     },
+                     {
+                        "matcher": {
+                           "id": "byName",
+                           "options": "Time"
+                        },
+                        "properties": [
+                           {
+                              "id": "custom.hidden",
+                              "value": true
+                           }
+                        ]
+                     },
+                     {
+                        "matcher": {
+                           "id": "byName",
+                           "options": "__name__"
+                        },
+                        "properties": [
+                           {
+                              "id": "custom.hidden",
+                              "value": true
+                           }
+                        ]
+                     }
+                  ]
+               },
                "gridPos": {
                   "h": 8,
                   "w": 12,
@@ -82,58 +235,7 @@
                   "col": 2,
                   "desc": false
                },
-               "styles": [
-                  {
-                     "alias": "Instance alias",
-                     "mappingType": 1,
-                     "pattern": "alias",
-                     "thresholds": [ ],
-                     "type": "string"
-                  },
-                  {
-                     "alias": "Instance URI",
-                     "mappingType": 1,
-                     "pattern": "instance",
-                     "thresholds": [ ],
-                     "type": "string"
-                  },
-                  {
-                     "alias": "Uptime",
-                     "colorMode": "row",
-                     "colors": [
-                        "rgba(245, 54, 54, 0.9)",
-                        "rgba(237, 129, 40, 0.89)",
-                        "rgba(50, 172, 45, 0.97)"
-                     ],
-                     "decimals": 0,
-                     "mappingType": 1,
-                     "pattern": "Value",
-                     "thresholds": [
-                        "0.1",
-                        "0.1"
-                     ],
-                     "type": "number",
-                     "unit": "s"
-                  },
-                  {
-                     "alias": "job",
-                     "pattern": "job",
-                     "thresholds": [ ],
-                     "type": "hidden"
-                  },
-                  {
-                     "alias": "Time",
-                     "pattern": "Time",
-                     "thresholds": [ ],
-                     "type": "hidden"
-                  },
-                  {
-                     "alias": "__name__",
-                     "pattern": "__name__",
-                     "thresholds": [ ],
-                     "type": "hidden"
-                  }
-               ],
+               "styles": null,
                "targets": [
                   {
                      "expr": "vendor_tt_tnt_info_uptime{vendor_app_label=\"MyCacheApplication\"}",
