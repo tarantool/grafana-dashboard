@@ -27,62 +27,17 @@ local prometheus = grafana.prometheus;
       Instance alias filtering is disabled here.
 
       If Prometheus job filter is not specified, displays running instances
-      and ignores unreachable instances (we have no specific source to fetch)
+      and ignores unreachable instances (we have no specific source to fetch).
+
+      Color scheme is expected to work properly only for Grafana 11+.
     |||),
   ):: tablePanel.new(
     title=title,
     description=description,
     datasource=cfg.datasource,
 
-    styles=[
-      {
-        alias: 'Instance alias',
-        pattern: 'alias',
-        thresholds: [],
-        type: 'string',
-        mappingType: 1,
-      },
-      {
-        alias: 'Instance URI',
-        pattern: 'instance',
-        thresholds: [],
-        type: 'string',
-        mappingType: 1,
-      },
-      {
-        alias: 'Uptime',
-        colorMode: 'row',
-        colors: [
-          'rgba(245, 54, 54, 0.9)',
-          'rgba(237, 129, 40, 0.89)',
-          'rgba(50, 172, 45, 0.97)',
-        ],
-        decimals: 0,
-        mappingType: 1,
-        pattern: 'Value',
-        thresholds: ['0.1', '0.1'],
-        type: 'number',
-        unit: 's',
-      },
-      {
-        alias: 'job',
-        pattern: 'job',
-        thresholds: [],
-        type: 'hidden',
-      },
-      {
-        alias: 'Time',
-        pattern: 'Time',
-        thresholds: [],
-        type: 'hidden',
-      },
-      {
-        alias: '__name__',
-        pattern: '__name__',
-        thresholds: [],
-        type: 'hidden',
-      },
-    ],
+    styles=null,
+
     sort={
       col: 2,
       desc: false,
@@ -114,7 +69,163 @@ local prometheus = grafana.prometheus;
       )
     else if cfg.type == variable.datasource_type.influxdb then
       error 'InfluxDB target is not supported yet'
-  ) { gridPos: { w: 12, h: 8 } },
+  ) {
+    // Workaround is expected to be removed after migrating to
+    // https://github.com/tarantool/grafana-dashboard/issues/215
+    fieldConfig: {
+      defaults: {
+        custom: {
+          cellOptions: {
+            type: 'auto',
+          },
+          inspect: false,
+        },
+        mappings: [],
+        thresholds: {
+          mode: 'absolute',
+          steps: [
+            {
+              color: 'green',
+              value: null,
+            },
+            {
+              color: 'red',
+              value: 80,
+            },
+          ],
+        },
+      },
+      overrides: [
+        {
+          matcher: {
+            id: 'byName',
+            options: 'alias',
+          },
+          properties: [
+            {
+              id: 'displayName',
+              value: 'Instance alias',
+            },
+            {
+              id: 'custom.align',
+            },
+          ],
+        },
+        {
+          matcher: {
+            id: 'byName',
+            options: 'instance',
+          },
+          properties: [
+            {
+              id: 'displayName',
+              value: 'Instance URI',
+            },
+            {
+              id: 'custom.align',
+            },
+          ],
+        },
+        {
+          matcher: {
+            id: 'byName',
+            options: 'Value',
+          },
+          properties: [
+            {
+              id: 'displayName',
+              value: 'Uptime',
+            },
+            {
+              id: 'unit',
+              value: 's',
+            },
+            {
+              id: 'custom.cellOptions',
+              value: {
+                applyToRow: true,
+                type: 'color-background',
+              },
+            },
+            {
+              id: 'custom.align',
+            },
+            {
+              id: 'thresholds',
+              value: {
+                mode: 'absolute',
+                steps: [
+                  {
+                    color: 'rgba(245, 54, 54, 0.9)',
+                    value: null,
+                  },
+                  {
+                    color: 'rgba(50, 172, 45, 0.97)',
+                    value: 0.1,
+                  },
+                ],
+              },
+            },
+          ],
+        },
+        {
+          matcher: {
+            id: 'byName',
+            options: 'job',
+          },
+          properties: [
+            {
+              id: 'displayName',
+              value: 'job',
+            },
+            {
+              id: 'custom.hidden',
+              value: true,
+            },
+            {
+              id: 'custom.align',
+            },
+          ],
+        },
+        {
+          matcher: {
+            id: 'byName',
+            options: 'job',
+          },
+          properties: [
+            {
+              id: 'custom.hidden',
+              value: true,
+            },
+          ],
+        },
+        {
+          matcher: {
+            id: 'byName',
+            options: 'Time',
+          },
+          properties: [
+            {
+              id: 'custom.hidden',
+              value: true,
+            },
+          ],
+        },
+        {
+          matcher: {
+            id: 'byName',
+            options: '__name__',
+          },
+          properties: [
+            {
+              id: 'custom.hidden',
+              value: true,
+            },
+          ],
+        },
+      ],
+    },
+  } { gridPos: { w: 12, h: 8 } },
 
   local title_workaround(  // Workaround for missing options.fieldOptions.defaults.title https://github.com/grafana/grafonnet-lib/pull/260
     stat_panel,
