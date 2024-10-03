@@ -64,13 +64,31 @@ local prometheus = grafana.prometheus;
         type: 'number',
         unit: 's',
       },
+      {
+        alias: 'job',
+        pattern: 'job',
+        thresholds: [],
+        type: 'hidden',
+      },
+      {
+        alias: 'Time',
+        pattern: 'Time',
+        thresholds: [],
+        type: 'hidden',
+      },
+      {
+        alias: '__name__',
+        pattern: '__name__',
+        thresholds: [],
+        type: 'hidden',
+      },
     ],
     sort={
       col: 2,
       desc: false,
     },
     transform='table',
-  ).hideColumn('job').hideColumn('/.*/').addTarget(
+  ).addTarget(
     if cfg.type == variable.datasource_type.prometheus then
       prometheus.target(
         expr=if std.objectHas(cfg.filters, 'job') then
