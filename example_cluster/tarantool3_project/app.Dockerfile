@@ -17,7 +17,7 @@ RUN curl -L https://tarantool.io/release/3/installer.sh | bash
 RUN DEBIAN_FRONTEND=noninteractive apt install -y tarantool tarantool-dev tt
 
 RUN tt init
-# Need tt log
+# Need tt start -i
 RUN DEBIAN_FRONTEND=noninteractive apt install -y git patch
 RUN git clone https://github.com/magefile/mage && \
     cd mage && \
@@ -25,4 +25,4 @@ RUN git clone https://github.com/magefile/mage && \
 RUN tt install tt master
 
 RUN tt rocks make
-ENTRYPOINT tt start && tt log -f
+ENTRYPOINT tt start -i
