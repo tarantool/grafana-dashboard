@@ -4,7 +4,17 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased]
+## [3.2.0] - 2024-10-04
+Grafana revisions:
+- Tarantool 3:
+  - [Prometheus revision 5](https://grafana.com/api/dashboards/21474/revisions/5/download),
+  - [InfluxDB revision 5](https://grafana.com/api/dashboards/21484/revisions/5/download);
+- Tarantool Cartridge and 1.10—2.x:
+  - [Prometheus revision 21](https://grafana.com/api/dashboards/13054/revisions/21/download),
+  - [InfluxDB revision 21](https://grafana.com/api/dashboards/12567/revisions/21/download);
+- Tarantool Data Grid 2:
+  - [Prometheus revision 10](https://grafana.com/api/dashboards/16406/revisions/10/download),
+  - [InfluxDB revision 10](https://grafana.com/api/dashboards/16405/revisions/10/download).
 
 ### Changed
 - Use Grafana 11 color scheme for Prometheus cluster overview panel (#234)
