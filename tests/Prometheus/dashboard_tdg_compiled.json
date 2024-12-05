@@ -18917,7 +18917,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tdg_scanned_tuples_sum{alias=~\"$alias\",job=~\"$job\"} / tdg_scanned_tuples_count{alias=~\"$alias\",job=~\"$job\"}\n",
+                     "expr": "rate(tdg_scanned_tuples_sum{alias=~\"$alias\",job=~\"$job\"}[$__rate_interval]) / rate(tdg_scanned_tuples_count{alias=~\"$alias\",job=~\"$job\"}[$__rate_interval])\n",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{type_name}} — {{alias}}",
@@ -19004,7 +19004,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tdg_returned_tuples_sum{alias=~\"$alias\",job=~\"$job\"} / tdg_returned_tuples_count{alias=~\"$alias\",job=~\"$job\"}\n",
+                     "expr": "rate(tdg_returned_tuples_sum{alias=~\"$alias\",job=~\"$job\"}[$__rate_interval]) / rate(tdg_returned_tuples_count{alias=~\"$alias\",job=~\"$job\"}[$__rate_interval])\n",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{type_name}} — {{alias}}",
@@ -19932,7 +19932,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tdg_graphql_query_time_sum{alias=~\"$alias\",job=~\"$job\"} / tdg_graphql_query_time_count{alias=~\"$alias\",job=~\"$job\"}\n",
+                     "expr": "rate(tdg_graphql_query_time_sum{alias=~\"$alias\",job=~\"$job\"}[$__rate_interval]) / rate(tdg_graphql_query_time_count{alias=~\"$alias\",job=~\"$job\"})[$__rate_interval])\n",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{operation_name}} ({{schema}}, {{entity}}) — {{alias}}",
@@ -20193,7 +20193,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tdg_graphql_mutation_time_sum{alias=~\"$alias\",job=~\"$job\"} / tdg_graphql_mutation_time_count{alias=~\"$alias\",job=~\"$job\"}\n",
+                     "expr": "rate(tdg_graphql_mutation_time_sum{alias=~\"$alias\",job=~\"$job\"}[$__rate_interval]) / rate(tdg_graphql_mutation_time_count{alias=~\"$alias\",job=~\"$job\"})[$__rate_interval])\n",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{operation_name}} ({{schema}}, {{entity}}) — {{alias}}",
@@ -23385,7 +23385,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tdg_jobs_execution_time_sum{alias=~\"$alias\",job=~\"$job\"} / tdg_jobs_execution_time_count{alias=~\"$alias\",job=~\"$job\"}\n",
+                     "expr": "rate(tdg_jobs_execution_time_sum{alias=~\"$alias\",job=~\"$job\"}[$__rate_interval]) / rate(tdg_jobs_execution_time_count{alias=~\"$alias\",job=~\"$job\"}[$__rate_interval])\n",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{name}} — {{alias}}",
@@ -23907,7 +23907,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tdg_tasks_execution_time_sum{alias=~\"$alias\",job=~\"$job\"} / tdg_tasks_execution_time_count{alias=~\"$alias\",job=~\"$job\"}\n",
+                     "expr": "rate(tdg_tasks_execution_time_sum{alias=~\"$alias\",job=~\"$job\"}[$__rate_interval]) / rate(tdg_tasks_execution_time_count{alias=~\"$alias\",job=~\"$job\"}[$__rate_interval])\n",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{name}} ({{kind}}) — {{alias}}",
@@ -24342,7 +24342,7 @@
                "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tdg_system_tasks_execution_time_sum{alias=~\"$alias\",job=~\"$job\"} / tdg_system_tasks_execution_time_count{alias=~\"$alias\",job=~\"$job\"}\n",
+                     "expr": "rate(tdg_system_tasks_execution_time_sum{alias=~\"$alias\",job=~\"$job\"}[$__rate_interval]) / rate(tdg_system_tasks_execution_time_count{alias=~\"$alias\",job=~\"$job\"}[$__rate_interval])\n",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{name}} ({{kind}}) — {{alias}}",

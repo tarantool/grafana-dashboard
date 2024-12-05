@@ -18,7 +18,7 @@ local prometheus = grafana.prometheus;
       prometheus.target(
         expr=std.format(
           |||
-            %(metrics_prefix)s%(metric_name_sum)s{%(filters)s} / %(metrics_prefix)s%(metric_name_count)s{%(filters)s}
+            rate(%(metrics_prefix)s%(metric_name_sum)s{%(filters)s}[$__rate_interval]) / rate(%(metrics_prefix)s%(metric_name_count)s{%(filters)s}[$__rate_interval])
           |||,
           {
             metrics_prefix: cfg.metrics_prefix,
