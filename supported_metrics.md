@@ -82,7 +82,7 @@ Based on [tarantool/metrics 1.2.0](https://github.com/tarantool/metrics/releases
 - **tnt_replication_replica_\*_lsn**: unsupported (deprecated, superseded by **tnt_replication_lsn**)
 - **tnt_replication_master_\*_lsn**: unsupported (deprecated, superseded by **tnt_replication_lsn**)
 - **tnt_runtime_lua**: unsupported (decided not to support: same as **tnt_info_memory_lua**)
-- [x] **tnt_runtime_used**: see *Tarantool runtime overview/Runtime arena memory ([#140](https://github.com/tarantool/grafana-dashboard/issues/140))
+- [x] **tnt_runtime_used**: see *Tarantool runtime overview/Runtime arena memory* panel ([#140](https://github.com/tarantool/grafana-dashboard/issues/140))
 - [x] **tnt_slab_quota_size**: see *Tarantool memtx allocation overview/Slab allocator memory limit (quota_size)* panel ([82ae335d](https://github.com/tarantool/grafana-dashboard/commit/82ae335d28609ca97a49e54b5c93dd293bd617e4))
 - [x] **tnt_slab_arena_size**: see *Tarantool memtx allocation overview/Allocated for tuples and indexes (arena_size)* panel ([82ae335d](https://github.com/tarantool/grafana-dashboard/commit/82ae335d28609ca97a49e54b5c93dd293bd617e4))
 - [x] **tnt_slab_items_size**: see *Tarantool memtx allocation overview/Allocated for tuples (items_size)* panel ([82ae335d](https://github.com/tarantool/grafana-dashboard/commit/82ae335d28609ca97a49e54b5c93dd293bd617e4))
