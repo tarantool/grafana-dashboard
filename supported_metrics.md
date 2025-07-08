@@ -121,6 +121,7 @@ Based on [tarantool/metrics 1.2.0](https://github.com/tarantool/metrics/releases
 - [x] **tnt_cartridge_issues**: see *Cluster overview/Cartridge warning issues*, *Cluster overview/Cartridge critical issues* panels ([#55](https://github.com/tarantool/grafana-dashboard/pull/55))
 - **tnt_cartridge_cluster_issues**: unsupported (decided not to support: superseded by **tnt_cartridge_issues**)
 - [x] **tnt_cartridge_failover_trigger_total**: see *Cluster overview/Failovers triggered* panel ([#178](https://github.com/tarantool/grafana-dashboard/issues/178))
+- [x] **tnt_cartridge_config_applied**: see *Cluster overview/Config application status* panel ([#241](https://github.com/tarantool/grafana-dashboard/pull/241))
 - [x] **tnt_synchro_queue_owner**: see *Replication overview/Synchronous queue owner* panel ([#178](https://github.com/tarantool/grafana-dashboard/issues/178))
 - [x] **tnt_synchro_queue_term**: see *Replication overview/Synchronous queue term* panel ([#178](https://github.com/tarantool/grafana-dashboard/issues/178))
 - [x] **tnt_synchro_queue_len**: see *Replication overview/Synchronous queue transactions* panel ([#178](https://github.com/tarantool/grafana-dashboard/issues/178))

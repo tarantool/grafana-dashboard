@@ -67,6 +67,7 @@ local vinyl = import 'dashboard/panels/vinyl.libsonnet';
     cluster.http_rps_stat(cfg) { gridPos: { w: 4, h: 5, x: 12, y: 4 } },
     cluster.net_rps_stat(cfg) { gridPos: { w: 4, h: 5, x: 16, y: 4 } },
     cluster.space_ops_stat(cfg) { gridPos: { w: 4, h: 5, x: 20, y: 4 } },
+    cluster.config_applied(cfg),
     cluster.cartridge_warning_issues(cfg),
     cluster.cartridge_critical_issues(cfg),
     cluster.failovers_per_second(cfg),
