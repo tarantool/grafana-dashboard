@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
-- Panel with Сartridge config application status (#241)
+- Panel with Сartridge configuration checksum (#242)
 
 
 ## [3.2.1] - 2024-12-06

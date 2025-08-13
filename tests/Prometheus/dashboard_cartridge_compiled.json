@@ -577,83 +577,13 @@
                "type": "stat"
             },
             {
+               "aliasColors": { },
+               "bars": false,
+               "dashLength": 10,
+               "dashes": false,
                "datasource": "$prometheus",
-               "description": "Indicates whether the instance has locally applied a new\nclusterwide configuration.\n\nPanel minimal requirements: cartridge 2.16.1, metrics 1.4.0.\n",
-               "fieldConfig": {
-                  "defaults": {
-                     "color": {
-                        "mode": "palette-classic"
-                     },
-                     "custom": {
-                        "axisLabel": "",
-                        "axisPlacement": "auto",
-                        "barAlignment": 0,
-                        "drawStyle": "line",
-                        "fillOpacity": 0,
-                        "gradientMode": "none",
-                        "hideFrom": {
-                           "legend": false,
-                           "tooltip": false,
-                           "viz": false
-                        },
-                        "lineInterpolation": "linear",
-                        "lineWidth": 1,
-                        "pointSize": 5,
-                        "scaleDistribution": {
-                           "type": "linear"
-                        },
-                        "showPoints": "never",
-                        "spanNulls": false,
-                        "stacking": {
-                           "group": "A",
-                           "mode": "none"
-                        },
-                        "thresholdsStyle": {
-                           "mode": "off"
-                        }
-                     },
-                     "mappings": [
-                        {
-                           "options": {
-                              "0": {
-                                 "color": "yellow",
-                                 "index": 0,
-                                 "text": "not applied"
-                              }
-                           },
-                           "type": "value"
-                        },
-                        {
-                           "options": {
-                              "1": {
-                                 "color": "green",
-                                 "index": 0,
-                                 "text": "applied"
-                              }
-                           },
-                           "type": "value"
-                        },
-                        {
-                           "options": {
-                              "from": 0.001,
-                              "result": {
-                                 "index": 0,
-                                 "text": "-"
-                              },
-                              "to": 0.999
-                           },
-                           "type": "range"
-                        }
-                     ],
-                     "max": 1,
-                     "min": 0,
-                     "thresholds": {
-                        "mode": "absolute",
-                        "steps": [ ]
-                     }
-                  },
-                  "overrides": [ ]
-               },
+               "description": "Cartridge configuration checksum on the instance.\nDifferences indicate configuration divergence across cluster nodes.\n\nPanel minimal requirements: metrics 1.5.0.\n",
+               "fill": 0,
                "gridPos": {
                   "h": 6,
                   "w": 8,
@@ -661,29 +591,77 @@
                   "y": 9
                },
                "id": 10,
-               "options": {
-                  "legend": {
-                     "calcs": [
-                        "last"
-                     ],
-                     "displayMode": "table",
-                     "placement": "right"
-                  },
-                  "tooltip": {
-                     "mode": "multi"
-                  }
+               "legend": {
+                  "alignAsTable": true,
+                  "avg": false,
+                  "current": true,
+                  "max": false,
+                  "min": false,
+                  "rightSide": false,
+                  "show": true,
+                  "sideWidth": null,
+                  "sort": "current",
+                  "sortDesc": true,
+                  "total": false,
+                  "values": true
                },
+               "lines": true,
+               "linewidth": 1,
+               "links": [ ],
+               "nullPointMode": "null",
+               "percentage": false,
+               "pointradius": 5,
+               "points": false,
+               "renderer": "flot",
+               "repeat": null,
+               "seriesOverrides": [ ],
+               "spaceLength": 10,
+               "stack": false,
+               "steppedLine": false,
                "targets": [
                   {
-                     "expr": "tnt_cartridge_config_applied{alias=~\"$alias\",job=~\"$job\"}",
+                     "expr": "tnt_cartridge_config_checksum{alias=~\"$alias\",job=~\"$job\"}",
                      "format": "time_series",
                      "intervalFactor": 2,
                      "legendFormat": "{{alias}}",
                      "refId": "A"
                   }
                ],
-               "title": "Config application status",
-               "type": "timeseries"
+               "thresholds": [ ],
+               "timeFrom": null,
+               "timeShift": null,
+               "title": "Configuration checksum",
+               "tooltip": {
+                  "shared": true,
+                  "sort": 2,
+                  "value_type": "individual"
+               },
+               "type": "graph",
+               "xaxis": {
+                  "buckets": null,
+                  "mode": "time",
+                  "name": null,
+                  "show": true,
+                  "values": [ ]
+               },
+               "yaxes": [
+                  {
+                     "format": "none",
+                     "label": null,
+                     "logBase": 1,
+                     "max": null,
+                     "min": 0,
+                     "show": true
+                  },
+                  {
+                     "format": "none",
+                     "label": null,
+                     "logBase": 1,
+                     "max": null,
+                     "min": 0,
+                     "show": true
+                  }
+               ]
             },
             {
                "aliasColors": { },

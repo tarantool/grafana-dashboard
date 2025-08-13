@@ -344,31 +344,26 @@ local prometheus = grafana.prometheus;
   else if cfg.type == variable.datasource_type.influxdb then
     error 'InfluxDB target is not supported yet',
 
-  config_applied(
+  cartridge_config_checksum(
     cfg,
-    title='Config application status',
+    title='Configuration checksum',
     description=|||
-      Indicates whether the instance has locally applied a new
-      clusterwide configuration.
+      Cartridge configuration checksum on the instance.
+      Differences indicate configuration divergence across cluster nodes.
 
-      Panel minimal requirements: cartridge 2.16.1, metrics 1.4.0.
+      Panel minimal requirements: metrics 1.5.0.
     |||,
-  ):: timeseries.new(
+  ):: common.default_graph(
+    cfg,
     title=title,
     description=description,
-    datasource=cfg.datasource,
+    min=0,
+    legend_avg=false,
+    legend_max=false,
     panel_height=6,
     panel_width=8,
-    max=1,
-    min=0,
-  ).addValueMapping(
-    0, 'yellow', 'not applied'
-  ).addValueMapping(
-    1, 'green', 'applied'
-  ).addRangeMapping(
-    0.001, 0.999, '-'
   ).addTarget(
-    common.target(cfg, 'tnt_cartridge_config_applied')
+    common.target(cfg, 'tnt_cartridge_config_checksum', converter='last'),
   ),
 
   memory_reserved_stat(
