@@ -9,16 +9,18 @@ RUN DEBIAN_FRONTEND=noninteractive apt install -y git \
                                                   gcc \
                                                   g++ \
                                                   unzip \
+                                                  patch \
                                                   curl
+
 COPY . .
+
 RUN mkdir -p tmp
 
 RUN curl -L https://tarantool.io/release/3/installer.sh | bash
 RUN DEBIAN_FRONTEND=noninteractive apt install -y tarantool tarantool-dev tt
 
 RUN tt init
-# Need tt start -i
-RUN DEBIAN_FRONTEND=noninteractive apt install -y git patch
 
 RUN tt rocks make
+
 ENTRYPOINT tt start -i

@@ -5870,7 +5870,7 @@
                "dashLength": 10,
                "dashes": false,
                "datasource": "$prometheus",
-               "description": "Memory used for objects allocated with Lua\nby using its internal mechanisms.\nLua memory is bounded by 2 GB per instance. \n",
+               "description": "Total memory used by Tarantool.\n\nPanel minimal requirements: metrics 1.6.0.\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
@@ -5879,6 +5879,528 @@
                   "y": 178
                },
                "id": 73,
+               "legend": {
+                  "alignAsTable": true,
+                  "avg": true,
+                  "current": true,
+                  "max": true,
+                  "min": false,
+                  "rightSide": false,
+                  "show": true,
+                  "sideWidth": null,
+                  "sort": "current",
+                  "sortDesc": true,
+                  "total": false,
+                  "values": true
+               },
+               "lines": true,
+               "linewidth": 1,
+               "links": [ ],
+               "nullPointMode": "null",
+               "percentage": false,
+               "pointradius": 5,
+               "points": false,
+               "renderer": "flot",
+               "repeat": null,
+               "seriesOverrides": [ ],
+               "spaceLength": 10,
+               "stack": false,
+               "steppedLine": false,
+               "targets": [
+                  {
+                     "expr": "(vendor_tt_tnt_memory{alias=~\"$alias\",vendor_app_label=\"MyCacheApplication\"}) +\n(vendor_tt_tnt_memory_virt{alias=~\"$alias\",vendor_app_label=\"MyCacheApplication\"})\n",
+                     "format": "time_series",
+                     "intervalFactor": 2,
+                     "legendFormat": "{{alias}}",
+                     "refId": "A"
+                  }
+               ],
+               "thresholds": [ ],
+               "timeFrom": null,
+               "timeShift": null,
+               "title": "Total memory per instance",
+               "tooltip": {
+                  "shared": true,
+                  "sort": 2,
+                  "value_type": "individual"
+               },
+               "type": "graph",
+               "xaxis": {
+                  "buckets": null,
+                  "mode": "time",
+                  "name": null,
+                  "show": true,
+                  "values": [ ]
+               },
+               "yaxes": [
+                  {
+                     "format": "bytes",
+                     "label": "in bytes",
+                     "logBase": 1,
+                     "max": null,
+                     "min": null,
+                     "show": true
+                  },
+                  {
+                     "format": "bytes",
+                     "label": null,
+                     "logBase": 1,
+                     "max": null,
+                     "min": null,
+                     "show": true
+                  }
+               ]
+            },
+            {
+               "aliasColors": { },
+               "bars": false,
+               "dashLength": 10,
+               "dashes": false,
+               "datasource": "$prometheus",
+               "description": "Resident memory used by Tarantool instance.\n\nPanel minimal requirements: metrics 1.6.0.\n",
+               "fill": 0,
+               "gridPos": {
+                  "h": 8,
+                  "w": 8,
+                  "x": 8,
+                  "y": 178
+               },
+               "id": 74,
+               "legend": {
+                  "alignAsTable": true,
+                  "avg": true,
+                  "current": true,
+                  "max": true,
+                  "min": false,
+                  "rightSide": false,
+                  "show": true,
+                  "sideWidth": null,
+                  "sort": "current",
+                  "sortDesc": true,
+                  "total": false,
+                  "values": true
+               },
+               "lines": true,
+               "linewidth": 1,
+               "links": [ ],
+               "nullPointMode": "null",
+               "percentage": false,
+               "pointradius": 5,
+               "points": false,
+               "renderer": "flot",
+               "repeat": null,
+               "seriesOverrides": [ ],
+               "spaceLength": 10,
+               "stack": false,
+               "steppedLine": false,
+               "targets": [
+                  {
+                     "expr": "vendor_tt_tnt_memory{alias=~\"$alias\",vendor_app_label=\"MyCacheApplication\"}",
+                     "format": "time_series",
+                     "intervalFactor": 2,
+                     "legendFormat": "{{alias}}",
+                     "refId": "A"
+                  }
+               ],
+               "thresholds": [ ],
+               "timeFrom": null,
+               "timeShift": null,
+               "title": "Resident memory per instance",
+               "tooltip": {
+                  "shared": true,
+                  "sort": 2,
+                  "value_type": "individual"
+               },
+               "type": "graph",
+               "xaxis": {
+                  "buckets": null,
+                  "mode": "time",
+                  "name": null,
+                  "show": true,
+                  "values": [ ]
+               },
+               "yaxes": [
+                  {
+                     "format": "bytes",
+                     "label": "in bytes",
+                     "logBase": 1,
+                     "max": null,
+                     "min": null,
+                     "show": true
+                  },
+                  {
+                     "format": "bytes",
+                     "label": null,
+                     "logBase": 1,
+                     "max": null,
+                     "min": null,
+                     "show": true
+                  }
+               ]
+            },
+            {
+               "aliasColors": { },
+               "bars": false,
+               "dashLength": 10,
+               "dashes": false,
+               "datasource": "$prometheus",
+               "description": "Virtual memory used by Tarantool instance.\n\nPanel minimal requirements: metrics 1.6.0.\n",
+               "fill": 0,
+               "gridPos": {
+                  "h": 8,
+                  "w": 8,
+                  "x": 16,
+                  "y": 178
+               },
+               "id": 75,
+               "legend": {
+                  "alignAsTable": true,
+                  "avg": true,
+                  "current": true,
+                  "max": true,
+                  "min": false,
+                  "rightSide": false,
+                  "show": true,
+                  "sideWidth": null,
+                  "sort": "current",
+                  "sortDesc": true,
+                  "total": false,
+                  "values": true
+               },
+               "lines": true,
+               "linewidth": 1,
+               "links": [ ],
+               "nullPointMode": "null",
+               "percentage": false,
+               "pointradius": 5,
+               "points": false,
+               "renderer": "flot",
+               "repeat": null,
+               "seriesOverrides": [ ],
+               "spaceLength": 10,
+               "stack": false,
+               "steppedLine": false,
+               "targets": [
+                  {
+                     "expr": "vendor_tt_tnt_memory_virt{alias=~\"$alias\",vendor_app_label=\"MyCacheApplication\"}",
+                     "format": "time_series",
+                     "intervalFactor": 2,
+                     "legendFormat": "{{alias}}",
+                     "refId": "A"
+                  }
+               ],
+               "thresholds": [ ],
+               "timeFrom": null,
+               "timeShift": null,
+               "title": "Virtual memory per instance",
+               "tooltip": {
+                  "shared": true,
+                  "sort": 2,
+                  "value_type": "individual"
+               },
+               "type": "graph",
+               "xaxis": {
+                  "buckets": null,
+                  "mode": "time",
+                  "name": null,
+                  "show": true,
+                  "values": [ ]
+               },
+               "yaxes": [
+                  {
+                     "format": "bytes",
+                     "label": "in bytes",
+                     "logBase": 1,
+                     "max": null,
+                     "min": null,
+                     "show": true
+                  },
+                  {
+                     "format": "bytes",
+                     "label": null,
+                     "logBase": 1,
+                     "max": null,
+                     "min": null,
+                     "show": true
+                  }
+               ]
+            },
+            {
+               "aliasColors": { },
+               "bars": false,
+               "dashLength": 10,
+               "dashes": false,
+               "datasource": "$prometheus",
+               "description": "Total memory used by Tarantool.\n\nPanel minimal requirements: metrics 1.6.0.\n",
+               "fill": 0,
+               "gridPos": {
+                  "h": 8,
+                  "w": 8,
+                  "x": 0,
+                  "y": 186
+               },
+               "id": 76,
+               "legend": {
+                  "alignAsTable": true,
+                  "avg": true,
+                  "current": true,
+                  "max": true,
+                  "min": false,
+                  "rightSide": false,
+                  "show": true,
+                  "sideWidth": null,
+                  "sort": "current",
+                  "sortDesc": true,
+                  "total": false,
+                  "values": true
+               },
+               "lines": true,
+               "linewidth": 1,
+               "links": [ ],
+               "nullPointMode": "null",
+               "percentage": false,
+               "pointradius": 5,
+               "points": false,
+               "renderer": "flot",
+               "repeat": null,
+               "seriesOverrides": [ ],
+               "spaceLength": 10,
+               "stack": false,
+               "steppedLine": false,
+               "targets": [
+                  {
+                     "expr": "sum(vendor_tt_tnt_memory{vendor_app_label=\"MyCacheApplication\"}) + sum(vendor_tt_tnt_memory_virt{vendor_app_label=\"MyCacheApplication\"})",
+                     "format": "time_series",
+                     "intervalFactor": 2,
+                     "legendFormat": "Total memory per cluster",
+                     "refId": "A"
+                  }
+               ],
+               "thresholds": [ ],
+               "timeFrom": null,
+               "timeShift": null,
+               "title": "Total memory per cluster",
+               "tooltip": {
+                  "shared": true,
+                  "sort": 2,
+                  "value_type": "individual"
+               },
+               "type": "graph",
+               "xaxis": {
+                  "buckets": null,
+                  "mode": "time",
+                  "name": null,
+                  "show": true,
+                  "values": [ ]
+               },
+               "yaxes": [
+                  {
+                     "format": "bytes",
+                     "label": "in bytes",
+                     "logBase": 1,
+                     "max": null,
+                     "min": null,
+                     "show": true
+                  },
+                  {
+                     "format": "bytes",
+                     "label": null,
+                     "logBase": 1,
+                     "max": null,
+                     "min": null,
+                     "show": true
+                  }
+               ]
+            },
+            {
+               "aliasColors": { },
+               "bars": false,
+               "dashLength": 10,
+               "dashes": false,
+               "datasource": "$prometheus",
+               "description": "Resident memory used by Tarantool instance.\n\nPanel minimal requirements: metrics 1.6.0.\n",
+               "fill": 0,
+               "gridPos": {
+                  "h": 8,
+                  "w": 8,
+                  "x": 8,
+                  "y": 186
+               },
+               "id": 77,
+               "legend": {
+                  "alignAsTable": true,
+                  "avg": true,
+                  "current": true,
+                  "max": true,
+                  "min": false,
+                  "rightSide": false,
+                  "show": true,
+                  "sideWidth": null,
+                  "sort": "current",
+                  "sortDesc": true,
+                  "total": false,
+                  "values": true
+               },
+               "lines": true,
+               "linewidth": 1,
+               "links": [ ],
+               "nullPointMode": "null",
+               "percentage": false,
+               "pointradius": 5,
+               "points": false,
+               "renderer": "flot",
+               "repeat": null,
+               "seriesOverrides": [ ],
+               "spaceLength": 10,
+               "stack": false,
+               "steppedLine": false,
+               "targets": [
+                  {
+                     "expr": "sum(vendor_tt_tnt_memory{vendor_app_label=\"MyCacheApplication\"})",
+                     "format": "time_series",
+                     "intervalFactor": 2,
+                     "legendFormat": "Total resident memory per cluster",
+                     "refId": "A"
+                  }
+               ],
+               "thresholds": [ ],
+               "timeFrom": null,
+               "timeShift": null,
+               "title": "Total resident memory per cluster",
+               "tooltip": {
+                  "shared": true,
+                  "sort": 2,
+                  "value_type": "individual"
+               },
+               "type": "graph",
+               "xaxis": {
+                  "buckets": null,
+                  "mode": "time",
+                  "name": null,
+                  "show": true,
+                  "values": [ ]
+               },
+               "yaxes": [
+                  {
+                     "format": "bytes",
+                     "label": "in bytes",
+                     "logBase": 1,
+                     "max": null,
+                     "min": null,
+                     "show": true
+                  },
+                  {
+                     "format": "bytes",
+                     "label": null,
+                     "logBase": 1,
+                     "max": null,
+                     "min": null,
+                     "show": true
+                  }
+               ]
+            },
+            {
+               "aliasColors": { },
+               "bars": false,
+               "dashLength": 10,
+               "dashes": false,
+               "datasource": "$prometheus",
+               "description": "Virtual memory used by Tarantool instance.\n\nPanel minimal requirements: metrics 1.6.0.\n",
+               "fill": 0,
+               "gridPos": {
+                  "h": 8,
+                  "w": 8,
+                  "x": 16,
+                  "y": 186
+               },
+               "id": 78,
+               "legend": {
+                  "alignAsTable": true,
+                  "avg": true,
+                  "current": true,
+                  "max": true,
+                  "min": false,
+                  "rightSide": false,
+                  "show": true,
+                  "sideWidth": null,
+                  "sort": "current",
+                  "sortDesc": true,
+                  "total": false,
+                  "values": true
+               },
+               "lines": true,
+               "linewidth": 1,
+               "links": [ ],
+               "nullPointMode": "null",
+               "percentage": false,
+               "pointradius": 5,
+               "points": false,
+               "renderer": "flot",
+               "repeat": null,
+               "seriesOverrides": [ ],
+               "spaceLength": 10,
+               "stack": false,
+               "steppedLine": false,
+               "targets": [
+                  {
+                     "expr": "sum(vendor_tt_tnt_memory_virt{vendor_app_label=\"MyCacheApplication\"})",
+                     "format": "time_series",
+                     "intervalFactor": 2,
+                     "legendFormat": "Total virtual memory per cluster",
+                     "refId": "A"
+                  }
+               ],
+               "thresholds": [ ],
+               "timeFrom": null,
+               "timeShift": null,
+               "title": "Total virtual memory per cluster",
+               "tooltip": {
+                  "shared": true,
+                  "sort": 2,
+                  "value_type": "individual"
+               },
+               "type": "graph",
+               "xaxis": {
+                  "buckets": null,
+                  "mode": "time",
+                  "name": null,
+                  "show": true,
+                  "values": [ ]
+               },
+               "yaxes": [
+                  {
+                     "format": "bytes",
+                     "label": "in bytes",
+                     "logBase": 1,
+                     "max": null,
+                     "min": null,
+                     "show": true
+                  },
+                  {
+                     "format": "bytes",
+                     "label": null,
+                     "logBase": 1,
+                     "max": null,
+                     "min": null,
+                     "show": true
+                  }
+               ]
+            },
+            {
+               "aliasColors": { },
+               "bars": false,
+               "dashLength": 10,
+               "dashes": false,
+               "datasource": "$prometheus",
+               "description": "Memory used for objects allocated with Lua\nby using its internal mechanisms.\nLua memory is bounded by 2 GB per instance.\n",
+               "fill": 0,
+               "gridPos": {
+                  "h": 8,
+                  "w": 8,
+                  "x": 0,
+                  "y": 194
+               },
+               "id": 79,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -5963,9 +6485,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 8,
-                  "y": 178
+                  "y": 194
                },
-               "id": 74,
+               "id": 80,
                "legend": {
                   "alignAsTable": true,
                   "avg": false,
@@ -6050,9 +6572,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 16,
-                  "y": 178
+                  "y": 194
                },
-               "id": 75,
+               "id": 81,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -6137,9 +6659,9 @@
                   "h": 8,
                   "w": 12,
                   "x": 0,
-                  "y": 186
+                  "y": 202
                },
-               "id": 76,
+               "id": 82,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -6224,9 +6746,9 @@
                   "h": 8,
                   "w": 12,
                   "x": 12,
-                  "y": 186
+                  "y": 202
                },
-               "id": 77,
+               "id": 83,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -6312,9 +6834,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 0,
-                  "y": 194
+                  "y": 210
                },
-               "id": 78,
+               "id": 84,
                "legend": {
                   "alignAsTable": true,
                   "avg": false,
@@ -6401,9 +6923,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 8,
-                  "y": 194
+                  "y": 210
                },
-               "id": 79,
+               "id": 85,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -6488,9 +7010,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 16,
-                  "y": 194
+                  "y": 210
                },
-               "id": 80,
+               "id": 86,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -6579,9 +7101,9 @@
             "h": 1,
             "w": 24,
             "x": 0,
-            "y": 202
+            "y": 218
          },
-         "id": 81,
+         "id": 87,
          "panels": [
             {
                "aliasColors": { },
@@ -6595,9 +7117,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 0,
-                  "y": 203
+                  "y": 219
                },
-               "id": 82,
+               "id": 88,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -6682,9 +7204,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 6,
-                  "y": 203
+                  "y": 219
                },
-               "id": 83,
+               "id": 89,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -6769,9 +7291,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 12,
-                  "y": 203
+                  "y": 219
                },
-               "id": 84,
+               "id": 90,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -6856,9 +7378,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 18,
-                  "y": 203
+                  "y": 219
                },
-               "id": 85,
+               "id": 91,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -6943,9 +7465,9 @@
                   "h": 8,
                   "w": 12,
                   "x": 0,
-                  "y": 211
+                  "y": 227
                },
-               "id": 86,
+               "id": 92,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -7030,9 +7552,9 @@
                   "h": 8,
                   "w": 12,
                   "x": 12,
-                  "y": 211
+                  "y": 227
                },
-               "id": 87,
+               "id": 93,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -7117,9 +7639,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 0,
-                  "y": 219
+                  "y": 235
                },
-               "id": 88,
+               "id": 94,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -7204,9 +7726,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 8,
-                  "y": 219
+                  "y": 235
                },
-               "id": 89,
+               "id": 95,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -7291,9 +7813,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 16,
-                  "y": 219
+                  "y": 235
                },
-               "id": 90,
+               "id": 96,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -7378,9 +7900,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 0,
-                  "y": 227
+                  "y": 243
                },
-               "id": 91,
+               "id": 97,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -7465,9 +7987,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 8,
-                  "y": 227
+                  "y": 243
                },
-               "id": 92,
+               "id": 98,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -7552,9 +8074,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 16,
-                  "y": 227
+                  "y": 243
                },
-               "id": 93,
+               "id": 99,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -7640,9 +8162,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 0,
-                  "y": 235
+                  "y": 251
                },
-               "id": 94,
+               "id": 100,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -7730,9 +8252,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 6,
-                  "y": 235
+                  "y": 251
                },
-               "id": 95,
+               "id": 101,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -7820,9 +8342,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 12,
-                  "y": 235
+                  "y": 251
                },
-               "id": 96,
+               "id": 102,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -7910,9 +8432,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 18,
-                  "y": 235
+                  "y": 251
                },
-               "id": 97,
+               "id": 103,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -7999,9 +8521,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 0,
-                  "y": 243
+                  "y": 259
                },
-               "id": 98,
+               "id": 104,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -8086,9 +8608,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 8,
-                  "y": 243
+                  "y": 259
                },
-               "id": 99,
+               "id": 105,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -8173,9 +8695,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 16,
-                  "y": 243
+                  "y": 259
                },
-               "id": 100,
+               "id": 106,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -8264,9 +8786,9 @@
             "h": 1,
             "w": 24,
             "x": 0,
-            "y": 251
+            "y": 267
          },
-         "id": 101,
+         "id": 107,
          "panels": [
             {
                "aliasColors": { },
@@ -8280,9 +8802,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 0,
-                  "y": 252
+                  "y": 268
                },
-               "id": 102,
+               "id": 108,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -8367,9 +8889,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 8,
-                  "y": 252
+                  "y": 268
                },
-               "id": 103,
+               "id": 109,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -8454,9 +8976,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 16,
-                  "y": 252
+                  "y": 268
                },
-               "id": 104,
+               "id": 110,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -8541,9 +9063,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 0,
-                  "y": 260
+                  "y": 276
                },
-               "id": 105,
+               "id": 111,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -8628,9 +9150,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 8,
-                  "y": 260
+                  "y": 276
                },
-               "id": 106,
+               "id": 112,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -8715,9 +9237,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 16,
-                  "y": 260
+                  "y": 276
                },
-               "id": 107,
+               "id": 113,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -8802,9 +9324,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 0,
-                  "y": 268
+                  "y": 284
                },
-               "id": 108,
+               "id": 114,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -8889,9 +9411,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 8,
-                  "y": 268
+                  "y": 284
                },
-               "id": 109,
+               "id": 115,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -8976,9 +9498,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 16,
-                  "y": 268
+                  "y": 284
                },
-               "id": 110,
+               "id": 116,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -9063,9 +9585,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 0,
-                  "y": 276
+                  "y": 292
                },
-               "id": 111,
+               "id": 117,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -9150,9 +9672,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 8,
-                  "y": 276
+                  "y": 292
                },
-               "id": 112,
+               "id": 118,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -9237,9 +9759,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 16,
-                  "y": 276
+                  "y": 292
                },
-               "id": 113,
+               "id": 119,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -9324,9 +9846,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 0,
-                  "y": 284
+                  "y": 300
                },
-               "id": 114,
+               "id": 120,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -9411,9 +9933,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 8,
-                  "y": 284
+                  "y": 300
                },
-               "id": 115,
+               "id": 121,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -9498,9 +10020,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 16,
-                  "y": 284
+                  "y": 300
                },
-               "id": 116,
+               "id": 122,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
