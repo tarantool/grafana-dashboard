@@ -1,7 +1,249 @@
+local grafana = import 'grafonnet/grafana.libsonnet';
+local prometheus = grafana.prometheus;
+local influxdb = grafana.influxdb;
+
 local common = import 'dashboard/panels/common.libsonnet';
+local variable = import 'dashboard/variable.libsonnet';
 
 {
   row:: common.row('Tarantool runtime overview'),
+
+  local aggregate_expr(cfg, metric_name, aggregate='sum', rate=false) =
+    local inner_expr = std.format(
+      '%s%s{%s}',
+      [
+        cfg.metrics_prefix,
+        metric_name,
+        common.prometheus_query_filters(common.remove_field(cfg.filters, 'alias')),
+      ]
+    );
+    std.format(
+      '%s(%s)',
+      [
+        aggregate,
+        if rate then std.format('rate(%s[$__rate_interval])', inner_expr) else inner_expr,
+      ]
+    ),
+
+  total_memory_per_instance(
+    cfg,
+    title='Total memory per instance',
+    description=|||
+      Total memory used by Tarantool.
+
+      Panel minimal requirements: metrics 1.6.0.
+    |||,
+  ):: common.default_graph(
+    cfg,
+    title=title,
+    description=description,
+    format='bytes',
+    labelY1='in bytes',
+    panel_width=8,
+  ).addTarget(
+    if cfg.type == variable.datasource_type.prometheus then
+      prometheus.target(
+        expr=std.format(
+          |||
+            (%(metrics_prefix)stnt_memory{%(filters)s}) +
+            (%(metrics_prefix)stnt_memory_virt{%(filters)s})
+          |||,
+          {
+            metrics_prefix: cfg.metrics_prefix,
+            filters: common.prometheus_query_filters(cfg.filters),
+          }
+        ),
+        legendFormat='{{alias}}',
+      )
+    else if cfg.type == variable.datasource_type.influxdb then
+      influxdb.target(
+        rawQuery=true,
+        query=std.format(|||
+          SELECT SUM("value")
+          FROM %(measurement_with_policy)s
+          WHERE (("metric_name" = '%(tnt_memory)s' OR "metric_name" = '%(tnt_memory_virt)s') AND %(filters)s)
+          AND $timeFilter
+          GROUP BY time($__interval), "label_pairs_alias" fill(none)
+        |||, {
+          measurement_with_policy: std.format('%(policy_prefix)s"%(measurement)s"', {
+            policy_prefix: if cfg.policy == 'default' then '' else std.format('"%(policy)s".', cfg.policy),
+            measurement: cfg.measurement,
+          }),
+          tnt_memory: cfg.metrics_prefix + 'tnt_memory',
+          tnt_memory_virt: cfg.metrics_prefix + 'tnt_memory_virt',
+          filters: common.influxdb_query_filters(cfg.filters),
+        }),
+        alias='$tag_label_pairs_alias',
+      )
+  ),
+
+  resident_memory_per_instance(
+    cfg,
+    title='Resident memory per instance',
+    description=|||
+      Resident memory used by Tarantool instance.
+
+      Panel minimal requirements: metrics 1.6.0.
+    |||,
+  ):: common.default_graph(
+    cfg,
+    title=title,
+    description=description,
+    format='bytes',
+    labelY1='in bytes',
+    panel_width=8,
+  ).addTarget(
+    common.target(cfg, 'tnt_memory')
+  ),
+
+  virtual_memory_per_instance(
+    cfg,
+    title='Virtual memory per instance',
+    description=|||
+      Virtual memory used by Tarantool instance.
+
+      Panel minimal requirements: metrics 1.6.0.
+    |||,
+  ):: common.default_graph(
+    cfg,
+    title=title,
+    description=description,
+    format='bytes',
+    labelY1='in bytes',
+    panel_width=8,
+  ).addTarget(
+    common.target(cfg, 'tnt_memory_virt')
+  ),
+
+
+  total_memory(
+    cfg,
+    title='Total memory per cluster',
+    description=|||
+      Total memory used by Tarantool.
+
+      Panel minimal requirements: metrics 1.6.0.
+    |||,
+  ):: common.default_graph(
+    cfg,
+    title=title,
+    description=description,
+    format='bytes',
+    labelY1='in bytes',
+    panel_width=8,
+  ).addTarget(
+    if cfg.type == variable.datasource_type.prometheus then
+      prometheus.target(
+        expr=std.format(
+          '%s + %s',
+          [
+            aggregate_expr(cfg, 'tnt_memory'),
+            aggregate_expr(cfg, 'tnt_memory_virt'),
+          ]
+        ),
+        legendFormat=title,
+      )
+    else if cfg.type == variable.datasource_type.influxdb then
+      influxdb.target(
+        rawQuery=true,
+        query=std.format(|||
+          SELECT SUM("value")
+          FROM %(measurement_with_policy)s
+          WHERE (("metric_name" = '%(metric_memory)s' OR "metric_name" = '%(metric_memory_virt)s') AND %(filters)s)
+          AND $timeFilter
+          GROUP BY time($__interval) fill(previous)
+        |||, {
+          measurement_with_policy: std.format('%(policy_prefix)s"%(measurement)s"', {
+            policy_prefix: if cfg.policy == 'default' then '' else std.format('"%(policy)s".', cfg.policy),
+            measurement: cfg.measurement,
+          }),
+          metric_memory: cfg.metrics_prefix + 'tnt_memory',
+          metric_memory_virt: cfg.metrics_prefix + 'tnt_memory_virt',
+          filters: if common.influxdb_query_filters(common.remove_field(cfg.filters, 'label_pairs_alias')) != ''
+          then common.influxdb_query_filters(common.remove_field(cfg.filters, 'label_pairs_alias'))
+          else 'true',
+        }),
+        alias=title,
+      )
+  ),
+
+  total_resident_memory(
+    cfg,
+    title='Total resident memory per cluster',
+    description=|||
+      Resident memory used by Tarantool instance.
+
+      Panel minimal requirements: metrics 1.6.0.
+    |||,
+  ):: common.default_graph(
+    cfg,
+    title=title,
+    description=description,
+    format='bytes',
+    labelY1='in bytes',
+    panel_width=8,
+  ).addTarget(
+    if cfg.type == variable.datasource_type.prometheus then
+      prometheus.target(expr=aggregate_expr(cfg, 'tnt_memory'), legendFormat=title)
+    else if cfg.type == variable.datasource_type.influxdb then
+      influxdb.target(
+        rawQuery=true,
+        query=std.format(|||
+          SELECT SUM("value")
+          FROM %(measurement_with_policy)s
+          WHERE "metric_name" = '%(metric_memory)s' AND %(filters)s
+          AND $timeFilter
+          GROUP BY time($__interval) fill(previous)
+        |||, {
+          measurement_with_policy: std.format('%(policy_prefix)s"%(measurement)s"', {
+            policy_prefix: if cfg.policy == 'default' then '' else std.format('"%(policy)s".', cfg.policy),
+            measurement: cfg.measurement,
+          }),
+          metric_memory: cfg.metrics_prefix + 'tnt_memory',
+          filters: common.influxdb_query_filters(common.remove_field(cfg.filters, 'alias')),
+        }),
+        alias=title,
+      )
+  ),
+
+  total_virtual_memory(
+    cfg,
+    title='Total virtual memory per cluster',
+    description=|||
+      Virtual memory used by Tarantool instance.
+
+      Panel minimal requirements: metrics 1.6.0.
+    |||,
+  ):: common.default_graph(
+    cfg,
+    title=title,
+    description=description,
+    format='bytes',
+    labelY1='in bytes',
+    panel_width=8,
+  ).addTarget(
+    if cfg.type == variable.datasource_type.prometheus then
+      prometheus.target(expr=aggregate_expr(cfg, 'tnt_memory_virt'), legendFormat=title)
+    else if cfg.type == variable.datasource_type.influxdb then
+      influxdb.target(
+        rawQuery=true,
+        query=std.format(|||
+          SELECT SUM("value")
+          FROM %(measurement_with_policy)s
+          WHERE "metric_name" = '%(metric_memory_virt)s' AND %(filters)s
+          AND $timeFilter
+          GROUP BY time($__interval) fill(previous)
+        |||, {
+          measurement_with_policy: std.format('%(policy_prefix)s"%(measurement)s"', {
+            policy_prefix: if cfg.policy == 'default' then '' else std.format('"%(policy)s".', cfg.policy),
+            measurement: cfg.measurement,
+          }),
+          metric_memory_virt: cfg.metrics_prefix + 'tnt_memory_virt',
+          filters: common.influxdb_query_filters(common.remove_field(cfg.filters, 'alias')),
+        }),
+        alias=title,
+      )
+  ),
 
   lua_memory(
     cfg,
@@ -9,7 +251,7 @@ local common = import 'dashboard/panels/common.libsonnet';
     description=|||
       Memory used for objects allocated with Lua
       by using its internal mechanisms.
-      Lua memory is bounded by 2 GB per instance. 
+      Lua memory is bounded by 2 GB per instance.
     |||,
   ):: common.default_graph(
     cfg,

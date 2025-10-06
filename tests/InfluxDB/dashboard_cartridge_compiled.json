@@ -14857,15 +14857,120 @@
                "dashLength": 10,
                "dashes": false,
                "datasource": "$influxdb",
-               "description": "This is the average share of time\nspent by instance process executing in user mode.\nMetrics obtained using `getrusage()` call.\n\nPanel minimal requirements: metrics 0.8.0.\n",
+               "description": "This is the average share of time spent\nby instance process executing.\n\nPanel minimal requirements: metrics 0.8.0.\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
-                  "w": 12,
+                  "w": 8,
                   "x": 0,
                   "y": 290
                },
                "id": 115,
+               "legend": {
+                  "alignAsTable": true,
+                  "avg": true,
+                  "current": true,
+                  "max": true,
+                  "min": false,
+                  "rightSide": false,
+                  "show": true,
+                  "sideWidth": null,
+                  "sort": "current",
+                  "sortDesc": true,
+                  "total": false,
+                  "values": true
+               },
+               "lines": true,
+               "linewidth": 1,
+               "links": [ ],
+               "nullPointMode": "null",
+               "percentage": false,
+               "pointradius": 5,
+               "points": false,
+               "renderer": "flot",
+               "repeat": null,
+               "seriesOverrides": [ ],
+               "spaceLength": 10,
+               "stack": false,
+               "steppedLine": false,
+               "targets": [
+                  {
+                     "alias": "$tag_label_pairs_alias",
+                     "groupBy": [
+                        {
+                           "params": [
+                              "$__interval"
+                           ],
+                           "type": "time"
+                        },
+                        {
+                           "params": [
+                              "none"
+                           ],
+                           "type": "fill"
+                        }
+                     ],
+                     "policy": "default",
+                     "query": "SELECT non_negative_derivative(SUM(\"value\"), 1s)\nFROM \"$policy\".\"$measurement\"\nWHERE ((\"metric_name\" = 'tnt_cpu_user_time' OR \"metric_name\" = 'tnt_cpu_system_time') AND \"label_pairs_alias\" =~ /^$alias$/)\nAND $timeFilter\nGROUP BY time($__interval), \"label_pairs_alias\" fill(none)\n",
+                     "rawQuery": true,
+                     "refId": "A",
+                     "resultFormat": "time_series",
+                     "select": [ ],
+                     "tags": [ ]
+                  }
+               ],
+               "thresholds": [ ],
+               "timeFrom": null,
+               "timeShift": null,
+               "title": "CPU total time per instance",
+               "tooltip": {
+                  "shared": true,
+                  "sort": 2,
+                  "value_type": "individual"
+               },
+               "type": "graph",
+               "xaxis": {
+                  "buckets": null,
+                  "mode": "time",
+                  "name": null,
+                  "show": true,
+                  "values": [ ]
+               },
+               "yaxes": [
+                  {
+                     "decimals": 0,
+                     "format": "percentunit",
+                     "label": null,
+                     "logBase": 1,
+                     "max": null,
+                     "min": 0,
+                     "show": true
+                  },
+                  {
+                     "format": "percentunit",
+                     "label": null,
+                     "logBase": 1,
+                     "max": null,
+                     "min": 0,
+                     "show": true
+                  }
+               ]
+            },
+            {
+               "aliasColors": { },
+               "bars": false,
+               "dashLength": 10,
+               "dashes": false,
+               "datasource": "$influxdb",
+               "description": "This is the average share of time\nspent by instance process executing in user mode.\nMetrics obtained using `getrusage()` call.\n\nPanel minimal requirements: metrics 0.8.0.\n",
+               "fill": 0,
+               "gridPos": {
+                  "h": 8,
+                  "w": 8,
+                  "x": 8,
+                  "y": 290
+               },
+               "id": 116,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -14958,7 +15063,7 @@
                "thresholds": [ ],
                "timeFrom": null,
                "timeShift": null,
-               "title": "CPU user time",
+               "title": "CPU user time per instance",
                "tooltip": {
                   "shared": true,
                   "sort": 2,
@@ -15002,11 +15107,11 @@
                "fill": 0,
                "gridPos": {
                   "h": 8,
-                  "w": 12,
-                  "x": 12,
+                  "w": 8,
+                  "x": 16,
                   "y": 290
                },
-               "id": 116,
+               "id": 117,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -15099,7 +15204,322 @@
                "thresholds": [ ],
                "timeFrom": null,
                "timeShift": null,
-               "title": "CPU system time",
+               "title": "CPU system time per instance",
+               "tooltip": {
+                  "shared": true,
+                  "sort": 2,
+                  "value_type": "individual"
+               },
+               "type": "graph",
+               "xaxis": {
+                  "buckets": null,
+                  "mode": "time",
+                  "name": null,
+                  "show": true,
+                  "values": [ ]
+               },
+               "yaxes": [
+                  {
+                     "decimals": 0,
+                     "format": "percentunit",
+                     "label": null,
+                     "logBase": 1,
+                     "max": null,
+                     "min": 0,
+                     "show": true
+                  },
+                  {
+                     "format": "percentunit",
+                     "label": null,
+                     "logBase": 1,
+                     "max": null,
+                     "min": 0,
+                     "show": true
+                  }
+               ]
+            },
+            {
+               "aliasColors": { },
+               "bars": false,
+               "dashLength": 10,
+               "dashes": false,
+               "datasource": "$influxdb",
+               "description": "This is the total share of time spent\nby each cluster process executing.\n\nPanel minimal requirements: metrics 0.8.0.\n",
+               "fill": 0,
+               "gridPos": {
+                  "h": 8,
+                  "w": 8,
+                  "x": 0,
+                  "y": 298
+               },
+               "id": 118,
+               "legend": {
+                  "alignAsTable": true,
+                  "avg": true,
+                  "current": true,
+                  "max": true,
+                  "min": false,
+                  "rightSide": false,
+                  "show": true,
+                  "sideWidth": null,
+                  "sort": "current",
+                  "sortDesc": true,
+                  "total": false,
+                  "values": true
+               },
+               "lines": true,
+               "linewidth": 1,
+               "links": [ ],
+               "nullPointMode": "null",
+               "percentage": false,
+               "pointradius": 5,
+               "points": false,
+               "renderer": "flot",
+               "repeat": null,
+               "seriesOverrides": [ ],
+               "spaceLength": 10,
+               "stack": false,
+               "steppedLine": false,
+               "targets": [
+                  {
+                     "alias": "CPU total time per cluster",
+                     "groupBy": [
+                        {
+                           "params": [
+                              "$__interval"
+                           ],
+                           "type": "time"
+                        },
+                        {
+                           "params": [
+                              "none"
+                           ],
+                           "type": "fill"
+                        }
+                     ],
+                     "policy": "default",
+                     "query": "SELECT non_negative_derivative(SUM(\"value\"), 1s)\nFROM \"$policy\".\"$measurement\"\nWHERE ((\"metric_name\" = 'tnt_cpu_user_time' OR \"metric_name\" = 'tnt_cpu_system_time') AND true)\nAND $timeFilter\nGROUP BY time($__interval)\n",
+                     "rawQuery": true,
+                     "refId": "A",
+                     "resultFormat": "time_series",
+                     "select": [ ],
+                     "tags": [ ]
+                  }
+               ],
+               "thresholds": [ ],
+               "timeFrom": null,
+               "timeShift": null,
+               "title": "CPU total time per cluster",
+               "tooltip": {
+                  "shared": true,
+                  "sort": 2,
+                  "value_type": "individual"
+               },
+               "type": "graph",
+               "xaxis": {
+                  "buckets": null,
+                  "mode": "time",
+                  "name": null,
+                  "show": true,
+                  "values": [ ]
+               },
+               "yaxes": [
+                  {
+                     "decimals": 0,
+                     "format": "percentunit",
+                     "label": null,
+                     "logBase": 1,
+                     "max": null,
+                     "min": 0,
+                     "show": true
+                  },
+                  {
+                     "format": "percentunit",
+                     "label": null,
+                     "logBase": 1,
+                     "max": null,
+                     "min": 0,
+                     "show": true
+                  }
+               ]
+            },
+            {
+               "aliasColors": { },
+               "bars": false,
+               "dashLength": 10,
+               "dashes": false,
+               "datasource": "$influxdb",
+               "description": "This is the total share of time\nspent in user mode per cluster.\n\nPanel minimal requirements: metrics 0.8.0.\n",
+               "fill": 0,
+               "gridPos": {
+                  "h": 8,
+                  "w": 8,
+                  "x": 8,
+                  "y": 298
+               },
+               "id": 119,
+               "legend": {
+                  "alignAsTable": true,
+                  "avg": true,
+                  "current": true,
+                  "max": true,
+                  "min": false,
+                  "rightSide": false,
+                  "show": true,
+                  "sideWidth": null,
+                  "sort": "current",
+                  "sortDesc": true,
+                  "total": false,
+                  "values": true
+               },
+               "lines": true,
+               "linewidth": 1,
+               "links": [ ],
+               "nullPointMode": "null",
+               "percentage": false,
+               "pointradius": 5,
+               "points": false,
+               "renderer": "flot",
+               "repeat": null,
+               "seriesOverrides": [ ],
+               "spaceLength": 10,
+               "stack": false,
+               "steppedLine": false,
+               "targets": [
+                  {
+                     "alias": "CPU total user time per cluster",
+                     "groupBy": [
+                        {
+                           "params": [
+                              "$__interval"
+                           ],
+                           "type": "time"
+                        },
+                        {
+                           "params": [
+                              "none"
+                           ],
+                           "type": "fill"
+                        }
+                     ],
+                     "policy": "default",
+                     "query": "SELECT non_negative_derivative(SUM(\"value\"), 1s)\nFROM \"$policy\".\"$measurement\"\nWHERE \"metric_name\" = 'tnt_cpu_user_time' AND \"label_pairs_alias\" =~ /^$alias$/\nAND $timeFilter\nGROUP BY time($__interval)\n",
+                     "rawQuery": true,
+                     "refId": "A",
+                     "resultFormat": "time_series",
+                     "select": [ ],
+                     "tags": [ ]
+                  }
+               ],
+               "thresholds": [ ],
+               "timeFrom": null,
+               "timeShift": null,
+               "title": "CPU total user time per cluster",
+               "tooltip": {
+                  "shared": true,
+                  "sort": 2,
+                  "value_type": "individual"
+               },
+               "type": "graph",
+               "xaxis": {
+                  "buckets": null,
+                  "mode": "time",
+                  "name": null,
+                  "show": true,
+                  "values": [ ]
+               },
+               "yaxes": [
+                  {
+                     "decimals": 0,
+                     "format": "percentunit",
+                     "label": null,
+                     "logBase": 1,
+                     "max": null,
+                     "min": 0,
+                     "show": true
+                  },
+                  {
+                     "format": "percentunit",
+                     "label": null,
+                     "logBase": 1,
+                     "max": null,
+                     "min": 0,
+                     "show": true
+                  }
+               ]
+            },
+            {
+               "aliasColors": { },
+               "bars": false,
+               "dashLength": 10,
+               "dashes": false,
+               "datasource": "$influxdb",
+               "description": "This is the total share of time\nspent in system mode per cluster.\n\nPanel minimal requirements: metrics 0.8.0.\n",
+               "fill": 0,
+               "gridPos": {
+                  "h": 8,
+                  "w": 8,
+                  "x": 16,
+                  "y": 298
+               },
+               "id": 120,
+               "legend": {
+                  "alignAsTable": true,
+                  "avg": true,
+                  "current": true,
+                  "max": true,
+                  "min": false,
+                  "rightSide": false,
+                  "show": true,
+                  "sideWidth": null,
+                  "sort": "current",
+                  "sortDesc": true,
+                  "total": false,
+                  "values": true
+               },
+               "lines": true,
+               "linewidth": 1,
+               "links": [ ],
+               "nullPointMode": "null",
+               "percentage": false,
+               "pointradius": 5,
+               "points": false,
+               "renderer": "flot",
+               "repeat": null,
+               "seriesOverrides": [ ],
+               "spaceLength": 10,
+               "stack": false,
+               "steppedLine": false,
+               "targets": [
+                  {
+                     "alias": "CPU total system time per cluster",
+                     "groupBy": [
+                        {
+                           "params": [
+                              "$__interval"
+                           ],
+                           "type": "time"
+                        },
+                        {
+                           "params": [
+                              "none"
+                           ],
+                           "type": "fill"
+                        }
+                     ],
+                     "policy": "default",
+                     "query": "SELECT non_negative_derivative(SUM(\"value\"), 1s)\nFROM \"$policy\".\"$measurement\"\nWHERE \"metric_name\" = 'tnt_cpu_system_time' AND \"label_pairs_alias\" =~ /^$alias$/\nAND $timeFilter\nGROUP BY time($__interval)\n",
+                     "rawQuery": true,
+                     "refId": "A",
+                     "resultFormat": "time_series",
+                     "select": [ ],
+                     "tags": [ ]
+                  }
+               ],
+               "thresholds": [ ],
+               "timeFrom": null,
+               "timeShift": null,
+               "title": "CPU total system time per cluster",
                "tooltip": {
                   "shared": true,
                   "sort": 2,
@@ -15149,9 +15569,9 @@
             "h": 1,
             "w": 24,
             "x": 0,
-            "y": 298
+            "y": 306
          },
-         "id": 117,
+         "id": 121,
          "panels": [
             {
                "aliasColors": { },
@@ -15159,15 +15579,699 @@
                "dashLength": 10,
                "dashes": false,
                "datasource": "$influxdb",
-               "description": "Memory used for objects allocated with Lua\nby using its internal mechanisms.\nLua memory is bounded by 2 GB per instance. \n",
+               "description": "Total memory used by Tarantool.\n\nPanel minimal requirements: metrics 1.6.0.\n",
                "fill": 0,
                "gridPos": {
                   "h": 8,
                   "w": 8,
                   "x": 0,
-                  "y": 299
+                  "y": 307
                },
-               "id": 118,
+               "id": 122,
+               "legend": {
+                  "alignAsTable": true,
+                  "avg": true,
+                  "current": true,
+                  "max": true,
+                  "min": false,
+                  "rightSide": false,
+                  "show": true,
+                  "sideWidth": null,
+                  "sort": "current",
+                  "sortDesc": true,
+                  "total": false,
+                  "values": true
+               },
+               "lines": true,
+               "linewidth": 1,
+               "links": [ ],
+               "nullPointMode": "null",
+               "percentage": false,
+               "pointradius": 5,
+               "points": false,
+               "renderer": "flot",
+               "repeat": null,
+               "seriesOverrides": [ ],
+               "spaceLength": 10,
+               "stack": false,
+               "steppedLine": false,
+               "targets": [
+                  {
+                     "alias": "$tag_label_pairs_alias",
+                     "groupBy": [
+                        {
+                           "params": [
+                              "$__interval"
+                           ],
+                           "type": "time"
+                        },
+                        {
+                           "params": [
+                              "none"
+                           ],
+                           "type": "fill"
+                        }
+                     ],
+                     "policy": "default",
+                     "query": "SELECT SUM(\"value\")\nFROM \"$policy\".\"$measurement\"\nWHERE ((\"metric_name\" = 'tnt_memory' OR \"metric_name\" = 'tnt_memory_virt') AND \"label_pairs_alias\" =~ /^$alias$/)\nAND $timeFilter\nGROUP BY time($__interval), \"label_pairs_alias\" fill(none)\n",
+                     "rawQuery": true,
+                     "refId": "A",
+                     "resultFormat": "time_series",
+                     "select": [ ],
+                     "tags": [ ]
+                  }
+               ],
+               "thresholds": [ ],
+               "timeFrom": null,
+               "timeShift": null,
+               "title": "Total memory per instance",
+               "tooltip": {
+                  "shared": true,
+                  "sort": 2,
+                  "value_type": "individual"
+               },
+               "type": "graph",
+               "xaxis": {
+                  "buckets": null,
+                  "mode": "time",
+                  "name": null,
+                  "show": true,
+                  "values": [ ]
+               },
+               "yaxes": [
+                  {
+                     "format": "bytes",
+                     "label": "in bytes",
+                     "logBase": 1,
+                     "max": null,
+                     "min": null,
+                     "show": true
+                  },
+                  {
+                     "format": "bytes",
+                     "label": null,
+                     "logBase": 1,
+                     "max": null,
+                     "min": null,
+                     "show": true
+                  }
+               ]
+            },
+            {
+               "aliasColors": { },
+               "bars": false,
+               "dashLength": 10,
+               "dashes": false,
+               "datasource": "$influxdb",
+               "description": "Resident memory used by Tarantool instance.\n\nPanel minimal requirements: metrics 1.6.0.\n",
+               "fill": 0,
+               "gridPos": {
+                  "h": 8,
+                  "w": 8,
+                  "x": 8,
+                  "y": 307
+               },
+               "id": 123,
+               "legend": {
+                  "alignAsTable": true,
+                  "avg": true,
+                  "current": true,
+                  "max": true,
+                  "min": false,
+                  "rightSide": false,
+                  "show": true,
+                  "sideWidth": null,
+                  "sort": "current",
+                  "sortDesc": true,
+                  "total": false,
+                  "values": true
+               },
+               "lines": true,
+               "linewidth": 1,
+               "links": [ ],
+               "nullPointMode": "null",
+               "percentage": false,
+               "pointradius": 5,
+               "points": false,
+               "renderer": "flot",
+               "repeat": null,
+               "seriesOverrides": [ ],
+               "spaceLength": 10,
+               "stack": false,
+               "steppedLine": false,
+               "targets": [
+                  {
+                     "alias": "$tag_label_pairs_alias",
+                     "groupBy": [
+                        {
+                           "params": [
+                              "$__interval"
+                           ],
+                           "type": "time"
+                        },
+                        {
+                           "params": [
+                              "label_pairs_alias"
+                           ],
+                           "type": "tag"
+                        },
+                        {
+                           "params": [
+                              "none"
+                           ],
+                           "type": "fill"
+                        }
+                     ],
+                     "measurement": "$measurement",
+                     "policy": "$policy",
+                     "refId": "A",
+                     "resultFormat": "time_series",
+                     "select": [
+                        [
+                           {
+                              "params": [
+                                 "value"
+                              ],
+                              "type": "field"
+                           },
+                           {
+                              "params": [ ],
+                              "type": "mean"
+                           }
+                        ]
+                     ],
+                     "tags": [
+                        {
+                           "key": "metric_name",
+                           "operator": "=",
+                           "value": "tnt_memory"
+                        },
+                        {
+                           "condition": "AND",
+                           "key": "label_pairs_alias",
+                           "operator": "=~",
+                           "value": "/^$alias$/"
+                        }
+                     ]
+                  }
+               ],
+               "thresholds": [ ],
+               "timeFrom": null,
+               "timeShift": null,
+               "title": "Resident memory per instance",
+               "tooltip": {
+                  "shared": true,
+                  "sort": 2,
+                  "value_type": "individual"
+               },
+               "type": "graph",
+               "xaxis": {
+                  "buckets": null,
+                  "mode": "time",
+                  "name": null,
+                  "show": true,
+                  "values": [ ]
+               },
+               "yaxes": [
+                  {
+                     "format": "bytes",
+                     "label": "in bytes",
+                     "logBase": 1,
+                     "max": null,
+                     "min": null,
+                     "show": true
+                  },
+                  {
+                     "format": "bytes",
+                     "label": null,
+                     "logBase": 1,
+                     "max": null,
+                     "min": null,
+                     "show": true
+                  }
+               ]
+            },
+            {
+               "aliasColors": { },
+               "bars": false,
+               "dashLength": 10,
+               "dashes": false,
+               "datasource": "$influxdb",
+               "description": "Virtual memory used by Tarantool instance.\n\nPanel minimal requirements: metrics 1.6.0.\n",
+               "fill": 0,
+               "gridPos": {
+                  "h": 8,
+                  "w": 8,
+                  "x": 16,
+                  "y": 307
+               },
+               "id": 124,
+               "legend": {
+                  "alignAsTable": true,
+                  "avg": true,
+                  "current": true,
+                  "max": true,
+                  "min": false,
+                  "rightSide": false,
+                  "show": true,
+                  "sideWidth": null,
+                  "sort": "current",
+                  "sortDesc": true,
+                  "total": false,
+                  "values": true
+               },
+               "lines": true,
+               "linewidth": 1,
+               "links": [ ],
+               "nullPointMode": "null",
+               "percentage": false,
+               "pointradius": 5,
+               "points": false,
+               "renderer": "flot",
+               "repeat": null,
+               "seriesOverrides": [ ],
+               "spaceLength": 10,
+               "stack": false,
+               "steppedLine": false,
+               "targets": [
+                  {
+                     "alias": "$tag_label_pairs_alias",
+                     "groupBy": [
+                        {
+                           "params": [
+                              "$__interval"
+                           ],
+                           "type": "time"
+                        },
+                        {
+                           "params": [
+                              "label_pairs_alias"
+                           ],
+                           "type": "tag"
+                        },
+                        {
+                           "params": [
+                              "none"
+                           ],
+                           "type": "fill"
+                        }
+                     ],
+                     "measurement": "$measurement",
+                     "policy": "$policy",
+                     "refId": "A",
+                     "resultFormat": "time_series",
+                     "select": [
+                        [
+                           {
+                              "params": [
+                                 "value"
+                              ],
+                              "type": "field"
+                           },
+                           {
+                              "params": [ ],
+                              "type": "mean"
+                           }
+                        ]
+                     ],
+                     "tags": [
+                        {
+                           "key": "metric_name",
+                           "operator": "=",
+                           "value": "tnt_memory_virt"
+                        },
+                        {
+                           "condition": "AND",
+                           "key": "label_pairs_alias",
+                           "operator": "=~",
+                           "value": "/^$alias$/"
+                        }
+                     ]
+                  }
+               ],
+               "thresholds": [ ],
+               "timeFrom": null,
+               "timeShift": null,
+               "title": "Virtual memory per instance",
+               "tooltip": {
+                  "shared": true,
+                  "sort": 2,
+                  "value_type": "individual"
+               },
+               "type": "graph",
+               "xaxis": {
+                  "buckets": null,
+                  "mode": "time",
+                  "name": null,
+                  "show": true,
+                  "values": [ ]
+               },
+               "yaxes": [
+                  {
+                     "format": "bytes",
+                     "label": "in bytes",
+                     "logBase": 1,
+                     "max": null,
+                     "min": null,
+                     "show": true
+                  },
+                  {
+                     "format": "bytes",
+                     "label": null,
+                     "logBase": 1,
+                     "max": null,
+                     "min": null,
+                     "show": true
+                  }
+               ]
+            },
+            {
+               "aliasColors": { },
+               "bars": false,
+               "dashLength": 10,
+               "dashes": false,
+               "datasource": "$influxdb",
+               "description": "Total memory used by Tarantool.\n\nPanel minimal requirements: metrics 1.6.0.\n",
+               "fill": 0,
+               "gridPos": {
+                  "h": 8,
+                  "w": 8,
+                  "x": 0,
+                  "y": 315
+               },
+               "id": 125,
+               "legend": {
+                  "alignAsTable": true,
+                  "avg": true,
+                  "current": true,
+                  "max": true,
+                  "min": false,
+                  "rightSide": false,
+                  "show": true,
+                  "sideWidth": null,
+                  "sort": "current",
+                  "sortDesc": true,
+                  "total": false,
+                  "values": true
+               },
+               "lines": true,
+               "linewidth": 1,
+               "links": [ ],
+               "nullPointMode": "null",
+               "percentage": false,
+               "pointradius": 5,
+               "points": false,
+               "renderer": "flot",
+               "repeat": null,
+               "seriesOverrides": [ ],
+               "spaceLength": 10,
+               "stack": false,
+               "steppedLine": false,
+               "targets": [
+                  {
+                     "alias": "Total memory per cluster",
+                     "groupBy": [
+                        {
+                           "params": [
+                              "$__interval"
+                           ],
+                           "type": "time"
+                        },
+                        {
+                           "params": [
+                              "none"
+                           ],
+                           "type": "fill"
+                        }
+                     ],
+                     "policy": "default",
+                     "query": "SELECT SUM(\"value\")\nFROM \"$policy\".\"$measurement\"\nWHERE ((\"metric_name\" = 'tnt_memory' OR \"metric_name\" = 'tnt_memory_virt') AND true)\nAND $timeFilter\nGROUP BY time($__interval) fill(previous)\n",
+                     "rawQuery": true,
+                     "refId": "A",
+                     "resultFormat": "time_series",
+                     "select": [ ],
+                     "tags": [ ]
+                  }
+               ],
+               "thresholds": [ ],
+               "timeFrom": null,
+               "timeShift": null,
+               "title": "Total memory per cluster",
+               "tooltip": {
+                  "shared": true,
+                  "sort": 2,
+                  "value_type": "individual"
+               },
+               "type": "graph",
+               "xaxis": {
+                  "buckets": null,
+                  "mode": "time",
+                  "name": null,
+                  "show": true,
+                  "values": [ ]
+               },
+               "yaxes": [
+                  {
+                     "format": "bytes",
+                     "label": "in bytes",
+                     "logBase": 1,
+                     "max": null,
+                     "min": null,
+                     "show": true
+                  },
+                  {
+                     "format": "bytes",
+                     "label": null,
+                     "logBase": 1,
+                     "max": null,
+                     "min": null,
+                     "show": true
+                  }
+               ]
+            },
+            {
+               "aliasColors": { },
+               "bars": false,
+               "dashLength": 10,
+               "dashes": false,
+               "datasource": "$influxdb",
+               "description": "Resident memory used by Tarantool instance.\n\nPanel minimal requirements: metrics 1.6.0.\n",
+               "fill": 0,
+               "gridPos": {
+                  "h": 8,
+                  "w": 8,
+                  "x": 8,
+                  "y": 315
+               },
+               "id": 126,
+               "legend": {
+                  "alignAsTable": true,
+                  "avg": true,
+                  "current": true,
+                  "max": true,
+                  "min": false,
+                  "rightSide": false,
+                  "show": true,
+                  "sideWidth": null,
+                  "sort": "current",
+                  "sortDesc": true,
+                  "total": false,
+                  "values": true
+               },
+               "lines": true,
+               "linewidth": 1,
+               "links": [ ],
+               "nullPointMode": "null",
+               "percentage": false,
+               "pointradius": 5,
+               "points": false,
+               "renderer": "flot",
+               "repeat": null,
+               "seriesOverrides": [ ],
+               "spaceLength": 10,
+               "stack": false,
+               "steppedLine": false,
+               "targets": [
+                  {
+                     "alias": "Total resident memory per cluster",
+                     "groupBy": [
+                        {
+                           "params": [
+                              "$__interval"
+                           ],
+                           "type": "time"
+                        },
+                        {
+                           "params": [
+                              "none"
+                           ],
+                           "type": "fill"
+                        }
+                     ],
+                     "policy": "default",
+                     "query": "SELECT SUM(\"value\")\nFROM \"$policy\".\"$measurement\"\nWHERE \"metric_name\" = 'tnt_memory' AND \"label_pairs_alias\" =~ /^$alias$/\nAND $timeFilter\nGROUP BY time($__interval) fill(previous)\n",
+                     "rawQuery": true,
+                     "refId": "A",
+                     "resultFormat": "time_series",
+                     "select": [ ],
+                     "tags": [ ]
+                  }
+               ],
+               "thresholds": [ ],
+               "timeFrom": null,
+               "timeShift": null,
+               "title": "Total resident memory per cluster",
+               "tooltip": {
+                  "shared": true,
+                  "sort": 2,
+                  "value_type": "individual"
+               },
+               "type": "graph",
+               "xaxis": {
+                  "buckets": null,
+                  "mode": "time",
+                  "name": null,
+                  "show": true,
+                  "values": [ ]
+               },
+               "yaxes": [
+                  {
+                     "format": "bytes",
+                     "label": "in bytes",
+                     "logBase": 1,
+                     "max": null,
+                     "min": null,
+                     "show": true
+                  },
+                  {
+                     "format": "bytes",
+                     "label": null,
+                     "logBase": 1,
+                     "max": null,
+                     "min": null,
+                     "show": true
+                  }
+               ]
+            },
+            {
+               "aliasColors": { },
+               "bars": false,
+               "dashLength": 10,
+               "dashes": false,
+               "datasource": "$influxdb",
+               "description": "Virtual memory used by Tarantool instance.\n\nPanel minimal requirements: metrics 1.6.0.\n",
+               "fill": 0,
+               "gridPos": {
+                  "h": 8,
+                  "w": 8,
+                  "x": 16,
+                  "y": 315
+               },
+               "id": 127,
+               "legend": {
+                  "alignAsTable": true,
+                  "avg": true,
+                  "current": true,
+                  "max": true,
+                  "min": false,
+                  "rightSide": false,
+                  "show": true,
+                  "sideWidth": null,
+                  "sort": "current",
+                  "sortDesc": true,
+                  "total": false,
+                  "values": true
+               },
+               "lines": true,
+               "linewidth": 1,
+               "links": [ ],
+               "nullPointMode": "null",
+               "percentage": false,
+               "pointradius": 5,
+               "points": false,
+               "renderer": "flot",
+               "repeat": null,
+               "seriesOverrides": [ ],
+               "spaceLength": 10,
+               "stack": false,
+               "steppedLine": false,
+               "targets": [
+                  {
+                     "alias": "Total virtual memory per cluster",
+                     "groupBy": [
+                        {
+                           "params": [
+                              "$__interval"
+                           ],
+                           "type": "time"
+                        },
+                        {
+                           "params": [
+                              "none"
+                           ],
+                           "type": "fill"
+                        }
+                     ],
+                     "policy": "default",
+                     "query": "SELECT SUM(\"value\")\nFROM \"$policy\".\"$measurement\"\nWHERE \"metric_name\" = 'tnt_memory_virt' AND \"label_pairs_alias\" =~ /^$alias$/\nAND $timeFilter\nGROUP BY time($__interval) fill(previous)\n",
+                     "rawQuery": true,
+                     "refId": "A",
+                     "resultFormat": "time_series",
+                     "select": [ ],
+                     "tags": [ ]
+                  }
+               ],
+               "thresholds": [ ],
+               "timeFrom": null,
+               "timeShift": null,
+               "title": "Total virtual memory per cluster",
+               "tooltip": {
+                  "shared": true,
+                  "sort": 2,
+                  "value_type": "individual"
+               },
+               "type": "graph",
+               "xaxis": {
+                  "buckets": null,
+                  "mode": "time",
+                  "name": null,
+                  "show": true,
+                  "values": [ ]
+               },
+               "yaxes": [
+                  {
+                     "format": "bytes",
+                     "label": "in bytes",
+                     "logBase": 1,
+                     "max": null,
+                     "min": null,
+                     "show": true
+                  },
+                  {
+                     "format": "bytes",
+                     "label": null,
+                     "logBase": 1,
+                     "max": null,
+                     "min": null,
+                     "show": true
+                  }
+               ]
+            },
+            {
+               "aliasColors": { },
+               "bars": false,
+               "dashLength": 10,
+               "dashes": false,
+               "datasource": "$influxdb",
+               "description": "Memory used for objects allocated with Lua\nby using its internal mechanisms.\nLua memory is bounded by 2 GB per instance.\n",
+               "fill": 0,
+               "gridPos": {
+                  "h": 8,
+                  "w": 8,
+                  "x": 0,
+                  "y": 323
+               },
+               "id": 128,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -15299,9 +16403,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 8,
-                  "y": 299
+                  "y": 323
                },
-               "id": 119,
+               "id": 129,
                "legend": {
                   "alignAsTable": true,
                   "avg": false,
@@ -15433,9 +16537,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 16,
-                  "y": 299
+                  "y": 323
                },
-               "id": 120,
+               "id": 130,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -15567,9 +16671,9 @@
                   "h": 8,
                   "w": 12,
                   "x": 0,
-                  "y": 307
+                  "y": 331
                },
-               "id": 121,
+               "id": 131,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -15701,9 +16805,9 @@
                   "h": 8,
                   "w": 12,
                   "x": 12,
-                  "y": 307
+                  "y": 331
                },
-               "id": 122,
+               "id": 132,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -15836,9 +16940,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 0,
-                  "y": 315
+                  "y": 339
                },
-               "id": 123,
+               "id": 133,
                "legend": {
                   "alignAsTable": true,
                   "avg": false,
@@ -15972,9 +17076,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 8,
-                  "y": 315
+                  "y": 339
                },
-               "id": 124,
+               "id": 134,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -16106,9 +17210,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 16,
-                  "y": 315
+                  "y": 339
                },
-               "id": 125,
+               "id": 135,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -16244,9 +17348,9 @@
             "h": 1,
             "w": 24,
             "x": 0,
-            "y": 323
+            "y": 347
          },
-         "id": 126,
+         "id": 136,
          "panels": [
             {
                "aliasColors": { },
@@ -16260,9 +17364,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 0,
-                  "y": 324
+                  "y": 348
                },
-               "id": 127,
+               "id": 137,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -16400,9 +17504,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 6,
-                  "y": 324
+                  "y": 348
                },
-               "id": 128,
+               "id": 138,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -16540,9 +17644,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 12,
-                  "y": 324
+                  "y": 348
                },
-               "id": 129,
+               "id": 139,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -16680,9 +17784,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 18,
-                  "y": 324
+                  "y": 348
                },
-               "id": 130,
+               "id": 140,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -16814,9 +17918,9 @@
                   "h": 8,
                   "w": 12,
                   "x": 0,
-                  "y": 332
+                  "y": 356
                },
-               "id": 131,
+               "id": 141,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -16954,9 +18058,9 @@
                   "h": 8,
                   "w": 12,
                   "x": 12,
-                  "y": 332
+                  "y": 356
                },
-               "id": 132,
+               "id": 142,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -17094,9 +18198,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 0,
-                  "y": 340
+                  "y": 364
                },
-               "id": 133,
+               "id": 143,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -17234,9 +18338,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 8,
-                  "y": 340
+                  "y": 364
                },
-               "id": 134,
+               "id": 144,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -17374,9 +18478,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 16,
-                  "y": 340
+                  "y": 364
                },
-               "id": 135,
+               "id": 145,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -17514,9 +18618,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 0,
-                  "y": 348
+                  "y": 372
                },
-               "id": 136,
+               "id": 146,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -17654,9 +18758,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 8,
-                  "y": 348
+                  "y": 372
                },
-               "id": 137,
+               "id": 147,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -17794,9 +18898,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 16,
-                  "y": 348
+                  "y": 372
                },
-               "id": 138,
+               "id": 148,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -17935,9 +19039,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 0,
-                  "y": 356
+                  "y": 380
                },
-               "id": 139,
+               "id": 149,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -18072,9 +19176,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 6,
-                  "y": 356
+                  "y": 380
                },
-               "id": 140,
+               "id": 150,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -18209,9 +19313,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 12,
-                  "y": 356
+                  "y": 380
                },
-               "id": 141,
+               "id": 151,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -18346,9 +19450,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 18,
-                  "y": 356
+                  "y": 380
                },
-               "id": 142,
+               "id": 152,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -18482,9 +19586,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 0,
-                  "y": 364
+                  "y": 388
                },
-               "id": 143,
+               "id": 153,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -18616,9 +19720,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 8,
-                  "y": 364
+                  "y": 388
                },
-               "id": 144,
+               "id": 154,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -18756,9 +19860,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 16,
-                  "y": 364
+                  "y": 388
                },
-               "id": 145,
+               "id": 155,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -18900,9 +20004,9 @@
             "h": 1,
             "w": 24,
             "x": 0,
-            "y": 372
+            "y": 396
          },
-         "id": 146,
+         "id": 156,
          "panels": [
             {
                "aliasColors": { },
@@ -18916,9 +20020,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 0,
-                  "y": 373
+                  "y": 397
                },
-               "id": 147,
+               "id": 157,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -19062,9 +20166,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 8,
-                  "y": 373
+                  "y": 397
                },
-               "id": 148,
+               "id": 158,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -19208,9 +20312,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 16,
-                  "y": 373
+                  "y": 397
                },
-               "id": 149,
+               "id": 159,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -19354,9 +20458,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 0,
-                  "y": 381
+                  "y": 405
                },
-               "id": 150,
+               "id": 160,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -19500,9 +20604,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 8,
-                  "y": 381
+                  "y": 405
                },
-               "id": 151,
+               "id": 161,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -19646,9 +20750,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 16,
-                  "y": 381
+                  "y": 405
                },
-               "id": 152,
+               "id": 162,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -19792,9 +20896,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 0,
-                  "y": 389
+                  "y": 413
                },
-               "id": 153,
+               "id": 163,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -19938,9 +21042,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 8,
-                  "y": 389
+                  "y": 413
                },
-               "id": 154,
+               "id": 164,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -20084,9 +21188,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 16,
-                  "y": 389
+                  "y": 413
                },
-               "id": 155,
+               "id": 165,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -20230,9 +21334,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 0,
-                  "y": 397
+                  "y": 421
                },
-               "id": 156,
+               "id": 166,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -20376,9 +21480,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 8,
-                  "y": 397
+                  "y": 421
                },
-               "id": 157,
+               "id": 167,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -20522,9 +21626,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 16,
-                  "y": 397
+                  "y": 421
                },
-               "id": 158,
+               "id": 168,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -20668,9 +21772,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 0,
-                  "y": 405
+                  "y": 429
                },
-               "id": 159,
+               "id": 169,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -20814,9 +21918,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 8,
-                  "y": 405
+                  "y": 429
                },
-               "id": 160,
+               "id": 170,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -20960,9 +22064,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 16,
-                  "y": 405
+                  "y": 429
                },
-               "id": 161,
+               "id": 171,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -21110,9 +22214,9 @@
             "h": 1,
             "w": 24,
             "x": 0,
-            "y": 413
+            "y": 437
          },
-         "id": 162,
+         "id": 172,
          "panels": [
             {
                "aliasColors": { },
@@ -21126,9 +22230,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 0,
-                  "y": 414
+                  "y": 438
                },
-               "id": 163,
+               "id": 173,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -21284,9 +22388,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 6,
-                  "y": 414
+                  "y": 438
                },
-               "id": 164,
+               "id": 174,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -21442,9 +22546,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 12,
-                  "y": 414
+                  "y": 438
                },
-               "id": 165,
+               "id": 175,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -21600,9 +22704,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 18,
-                  "y": 414
+                  "y": 438
                },
-               "id": 166,
+               "id": 176,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -21758,9 +22862,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 0,
-                  "y": 422
+                  "y": 446
                },
-               "id": 167,
+               "id": 177,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -21862,9 +22966,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 8,
-                  "y": 422
+                  "y": 446
                },
-               "id": 168,
+               "id": 178,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -21966,9 +23070,9 @@
                   "h": 8,
                   "w": 8,
                   "x": 16,
-                  "y": 422
+                  "y": 446
                },
-               "id": 169,
+               "id": 179,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -22118,9 +23222,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 0,
-                  "y": 430
+                  "y": 454
                },
-               "id": 170,
+               "id": 180,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -22276,9 +23380,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 6,
-                  "y": 430
+                  "y": 454
                },
-               "id": 171,
+               "id": 181,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -22434,9 +23538,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 12,
-                  "y": 430
+                  "y": 454
                },
-               "id": 172,
+               "id": 182,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -22592,9 +23696,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 18,
-                  "y": 430
+                  "y": 454
                },
-               "id": 173,
+               "id": 183,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -22750,9 +23854,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 0,
-                  "y": 438
+                  "y": 462
                },
-               "id": 174,
+               "id": 184,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -22908,9 +24012,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 6,
-                  "y": 438
+                  "y": 462
                },
-               "id": 175,
+               "id": 185,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -23066,9 +24170,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 12,
-                  "y": 438
+                  "y": 462
                },
-               "id": 176,
+               "id": 186,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -23224,9 +24328,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 18,
-                  "y": 438
+                  "y": 462
                },
-               "id": 177,
+               "id": 187,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -23382,9 +24486,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 0,
-                  "y": 446
+                  "y": 470
                },
-               "id": 178,
+               "id": 188,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -23540,9 +24644,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 6,
-                  "y": 446
+                  "y": 470
                },
-               "id": 179,
+               "id": 189,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -23698,9 +24802,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 12,
-                  "y": 446
+                  "y": 470
                },
-               "id": 180,
+               "id": 190,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -23856,9 +24960,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 18,
-                  "y": 446
+                  "y": 470
                },
-               "id": 181,
+               "id": 191,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -24014,9 +25118,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 0,
-                  "y": 454
+                  "y": 478
                },
-               "id": 182,
+               "id": 192,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -24172,9 +25276,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 6,
-                  "y": 454
+                  "y": 478
                },
-               "id": 183,
+               "id": 193,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -24330,9 +25434,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 12,
-                  "y": 454
+                  "y": 478
                },
-               "id": 184,
+               "id": 194,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -24488,9 +25592,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 18,
-                  "y": 454
+                  "y": 478
                },
-               "id": 185,
+               "id": 195,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -24646,9 +25750,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 0,
-                  "y": 462
+                  "y": 486
                },
-               "id": 186,
+               "id": 196,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -24804,9 +25908,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 6,
-                  "y": 462
+                  "y": 486
                },
-               "id": 187,
+               "id": 197,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -24962,9 +26066,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 12,
-                  "y": 462
+                  "y": 486
                },
-               "id": 188,
+               "id": 198,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -25120,9 +26224,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 18,
-                  "y": 462
+                  "y": 486
                },
-               "id": 189,
+               "id": 199,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -25278,9 +26382,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 0,
-                  "y": 470
+                  "y": 494
                },
-               "id": 190,
+               "id": 200,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -25436,9 +26540,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 6,
-                  "y": 470
+                  "y": 494
                },
-               "id": 191,
+               "id": 201,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -25594,9 +26698,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 12,
-                  "y": 470
+                  "y": 494
                },
-               "id": 192,
+               "id": 202,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -25752,9 +26856,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 18,
-                  "y": 470
+                  "y": 494
                },
-               "id": 193,
+               "id": 203,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -25910,9 +27014,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 0,
-                  "y": 478
+                  "y": 502
                },
-               "id": 194,
+               "id": 204,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -26068,9 +27172,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 6,
-                  "y": 478
+                  "y": 502
                },
-               "id": 195,
+               "id": 205,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -26226,9 +27330,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 12,
-                  "y": 478
+                  "y": 502
                },
-               "id": 196,
+               "id": 206,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -26384,9 +27488,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 18,
-                  "y": 478
+                  "y": 502
                },
-               "id": 197,
+               "id": 207,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -26542,9 +27646,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 0,
-                  "y": 486
+                  "y": 510
                },
-               "id": 198,
+               "id": 208,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -26700,9 +27804,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 6,
-                  "y": 486
+                  "y": 510
                },
-               "id": 199,
+               "id": 209,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -26858,9 +27962,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 12,
-                  "y": 486
+                  "y": 510
                },
-               "id": 200,
+               "id": 210,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -27016,9 +28120,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 18,
-                  "y": 486
+                  "y": 510
                },
-               "id": 201,
+               "id": 211,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -27174,9 +28278,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 0,
-                  "y": 494
+                  "y": 518
                },
-               "id": 202,
+               "id": 212,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -27332,9 +28436,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 6,
-                  "y": 494
+                  "y": 518
                },
-               "id": 203,
+               "id": 213,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -27490,9 +28594,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 12,
-                  "y": 494
+                  "y": 518
                },
-               "id": 204,
+               "id": 214,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -27648,9 +28752,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 18,
-                  "y": 494
+                  "y": 518
                },
-               "id": 205,
+               "id": 215,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -27806,9 +28910,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 0,
-                  "y": 502
+                  "y": 526
                },
-               "id": 206,
+               "id": 216,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -27964,9 +29068,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 6,
-                  "y": 502
+                  "y": 526
                },
-               "id": 207,
+               "id": 217,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -28122,9 +29226,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 12,
-                  "y": 502
+                  "y": 526
                },
-               "id": 208,
+               "id": 218,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -28280,9 +29384,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 18,
-                  "y": 502
+                  "y": 526
                },
-               "id": 209,
+               "id": 219,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -28438,9 +29542,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 0,
-                  "y": 510
+                  "y": 534
                },
-               "id": 210,
+               "id": 220,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -28596,9 +29700,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 6,
-                  "y": 510
+                  "y": 534
                },
-               "id": 211,
+               "id": 221,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -28754,9 +29858,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 12,
-                  "y": 510
+                  "y": 534
                },
-               "id": 212,
+               "id": 222,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -28912,9 +30016,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 18,
-                  "y": 510
+                  "y": 534
                },
-               "id": 213,
+               "id": 223,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -29070,9 +30174,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 0,
-                  "y": 518
+                  "y": 542
                },
-               "id": 214,
+               "id": 224,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -29228,9 +30332,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 6,
-                  "y": 518
+                  "y": 542
                },
-               "id": 215,
+               "id": 225,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -29386,9 +30490,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 12,
-                  "y": 518
+                  "y": 542
                },
-               "id": 216,
+               "id": 226,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -29544,9 +30648,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 18,
-                  "y": 518
+                  "y": 542
                },
-               "id": 217,
+               "id": 227,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -29702,9 +30806,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 0,
-                  "y": 526
+                  "y": 550
                },
-               "id": 218,
+               "id": 228,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -29860,9 +30964,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 6,
-                  "y": 526
+                  "y": 550
                },
-               "id": 219,
+               "id": 229,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -30018,9 +31122,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 12,
-                  "y": 526
+                  "y": 550
                },
-               "id": 220,
+               "id": 230,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -30176,9 +31280,9 @@
                   "h": 8,
                   "w": 6,
                   "x": 18,
-                  "y": 526
+                  "y": 550
                },
-               "id": 221,
+               "id": 231,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -30338,9 +31442,9 @@
             "h": 1,
             "w": 24,
             "x": 0,
-            "y": 534
+            "y": 558
          },
-         "id": 222,
+         "id": 232,
          "panels": [
             {
                "aliasColors": { },
@@ -30354,9 +31458,9 @@
                   "h": 8,
                   "w": 12,
                   "x": 0,
-                  "y": 535
+                  "y": 559
                },
-               "id": 223,
+               "id": 233,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -30500,9 +31604,9 @@
                   "h": 8,
                   "w": 12,
                   "x": 12,
-                  "y": 535
+                  "y": 559
                },
-               "id": 224,
+               "id": 234,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -30647,9 +31751,9 @@
                   "h": 8,
                   "w": 12,
                   "x": 0,
-                  "y": 543
+                  "y": 567
                },
-               "id": 225,
+               "id": 235,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,
@@ -30789,9 +31893,9 @@
                   "h": 8,
                   "w": 12,
                   "x": 12,
-                  "y": 543
+                  "y": 567
                },
-               "id": 226,
+               "id": 236,
                "legend": {
                   "alignAsTable": true,
                   "avg": true,

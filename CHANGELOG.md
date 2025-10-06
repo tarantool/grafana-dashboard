@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - Panel with Сartridge configuration checksum (#242)
 - Panel with `need schema upgrade` status (#243)
-
+- Panels with `CPU/memory/virtual memory` utilization per instance and total (#245)
 
 ## [3.2.1] - 2024-12-06
 Grafana revisions:

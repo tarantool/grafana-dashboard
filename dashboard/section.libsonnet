@@ -227,20 +227,35 @@ local vinyl = import 'dashboard/panels/vinyl.libsonnet';
 
   cpu(cfg):: [
     cpu.row,
-    cpu.getrusage_cpu_user_time(cfg),
-    cpu.getrusage_cpu_system_time(cfg),
+    cpu.getrusage_cpu_instance_total_time(cfg),
+    cpu.getrusage_cpu_instance_user_time(cfg),
+    cpu.getrusage_cpu_instance_system_time(cfg),
+    cpu.getrusage_cpu_total_time(cfg),
+    cpu.getrusage_cpu_total_user_time(cfg),
+    cpu.getrusage_cpu_total_system_time(cfg),
+
   ],
 
   cpu_extended(cfg):: [
     cpu.row,
-    cpu.getrusage_cpu_user_time(cfg),
-    cpu.getrusage_cpu_system_time(cfg),
+    cpu.getrusage_cpu_instance_total_time(cfg),
+    cpu.getrusage_cpu_instance_user_time(cfg),
+    cpu.getrusage_cpu_instance_system_time(cfg),
+    cpu.getrusage_cpu_total_time(cfg),
+    cpu.getrusage_cpu_total_user_time(cfg),
+    cpu.getrusage_cpu_total_system_time(cfg),
     cpu.procstat_thread_user_time(cfg),
     cpu.procstat_thread_system_time(cfg),
   ],
 
   runtime(cfg):: [
     runtime.row,
+    runtime.total_memory_per_instance(cfg),
+    runtime.resident_memory_per_instance(cfg),
+    runtime.virtual_memory_per_instance(cfg),
+    runtime.total_memory(cfg),
+    runtime.total_resident_memory(cfg),
+    runtime.total_virtual_memory(cfg),
     runtime.lua_memory(cfg),
     runtime.runtime_memory(cfg),
     runtime.memory_tx(cfg),

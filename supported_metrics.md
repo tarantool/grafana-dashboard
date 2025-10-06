@@ -5,12 +5,15 @@ Format is as follows.
 
 # tarantool/metrics
 
-Based on [tarantool/metrics 1.2.0](https://github.com/tarantool/metrics/releases/tag/1.2.0).
+Based on [tarantool/metrics 1.6.1](https://github.com/tarantool/metrics/releases/tag/1.6.1).
 
+
+- [x] **tnt_memory**: see *Tarantool runtime overview/Resident memory per instance*, *Tarantool runtime overview/Total resident memory usage* panels ([#245](https://github.com/tarantool/grafana-dashboard/pull/245))
+- [x] **tnt_memory_virt**: see *Tarantool runtime overview/Virtual memory per instance*, *Tarantool runtime overview/Total virtual memory usage* panels ([#245](https://github.com/tarantool/grafana-dashboard/pull/245))
 - [x] **tnt_schema_needs_upgrade**: see *Tarantool schema need upgrade status* panel ([#243](https://github.com/tarantool/grafana-dashboard/pull/243/files))
 - [x] **tnt_clock_delta**: see *Replication overview/Instances clock delta* panel ([#133](https://github.com/tarantool/grafana-dashboard/issues/133))
-- [x] **tnt_cpu_user_time**: see *Tarantool CPU statistics/CPU user time* panel ([#71](https://github.com/tarantool/grafana-dashboard/issues/71))
-- [x] **tnt_cpu_system_time**: see *Tarantool CPU statistics/CPU system time* panel ([#71](https://github.com/tarantool/grafana-dashboard/issues/71))
+- [x] **tnt_cpu_user_time**: see *Tarantool CPU statistics/CPU user time per instance*, *Tarantool CPU statistics/CPU user time per cluster* panels ([#71](https://github.com/tarantool/grafana-dashboard/issues/71)) ([#245](https://github.com/tarantool/grafana-dashboard/pull/245))
+- [x] **tnt_cpu_system_time**: see *Tarantool CPU statistics/CPU system time per instance*, *Tarantool CPU statistics/CPU user system per cluster* panels ([#71](https://github.com/tarantool/grafana-dashboard/issues/71)) ([#245](https://github.com/tarantool/grafana-dashboard/pull/245))
 - [x] **tnt_ev_loop_time**: see *Tarantool runtime overview/Event loop time* panel ([#73](https://github.com/tarantool/grafana-dashboard/issues/73))
 - **tnt_ev_loop_prolog_time**: unsupported ([#73](https://github.com/tarantool/grafana-dashboard/issues/73), decided not to support: **tnt_ev_loop_time** covers basic monitoring)
 - **tnt_ev_loop_epilog_time**: unsupported ([#73](https://github.com/tarantool/grafana-dashboard/issues/73), decided not to support: **tnt_ev_loop_time** covers basic monitoring)
