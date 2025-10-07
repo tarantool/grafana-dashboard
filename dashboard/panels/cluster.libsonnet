@@ -744,6 +744,34 @@ local prometheus = grafana.prometheus;
     common.target(cfg, 'tnt_read_only', converter='last')
   ),
 
+  schema_need_upgrade_status(
+    cfg,
+    title='Tarantool schema needs upgrade status',
+    description=|||
+      "no need to upgrade schema" means the instance schema is up-to-date.
+      "need to upgrade schema" means the instance schema is outdated; some functionality is unavailable.
+      Call box.schema.upgrade on the instance.
+
+      Panel minimal requirements: metrics 1.6.0, Grafana 8.
+    |||,
+    panel_width=12,
+  ):: timeseries.new(
+    title=title,
+    description=description,
+    datasource=cfg.datasource,
+    panel_width=panel_width,
+    max=1,
+    min=0,
+  ).addValueMapping(
+    0, 'green', 'no need to upgrade schema'
+  ).addValueMapping(
+    1, 'red', 'need to upgrade schema'
+  ).addRangeMapping(
+    0.001, 0.999, '-'
+  ).addTarget(
+    common.target(cfg, 'tnt_schema_needs_upgrade', converter='last')
+  ),
+
   local election_warning(description) = std.join(
     '\n',
     [description, |||

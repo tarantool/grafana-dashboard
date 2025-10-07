@@ -40,7 +40,8 @@ local vinyl = import 'dashboard/panels/vinyl.libsonnet';
     cluster.tarantool3_config_status(cfg),
     cluster.tarantool3_config_warning_alerts(cfg),
     cluster.tarantool3_config_error_alerts(cfg),
-    cluster.read_only_status(cfg, panel_width=24),
+    cluster.read_only_status(cfg),
+    cluster.schema_need_upgrade_status(cfg),
     cluster.election_state(cfg),
     cluster.election_vote(cfg),
     cluster.election_leader(cfg),
@@ -50,7 +51,8 @@ local vinyl = import 'dashboard/panels/vinyl.libsonnet';
     cluster.tarantool3_config_status(cfg),
     cluster.tarantool3_config_warning_alerts(cfg),
     cluster.tarantool3_config_error_alerts(cfg),
-    cluster.read_only_status(cfg, panel_width=24),
+    cluster.read_only_status(cfg),
+    cluster.schema_need_upgrade_status(cfg),
     cluster.election_state(cfg),
     cluster.election_vote(cfg),
     cluster.election_leader(cfg),
@@ -76,6 +78,7 @@ local vinyl = import 'dashboard/panels/vinyl.libsonnet';
     cluster.election_vote(cfg),
     cluster.election_leader(cfg),
     cluster.election_term(cfg),
+    cluster.schema_need_upgrade_status(cfg, panel_width=24),
   ] else if cfg.type == variable.datasource_type.influxdb then [
     cluster.row,
     cluster.cartridge_warning_issues(cfg),
@@ -86,6 +89,7 @@ local vinyl = import 'dashboard/panels/vinyl.libsonnet';
     cluster.election_vote(cfg),
     cluster.election_leader(cfg),
     cluster.election_term(cfg),
+    cluster.schema_need_upgrade_status(cfg, panel_width=24),
   ],
 
   replication_tarantool3(cfg):: [

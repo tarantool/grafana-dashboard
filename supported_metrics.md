@@ -7,6 +7,7 @@ Format is as follows.
 
 Based on [tarantool/metrics 1.2.0](https://github.com/tarantool/metrics/releases/tag/1.2.0).
 
+- [x] **tnt_schema_needs_upgrade**: see *Tarantool schema need upgrade status* panel ([#243](https://github.com/tarantool/grafana-dashboard/pull/243/files))
 - [x] **tnt_clock_delta**: see *Replication overview/Instances clock delta* panel ([#133](https://github.com/tarantool/grafana-dashboard/issues/133))
 - [x] **tnt_cpu_user_time**: see *Tarantool CPU statistics/CPU user time* panel ([#71](https://github.com/tarantool/grafana-dashboard/issues/71))
 - [x] **tnt_cpu_system_time**: see *Tarantool CPU statistics/CPU system time* panel ([#71](https://github.com/tarantool/grafana-dashboard/issues/71))
