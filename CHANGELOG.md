@@ -7,6 +7,27 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
+
+### Changed
+
+### Fixed
+
+### Removed
+
+## [3.3.0] - 2025-10-28
+Grafana revisions:
+- Tarantool 3:
+  - [Prometheus revision 6](https://grafana.com/api/dashboards/21474/revisions/6/download),
+  - [InfluxDB revision 6](https://grafana.com/api/dashboards/21484/revisions/6/download);
+- Tarantool Cartridge and 1.10—2.x:
+  - [Prometheus revision 22](https://grafana.com/api/dashboards/13054/revisions/22/download),
+  - [InfluxDB revision 22](https://grafana.com/api/dashboards/12567/revisions/22/download);
+- Tarantool Data Grid 2:
+  - [Prometheus revision 12](https://grafana.com/api/dashboards/16406/revisions/12/download),
+  - [InfluxDB revision 12](https://grafana.com/api/dashboards/16405/revisions/12/download).
+
+### Added
+
 - Panel with Сartridge configuration checksum (#242)
 - Panel with `need schema upgrade` status (#243)
 - Panels with `CPU/memory/virtual memory` utilization per instance and total (#245)
