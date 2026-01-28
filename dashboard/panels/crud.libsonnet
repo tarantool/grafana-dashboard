@@ -1,5 +1,6 @@
 local grafana = import 'grafonnet/grafana.libsonnet';
 
+local timeseries = import 'dashboard/grafana/timeseries.libsonnet';
 local common = import 'dashboard/panels/common.libsonnet';
 local variable = import 'dashboard/variable.libsonnet';
 
@@ -341,7 +342,7 @@ local tuples_panel(
   min=0,
   labelY1='tuples per request',
   panel_height=8,
-  panel_width=8,
+  panel_width=6,
 ).addTarget(
   if cfg.type == variable.datasource_type.prometheus then
     local filters = common.prometheus_query_filters(cfg.filters { operation: ['=', 'select'] });
@@ -389,6 +390,32 @@ local tuples_panel(
 // Add first set of panels to the module: row, select operations, borders operations, select tuples details.
 local module = {
   row:: common.row('CRUD module statistics'),
+
+  safe_mode_enabled(
+    cfg,
+    title='Safe mode status',
+    description=|||
+      Whether the safe mode is enabled or disabled on storage instance.
+
+      Panel minimal requirements: CRUD 1.7.2.
+    |||,
+    panel_width=6,
+  ):: timeseries.new(
+    title=title,
+    description=description,
+    datasource=cfg.datasource,
+    panel_width=panel_width,
+    max=1,
+    min=0,
+  ).addValueMapping(
+    1, 'yellow', 'enabled'
+  ).addValueMapping(
+    0, 'green', 'disabled'
+  ).addRangeMapping(
+    0.001, 0.999, '-'
+  ).addTarget(
+    common.target(cfg, 'tnt_crud_storage_safe_mode_enabled'),
+  ),
 
   select_success_rps(
     cfg,
@@ -478,7 +505,7 @@ local module = {
     min=0,
     labelY1='requests per second',
     panel_height=8,
-    panel_width=8,
+    panel_width=6,
   ).addTarget(
     common.target(
       cfg,
