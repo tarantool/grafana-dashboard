@@ -310,6 +310,7 @@ local vinyl = import 'dashboard/panels/vinyl.libsonnet';
 
   crud(cfg):: [
     crud.row,
+    crud.safe_mode_enabled(cfg),
     crud.select_success_rps(cfg),
     crud.select_success_latency(cfg),
     crud.select_error_rps(cfg),
