@@ -168,6 +168,7 @@ Based on [tarantool/metrics 1.6.1](https://github.com/tarantool/metrics/releases
 # tarantool/crud
 
 - [x] **tnt_crud_storage_safe_mode_enabled**: see *CRUD module statistics/Safe mode status* panel ([#249](https://github.com/tarantool/grafana-dashboard/pull/249))
+- [x] **tnt_crud_router_cache_clear_ts**: see *CRUD module statistics/Router cache last cleared* panel ([#250](https://github.com/tarantool/grafana-dashboard/pull/250))
 
 Based on [tarantool/crud 1.5.2](https://github.com/tarantool/crud/releases/tag/1.5.2).
 
