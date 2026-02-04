@@ -342,7 +342,7 @@ local tuples_panel(
   min=0,
   labelY1='tuples per request',
   panel_height=8,
-  panel_width=6,
+  panel_width=8,
 ).addTarget(
   if cfg.type == variable.datasource_type.prometheus then
     local filters = common.prometheus_query_filters(cfg.filters { operation: ['=', 'select'] });
@@ -399,7 +399,7 @@ local module = {
 
       Panel minimal requirements: CRUD 1.7.2.
     |||,
-    panel_width=6,
+    panel_width=12,
   ):: timeseries.new(
     title=title,
     description=description,
@@ -415,6 +415,55 @@ local module = {
     0.001, 0.999, '-'
   ).addTarget(
     common.target(cfg, 'tnt_crud_storage_safe_mode_enabled'),
+  ),
+
+  router_cache_clear(
+    cfg,
+    title='Router cache last cleared',
+    description=|||
+      How long ago the route cache was last cleared on router instance.
+
+      Panel minimal requirements: CRUD 1.7.3.
+    |||,
+  ):: common.default_graph(
+    cfg,
+    title=title,
+    description=description,
+    panel_width=12,
+    format='dateTimeFromNow',
+    legend_avg=false,
+    legend_max=false,
+  ).addTarget(
+    if cfg.type == variable.datasource_type.prometheus then
+      prometheus.target(
+        expr=std.format(
+          |||
+            (
+              %(metrics_prefix)stnt_crud_router_cache_clear_ts{%(filters)s}
+              and
+              %(metrics_prefix)stnt_crud_router_cache_clear_ts{%(filters)s} > 0
+            ) * 1000
+          |||,
+          {
+            metrics_prefix: cfg.metrics_prefix,
+            filters: common.prometheus_query_filters(cfg.filters),
+          }
+        ),
+        legendFormat='{{alias}}'
+      )
+    else if cfg.type == variable.datasource_type.influxdb then
+      influxdb.target(
+        policy=cfg.policy,
+        measurement=cfg.measurement,
+        alias='$tag_label_pairs_alias',
+        group_tags=['label_pairs_alias'],
+        fill='none',
+      )
+      .where('metric_name', '=', std.format('%s%s', [cfg.metrics_prefix, 'tnt_crud_router_cache_clear_ts']))
+      .where('value', '>', '0')
+      .selectField('value')
+      .addConverter('last')
+      .addConverter('math', ['*1000'])
   ),
 
   select_success_rps(
@@ -505,7 +554,7 @@ local module = {
     min=0,
     labelY1='requests per second',
     panel_height=8,
-    panel_width=6,
+    panel_width=8,
   ).addTarget(
     common.target(
       cfg,
