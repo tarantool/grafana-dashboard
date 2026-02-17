@@ -38,6 +38,7 @@
       "metrics_prefix": "",
       "sections": [
          "cluster_tarantool3",
+         "failover_coordinator",
          "replication_tarantool3",
          "http",
          "net",
@@ -74,6 +75,7 @@
       "metrics_prefix": "",
       "sections": [
          "cluster_tarantool3",
+         "failover_coordinator",
          "replication_tarantool3",
          "http",
          "net",
@@ -173,6 +175,7 @@
       "metrics_prefix": "",
       "sections": [
          "cluster_tarantool3",
+         "failover_coordinator",
          "replication_tarantool3",
          "http",
          "net",
@@ -249,6 +252,7 @@
       "metrics_prefix": "",
       "sections": [
          "cluster_tarantool3",
+         "failover_coordinator",
          "replication_tarantool3",
          "http",
          "net",
@@ -285,6 +289,7 @@
       "metrics_prefix": "",
       "sections": [
          "cluster_tarantool3",
+         "failover_coordinator",
          "replication_tarantool3",
          "http",
          "net",

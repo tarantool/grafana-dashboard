@@ -10,6 +10,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Panel with CRUD safe mode status (#249)
 - Panel with time of last CRUD router cache clear (#250)
 
+- Failover coordinator section with status and visibility panels (#247)
+
 ### Changed
 
 ### Fixed
