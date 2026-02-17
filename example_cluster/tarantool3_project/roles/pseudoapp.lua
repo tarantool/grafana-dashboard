@@ -75,6 +75,60 @@ local function apply(cfg)
 
     httpd:start()
 
+    local coordinator_status = metrics.gauge(
+        'tarantool_coordinator_active',
+        'Mock failover coordinator status'
+    )
+    local instance_status = metrics.gauge(
+        'tarantool_instance_status',
+        'Mock failover coordinator visibility'
+    )
+
+    fiber.create(function()
+        local uuid = require('uuid')
+
+        local active = 1
+
+        local uuid_a = tostring(uuid.new())
+        local uuid_b = tostring(uuid.new())
+
+        while true do
+            coordinator_status:set(active, {
+                alias = uuid_a,
+            })
+            coordinator_status:set((active + 1) % 2, {
+                alias = uuid_b,
+            })
+
+            instance_status:set(1, {
+                alias = uuid_a,
+                replicaset = 'storages_1',
+                instance = 'storage_1_master',
+            })
+
+            instance_status:set(1, {
+                alias = uuid_a,
+                replicaset = 'storages_2',
+                instance = 'storage_2_master',
+            })
+
+            instance_status:set(1, {
+                alias = uuid_b,
+                replicaset = 'storages_1',
+                instance = 'storage_1_replica',
+            })
+
+            instance_status:set(0, {
+                alias = uuid_b,
+                replicaset = 'storages_2',
+                instance = 'storage_2_replica',
+            })
+
+            active = (active + 1) % 2
+            fiber.sleep(5)
+        end
+    end)
+
     box.watch('box.status', function()
         if box.info.ro then
             return

@@ -4,6 +4,7 @@ local cluster = import 'dashboard/panels/cluster.libsonnet';
 local cpu = import 'dashboard/panels/cpu.libsonnet';
 local crud = import 'dashboard/panels/crud.libsonnet';
 local expirationd = import 'dashboard/panels/expirationd.libsonnet';
+local failover = import 'dashboard/panels/failover.libsonnet';
 local http = import 'dashboard/panels/http.libsonnet';
 local luajit = import 'dashboard/panels/luajit.libsonnet';
 local mvcc = import 'dashboard/panels/mvcc.libsonnet';
@@ -58,6 +59,12 @@ local vinyl = import 'dashboard/panels/vinyl.libsonnet';
     cluster.election_leader(cfg),
     cluster.election_term(cfg),
   ],
+
+  failover_coordinator(cfg):: if cfg.type == variable.datasource_type.prometheus then [
+    failover.failover_coordinator_row,
+    failover.coordinators_status(cfg) { gridPos: { w: 10, h: 14, x: 0, y: 3 } },
+    failover.instances_seen_by_coordinators(cfg) { gridPos: { w: 14, h: 14, x: 10, y: 3 } },
+  ] else [],
 
   cluster_cartridge(cfg):: if cfg.type == variable.datasource_type.prometheus then [
     // Must be used only in the top of a dashboard, overall stat panels use complicated layout

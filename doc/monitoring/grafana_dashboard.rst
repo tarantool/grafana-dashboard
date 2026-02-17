@@ -63,6 +63,21 @@ to enable statistics export.
 .. image:: images/Prometheus_dashboard_3.png
    :width: 30%
 
+-------------------------------------------------------------------------------
+Monitor failover coordinators
+-------------------------------------------------------------------------------
+
+The Tarantool 3 dashboard now includes a dedicated **Failover coordinator**
+section (Prometheus only). It shows:
+
+- **Coordinators status** - whether each coordinator is active or passive.
+- **Instances seen by coordinators** - instances visible to every coordinator,
+  together with their cluster status.
+
+.. image:: images/failover_coordinator_section.png
+   :width: 75%
+   :alt: Failover coordinator section
+
 .. _monitoring-grafana_dashboard-monitoring_stack:
 
 -------------------------------------------------------------------------------
@@ -139,6 +154,9 @@ to Telegraf configuration including each Tarantool instance metrics URL:
             "label_pairs_name",
             "label_pairs_index_name",
             "label_pairs_delta",
+            "label_pairs_replicaset",
+            "label_pairs_instance",
+            "label_pairs_exported_instance",
             "label_pairs_stream",
             "label_pairs_thread",
             "label_pairs_kind"
@@ -180,6 +198,9 @@ For TDG dashboard, please use
             "label_pairs_delta",
             "label_pairs_stream",
             "label_pairs_thread",
+            "label_pairs_replicaset",
+            "label_pairs_instance",
+            "label_pairs_exported_instance",
             "label_pairs_type",
             "label_pairs_connector_name",
             "label_pairs_broker_name",

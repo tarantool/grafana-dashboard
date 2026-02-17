@@ -28,6 +28,7 @@ local variable = import 'dashboard/variable.libsonnet';
       metrics_prefix: '',
       sections: [
         'cluster_tarantool3',
+        'failover_coordinator',
         'replication_tarantool3',
         'http',
         'net',
